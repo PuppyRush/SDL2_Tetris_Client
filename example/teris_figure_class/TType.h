@@ -28,3 +28,10 @@ enum class TColor : unsigned short
 	none
 };
 
+enum class TFigureType : unsigned char
+{
+	A,
+	B,
+	C,
+	D
+};

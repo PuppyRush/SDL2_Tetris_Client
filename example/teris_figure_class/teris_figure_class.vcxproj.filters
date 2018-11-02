@@ -27,6 +27,9 @@
     <ClInclude Include="TFigureL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TFigureBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TFigureUnit.cpp">
@@ -39,7 +42,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
