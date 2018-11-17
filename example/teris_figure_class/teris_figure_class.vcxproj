@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="TFigure.h" />
+    <ClInclude Include="TFigureBuilder.h" />
     <ClInclude Include="TFigureL.h" />
     <ClInclude Include="TFigureUnit.h" />
     <ClInclude Include="TType.h" />
