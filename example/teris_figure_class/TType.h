@@ -1,5 +1,7 @@
 #pragma once
 
+#include <tuple>
+
 using t_figureType = unsigned char;
 using t_age = unsigned short;
 using t_coord = unsigned char;
