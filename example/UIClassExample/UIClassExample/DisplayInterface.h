@@ -15,10 +15,10 @@ typedef struct Menu
 	Color color;
 };
 
+
 class DisplayInterface
 {
 public:
-
 	inline const size_t getDisplayWidth() { return DISPLAY_WIDTH; }
 	inline const size_t getDisplayHeight() { return DISPLAY_HEIGHT; }
 	inline const std::vector<Menu> getMenus() { return m_menus; }
@@ -30,13 +30,14 @@ public:
 	void Erase();
 
 protected:
-	DisplayInterface()
+	DisplayInterface(const std::vector<Menu> menus)
 	{
 		Initialize();
 	}
 
 private:
-	virtual void Initialize() = 0;
+	//Draw Menus.
+	void Initialize();
 	
 	static constexpr size_t DISPLAY_WIDTH = 600;
 	static constexpr size_t DISPLAY_HEIGHT = 1200;
