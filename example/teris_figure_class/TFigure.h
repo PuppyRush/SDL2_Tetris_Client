@@ -5,106 +5,83 @@
 #include <memory>
 #include <deque>
 #include <numeric>
+#include <array>
 
 #include "TType.h"
 #include "TFigureUnit.h"
 
+/***********************************************
+*		            â–¡ â–¡ â–¡ â–¡                    *
+*		            â–¡ â–¡ â–  â–¡                    *
+*		            â–¡ â–¡ â–¡ â–¡                    *
+*		            â–¡ â–¡ â–¡ â–¡                    *
+*	   	      Relatevie Coordnation		       *
+*	(x-2,y-1) (x  ,y-1) (x,y-1)	 (x  ,y-1)     *
+*	(x-2,y  ) (x-1,y  ) (x,y  )	 (x+1,y  )     *
+*	(x-2,y+1) (x-1,y+1) (x,y+1)	 (x+1,y+1)     *
+*	(x-2,y+2) (x-1,y+2) (x,y+2)	 (x+1,y+2)     *
+***********************************************/
 
-/************************************************
-*	¡é(x,y)  	Relatevie Coordnation		    *
-*	¡à ¡à	¡à	(x  ,y) (x  ,y+1) (x  ,y+2)			*
-*	¡à ¡à	¡à	(x+1,y) (x+1,y+1) (x+1,y+2)			*
-*	¡à ¡à	¡à	(x+2,y) (x+2,y+1) (x+2,y+2)			*
-*												*
-************************************************/
-
-typedef struct TFigureInfo
-{
-	TPoint coord;
-	t_width width;
-	t_height height;
-	TColor color;
-};
+namespace tetris {
 
 
-class FigureBuilder
-{
+class TFigureBuilder;
+class TFigure {
 public:
 
-	FigureBuilder(const TPoint& coord)
-		:m_coord(coord),
-		m_width(std::numeric_limits<t_width>::max()),
-		m_height(std::numeric_limits<t_height>::max()),
-		m_color(TColor::none)
-	{
-		
-	}
-
-	FigureBuilder* width(const t_width _width)
-	{
-		this->width = _width;
-		return this;
-	}
-
-	FigureBuilder* height(const t_width _height)
-	{
-		this->m_height = _height;
-		return this;
-	}
-
-	FigureBuilder* color(const TColor _color)
-	{
-		this->m_color = _color;
-		return this;
-	}
-
-	const TFigureInfo build()
-	{
-		//runtime check of necessary value
-		assert(m_width != std::numeric_limits<t_width>::max());
-		assert(m_height != std::numeric_limits<t_height>::max());
-		assert(m_color != TColor::none);
-
-		TFigureInfo fi;
-		fi.height = m_height;
-		fi.width = m_width;
-		fi.coord = m_coord;
-		fi.color = m_color;
-		return fi;
-	}
-
+    using FigureCoords = std::array<TFigureUnit, 4>;
+    
+    virtual ~TFigure();
+    
+    inline const TFigureType getType()
+    { return m_figureType;}
+    
+    inline const size_t getWidth()
+    { return m_width;}
+    
+    inline const size_t getHeight()
+    { return m_height;}
+    
+    inline const TPoint getPoint()
+    { return m_point;}
+    
+    inline const FigureCoords getCoords()
+    { return m_relativeCoord;}
+    
+    
+    std::shared_ptr<TFigure> goRight();
+    std::shared_ptr<TFigure> goLeft();
+    std::shared_ptr<TFigure> goDown();
+    std::shared_ptr<TFigure> rotateLeft();
+    std::shared_ptr<TFigure> rotateRight();
+    const std::shared_ptr<TFigure> copy() const;
+    
+    virtual const TFigureType getRandomlyFigureType() const = 0;
+    virtual void initialize() = 0;
+    virtual const TFigureType getTypeBegin() const = 0;
+    virtual const TFigureType getTypeEnd() const = 0;
+    
+    
+protected:
+    TFigure(const TFigureBuilder *bld);
+    
+    t_size m_figureTypeCount;
+    t_size m_width;
+    t_size m_height;
+    TPoint m_point;
+    TFigureType m_figureType;
+    FigureCoords m_relativeCoord;
+    
 private:
-	t_width m_width;
-	t_height m_height;
-	TPoint m_coord;
-	TColor m_color;
+    TFigure();
+    virtual bool Validation() = 0;
+    
+    virtual void _goRight() = 0;
+    virtual void _goLeft() = 0;
+    virtual void _goDown() = 0;
+    virtual void _rotateLeft() = 0;
+    virtual void _rotateRight() = 0;
 };
 
-
-class TFigure
-{
-public:
-	virtual ~TFigure();
-
-	virtual void goRight() = 0;
-	virtual void goLeft() = 0;
-	virtual void goDown() = 0;
-	virtual void rotateLeft() = 0;
-	virtual void rotateRight() = 0;
-	
-	const t_figureType getType();
-	const size_t getWidth();
-	const size_t getHeight();
-	
-	const TFigureUnit** getCoord() const noexcept
-	{	return m_relativeCoord;	}
-
-
-private:
-	TFigure(const FigureBuilder&);
-	virtual bool Validation() = 0;
-
-	TFigureInfo m_figureInfo;
-	TFigureUnit** m_relativeCoord; //coord is coordinations.
-};
+}
 

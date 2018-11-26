@@ -2,38 +2,66 @@
 
 #include <tuple>
 
-using t_figureType = unsigned char;
-using t_age = unsigned short;
-using t_coord = unsigned char;
-using t_width = unsigned char;
-using t_height = unsigned char;
-using t_figureInfo = std::tuple<t_figureType, t_width, t_height>;
+namespace tetris {
 
-typedef struct TPoint
-{
-	explicit TPoint(const t_coord x, const t_coord y)
-		:x(x), y(y)
-	{}
+	using t_type = unsigned char;
+	using t_age = unsigned short;
+	using t_coord = unsigned char;
+	using t_size = unsigned char;
 
-	t_coord x;
-	t_coord y;
-}TPoint;
+	typedef struct TPoint {
+		TPoint()
+				: x(0), y(0),z(0) {}
 
-enum class TColor : unsigned short
-{
-	red = 0,
-	blue,
-	orange,
-	yellow,
-	purple,
-	green,
-	none
-};
+		TPoint(const t_coord x, const t_coord y, const t_coord z=0)
+				: x(x), y(y),z(z)
+			{}
 
-enum class TFigureType : unsigned char
-{
-	A,
-	B,
-	C,
-	D
-};
+		t_coord x;
+		t_coord y;
+		t_coord z;
+	} TPoint;
+
+	enum class TColor : t_type
+	{
+		red = 0,
+		blue,
+		orange,
+		yellow,
+		purple,
+		green,
+		none,
+		Begin = red,
+		End = green
+	};
+	
+	enum class TFigureClass : t_type
+	{
+		L=0,
+		J,
+		I,
+		O,
+		S,
+		Z,
+		T,
+		Begin = L,
+		End = T
+	};
+	
+	enum class TFigureType : t_type
+	{
+		A,
+		B,
+		C,
+		D,
+		None,
+		Begin = A,
+		End = D
+	};
+	
+	enum class MapType : t_type
+	{
+	
+	};
+	
+}

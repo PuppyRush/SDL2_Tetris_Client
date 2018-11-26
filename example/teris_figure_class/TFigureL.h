@@ -1,66 +1,60 @@
 #pragma once
 
+
+#define TETRIS_TFIGUREL
+#ifdef TETRIS_TFIGUREL
+
 #include <tuple>
 #include "TType.h"
 #include "TFigure.h"
 #include "TFigureBuilder.h"
 
 /***************************************************
-*												   *
-*			¡á ¡à	¡à	  ¡à	¡à ¡à		¡à ¡á ¡á	  ¡á ¡á ¡á	   *
-*			¡á ¡à	¡à	  ¡à ¡à ¡á		¡à ¡à ¡á	  ¡á ¡à ¡à	   *
-*			¡á ¡á	¡à	  ¡á ¡á ¡á		¡à ¡à ¡á	  ¡à ¡à ¡à	   *
+*		  â–¡ â–¡ â–¡ â–¡	 â–¡ â–¡ â–  â–¡   â–¡ â–¡ â–¡ â– 	 â–¡ â–  â–  â–¡   *
+*		  â–¡ â–  â–  â– 	 â–¡ â–¡ â–  â–¡   â–¡ â–  â–  â–    â–¡ â–¡ â–  â–¡   *
+*		  â–¡ â–  â–¡ â–¡    â–¡ â–¡ â–  â–    â–¡ â–¡ â–¡ â–¡   â–¡ â–¡ â–  â–¡   *
+*		  â–¡ â–¡ â–¡ â–¡    â–¡ â–¡ â–¡ â–¡   â–¡ â–¡ â–¡ â–¡   â–¡ â–¡ â–¡ â–¡   *
 *	type  	 A		    B		  C			D	   *
-*	width	 2		    3		  2			3	   *
-*	height   3		    2		  3			2	   *
+*	width	 3		    2		  3			2	   *
+*	height   2		    3		  2			3	   *
 *												   *
 ***************************************************/
 
-class TFigureLBuilder : public TFigureBuilder
-{
+namespace tetris {
+
+class TFigureBuilder;
+
+class TFigureL : public TFigure {
 public:
+    
+    virtual ~TFigureL();
+    virtual void initialize() override;
+    virtual const TFigureType getTypeBegin() const override;
+    virtual const TFigureType getTypeEnd() const override;
+    virtual const TFigureType getRandomlyFigureType() const override;
+    
+    //hide base ctr, make object from builder
+    static std::shared_ptr<TFigureL> get(const TFigureBuilder *bld) {
+        auto figure =  std::shared_ptr<TFigureL>(new TFigureL(bld));
+        figure->initialize ();
+        return figure;
+    }
 
-	TFigureLBuilder(const TPoint& point);
-	virtual ~TFigureLBuilder() {}
-
-	virtual TFigureLBuilder* color(const TColor& color) override;
-	virtual TFigureLBuilder* type(const TFigureType& type) override;
-	virtual TFigureLBuilder* age(const t_age& age) override;
-	virtual TFigureL* build() override
-	{
-		return new TFigureL(this);
-	}
-
+    
 private:
-	virtual TFigureLBuilder* width(const t_width& width) override;
-	virtual TFigureLBuilder* height(const t_height& height) override;
-};
-
-class TFigureL : public TFigure
-{
-public:
-	
-	virtual ~TFigureL();
-
-	//implement pure virtual funtions.
-	virtual void goRight() override;
-	virtual void goLeft() override;
-	virtual void goDown() override;
-	virtual void rotateLeft() override;
-	virtual void rotateRight() override;
-
-	//hide base ctr, make object from builder
-	static TFigureL* get(TFigureLBuilder& bld)
-	{
-		return bld.build();
-	}
-
-	//base property
-	static const TFigureType MAX_FIGURE_TYPE;
-
-private:
-	TFigureL(const FigureBuilder* bld);
+    TFigureL(const TFigureBuilder *bld);
+    virtual bool Validation() override;
+    
+    //implement pure virtual funtions.
+    virtual void _goRight() override;
+    virtual void _goLeft() override;
+    virtual void _goDown() override;
+    virtual void _rotateLeft() override;
+    virtual void _rotateRight() override;
 };
 
 
-const TFigureType TFigureL::MAX_FIGURE_TYPE = TFigureType::D;
+
+}
+
+#endif
