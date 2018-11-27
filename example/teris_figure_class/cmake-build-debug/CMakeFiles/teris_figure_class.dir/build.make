@@ -199,6 +199,8 @@ teris_figure_class: CMakeFiles/teris_figure_class.dir/TFigureLBuilder.cpp.o
 teris_figure_class: CMakeFiles/teris_figure_class.dir/TFigureBuilder.cpp.o
 teris_figure_class: CMakeFiles/teris_figure_class.dir/TFigureBoardBuilder.cpp.o
 teris_figure_class: CMakeFiles/teris_figure_class.dir/build.make
+teris_figure_class: /usr/lib/x86_64-linux-gnu/libSDL2main.a
+teris_figure_class: /usr/lib/x86_64-linux-gnu/libSDL2.so
 teris_figure_class: CMakeFiles/teris_figure_class.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable teris_figure_class"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/teris_figure_class.dir/link.txt --verbose=$(VERBOSE)

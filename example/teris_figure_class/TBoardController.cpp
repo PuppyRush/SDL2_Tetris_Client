@@ -3,3 +3,12 @@
 //
 
 #include "TBoardController.h"
+
+using namespace tetris;
+
+BoardController::BoardController()
+:m_board(TFigureBoard::get ()
+)
+{
+
+}

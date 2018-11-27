@@ -31,19 +31,22 @@ TFigureBoard::TFigureBoard ()
 void TFigureBoard::createNextFigureRandomly ()
 {
     if (m_currentFigure)
-        {
-            m_currentFigure.reset ();
-        }
+    {
+        m_currentFigure.reset ();
+    }
     
     switch (EnumHelper<TFigureClass>::getRandomly ())
-        {
-    case TFigureClass::L:
+    {
+        case TFigureClass::L:
         {
             TFigureBuilder *bld = new TFigureLBuilder (TPoint (3, 5));
+            bld->type (TFigureType::A);
             m_currentFigure = TFigureL::get (bld);
         }
-            break;
-        }
+        break;
+    }
+    
+    setCoords();
 }
 
 std::shared_ptr<TFigure> TFigureBoard::getCurrentFigure ()
@@ -59,16 +62,21 @@ std::shared_ptr<TFigureBoard> TFigureBoard::get ()
 
 void TFigureBoard::rotate ()
 {
-    auto copied = m_currentFigure->rotateLeft ();
-    if (!isValidation (m_currentFigure.get ()))
-        m_currentFigure = copied;
+    eraseCoords();
+    
+    m_currentFigure->rotateLeft ();
+    //if (!isValidation (m_currentFigure.get ()))
+    //    m_currentFigure = copied;
     
     setCoords();
 }
 
 void TFigureBoard::goDown ()
 {
+    eraseCoords();
+    
     auto copied = m_currentFigure->goDown ();
+    
     if (!isValidation (m_currentFigure.get ()))
         m_currentFigure = copied;
     
@@ -77,6 +85,8 @@ void TFigureBoard::goDown ()
 
 void TFigureBoard::goLeft ()
 {
+    eraseCoords();
+    
     auto copied = m_currentFigure->goLeft ();
     if (!isValidation (m_currentFigure.get ()))
         m_currentFigure = copied;
@@ -86,6 +96,8 @@ void TFigureBoard::goLeft ()
 
 void TFigureBoard::goRight ()
 {
+    eraseCoords();
+    
     auto copied = m_currentFigure->goRight ();
     if (!isValidation (m_currentFigure.get ()))
         m_currentFigure = copied;
@@ -95,13 +107,31 @@ void TFigureBoard::goRight ()
 
 const bool TFigureBoard::isValidation (const TFigure *destFigure)
 {
+    return true;
     for(const auto coord : m_currentFigure->getCoords ())
     {
         //m_board[coord.getPoint ().y][coord.getPoint ().x]
     }
 }
 
+void TFigureBoard::eraseCoords()
+{
+    for(const auto coord : m_currentFigure->getCoords ())
+    {
+        const auto x = coord.getPoint ().x;
+        const auto y = coord.getPoint ().y;
+        m_board[y][x].setType (TFigureUnit::UnitType::Empty);
+        m_board[y][x].setColor (TColor::none);
+    }
+}
+
 void TFigureBoard::setCoords()
 {
-
+    for(const auto coord : m_currentFigure->getCoords ())
+    {
+        const auto x = coord.getPoint ().x;
+        const auto y = coord.getPoint ().y;
+        m_board[y][x].setType (TFigureUnit::UnitType::Fill);
+        m_board[y][x].setColor (coord.getColor ());
+    }
 }

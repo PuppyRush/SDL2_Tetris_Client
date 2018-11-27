@@ -17,10 +17,20 @@ class BoardController {
 public:
     ~BoardController(){}
     
-    inline void rotate() { m_board->rotate ();}
-    inline void goDown(){ m_board->goDown ();}
-    inline void goLeft(){ m_board->goLeft ();}
-    inline void goRight() {m_board->goRight ();}
+    inline void rotate() const
+    { m_board->rotate ();}
+    
+    inline void goDown() const
+    { m_board->goDown ();}
+    
+    inline void goLeft() const
+    { m_board->goLeft ();}
+    
+    inline void goRight() const
+    {m_board->goRight ();}
+    
+    inline TFigureBoard::BoardType getGameBoard() const
+    {return TFigureBoard::get ()->getBoard ();}
     
     //singleton
     static auto get()
@@ -30,7 +40,7 @@ public:
     }
     
 private:
-    BoardController(){}
+    BoardController();
 
     std::shared_ptr<TFigureBoard> m_board;
 };

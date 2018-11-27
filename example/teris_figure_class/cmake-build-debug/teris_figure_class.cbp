@@ -5,7 +5,7 @@
 		<Option title="teris_figure_class"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\CMakeModules\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug"/>
@@ -44,6 +44,9 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/teris_figure_class"/>
+					<Add directory="/usr/include/SDL2"/>
+					<Add directory="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/src"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -67,6 +70,9 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/teris_figure_class"/>
+					<Add directory="/usr/include/SDL2"/>
+					<Add directory="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/src"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -146,6 +152,9 @@
 		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/CMakeModules/FindSDL2.cmake">
+			<Option virtualFolder="CMake Files\CMakeModules\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

@@ -27,29 +27,30 @@ TFigure::~TFigure()
 
 std::shared_ptr<TFigure> TFigure::goRight()
 {
-    auto copied = copy();
+   // auto copied = copy();
     _goRight ();
-    return copied;
+  //  return copied;
 }
 std::shared_ptr<TFigure> TFigure::goLeft()
 {
-    auto copied = copy();
+  //  auto copied = copy();
     _goLeft ();
-    return copied;
+  //  return copied;
 }
 
 std::shared_ptr<TFigure> TFigure::goDown()
 {
-    auto copied = copy();
+  //  auto copied = copy();
     _goDown ();
-    return copied;
+   // return copied;
 }
 
 std::shared_ptr<TFigure> TFigure::rotateLeft()
 {
-    auto copied = copy();
+   // auto copied = copy();
     _rotateLeft ();
-    return copied;
+    return nullptr;
+  //  return copied;
 }
 std::shared_ptr<TFigure> TFigure::rotateRight()
 {

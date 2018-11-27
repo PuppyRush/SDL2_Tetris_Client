@@ -19,6 +19,8 @@ class TFigureBoard {
 
 public:
 
+    using BoardType = std::array< std::array<TFigureUnit,BOARD_HEIGHT_COUNT>, BOARD_WIDTH_COUNT>;
+    
     inline TFigureUnit& operator()(const size_t y, const size_t x)
     {
         try
@@ -31,18 +33,18 @@ public:
         }
     }
     
+    BoardType getBoard() const
+    {return m_board;}
+    
     void rotate();
     void goDown();
     void goLeft();
     void goRight();
-    
     void eraseLine(const t_size lineNumber);
     void addLine(const t_size lineNumber);
     void eraseBottomLine(const t_size = 1);
     void addBottomLine(const t_size = 1);
-
     void createNextFigureRandomly();
-    
     std::shared_ptr<TFigure> getCurrentFigure();
     
     static std::shared_ptr<TFigureBoard> get();
@@ -50,11 +52,12 @@ public:
 private:
 
     TFigureBoard();
+    void eraseCoords();
     void setCoords();
     const bool isValidation(const TFigure* destFigure);
     
     std::shared_ptr<TFigure> m_currentFigure;
-    std::array< std::array<TFigureUnit,BOARD_WIDTH_COUNT>, BOARD_HEIGHT_COUNT> m_board;
+    BoardType m_board;
 };
 
 }

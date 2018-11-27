@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -std=gnu++1z
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -I/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/teris_figure_class -I/usr/include/SDL2 -I/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/src 
 
