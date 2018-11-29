@@ -27,31 +27,31 @@ TFigure::~TFigure()
 
 std::shared_ptr<TFigure> TFigure::goRight()
 {
-   // auto copied = copy();
+    auto copied = copy();
     _goRight ();
-  //  return copied;
+    return copied;
 }
 std::shared_ptr<TFigure> TFigure::goLeft()
 {
-  //  auto copied = copy();
+    auto copied = copy();
     _goLeft ();
-  //  return copied;
+    return copied;
 }
 
 std::shared_ptr<TFigure> TFigure::goDown()
 {
-  //  auto copied = copy();
+    auto copied = copy();
     _goDown ();
-   // return copied;
+    return copied;
 }
 
 std::shared_ptr<TFigure> TFigure::rotateLeft()
 {
-   // auto copied = copy();
+    auto copied = copy();
     _rotateLeft ();
-    return nullptr;
-  //  return copied;
+    return copied;
 }
+
 std::shared_ptr<TFigure> TFigure::rotateRight()
 {
     auto copied = copy();
@@ -61,7 +61,8 @@ std::shared_ptr<TFigure> TFigure::rotateRight()
 
 const std::shared_ptr<TFigure> TFigure::copy() const
 {
-    auto copied = std::shared_ptr<TFigure>();
+    auto copied = _copy();
+    copied->m_point = this->m_point;
     copied->m_height = this->m_height;
     copied->m_width = this->m_width;
     copied->m_figureType = this->m_figureType;

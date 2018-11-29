@@ -22,15 +22,43 @@ TType.h
 TFigureUnit.h
 /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureUnit.h
 
+/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureBoard.cpp
+random
+-
+algorithm
+-
+set
+-
+TypeTraits.h
+/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TypeTraits.h
+TFigureBoard.h
+/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureBoard.h
+TFigureBuilder.h
+/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureBuilder.h
+TFigureLBuilder.h
+/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureLBuilder.h
+TFigureL.h
+/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureL.h
+
+/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureBoard.h
+array
+-
+memory
+-
+cassert
+-
+exception
+-
+mutex
+-
+TFigure.h
+/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigure.h
+TProperty.h
+/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TProperty.h
+
 /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureBuilder.h
 TFigure.h
 /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigure.h
-
-/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureL.cpp
-TFigureL.h
-/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureL.h
-TypeTraits.h
-/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TypeTraits.h
 
 /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureL.h
 tuple
@@ -42,7 +70,15 @@ TFigure.h
 TFigureBuilder.h
 /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureBuilder.h
 
+/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureLBuilder.h
+TFigureBuilder.h
+/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureBuilder.h
+
 /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureUnit.h
+TType.h
+/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TType.h
+
+/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TProperty.h
 TType.h
 /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TType.h
 

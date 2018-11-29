@@ -65,19 +65,22 @@ void TFigureL::_rotateLeft ()
             
             m_figureType = TFigureType::B;
             break;
-    case TFigureType::B:m_relativeCoord[1].setPoint (TPoint (m_point.x - 1, m_point.y));
-            m_relativeCoord[2].setPoint (TPoint (m_point.x - 1, m_point.y - 1));
+    case TFigureType::B:
+            m_relativeCoord[1].setPoint (TPoint (m_point.x - 1, m_point.y));
+            m_relativeCoord[2].setPoint (TPoint (m_point.x + 1, m_point.y - 1));
             m_relativeCoord[3].setPoint (TPoint (m_point.x + 1, m_point.y));
             m_figureType = TFigureType::C;
             break;
-    case TFigureType::C:m_relativeCoord[1].setPoint (TPoint (m_point.x - 1, m_point.y));
-            m_relativeCoord[2].setPoint (TPoint (m_point.x + 1, m_point.y));
-            m_relativeCoord[3].setPoint (TPoint (m_point.x + 1, m_point.y - 1));
+    case TFigureType::C:
+            m_relativeCoord[1].setPoint (TPoint (m_point.x - 1, m_point.y-1));
+            m_relativeCoord[2].setPoint (TPoint (m_point.x, m_point.y+1));
+            m_relativeCoord[3].setPoint (TPoint (m_point.x, m_point.y - 1));
             m_figureType = TFigureType::D;
             break;
-    case TFigureType::D:m_relativeCoord[1].setPoint (TPoint (m_point.x - 1, m_point.y - 1));
-            m_relativeCoord[2].setPoint (TPoint (m_point.x, m_point.y - 1));
-            m_relativeCoord[3].setPoint (TPoint (m_point.x, m_point.y + 1));
+    case TFigureType::D:
+            m_relativeCoord[1].setPoint (TPoint (m_point.x - 1, m_point.y + 1));
+            m_relativeCoord[2].setPoint (TPoint (m_point.x+1, m_point.y));
+            m_relativeCoord[3].setPoint (TPoint (m_point.x-1, m_point.y));
             m_figureType = TFigureType::A;
             break;
         }
@@ -85,10 +88,13 @@ void TFigureL::_rotateLeft ()
 
 void TFigureL::_rotateRight ()
 {
+
 }
 
 bool TFigureL::Validation ()
-{}
+{
+
+}
 
 const TFigureType TFigureL::getTypeBegin () const
 {
@@ -106,3 +112,7 @@ const TFigureType TFigureL::getRandomlyFigureType () const
 }
 
 
+const std::shared_ptr<TFigure> TFigureL::_copy() const
+{
+    return std::shared_ptr<TFigureL>(new TFigureL());
+}

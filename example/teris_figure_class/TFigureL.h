@@ -42,9 +42,11 @@ public:
 
     
 private:
+    TFigureL(){}
     TFigureL(const TFigureBuilder *bld);
     virtual bool Validation() override;
-    
+    virtual const std::shared_ptr<TFigure> _copy() const override;
+
     //implement pure virtual funtions.
     virtual void _goRight() override;
     virtual void _goLeft() override;

@@ -63,3 +63,8 @@ void TFigureUnit::setType (TFigureUnit::UnitType m_type)
 {
     TFigureUnit::m_type = m_type;
 }
+
+bool TFigureUnit::operator!=(const TFigureUnit& unit)
+{
+    return (this->getPoint ().x != unit.getPoint ().x || this->getPoint ().y != unit.getPoint ().y);
+}

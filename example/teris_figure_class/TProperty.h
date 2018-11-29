@@ -9,8 +9,8 @@
 
 namespace tetris
 {
-    const t_size BOARD_WIDTH_COUNT = 20;
-    const t_size BOARD_HEIGHT_COUNT = 10;
+    const t_size BOARD_WIDTH_COUNT = 10;
+    const t_size BOARD_HEIGHT_COUNT = 20;
     const t_size UNIT_LENGTH = 30;
 
 }

@@ -17,6 +17,8 @@ public:
     TFigureUnit(const TPoint point, const t_age age, const TColor color, const UnitType type);
     ~TFigureUnit();
     
+    bool operator!=(const TFigureUnit& unit);
+    
     const TPoint getPoint () const;
     void setPoint (const TPoint &m_point);
     

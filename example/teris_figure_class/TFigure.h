@@ -48,7 +48,6 @@ public:
     inline const FigureCoords getCoords()
     { return m_relativeCoord;}
     
-    
     std::shared_ptr<TFigure> goRight();
     std::shared_ptr<TFigure> goLeft();
     std::shared_ptr<TFigure> goDown();
@@ -64,7 +63,8 @@ public:
     
 protected:
     TFigure(const TFigureBuilder *bld);
-    
+    TFigure();
+
     t_size m_figureTypeCount;
     t_size m_width;
     t_size m_height;
@@ -73,9 +73,9 @@ protected:
     FigureCoords m_relativeCoord;
     
 private:
-    TFigure();
-    virtual bool Validation() = 0;
     
+    virtual bool Validation() = 0;
+    virtual const std::shared_ptr<TFigure> _copy() const = 0;
     virtual void _goRight() = 0;
     virtual void _goLeft() = 0;
     virtual void _goDown() = 0;

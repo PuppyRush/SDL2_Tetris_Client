@@ -9,6 +9,7 @@
 #include <memory>
 #include <cassert>
 #include <exception>
+#include <mutex>
 
 #include "TFigure.h"
 #include "TProperty.h"
@@ -19,7 +20,7 @@ class TFigureBoard {
 
 public:
 
-    using BoardType = std::array< std::array<TFigureUnit,BOARD_HEIGHT_COUNT>, BOARD_WIDTH_COUNT>;
+    using BoardType = std::array< std::array<TFigureUnit,BOARD_WIDTH_COUNT>,BOARD_HEIGHT_COUNT >;
     
     inline TFigureUnit& operator()(const size_t y, const size_t x)
     {
@@ -35,11 +36,12 @@ public:
     
     BoardType getBoard() const
     {return m_board;}
-    
+
     void rotate();
     void goDown();
     void goLeft();
     void goRight();
+    void goStraightDown();
     void eraseLine(const t_size lineNumber);
     void addLine(const t_size lineNumber);
     void eraseBottomLine(const t_size = 1);
@@ -54,10 +56,13 @@ private:
     TFigureBoard();
     void eraseCoords();
     void setCoords();
+    bool eraseLineIfFillLinesAndThenCollapse();
+    void collapseFigures();
     const bool isValidation(const TFigure* destFigure);
     
     std::shared_ptr<TFigure> m_currentFigure;
     BoardType m_board;
+    std::mutex m_mutex;
 };
 
 }

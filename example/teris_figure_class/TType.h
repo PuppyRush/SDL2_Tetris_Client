@@ -6,7 +6,7 @@ namespace tetris {
 
 	using t_type = unsigned char;
 	using t_age = unsigned short;
-	using t_coord = unsigned char;
+	using t_coord = signed char;
 	using t_size = unsigned char;
 
 	typedef struct TPoint {

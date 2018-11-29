@@ -12,6 +12,7 @@
 namespace tetris
 {
 
+//controller as a proxy class for tetris
 class BoardController {
 
 public:
@@ -19,7 +20,10 @@ public:
     
     inline void rotate() const
     { m_board->rotate ();}
-    
+
+    inline void goStraightDown() const
+    { m_board->goStraightDown ();}
+
     inline void goDown() const
     { m_board->goDown ();}
     
