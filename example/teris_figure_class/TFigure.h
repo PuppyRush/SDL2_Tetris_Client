@@ -54,13 +54,13 @@ public:
     std::shared_ptr<TFigure> rotateLeft();
     std::shared_ptr<TFigure> rotateRight();
     const std::shared_ptr<TFigure> copy() const;
-    
-    virtual const TFigureType getRandomlyFigureType() const = 0;
+    virtual const TFigureType getRandomlyFigureType() const;
+
+
     virtual void initialize() = 0;
     virtual const TFigureType getTypeBegin() const = 0;
     virtual const TFigureType getTypeEnd() const = 0;
-    
-    
+
 protected:
     TFigure(const TFigureBuilder *bld);
     TFigure();
@@ -73,12 +73,12 @@ protected:
     FigureCoords m_relativeCoord;
     
 private:
-    
-    virtual bool Validation() = 0;
+
+    virtual void _goRight();
+    virtual void _goLeft();
+    virtual void _goDown();
     virtual const std::shared_ptr<TFigure> _copy() const = 0;
-    virtual void _goRight() = 0;
-    virtual void _goLeft() = 0;
-    virtual void _goDown() = 0;
+    virtual bool _validation() = 0;
     virtual void _rotateLeft() = 0;
     virtual void _rotateRight() = 0;
 };

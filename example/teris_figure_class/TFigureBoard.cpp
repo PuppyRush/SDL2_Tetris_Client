@@ -9,8 +9,8 @@
 #include "TypeTraits.h"
 #include "TFigureBoard.h"
 #include "TFigureBuilder.h"
-#include "TFigureLBuilder.h"
 #include "TFigureL.h"
+#include "TFigureZ.h"
 
 using namespace tetris;
 
@@ -31,14 +31,8 @@ void TFigureBoard::createNextFigureRandomly() {
         m_currentFigure.reset();
     }
 
-    switch (EnumHelper<TFigureClass>::getRandomly()) {
-        case TFigureClass::L: {
-            TFigureBuilder *bld = new TFigureLBuilder(TPoint(BOARD_WIDTH_COUNT/2-1, 2));
-            bld->type(TFigureType::A);
-            m_currentFigure = TFigureL::get(bld);
-        }
-            break;
-    }
+    TFigureBuilder *bld = new TFigureBuilder(TPoint(BOARD_WIDTH_COUNT / 2 - 1, 2));
+    m_currentFigure = bld->build();
 
     setCoords();
 }
@@ -102,9 +96,6 @@ void TFigureBoard::goDown() {
     }
 
     setCoords();
-
-    //if(eraseLineIfFillLinesAndThenCollapse())
-    //    eraseCoords();
 }
 
 void TFigureBoard::goLeft() {

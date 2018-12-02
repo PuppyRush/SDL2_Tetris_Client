@@ -23,7 +23,13 @@ add_executable(teris_figure_class
         TBoardController.h
         TFigureBoard.cpp
         TFigureBoard.h
-        TProperty.h TFigureLBuilder.cpp TFigureLBuilder.h TypeTraits.h TFigureBuilder.cpp TFigureBoardBuilder.cpp TFigureBoardBuilder.h)
+        TProperty.h
+        TypeTraits.h
+        TFigureBuilder.cpp
+        TFigureBoardBuilder.cpp
+        TFigureBoardBuilder.h
+        TFigureZ.cpp
+        TFigureZ.h DevLib/RandomGenerator.cpp DevLib/RandomGenerator.h TDefine.h TFigureI.cpp TFigureI.h TFigureO.cpp TFigureO.h TFigureT.cpp TFigureT.h)
 
 include_directories(teris_figure_class
         ${SDL2_INCLUDE_DIR}

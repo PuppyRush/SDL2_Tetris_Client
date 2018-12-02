@@ -6,6 +6,16 @@
 
 #IncludeRegexTransform: 
 
+/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/DevLib/RandomGenerator.h
+cstdint
+-
+limits
+-
+../TDefine.h
+/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDefine.h
+
+/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDefine.h
+
 /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigure.h
 cassert
 -
@@ -22,71 +32,39 @@ TType.h
 TFigureUnit.h
 /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureUnit.h
 
-/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureBoard.cpp
-random
--
-algorithm
--
-set
--
+/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureT.cpp
+TFigureT.h
+/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureT.h
 TypeTraits.h
 /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TypeTraits.h
-TFigureBoard.h
-/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureBoard.h
-TFigureBuilder.h
-/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureBuilder.h
-TFigureLBuilder.h
-/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureLBuilder.h
-TFigureL.h
-/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureL.h
 
-/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureBoard.h
-array
--
-memory
--
-cassert
--
-exception
--
-mutex
--
-TFigure.h
-/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigure.h
-TProperty.h
-/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TProperty.h
-
-/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureBuilder.h
-TFigure.h
-/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigure.h
-
-/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureL.h
+/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureT.h
 tuple
 -
 TType.h
 /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TType.h
 TFigure.h
 /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigure.h
-TFigureBuilder.h
-/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureBuilder.h
-
-/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureLBuilder.h
-TFigureBuilder.h
-/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureBuilder.h
 
 /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TFigureUnit.h
 TType.h
 /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TType.h
 
-/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TProperty.h
-TType.h
-/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TType.h
-
 /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TType.h
 tuple
 -
 
 /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TypeTraits.h
+cstdlib
+-
 random
 -
+ctime
+-
+memory
+-
+TType.h
+/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TType.h
+DevLib/RandomGenerator.h
+/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/DevLib/RandomGenerator.h
 

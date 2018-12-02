@@ -123,6 +123,33 @@ teris_figure_class/fast:
 	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/build
 .PHONY : teris_figure_class/fast
 
+DevLib/RandomGenerator.o: DevLib/RandomGenerator.cpp.o
+
+.PHONY : DevLib/RandomGenerator.o
+
+# target to build an object file
+DevLib/RandomGenerator.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/DevLib/RandomGenerator.cpp.o
+.PHONY : DevLib/RandomGenerator.cpp.o
+
+DevLib/RandomGenerator.i: DevLib/RandomGenerator.cpp.i
+
+.PHONY : DevLib/RandomGenerator.i
+
+# target to preprocess a source file
+DevLib/RandomGenerator.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/DevLib/RandomGenerator.cpp.i
+.PHONY : DevLib/RandomGenerator.cpp.i
+
+DevLib/RandomGenerator.s: DevLib/RandomGenerator.cpp.s
+
+.PHONY : DevLib/RandomGenerator.s
+
+# target to generate assembly for a file
+DevLib/RandomGenerator.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/DevLib/RandomGenerator.cpp.s
+.PHONY : DevLib/RandomGenerator.cpp.s
+
 TBoardController.o: TBoardController.cpp.o
 
 .PHONY : TBoardController.o
@@ -258,6 +285,33 @@ TFigureBuilder.cpp.s:
 	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureBuilder.cpp.s
 .PHONY : TFigureBuilder.cpp.s
 
+TFigureI.o: TFigureI.cpp.o
+
+.PHONY : TFigureI.o
+
+# target to build an object file
+TFigureI.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureI.cpp.o
+.PHONY : TFigureI.cpp.o
+
+TFigureI.i: TFigureI.cpp.i
+
+.PHONY : TFigureI.i
+
+# target to preprocess a source file
+TFigureI.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureI.cpp.i
+.PHONY : TFigureI.cpp.i
+
+TFigureI.s: TFigureI.cpp.s
+
+.PHONY : TFigureI.s
+
+# target to generate assembly for a file
+TFigureI.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureI.cpp.s
+.PHONY : TFigureI.cpp.s
+
 TFigureL.o: TFigureL.cpp.o
 
 .PHONY : TFigureL.o
@@ -285,32 +339,59 @@ TFigureL.cpp.s:
 	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureL.cpp.s
 .PHONY : TFigureL.cpp.s
 
-TFigureLBuilder.o: TFigureLBuilder.cpp.o
+TFigureO.o: TFigureO.cpp.o
 
-.PHONY : TFigureLBuilder.o
+.PHONY : TFigureO.o
 
 # target to build an object file
-TFigureLBuilder.cpp.o:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureLBuilder.cpp.o
-.PHONY : TFigureLBuilder.cpp.o
+TFigureO.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureO.cpp.o
+.PHONY : TFigureO.cpp.o
 
-TFigureLBuilder.i: TFigureLBuilder.cpp.i
+TFigureO.i: TFigureO.cpp.i
 
-.PHONY : TFigureLBuilder.i
+.PHONY : TFigureO.i
 
 # target to preprocess a source file
-TFigureLBuilder.cpp.i:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureLBuilder.cpp.i
-.PHONY : TFigureLBuilder.cpp.i
+TFigureO.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureO.cpp.i
+.PHONY : TFigureO.cpp.i
 
-TFigureLBuilder.s: TFigureLBuilder.cpp.s
+TFigureO.s: TFigureO.cpp.s
 
-.PHONY : TFigureLBuilder.s
+.PHONY : TFigureO.s
 
 # target to generate assembly for a file
-TFigureLBuilder.cpp.s:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureLBuilder.cpp.s
-.PHONY : TFigureLBuilder.cpp.s
+TFigureO.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureO.cpp.s
+.PHONY : TFigureO.cpp.s
+
+TFigureT.o: TFigureT.cpp.o
+
+.PHONY : TFigureT.o
+
+# target to build an object file
+TFigureT.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureT.cpp.o
+.PHONY : TFigureT.cpp.o
+
+TFigureT.i: TFigureT.cpp.i
+
+.PHONY : TFigureT.i
+
+# target to preprocess a source file
+TFigureT.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureT.cpp.i
+.PHONY : TFigureT.cpp.i
+
+TFigureT.s: TFigureT.cpp.s
+
+.PHONY : TFigureT.s
+
+# target to generate assembly for a file
+TFigureT.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureT.cpp.s
+.PHONY : TFigureT.cpp.s
 
 TFigureUnit.o: TFigureUnit.cpp.o
 
@@ -338,6 +419,33 @@ TFigureUnit.s: TFigureUnit.cpp.s
 TFigureUnit.cpp.s:
 	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureUnit.cpp.s
 .PHONY : TFigureUnit.cpp.s
+
+TFigureZ.o: TFigureZ.cpp.o
+
+.PHONY : TFigureZ.o
+
+# target to build an object file
+TFigureZ.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureZ.cpp.o
+.PHONY : TFigureZ.cpp.o
+
+TFigureZ.i: TFigureZ.cpp.i
+
+.PHONY : TFigureZ.i
+
+# target to preprocess a source file
+TFigureZ.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureZ.cpp.i
+.PHONY : TFigureZ.cpp.i
+
+TFigureZ.s: TFigureZ.cpp.s
+
+.PHONY : TFigureZ.s
+
+# target to generate assembly for a file
+TFigureZ.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureZ.cpp.s
+.PHONY : TFigureZ.cpp.s
 
 TMain.o: TMain.cpp.o
 
@@ -375,6 +483,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... teris_figure_class"
+	@echo "... DevLib/RandomGenerator.o"
+	@echo "... DevLib/RandomGenerator.i"
+	@echo "... DevLib/RandomGenerator.s"
 	@echo "... TBoardController.o"
 	@echo "... TBoardController.i"
 	@echo "... TBoardController.s"
@@ -390,15 +501,24 @@ help:
 	@echo "... TFigureBuilder.o"
 	@echo "... TFigureBuilder.i"
 	@echo "... TFigureBuilder.s"
+	@echo "... TFigureI.o"
+	@echo "... TFigureI.i"
+	@echo "... TFigureI.s"
 	@echo "... TFigureL.o"
 	@echo "... TFigureL.i"
 	@echo "... TFigureL.s"
-	@echo "... TFigureLBuilder.o"
-	@echo "... TFigureLBuilder.i"
-	@echo "... TFigureLBuilder.s"
+	@echo "... TFigureO.o"
+	@echo "... TFigureO.i"
+	@echo "... TFigureO.s"
+	@echo "... TFigureT.o"
+	@echo "... TFigureT.i"
+	@echo "... TFigureT.s"
 	@echo "... TFigureUnit.o"
 	@echo "... TFigureUnit.i"
 	@echo "... TFigureUnit.s"
+	@echo "... TFigureZ.o"
+	@echo "... TFigureZ.i"
+	@echo "... TFigureZ.s"
 	@echo "... TMain.o"
 	@echo "... TMain.i"
 	@echo "... TMain.s"

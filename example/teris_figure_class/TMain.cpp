@@ -1,6 +1,5 @@
 
 #include "TFigureL.h"
-#include "TFigureLBuilder.h"
 
 #include "TBoardController.h"
 
@@ -14,60 +13,6 @@ SDL_Window *window;
 SDL_Renderer *renderer;
 
 using Rect =  SDL_Rect;
-
-enum class embossingDir : char {
-    left = 0x1,
-    right = 0x2,
-    top = 0x4,
-    bottom = 0x8,
-    all = left | right | top | bottom
-};
-
-enum rotateDir {
-    left_hand,
-    right_hand
-};
-
-const Rect getEmbossedRect(const Rect &rect, const embossingDir dir) {
-    // Set render color to blue ( rect will be rendered in this color )
-    SDL_SetRenderDrawColor(renderer, 249, 247, 11, 255);
-
-    SDL_Rect r2;
-    switch (dir) {
-        case embossingDir::top:
-            r2.y = rect.y + 5;
-            r2.x = rect.x;
-            r2.w = rect.w;
-            r2.h = rect.h - 5;
-            break;
-        case embossingDir::bottom:
-            r2.x = rect.x;
-            r2.y = rect.y;
-            r2.w = rect.w;
-            r2.h = rect.h - 5;
-            break;
-        case embossingDir::left:
-            r2.x = rect.x + 5;
-            r2.y = rect.y;
-            r2.w = rect.w - 5;
-            r2.h = rect.h;
-            break;
-        case embossingDir::right:
-            r2.x = rect.x;
-            r2.y = rect.y;
-            r2.w = rect.w - 5;
-            r2.h = rect.h;
-            break;
-        case embossingDir::all:
-            r2.x = rect.x + 5;
-            r2.y = rect.y + 5;
-            r2.w = rect.w - 10;
-            r2.h = rect.h - 10;
-            break;
-    }
-
-    return r2;
-}
 
 Uint32 my_callbackfunc(Uint32 interval, void *param) {
     SDL_Event event;
@@ -85,6 +30,7 @@ Uint32 my_callbackfunc(Uint32 interval, void *param) {
 
 int main() {
     using namespace tetris;
+    srand((unsigned int)time(0));
 
     auto ctl = BoardController::get();
 

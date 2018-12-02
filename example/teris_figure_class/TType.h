@@ -38,12 +38,12 @@ namespace tetris {
 	enum class TFigureClass : t_type
 	{
 		L=0,
-		J,
+		Z,
 		I,
 		O,
-		S,
-		Z,
 		T,
+		S,
+		J,
 		Begin = L,
 		End = T
 	};

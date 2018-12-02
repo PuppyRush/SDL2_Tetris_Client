@@ -5,7 +5,13 @@
 #ifndef TERIS_FIGURE_CLASS_TTYPETRAITS_H
 #define TERIS_FIGURE_CLASS_TTYPETRAITS_H
 
+#include <cstdlib>
 #include <random>
+#include <ctime>
+#include <memory>
+
+#include "TType.h"
+#include "DevLib/RandomGenerator.h"
 
 namespace tetris
 {
@@ -52,11 +58,11 @@ template <class T>
 class EnumHelper
 {
 public:
-    static const T getRandomly()
+
+    static CE const T getRandomly()
     {
-        std::default_random_engine generator;
-        std::uniform_int_distribution<int> distribution(toUType(T::Begin), toUType(T::End));
-        return T(distribution(generator));
+        CE const auto rnd = rand()%(toUType(T::End)-toUType(T::Begin)+1);
+        return T(rnd);
     }
     
     static const T getRandomly(const T begin, const T end)
@@ -65,6 +71,14 @@ public:
         std::uniform_int_distribution<int> distribution(toUType(begin), toUType(end));
         return T(distribution(generator));
     }
+
+private:
+
+    EnumHelper()
+    {
+
+    }
+
 };
 
 }

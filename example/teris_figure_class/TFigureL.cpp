@@ -3,116 +3,69 @@
 
 using namespace tetris;
 
-TFigureL::TFigureL (const TFigureBuilder *bld)
-    : TFigure (bld)
-{
-    _rotateLeft ();
+TFigureL::TFigureL(const TFigureBuilder *bld)
+    : TFigure(bld) {
+    _rotateLeft();
 }
 
-TFigureL::~TFigureL ()
-{
+TFigureL::~TFigureL() {
 }
 
-void TFigureL::initialize ()
-{
-    m_figureTypeCount = toUType (getTypeEnd ()) - toUType (getTypeBegin ());
+void TFigureL::initialize() {
+    m_figureTypeCount = toUType(getTypeEnd()) - toUType(getTypeBegin());
 }
 
-void TFigureL::_goRight ()
-{
-    for(int i=0 ; i < m_relativeCoord.size() ; i++)
-        {
-            auto y = m_relativeCoord[i].getPoint ().y;
-            auto x = m_relativeCoord[i].getPoint ().x;
-            m_relativeCoord[i].setPoint (TPoint(x+1,y));
-        }
-    m_point.x +=1;
-}
+void TFigureL::_rotateLeft() {
 
-void TFigureL::_goLeft ()
-{
-    for(int i=0 ; i < m_relativeCoord.size() ; i++)
-        {
-            auto y = m_relativeCoord[i].getPoint ().y;
-            auto x = m_relativeCoord[i].getPoint ().x;
-            m_relativeCoord[i].setPoint (TPoint(x-1,y));
-        }
-    m_point.x -=1;
-}
+    m_relativeCoord[0].setPoint(TPoint(m_point.x, m_point.y));
 
-void TFigureL::_goDown ()
-{
-    for(int i=0 ; i < m_relativeCoord.size() ; i++)
-        {
-            auto y = m_relativeCoord[i].getPoint ().y;
-            auto x = m_relativeCoord[i].getPoint ().x;
-            m_relativeCoord[i].setPoint (TPoint(x,y+1));
-        }
-    m_point.y +=1;
-}
+    switch (m_figureType) {
+        case TFigureType::A:
+            m_relativeCoord[1].setPoint(TPoint(m_point.x, m_point.y + 1));
+            m_relativeCoord[2].setPoint(TPoint(m_point.x, m_point.y - 1));
+            m_relativeCoord[3].setPoint(TPoint(m_point.x + 1, m_point.y + 1));
 
-void TFigureL::_rotateLeft ()
-{
-    
-    m_relativeCoord[0].setPoint (TPoint (m_point.x, m_point.y));
-    
-    switch (m_figureType)
-        {
-    case TFigureType::A:
-            m_relativeCoord[1].setPoint (TPoint (m_point.x, m_point.y + 1));
-            m_relativeCoord[2].setPoint (TPoint (m_point.x, m_point.y - 1));
-            m_relativeCoord[3].setPoint (TPoint (m_point.x + 1, m_point.y + 1));
-            
             m_figureType = TFigureType::B;
             break;
-    case TFigureType::B:
-            m_relativeCoord[1].setPoint (TPoint (m_point.x - 1, m_point.y));
-            m_relativeCoord[2].setPoint (TPoint (m_point.x + 1, m_point.y - 1));
-            m_relativeCoord[3].setPoint (TPoint (m_point.x + 1, m_point.y));
+        case TFigureType::B:
+            m_relativeCoord[1].setPoint(TPoint(m_point.x - 1, m_point.y));
+            m_relativeCoord[2].setPoint(TPoint(m_point.x + 1, m_point.y - 1));
+            m_relativeCoord[3].setPoint(TPoint(m_point.x + 1, m_point.y));
             m_figureType = TFigureType::C;
             break;
-    case TFigureType::C:
-            m_relativeCoord[1].setPoint (TPoint (m_point.x - 1, m_point.y-1));
-            m_relativeCoord[2].setPoint (TPoint (m_point.x, m_point.y+1));
-            m_relativeCoord[3].setPoint (TPoint (m_point.x, m_point.y - 1));
+        case TFigureType::C:
+            m_relativeCoord[1].setPoint(TPoint(m_point.x - 1, m_point.y - 1));
+            m_relativeCoord[2].setPoint(TPoint(m_point.x, m_point.y + 1));
+            m_relativeCoord[3].setPoint(TPoint(m_point.x, m_point.y - 1));
             m_figureType = TFigureType::D;
             break;
-    case TFigureType::D:
-            m_relativeCoord[1].setPoint (TPoint (m_point.x - 1, m_point.y + 1));
-            m_relativeCoord[2].setPoint (TPoint (m_point.x+1, m_point.y));
-            m_relativeCoord[3].setPoint (TPoint (m_point.x-1, m_point.y));
+        case TFigureType::D:
+            m_relativeCoord[1].setPoint(TPoint(m_point.x - 1, m_point.y + 1));
+            m_relativeCoord[2].setPoint(TPoint(m_point.x + 1, m_point.y));
+            m_relativeCoord[3].setPoint(TPoint(m_point.x - 1, m_point.y));
             m_figureType = TFigureType::A;
             break;
-        }
+        default:
+            assert(0);
+    }
 }
 
-void TFigureL::_rotateRight ()
-{
-
-}
-
-bool TFigureL::Validation ()
-{
+void TFigureL::_rotateRight() {
 
 }
 
-const TFigureType TFigureL::getTypeBegin () const
-{
+bool TFigureL::_validation() {
+
+}
+
+const TFigureType TFigureL::getTypeBegin() const {
     return TFigureType::A;
 }
 
-const TFigureType TFigureL::getTypeEnd () const
-{
+const TFigureType TFigureL::getTypeEnd() const {
     return TFigureType::D;
 }
 
-const TFigureType TFigureL::getRandomlyFigureType () const
-{
-    return EnumHelper<TFigureType>::getRandomly (getTypeBegin (), getTypeEnd ());
-}
-
-
-const std::shared_ptr<TFigure> TFigureL::_copy() const
-{
+const std::shared_ptr<TFigure> TFigureL::_copy() const {
     return std::shared_ptr<TFigureL>(new TFigureL());
 }

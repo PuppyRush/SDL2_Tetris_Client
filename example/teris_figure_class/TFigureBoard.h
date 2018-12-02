@@ -22,18 +22,6 @@ public:
 
     using BoardType = std::array< std::array<TFigureUnit,BOARD_WIDTH_COUNT>,BOARD_HEIGHT_COUNT >;
     
-    inline TFigureUnit& operator()(const size_t y, const size_t x)
-    {
-        try
-        {
-            return m_board[y][x];
-        }
-        catch(std::out_of_range err)
-        {
-            return TFigureUnit::getDefaultUnit();
-        }
-    }
-    
     BoardType getBoard() const
     {return m_board;}
 
