@@ -9,7 +9,7 @@ class MainLocalDisplay : public MainDisplay
 public:
 
 
-	virtual bool clickedEnterServer() delete;
+	virtual bool clickedEnterServer() override;
 	virtual bool clickedStartLocalGame() override {}
 	virtual bool clickedBack() override {}
 

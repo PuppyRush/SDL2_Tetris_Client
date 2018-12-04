@@ -35,6 +35,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/chaed/programs/clion-2018.2.5/bin/cmake/linux/share/cmake-3.12/Modules/ProcessorCount.cmake"
   "../CMakeLists.txt"
   "../CMakeModules/FindSDL2.cmake"
+  "../CMakeModules/FindSDL2_image.cmake"
   "CMakeFiles/3.12.3/CMakeCCompiler.cmake"
   "CMakeFiles/3.12.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.12.3/CMakeSystem.cmake"

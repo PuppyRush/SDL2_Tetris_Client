@@ -36,15 +36,38 @@ int main()
     SDL_Rect texr;
     texr.x = -50; texr.y = 100; texr.w = w; texr.h = h;
 
-    while(1)
+    SDL_Event event;
+
+/*    while(1)
     {
+        SDL_WaitEvent(&event);
+        switch (event.type) {
+            case SDL_QUIT:
+                quit = true;
+                break;
+            case SDL_KEYDOWN:
+                switch (event.key.keysym.sym) {
+                    case SDLK_UP:
+                        ctl->rotate();
+                        break;
+                    case SDLK_DOWN:
+                        ctl->goDown();
+                        break;
+                    case SDLK_SPACE:
+                        ctl->goStraightDown();
+                        break;
+                }
+                break;
+            default:;
+        }
+
         SDL_RenderClear(renderer);
         // copy the texture to the rendering context
         SDL_RenderCopy(renderer, img, NULL, &texr);
         // flip the backbuffer
         // this means that everything that we prepared behind the screens is actually shown
         SDL_RenderPresent(renderer);
-    }
+    }*/
 
     SDL_DestroyTexture(img);
     SDL_DestroyRenderer(renderer);

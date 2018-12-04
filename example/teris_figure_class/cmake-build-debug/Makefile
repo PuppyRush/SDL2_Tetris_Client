@@ -123,356 +123,383 @@ teris_figure_class/fast:
 	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/build
 .PHONY : teris_figure_class/fast
 
-DevLib/RandomGenerator.o: DevLib/RandomGenerator.cpp.o
+Main.o: Main.cpp.o
 
-.PHONY : DevLib/RandomGenerator.o
-
-# target to build an object file
-DevLib/RandomGenerator.cpp.o:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/DevLib/RandomGenerator.cpp.o
-.PHONY : DevLib/RandomGenerator.cpp.o
-
-DevLib/RandomGenerator.i: DevLib/RandomGenerator.cpp.i
-
-.PHONY : DevLib/RandomGenerator.i
-
-# target to preprocess a source file
-DevLib/RandomGenerator.cpp.i:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/DevLib/RandomGenerator.cpp.i
-.PHONY : DevLib/RandomGenerator.cpp.i
-
-DevLib/RandomGenerator.s: DevLib/RandomGenerator.cpp.s
-
-.PHONY : DevLib/RandomGenerator.s
-
-# target to generate assembly for a file
-DevLib/RandomGenerator.cpp.s:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/DevLib/RandomGenerator.cpp.s
-.PHONY : DevLib/RandomGenerator.cpp.s
-
-TBoardController.o: TBoardController.cpp.o
-
-.PHONY : TBoardController.o
+.PHONY : Main.o
 
 # target to build an object file
-TBoardController.cpp.o:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TBoardController.cpp.o
-.PHONY : TBoardController.cpp.o
+Main.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/Main.cpp.o
+.PHONY : Main.cpp.o
 
-TBoardController.i: TBoardController.cpp.i
+Main.i: Main.cpp.i
 
-.PHONY : TBoardController.i
+.PHONY : Main.i
 
 # target to preprocess a source file
-TBoardController.cpp.i:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TBoardController.cpp.i
-.PHONY : TBoardController.cpp.i
+Main.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/Main.cpp.i
+.PHONY : Main.cpp.i
 
-TBoardController.s: TBoardController.cpp.s
+Main.s: Main.cpp.s
 
-.PHONY : TBoardController.s
+.PHONY : Main.s
 
 # target to generate assembly for a file
-TBoardController.cpp.s:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TBoardController.cpp.s
-.PHONY : TBoardController.cpp.s
+Main.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/Main.cpp.s
+.PHONY : Main.cpp.s
 
-TFigure.o: TFigure.cpp.o
+TDisplay/TDisplayController.o: TDisplay/TDisplayController.cpp.o
 
-.PHONY : TFigure.o
+.PHONY : TDisplay/TDisplayController.o
 
 # target to build an object file
-TFigure.cpp.o:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigure.cpp.o
-.PHONY : TFigure.cpp.o
+TDisplay/TDisplayController.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TDisplay/TDisplayController.cpp.o
+.PHONY : TDisplay/TDisplayController.cpp.o
 
-TFigure.i: TFigure.cpp.i
+TDisplay/TDisplayController.i: TDisplay/TDisplayController.cpp.i
 
-.PHONY : TFigure.i
+.PHONY : TDisplay/TDisplayController.i
 
 # target to preprocess a source file
-TFigure.cpp.i:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigure.cpp.i
-.PHONY : TFigure.cpp.i
+TDisplay/TDisplayController.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TDisplay/TDisplayController.cpp.i
+.PHONY : TDisplay/TDisplayController.cpp.i
 
-TFigure.s: TFigure.cpp.s
+TDisplay/TDisplayController.s: TDisplay/TDisplayController.cpp.s
 
-.PHONY : TFigure.s
+.PHONY : TDisplay/TDisplayController.s
 
 # target to generate assembly for a file
-TFigure.cpp.s:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigure.cpp.s
-.PHONY : TFigure.cpp.s
+TDisplay/TDisplayController.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TDisplay/TDisplayController.cpp.s
+.PHONY : TDisplay/TDisplayController.cpp.s
 
-TFigureBoard.o: TFigureBoard.cpp.o
+TDisplay/TDisplayMain.o: TDisplay/TDisplayMain.cpp.o
 
-.PHONY : TFigureBoard.o
+.PHONY : TDisplay/TDisplayMain.o
 
 # target to build an object file
-TFigureBoard.cpp.o:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureBoard.cpp.o
-.PHONY : TFigureBoard.cpp.o
+TDisplay/TDisplayMain.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TDisplay/TDisplayMain.cpp.o
+.PHONY : TDisplay/TDisplayMain.cpp.o
 
-TFigureBoard.i: TFigureBoard.cpp.i
+TDisplay/TDisplayMain.i: TDisplay/TDisplayMain.cpp.i
 
-.PHONY : TFigureBoard.i
+.PHONY : TDisplay/TDisplayMain.i
 
 # target to preprocess a source file
-TFigureBoard.cpp.i:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureBoard.cpp.i
-.PHONY : TFigureBoard.cpp.i
+TDisplay/TDisplayMain.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TDisplay/TDisplayMain.cpp.i
+.PHONY : TDisplay/TDisplayMain.cpp.i
 
-TFigureBoard.s: TFigureBoard.cpp.s
+TDisplay/TDisplayMain.s: TDisplay/TDisplayMain.cpp.s
 
-.PHONY : TFigureBoard.s
+.PHONY : TDisplay/TDisplayMain.s
 
 # target to generate assembly for a file
-TFigureBoard.cpp.s:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureBoard.cpp.s
-.PHONY : TFigureBoard.cpp.s
+TDisplay/TDisplayMain.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TDisplay/TDisplayMain.cpp.s
+.PHONY : TDisplay/TDisplayMain.cpp.s
 
-TFigureBoardBuilder.o: TFigureBoardBuilder.cpp.o
+TGame/TBoardController.o: TGame/TBoardController.cpp.o
 
-.PHONY : TFigureBoardBuilder.o
+.PHONY : TGame/TBoardController.o
 
 # target to build an object file
-TFigureBoardBuilder.cpp.o:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureBoardBuilder.cpp.o
-.PHONY : TFigureBoardBuilder.cpp.o
+TGame/TBoardController.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TBoardController.cpp.o
+.PHONY : TGame/TBoardController.cpp.o
 
-TFigureBoardBuilder.i: TFigureBoardBuilder.cpp.i
+TGame/TBoardController.i: TGame/TBoardController.cpp.i
 
-.PHONY : TFigureBoardBuilder.i
+.PHONY : TGame/TBoardController.i
 
 # target to preprocess a source file
-TFigureBoardBuilder.cpp.i:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureBoardBuilder.cpp.i
-.PHONY : TFigureBoardBuilder.cpp.i
+TGame/TBoardController.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TBoardController.cpp.i
+.PHONY : TGame/TBoardController.cpp.i
 
-TFigureBoardBuilder.s: TFigureBoardBuilder.cpp.s
+TGame/TBoardController.s: TGame/TBoardController.cpp.s
 
-.PHONY : TFigureBoardBuilder.s
+.PHONY : TGame/TBoardController.s
 
 # target to generate assembly for a file
-TFigureBoardBuilder.cpp.s:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureBoardBuilder.cpp.s
-.PHONY : TFigureBoardBuilder.cpp.s
+TGame/TBoardController.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TBoardController.cpp.s
+.PHONY : TGame/TBoardController.cpp.s
 
-TFigureBuilder.o: TFigureBuilder.cpp.o
+TGame/TFigure.o: TGame/TFigure.cpp.o
 
-.PHONY : TFigureBuilder.o
+.PHONY : TGame/TFigure.o
 
 # target to build an object file
-TFigureBuilder.cpp.o:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureBuilder.cpp.o
-.PHONY : TFigureBuilder.cpp.o
+TGame/TFigure.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigure.cpp.o
+.PHONY : TGame/TFigure.cpp.o
 
-TFigureBuilder.i: TFigureBuilder.cpp.i
+TGame/TFigure.i: TGame/TFigure.cpp.i
 
-.PHONY : TFigureBuilder.i
+.PHONY : TGame/TFigure.i
 
 # target to preprocess a source file
-TFigureBuilder.cpp.i:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureBuilder.cpp.i
-.PHONY : TFigureBuilder.cpp.i
+TGame/TFigure.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigure.cpp.i
+.PHONY : TGame/TFigure.cpp.i
 
-TFigureBuilder.s: TFigureBuilder.cpp.s
+TGame/TFigure.s: TGame/TFigure.cpp.s
 
-.PHONY : TFigureBuilder.s
+.PHONY : TGame/TFigure.s
 
 # target to generate assembly for a file
-TFigureBuilder.cpp.s:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureBuilder.cpp.s
-.PHONY : TFigureBuilder.cpp.s
+TGame/TFigure.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigure.cpp.s
+.PHONY : TGame/TFigure.cpp.s
 
-TFigureI.o: TFigureI.cpp.o
+TGame/TFigureBoard.o: TGame/TFigureBoard.cpp.o
 
-.PHONY : TFigureI.o
+.PHONY : TGame/TFigureBoard.o
 
 # target to build an object file
-TFigureI.cpp.o:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureI.cpp.o
-.PHONY : TFigureI.cpp.o
+TGame/TFigureBoard.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureBoard.cpp.o
+.PHONY : TGame/TFigureBoard.cpp.o
 
-TFigureI.i: TFigureI.cpp.i
+TGame/TFigureBoard.i: TGame/TFigureBoard.cpp.i
 
-.PHONY : TFigureI.i
+.PHONY : TGame/TFigureBoard.i
 
 # target to preprocess a source file
-TFigureI.cpp.i:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureI.cpp.i
-.PHONY : TFigureI.cpp.i
+TGame/TFigureBoard.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureBoard.cpp.i
+.PHONY : TGame/TFigureBoard.cpp.i
 
-TFigureI.s: TFigureI.cpp.s
+TGame/TFigureBoard.s: TGame/TFigureBoard.cpp.s
 
-.PHONY : TFigureI.s
+.PHONY : TGame/TFigureBoard.s
 
 # target to generate assembly for a file
-TFigureI.cpp.s:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureI.cpp.s
-.PHONY : TFigureI.cpp.s
+TGame/TFigureBoard.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureBoard.cpp.s
+.PHONY : TGame/TFigureBoard.cpp.s
 
-TFigureL.o: TFigureL.cpp.o
+TGame/TFigureBoardBuilder.o: TGame/TFigureBoardBuilder.cpp.o
 
-.PHONY : TFigureL.o
+.PHONY : TGame/TFigureBoardBuilder.o
 
 # target to build an object file
-TFigureL.cpp.o:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureL.cpp.o
-.PHONY : TFigureL.cpp.o
+TGame/TFigureBoardBuilder.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureBoardBuilder.cpp.o
+.PHONY : TGame/TFigureBoardBuilder.cpp.o
 
-TFigureL.i: TFigureL.cpp.i
+TGame/TFigureBoardBuilder.i: TGame/TFigureBoardBuilder.cpp.i
 
-.PHONY : TFigureL.i
+.PHONY : TGame/TFigureBoardBuilder.i
 
 # target to preprocess a source file
-TFigureL.cpp.i:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureL.cpp.i
-.PHONY : TFigureL.cpp.i
+TGame/TFigureBoardBuilder.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureBoardBuilder.cpp.i
+.PHONY : TGame/TFigureBoardBuilder.cpp.i
 
-TFigureL.s: TFigureL.cpp.s
+TGame/TFigureBoardBuilder.s: TGame/TFigureBoardBuilder.cpp.s
 
-.PHONY : TFigureL.s
+.PHONY : TGame/TFigureBoardBuilder.s
 
 # target to generate assembly for a file
-TFigureL.cpp.s:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureL.cpp.s
-.PHONY : TFigureL.cpp.s
+TGame/TFigureBoardBuilder.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureBoardBuilder.cpp.s
+.PHONY : TGame/TFigureBoardBuilder.cpp.s
 
-TFigureO.o: TFigureO.cpp.o
+TGame/TFigureBuilder.o: TGame/TFigureBuilder.cpp.o
 
-.PHONY : TFigureO.o
+.PHONY : TGame/TFigureBuilder.o
 
 # target to build an object file
-TFigureO.cpp.o:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureO.cpp.o
-.PHONY : TFigureO.cpp.o
+TGame/TFigureBuilder.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureBuilder.cpp.o
+.PHONY : TGame/TFigureBuilder.cpp.o
 
-TFigureO.i: TFigureO.cpp.i
+TGame/TFigureBuilder.i: TGame/TFigureBuilder.cpp.i
 
-.PHONY : TFigureO.i
+.PHONY : TGame/TFigureBuilder.i
 
 # target to preprocess a source file
-TFigureO.cpp.i:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureO.cpp.i
-.PHONY : TFigureO.cpp.i
+TGame/TFigureBuilder.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureBuilder.cpp.i
+.PHONY : TGame/TFigureBuilder.cpp.i
 
-TFigureO.s: TFigureO.cpp.s
+TGame/TFigureBuilder.s: TGame/TFigureBuilder.cpp.s
 
-.PHONY : TFigureO.s
+.PHONY : TGame/TFigureBuilder.s
 
 # target to generate assembly for a file
-TFigureO.cpp.s:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureO.cpp.s
-.PHONY : TFigureO.cpp.s
+TGame/TFigureBuilder.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureBuilder.cpp.s
+.PHONY : TGame/TFigureBuilder.cpp.s
 
-TFigureT.o: TFigureT.cpp.o
+TGame/TFigureI.o: TGame/TFigureI.cpp.o
 
-.PHONY : TFigureT.o
+.PHONY : TGame/TFigureI.o
 
 # target to build an object file
-TFigureT.cpp.o:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureT.cpp.o
-.PHONY : TFigureT.cpp.o
+TGame/TFigureI.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureI.cpp.o
+.PHONY : TGame/TFigureI.cpp.o
 
-TFigureT.i: TFigureT.cpp.i
+TGame/TFigureI.i: TGame/TFigureI.cpp.i
 
-.PHONY : TFigureT.i
+.PHONY : TGame/TFigureI.i
 
 # target to preprocess a source file
-TFigureT.cpp.i:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureT.cpp.i
-.PHONY : TFigureT.cpp.i
+TGame/TFigureI.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureI.cpp.i
+.PHONY : TGame/TFigureI.cpp.i
 
-TFigureT.s: TFigureT.cpp.s
+TGame/TFigureI.s: TGame/TFigureI.cpp.s
 
-.PHONY : TFigureT.s
+.PHONY : TGame/TFigureI.s
 
 # target to generate assembly for a file
-TFigureT.cpp.s:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureT.cpp.s
-.PHONY : TFigureT.cpp.s
+TGame/TFigureI.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureI.cpp.s
+.PHONY : TGame/TFigureI.cpp.s
 
-TFigureUnit.o: TFigureUnit.cpp.o
+TGame/TFigureL.o: TGame/TFigureL.cpp.o
 
-.PHONY : TFigureUnit.o
+.PHONY : TGame/TFigureL.o
 
 # target to build an object file
-TFigureUnit.cpp.o:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureUnit.cpp.o
-.PHONY : TFigureUnit.cpp.o
+TGame/TFigureL.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureL.cpp.o
+.PHONY : TGame/TFigureL.cpp.o
 
-TFigureUnit.i: TFigureUnit.cpp.i
+TGame/TFigureL.i: TGame/TFigureL.cpp.i
 
-.PHONY : TFigureUnit.i
+.PHONY : TGame/TFigureL.i
 
 # target to preprocess a source file
-TFigureUnit.cpp.i:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureUnit.cpp.i
-.PHONY : TFigureUnit.cpp.i
+TGame/TFigureL.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureL.cpp.i
+.PHONY : TGame/TFigureL.cpp.i
 
-TFigureUnit.s: TFigureUnit.cpp.s
+TGame/TFigureL.s: TGame/TFigureL.cpp.s
 
-.PHONY : TFigureUnit.s
+.PHONY : TGame/TFigureL.s
 
 # target to generate assembly for a file
-TFigureUnit.cpp.s:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureUnit.cpp.s
-.PHONY : TFigureUnit.cpp.s
+TGame/TFigureL.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureL.cpp.s
+.PHONY : TGame/TFigureL.cpp.s
 
-TFigureZ.o: TFigureZ.cpp.o
+TGame/TFigureO.o: TGame/TFigureO.cpp.o
 
-.PHONY : TFigureZ.o
+.PHONY : TGame/TFigureO.o
 
 # target to build an object file
-TFigureZ.cpp.o:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureZ.cpp.o
-.PHONY : TFigureZ.cpp.o
+TGame/TFigureO.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureO.cpp.o
+.PHONY : TGame/TFigureO.cpp.o
 
-TFigureZ.i: TFigureZ.cpp.i
+TGame/TFigureO.i: TGame/TFigureO.cpp.i
 
-.PHONY : TFigureZ.i
+.PHONY : TGame/TFigureO.i
 
 # target to preprocess a source file
-TFigureZ.cpp.i:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureZ.cpp.i
-.PHONY : TFigureZ.cpp.i
+TGame/TFigureO.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureO.cpp.i
+.PHONY : TGame/TFigureO.cpp.i
 
-TFigureZ.s: TFigureZ.cpp.s
+TGame/TFigureO.s: TGame/TFigureO.cpp.s
 
-.PHONY : TFigureZ.s
+.PHONY : TGame/TFigureO.s
 
 # target to generate assembly for a file
-TFigureZ.cpp.s:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TFigureZ.cpp.s
-.PHONY : TFigureZ.cpp.s
+TGame/TFigureO.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureO.cpp.s
+.PHONY : TGame/TFigureO.cpp.s
 
-TMain.o: TMain.cpp.o
+TGame/TFigureT.o: TGame/TFigureT.cpp.o
 
-.PHONY : TMain.o
+.PHONY : TGame/TFigureT.o
 
 # target to build an object file
-TMain.cpp.o:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TMain.cpp.o
-.PHONY : TMain.cpp.o
+TGame/TFigureT.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureT.cpp.o
+.PHONY : TGame/TFigureT.cpp.o
 
-TMain.i: TMain.cpp.i
+TGame/TFigureT.i: TGame/TFigureT.cpp.i
 
-.PHONY : TMain.i
+.PHONY : TGame/TFigureT.i
 
 # target to preprocess a source file
-TMain.cpp.i:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TMain.cpp.i
-.PHONY : TMain.cpp.i
+TGame/TFigureT.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureT.cpp.i
+.PHONY : TGame/TFigureT.cpp.i
 
-TMain.s: TMain.cpp.s
+TGame/TFigureT.s: TGame/TFigureT.cpp.s
 
-.PHONY : TMain.s
+.PHONY : TGame/TFigureT.s
 
 # target to generate assembly for a file
-TMain.cpp.s:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TMain.cpp.s
-.PHONY : TMain.cpp.s
+TGame/TFigureT.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureT.cpp.s
+.PHONY : TGame/TFigureT.cpp.s
+
+TGame/TFigureUnit.o: TGame/TFigureUnit.cpp.o
+
+.PHONY : TGame/TFigureUnit.o
+
+# target to build an object file
+TGame/TFigureUnit.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureUnit.cpp.o
+.PHONY : TGame/TFigureUnit.cpp.o
+
+TGame/TFigureUnit.i: TGame/TFigureUnit.cpp.i
+
+.PHONY : TGame/TFigureUnit.i
+
+# target to preprocess a source file
+TGame/TFigureUnit.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureUnit.cpp.i
+.PHONY : TGame/TFigureUnit.cpp.i
+
+TGame/TFigureUnit.s: TGame/TFigureUnit.cpp.s
+
+.PHONY : TGame/TFigureUnit.s
+
+# target to generate assembly for a file
+TGame/TFigureUnit.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureUnit.cpp.s
+.PHONY : TGame/TFigureUnit.cpp.s
+
+TGame/TFigureZ.o: TGame/TFigureZ.cpp.o
+
+.PHONY : TGame/TFigureZ.o
+
+# target to build an object file
+TGame/TFigureZ.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureZ.cpp.o
+.PHONY : TGame/TFigureZ.cpp.o
+
+TGame/TFigureZ.i: TGame/TFigureZ.cpp.i
+
+.PHONY : TGame/TFigureZ.i
+
+# target to preprocess a source file
+TGame/TFigureZ.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureZ.cpp.i
+.PHONY : TGame/TFigureZ.cpp.i
+
+TGame/TFigureZ.s: TGame/TFigureZ.cpp.s
+
+.PHONY : TGame/TFigureZ.s
+
+# target to generate assembly for a file
+TGame/TFigureZ.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureZ.cpp.s
+.PHONY : TGame/TFigureZ.cpp.s
 
 # Help Target
 help:
@@ -483,45 +510,48 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... teris_figure_class"
-	@echo "... DevLib/RandomGenerator.o"
-	@echo "... DevLib/RandomGenerator.i"
-	@echo "... DevLib/RandomGenerator.s"
-	@echo "... TBoardController.o"
-	@echo "... TBoardController.i"
-	@echo "... TBoardController.s"
-	@echo "... TFigure.o"
-	@echo "... TFigure.i"
-	@echo "... TFigure.s"
-	@echo "... TFigureBoard.o"
-	@echo "... TFigureBoard.i"
-	@echo "... TFigureBoard.s"
-	@echo "... TFigureBoardBuilder.o"
-	@echo "... TFigureBoardBuilder.i"
-	@echo "... TFigureBoardBuilder.s"
-	@echo "... TFigureBuilder.o"
-	@echo "... TFigureBuilder.i"
-	@echo "... TFigureBuilder.s"
-	@echo "... TFigureI.o"
-	@echo "... TFigureI.i"
-	@echo "... TFigureI.s"
-	@echo "... TFigureL.o"
-	@echo "... TFigureL.i"
-	@echo "... TFigureL.s"
-	@echo "... TFigureO.o"
-	@echo "... TFigureO.i"
-	@echo "... TFigureO.s"
-	@echo "... TFigureT.o"
-	@echo "... TFigureT.i"
-	@echo "... TFigureT.s"
-	@echo "... TFigureUnit.o"
-	@echo "... TFigureUnit.i"
-	@echo "... TFigureUnit.s"
-	@echo "... TFigureZ.o"
-	@echo "... TFigureZ.i"
-	@echo "... TFigureZ.s"
-	@echo "... TMain.o"
-	@echo "... TMain.i"
-	@echo "... TMain.s"
+	@echo "... Main.o"
+	@echo "... Main.i"
+	@echo "... Main.s"
+	@echo "... TDisplay/TDisplayController.o"
+	@echo "... TDisplay/TDisplayController.i"
+	@echo "... TDisplay/TDisplayController.s"
+	@echo "... TDisplay/TDisplayMain.o"
+	@echo "... TDisplay/TDisplayMain.i"
+	@echo "... TDisplay/TDisplayMain.s"
+	@echo "... TGame/TBoardController.o"
+	@echo "... TGame/TBoardController.i"
+	@echo "... TGame/TBoardController.s"
+	@echo "... TGame/TFigure.o"
+	@echo "... TGame/TFigure.i"
+	@echo "... TGame/TFigure.s"
+	@echo "... TGame/TFigureBoard.o"
+	@echo "... TGame/TFigureBoard.i"
+	@echo "... TGame/TFigureBoard.s"
+	@echo "... TGame/TFigureBoardBuilder.o"
+	@echo "... TGame/TFigureBoardBuilder.i"
+	@echo "... TGame/TFigureBoardBuilder.s"
+	@echo "... TGame/TFigureBuilder.o"
+	@echo "... TGame/TFigureBuilder.i"
+	@echo "... TGame/TFigureBuilder.s"
+	@echo "... TGame/TFigureI.o"
+	@echo "... TGame/TFigureI.i"
+	@echo "... TGame/TFigureI.s"
+	@echo "... TGame/TFigureL.o"
+	@echo "... TGame/TFigureL.i"
+	@echo "... TGame/TFigureL.s"
+	@echo "... TGame/TFigureO.o"
+	@echo "... TGame/TFigureO.i"
+	@echo "... TGame/TFigureO.s"
+	@echo "... TGame/TFigureT.o"
+	@echo "... TGame/TFigureT.i"
+	@echo "... TGame/TFigureT.s"
+	@echo "... TGame/TFigureUnit.o"
+	@echo "... TGame/TFigureUnit.i"
+	@echo "... TGame/TFigureUnit.s"
+	@echo "... TGame/TFigureZ.o"
+	@echo "... TGame/TFigureZ.i"
+	@echo "... TGame/TFigureZ.s"
 .PHONY : help
 
 

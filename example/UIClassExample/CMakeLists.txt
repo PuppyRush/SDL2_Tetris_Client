@@ -20,7 +20,7 @@ add_executable(UIClassExample
                 MainLocalDisplay.h
                 TType.h
                 main.cpp
-                MainOnlineDisplay.h)
+                MainOnlineDisplay.h TDisplayController.cpp TDisplayController.h)
 
 include_directories(UIClassExample
         ${SDL2_INCLUDE_DIR}
