@@ -70,4 +70,11 @@ enum class MapType : t_type
     Rain
 };
 
+enum UnitType
+{
+    Fill = 1 << 0,
+    Shadow = 1 << 1,
+    Empty = 1 << 2
+};
+
 SDL_TETRIS_END

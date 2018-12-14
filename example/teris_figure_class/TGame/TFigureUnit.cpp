@@ -54,12 +54,12 @@ void TFigureUnit::setColor (TColor m_color)
     TFigureUnit::m_color = m_color;
 }
 
-TFigureUnit::UnitType TFigureUnit::getType () const
+UnitType TFigureUnit::getType () const
 {
     return m_type;
 }
 
-void TFigureUnit::setType (TFigureUnit::UnitType m_type)
+void TFigureUnit::setType (UnitType m_type)
 {
     TFigureUnit::m_type = m_type;
 }

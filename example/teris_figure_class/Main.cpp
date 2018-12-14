@@ -85,7 +85,7 @@ int main()
                 SDL_RenderDrawLines(renderer, line, 5);
                 // Render the rect to the screen
 
-                if (board[y][x].getType() == TFigureUnit::UnitType::Fill) {
+                if ( (board[y][x].getType() & UnitType::Fill) == UnitType::Fill) {
                     SDL_Rect rect;
                     rect.y = 50 + y * 30;
                     rect.x = 50 + x * 30;

@@ -21,7 +21,7 @@ TFigureBoard::TFigureBoard()
     for (int i = 0 ; i < m_board.size() ; i++) {
         auto board = m_board[i];
         for (int l = 0 ; l < board.size() ; l++) {
-            board[l] = TFigureUnit(TPoint(i, l), 0, TColor::none, TFigureUnit::UnitType::Empty);
+            board[l] = TFigureUnit(TPoint(i, l), 0, TColor::none, UnitType::Empty);
         }
     }
 }
@@ -131,7 +131,7 @@ const bool TFigureBoard::isValidation(const TFigure *destFigure) {
         if (y < 0 || y >= BOARD_HEIGHT_COUNT  || x < 0 || x >= BOARD_WIDTH_COUNT)
             return false;
 
-        if (m_board[y][x].getType() == TFigureUnit::UnitType::Fill)
+        if ( (m_board[y][x].getType() & UnitType::Fill) == UnitType::Fill)
             return false;
     }
 
@@ -142,7 +142,7 @@ void TFigureBoard::eraseCoords() {
     for (const auto coord : m_currentFigure->getCoords()) {
         const auto x = coord.getPoint().x;
         const auto y = coord.getPoint().y;
-        m_board[y][x].setType(TFigureUnit::UnitType::Empty);
+        m_board[y][x].setType(UnitType::Empty);
         m_board[y][x].setColor(TColor::none);
     }
 }
@@ -151,7 +151,7 @@ void TFigureBoard::setCoords() {
     for (const auto coord : m_currentFigure->getCoords()) {
         const auto x = coord.getPoint().x;
         const auto y = coord.getPoint().y;
-        m_board[y][x].setType(TFigureUnit::UnitType::Fill);
+        m_board[y][x].setType(UnitType::Fill);
         m_board[y][x].setColor(coord.getColor());
     }
 }
@@ -164,14 +164,14 @@ bool TFigureBoard::eraseLineIfFillLinesAndThenCollapse()
         int x=0;
         for(; x < BOARD_WIDTH_COUNT ; ++x)
         {
-            if(m_board[y][x].getType() == TFigureUnit::UnitType ::Empty)
+            if( (m_board[y][x].getType() & UnitType ::Empty) == UnitType ::Empty)
                 break;
         }
         if(x==BOARD_WIDTH_COUNT) {
             collapseHeights.insert(y);
             for(int x=0; x < BOARD_WIDTH_COUNT ; ++x)
             {
-                m_board[y][x].setType(TFigureUnit::UnitType::Empty);
+                m_board[y][x].setType(UnitType::Empty);
                 m_board[y][x].setColor(TColor::none);
             }
         }
@@ -184,7 +184,7 @@ bool TFigureBoard::eraseLineIfFillLinesAndThenCollapse()
     {
         for(t_coord y = BOARD_HEIGHT_COUNT-1 ; y >= 0 ; --y)
         {
-            if(m_board[y][x].getType() == TFigureUnit::UnitType ::Fill)
+            if( ( m_board[y][x].getType() & UnitType ::Fill) == UnitType ::Fill)
             {
                 const size_t removedCnt = std::count_if(collapseHeights.begin(), collapseHeights.end(),
                     [y](const auto _y){
@@ -193,9 +193,9 @@ bool TFigureBoard::eraseLineIfFillLinesAndThenCollapse()
 
                 if(removedCnt>0)
                 {
-                    m_board[y+removedCnt][x].setType(TFigureUnit::UnitType::Fill);
+                    m_board[y+removedCnt][x].setType(UnitType::Fill);
                     m_board[y+removedCnt][x].setColor(m_board[y][x].getColor());
-                    m_board[y][x].setType(TFigureUnit::UnitType::Empty);
+                    m_board[y][x].setType(UnitType::Empty);
                     m_board[y][x].setColor(TColor::none);
                 }
             }

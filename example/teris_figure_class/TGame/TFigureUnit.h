@@ -7,11 +7,7 @@ SDL_TETRIS_BEGIN
 class TFigureUnit {
 public:
     
-    enum class UnitType : tetris::t_type
-    {
-        Fill,
-        Empty
-    };
+
     
     TFigureUnit();
     TFigureUnit(const TPoint point, const t_age age, const TColor color, const UnitType type);

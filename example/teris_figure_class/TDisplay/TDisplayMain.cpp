@@ -21,6 +21,7 @@ SDL_TETRIS_BEGIN
 
 int TDisplayMain()
 {
+
     SDL_Window * window;
     SDL_Renderer * renderer;
 
