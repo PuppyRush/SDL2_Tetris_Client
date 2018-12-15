@@ -10,9 +10,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/teris_figure_class.dir/TGame/TFigureI.cpp.o"
   "CMakeFiles/teris_figure_class.dir/TGame/TFigureO.cpp.o"
   "CMakeFiles/teris_figure_class.dir/TGame/TFigureT.cpp.o"
-  "CMakeFiles/teris_figure_class.dir/TDisplay/TDisplayMain.cpp.o"
   "CMakeFiles/teris_figure_class.dir/TDisplay/TDisplayController.cpp.o"
   "CMakeFiles/teris_figure_class.dir/Main.cpp.o"
+  "CMakeFiles/teris_figure_class.dir/TController.cpp.o"
+  "CMakeFiles/teris_figure_class.dir/TGame/TGameController.cpp.o"
   "teris_figure_class.pdb"
   "teris_figure_class"
 )

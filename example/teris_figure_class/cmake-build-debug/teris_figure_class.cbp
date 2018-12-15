@@ -111,6 +111,12 @@
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Main.cpp">
 			<Option target="teris_figure_class"/>
 		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TController.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TController.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/DisplayInterface.h">
 			<Option target="teris_figure_class"/>
 		</Unit>
@@ -129,7 +135,7 @@
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/TDisplayController.h">
 			<Option target="teris_figure_class"/>
 		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/TDisplayMain.cpp">
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/TDisplayMain.h">
 			<Option target="teris_figure_class"/>
 		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TBoardController.cpp">
@@ -196,6 +202,15 @@
 			<Option target="teris_figure_class"/>
 		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureZ.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TGameController.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TGameController.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TGameMain.h">
 			<Option target="teris_figure_class"/>
 		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/CMakeLists.txt">

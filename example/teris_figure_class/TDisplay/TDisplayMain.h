@@ -8,33 +8,17 @@
 #include <functional>
 #include <iostream>
 
-#include <SDL.h>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-
 #include "Common/TDefine.h"
-
-#define WIDTH 600
-#define HEIGHT 800
+#include "../TGlobal.h"
 
 SDL_TETRIS_BEGIN
 
 int TDisplayMain()
 {
-
-    SDL_Window * window;
-    SDL_Renderer * renderer;
-
-    using Rect =  SDL_Rect;
-
-
     if(SDL_Init(SDL_INIT_VIDEO) != 0) {
         std::cout << "SDL_Init error: " << SDL_GetError() << std::endl;
         return 1;
     }
-
-    window = SDL_CreateWindow("SDL_TETRIS", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
     int w, h; // texture width & height
     auto img = IMG_LoadTexture(renderer, "resources/background.jpg");
@@ -81,6 +65,7 @@ int TDisplayMain()
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
 
+    return 0;
 }
 
 SDL_TETRIS_END
