@@ -42,9 +42,7 @@ add_executable(teris_figure_class
         TDisplay/DisplayInterface.h
         TDisplay/TDisplayMain.h
         TDisplay/MainOnlineDisplay.h
-        TDisplay/TDisplayController.cpp
-        TDisplay/TDisplayController.h
-        Main.cpp TGame/TGameMain.h TController.cpp TController.h TGame/TGameController.cpp TGame/TGameController.h)
+        Main.cpp TController.cpp TController.h TGame/TDisplayController.cpp TGame/TGameController.h Common/THeader.h)
 
 include_directories(teris_figure_class
         ${SDL2_INCLUDE_DIR}

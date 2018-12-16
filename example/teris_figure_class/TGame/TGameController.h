@@ -9,14 +9,14 @@
 
 SDL_TETRIS_BEGIN
 
-class TGameController : public TControllerInterface{
+class TDisplayController : public TControllerInterface{
 
 public:
 
     static auto getInstance();
 
 private:
-    TGameController(){}
+    TDisplayController(){}
 
     virtual void _setDisplay() override;
 };

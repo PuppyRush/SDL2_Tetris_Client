@@ -4,10 +4,7 @@
 #define TETRIS_TFIGUREH
 #ifdef TETRIS_TFIGUREH
 
-#include <tuple>
-#include "../Common/TType.h"
 #include "TFigure.h"
-//#include "TFigureBuilder.h"
 
 /********************************
 *		  □ □ □ □	 □ □ ■ □    *
@@ -20,7 +17,7 @@
 *								*
 ********************************/
 
-namespace tetris {
+SDL_TETRIS_BEGIN
 
 class TFigureBuilder;
 class TFigureZ : public TFigure {
@@ -49,6 +46,6 @@ private:
     virtual void _rotateRight() override;
 };
 
-}
+SDL_TETRIS_END
 
 #endif

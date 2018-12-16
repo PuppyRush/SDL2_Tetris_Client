@@ -7,10 +7,10 @@
 
 #include <memory>
 
+#include "../Common/TDefine.h"
 #include "TFigureBoard.h"
 
-namespace tetris
-{
+SDL_TETRIS_BEGIN
 
 //controller as a proxy class for tetris
 class BoardController {
@@ -49,6 +49,6 @@ private:
     std::shared_ptr<TFigureBoard> m_board;
 };
 
-}
+SDL_TETRIS_END
 
 #endif //TERIS_FIGURE_CLASS_BOARDCONTROLLER_H

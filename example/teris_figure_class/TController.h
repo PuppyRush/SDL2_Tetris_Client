@@ -5,59 +5,57 @@
 #ifndef TERIS_FIGURE_CLASS_TCONTROLLER_H
 #define TERIS_FIGURE_CLASS_TCONTROLLER_H
 
+#include "Common/TDefine.h"
+
+#include <memory>
+
+
+
 #include <SDL.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <memory>
+#include <SDL2/SDL_video.h>
 
-#include "Common/TDefine.h"
-#include "Common/TType.h"
 #include "Common/TProperty.h"
-
-SDL_TETRIS_BEGIN
+#include "Common/TType.h"
 
 class TControllerInterface
 {
 public:
-    virtual ~TControllerInterface()
+    virtual ~TControllerInterface();
 
     void show();
     void hide();
 
-
-
 protected:
-    TControllerInterface()
-    :m_windowHeight(DISPLAY_HEIGHT),
-    m_windowWidth(DISPLAY_WIDTH),
-    m_event(new SDL_Event())
-    {}
+    TControllerInterface();
 
-    inline SDL_Window* getWindow() const {
+    inline std::shared_ptr<SDL_Window> getWindow() const {
         return m_window;
     }
 
-    inline SDL_Renderer* getRenderer() const
+    inline std::shared_ptr<SDL_Renderer> getRenderer() const
     {
         return m_renderer;
     }
 
-    inline SDL_Event* getSDLEvent() const
+    inline std::shared_ptr<SDL_Event> getSDLEvent() const
     {
         return m_event;
     }
 
 private:
-    const t_size m_windowWidth;
-    const t_size m_windowHeight;
-
+    void _setBackgroundDisplay();
     virtual void _setDisplay() = 0;
-    SDL_Window* m_window = SDL_CreateWindow("SDL_TETRIS", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, DISPLAY_WIDTH, DISPLAY_HEIGHT, SDL_WINDOW_SHOWN);
-    SDL_Renderer* m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    SDL_Event* m_event;
+
+    const tetris::t_size m_windowWidth;
+    const tetris::t_size m_windowHeight;
+
+    std::shared_ptr<SDL_Window> m_window;
+    std::shared_ptr<SDL_Renderer> m_renderer;
+    std::shared_ptr<SDL_Event> m_event;
+    std::string m_backgroundImgPath;
 };
 
-
-SDL_TETRIS_END
 
 #endif //TERIS_FIGURE_CLASS_TCONTROLLER_H

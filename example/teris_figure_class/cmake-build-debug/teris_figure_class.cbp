@@ -99,6 +99,9 @@
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Common/TDefine.h">
 			<Option target="teris_figure_class"/>
 		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Common/THeader.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Common/TProperty.h">
 			<Option target="teris_figure_class"/>
 		</Unit>
@@ -129,12 +132,6 @@
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/MainOnlineDisplay.h">
 			<Option target="teris_figure_class"/>
 		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/TDisplayController.cpp">
-			<Option target="teris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/TDisplayController.h">
-			<Option target="teris_figure_class"/>
-		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/TDisplayMain.h">
 			<Option target="teris_figure_class"/>
 		</Unit>
@@ -142,6 +139,9 @@
 			<Option target="teris_figure_class"/>
 		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TBoardController.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TDisplayController.cpp">
 			<Option target="teris_figure_class"/>
 		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigure.cpp">
@@ -204,13 +204,7 @@
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureZ.h">
 			<Option target="teris_figure_class"/>
 		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TGameController.cpp">
-			<Option target="teris_figure_class"/>
-		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TGameController.h">
-			<Option target="teris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TGameMain.h">
 			<Option target="teris_figure_class"/>
 		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/CMakeLists.txt">

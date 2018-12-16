@@ -1,6 +1,6 @@
 #include "TFigureUnit.h"
 
-using namespace tetris;
+SDL_TETRIS
 
 TFigureUnit::TFigureUnit()
     :m_type(UnitType::Empty),

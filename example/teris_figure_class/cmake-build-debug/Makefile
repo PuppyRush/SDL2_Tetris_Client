@@ -177,33 +177,6 @@ TController.cpp.s:
 	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TController.cpp.s
 .PHONY : TController.cpp.s
 
-TDisplay/TDisplayController.o: TDisplay/TDisplayController.cpp.o
-
-.PHONY : TDisplay/TDisplayController.o
-
-# target to build an object file
-TDisplay/TDisplayController.cpp.o:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TDisplay/TDisplayController.cpp.o
-.PHONY : TDisplay/TDisplayController.cpp.o
-
-TDisplay/TDisplayController.i: TDisplay/TDisplayController.cpp.i
-
-.PHONY : TDisplay/TDisplayController.i
-
-# target to preprocess a source file
-TDisplay/TDisplayController.cpp.i:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TDisplay/TDisplayController.cpp.i
-.PHONY : TDisplay/TDisplayController.cpp.i
-
-TDisplay/TDisplayController.s: TDisplay/TDisplayController.cpp.s
-
-.PHONY : TDisplay/TDisplayController.s
-
-# target to generate assembly for a file
-TDisplay/TDisplayController.cpp.s:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TDisplay/TDisplayController.cpp.s
-.PHONY : TDisplay/TDisplayController.cpp.s
-
 TGame/TBoardController.o: TGame/TBoardController.cpp.o
 
 .PHONY : TGame/TBoardController.o
@@ -230,6 +203,33 @@ TGame/TBoardController.s: TGame/TBoardController.cpp.s
 TGame/TBoardController.cpp.s:
 	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TBoardController.cpp.s
 .PHONY : TGame/TBoardController.cpp.s
+
+TGame/TDisplayController.o: TGame/TDisplayController.cpp.o
+
+.PHONY : TGame/TDisplayController.o
+
+# target to build an object file
+TGame/TDisplayController.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TDisplayController.cpp.o
+.PHONY : TGame/TDisplayController.cpp.o
+
+TGame/TDisplayController.i: TGame/TDisplayController.cpp.i
+
+.PHONY : TGame/TDisplayController.i
+
+# target to preprocess a source file
+TGame/TDisplayController.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TDisplayController.cpp.i
+.PHONY : TGame/TDisplayController.cpp.i
+
+TGame/TDisplayController.s: TGame/TDisplayController.cpp.s
+
+.PHONY : TGame/TDisplayController.s
+
+# target to generate assembly for a file
+TGame/TDisplayController.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TDisplayController.cpp.s
+.PHONY : TGame/TDisplayController.cpp.s
 
 TGame/TFigure.o: TGame/TFigure.cpp.o
 
@@ -501,33 +501,6 @@ TGame/TFigureZ.cpp.s:
 	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureZ.cpp.s
 .PHONY : TGame/TFigureZ.cpp.s
 
-TGame/TGameController.o: TGame/TGameController.cpp.o
-
-.PHONY : TGame/TGameController.o
-
-# target to build an object file
-TGame/TGameController.cpp.o:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TGameController.cpp.o
-.PHONY : TGame/TGameController.cpp.o
-
-TGame/TGameController.i: TGame/TGameController.cpp.i
-
-.PHONY : TGame/TGameController.i
-
-# target to preprocess a source file
-TGame/TGameController.cpp.i:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TGameController.cpp.i
-.PHONY : TGame/TGameController.cpp.i
-
-TGame/TGameController.s: TGame/TGameController.cpp.s
-
-.PHONY : TGame/TGameController.s
-
-# target to generate assembly for a file
-TGame/TGameController.cpp.s:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TGameController.cpp.s
-.PHONY : TGame/TGameController.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -543,12 +516,12 @@ help:
 	@echo "... TController.o"
 	@echo "... TController.i"
 	@echo "... TController.s"
-	@echo "... TDisplay/TDisplayController.o"
-	@echo "... TDisplay/TDisplayController.i"
-	@echo "... TDisplay/TDisplayController.s"
 	@echo "... TGame/TBoardController.o"
 	@echo "... TGame/TBoardController.i"
 	@echo "... TGame/TBoardController.s"
+	@echo "... TGame/TDisplayController.o"
+	@echo "... TGame/TDisplayController.i"
+	@echo "... TGame/TDisplayController.s"
 	@echo "... TGame/TFigure.o"
 	@echo "... TGame/TFigure.i"
 	@echo "... TGame/TFigure.s"
@@ -579,9 +552,6 @@ help:
 	@echo "... TGame/TFigureZ.o"
 	@echo "... TGame/TFigureZ.i"
 	@echo "... TGame/TFigureZ.s"
-	@echo "... TGame/TGameController.o"
-	@echo "... TGame/TGameController.i"
-	@echo "... TGame/TGameController.s"
 .PHONY : help
 
 

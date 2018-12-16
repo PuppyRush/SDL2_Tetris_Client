@@ -3,3 +3,5 @@
 //
 
 #include "TFigureBoardBuilder.h"
+
+SDL_TETRIS

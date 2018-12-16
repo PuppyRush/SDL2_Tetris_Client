@@ -1,30 +1,26 @@
 //
-// Created by chaed on 18. 12. 4.
+// Created by chaed on 18. 12. 15.
 //
 
-#ifndef UICLASSEXAMPLE_TDISPLAYCONTROLLER_H
-#define UICLASSEXAMPLE_TDISPLAYCONTROLLER_H
+#ifndef TERIS_FIGURE_CLASS_TGAMECONTROLLER_H
+#define TERIS_FIGURE_CLASS_TGAMECONTROLLER_H
 
-#include "../Common/TType.h"
-#include "MainOnlineDisplay.h"
-#include "MainLocalDisplay.h"
+#include "../TController.h"
 
 SDL_TETRIS_BEGIN
 
-class TDisplayController
-{
+class TDisplayController : public TControllerInterface{
+
 public:
 
-
-
+    static auto getInstance();
 
 private:
+    TDisplayController(){}
 
-    MainOnlineDisplay m_onlineDisplay;
-    MainLocalDisplay m_localDisplay;
+    virtual void _setDisplay() override;
 };
 
 SDL_TETRIS_END
 
-#endif //UICLASSEXAMPLE_TDISPLAYCONTROLLER_H
-
+#endif //TERIS_FIGURE_CLASS_TGAMECONTROLLER_H

@@ -1,13 +1,12 @@
 #pragma once
 
+#include "../Common/TDefine.h"
 #include "../Common/TType.h"
 
 SDL_TETRIS_BEGIN
 
 class TFigureUnit {
 public:
-    
-
     
     TFigureUnit();
     TFigureUnit(const TPoint point, const t_age age, const TColor color, const UnitType type);
@@ -23,13 +22,13 @@ public:
     
     const TColor getColor () const;
     void setColor (TColor m_color);
-    
+
     UnitType getType () const;
     void setType (UnitType m_type);
     
     static TFigureUnit& getDefaultUnit()
     {
-        static TFigureUnit unit(TPoint(0,0), 0,TColor::none, UnitType::Empty);
+        static TFigureUnit unit(TPoint(0,0), 0, TColor::none, UnitType::Empty);
         return unit;
     }
 

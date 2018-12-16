@@ -9,13 +9,12 @@
 
 #include "TGameController.h"
 #include "TGame/TBoardController.h"
-#include "TType.h"
 
-SDL_TETRIS_BEGIN
+SDL_TETRIS
 
-auto TGameController::getInstance()
+auto TDisplayController::getInstance()
 {
-    static auto inst = std::make_shared<TGameController>();
+    static auto inst = std::shared_ptr<TDisplayController>(new TDisplayController{});
     return inst;
 }
 
@@ -34,19 +33,14 @@ Uint32 my_callbackfunc(Uint32 interval, void *param) {
     return (interval);
 }
 
-void TGameController::_setDisplay()
+void TDisplayController::_setDisplay()
 {
     using namespace tetris;
     using namespace std;
 
-    auto renderer = getRenderer();
-    auto window = getWindow();
-    auto event = getSDLEvent();
-
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-        std::cout << "SDL_Init error: " << SDL_GetError() << std::endl;
-        return 1;
-    }
+    auto renderer = getRenderer().get();
+    auto window = getWindow().get();
+    auto event = getSDLEvent().get();
 
     int w, h; // texture width & height
     auto img = IMG_LoadTexture(renderer, "resources/background.jpg");
@@ -104,12 +98,12 @@ void TGameController::_setDisplay()
         SDL_RenderPresent(renderer);
 
         SDL_WaitEvent(event);
-        switch (event.type) {
+        switch (event->type) {
             case SDL_QUIT:
                 quit = true;
                 break;
             case SDL_KEYDOWN:
-                switch (event.key.keysym.sym) {
+                switch (event->key.keysym.sym) {
                     case SDLK_LEFT:
                         ctl->goLeft();
                         break;
@@ -131,7 +125,7 @@ void TGameController::_setDisplay()
         }
 
         SDL_PollEvent(event);
-        switch (event.type) {
+        switch (event->type) {
             case SDL_USEREVENT: {
                 /* and now we can call the function we wanted to call in the timer but couldn't because of the multithreading problems */
                 ctl->goDown();
@@ -148,8 +142,5 @@ void TGameController::_setDisplay()
 
 
 
-    return 0;
+    return ;
 }
-
-
-SDL_TETRIS_END

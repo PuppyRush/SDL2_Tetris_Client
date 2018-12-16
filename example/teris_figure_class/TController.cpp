@@ -2,15 +2,63 @@
 // Created by chaed on 18. 12. 15.
 //
 
+#include <iostream>
+#include <exception>
+#include <new>
+
 #include "TController.h"
 
-SDL_TETRIS_BEGIN
+TControllerInterface::TControllerInterface()
+    :m_windowHeight(tetris::DISPLAY_HEIGHT),
+     m_windowWidth(tetris::DISPLAY_WIDTH),
+     m_event( std::make_shared<SDL_Event>())
+{
+    using namespace std;
+
+    try
+    {
+        auto window_deleter = [](SDL_Window* window) {
+          if(window==nullptr) delete window;
+        };
+
+        m_window = std::shared_ptr<SDL_Window>(SDL_CreateWindow("SDL_TETRIS",
+                                                                SDL_WINDOWPOS_UNDEFINED,
+                                                                SDL_WINDOWPOS_UNDEFINED,
+                                                                tetris::DISPLAY_WIDTH,
+                                                                tetris::DISPLAY_HEIGHT,
+                                                                SDL_WINDOW_SHOWN), window_deleter);
+
+        auto renderer_deleter = [](SDL_Renderer* window) {
+          if(window==nullptr) delete window;
+        };
+
+        m_renderer = std::shared_ptr<SDL_Renderer>(SDL_CreateRenderer(m_window.get(),
+            -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC)
+        , renderer_deleter);
+
+        if(SDL_Init(SDL_INIT_VIDEO) != 0)
+        {
+            string s("SDL_Init error: " );
+            s.append(SDL_GetError());
+            throw runtime_error(s);
+        }
+    }
+    catch(runtime_error &e)
+    {
+        std::cerr << e.what();
+    }
+    catch(...)
+    {
+        std::cerr << "fail tetris game init because of unkwon error ";
+    }
+
+
+
+}
 
 TControllerInterface::~TControllerInterface()
 {
-    SDL_DestroyRenderer(getRenderer());
-    SDL_DestroyWindow(getWindow());
+    SDL_DestroyRenderer(getRenderer().get());
+    SDL_DestroyWindow(getWindow().get());
     SDL_Quit();
 }
-
-SDL_TETRIS_END

@@ -7,6 +7,7 @@
 
 #define SDL_TETRIS_BEGIN namespace tetris{
 #define SDL_TETRIS_END }
+#define SDL_TETRIS using namespace tetris;
 
 //#define CONSTEXPR
 #ifdef CONSTEXPR

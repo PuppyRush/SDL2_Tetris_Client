@@ -4,7 +4,7 @@
 
 #include "TBoardController.h"
 
-using namespace tetris;
+SDL_TETRIS
 
 BoardController::BoardController()
 :m_board(TFigureBoard::get ()

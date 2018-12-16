@@ -7,8 +7,12 @@
 #include <numeric>
 #include <array>
 
+#include "../Common/TDefine.h"
 #include "../Common/TType.h"
 #include "TFigureUnit.h"
+
+SDL_TETRIS_BEGIN
+
 
 /***********************************************
 *		            □ □ □ □                    *
@@ -21,9 +25,6 @@
 *	(x-2,y+1) (x-1,y+1) (x,y+1)	 (x+1,y+1)     *
 *	(x-2,y+2) (x-1,y+2) (x,y+2)	 (x+1,y+2)     *
 ***********************************************/
-
-namespace tetris {
-
 
 class TFigureBuilder;
 class TFigure {
@@ -83,5 +84,4 @@ private:
     virtual void _rotateRight() = 0;
 };
 
-}
-
+SDL_TETRIS_END

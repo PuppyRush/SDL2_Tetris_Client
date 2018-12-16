@@ -1,6 +1,6 @@
 #pragma once
 
-#include <tuple>
+
 #include "TDefine.h"
 
 SDL_TETRIS_BEGIN

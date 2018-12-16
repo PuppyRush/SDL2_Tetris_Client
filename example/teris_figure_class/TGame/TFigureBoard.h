@@ -14,7 +14,7 @@
 #include "TFigure.h"
 #include "../Common/TProperty.h"
 
-namespace tetris {
+SDL_TETRIS_BEGIN
 
 class TFigureBoard {
 
@@ -53,6 +53,6 @@ private:
     std::mutex m_mutex;
 };
 
-}
+SDL_TETRIS_END
 
 #endif //TERIS_FIGURE_CLASS_FIGUREBOARD_H

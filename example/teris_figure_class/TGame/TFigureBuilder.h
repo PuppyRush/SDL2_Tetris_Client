@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include "../Common/TDefine.h"
+
 #include "TFigure.h"
 #include "TFigureL.h"
 #include "TFigureZ.h"
@@ -9,8 +11,7 @@
 #include "TFigureO.h"
 #include "../Common/TType.h"
 
-namespace tetris
-{
+SDL_TETRIS_BEGIN
 
 class TFigureBuilder {
 public:
@@ -50,4 +51,4 @@ private:
     
 };
 
-}
+SDL_TETRIS_END

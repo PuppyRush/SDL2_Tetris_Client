@@ -7,12 +7,11 @@
 #include <set>
 
 #include "../Common/TypeTraits.h"
+
 #include "TFigureBoard.h"
 #include "TFigureBuilder.h"
-#include "TFigureL.h"
-#include "TFigureZ.h"
 
-using namespace tetris;
+SDL_TETRIS
 
 TFigureBoard::TFigureBoard()
     : m_currentFigure(nullptr) {
