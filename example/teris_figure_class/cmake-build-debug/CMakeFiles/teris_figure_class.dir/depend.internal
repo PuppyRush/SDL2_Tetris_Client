@@ -3,12 +3,12 @@
 
 CMakeFiles/teris_figure_class.dir/Main.cpp.o
  /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Main.cpp
-CMakeFiles/teris_figure_class.dir/TController.cpp.o
+CMakeFiles/teris_figure_class.dir/TDisplay/TDisplayInterface.cpp.o
  /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Common/TDefine.h
  /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Common/TProperty.h
  /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Common/TType.h
- /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TController.cpp
- /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TController.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/TDisplayInterface.cpp
+ /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/TDisplayInterface.h
  /usr/include/SDL2/SDL.h
  /usr/include/SDL2/SDL_assert.h
  /usr/include/SDL2/SDL_atomic.h
@@ -62,20 +62,18 @@ CMakeFiles/teris_figure_class.dir/TGame/TBoardController.cpp.o
  /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigure.h
  /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureBoard.h
  /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureUnit.h
-CMakeFiles/teris_figure_class.dir/TGame/TDisplayController.cpp.o
+CMakeFiles/teris_figure_class.dir/TGame/TDisplayGame.cpp.o
  ..//TGame/TBoardController.h
  ../Common/TDefine.h
- ../Common/TProperty.h
- ../Common/TType.h
  ../TGame/TFigure.h
  ../TGame/TFigureBoard.h
  ../TGame/TFigureUnit.h
  /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Common/TDefine.h
  /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Common/TProperty.h
  /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Common/TType.h
- /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TController.h
- /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TDisplayController.cpp
- /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TGameController.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/TDisplayInterface.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TDisplayGame.cpp
+ /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TDisplayGame.h
  /usr/include/SDL2/SDL.h
  /usr/include/SDL2/SDL_assert.h
  /usr/include/SDL2/SDL_atomic.h
@@ -210,3 +208,111 @@ CMakeFiles/teris_figure_class.dir/TGame/TFigureZ.cpp.o
  /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureUnit.h
  /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureZ.cpp
  /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureZ.h
+CMakeFiles/teris_figure_class.dir/TMain/TMainDisplay.cpp.o
+ /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Common/TDefine.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Common/TProperty.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Common/TType.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/TDisplayInterface.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TMain/TMainDisplay.cpp
+ /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TMain/TMainDisplay.h
+ /usr/include/SDL2/SDL.h
+ /usr/include/SDL2/SDL_assert.h
+ /usr/include/SDL2/SDL_atomic.h
+ /usr/include/SDL2/SDL_audio.h
+ /usr/include/SDL2/SDL_blendmode.h
+ /usr/include/SDL2/SDL_clipboard.h
+ /usr/include/SDL2/SDL_config.h
+ /usr/include/SDL2/SDL_cpuinfo.h
+ /usr/include/SDL2/SDL_endian.h
+ /usr/include/SDL2/SDL_error.h
+ /usr/include/SDL2/SDL_events.h
+ /usr/include/SDL2/SDL_filesystem.h
+ /usr/include/SDL2/SDL_gamecontroller.h
+ /usr/include/SDL2/SDL_gesture.h
+ /usr/include/SDL2/SDL_haptic.h
+ /usr/include/SDL2/SDL_hints.h
+ /usr/include/SDL2/SDL_joystick.h
+ /usr/include/SDL2/SDL_keyboard.h
+ /usr/include/SDL2/SDL_keycode.h
+ /usr/include/SDL2/SDL_loadso.h
+ /usr/include/SDL2/SDL_log.h
+ /usr/include/SDL2/SDL_main.h
+ /usr/include/SDL2/SDL_messagebox.h
+ /usr/include/SDL2/SDL_mouse.h
+ /usr/include/SDL2/SDL_mutex.h
+ /usr/include/SDL2/SDL_pixels.h
+ /usr/include/SDL2/SDL_platform.h
+ /usr/include/SDL2/SDL_power.h
+ /usr/include/SDL2/SDL_quit.h
+ /usr/include/SDL2/SDL_rect.h
+ /usr/include/SDL2/SDL_render.h
+ /usr/include/SDL2/SDL_rwops.h
+ /usr/include/SDL2/SDL_scancode.h
+ /usr/include/SDL2/SDL_shape.h
+ /usr/include/SDL2/SDL_stdinc.h
+ /usr/include/SDL2/SDL_surface.h
+ /usr/include/SDL2/SDL_system.h
+ /usr/include/SDL2/SDL_thread.h
+ /usr/include/SDL2/SDL_timer.h
+ /usr/include/SDL2/SDL_touch.h
+ /usr/include/SDL2/SDL_version.h
+ /usr/include/SDL2/SDL_video.h
+ /usr/include/SDL2/begin_code.h
+ /usr/include/SDL2/close_code.h
+CMakeFiles/teris_figure_class.dir/TMain/TMainLocalDisplay.cpp.o
+ /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Common/TDefine.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Common/TProperty.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Common/TType.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/TDisplayInterface.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TMain/TMainDisplay.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TMain/TMainLocalDisplay.cpp
+ /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TMain/TMainLocalDisplay.h
+ /usr/include/SDL2/SDL.h
+ /usr/include/SDL2/SDL_assert.h
+ /usr/include/SDL2/SDL_atomic.h
+ /usr/include/SDL2/SDL_audio.h
+ /usr/include/SDL2/SDL_blendmode.h
+ /usr/include/SDL2/SDL_clipboard.h
+ /usr/include/SDL2/SDL_config.h
+ /usr/include/SDL2/SDL_cpuinfo.h
+ /usr/include/SDL2/SDL_endian.h
+ /usr/include/SDL2/SDL_error.h
+ /usr/include/SDL2/SDL_events.h
+ /usr/include/SDL2/SDL_filesystem.h
+ /usr/include/SDL2/SDL_gamecontroller.h
+ /usr/include/SDL2/SDL_gesture.h
+ /usr/include/SDL2/SDL_haptic.h
+ /usr/include/SDL2/SDL_hints.h
+ /usr/include/SDL2/SDL_joystick.h
+ /usr/include/SDL2/SDL_keyboard.h
+ /usr/include/SDL2/SDL_keycode.h
+ /usr/include/SDL2/SDL_loadso.h
+ /usr/include/SDL2/SDL_log.h
+ /usr/include/SDL2/SDL_main.h
+ /usr/include/SDL2/SDL_messagebox.h
+ /usr/include/SDL2/SDL_mouse.h
+ /usr/include/SDL2/SDL_mutex.h
+ /usr/include/SDL2/SDL_pixels.h
+ /usr/include/SDL2/SDL_platform.h
+ /usr/include/SDL2/SDL_power.h
+ /usr/include/SDL2/SDL_quit.h
+ /usr/include/SDL2/SDL_rect.h
+ /usr/include/SDL2/SDL_render.h
+ /usr/include/SDL2/SDL_rwops.h
+ /usr/include/SDL2/SDL_scancode.h
+ /usr/include/SDL2/SDL_shape.h
+ /usr/include/SDL2/SDL_stdinc.h
+ /usr/include/SDL2/SDL_surface.h
+ /usr/include/SDL2/SDL_system.h
+ /usr/include/SDL2/SDL_thread.h
+ /usr/include/SDL2/SDL_timer.h
+ /usr/include/SDL2/SDL_touch.h
+ /usr/include/SDL2/SDL_version.h
+ /usr/include/SDL2/SDL_video.h
+ /usr/include/SDL2/begin_code.h
+ /usr/include/SDL2/close_code.h
+CMakeFiles/teris_figure_class.dir/TMain/TMainOnlineDisplay.cpp.o
+ /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TMain/TMainOnlineDisplay.cpp
+CMakeFiles/teris_figure_class.dir/TOption/TOptionDisplay.cpp.o
+ /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TOption/TOptionDisplay.cpp
+ /home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TOption/TOptionDisplay.h

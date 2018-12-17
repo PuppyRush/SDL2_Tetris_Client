@@ -1,14 +1,26 @@
 //
-// Created by chaed on 18. 12. 15.
+// Created by chaed on 18. 12. 16.
 //
-
 #include <iostream>
 #include <exception>
-#include <new>
 
-#include "TController.h"
+#include "TDisplayInterface.h"
 
-TControllerInterface::TControllerInterface()
+SDL_TETRIS
+
+TDisplayInterface::TDisplayInterface(const std::vector<Menu>& menus)
+    :TDisplayInterface()
+{
+    m_menus = std::move(menus);
+}
+
+TDisplayInterface::TDisplayInterface(std::vector<Menu>&& menus)
+    :TDisplayInterface()
+{
+    m_menus = menus;
+}
+
+TDisplayInterface::TDisplayInterface()
     :m_windowHeight(tetris::DISPLAY_HEIGHT),
      m_windowWidth(tetris::DISPLAY_WIDTH),
      m_event( std::make_shared<SDL_Event>())
@@ -33,8 +45,8 @@ TControllerInterface::TControllerInterface()
         };
 
         m_renderer = std::shared_ptr<SDL_Renderer>(SDL_CreateRenderer(m_window.get(),
-            -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC)
-        , renderer_deleter);
+                                                                      -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC)
+            , renderer_deleter);
 
         if(SDL_Init(SDL_INIT_VIDEO) != 0)
         {
@@ -52,11 +64,9 @@ TControllerInterface::TControllerInterface()
         std::cerr << "fail tetris game init because of unkwon error ";
     }
 
-
-
 }
 
-TControllerInterface::~TControllerInterface()
+TDisplayInterface::~TDisplayInterface()
 {
     SDL_DestroyRenderer(getRenderer().get());
     SDL_DestroyWindow(getWindow().get());

@@ -1,10 +1,10 @@
 #pragma once
 
-#include "DisplayInterface.h"
+#include "../TDisplay/TDisplayInterface.h"
 
 SDL_TETRIS_BEGIN
 
-class MainDisplay : public DisplayInterface
+class TMainDisplay : public TDisplayInterface
 {
 public:
 
@@ -12,15 +12,19 @@ public:
 	bool clickedDown();
 	bool clickedUp();
 
-	virtual ~MainDisplay() {}
+	virtual ~TMainDisplay() {}
+
 
 	virtual bool clickedEnterServer() =0;
 	virtual bool clickedStartLocalGame() =0;
 	virtual bool clickedBack() = 0;
 
+
 protected:
-    MainDisplay(const std::vector<Menu> menus)
-            :DisplayInterface(menus) {}
+    TMainDisplay(const std::vector<Menu>& menus);
+    TMainDisplay(std::vector<Menu>&& menus);
+
+
 };
 
 SDL_TETRIS_END

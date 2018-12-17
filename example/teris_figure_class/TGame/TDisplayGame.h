@@ -5,18 +5,16 @@
 #ifndef TERIS_FIGURE_CLASS_TGAMECONTROLLER_H
 #define TERIS_FIGURE_CLASS_TGAMECONTROLLER_H
 
-#include "../TController.h"
+#include "../TDisplay/TDisplayInterface.h"
 
 SDL_TETRIS_BEGIN
 
-class TDisplayController : public TControllerInterface{
+class TDisplayController : public TDisplayInterface{
 
 public:
 
-    static auto getInstance();
-
 private:
-    TDisplayController(){}
+    TDisplayController();
 
     virtual void _setDisplay() override;
 };

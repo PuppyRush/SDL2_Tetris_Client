@@ -7,17 +7,15 @@
 #include <random>
 #include <functional>
 
-#include "TGameController.h"
+#include "TDisplayGame.h"
 #include "TGame/TBoardController.h"
 
 SDL_TETRIS
 
-auto TDisplayController::getInstance()
+TDisplayController::TDisplayController()
 {
-    static auto inst = std::shared_ptr<TDisplayController>(new TDisplayController{});
-    return inst;
-}
 
+}
 
 Uint32 my_callbackfunc(Uint32 interval, void *param) {
     SDL_Event event;

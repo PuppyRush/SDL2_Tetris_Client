@@ -150,32 +150,32 @@ Main.cpp.s:
 	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/Main.cpp.s
 .PHONY : Main.cpp.s
 
-TController.o: TController.cpp.o
+TDisplay/TDisplayInterface.o: TDisplay/TDisplayInterface.cpp.o
 
-.PHONY : TController.o
+.PHONY : TDisplay/TDisplayInterface.o
 
 # target to build an object file
-TController.cpp.o:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TController.cpp.o
-.PHONY : TController.cpp.o
+TDisplay/TDisplayInterface.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TDisplay/TDisplayInterface.cpp.o
+.PHONY : TDisplay/TDisplayInterface.cpp.o
 
-TController.i: TController.cpp.i
+TDisplay/TDisplayInterface.i: TDisplay/TDisplayInterface.cpp.i
 
-.PHONY : TController.i
+.PHONY : TDisplay/TDisplayInterface.i
 
 # target to preprocess a source file
-TController.cpp.i:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TController.cpp.i
-.PHONY : TController.cpp.i
+TDisplay/TDisplayInterface.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TDisplay/TDisplayInterface.cpp.i
+.PHONY : TDisplay/TDisplayInterface.cpp.i
 
-TController.s: TController.cpp.s
+TDisplay/TDisplayInterface.s: TDisplay/TDisplayInterface.cpp.s
 
-.PHONY : TController.s
+.PHONY : TDisplay/TDisplayInterface.s
 
 # target to generate assembly for a file
-TController.cpp.s:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TController.cpp.s
-.PHONY : TController.cpp.s
+TDisplay/TDisplayInterface.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TDisplay/TDisplayInterface.cpp.s
+.PHONY : TDisplay/TDisplayInterface.cpp.s
 
 TGame/TBoardController.o: TGame/TBoardController.cpp.o
 
@@ -204,32 +204,32 @@ TGame/TBoardController.cpp.s:
 	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TBoardController.cpp.s
 .PHONY : TGame/TBoardController.cpp.s
 
-TGame/TDisplayController.o: TGame/TDisplayController.cpp.o
+TGame/TDisplayGame.o: TGame/TDisplayGame.cpp.o
 
-.PHONY : TGame/TDisplayController.o
+.PHONY : TGame/TDisplayGame.o
 
 # target to build an object file
-TGame/TDisplayController.cpp.o:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TDisplayController.cpp.o
-.PHONY : TGame/TDisplayController.cpp.o
+TGame/TDisplayGame.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TDisplayGame.cpp.o
+.PHONY : TGame/TDisplayGame.cpp.o
 
-TGame/TDisplayController.i: TGame/TDisplayController.cpp.i
+TGame/TDisplayGame.i: TGame/TDisplayGame.cpp.i
 
-.PHONY : TGame/TDisplayController.i
+.PHONY : TGame/TDisplayGame.i
 
 # target to preprocess a source file
-TGame/TDisplayController.cpp.i:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TDisplayController.cpp.i
-.PHONY : TGame/TDisplayController.cpp.i
+TGame/TDisplayGame.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TDisplayGame.cpp.i
+.PHONY : TGame/TDisplayGame.cpp.i
 
-TGame/TDisplayController.s: TGame/TDisplayController.cpp.s
+TGame/TDisplayGame.s: TGame/TDisplayGame.cpp.s
 
-.PHONY : TGame/TDisplayController.s
+.PHONY : TGame/TDisplayGame.s
 
 # target to generate assembly for a file
-TGame/TDisplayController.cpp.s:
-	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TDisplayController.cpp.s
-.PHONY : TGame/TDisplayController.cpp.s
+TGame/TDisplayGame.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TDisplayGame.cpp.s
+.PHONY : TGame/TDisplayGame.cpp.s
 
 TGame/TFigure.o: TGame/TFigure.cpp.o
 
@@ -501,6 +501,114 @@ TGame/TFigureZ.cpp.s:
 	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TGame/TFigureZ.cpp.s
 .PHONY : TGame/TFigureZ.cpp.s
 
+TMain/TMainDisplay.o: TMain/TMainDisplay.cpp.o
+
+.PHONY : TMain/TMainDisplay.o
+
+# target to build an object file
+TMain/TMainDisplay.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TMain/TMainDisplay.cpp.o
+.PHONY : TMain/TMainDisplay.cpp.o
+
+TMain/TMainDisplay.i: TMain/TMainDisplay.cpp.i
+
+.PHONY : TMain/TMainDisplay.i
+
+# target to preprocess a source file
+TMain/TMainDisplay.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TMain/TMainDisplay.cpp.i
+.PHONY : TMain/TMainDisplay.cpp.i
+
+TMain/TMainDisplay.s: TMain/TMainDisplay.cpp.s
+
+.PHONY : TMain/TMainDisplay.s
+
+# target to generate assembly for a file
+TMain/TMainDisplay.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TMain/TMainDisplay.cpp.s
+.PHONY : TMain/TMainDisplay.cpp.s
+
+TMain/TMainLocalDisplay.o: TMain/TMainLocalDisplay.cpp.o
+
+.PHONY : TMain/TMainLocalDisplay.o
+
+# target to build an object file
+TMain/TMainLocalDisplay.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TMain/TMainLocalDisplay.cpp.o
+.PHONY : TMain/TMainLocalDisplay.cpp.o
+
+TMain/TMainLocalDisplay.i: TMain/TMainLocalDisplay.cpp.i
+
+.PHONY : TMain/TMainLocalDisplay.i
+
+# target to preprocess a source file
+TMain/TMainLocalDisplay.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TMain/TMainLocalDisplay.cpp.i
+.PHONY : TMain/TMainLocalDisplay.cpp.i
+
+TMain/TMainLocalDisplay.s: TMain/TMainLocalDisplay.cpp.s
+
+.PHONY : TMain/TMainLocalDisplay.s
+
+# target to generate assembly for a file
+TMain/TMainLocalDisplay.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TMain/TMainLocalDisplay.cpp.s
+.PHONY : TMain/TMainLocalDisplay.cpp.s
+
+TMain/TMainOnlineDisplay.o: TMain/TMainOnlineDisplay.cpp.o
+
+.PHONY : TMain/TMainOnlineDisplay.o
+
+# target to build an object file
+TMain/TMainOnlineDisplay.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TMain/TMainOnlineDisplay.cpp.o
+.PHONY : TMain/TMainOnlineDisplay.cpp.o
+
+TMain/TMainOnlineDisplay.i: TMain/TMainOnlineDisplay.cpp.i
+
+.PHONY : TMain/TMainOnlineDisplay.i
+
+# target to preprocess a source file
+TMain/TMainOnlineDisplay.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TMain/TMainOnlineDisplay.cpp.i
+.PHONY : TMain/TMainOnlineDisplay.cpp.i
+
+TMain/TMainOnlineDisplay.s: TMain/TMainOnlineDisplay.cpp.s
+
+.PHONY : TMain/TMainOnlineDisplay.s
+
+# target to generate assembly for a file
+TMain/TMainOnlineDisplay.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TMain/TMainOnlineDisplay.cpp.s
+.PHONY : TMain/TMainOnlineDisplay.cpp.s
+
+TOption/TOptionDisplay.o: TOption/TOptionDisplay.cpp.o
+
+.PHONY : TOption/TOptionDisplay.o
+
+# target to build an object file
+TOption/TOptionDisplay.cpp.o:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TOption/TOptionDisplay.cpp.o
+.PHONY : TOption/TOptionDisplay.cpp.o
+
+TOption/TOptionDisplay.i: TOption/TOptionDisplay.cpp.i
+
+.PHONY : TOption/TOptionDisplay.i
+
+# target to preprocess a source file
+TOption/TOptionDisplay.cpp.i:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TOption/TOptionDisplay.cpp.i
+.PHONY : TOption/TOptionDisplay.cpp.i
+
+TOption/TOptionDisplay.s: TOption/TOptionDisplay.cpp.s
+
+.PHONY : TOption/TOptionDisplay.s
+
+# target to generate assembly for a file
+TOption/TOptionDisplay.cpp.s:
+	$(MAKE) -f CMakeFiles/teris_figure_class.dir/build.make CMakeFiles/teris_figure_class.dir/TOption/TOptionDisplay.cpp.s
+.PHONY : TOption/TOptionDisplay.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -513,15 +621,15 @@ help:
 	@echo "... Main.o"
 	@echo "... Main.i"
 	@echo "... Main.s"
-	@echo "... TController.o"
-	@echo "... TController.i"
-	@echo "... TController.s"
+	@echo "... TDisplay/TDisplayInterface.o"
+	@echo "... TDisplay/TDisplayInterface.i"
+	@echo "... TDisplay/TDisplayInterface.s"
 	@echo "... TGame/TBoardController.o"
 	@echo "... TGame/TBoardController.i"
 	@echo "... TGame/TBoardController.s"
-	@echo "... TGame/TDisplayController.o"
-	@echo "... TGame/TDisplayController.i"
-	@echo "... TGame/TDisplayController.s"
+	@echo "... TGame/TDisplayGame.o"
+	@echo "... TGame/TDisplayGame.i"
+	@echo "... TGame/TDisplayGame.s"
 	@echo "... TGame/TFigure.o"
 	@echo "... TGame/TFigure.i"
 	@echo "... TGame/TFigure.s"
@@ -552,6 +660,18 @@ help:
 	@echo "... TGame/TFigureZ.o"
 	@echo "... TGame/TFigureZ.i"
 	@echo "... TGame/TFigureZ.s"
+	@echo "... TMain/TMainDisplay.o"
+	@echo "... TMain/TMainDisplay.i"
+	@echo "... TMain/TMainDisplay.s"
+	@echo "... TMain/TMainLocalDisplay.o"
+	@echo "... TMain/TMainLocalDisplay.i"
+	@echo "... TMain/TMainLocalDisplay.s"
+	@echo "... TMain/TMainOnlineDisplay.o"
+	@echo "... TMain/TMainOnlineDisplay.i"
+	@echo "... TMain/TMainOnlineDisplay.s"
+	@echo "... TOption/TOptionDisplay.o"
+	@echo "... TOption/TOptionDisplay.i"
+	@echo "... TOption/TOptionDisplay.s"
 .PHONY : help
 
 

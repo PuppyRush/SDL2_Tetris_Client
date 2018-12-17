@@ -8,6 +8,7 @@ set(SDL2_PATH "${PROJECT_SOURCE_DIR}/SDL")
 
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
+find_package( Boost 1.40 COMPONENTS program_options REQUIRED )
 #find_package(SDL2_ttf REQUIRED)
 
 add_executable(teris_figure_class
@@ -37,12 +38,11 @@ add_executable(teris_figure_class
         TGame/TFigureO.h
         TGame/TFigureT.cpp
         TGame/TFigureT.h
-        TDisplay/MainLocalDisplay.h
-        TDisplay/MainDisplay.h
-        TDisplay/DisplayInterface.h
-        TDisplay/TDisplayMain.h
-        TDisplay/MainOnlineDisplay.h
-        Main.cpp TController.cpp TController.h TGame/TDisplayController.cpp TGame/TGameController.h Common/THeader.h)
+        TMain/TMainLocalDisplay.h
+        TMain/TMainDisplay.h
+        TDisplay/TDisplayInterface.h
+        TMain/TMainOnlineDisplay.h
+        Main.cpp TGame/TDisplayGame.cpp TGame/TDisplayGame.h Common/THeader.h TDisplay/TDisplayInterface.cpp TOption/TOptionDisplay.cpp TOption/TOptionDisplay.h TMain/TMainDisplay.cpp TMain/TMainLocalDisplay.cpp TMain/TMainOnlineDisplay.cpp)
 
 include_directories(teris_figure_class
         ${SDL2_INCLUDE_DIR}
@@ -54,6 +54,7 @@ include_directories(teris_figure_class
         ${PROJECT_SOURCE_DIR}/Common)
 
 target_link_libraries(teris_figure_class
+        ${Boost_PROGRAM_OPTIONS_LIBRARY}
         ${SDL2_IMAGE_LIBRARIES}
         ${SDL2_TTF_LIBRARIES}
         ${SDL2_LIBRARY})

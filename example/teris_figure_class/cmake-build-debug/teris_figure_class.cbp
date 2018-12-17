@@ -114,25 +114,10 @@
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Main.cpp">
 			<Option target="teris_figure_class"/>
 		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TController.cpp">
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/TDisplayInterface.cpp">
 			<Option target="teris_figure_class"/>
 		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TController.h">
-			<Option target="teris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/DisplayInterface.h">
-			<Option target="teris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/MainDisplay.h">
-			<Option target="teris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/MainLocalDisplay.h">
-			<Option target="teris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/MainOnlineDisplay.h">
-			<Option target="teris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/TDisplayMain.h">
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/TDisplayInterface.h">
 			<Option target="teris_figure_class"/>
 		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TBoardController.cpp">
@@ -141,7 +126,10 @@
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TBoardController.h">
 			<Option target="teris_figure_class"/>
 		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TDisplayController.cpp">
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TDisplayGame.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TDisplayGame.h">
 			<Option target="teris_figure_class"/>
 		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigure.cpp">
@@ -204,7 +192,28 @@
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureZ.h">
 			<Option target="teris_figure_class"/>
 		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TGameController.h">
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TMain/TMainDisplay.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TMain/TMainDisplay.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TMain/TMainLocalDisplay.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TMain/TMainLocalDisplay.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TMain/TMainOnlineDisplay.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TMain/TMainOnlineDisplay.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TOption/TOptionDisplay.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TOption/TOptionDisplay.h">
 			<Option target="teris_figure_class"/>
 		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/CMakeLists.txt">

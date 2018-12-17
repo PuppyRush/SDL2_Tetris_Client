@@ -5,9 +5,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Main.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/CMakeFiles/teris_figure_class.dir/Main.cpp.o"
-  "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TController.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/CMakeFiles/teris_figure_class.dir/TController.cpp.o"
+  "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/TDisplayInterface.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/CMakeFiles/teris_figure_class.dir/TDisplay/TDisplayInterface.cpp.o"
   "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TBoardController.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/CMakeFiles/teris_figure_class.dir/TGame/TBoardController.cpp.o"
-  "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TDisplayController.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/CMakeFiles/teris_figure_class.dir/TGame/TDisplayController.cpp.o"
+  "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TDisplayGame.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/CMakeFiles/teris_figure_class.dir/TGame/TDisplayGame.cpp.o"
   "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigure.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/CMakeFiles/teris_figure_class.dir/TGame/TFigure.cpp.o"
   "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureBoard.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/CMakeFiles/teris_figure_class.dir/TGame/TFigureBoard.cpp.o"
   "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureBoardBuilder.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/CMakeFiles/teris_figure_class.dir/TGame/TFigureBoardBuilder.cpp.o"
@@ -18,6 +18,10 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureT.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/CMakeFiles/teris_figure_class.dir/TGame/TFigureT.cpp.o"
   "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureUnit.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/CMakeFiles/teris_figure_class.dir/TGame/TFigureUnit.cpp.o"
   "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureZ.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/CMakeFiles/teris_figure_class.dir/TGame/TFigureZ.cpp.o"
+  "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TMain/TMainDisplay.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/CMakeFiles/teris_figure_class.dir/TMain/TMainDisplay.cpp.o"
+  "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TMain/TMainLocalDisplay.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/CMakeFiles/teris_figure_class.dir/TMain/TMainLocalDisplay.cpp.o"
+  "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TMain/TMainOnlineDisplay.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/CMakeFiles/teris_figure_class.dir/TMain/TMainOnlineDisplay.cpp.o"
+  "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TOption/TOptionDisplay.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/CMakeFiles/teris_figure_class.dir/TOption/TOptionDisplay.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

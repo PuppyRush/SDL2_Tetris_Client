@@ -5,11 +5,11 @@
 #ifndef UICLASSEXAMPLE_MAINONLINEDISPLAY_H
 #define UICLASSEXAMPLE_MAINONLINEDISPLAY_H
 
-#include "MainDisplay.h"
+#include "TMainDisplay.h"
 
 SDL_TETRIS_BEGIN
 
-class MainOnlineDisplay : public MainDisplay
+class TMainOnlineDisplay : public TMainDisplay
 {
 public:
     virtual bool clickedEnterServer() override {}
@@ -17,8 +17,8 @@ public:
     virtual bool clickedBack() override {}
 
 private:
-    MainOnlineDisplay(const std::vector<Menu> menus)
-            :MainDisplay(menus) {}
+    TMainOnlineDisplay(const std::vector<Menu> menus)
+            :TMainDisplay(menus) {}
 
 };
 
