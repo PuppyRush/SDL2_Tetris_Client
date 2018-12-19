@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="teris_figure_class"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\CMakeModules\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="teris_figure_class">
+				<Option output="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/teris_figure_class" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/tetris_figure_class"/>
+					<Add directory="/usr/include/SDL2"/>
+					<Add directory="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class"/>
+					<Add directory="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay"/>
+					<Add directory="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame"/>
+					<Add directory="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Common"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/Makefile&quot;  VERBOSE=1 teris_figure_class"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="teris_figure_class/fast">
+				<Option output="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/teris_figure_class" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/tetris_figure_class"/>
+					<Add directory="/usr/include/SDL2"/>
+					<Add directory="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class"/>
+					<Add directory="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay"/>
+					<Add directory="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame"/>
+					<Add directory="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Common"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/Makefile&quot;  VERBOSE=1 teris_figure_class/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Common/TDefine.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Common/THeader.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Common/TProperty.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Common/TType.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Common/TypeTraits.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/Main.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/TDisplayInterface.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TDisplay/TDisplayInterface.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TBoardController.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TBoardController.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TDisplayGame.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TDisplayGame.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigure.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigure.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureBoard.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureBoard.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureBoardBuilder.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureBoardBuilder.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureBuilder.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureBuilder.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureI.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureI.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureL.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureL.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureO.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureO.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureT.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureT.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureUnit.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureUnit.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureZ.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TGame/TFigureZ.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TMain/TMainDisplay.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TMain/TMainDisplay.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TMain/TMainLocalDisplay.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TMain/TMainLocalDisplay.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TMain/TMainOnlineDisplay.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TMain/TMainOnlineDisplay.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TOption/TOptionDisplay.cpp">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/TOption/TOptionDisplay.h">
+			<Option target="teris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/CMakeModules/FindSDL2.cmake">
+			<Option virtualFolder="CMake Files\CMakeModules\"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/CMakeModules/FindSDL2_image.cmake">
+			<Option virtualFolder="CMake Files\CMakeModules\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
