@@ -21,7 +21,7 @@ public:
 
 	virtual bool clickedEnterServer() override;
 	virtual bool clickedStartLocalGame() override;
-	virtual bool clickedBack() override;
+	virtual bool clickedBack(const TDisplay disply) override;
 
     static std::shared_ptr<TMainDisplay> getInstance();
 
@@ -33,7 +33,9 @@ protected:
 private:
 	TMainLocalDisplay();
 	//메뉴 초기화하기.
-    virtual void _setDisplay() override;
+
+	virtual void _event() override;
+    virtual void _draw() override;
 };
 
 SDL_TETRIS_END

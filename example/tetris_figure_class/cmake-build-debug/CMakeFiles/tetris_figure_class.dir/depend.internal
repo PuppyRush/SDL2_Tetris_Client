@@ -13,6 +13,10 @@ CMakeFiles/tetris_figure_class.dir/Main.cpp.o
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TDisplayController.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TDisplayInterface.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TMenuBuilder.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TBoardController.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TFigure.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TFigureBoard.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TFigureUnit.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TGameDisplay.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TGameLocalDisplay.h
  /usr/include/SDL2/SDL.h
@@ -64,8 +68,15 @@ CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayController.cpp.o
  ..//TMain/TMainLocalDisplay.h
  ..//TMain/TMainOnlineDisplay.h
  ..//TOption/TOptionDisplay.h
+ ../Common/TDefine.h
  ../Common/THeader.h
+ ../Common/TProperty.h
+ ../Common/TType.h
  ../TDisplay/TDisplayInterface.h
+ ../TGame/TBoardController.h
+ ../TGame/TFigure.h
+ ../TGame/TFigureBoard.h
+ ../TGame/TFigureUnit.h
  ../TGame/TGameDisplay.h
  ../TMain/TMainDisplay.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TDefine.h
@@ -396,6 +407,7 @@ CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TypeTraits.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TDisplayInterface.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TMenuBuilder.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TBoardController.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TGameDisplay.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TGameLocalDisplay.cpp
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TGameLocalDisplay.h

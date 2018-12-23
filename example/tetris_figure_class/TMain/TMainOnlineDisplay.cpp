@@ -14,7 +14,11 @@ std::shared_ptr<TMainDisplay> TMainOnlineDisplay::getInstance()
     return inst;
 }
 
-void TMainOnlineDisplay::_setDisplay()
+void TMainOnlineDisplay::_draw()
+{
+
+}
+void TMainOnlineDisplay::_event()
 {
 
 }

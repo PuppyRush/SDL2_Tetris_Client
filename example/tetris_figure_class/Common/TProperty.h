@@ -9,19 +9,24 @@
 
 SDL_TETRIS_BEGIN
 
-const t_size BOARD_WIDTH_COUNT = 10;
-const t_size BOARD_HEIGHT_COUNT = 20;
 const t_size UNIT_LENGTH = 30;
-const t_size DISPLAY_HEIGHT = 800;
-const t_size DISPLAY_WIDTH = 600;
-
+const t_size DISPLAY_HEIGHT = 890;
+const t_size DISPLAY_WIDTH = 800;
+const t_size GAMEBOARD_WIDTH_COUNT = 10;
+const t_size GAMEBOARD_HEIGHT_COUNT = 20;
+const t_size GAMEBOARD_DISPLAY_HEIGHT = 800;
+const t_size GAMEBOARD_DISPLAY_WIDTH = 600;
+const t_size GAMEBOARD_BEGIN_X = 20;
+const t_size GAMEBOARD_BEGIN_Y = 20;
+const t_size GAMEBOARD_UNIT_LEN = 30;
 
 enum class TDisplay : t_type
 {
     Main,
     Option,
     Game,
-    Robby
+    Robby,
+    None
 };
 
 enum class TMode : t_type

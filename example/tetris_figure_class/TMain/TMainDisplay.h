@@ -17,13 +17,14 @@ public:
 
 	virtual bool clickedEnterServer() =0;
 	virtual bool clickedStartLocalGame() =0;
-	virtual bool clickedBack() = 0;
+	virtual bool clickedBack(const TDisplay disply) = 0;
 
 
 protected:
     TMainDisplay();
 
-    virtual void _setDisplay() =0;
+	virtual void _event() =0;
+    virtual void _draw() =0;
 };
 
 SDL_TETRIS_END

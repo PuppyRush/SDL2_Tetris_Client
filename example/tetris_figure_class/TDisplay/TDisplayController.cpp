@@ -30,7 +30,13 @@ void TDisplayController::operateGame()
 {
     while(!m_programEnd)
     {
-        m_display->show();
+        const auto key = std::make_pair(m_mode, m_currentDisplay);
+        if(m_displayMap.count(key)>0)
+            m_displayMap.at(key)->show();
+        else
+        {
+            assert(0);
+        }
     }
 }
 

@@ -18,12 +18,14 @@ public:
         End
     };
 
-    virtual bool clickedBack(){}
+    virtual bool clickedBack(const TDisplay disply) override {}
 
     static std::shared_ptr<TDisplayInterface> getInstance();
 
 private:
-    virtual void _setDisplay() override{}
+
+    virtual void _event() override;
+    virtual void _draw() override;
 
 };
 

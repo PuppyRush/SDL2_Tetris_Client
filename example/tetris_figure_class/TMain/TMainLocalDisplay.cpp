@@ -24,10 +24,18 @@ bool TMainLocalDisplay::clickedEnterServer()
 bool TMainLocalDisplay::clickedStartLocalGame()
 {}
 
-bool TMainLocalDisplay::clickedBack()
-{}
+bool TMainLocalDisplay::clickedBack(const TDisplay display)
+{
+    setDisplay(display);
+}
 
-void TMainLocalDisplay::_setDisplay()
+
+void TMainLocalDisplay::_event()
+{
+
+}
+
+void TMainLocalDisplay::_draw()
 {
     using namespace std;
 

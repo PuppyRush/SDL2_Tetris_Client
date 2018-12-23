@@ -15,14 +15,16 @@ public:
 
 	virtual bool clickedStart() =0;
 	virtual bool clickedSuspend() =0;
-    virtual bool clickedBack()  = 0;
+    virtual bool clickedBack(const TDisplay disply)  = 0;
 
 
 
 protected:
 
     TGameDisplay();
-	virtual void _setDisplay() =0;
+
+    virtual void _event() =0;
+	virtual void _draw() =0;
 };
 
 SDL_TETRIS_END

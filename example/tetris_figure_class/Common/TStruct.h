@@ -36,16 +36,17 @@ typedef struct TMenu
 {
 public:
     TPoint point;
+    t_size width;
+    t_size height;
     TFont font;
     TColor color;
     std::string name;
+    TDisplay display;
     bool enabled;
 
     TMenu()
-    :enabled(true){}
+    :enabled(true),display(TDisplay::None){}
 
-    TMenu(const TPoint &point, const TFont &font, TColor color, const std::string &name, bool enabled) : point(
-        point), font(font), color(color), name(name), enabled(enabled) {}
 }Menu;
 
 

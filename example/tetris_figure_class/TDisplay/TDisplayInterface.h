@@ -4,6 +4,7 @@
 #include <vector>
 #include <memory>
 #include <functional>
+#include <atomic>
 
 #include <SDL.h>
 #include <SDL2/SDL.h>
@@ -31,7 +32,8 @@ public:
 	}
 
 	void addMenu(const TMenuBuilder& bld);
-	void draw();
+    bool clickedMenuEvent(const TPoint& point);
+
 	void erase();
 	void show();
 	void hide();
@@ -39,13 +41,15 @@ public:
 	inline void setBackgroundImgPath(const std::string &path) { m_backgroundImgPath = path;}
 	inline void setGoBack(const bool end) { m_goBack = end;}
 	inline void setDisplay(const TDisplay dp) { m_display = dp;}
+	inline void setRun(const bool run) { m_run = run;}
 
 	inline const bool getGoBack() const noexcept{ return m_goBack;}
+	inline const bool getRun() const noexcept{ return m_run;}
 	inline const TDisplay getDisplay() const noexcept{ return m_display;}
     inline const size_t getDisplayWidth() const noexcept { return m_windowWidth; }
     inline const size_t getDisplayHeight() const noexcept{ return m_windowHeight; }
 
-	virtual bool clickedBack() = 0;
+	virtual bool clickedBack(const TDisplay disply) = 0;
 
 protected:
     TDisplayInterface();
@@ -70,7 +74,8 @@ private:
 	//Draw Menus.
 	void Initialize();
 
-	virtual void _setDisplay() =0;
+	virtual void _event() =0;
+	virtual void _draw() =0;
 
 	std::vector<std::shared_ptr<TMenu>> m_menus;
 	std::shared_ptr<SDL_Window> m_window;
@@ -80,6 +85,8 @@ private:
 	const tetris::t_size m_windowWidth;
 	const tetris::t_size m_windowHeight;
 	bool m_goBack;
+	std::atomic_bool m_run = true;
+	bool m_canGoOtherDisplay;
 	TDisplay m_display;
 };
 

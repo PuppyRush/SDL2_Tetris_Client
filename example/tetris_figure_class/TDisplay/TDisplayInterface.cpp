@@ -12,7 +12,8 @@ TDisplayInterface::TDisplayInterface()
     :m_windowHeight(tetris::DISPLAY_HEIGHT),
      m_windowWidth(tetris::DISPLAY_WIDTH),
      m_event( std::make_shared<SDL_Event>()),
-     m_goBack(true)
+     m_goBack(true),
+     m_canGoOtherDisplay(true)
 {
     using namespace std;
 
@@ -67,7 +68,12 @@ TDisplayInterface::~TDisplayInterface()
 
 void TDisplayInterface::show()
 {
-    _setDisplay();
+    while(m_run) {
+        _draw();
+
+        SDL_WaitEvent(getSDLEvent().get());
+        _event();
+    }
 }
 
 void TDisplayInterface::hide()
@@ -75,10 +81,6 @@ void TDisplayInterface::hide()
 
 }
 
-void TDisplayInterface::draw()
-{
-
-}
 
 void TDisplayInterface::erase()
 {
@@ -92,4 +94,25 @@ void TDisplayInterface::addMenu(const TMenuBuilder& bld)
     {
         this->m_menus.emplace_back(menu);
     }
+}
+
+bool TDisplayInterface::clickedMenuEvent(const TPoint& point)
+{
+    if(!m_canGoOtherDisplay)
+        return false;
+
+    for(const auto& menu : m_menus)
+    {
+        if(menu->display == TDisplay::None)
+            continue;
+
+        //check hit
+        if ((menu->point.x <= point.x && point.x <= menu->point.x + menu->width)
+            && (menu->point.y <= point.y && point.y <= menu->point.y + menu->height))
+        {
+            setDisplay(menu->display);
+            return true;
+        }
+    }
+    return false;
 }

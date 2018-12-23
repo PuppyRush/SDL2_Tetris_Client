@@ -22,13 +22,14 @@ public:
 
     virtual bool clickedEnterServer() override {}
     virtual bool clickedStartLocalGame() override {}
-    virtual bool clickedBack() override {}
+    virtual bool clickedBack(const TDisplay disply) override {}
     static std::shared_ptr<TMainDisplay> getInstance();
 
 private:
     TMainOnlineDisplay(){}
 
-    virtual void _setDisplay() override;
+    virtual void _event() override;
+    virtual void _draw() override;
 
 };
 

@@ -20,7 +20,7 @@ class TFigureBoard {
 
 public:
 
-    using BoardType = std::array< std::array<TFigureUnit,BOARD_WIDTH_COUNT>,BOARD_HEIGHT_COUNT >;
+    using BoardType = std::array< std::array<TFigureUnit,GAMEBOARD_WIDTH_COUNT>,GAMEBOARD_HEIGHT_COUNT >;
     
     BoardType getBoard() const
     {return m_board;}

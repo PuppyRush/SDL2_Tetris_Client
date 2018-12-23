@@ -30,7 +30,7 @@ void TFigureBoard::createNextFigureRandomly() {
         m_currentFigure.reset();
     }
 
-    TFigureBuilder *bld = new TFigureBuilder(TPoint(BOARD_WIDTH_COUNT / 2 - 1, 2));
+    TFigureBuilder *bld = new TFigureBuilder(TPoint(GAMEBOARD_WIDTH_COUNT / 2 - 1, 2));
     m_currentFigure = bld->build();
 
     setCoords();
@@ -127,7 +127,7 @@ const bool TFigureBoard::isValidation(const TFigure *destFigure) {
         const auto x = coord.getPoint().x;
         const auto y = coord.getPoint().y;
 
-        if (y < 0 || y >= BOARD_HEIGHT_COUNT  || x < 0 || x >= BOARD_WIDTH_COUNT)
+        if (y < 0 || y >= GAMEBOARD_HEIGHT_COUNT  || x < 0 || x >= GAMEBOARD_WIDTH_COUNT)
             return false;
 
         if ( (m_board[y][x].getType() & UnitType::Fill) == UnitType::Fill)
@@ -158,17 +158,17 @@ void TFigureBoard::setCoords() {
 bool TFigureBoard::eraseLineIfFillLinesAndThenCollapse()
 {
     std::set<tetris::t_coord, std::greater<t_coord>> collapseHeights;
-    for(t_coord y = BOARD_HEIGHT_COUNT-1 ; y >= 0 ; --y)
+    for(t_coord y = GAMEBOARD_HEIGHT_COUNT-1 ; y >= 0 ; --y)
     {
         int x=0;
-        for(; x < BOARD_WIDTH_COUNT ; ++x)
+        for(; x < GAMEBOARD_WIDTH_COUNT ; ++x)
         {
             if( (m_board[y][x].getType() & UnitType ::Empty) == UnitType ::Empty)
                 break;
         }
-        if(x==BOARD_WIDTH_COUNT) {
+        if(x==GAMEBOARD_WIDTH_COUNT) {
             collapseHeights.insert(y);
-            for(int x=0; x < BOARD_WIDTH_COUNT ; ++x)
+            for(int x=0; x < GAMEBOARD_WIDTH_COUNT ; ++x)
             {
                 m_board[y][x].setType(UnitType::Empty);
                 m_board[y][x].setColor(TColor::none);
@@ -179,9 +179,9 @@ bool TFigureBoard::eraseLineIfFillLinesAndThenCollapse()
     if(collapseHeights.empty())
         return false;
 
-    for(t_coord x=0 ; x < BOARD_WIDTH_COUNT ; ++x)
+    for(t_coord x=0 ; x < GAMEBOARD_WIDTH_COUNT ; ++x)
     {
-        for(t_coord y = BOARD_HEIGHT_COUNT-1 ; y >= 0 ; --y)
+        for(t_coord y = GAMEBOARD_HEIGHT_COUNT-1 ; y >= 0 ; --y)
         {
             if( ( m_board[y][x].getType() & UnitType ::Fill) == UnitType ::Fill)
             {

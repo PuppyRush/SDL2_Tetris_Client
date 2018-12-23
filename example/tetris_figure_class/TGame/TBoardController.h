@@ -37,7 +37,7 @@ public:
     {return TFigureBoard::get ()->getBoard ();}
     
     //singleton
-    static auto get()
+    static  std::shared_ptr<BoardController> getInstance()
     {
       static auto ctl = std::shared_ptr<BoardController>(new BoardController());
       return ctl;

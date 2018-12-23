@@ -10,8 +10,6 @@
 #include "TDisplayInterface.h"
 
 
-class TDisplayInterface;
-
 namespace std
 {
 template<>

@@ -6,6 +6,7 @@
 #define TERIS_FIGURE_CLASS_TGAMELOCALDISPLAY_H
 
 #include "TGameDisplay.h"
+#include "TBoardController.h"
 
 SDL_TETRIS_BEGIN
 
@@ -21,7 +22,7 @@ public:
 
     virtual bool clickedStart() override;
     virtual bool clickedSuspend() override;
-    virtual bool clickedBack()  override;
+    virtual bool clickedBack(const TDisplay disply) override;
 
     virtual ~TGameLocalDisplay(){}
 
@@ -30,7 +31,11 @@ public:
 private:
 
     TGameLocalDisplay():TGameDisplay(){}
-    virtual void _setDisplay() override;
+
+    virtual void _event() override;
+    virtual void _draw() override;
+
+    std::shared_ptr<BoardController> m_ctl = BoardController::getInstance();
 };
 
 SDL_TETRIS_END
