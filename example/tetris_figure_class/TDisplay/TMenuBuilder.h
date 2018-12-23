@@ -1,0 +1,12 @@
+//
+// Created by chaed on 18. 12. 22.
+//
+
+#ifndef TETRIS_FIGURE_CLASS_TMENUBUILDER_H
+#define TETRIS_FIGURE_CLASS_TMENUBUILDER_H
+
+class TMenuBuilder {
+
+};
+
+#endif //TETRIS_FIGURE_CLASS_TMENUBUILDER_H
