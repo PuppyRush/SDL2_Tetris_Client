@@ -17,10 +17,13 @@ add_library(boost::serialization INTERFACE IMPORTED)
 #find_package(SDL2_ttf REQUIRED)
 
 add_executable(tetris_figure_class
+        Main.cpp
         Common/TType.h
         Common/TProperty.h
         Common/TypeTraits.h
         Common/TDefine.h
+        Common/THeader.h
+        Common/TStruct.h
         TGame/TFigureL.h
         TGame/TFigureUnit.h
         TGame/TFigureUnit.cpp
@@ -43,11 +46,24 @@ add_executable(tetris_figure_class
         TGame/TFigureO.h
         TGame/TFigureT.cpp
         TGame/TFigureT.h
-        TMain/TMainLocalDisplay.h
-        TMain/TMainDisplay.h
+        TGame/TGameLocalDisplay.cpp
+        TGame/TGameLocalDisplay.h
+        TGame/TGameDisplay.cpp
+        TGame/TGameDisplay.h
         TDisplay/TDisplayInterface.h
+        TDisplay/TDisplayInterface.cpp
+        TDisplay/TMenuBuilder.cpp
+        TDisplay/TMenuBuilder.h
+        TDisplay/TDisplayController.cpp
+        TDisplay/TDisplayInterface.h
+        TMain/TMainLocalDisplay.h
+        TMain/TMainLocalDisplay.cpp
+        TMain/TMainDisplay.h
+        TMain/TMainDisplay.cpp
         TMain/TMainOnlineDisplay.h
-        Main.cpp TGame/TGameLocalDisplay.cpp TGame/TGameLocalDisplay.h Common/THeader.h TDisplay/TDisplayInterface.cpp TOption/TOptionDisplay.cpp TOption/TOptionDisplay.h TMain/TMainDisplay.cpp TMain/TMainLocalDisplay.cpp TMain/TMainOnlineDisplay.cpp)
+        TMain/TMainOnlineDisplay.cpp
+        TOption/TOptionDisplay.cpp
+        TOption/TOptionDisplay.h)
 
 include_directories(tetris_figure_class
         SYSTEM ${Boost_INCLUDE_DIR}

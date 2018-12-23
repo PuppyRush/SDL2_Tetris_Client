@@ -1,7 +1,6 @@
 #pragma once
 
-#include "../Common/TDefine.h"
-#include "../Common/TType.h"
+#include "THeader.h"
 
 SDL_TETRIS_BEGIN
 

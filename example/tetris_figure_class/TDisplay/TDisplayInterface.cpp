@@ -12,7 +12,6 @@ TDisplayInterface::TDisplayInterface()
     :m_windowHeight(tetris::DISPLAY_HEIGHT),
      m_windowWidth(tetris::DISPLAY_WIDTH),
      m_event( std::make_shared<SDL_Event>()),
-     m_programEnd(false),
      m_goBack(true)
 {
     using namespace std;
@@ -58,6 +57,14 @@ TDisplayInterface::TDisplayInterface()
 
 }
 
+
+TDisplayInterface::~TDisplayInterface()
+{
+    SDL_DestroyRenderer(getRenderer().get());
+    SDL_DestroyWindow(getWindow().get());
+    SDL_Quit();
+}
+
 void TDisplayInterface::show()
 {
     _setDisplay();
@@ -68,9 +75,21 @@ void TDisplayInterface::hide()
 
 }
 
-TDisplayInterface::~TDisplayInterface()
+void TDisplayInterface::draw()
 {
-    SDL_DestroyRenderer(getRenderer().get());
-    SDL_DestroyWindow(getWindow().get());
-    SDL_Quit();
+
+}
+
+void TDisplayInterface::erase()
+{
+
+}
+
+void TDisplayInterface::addMenu(const TMenuBuilder& bld)
+{
+    const auto& ary = bld.getMenus();
+    for(const auto& menu : ary)
+    {
+        this->m_menus.emplace_back(menu);
+    }
 }

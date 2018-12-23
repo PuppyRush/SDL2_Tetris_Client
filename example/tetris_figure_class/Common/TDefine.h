@@ -5,9 +5,10 @@
 #ifndef TERIS_FIGURE_CLASS_TDEFINE_H
 #define TERIS_FIGURE_CLASS_TDEFINE_H
 
-#define SDL_TETRIS_BEGIN namespace tetris{
+#define TETRIS  tetris
+#define SDL_TETRIS_BEGIN namespace TETRIS{
 #define SDL_TETRIS_END }
-#define SDL_TETRIS using namespace tetris;
+#define SDL_TETRIS using namespace TETRIS;
 
 //#define CONSTEXPR
 #ifdef CONSTEXPR

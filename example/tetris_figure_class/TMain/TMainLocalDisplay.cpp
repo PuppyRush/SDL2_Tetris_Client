@@ -18,9 +18,6 @@ std::shared_ptr<TMainDisplay> TMainLocalDisplay::getInstance()
 }
 
 
-void TMainLocalDisplay::Initialize()
-{}
-
 bool TMainLocalDisplay::clickedEnterServer()
 {}
 

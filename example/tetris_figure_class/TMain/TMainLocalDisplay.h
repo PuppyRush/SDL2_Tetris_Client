@@ -25,15 +25,14 @@ public:
 
     static std::shared_ptr<TMainDisplay> getInstance();
 
-    TMainLocalDisplay();
+
 
 protected:
 
 
 private:
-
+	TMainLocalDisplay();
 	//메뉴 초기화하기.
-	virtual void Initialize();
     virtual void _setDisplay() override;
 };
 

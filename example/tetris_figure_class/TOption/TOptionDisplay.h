@@ -11,7 +11,7 @@ SDL_TETRIS_BEGIN
 
 class TOptionDisplay : public TDisplayInterface
 {
-
+public:
     enum class UIResource : t_type
     {
         Suspend,
@@ -24,6 +24,7 @@ class TOptionDisplay : public TDisplayInterface
 
 private:
     virtual void _setDisplay() override{}
+
 };
 
 

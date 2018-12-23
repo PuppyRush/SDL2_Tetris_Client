@@ -2,14 +2,14 @@
 // Created by chaed on 18. 12. 15.
 //
 
-#ifndef TERIS_FIGURE_CLASS_TGAMECONTROLLER_H
-#define TERIS_FIGURE_CLASS_TGAMECONTROLLER_H
+#ifndef TERIS_FIGURE_CLASS_TGAMELOCALDISPLAY_H
+#define TERIS_FIGURE_CLASS_TGAMELOCALDISPLAY_H
 
-#include "../TDisplay/TDisplayInterface.h"
+#include "TGameDisplay.h"
 
 SDL_TETRIS_BEGIN
 
-class TGameLocalDisplay : public TDisplayInterface{
+class TGameLocalDisplay : public TGameDisplay{
 
 public:
     enum class UIResource : t_type
@@ -18,12 +18,18 @@ public:
         End
     };
 
-    virtual bool clickedBack() override;
-    static std::shared_ptr<TDisplayInterface> getInstance();
+
+    virtual bool clickedStart() override;
+    virtual bool clickedSuspend() override;
+    virtual bool clickedBack()  override;
+
+    virtual ~TGameLocalDisplay(){}
+
+    static std::shared_ptr<TGameDisplay> getInstance();
 
 private:
-    TGameLocalDisplay();
 
+    TGameLocalDisplay():TGameDisplay(){}
     virtual void _setDisplay() override;
 };
 

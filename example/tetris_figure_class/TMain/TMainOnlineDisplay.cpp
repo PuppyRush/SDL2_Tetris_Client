@@ -13,3 +13,8 @@ std::shared_ptr<TMainDisplay> TMainOnlineDisplay::getInstance()
     static std::shared_ptr<TMainDisplay> inst = std::shared_ptr<TMainOnlineDisplay>(new TMainOnlineDisplay{});
     return inst;
 }
+
+void TMainOnlineDisplay::_setDisplay()
+{
+
+}

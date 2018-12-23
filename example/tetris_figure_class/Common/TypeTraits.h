@@ -12,8 +12,7 @@
 
 #include "TType.h"
 
-namespace tetris
-{
+SDL_TETRIS_BEGIN
 
 template<class T>
 constexpr const auto toUType(T enuml) noexcept
@@ -80,5 +79,6 @@ private:
 
 };
 
-}
+SDL_TETRIS_END
+
 #endif //TERIS_FIGURE_CLASS_TTYPETRAITS_H

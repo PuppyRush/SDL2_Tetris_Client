@@ -12,11 +12,6 @@
 
 SDL_TETRIS
 
-TGameLocalDisplay::TGameLocalDisplay()
-    :TDisplayInterface()
-{
-
-}
 
 Uint32 my_callbackfunc(Uint32 interval, void *param) {
     SDL_Event event;
@@ -32,13 +27,23 @@ Uint32 my_callbackfunc(Uint32 interval, void *param) {
     return (interval);
 }
 
-std::shared_ptr<TDisplayInterface> TGameLocalDisplay::getInstance()
+std::shared_ptr<TGameDisplay> TGameLocalDisplay::getInstance()
 {
-    static std::shared_ptr<TDisplayInterface> inst = std::shared_ptr<TGameLocalDisplay>(new TGameLocalDisplay());
+    static std::shared_ptr<TGameDisplay > inst = std::shared_ptr<TGameLocalDisplay>(new TGameLocalDisplay());
     return inst;
 }
 
 bool TGameLocalDisplay::clickedBack()
+{
+
+}
+
+bool TGameLocalDisplay::clickedStart()
+{
+
+}
+
+bool TGameLocalDisplay::clickedSuspend()
 {
 
 }

@@ -6,7 +6,7 @@
 
 SDL_TETRIS
 
-TMainDisplay::TMainDisplay()
+TGameDisplay::TGameDisplay()
     :TDisplayInterface()
 {}
 
