@@ -14,11 +14,16 @@ std::shared_ptr<TMainDisplay> TMainOnlineDisplay::getInstance()
     return inst;
 }
 
+void TMainOnlineDisplay::_timer()
+{
+
+}
+
 void TMainOnlineDisplay::_draw()
 {
 
 }
-void TMainOnlineDisplay::_event()
+void TMainOnlineDisplay::_event(const SDL_Event* event)
 {
 
 }

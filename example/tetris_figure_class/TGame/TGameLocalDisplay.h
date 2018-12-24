@@ -32,7 +32,8 @@ private:
 
     TGameLocalDisplay():TGameDisplay(){}
 
-    virtual void _event() override;
+    virtual void _event(const SDL_Event* event) override;
+    virtual void _timer() override;
     virtual void _draw() override;
 
     std::shared_ptr<BoardController> m_ctl = BoardController::getInstance();

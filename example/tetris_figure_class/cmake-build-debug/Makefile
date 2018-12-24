@@ -231,6 +231,33 @@ TDisplay/TMenuBuilder.cpp.s:
 	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TDisplay/TMenuBuilder.cpp.s
 .PHONY : TDisplay/TMenuBuilder.cpp.s
 
+TDisplay/TWindow.o: TDisplay/TWindow.cpp.o
+
+.PHONY : TDisplay/TWindow.o
+
+# target to build an object file
+TDisplay/TWindow.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TDisplay/TWindow.cpp.o
+.PHONY : TDisplay/TWindow.cpp.o
+
+TDisplay/TWindow.i: TDisplay/TWindow.cpp.i
+
+.PHONY : TDisplay/TWindow.i
+
+# target to preprocess a source file
+TDisplay/TWindow.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TDisplay/TWindow.cpp.i
+.PHONY : TDisplay/TWindow.cpp.i
+
+TDisplay/TWindow.s: TDisplay/TWindow.cpp.s
+
+.PHONY : TDisplay/TWindow.s
+
+# target to generate assembly for a file
+TDisplay/TWindow.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TDisplay/TWindow.cpp.s
+.PHONY : TDisplay/TWindow.cpp.s
+
 TGame/TBoardController.o: TGame/TBoardController.cpp.o
 
 .PHONY : TGame/TBoardController.o
@@ -711,6 +738,9 @@ help:
 	@echo "... TDisplay/TMenuBuilder.o"
 	@echo "... TDisplay/TMenuBuilder.i"
 	@echo "... TDisplay/TMenuBuilder.s"
+	@echo "... TDisplay/TWindow.o"
+	@echo "... TDisplay/TWindow.i"
+	@echo "... TDisplay/TWindow.s"
 	@echo "... TGame/TBoardController.o"
 	@echo "... TGame/TBoardController.i"
 	@echo "... TGame/TBoardController.s"

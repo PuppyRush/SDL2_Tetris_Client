@@ -20,6 +20,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/tetris_figure_class.dir/TMain/TMainDisplay.cpp.o"
   "CMakeFiles/tetris_figure_class.dir/TMain/TMainOnlineDisplay.cpp.o"
   "CMakeFiles/tetris_figure_class.dir/TOption/TOptionDisplay.cpp.o"
+  "CMakeFiles/tetris_figure_class.dir/TDisplay/TWindow.cpp.o"
   "tetris_figure_class.pdb"
   "tetris_figure_class"
 )

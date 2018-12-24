@@ -16,14 +16,18 @@
 SDL_TETRIS
 
 TDisplayController::TDisplayController()
-    :m_mode(TMode::Local)
+    :m_mode(TMode::Local),
+    m_programEnd(false)
 {
     using namespace std;
     m_displayMap.insert(make_pair( make_pair(TMode::Local, TDisplay::Main), TMainLocalDisplay::getInstance()));
     m_displayMap.insert(make_pair( make_pair(TMode::Local, TDisplay::Game), TGameLocalDisplay::getInstance()));
     m_displayMap.insert(make_pair( make_pair(TMode::Local, TDisplay::Option), TOptionDisplay::getInstance()));
 
-    m_display = m_displayMap.at(make_pair(m_mode, m_currentDisplay));
+    m_display = m_displayMap.at(make_pair(TMode::Local, TDisplay::Main));
+
+
+
 }
 
 void TDisplayController::operateGame()

@@ -36,8 +36,11 @@ public:
 
     inline const TMode getMode() { return m_mode;}
     inline void setMode(const TMode mode) { m_mode = mode;}
+    inline void setDisplay(const TDisplay dp) { m_currentDisplay = dp;}
     inline const bool getProgramEnd() const noexcept{ return m_programEnd;}
     inline void setProgramEnd(const bool end) { m_programEnd = end;}
+
+    inline const TDisplay getDisplay() { return m_currentDisplay ;}
 
     static std::shared_ptr<TDisplayController> getInstance();
 
@@ -46,6 +49,7 @@ private:
 
     std::unordered_map< std::pair<TMode,TDisplay>,std::shared_ptr<TDisplayInterface>> m_displayMap;
     std::shared_ptr<TDisplayInterface> m_display;
+
 
     bool m_programEnd;
     TMode m_mode;

@@ -23,7 +23,8 @@ public:
 protected:
     TMainDisplay();
 
-	virtual void _event() =0;
+	virtual void _event(const SDL_Event* event) =0;
+	virtual void _timer() =0;
     virtual void _draw() =0;
 };
 

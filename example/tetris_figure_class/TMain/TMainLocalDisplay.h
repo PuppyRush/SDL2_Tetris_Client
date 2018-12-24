@@ -32,9 +32,9 @@ protected:
 
 private:
 	TMainLocalDisplay();
-	//메뉴 초기화하기.
 
-	virtual void _event() override;
+	virtual void _event(const SDL_Event* event) override;
+	virtual void _timer() override;
     virtual void _draw() override;
 };
 

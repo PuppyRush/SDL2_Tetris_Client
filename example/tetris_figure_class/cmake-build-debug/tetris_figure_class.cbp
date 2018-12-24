@@ -135,6 +135,12 @@
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TMenuBuilder.h">
 			<Option target="tetris_figure_class"/>
 		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TWindow.cpp">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TWindow.h">
+			<Option target="tetris_figure_class"/>
+		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TBoardController.cpp">
 			<Option target="tetris_figure_class"/>
 		</Unit>

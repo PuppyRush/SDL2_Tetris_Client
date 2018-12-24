@@ -8,11 +8,16 @@ SDL_TETRIS
 
 
 
+void TOptionDisplay::_timer()
+{
+
+}
+
 void TOptionDisplay::_draw()
 {
 
 }
-void TOptionDisplay::_event()
+void TOptionDisplay::_event(const SDL_Event* event)
 {
 
 }

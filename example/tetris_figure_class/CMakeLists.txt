@@ -63,7 +63,7 @@ add_executable(tetris_figure_class
         TMain/TMainOnlineDisplay.h
         TMain/TMainOnlineDisplay.cpp
         TOption/TOptionDisplay.cpp
-        TOption/TOptionDisplay.h)
+        TOption/TOptionDisplay.h TDisplay/TWindow.cpp TDisplay/TWindow.h)
 
 include_directories(tetris_figure_class
         SYSTEM ${Boost_INCLUDE_DIR}

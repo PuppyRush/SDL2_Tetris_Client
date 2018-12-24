@@ -29,8 +29,12 @@ bool TMainLocalDisplay::clickedBack(const TDisplay display)
     setDisplay(display);
 }
 
+void TMainLocalDisplay::_timer()
+{
 
-void TMainLocalDisplay::_event()
+}
+
+void TMainLocalDisplay::_event(const SDL_Event* event)
 {
 
 }
