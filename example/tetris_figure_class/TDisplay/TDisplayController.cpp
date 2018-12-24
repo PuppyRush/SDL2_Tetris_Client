@@ -26,8 +26,6 @@ TDisplayController::TDisplayController()
 
     m_display = m_displayMap.at(make_pair(TMode::Local, TDisplay::Main));
 
-
-
 }
 
 void TDisplayController::operateGame()
@@ -42,7 +40,14 @@ void TDisplayController::operateGame()
             assert(0);
         }
     }
+
+    _release();
 }
+
+void TDisplayController::_release()
+{
+}
+
 
 std::shared_ptr<TDisplayController> TDisplayController::getInstance()
 {

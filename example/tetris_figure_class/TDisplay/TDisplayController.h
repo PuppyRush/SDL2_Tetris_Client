@@ -46,6 +46,7 @@ public:
 
 private:
     TDisplayController();
+    void _release();
 
     std::unordered_map< std::pair<TMode,TDisplay>,std::shared_ptr<TDisplayInterface>> m_displayMap;
     std::shared_ptr<TDisplayInterface> m_display;

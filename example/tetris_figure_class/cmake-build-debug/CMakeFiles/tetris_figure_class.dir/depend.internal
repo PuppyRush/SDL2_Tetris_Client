@@ -148,6 +148,7 @@ CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayInterface.cpp.o
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TStruct.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TType.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TypeTraits.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TDisplayController.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TDisplayInterface.cpp
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TDisplayInterface.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TMenuBuilder.h

@@ -252,5 +252,8 @@
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/CMakeModules/FindSDL2_image.cmake">
 			<Option virtualFolder="CMake Files\CMakeModules\"/>
 		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/CMakeModules/FindSDL2_ttf.cmake">
+			<Option virtualFolder="CMake Files\CMakeModules\"/>
+		</Unit>
 	</Project>
 </CodeBlocks_project_file>

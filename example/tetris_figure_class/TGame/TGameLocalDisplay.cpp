@@ -85,17 +85,6 @@ void TGameLocalDisplay::_event(const SDL_Event* event) {
         }
         default:;
     }
-
-    /* SDL_PollEvent(event);
-      switch (event->type) {
-          case SDL_USEREVENT:
-              *//* and now we can call the function we wanted to call in the timer but couldn't because of the multithreading problems *//*
-                ctl->goDown();
-                break;
-                *//* ... *//*
-        }
-*/
-
 }
 
 void TGameLocalDisplay::_timer()
@@ -105,25 +94,9 @@ void TGameLocalDisplay::_timer()
 
 void TGameLocalDisplay::_draw()
 {
-    using namespace tetris;
     using namespace std;
 
     auto renderer = getRenderer().get();
-    auto window = getWindow().get();
-
- /*   int w, h; // texture width & height
-    auto img = IMG_LoadTexture(renderer, "resources/background.jpg");
-    SDL_QueryTexture(img, NULL, NULL, &w, &h); // get the width and height of the texture
-    // put the location where we want the texture to be drawn into a rectangle
-    // I'm also scaling the texture 2x simply by setting the width and height
-    SDL_Rect texr;
-    texr.x = -50; texr.y = 100; texr.w = w; texr.h = h;
-    SDL_RenderCopy(renderer, img, NULL, &texr);
-
-    bool quit = true;*/
-
-
-
 
     //draw board
     SDL_Rect rect;

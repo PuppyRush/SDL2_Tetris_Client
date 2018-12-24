@@ -147,6 +147,7 @@ CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayInterface.cpp.o: ../Common/T
 CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayInterface.cpp.o: ../Common/TStruct.h
 CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayInterface.cpp.o: ../Common/TType.h
 CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayInterface.cpp.o: ../Common/TypeTraits.h
+CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayInterface.cpp.o: ../TDisplay/TDisplayController.h
 CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayInterface.cpp.o: ../TDisplay/TDisplayInterface.cpp
 CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayInterface.cpp.o: ../TDisplay/TDisplayInterface.h
 CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayInterface.cpp.o: ../TDisplay/TMenuBuilder.h

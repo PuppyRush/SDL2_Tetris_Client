@@ -10,11 +10,11 @@ set(Boost_LIBRARIES /usr/lib/x86_64-linux-gnu/)
 
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
+find_package(SDL2_ttf REQUIRED)
 find_package(Boost 1.65.1 REQUIRED COMPONENTS system filesystem serialization)
 
 add_library(boost::serialization INTERFACE IMPORTED)
 
-#find_package(SDL2_ttf REQUIRED)
 
 add_executable(tetris_figure_class
         Main.cpp

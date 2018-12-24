@@ -8,6 +8,7 @@
 
 #include <SDL.h>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_video.h>
 
@@ -35,9 +36,9 @@ public:
 	void show();
 	void hide();
 
+	inline void setDisplay(const TDisplay dp);
 	inline void setBackgroundImgPath(const std::string &path) { m_backgroundImgPath = path;}
 	inline void setGoBack(const bool end) { m_goBack = end;}
-	inline void setDisplay(const TDisplay dp) { m_display = dp;}
 	inline void setRun(const bool run) { m_run = run;}
 
 	inline const bool getGoBack() const noexcept{ return m_goBack;}
@@ -70,10 +71,12 @@ private:
 
 	//Draw Menus.
 	void _initialize();
+	void _drawMenus();
+	void _release();
+
 	virtual void _event(const SDL_Event* event) =0;
 	virtual void _timer() =0;
 	virtual void _draw() =0;
-	void _release();
 
 	std::vector<std::shared_ptr<TMenu>> m_menus;
 	std::string m_backgroundImgPath;

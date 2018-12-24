@@ -4,6 +4,7 @@
 #include <iostream>
 #include <exception>
 
+#include "TDisplayController.h"
 #include "TDisplayInterface.h"
 
 SDL_TETRIS
@@ -29,14 +30,13 @@ void TDisplayInterface::_initialize() {
     {
         auto renderer = getRenderer().get();
 
-        int w, h; // texture width & height
-        auto img = IMG_LoadTexture(renderer, "resources/background.jpg");
-        SDL_QueryTexture(img, NULL, NULL, &w, &h); // get the width and height of the texture
-        // put the location where we want the texture to be drawn into a rectangle
-        // I'm also scaling the texture 2x simply by setting the width and height
+        t_size w, h; // texture width & height
+        auto img = IMG_LoadTexture(renderer, m_backgroundImgPath.c_str());
+        SDL_QueryTexture(img, NULL, NULL, &w, &h);
+
         SDL_Rect texr;
-        texr.x = -50;
-        texr.y = 100;
+        texr.x = 0;
+        texr.y = 0;
         texr.w = w;
         texr.h = h;
         SDL_RenderCopy(renderer, img, NULL, &texr);
@@ -45,7 +45,6 @@ void TDisplayInterface::_initialize() {
 
 void TDisplayInterface::show()
 {
-
     _initialize();
     _timer();
 
@@ -55,7 +54,46 @@ void TDisplayInterface::show()
 
         SDL_WaitEvent(getSDLEvent().get());
         _event(getSDLEvent().get());
+
+        _drawMenus();
+
         _release();
+    }
+    setRun(true);
+}
+
+void TDisplayInterface::_drawMenus()
+{
+    auto renderer = getRenderer().get();
+
+    for(const auto& menu : m_menus)
+    {
+        SDL_Rect rect;
+        rect.y = menu->point.y;
+        rect.x = menu->point.x;
+        rect.h = menu->height;
+        rect.w = menu->width;
+
+        SDL_RenderFillRect(renderer, &rect);
+        SDL_SetRenderDrawColor(renderer, 80, 80, 80, 255);
+        SDL_RenderDrawRect(renderer, &rect);
+
+
+        TTF_Font* font = TTF_OpenFont("../resources/fonts/OpenSans-Bold.ttf", 24);
+        std::string score_text = menu->name;
+        SDL_Color textColor = { 255, 255, 255, 0 };
+        SDL_Surface* textSurface = TTF_RenderText_Solid(font, score_text.c_str(), textColor);
+        SDL_Texture* text = SDL_CreateTextureFromSurface(renderer, textSurface);
+
+        int text_width = textSurface->w;
+        int text_height = textSurface->h;
+        SDL_FreeSurface(textSurface);
+
+        t_coord font_x  = menu->point.x + ( menu->width - text_width)/2;
+        t_coord font_y  = menu->point.y + ( menu->height - text_height)/2;
+
+        SDL_Rect renderQuad = { font_x, font_y , text_width, text_height };
+        SDL_RenderCopy(renderer, text, NULL, &renderQuad);
     }
 }
 
@@ -102,9 +140,18 @@ bool TDisplayInterface::clickedMenuEvent(const TPoint& point)
         if ((menu->point.x <= point.x && point.x <= menu->point.x + menu->width)
             && (menu->point.y <= point.y && point.y <= menu->point.y + menu->height))
         {
+            if(menu->display == TDisplay::Exit)
+                TDisplayController::getInstance()->setProgramEnd(true);
+
             setDisplay(menu->display);
             return true;
         }
     }
     return false;
+}
+
+void TDisplayInterface::setDisplay(const TDisplay dp)
+{
+    TDisplayController::getInstance()->setDisplay(dp);
+    m_display = dp;
 }

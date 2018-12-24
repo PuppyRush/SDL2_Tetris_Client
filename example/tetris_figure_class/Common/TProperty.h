@@ -10,8 +10,8 @@
 SDL_TETRIS_BEGIN
 
 const t_size UNIT_LENGTH = 30;
-const t_size DISPLAY_HEIGHT = 890;
-const t_size DISPLAY_WIDTH = 800;
+const t_size WINDOW_HEIGHT = 890;
+const t_size WINDOW_WIDTH = 800;
 const t_size GAMEBOARD_WIDTH_COUNT = 10;
 const t_size GAMEBOARD_HEIGHT_COUNT = 20;
 const t_size GAMEBOARD_DISPLAY_HEIGHT = 800;
@@ -26,6 +26,7 @@ enum class TDisplay : t_type
     Option,
     Game,
     Robby,
+    Exit,
     None
 };
 
@@ -43,6 +44,8 @@ enum class TColor : t_type
     yellow,
     purple,
     green,
+    black,
+    white,
     none,
     Begin = red,
     End = green
@@ -74,7 +77,8 @@ enum class TFigureType : t_type
 
 enum class MapType : t_type
 {
-    Rain
+    Rain,
+    Praymid
 };
 
 enum UnitType

@@ -9,8 +9,8 @@
 SDL_TETRIS
 
 TWindow::TWindow()
-    :m_windowHeight(tetris::DISPLAY_HEIGHT),
-     m_windowWidth(tetris::DISPLAY_WIDTH),
+    :m_windowHeight(tetris::WINDOW_HEIGHT),
+     m_windowWidth(tetris::WINDOW_WIDTH),
      m_event( std::make_shared<SDL_Event>())
 {
 
@@ -18,6 +18,12 @@ TWindow::TWindow()
 
     try
     {
+        if( TTF_Init() != 0 ){
+            string s("TTF_Init error: " );
+            s.append(SDL_GetError());
+            throw runtime_error(s);
+        }
+
         if(SDL_Init(SDL_INIT_VIDEO) != 0)
         {
             string s("SDL_Init error: " );

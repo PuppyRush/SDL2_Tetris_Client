@@ -29,7 +29,9 @@ public:
 
 typedef struct TFont
 {
-    //something sdl code..
+    std::string font_name;
+    t_size size;
+    TColor color;
 }TFont;
 
 typedef struct TMenu

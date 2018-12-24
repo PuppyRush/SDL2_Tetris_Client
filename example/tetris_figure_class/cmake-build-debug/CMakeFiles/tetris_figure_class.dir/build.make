@@ -398,6 +398,7 @@ tetris_figure_class: /usr/lib/x86_64-linux-gnu/libboost_system.so
 tetris_figure_class: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
 tetris_figure_class: /usr/lib/x86_64-linux-gnu/libboost_serialization.so
 tetris_figure_class: /usr/lib/x86_64-linux-gnu/libSDL2_image.so
+tetris_figure_class: /usr/lib/x86_64-linux-gnu/libSDL2_ttf.so
 tetris_figure_class: /usr/lib/x86_64-linux-gnu/libSDL2main.a
 tetris_figure_class: /usr/lib/x86_64-linux-gnu/libSDL2.so
 tetris_figure_class: CMakeFiles/tetris_figure_class.dir/link.txt

@@ -9,6 +9,12 @@ SDL_TETRIS
 TMenuBuilder::TMenuBuilder()
     :m_currentMenu(std::make_shared<TMenu>())
 {
+    m_menus = container_type([](const value_type& lhs, const value_type& rhs) -> bool
+    {
+       return lhs->point.y < rhs->point.y ||
+       lhs->point.x < rhs->point.x ||
+       lhs->height < rhs->height;
+    });
 }
 
 TMenuBuilder* TMenuBuilder::name(const std::string& name)
@@ -29,15 +35,35 @@ TMenuBuilder* TMenuBuilder::point(const TPoint& point)
     return this;
 }
 
-TMenuBuilder* TMenuBuilder::eanbled(const bool enable)
+TMenuBuilder* TMenuBuilder::width(const t_size size)
+{
+    this->m_currentMenu->width = size;
+    return this;
+
+}
+
+TMenuBuilder* TMenuBuilder::height(const t_size size)
+{
+    this->m_currentMenu->height = size;
+    return this;
+}
+
+TMenuBuilder* TMenuBuilder::enabled(const bool enable)
 {
     m_currentMenu->enabled = enable;
     return this;
 }
 
+
+TMenuBuilder* TMenuBuilder::display(const TDisplay display)
+{
+    m_currentMenu->display = display;
+    return this;
+}
+
 TMenuBuilder* TMenuBuilder::add()
 {
-    m_menus.emplace_back(m_currentMenu);
+    m_menus.insert( m_currentMenu);
     m_currentMenu.reset();
     m_currentMenu = std::make_shared<TMenu>();
     return this;
