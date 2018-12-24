@@ -35,8 +35,8 @@ public:
 	void erase();
 	void show();
 	void hide();
+	void setDisplay(const TDisplay dp);
 
-	inline void setDisplay(const TDisplay dp);
 	inline void setBackgroundImgPath(const std::string &path) { m_backgroundImgPath = path;}
 	inline void setGoBack(const bool end) { m_goBack = end;}
 	inline void setRun(const bool run) { m_run = run;}
@@ -62,10 +62,6 @@ protected:
         return m_window->getRenderer();
     }
 
-    inline std::shared_ptr<SDL_Event> getSDLEvent() const noexcept
-    {
-        return m_window->getSDLEvent();
-    }
 
 private:
 
@@ -73,6 +69,11 @@ private:
 	void _initialize();
 	void _drawMenus();
 	void _release();
+
+    inline std::shared_ptr<SDL_Event> getSDLEvent() const noexcept
+    {
+        return m_window->getSDLEvent();
+    }
 
 	virtual void _event(const SDL_Event* event) =0;
 	virtual void _timer() =0;

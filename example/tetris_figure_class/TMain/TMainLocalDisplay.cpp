@@ -60,6 +60,5 @@ void TMainLocalDisplay::_draw()
 {
     auto renderer = getRenderer().get();
     auto window = getWindow().get();
-    auto event = getSDLEvent().get();
 
 }

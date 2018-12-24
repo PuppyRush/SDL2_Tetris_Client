@@ -45,18 +45,18 @@ void TDisplayInterface::_initialize() {
 
 void TDisplayInterface::show()
 {
-    _initialize();
     _timer();
 
     while(m_run)
     {
+        _initialize();
+
         _draw();
 
         SDL_WaitEvent(getSDLEvent().get());
         _event(getSDLEvent().get());
 
         _drawMenus();
-
         _release();
     }
     setRun(true);
@@ -105,12 +105,10 @@ void TDisplayInterface::_release()
     SDL_RenderClear(renderer);
 }
 
-
 void TDisplayInterface::hide()
 {
 
 }
-
 
 void TDisplayInterface::erase()
 {

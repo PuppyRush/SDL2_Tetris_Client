@@ -10,7 +10,7 @@
 SDL_TETRIS_BEGIN
 
 const t_size UNIT_LENGTH = 30;
-const t_size WINDOW_HEIGHT = 890;
+const t_size WINDOW_HEIGHT = 900;
 const t_size WINDOW_WIDTH = 800;
 const t_size GAMEBOARD_WIDTH_COUNT = 10;
 const t_size GAMEBOARD_HEIGHT_COUNT = 20;
