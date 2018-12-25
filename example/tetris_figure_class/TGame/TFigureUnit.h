@@ -8,7 +8,7 @@ class TFigureUnit {
 public:
     
     TFigureUnit();
-    TFigureUnit(const TPoint point, const t_age age, const TColor color, const UnitType type);
+    TFigureUnit(const TPoint point, const t_age age, const TColorCode color, const UnitType type);
     ~TFigureUnit();
     
     bool operator!=(const TFigureUnit& unit);
@@ -19,22 +19,22 @@ public:
     const t_age getAge () const;
     void setAge (t_age m_age);
     
-    const TColor getColor () const;
-    void setColor (TColor m_color);
+    const TColorCode getColor () const;
+    void setColor (TColorCode m_color);
 
     UnitType getType () const;
     void setType (UnitType m_type);
     
     static TFigureUnit& getDefaultUnit()
     {
-        static TFigureUnit unit(TPoint(0,0), 0, TColor::none, UnitType::Empty);
+        static TFigureUnit unit(TPoint(0,0), 0, TColorCode::none, UnitType::Empty);
         return unit;
     }
 
 private:
     TPoint m_point;
     t_age m_age;
-    TColor m_color;
+    TColorCode m_color;
     UnitType m_type;
     
 };

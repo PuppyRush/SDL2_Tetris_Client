@@ -19,13 +19,13 @@ public:
     TFigureBuilder(const TPoint &point);
     virtual ~TFigureBuilder() {}
 
-    TFigureBuilder *color(const TColor &color);
+    TFigureBuilder *color(const TColorCode &color);
     TFigureBuilder *type(const TFigureType &type);
     TFigureBuilder *age(const t_age &age);
     TFigureBuilder *figure(const TFigureClass& figure);
 
     inline const TPoint getPoint() const noexcept { return m_point; }
-    inline const TColor getColor() const noexcept { return m_color; }
+    inline const TColorCode getColor() const noexcept { return m_color; }
     inline const TFigureType getType() const noexcept { return m_figureType; }
     inline const t_age getAge() const noexcept { return m_age; }
     inline const t_size getHeight() const noexcept { return m_height; }
@@ -43,7 +43,7 @@ private:
 
     t_size m_width;
     t_size m_height;
-    TColor m_color;
+    TColorCode m_color;
     TPoint m_point;
     TFigureType m_figureType;
     TFigureClass  m_figureClass;

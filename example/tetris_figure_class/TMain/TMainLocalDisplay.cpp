@@ -17,6 +17,45 @@ std::shared_ptr<TMainDisplay> TMainLocalDisplay::getInstance()
     return inst;
 }
 
+void TMainLocalDisplay::_preInitialize() {
+    setBackgroundImgPath("../resources/images/background.png");
+
+    constexpr const t_size begin_y = WINDOW_HEIGHT/3;
+
+    TMenuBuilder bld;
+    bld.name("START")->
+        point({WINDOW_WIDTH/2-50,begin_y })->
+        font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+        background_color(TColorCode::white)->
+        width(100)->
+        height(50)->
+        enabled(true)->
+        display(TDisplay::Game)->
+        add();
+
+    bld.name("OPTION")->
+        point({WINDOW_WIDTH/2-50, begin_y+80})->
+        font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+        background_color(TColorCode::white)->
+        width(100)->
+        height(50)->
+        enabled(true)->
+        display(TDisplay::Option)->
+        add();
+
+    bld.name("EXIT")->
+        point({WINDOW_WIDTH/2-50, begin_y+160})->
+        font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+        background_color(TColorCode::white)->
+        width(100)->
+        height(50)->
+        enabled(true)->
+        display(TDisplay::Exit)->
+        add();
+
+    addMenu(bld);
+}
+
 
 bool TMainLocalDisplay::clickedEnterServer()
 {}

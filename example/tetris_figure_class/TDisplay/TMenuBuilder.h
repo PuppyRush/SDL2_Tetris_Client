@@ -25,11 +25,16 @@ public:
 
     TMenuBuilder* name(const std::string& name);
     TMenuBuilder* font(const TFont& font);
+    TMenuBuilder* background_color(const TColorCode color);
     TMenuBuilder* width(const t_size size);
     TMenuBuilder* height(const t_size size);
     TMenuBuilder* point(const TPoint& point);
     TMenuBuilder* display(const TDisplay display);
     TMenuBuilder* enabled(const bool enable);
+    TMenuBuilder* multiselected(const bool selected);
+    TMenuBuilder* kind(const TOption option);
+    TMenuBuilder* grouping(const size_t idx);
+    TMenuBuilder* carot();
     TMenuBuilder* add();
 
     inline const container_type& getMenus() const noexcept

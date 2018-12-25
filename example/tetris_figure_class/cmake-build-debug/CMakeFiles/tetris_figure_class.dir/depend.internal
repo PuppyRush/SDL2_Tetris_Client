@@ -274,10 +274,10 @@ CMakeFiles/tetris_figure_class.dir/TGame/TBoardController.cpp.o
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TFigureUnit.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigure.cpp.o
  ../Common/THeader.h
- ../Common/TProperty.h
- ../Common/TStruct.h
  ../Common/TypeTraits.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TDefine.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TProperty.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TStruct.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TType.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TypeTraits.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TFigure.cpp
@@ -291,11 +291,10 @@ CMakeFiles/tetris_figure_class.dir/TGame/TFigure.cpp.o
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TFigureZ.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureBoard.cpp.o
  ../Common/THeader.h
- ../Common/TProperty.h
- ../Common/TStruct.h
  ../Common/TypeTraits.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TDefine.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TProperty.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TStruct.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TType.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TypeTraits.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TFigure.h
@@ -314,10 +313,10 @@ CMakeFiles/tetris_figure_class.dir/TGame/TFigureBoardBuilder.cpp.o
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TFigureBoardBuilder.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureBuilder.cpp.o
  ../Common/THeader.h
- ../Common/TProperty.h
- ../Common/TStruct.h
  ../Common/TypeTraits.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TDefine.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TProperty.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TStruct.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TType.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TypeTraits.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TFigure.h
@@ -331,10 +330,10 @@ CMakeFiles/tetris_figure_class.dir/TGame/TFigureBuilder.cpp.o
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TFigureZ.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureI.cpp.o
  ../Common/THeader.h
- ../Common/TProperty.h
- ../Common/TStruct.h
  ../Common/TypeTraits.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TDefine.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TProperty.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TStruct.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TType.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TypeTraits.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TFigure.h
@@ -343,10 +342,10 @@ CMakeFiles/tetris_figure_class.dir/TGame/TFigureI.cpp.o
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TFigureUnit.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureL.cpp.o
  ../Common/THeader.h
- ../Common/TProperty.h
- ../Common/TStruct.h
  ../Common/TypeTraits.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TDefine.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TProperty.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TStruct.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TType.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TypeTraits.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TFigure.h
@@ -355,10 +354,10 @@ CMakeFiles/tetris_figure_class.dir/TGame/TFigureL.cpp.o
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TFigureUnit.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureO.cpp.o
  ../Common/THeader.h
- ../Common/TProperty.h
- ../Common/TStruct.h
  ../Common/TypeTraits.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TDefine.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TProperty.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TStruct.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TType.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TypeTraits.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TFigure.h
@@ -367,10 +366,10 @@ CMakeFiles/tetris_figure_class.dir/TGame/TFigureO.cpp.o
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TFigureUnit.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureT.cpp.o
  ../Common/THeader.h
- ../Common/TProperty.h
- ../Common/TStruct.h
  ../Common/TypeTraits.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TDefine.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TProperty.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TStruct.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TType.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TypeTraits.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TFigure.h
@@ -388,10 +387,10 @@ CMakeFiles/tetris_figure_class.dir/TGame/TFigureUnit.cpp.o
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TFigureUnit.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureZ.cpp.o
  ../Common/THeader.h
- ../Common/TProperty.h
- ../Common/TStruct.h
  ../Common/TypeTraits.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TDefine.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TProperty.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TStruct.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TType.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TypeTraits.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TFigure.h

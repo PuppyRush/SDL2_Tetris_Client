@@ -14,6 +14,11 @@ std::shared_ptr<TMainDisplay> TMainOnlineDisplay::getInstance()
     return inst;
 }
 
+void TMainOnlineDisplay::_preInitialize() {
+
+}
+
+
 void TMainOnlineDisplay::_timer()
 {
 

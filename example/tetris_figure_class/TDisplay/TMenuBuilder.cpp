@@ -35,6 +35,12 @@ TMenuBuilder* TMenuBuilder::point(const TPoint& point)
     return this;
 }
 
+TMenuBuilder* TMenuBuilder::background_color(const TColorCode color)
+{
+    m_currentMenu->background_color = TColor{color};
+    return this;
+}
+
 TMenuBuilder* TMenuBuilder::width(const t_size size)
 {
     this->m_currentMenu->width = size;
@@ -58,6 +64,30 @@ TMenuBuilder* TMenuBuilder::enabled(const bool enable)
 TMenuBuilder* TMenuBuilder::display(const TDisplay display)
 {
     m_currentMenu->display = display;
+    return this;
+}
+
+TMenuBuilder* TMenuBuilder::multiselected(const bool selected)
+{
+    m_currentMenu->multiselected = selected;
+    return this;
+}
+
+TMenuBuilder* TMenuBuilder::kind(const TOption option)
+{
+    m_currentMenu->kind = option;
+    return this;
+}
+
+TMenuBuilder* TMenuBuilder::grouping(const size_t idx)
+{
+    m_currentMenu->group = idx;
+    return this;
+}
+
+TMenuBuilder* TMenuBuilder::carot()
+{
+    m_currentMenu->carot = true;
     return this;
 }
 

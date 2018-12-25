@@ -33,6 +33,11 @@ std::shared_ptr<TGameDisplay> TGameLocalDisplay::getInstance()
     return inst;
 }
 
+void TGameLocalDisplay::_preInitialize()
+{
+
+}
+
 bool TGameLocalDisplay::clickedBack(const TDisplay disply)
 {
 
@@ -145,7 +150,4 @@ void TGameLocalDisplay::_draw()
             }
         }
     }
-
-
-
 }

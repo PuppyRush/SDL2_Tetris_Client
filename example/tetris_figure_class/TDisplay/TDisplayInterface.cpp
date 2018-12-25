@@ -24,7 +24,7 @@ TDisplayInterface::~TDisplayInterface()
     SDL_Quit();
 }
 
-void TDisplayInterface::_initialize() {
+void TDisplayInterface::_initializing() {
 
     if(!m_backgroundImgPath.empty())
     {
@@ -45,11 +45,12 @@ void TDisplayInterface::_initialize() {
 
 void TDisplayInterface::show()
 {
+    _preInitialize();
     _timer();
 
     while(m_run)
     {
-        _initialize();
+        _initializing();
 
         _draw();
 
@@ -74,14 +75,15 @@ void TDisplayInterface::_drawMenus()
         rect.h = menu->height;
         rect.w = menu->width;
 
+        const auto back_color = menu->background_color;
         SDL_RenderFillRect(renderer, &rect);
-        SDL_SetRenderDrawColor(renderer, 80, 80, 80, 255);
+        SDL_SetRenderDrawColor(renderer, back_color.r, back_color.g, back_color.b, 255);
         SDL_RenderDrawRect(renderer, &rect);
 
-
+        const auto font_color = menu->font.color;
         TTF_Font* font = TTF_OpenFont("../resources/fonts/OpenSans-Bold.ttf", 24);
         std::string score_text = menu->name;
-        SDL_Color textColor = { 255, 255, 255, 0 };
+        SDL_Color textColor = { font_color.r, font_color.g, font_color.b, 0 };
         SDL_Surface* textSurface = TTF_RenderText_Solid(font, score_text.c_str(), textColor);
         SDL_Texture* text = SDL_CreateTextureFromSurface(renderer, textSurface);
 
@@ -142,8 +144,11 @@ bool TDisplayInterface::clickedMenuEvent(const TPoint& point)
                 TDisplayController::getInstance()->setProgramEnd(true);
 
             setDisplay(menu->display);
-            return true;
+            menu->clicked = true;
         }
+        else
+            menu->clicked = false;
+
     }
     return false;
 }

@@ -9,10 +9,13 @@
 #include <random>
 #include <ctime>
 #include <memory>
+#include <cassert>
 
 #include "TType.h"
+#include "TStruct.h"
 
 SDL_TETRIS_BEGIN
+
 
 template<class T>
 constexpr const auto toUType(T enuml) noexcept

@@ -273,10 +273,10 @@ CMakeFiles/tetris_figure_class.dir/TGame/TBoardController.cpp.o: ../TGame/TFigur
 CMakeFiles/tetris_figure_class.dir/TGame/TBoardController.cpp.o: ../TGame/TFigureUnit.h
 
 CMakeFiles/tetris_figure_class.dir/TGame/TFigure.cpp.o: ../Common/THeader.h
-CMakeFiles/tetris_figure_class.dir/TGame/TFigure.cpp.o: ../Common/TProperty.h
-CMakeFiles/tetris_figure_class.dir/TGame/TFigure.cpp.o: ../Common/TStruct.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigure.cpp.o: ../Common/TypeTraits.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigure.cpp.o: ../Common/TDefine.h
+CMakeFiles/tetris_figure_class.dir/TGame/TFigure.cpp.o: ../Common/TProperty.h
+CMakeFiles/tetris_figure_class.dir/TGame/TFigure.cpp.o: ../Common/TStruct.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigure.cpp.o: ../Common/TType.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigure.cpp.o: ../Common/TypeTraits.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigure.cpp.o: ../TGame/TFigure.cpp
@@ -290,11 +290,10 @@ CMakeFiles/tetris_figure_class.dir/TGame/TFigure.cpp.o: ../TGame/TFigureUnit.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigure.cpp.o: ../TGame/TFigureZ.h
 
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureBoard.cpp.o: ../Common/THeader.h
-CMakeFiles/tetris_figure_class.dir/TGame/TFigureBoard.cpp.o: ../Common/TProperty.h
-CMakeFiles/tetris_figure_class.dir/TGame/TFigureBoard.cpp.o: ../Common/TStruct.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureBoard.cpp.o: ../Common/TypeTraits.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureBoard.cpp.o: ../Common/TDefine.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureBoard.cpp.o: ../Common/TProperty.h
+CMakeFiles/tetris_figure_class.dir/TGame/TFigureBoard.cpp.o: ../Common/TStruct.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureBoard.cpp.o: ../Common/TType.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureBoard.cpp.o: ../Common/TypeTraits.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureBoard.cpp.o: ../TGame/TFigure.h
@@ -313,10 +312,10 @@ CMakeFiles/tetris_figure_class.dir/TGame/TFigureBoardBuilder.cpp.o: ../TGame/TFi
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureBoardBuilder.cpp.o: ../TGame/TFigureBoardBuilder.h
 
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureBuilder.cpp.o: ../Common/THeader.h
-CMakeFiles/tetris_figure_class.dir/TGame/TFigureBuilder.cpp.o: ../Common/TProperty.h
-CMakeFiles/tetris_figure_class.dir/TGame/TFigureBuilder.cpp.o: ../Common/TStruct.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureBuilder.cpp.o: ../Common/TypeTraits.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureBuilder.cpp.o: ../Common/TDefine.h
+CMakeFiles/tetris_figure_class.dir/TGame/TFigureBuilder.cpp.o: ../Common/TProperty.h
+CMakeFiles/tetris_figure_class.dir/TGame/TFigureBuilder.cpp.o: ../Common/TStruct.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureBuilder.cpp.o: ../Common/TType.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureBuilder.cpp.o: ../Common/TypeTraits.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureBuilder.cpp.o: ../TGame/TFigure.h
@@ -330,10 +329,10 @@ CMakeFiles/tetris_figure_class.dir/TGame/TFigureBuilder.cpp.o: ../TGame/TFigureU
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureBuilder.cpp.o: ../TGame/TFigureZ.h
 
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureI.cpp.o: ../Common/THeader.h
-CMakeFiles/tetris_figure_class.dir/TGame/TFigureI.cpp.o: ../Common/TProperty.h
-CMakeFiles/tetris_figure_class.dir/TGame/TFigureI.cpp.o: ../Common/TStruct.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureI.cpp.o: ../Common/TypeTraits.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureI.cpp.o: ../Common/TDefine.h
+CMakeFiles/tetris_figure_class.dir/TGame/TFigureI.cpp.o: ../Common/TProperty.h
+CMakeFiles/tetris_figure_class.dir/TGame/TFigureI.cpp.o: ../Common/TStruct.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureI.cpp.o: ../Common/TType.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureI.cpp.o: ../Common/TypeTraits.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureI.cpp.o: ../TGame/TFigure.h
@@ -342,10 +341,10 @@ CMakeFiles/tetris_figure_class.dir/TGame/TFigureI.cpp.o: ../TGame/TFigureI.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureI.cpp.o: ../TGame/TFigureUnit.h
 
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureL.cpp.o: ../Common/THeader.h
-CMakeFiles/tetris_figure_class.dir/TGame/TFigureL.cpp.o: ../Common/TProperty.h
-CMakeFiles/tetris_figure_class.dir/TGame/TFigureL.cpp.o: ../Common/TStruct.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureL.cpp.o: ../Common/TypeTraits.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureL.cpp.o: ../Common/TDefine.h
+CMakeFiles/tetris_figure_class.dir/TGame/TFigureL.cpp.o: ../Common/TProperty.h
+CMakeFiles/tetris_figure_class.dir/TGame/TFigureL.cpp.o: ../Common/TStruct.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureL.cpp.o: ../Common/TType.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureL.cpp.o: ../Common/TypeTraits.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureL.cpp.o: ../TGame/TFigure.h
@@ -354,10 +353,10 @@ CMakeFiles/tetris_figure_class.dir/TGame/TFigureL.cpp.o: ../TGame/TFigureL.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureL.cpp.o: ../TGame/TFigureUnit.h
 
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureO.cpp.o: ../Common/THeader.h
-CMakeFiles/tetris_figure_class.dir/TGame/TFigureO.cpp.o: ../Common/TProperty.h
-CMakeFiles/tetris_figure_class.dir/TGame/TFigureO.cpp.o: ../Common/TStruct.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureO.cpp.o: ../Common/TypeTraits.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureO.cpp.o: ../Common/TDefine.h
+CMakeFiles/tetris_figure_class.dir/TGame/TFigureO.cpp.o: ../Common/TProperty.h
+CMakeFiles/tetris_figure_class.dir/TGame/TFigureO.cpp.o: ../Common/TStruct.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureO.cpp.o: ../Common/TType.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureO.cpp.o: ../Common/TypeTraits.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureO.cpp.o: ../TGame/TFigure.h
@@ -366,10 +365,10 @@ CMakeFiles/tetris_figure_class.dir/TGame/TFigureO.cpp.o: ../TGame/TFigureO.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureO.cpp.o: ../TGame/TFigureUnit.h
 
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureT.cpp.o: ../Common/THeader.h
-CMakeFiles/tetris_figure_class.dir/TGame/TFigureT.cpp.o: ../Common/TProperty.h
-CMakeFiles/tetris_figure_class.dir/TGame/TFigureT.cpp.o: ../Common/TStruct.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureT.cpp.o: ../Common/TypeTraits.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureT.cpp.o: ../Common/TDefine.h
+CMakeFiles/tetris_figure_class.dir/TGame/TFigureT.cpp.o: ../Common/TProperty.h
+CMakeFiles/tetris_figure_class.dir/TGame/TFigureT.cpp.o: ../Common/TStruct.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureT.cpp.o: ../Common/TType.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureT.cpp.o: ../Common/TypeTraits.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureT.cpp.o: ../TGame/TFigure.h
@@ -387,10 +386,10 @@ CMakeFiles/tetris_figure_class.dir/TGame/TFigureUnit.cpp.o: ../TGame/TFigureUnit
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureUnit.cpp.o: ../TGame/TFigureUnit.h
 
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureZ.cpp.o: ../Common/THeader.h
-CMakeFiles/tetris_figure_class.dir/TGame/TFigureZ.cpp.o: ../Common/TProperty.h
-CMakeFiles/tetris_figure_class.dir/TGame/TFigureZ.cpp.o: ../Common/TStruct.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureZ.cpp.o: ../Common/TypeTraits.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureZ.cpp.o: ../Common/TDefine.h
+CMakeFiles/tetris_figure_class.dir/TGame/TFigureZ.cpp.o: ../Common/TProperty.h
+CMakeFiles/tetris_figure_class.dir/TGame/TFigureZ.cpp.o: ../Common/TStruct.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureZ.cpp.o: ../Common/TType.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureZ.cpp.o: ../Common/TypeTraits.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigureZ.cpp.o: ../TGame/TFigure.h

@@ -20,7 +20,7 @@ TFigureBoard::TFigureBoard()
     for (int i = 0 ; i < m_board.size() ; i++) {
         auto board = m_board[i];
         for (int l = 0 ; l < board.size() ; l++) {
-            board[l] = TFigureUnit(TPoint(i, l), 0, TColor::none, UnitType::Empty);
+            board[l] = TFigureUnit(TPoint(i, l), 0, TColorCode::none, UnitType::Empty);
         }
     }
 }
@@ -142,7 +142,7 @@ void TFigureBoard::eraseCoords() {
         const auto x = coord.getPoint().x;
         const auto y = coord.getPoint().y;
         m_board[y][x].setType(UnitType::Empty);
-        m_board[y][x].setColor(TColor::none);
+        m_board[y][x].setColor(TColorCode::none);
     }
 }
 
@@ -171,7 +171,7 @@ bool TFigureBoard::eraseLineIfFillLinesAndThenCollapse()
             for(int x=0; x < GAMEBOARD_WIDTH_COUNT ; ++x)
             {
                 m_board[y][x].setType(UnitType::Empty);
-                m_board[y][x].setColor(TColor::none);
+                m_board[y][x].setColor(TColorCode::none);
             }
         }
     }
@@ -195,7 +195,7 @@ bool TFigureBoard::eraseLineIfFillLinesAndThenCollapse()
                     m_board[y+removedCnt][x].setType(UnitType::Fill);
                     m_board[y+removedCnt][x].setColor(m_board[y][x].getColor());
                     m_board[y][x].setType(UnitType::Empty);
-                    m_board[y][x].setColor(TColor::none);
+                    m_board[y][x].setColor(TColorCode::none);
                 }
             }
         }

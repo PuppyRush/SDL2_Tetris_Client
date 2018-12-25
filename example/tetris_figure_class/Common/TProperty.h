@@ -20,6 +20,13 @@ const t_size GAMEBOARD_BEGIN_X = 20;
 const t_size GAMEBOARD_BEGIN_Y = 20;
 const t_size GAMEBOARD_UNIT_LEN = 30;
 
+enum class TOption : t_type
+{
+    StaticLabel,
+    EditLabel,
+    RadioButton,
+};
+
 enum class TDisplay : t_type
 {
     Main,
@@ -36,7 +43,7 @@ enum class TMode : t_type
     Online
 };
 
-enum class TColor : t_type
+enum class TColorCode : t_type
 {
     red = 0,
     blue,

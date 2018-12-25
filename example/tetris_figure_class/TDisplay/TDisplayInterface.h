@@ -51,6 +51,7 @@ public:
 
 protected:
     TDisplayInterface();
+	virtual void _preInitialize() = 0;
 
     inline std::shared_ptr<SDL_Window> getWindow() const noexcept
     {
@@ -62,18 +63,17 @@ protected:
         return m_window->getRenderer();
     }
 
-
 private:
 
-	//Draw Menus.
-	void _initialize();
-	void _drawMenus();
+	void _initializing();
+    void _drawMenus();
 	void _release();
 
     inline std::shared_ptr<SDL_Event> getSDLEvent() const noexcept
     {
         return m_window->getSDLEvent();
     }
+
 
 	virtual void _event(const SDL_Event* event) =0;
 	virtual void _timer() =0;

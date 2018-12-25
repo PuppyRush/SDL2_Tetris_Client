@@ -11,7 +11,7 @@ TFigureBuilder::TFigureBuilder(const TPoint &point)
     : m_point(point),
       m_width(0),
       m_height(0),
-      m_color(EnumHelper<TColor>::getRandomly ()),
+      m_color(EnumHelper<TColorCode>::getRandomly ()),
       m_age(1),
       m_figureType(TFigureType::A),
       m_figureClass(EnumHelper<TFigureClass>::getRandomly())
@@ -19,7 +19,7 @@ TFigureBuilder::TFigureBuilder(const TPoint &point)
   }
 
 
-TFigureBuilder* TFigureBuilder::color(const TColor& color)
+TFigureBuilder* TFigureBuilder::color(const TColorCode& color)
 {
     this->m_color = color;
     return this;
