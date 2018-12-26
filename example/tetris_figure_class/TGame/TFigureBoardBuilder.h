@@ -9,7 +9,7 @@
 
 SDL_TETRIS_BEGIN
 
-class TFigureBoardBuilder
+class TFigureBoardBuilder final
 {
 public:
 

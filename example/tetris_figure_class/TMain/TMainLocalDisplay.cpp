@@ -22,7 +22,7 @@ void TMainLocalDisplay::_preInitialize() {
 
     constexpr const t_size begin_y = WINDOW_HEIGHT/3;
 
-    TMenuBuilder bld;
+    TControllBuilder bld;
     bld.name("START")->
         point({WINDOW_WIDTH/2-50,begin_y })->
         font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->

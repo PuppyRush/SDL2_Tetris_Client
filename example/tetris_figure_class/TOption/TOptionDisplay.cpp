@@ -13,7 +13,7 @@ void TOptionDisplay::_preInitialize()
     t_size begin_y = WINDOW_HEIGHT/4;
     t_size begin_x = WINDOW_WIDTH/3;
 
-    TMenuBuilder bld;
+    TControllBuilder bld;
 
     bld.name("SPEED")->
         point({begin_x-100,begin_y })->

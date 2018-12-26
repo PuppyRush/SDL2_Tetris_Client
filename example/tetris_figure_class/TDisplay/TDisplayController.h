@@ -29,7 +29,7 @@ struct hash<std::pair<TETRIS::TMode, TETRIS::TDisplay>>
 
 SDL_TETRIS_BEGIN
 
-class TDisplayController{
+class TDisplayController final{
 
 public:
     void operateGame();

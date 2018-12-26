@@ -20,6 +20,18 @@ const t_size GAMEBOARD_BEGIN_X = 20;
 const t_size GAMEBOARD_BEGIN_Y = 20;
 const t_size GAMEBOARD_UNIT_LEN = 30;
 
+enum class TSpeed : t_type
+{
+    _1,
+    _2,
+    _3,
+    _4,
+    _5,
+    _6,
+    _7,
+    _8,
+};
+
 enum class TOption : t_type
 {
     StaticLabel,
@@ -82,10 +94,15 @@ enum class TFigureType : t_type
     End = D
 };
 
-enum class MapType : t_type
+enum class TMap : t_type
 {
     Rain,
-    Praymid
+    Praymid,
+    Randomly,
+    Stairway,
+    Snow,
+    Snail,
+    None
 };
 
 enum UnitType

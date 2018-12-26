@@ -52,8 +52,8 @@ add_executable(tetris_figure_class
         TGame/TGameDisplay.h
         TDisplay/TDisplayInterface.h
         TDisplay/TDisplayInterface.cpp
-        TDisplay/TMenuBuilder.cpp
-        TDisplay/TMenuBuilder.h
+        TControll/TControllBuilder.cpp
+        TControll/TControllBuilder.h
         TDisplay/TDisplayController.cpp
         TDisplay/TDisplayInterface.h
         TMain/TMainLocalDisplay.h
@@ -63,7 +63,7 @@ add_executable(tetris_figure_class
         TMain/TMainOnlineDisplay.h
         TMain/TMainOnlineDisplay.cpp
         TOption/TOptionDisplay.cpp
-        TOption/TOptionDisplay.h TDisplay/TWindow.cpp TDisplay/TWindow.h)
+        TOption/TOptionDisplay.h TDisplay/TWindow.cpp TDisplay/TWindow.h TOption/TOptionManager.cpp TOption/TOptionManager.h TControll/TControll.cpp TControll/TControll.h TControll/TStaticLabel.cpp TControll/TStaticLabel.h TControll/TGroupControll.cpp TControll/TGroupControll.h)
 
 include_directories(tetris_figure_class
         SYSTEM ${Boost_INCLUDE_DIR}

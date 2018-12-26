@@ -13,7 +13,7 @@
 SDL_TETRIS_BEGIN
 
 //controller as a proxy class for tetris
-class BoardController {
+class BoardController final{
 
 public:
     ~BoardController(){}

@@ -13,7 +13,7 @@
 
 SDL_TETRIS_BEGIN
 
-class TFigureBuilder {
+class TFigureBuilder final {
 public:
 
     TFigureBuilder(const TPoint &point);

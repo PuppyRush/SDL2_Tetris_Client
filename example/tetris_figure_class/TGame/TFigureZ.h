@@ -20,13 +20,13 @@
 SDL_TETRIS_BEGIN
 
 class TFigureBuilder;
-class TFigureZ : public TFigure {
+class TFigureZ final : public TFigure {
 public:
 
     virtual ~TFigureZ();
-    virtual void initialize() override;
-    virtual const TFigureType getTypeBegin() const override;
-    virtual const TFigureType getTypeEnd() const override;
+    virtual void initialize() final;
+    virtual const TFigureType getTypeBegin() const final;
+    virtual const TFigureType getTypeEnd() const final;
 
 
     //hide base ctr, make object from builder
@@ -40,10 +40,10 @@ public:
 private:
     TFigureZ(){}
     TFigureZ(const TFigureBuilder *bld);
-    virtual bool _validation() override;
-    virtual const std::shared_ptr<TFigure> _copy() const override;
-    virtual void _rotateLeft() override;
-    virtual void _rotateRight() override;
+    virtual bool _validation() final;
+    virtual const std::shared_ptr<TFigure> _copy() const final;
+    virtual void _rotateLeft() final;
+    virtual void _rotateRight() final;
 };
 
 SDL_TETRIS_END

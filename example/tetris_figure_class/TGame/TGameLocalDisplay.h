@@ -10,7 +10,7 @@
 
 SDL_TETRIS_BEGIN
 
-class TGameLocalDisplay : public TGameDisplay{
+class TGameLocalDisplay final : public TGameDisplay{
 
 public:
     enum class UIResource : t_type
@@ -20,9 +20,9 @@ public:
     };
 
 
-    virtual bool clickedStart() override;
-    virtual bool clickedSuspend() override;
-    virtual bool clickedBack(const TDisplay disply) override;
+    virtual bool clickedStart() final;
+    virtual bool clickedSuspend() final;
+    virtual bool clickedBack(const TDisplay disply) final;
 
     virtual ~TGameLocalDisplay(){}
 
@@ -32,10 +32,10 @@ private:
 
     TGameLocalDisplay():TGameDisplay(){}
 
-    virtual void _preInitialize() override;
-    virtual void _event(const SDL_Event* event) override;
-    virtual void _timer() override;
-    virtual void _draw() override;
+    virtual void _preInitialize() final;
+    virtual void _event(const SDL_Event* event) final;
+    virtual void _timer() final;
+    virtual void _draw() final;
 
     std::shared_ptr<BoardController> m_ctl = BoardController::getInstance();
 };

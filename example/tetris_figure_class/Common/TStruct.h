@@ -85,26 +85,6 @@ typedef struct TFont
     {}
 }TFont;
 
-typedef struct TMenu
-{
-public:
-    TPoint point;
-    t_size width = 100;
-    t_size height = 50;
-    TFont font = {"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white};
-    TColor background_color = TColorCode::black;
-    std::string name = "";
-    TDisplay display = TDisplay::None;
-    bool enabled = true;
-    bool multiselected = false;
-    TOption kind = TOption::StaticLabel;
-    int group = -1;
-    bool carot = false;
-
-    bool clicked = false;
-
-}Menu;
-
 
 SDL_TETRIS_END
 

@@ -27,7 +27,7 @@ SDL_TETRIS_BEGIN
 ***********************************************/
 
 class TFigureBuilder;
-class TFigure {
+class TFigure{
 public:
 
     using FigureCoords = std::array<TFigureUnit, 4>;

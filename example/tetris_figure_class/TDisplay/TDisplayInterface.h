@@ -5,6 +5,7 @@
 #include <memory>
 #include <functional>
 #include <atomic>
+#include <unordered_map>
 
 #include <SDL.h>
 #include <SDL2/SDL.h>
@@ -14,7 +15,8 @@
 
 #include "TWindow.h"
 #include "../Common/THeader.h"
-#include "TMenuBuilder.h"
+#include "TControll/TControllBuilder.h"
+#include "TControll/TControll.h"
 
 SDL_TETRIS_BEGIN
 
@@ -29,7 +31,7 @@ public:
 		return this->m_display == dp->m_display;
 	}
 
-	void addMenu(const TMenuBuilder& bld);
+	void addMenu(const TControllBuilder& bld);
     bool clickedMenuEvent(const TPoint& point);
 
 	void erase();
@@ -79,7 +81,7 @@ private:
 	virtual void _timer() =0;
 	virtual void _draw() =0;
 
-	std::vector<std::shared_ptr<TMenu>> m_menus;
+	std::unordered_map<int, std::vector<std::shared_ptr<TControll>>> m_menus;
 	std::string m_backgroundImgPath;
     std::shared_ptr<TWindow> m_window;
 

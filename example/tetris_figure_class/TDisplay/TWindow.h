@@ -15,7 +15,7 @@
 
 SDL_TETRIS_BEGIN
 
-class TWindow
+class TWindow final
 {
 
 public:

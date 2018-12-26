@@ -5,9 +5,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Main.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles/tetris_figure_class.dir/Main.cpp.o"
+  "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TControll.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles/tetris_figure_class.dir/TControll/TControll.cpp.o"
+  "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TControllBuilder.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles/tetris_figure_class.dir/TControll/TControllBuilder.cpp.o"
+  "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TGroupControll.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles/tetris_figure_class.dir/TControll/TGroupControll.cpp.o"
+  "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TStaticLabel.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles/tetris_figure_class.dir/TControll/TStaticLabel.cpp.o"
   "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TDisplayController.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayController.cpp.o"
   "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TDisplayInterface.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayInterface.cpp.o"
-  "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TMenuBuilder.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles/tetris_figure_class.dir/TDisplay/TMenuBuilder.cpp.o"
   "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TWindow.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles/tetris_figure_class.dir/TDisplay/TWindow.cpp.o"
   "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TBoardController.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles/tetris_figure_class.dir/TGame/TBoardController.cpp.o"
   "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TFigure.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles/tetris_figure_class.dir/TGame/TFigure.cpp.o"
@@ -26,6 +29,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TMain/TMainLocalDisplay.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles/tetris_figure_class.dir/TMain/TMainLocalDisplay.cpp.o"
   "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TMain/TMainOnlineDisplay.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles/tetris_figure_class.dir/TMain/TMainOnlineDisplay.cpp.o"
   "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TOption/TOptionDisplay.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles/tetris_figure_class.dir/TOption/TOptionDisplay.cpp.o"
+  "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TOption/TOptionManager.cpp" "/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles/tetris_figure_class.dir/TOption/TOptionManager.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

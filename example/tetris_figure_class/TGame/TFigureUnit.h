@@ -4,7 +4,7 @@
 
 SDL_TETRIS_BEGIN
 
-class TFigureUnit {
+class TFigureUnit final{
 public:
     
     TFigureUnit();

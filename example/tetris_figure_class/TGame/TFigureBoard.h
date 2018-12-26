@@ -16,7 +16,7 @@
 
 SDL_TETRIS_BEGIN
 
-class TFigureBoard {
+class TFigureBoard final{
 
 public:
 
