@@ -382,18 +382,70 @@ CMakeFiles/tetris_figure_class.dir/TControll/TStaticLabel.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tetris_figure_class.dir/TControll/TStaticLabel.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TStaticLabel.cpp -o CMakeFiles/tetris_figure_class.dir/TControll/TStaticLabel.cpp.s
 
-CMakeFiles/tetris_figure_class.dir/TControll/TGroupControll.cpp.o: CMakeFiles/tetris_figure_class.dir/flags.make
-CMakeFiles/tetris_figure_class.dir/TControll/TGroupControll.cpp.o: ../TControll/TGroupControll.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/tetris_figure_class.dir/TControll/TGroupControll.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tetris_figure_class.dir/TControll/TGroupControll.cpp.o -c /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TGroupControll.cpp
+CMakeFiles/tetris_figure_class.dir/TControll/TButton.cpp.o: CMakeFiles/tetris_figure_class.dir/flags.make
+CMakeFiles/tetris_figure_class.dir/TControll/TButton.cpp.o: ../TControll/TButton.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/tetris_figure_class.dir/TControll/TButton.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tetris_figure_class.dir/TControll/TButton.cpp.o -c /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TButton.cpp
 
-CMakeFiles/tetris_figure_class.dir/TControll/TGroupControll.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tetris_figure_class.dir/TControll/TGroupControll.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TGroupControll.cpp > CMakeFiles/tetris_figure_class.dir/TControll/TGroupControll.cpp.i
+CMakeFiles/tetris_figure_class.dir/TControll/TButton.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tetris_figure_class.dir/TControll/TButton.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TButton.cpp > CMakeFiles/tetris_figure_class.dir/TControll/TButton.cpp.i
 
-CMakeFiles/tetris_figure_class.dir/TControll/TGroupControll.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tetris_figure_class.dir/TControll/TGroupControll.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TGroupControll.cpp -o CMakeFiles/tetris_figure_class.dir/TControll/TGroupControll.cpp.s
+CMakeFiles/tetris_figure_class.dir/TControll/TButton.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tetris_figure_class.dir/TControll/TButton.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TButton.cpp -o CMakeFiles/tetris_figure_class.dir/TControll/TButton.cpp.s
+
+CMakeFiles/tetris_figure_class.dir/TControll/TButtonBasic.cpp.o: CMakeFiles/tetris_figure_class.dir/flags.make
+CMakeFiles/tetris_figure_class.dir/TControll/TButtonBasic.cpp.o: ../TControll/TButtonBasic.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/tetris_figure_class.dir/TControll/TButtonBasic.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tetris_figure_class.dir/TControll/TButtonBasic.cpp.o -c /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TButtonBasic.cpp
+
+CMakeFiles/tetris_figure_class.dir/TControll/TButtonBasic.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tetris_figure_class.dir/TControll/TButtonBasic.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TButtonBasic.cpp > CMakeFiles/tetris_figure_class.dir/TControll/TButtonBasic.cpp.i
+
+CMakeFiles/tetris_figure_class.dir/TControll/TButtonBasic.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tetris_figure_class.dir/TControll/TButtonBasic.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TButtonBasic.cpp -o CMakeFiles/tetris_figure_class.dir/TControll/TButtonBasic.cpp.s
+
+CMakeFiles/tetris_figure_class.dir/TControll/TRadioButton.cpp.o: CMakeFiles/tetris_figure_class.dir/flags.make
+CMakeFiles/tetris_figure_class.dir/TControll/TRadioButton.cpp.o: ../TControll/TRadioButton.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/tetris_figure_class.dir/TControll/TRadioButton.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tetris_figure_class.dir/TControll/TRadioButton.cpp.o -c /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TRadioButton.cpp
+
+CMakeFiles/tetris_figure_class.dir/TControll/TRadioButton.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tetris_figure_class.dir/TControll/TRadioButton.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TRadioButton.cpp > CMakeFiles/tetris_figure_class.dir/TControll/TRadioButton.cpp.i
+
+CMakeFiles/tetris_figure_class.dir/TControll/TRadioButton.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tetris_figure_class.dir/TControll/TRadioButton.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TRadioButton.cpp -o CMakeFiles/tetris_figure_class.dir/TControll/TRadioButton.cpp.s
+
+CMakeFiles/tetris_figure_class.dir/TControll/TEditLabel.cpp.o: CMakeFiles/tetris_figure_class.dir/flags.make
+CMakeFiles/tetris_figure_class.dir/TControll/TEditLabel.cpp.o: ../TControll/TEditLabel.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/tetris_figure_class.dir/TControll/TEditLabel.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tetris_figure_class.dir/TControll/TEditLabel.cpp.o -c /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TEditLabel.cpp
+
+CMakeFiles/tetris_figure_class.dir/TControll/TEditLabel.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tetris_figure_class.dir/TControll/TEditLabel.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TEditLabel.cpp > CMakeFiles/tetris_figure_class.dir/TControll/TEditLabel.cpp.i
+
+CMakeFiles/tetris_figure_class.dir/TControll/TEditLabel.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tetris_figure_class.dir/TControll/TEditLabel.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TEditLabel.cpp -o CMakeFiles/tetris_figure_class.dir/TControll/TEditLabel.cpp.s
+
+CMakeFiles/tetris_figure_class.dir/TControll/TGroupControllManager.cpp.o: CMakeFiles/tetris_figure_class.dir/flags.make
+CMakeFiles/tetris_figure_class.dir/TControll/TGroupControllManager.cpp.o: ../TControll/TGroupControllManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/tetris_figure_class.dir/TControll/TGroupControllManager.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tetris_figure_class.dir/TControll/TGroupControllManager.cpp.o -c /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TGroupControllManager.cpp
+
+CMakeFiles/tetris_figure_class.dir/TControll/TGroupControllManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tetris_figure_class.dir/TControll/TGroupControllManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TGroupControllManager.cpp > CMakeFiles/tetris_figure_class.dir/TControll/TGroupControllManager.cpp.i
+
+CMakeFiles/tetris_figure_class.dir/TControll/TGroupControllManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tetris_figure_class.dir/TControll/TGroupControllManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TGroupControllManager.cpp -o CMakeFiles/tetris_figure_class.dir/TControll/TGroupControllManager.cpp.s
 
 # Object files for target tetris_figure_class
 tetris_figure_class_OBJECTS = \
@@ -422,7 +474,11 @@ tetris_figure_class_OBJECTS = \
 "CMakeFiles/tetris_figure_class.dir/TOption/TOptionManager.cpp.o" \
 "CMakeFiles/tetris_figure_class.dir/TControll/TControll.cpp.o" \
 "CMakeFiles/tetris_figure_class.dir/TControll/TStaticLabel.cpp.o" \
-"CMakeFiles/tetris_figure_class.dir/TControll/TGroupControll.cpp.o"
+"CMakeFiles/tetris_figure_class.dir/TControll/TButton.cpp.o" \
+"CMakeFiles/tetris_figure_class.dir/TControll/TButtonBasic.cpp.o" \
+"CMakeFiles/tetris_figure_class.dir/TControll/TRadioButton.cpp.o" \
+"CMakeFiles/tetris_figure_class.dir/TControll/TEditLabel.cpp.o" \
+"CMakeFiles/tetris_figure_class.dir/TControll/TGroupControllManager.cpp.o"
 
 # External object files for target tetris_figure_class
 tetris_figure_class_EXTERNAL_OBJECTS =
@@ -452,7 +508,11 @@ tetris_figure_class: CMakeFiles/tetris_figure_class.dir/TDisplay/TWindow.cpp.o
 tetris_figure_class: CMakeFiles/tetris_figure_class.dir/TOption/TOptionManager.cpp.o
 tetris_figure_class: CMakeFiles/tetris_figure_class.dir/TControll/TControll.cpp.o
 tetris_figure_class: CMakeFiles/tetris_figure_class.dir/TControll/TStaticLabel.cpp.o
-tetris_figure_class: CMakeFiles/tetris_figure_class.dir/TControll/TGroupControll.cpp.o
+tetris_figure_class: CMakeFiles/tetris_figure_class.dir/TControll/TButton.cpp.o
+tetris_figure_class: CMakeFiles/tetris_figure_class.dir/TControll/TButtonBasic.cpp.o
+tetris_figure_class: CMakeFiles/tetris_figure_class.dir/TControll/TRadioButton.cpp.o
+tetris_figure_class: CMakeFiles/tetris_figure_class.dir/TControll/TEditLabel.cpp.o
+tetris_figure_class: CMakeFiles/tetris_figure_class.dir/TControll/TGroupControllManager.cpp.o
 tetris_figure_class: CMakeFiles/tetris_figure_class.dir/build.make
 tetris_figure_class: /usr/lib/x86_64-linux-gnu/libboost_system.so
 tetris_figure_class: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
@@ -462,7 +522,7 @@ tetris_figure_class: /usr/lib/x86_64-linux-gnu/libSDL2_ttf.so
 tetris_figure_class: /usr/lib/x86_64-linux-gnu/libSDL2main.a
 tetris_figure_class: /usr/lib/x86_64-linux-gnu/libSDL2.so
 tetris_figure_class: CMakeFiles/tetris_figure_class.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Linking CXX executable tetris_figure_class"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Linking CXX executable tetris_figure_class"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/tetris_figure_class.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

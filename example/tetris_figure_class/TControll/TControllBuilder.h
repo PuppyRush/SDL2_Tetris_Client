@@ -8,9 +8,9 @@
 #include <set>
 #include <functional>
 #include <memory>
+#include <atomic>
 
 #include "THeader.h"
-#include "TControll/TControll.h"
 
 SDL_TETRIS_BEGIN
 
@@ -18,33 +18,30 @@ class TControllBuilder final
 {
 public:
 
-    using value_type = std::shared_ptr<TControll>;
-    using comp_type = std::function<bool(const value_type& lhs, const value_type& rhs)>;
-    using container_type = std::set<value_type, comp_type>;
+    TControllBuilder(const TPoint& point, const std::string& str);
+    TControllBuilder(TPoint&& point, std::string&& str);
 
-    TControllBuilder();
-
-    TControllBuilder* name(const std::string& name);
     TControllBuilder* font(const TFont& font);
     TControllBuilder* background_color(const TColorCode color);
     TControllBuilder* width(const t_size size);
     TControllBuilder* height(const t_size size);
-    TControllBuilder* point(const TPoint& point);
     TControllBuilder* display(const TDisplay display);
     TControllBuilder* enabled(const bool enable);
     TControllBuilder* multiselected(const bool selected);
-    TControllBuilder* kind(const TOption option);
     TControllBuilder* grouping(const size_t idx);
     TControllBuilder* carot();
-    TControllBuilder* add();
 
-    inline const container_type& getMenus() const noexcept
-    { return m_menus;}
+    std::shared_ptr<TControllBasic> build() const;
 
 private:
 
-    container_type m_menus;
-    value_type m_currentMenu;
+    inline static const t_id getId()
+    {
+        static t_id_atomic id;
+        return id++;
+    }
+
+    TControllBasic m_basic;
 
 };
 

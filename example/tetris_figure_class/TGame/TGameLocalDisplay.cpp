@@ -102,20 +102,8 @@ void TGameLocalDisplay::_draw()
     using namespace std;
 
     auto renderer = getRenderer().get();
-
-    //draw board
-   /* SDL_Rect rect;
-    rect.y = GAMEBOARD_BEGIN_Y;
-    rect.x = GAMEBOARD_BEGIN_X;
-    rect.h = GAMEBOARD_DISPLAY_HEIGHT;
-    rect.w = GAMEBOARD_DISPLAY_WIDTH;
-
-    SDL_RenderFillRect(renderer, &rect);
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    SDL_RenderDrawRect(renderer, &rect);
-*/
-
     auto board = m_ctl->getGameBoard();
+
     for (int y = 0 ; y < board.size() ; y++) {
         const auto &row = board.at(y);
         for (int x = 0 ; x < row.size() ; x++) {

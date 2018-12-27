@@ -58,6 +58,7 @@ void TDisplayInterface::show()
         _event(getSDLEvent().get());
 
         _drawMenus();
+
         _release();
     }
     setRun(true);
@@ -67,41 +68,34 @@ void TDisplayInterface::_drawMenus()
 {
     auto renderer = getRenderer().get();
 
-    for(const auto& map_pair : m_menus)
+    for(const auto& menu : m_menus)
     {
-        const auto& menu_ary = map_pair.second;
-        for(const auto& menu : menu_ary)
-        {
-            SDL_Rect rect;
-            rect.y = menu->getPoint().y;
-            rect.x = menu->getPoint().x;
-            rect.h = menu->getHeight();
-            rect.w = menu->getWidth();
+        SDL_Rect rect{ menu->getPoint().x, menu->getPoint().y, menu->getWidth(), menu->getHeight()};
 
-            const auto back_color = menu->getBackground_color();
-            SDL_RenderFillRect(renderer, &rect);
-            SDL_SetRenderDrawColor(renderer, back_color.r, back_color.g, back_color.b, 255);
-            SDL_RenderDrawRect(renderer, &rect);
+        const auto& back_color = menu->getBackground_color();
+        SDL_RenderFillRect(renderer, &rect);
+        SDL_SetRenderDrawColor(renderer, back_color.r, back_color.g, back_color.b, 255);
+        SDL_RenderDrawRect(renderer, &rect);
 
-            const auto font_color = menu->getFont().color;
-            TTF_Font* font = TTF_OpenFont("../resources/fonts/OpenSans-Bold.ttf", 24);
-            std::string score_text = menu->getName();
-            SDL_Color textColor = { font_color.r, font_color.g, font_color.b, 0 };
-            SDL_Surface* textSurface = TTF_RenderText_Solid(font, score_text.c_str(), textColor);
-            SDL_Texture* text = SDL_CreateTextureFromSurface(renderer, textSurface);
+        const auto& fontinfo = menu->getFont();
+        TTF_Font* font = TTF_OpenFont(fontinfo.font_name.c_str(), fontinfo.size);
+        std::string score_text = menu->getName();
+        SDL_Color textColor = { fontinfo.color.r, fontinfo.color.g, fontinfo.color.b, 0 };
+        SDL_Surface* textSurface = TTF_RenderText_Solid(font, score_text.c_str(), textColor);
+        SDL_Texture* text = SDL_CreateTextureFromSurface(renderer, textSurface);
 
-            int text_width = textSurface->w;
-            int text_height = textSurface->h;
-            SDL_FreeSurface(textSurface);
+        int text_width = textSurface->w;
+        int text_height = textSurface->h;
+        SDL_FreeSurface(textSurface);
 
-            t_coord font_x  = menu->getPoint().x + ( menu->getWidth() - text_width)/2;
-            t_coord font_y  = menu->getPoint().y + ( menu->getHeight() - text_height)/2;
+        t_coord font_x  = menu->getPoint().x + ( menu->getWidth() - text_width)/2;
+        t_coord font_y  = menu->getPoint().y + ( menu->getHeight() - text_height)/2;
 
-            SDL_Rect renderQuad = { font_x, font_y , text_width, text_height };
-            SDL_RenderCopy(renderer, text, NULL, &renderQuad);
-        }
+        SDL_Rect renderQuad = { font_x, font_y , text_width, text_height };
+        SDL_RenderCopy(renderer, text, NULL, &renderQuad);
 
     }
+    m_drawMenus = false;
 }
 
 void TDisplayInterface::_release()
@@ -122,18 +116,9 @@ void TDisplayInterface::erase()
 
 }
 
-void TDisplayInterface::addMenu(const TControllBuilder& bld)
+void TDisplayInterface::addMenu(const std::shared_ptr<TControll> ctl)
 {
-    const auto& ary = bld.getMenus();
-    for(const auto& menu : ary)
-    {
-        if(m_menus.count(menu->getGroup())==0)
-        {
-            m_menus.insert(make_pair(menu->getGroup(),std::vector<std::shared_ptr<TControll>>()) );
-        }
-
-        m_menus.at(menu->getGroup()).push_back(menu);
-    }
+    m_menus.emplace_back(ctl);
 }
 
 bool TDisplayInterface::clickedMenuEvent(const TPoint& point)
@@ -141,31 +126,27 @@ bool TDisplayInterface::clickedMenuEvent(const TPoint& point)
     if(!m_canGoOtherDisplay)
         return false;
 
-    for(auto& map_pair : m_menus)
+    for(const auto& menu : m_menus)
     {
-        const auto menu_ary = map_pair.second;
-        for(const auto& menu : menu_ary)
+        if(menu->getDisplay() == TDisplay::None)
+            continue;
+
+        const auto menu_x = menu->getPoint().x;
+        const auto menu_y = menu->getPoint().y;
+
+        //check hit
+        if ((menu_x <= point.x && point.x <= menu_x + menu->getWidth())
+            && (menu_y <= point.y && point.y <= menu_y + menu->getHeight()))
         {
-            if(menu->getDisplay() == TDisplay::None)
-                continue;
+            if(menu->getDisplay() == TDisplay::Exit)
+                TDisplayController::getInstance()->setProgramEnd(true);
 
-            const auto menu_x = menu->getPoint().x;
-            const auto menu_y = menu->getPoint().y;
-
-            //check hit
-            if ((menu_x <= point.x && point.x <= menu_x + menu->getWidth())
-                && (menu_y <= point.y && point.y <= menu_y + menu->getHeight()))
-            {
-                if(menu->getDisplay() == TDisplay::Exit)
-                    TDisplayController::getInstance()->setProgramEnd(true);
-
-                setDisplay(menu->getDisplay());
-                menu->setClicked(true);
-            }
-            else
-                menu->setClicked(false);
+            setDisplay(menu->getDisplay());
+            //menu->setClicked(true);
+            return true;
         }
-
+       /* else
+            menu->setClicked(false);*/
     }
     return false;
 }

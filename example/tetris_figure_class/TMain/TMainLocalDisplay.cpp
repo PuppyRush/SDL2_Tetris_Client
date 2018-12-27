@@ -3,6 +3,7 @@
 //
 
 #include "TMainLocalDisplay.h"
+#include "TControll/TButton.h"
 
 SDL_TETRIS
 
@@ -22,38 +23,39 @@ void TMainLocalDisplay::_preInitialize() {
 
     constexpr const t_size begin_y = WINDOW_HEIGHT/3;
 
-    TControllBuilder bld;
-    bld.name("START")->
-        point({WINDOW_WIDTH/2-50,begin_y })->
-        font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
-        background_color(TColorCode::white)->
-        width(100)->
-        height(50)->
-        enabled(true)->
-        display(TDisplay::Game)->
-        add();
+    {
+        TControllBuilder bld({WINDOW_WIDTH / 2 - 50, begin_y}, "START");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
+            width(100)->
+            height(50)->
+            enabled(true)->
+            display(TDisplay::Game);
 
-    bld.name("OPTION")->
-        point({WINDOW_WIDTH/2-50, begin_y+80})->
-        font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
-        background_color(TColorCode::white)->
-        width(100)->
-        height(50)->
-        enabled(true)->
-        display(TDisplay::Option)->
-        add();
+        addMenu( TButton::getInstance(bld));
+    }
+    {
+        TControllBuilder bld({WINDOW_WIDTH/2-50, begin_y+80}, "OPTION");
+            bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
+            width(100)->
+            height(50)->
+            enabled(true)->
+            display(TDisplay::Option);
 
-    bld.name("EXIT")->
-        point({WINDOW_WIDTH/2-50, begin_y+160})->
-        font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
-        background_color(TColorCode::white)->
-        width(100)->
-        height(50)->
-        enabled(true)->
-        display(TDisplay::Exit)->
-        add();
+        addMenu( TButton::getInstance(bld));
+    }
+    {
+        TControllBuilder bld({WINDOW_WIDTH/2-50, begin_y+160}, "EXIT");
+            bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
+            width(100)->
+            height(50)->
+            enabled(true)->
+            display(TDisplay::Exit);
 
-    addMenu(bld);
+        addMenu( TButton::getInstance(bld));
+    }
 }
 
 

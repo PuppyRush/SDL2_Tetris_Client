@@ -117,6 +117,18 @@
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Main.cpp">
 			<Option target="tetris_figure_class"/>
 		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TButton.cpp">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TButton.h">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TButtonBasic.cpp">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TButtonBasic.h">
+			<Option target="tetris_figure_class"/>
+		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TControll.cpp">
 			<Option target="tetris_figure_class"/>
 		</Unit>
@@ -129,10 +141,22 @@
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TControllBuilder.h">
 			<Option target="tetris_figure_class"/>
 		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TGroupControll.cpp">
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TEditLabel.cpp">
 			<Option target="tetris_figure_class"/>
 		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TGroupControll.h">
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TEditLabel.h">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TGroupControllManager.cpp">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TGroupControllManager.h">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TRadioButton.cpp">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TRadioButton.h">
 			<Option target="tetris_figure_class"/>
 		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TStaticLabel.cpp">

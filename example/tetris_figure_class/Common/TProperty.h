@@ -32,10 +32,11 @@ enum class TSpeed : t_type
     _8,
 };
 
-enum class TOption : t_type
+enum class TControllKind : t_type
 {
     StaticLabel,
     EditLabel,
+    Button,
     RadioButton,
 };
 

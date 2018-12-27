@@ -13,6 +13,7 @@
 
 SDL_TETRIS_BEGIN
 
+
 typedef struct TColor
 {
 public:
@@ -79,11 +80,40 @@ typedef struct TFont
     std::string font_name;
     t_size size;
     TColor color;
-    TFont(){}
+    TFont() = default;
     TFont(const std::string& str, const t_size size, const TColorCode color)
         :font_name(str), size(size), color(color)
     {}
 }TFont;
+
+
+typedef struct TControllBasic
+{
+    t_id    id;
+    TPoint point = TPoint(-100,-100);
+    t_size width = 100;
+    t_size height = 50;
+    TFont font = {"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white};
+    TColor background_color = TColorCode::black;
+    std::string name = "";
+    TDisplay display = TDisplay::None;
+    bool enabled = true;
+    bool multiselected = false;
+    TControllKind kind = TControllKind::StaticLabel;
+    int group = -1;
+    bool carot = false;
+    bool clicked = false;
+
+    TControllBasic() = default;
+    TControllBasic(const TControllBasic& b)
+        :id(b.id), point(b.point), width(b.width), height(b.height)
+        ,font(b.font), background_color(b.background_color), name(b.name),
+        display(b.display), enabled(b.enabled), multiselected(b.multiselected),
+        kind(b.kind), group(b.group), carot(b.carot),clicked(b.clicked)
+    {
+    }
+
+};
 
 
 SDL_TETRIS_END

@@ -24,7 +24,11 @@ file(REMOVE_RECURSE
   "CMakeFiles/tetris_figure_class.dir/TOption/TOptionManager.cpp.o"
   "CMakeFiles/tetris_figure_class.dir/TControll/TControll.cpp.o"
   "CMakeFiles/tetris_figure_class.dir/TControll/TStaticLabel.cpp.o"
-  "CMakeFiles/tetris_figure_class.dir/TControll/TGroupControll.cpp.o"
+  "CMakeFiles/tetris_figure_class.dir/TControll/TButton.cpp.o"
+  "CMakeFiles/tetris_figure_class.dir/TControll/TButtonBasic.cpp.o"
+  "CMakeFiles/tetris_figure_class.dir/TControll/TRadioButton.cpp.o"
+  "CMakeFiles/tetris_figure_class.dir/TControll/TEditLabel.cpp.o"
+  "CMakeFiles/tetris_figure_class.dir/TControll/TGroupControllManager.cpp.o"
   "tetris_figure_class.pdb"
   "tetris_figure_class"
 )

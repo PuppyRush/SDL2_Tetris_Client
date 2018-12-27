@@ -3,6 +3,8 @@
 //
 
 #include "TOptionDisplay.h"
+#include "TControll/TStaticLabel.h"
+#include "TControll/TButton.h"
 
 SDL_TETRIS
 
@@ -13,153 +15,156 @@ void TOptionDisplay::_preInitialize()
     t_size begin_y = WINDOW_HEIGHT/4;
     t_size begin_x = WINDOW_WIDTH/3;
 
-    TControllBuilder bld;
 
-    bld.name("SPEED")->
-        point({begin_x-100,begin_y })->
-        font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
+
+    {
+        TControllBuilder bld({begin_x - 100, begin_y}, "SPEED");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
         background_color(TColorCode::black)->
         width(100)->
         height(50)->
-        enabled(false)->
-        kind(TOption::StaticLabel)->
-        add();
+        enabled(false);
 
-    bld.name("1")->
-        point({begin_x+60,begin_y })->
-        font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
+        addMenu( TStaticLabel::getInstance(bld));
+    }
+    {
+        TControllBuilder bld({begin_x+60,begin_y }, "1");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
         background_color(TColorCode::black)->
         width(40)->
         height(50)->
         enabled(true)->
-        kind(TOption::StaticLabel)->
         carot()->
-        grouping(0)->
-        add();
+        grouping(0);
 
-    bld.name("2")->
-        point({begin_x+120,begin_y })->
-        font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-        background_color(TColorCode::black)->
-        width(40)->
-        height(50)->
-        enabled(true)->
-        kind(TOption::StaticLabel)->
-        carot()->
-        grouping(0)->
-        add();
+        addMenu( TButton::getInstance(bld));
+    }
+    {
+        TControllBuilder bld({begin_x+120,begin_y }, "2");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
+            background_color(TColorCode::black)->
+            width(40)->
+            height(50)->
+            enabled(true)->
+            carot()->
+            grouping(0);
 
-    bld.name("3")->
-        point({begin_x+180,begin_y })->
-        font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-        background_color(TColorCode::black)->
-        width(40)->
-        height(50)->
-        enabled(true)->
-        kind(TOption::StaticLabel)->
-        carot()->
-        grouping(0)->
-        add();
+        addMenu( TButton::getInstance(bld));
+    }
+    {
+        TControllBuilder bld({begin_x+180,begin_y }, "3");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
+            background_color(TColorCode::black)->
+            width(40)->
+            height(50)->
+            enabled(true)->
+            carot()->
+            grouping(0);
 
-    bld.name("4")->
-        point({begin_x+240,begin_y })->
-        font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-        background_color(TColorCode::black)->
-        width(40)->
-        height(50)->
-        enabled(true)->
-        kind(TOption::StaticLabel)->
-        carot()->
-        grouping(0)->
-        add();
+        addMenu( TButton::getInstance(bld));
+    }
+    {
+        TControllBuilder bld({begin_x+240,begin_y }, "4");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
+            background_color(TColorCode::black)->
+            width(40)->
+            height(50)->
+            enabled(true)->
+            carot()->
+            grouping(0);
 
+        addMenu( TButton::getInstance(bld));
+    }
+    {
+        TControllBuilder bld({begin_x+60,begin_y+60 }, "5");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
+            background_color(TColorCode::black)->
+            width(40)->
+            height(50)->
+            enabled(true)->
+            carot()->
+            grouping(0);
 
-    bld.name("5")->
-        point({begin_x+60,begin_y+60 })->
-        font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-        background_color(TColorCode::black)->
-        width(40)->
-        height(50)->
-        enabled(true)->
-        kind(TOption::StaticLabel)->
-        carot()->
-        grouping(0)->
-        add();
+        addMenu( TButton::getInstance(bld));
+    }
+    {
+        TControllBuilder bld({begin_x+120,begin_y+60 }, "6");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
+            background_color(TColorCode::black)->
+            width(40)->
+            height(50)->
+            enabled(true)->
+            carot()->
+            grouping(0);
 
-    bld.name("6")->
-        point({begin_x+120,begin_y+60 })->
-        font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-        background_color(TColorCode::black)->
-        width(40)->
-        height(50)->
-        enabled(true)->
-        kind(TOption::StaticLabel)->
-        carot()->
-        grouping(0)->
-        add();
+        addMenu( TButton::getInstance(bld));
+    }
+    {
+        TControllBuilder bld({begin_x+180,begin_y+60 }, "7");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
+            background_color(TColorCode::black)->
+            width(40)->
+            height(50)->
+            enabled(true)->
+            carot()->
+            grouping(0);
 
-    bld.name("7")->
-        point({begin_x+180,begin_y+60 })->
-        font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-        background_color(TColorCode::black)->
-        width(40)->
-        height(50)->
-        enabled(true)->
-        kind(TOption::StaticLabel)->
-        carot()->
-        grouping(0)->
-        add();
+        addMenu( TButton::getInstance(bld));
+    }
+    {
+        TControllBuilder bld({begin_x+240,begin_y+60 }, "8");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
+            background_color(TColorCode::black)->
+            width(40)->
+            height(50)->
+            enabled(true)->
+            carot()->
+            grouping(0);
 
-    bld.name("8")->
-        point({begin_x+240,begin_y+60 })->
-        font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-        background_color(TColorCode::black)->
-        width(40)->
-        height(50)->
-        enabled(true)->
-        kind(TOption::StaticLabel)->
-        carot()->
-        grouping(0)->
-        add();
-
+        addMenu( TButton::getInstance(bld));
+    }
 
     begin_y = WINDOW_HEIGHT/4 + 200;
 
-    bld.name("MAP")->
-        point({begin_x-100,begin_y })->
-        font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-        background_color(TColorCode::black)->
-        width(100)->
-        height(50)->
-        enabled(false)->
-        kind(TOption::StaticLabel)->
-        add();
+    {
+        TControllBuilder bld({begin_x-100,begin_y }, "MAP");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
+            background_color(TColorCode::black)->
+            width(80)->
+            height(50)->
+            enabled(true)->
+            carot()->
+            grouping(1);
 
-    bld.name("Pyramid")->
-        point({begin_x+60,begin_y })->
-        font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-        background_color(TColorCode::black)->
-        width(120)->
-        height(50)->
-        enabled(true)->
-        kind(TOption::StaticLabel)->
-        carot()->
-        grouping(1)->
-        add();
+        addMenu( TStaticLabel::getInstance(bld));
+    }
 
-    bld.name("Reverse pyramid")->
-        point({begin_x+200,begin_y })->
-        font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-        background_color(TColorCode::black)->
-        width(220)->
-        height(50)->
-        enabled(true)->
-        kind(TOption::StaticLabel)->
-        carot()->
-        grouping(1)->
-        add();
+    {
+        TControllBuilder bld({begin_x+60,begin_y }, "Pyramid");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
+            background_color(TColorCode::black)->
+            width(120)->
+            height(50)->
+            enabled(true)->
+            carot()->
+            grouping(1);
 
-    addMenu(bld);
+        addMenu( TButton::getInstance(bld));
+    }
+
+    {
+        TControllBuilder bld({begin_x+190,begin_y }, "Rain");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
+            background_color(TColorCode::black)->
+            width(80)->
+            height(50)->
+            enabled(true)->
+            carot()->
+            grouping(1);
+
+        addMenu( TButton::getInstance(bld));
+    }
+
 }
 
 void TOptionDisplay::_timer()

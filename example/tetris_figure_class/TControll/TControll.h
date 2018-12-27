@@ -5,7 +5,10 @@
 #ifndef TETRIS_FIGURE_CLASS_TCONTROLL_H
 #define TETRIS_FIGURE_CLASS_TCONTROLL_H
 
+#include <atomic>
+
 #include "THeader.h"
+#include "TControll/TControllBuilder.h"
 
 SDL_TETRIS_BEGIN
 
@@ -14,100 +17,93 @@ class TControll {
 public:
 
     inline const TPoint &getPoint() const noexcept{
-        return point;
+        return m_basic->point;
     }
 
     inline void setPoint(const TPoint &point) noexcept{
-        TControll::point = point;
+        m_basic->point = point;
     }
     inline const t_size getWidth() const noexcept{
-        return width;
+        return  m_basic->width;
     }
     inline void setWidth(t_size width) noexcept{
-        TControll::width = width;
+        m_basic->width = width;
     }
     inline const t_size getHeight() const noexcept{
-        return height;
+        return m_basic->height;
     }
     inline void setHeight(t_size height) noexcept{
-        TControll::height = height;
+        m_basic->height = height;
     }
-    inline const TFont &getFont() const noexcept{
-        return font;
+    inline const TFont& getFont() const noexcept{
+        return  m_basic->font;
     }
     inline void setFont(const TFont &font) noexcept{
-        TControll::font = font;
+        m_basic->font = font;
     }
-    inline const TColor &getBackground_color() const noexcept{
-        return background_color;
+    inline const TColor getBackground_color() const noexcept{
+        return  m_basic->background_color;
     }
     inline void setBackground_color(const TColor &background_color) noexcept{
-        TControll::background_color = background_color;
+        m_basic->background_color = background_color;
     }
-    inline const std::string &getName() const noexcept{
-        return name;
+    inline const std::string getName() const noexcept{
+        return   m_basic->name;
     }
     inline void setName(const std::string &name) noexcept{
-        TControll::name = name;
-    }
-    inline const TDisplay getDisplay() const noexcept{
-        return display;
-    }
-    inline void setDisplay(TDisplay display) noexcept{
-        TControll::display = display;
+        m_basic->name = name;
     }
     inline const bool isEnabled() const noexcept{
-        return enabled;
+        return  m_basic->enabled;
     }
     inline void setEnabled(bool enabled) noexcept{
-        TControll::enabled = enabled;
+        m_basic->enabled = enabled;
     }
-    inline const bool isMultiselected() const noexcept{
-        return multiselected;
-    }
-    inline void setMultiselected(bool multiselected) noexcept{
-        TControll::multiselected = multiselected;
-    }
-    inline const TOption getKind() const noexcept{
-        return kind;
-    }
-    inline void setKind(TOption kind) noexcept{
-        TControll::kind = kind;
+    inline const TControllKind getKind() const noexcept{
+        return  m_basic->kind;
     }
     inline const int getGroup() const noexcept{
-        return group;
+        return m_basic->group;
     }
     inline void setGroup(int group) noexcept{
-        TControll::group = group;
+        m_basic->group = group;
     }
     inline const bool isCarot() const noexcept{
-        return carot;
+        return  m_basic->carot;
     }
     inline void setCarot(bool carot) noexcept{
-        TControll::carot = carot;
+        m_basic->carot = carot;
+    }
+    inline const TDisplay getDisplay() const noexcept{
+        return m_basic->display;
+    }
+    inline void setDisplay(TDisplay display) noexcept{
+        m_basic->display = display;
+    }
+
+protected:
+
+    TControll(const TControllBuilder& bld, const TControllKind kind);
+
+    inline const bool isMultiselected() const noexcept{
+        m_basic->multiselected;
+    }
+    inline void setMultiselected(bool multiselected) noexcept{
+        m_basic->multiselected = multiselected;
     }
     inline const bool isClicked() const noexcept{
-        return clicked;
+        m_basic->clicked;
     }
     inline void setClicked(bool clicked) noexcept{
-        TControll::clicked = clicked;
+        m_basic->clicked = clicked;
     }
 
-private:
-    TPoint point;
-    t_size width = 100;
-    t_size height = 50;
-    TFont font = {"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white};
-    TColor background_color = TColorCode::black;
-    std::string name = "";
-    TDisplay display = TDisplay::None;
-    bool enabled = true;
-    bool multiselected = false;
-    TOption kind = TOption::StaticLabel;
-    int group = -1;
-    bool carot = false;
+    virtual void lButtonClicked(){}
 
-    bool clicked = false;
+
+private:
+
+    std::shared_ptr<TControllBasic> m_basic;
 
 };
 

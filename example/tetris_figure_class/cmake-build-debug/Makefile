@@ -150,6 +150,60 @@ Main.cpp.s:
 	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Main.cpp.s
 .PHONY : Main.cpp.s
 
+TControll/TButton.o: TControll/TButton.cpp.o
+
+.PHONY : TControll/TButton.o
+
+# target to build an object file
+TControll/TButton.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TControll/TButton.cpp.o
+.PHONY : TControll/TButton.cpp.o
+
+TControll/TButton.i: TControll/TButton.cpp.i
+
+.PHONY : TControll/TButton.i
+
+# target to preprocess a source file
+TControll/TButton.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TControll/TButton.cpp.i
+.PHONY : TControll/TButton.cpp.i
+
+TControll/TButton.s: TControll/TButton.cpp.s
+
+.PHONY : TControll/TButton.s
+
+# target to generate assembly for a file
+TControll/TButton.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TControll/TButton.cpp.s
+.PHONY : TControll/TButton.cpp.s
+
+TControll/TButtonBasic.o: TControll/TButtonBasic.cpp.o
+
+.PHONY : TControll/TButtonBasic.o
+
+# target to build an object file
+TControll/TButtonBasic.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TControll/TButtonBasic.cpp.o
+.PHONY : TControll/TButtonBasic.cpp.o
+
+TControll/TButtonBasic.i: TControll/TButtonBasic.cpp.i
+
+.PHONY : TControll/TButtonBasic.i
+
+# target to preprocess a source file
+TControll/TButtonBasic.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TControll/TButtonBasic.cpp.i
+.PHONY : TControll/TButtonBasic.cpp.i
+
+TControll/TButtonBasic.s: TControll/TButtonBasic.cpp.s
+
+.PHONY : TControll/TButtonBasic.s
+
+# target to generate assembly for a file
+TControll/TButtonBasic.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TControll/TButtonBasic.cpp.s
+.PHONY : TControll/TButtonBasic.cpp.s
+
 TControll/TControll.o: TControll/TControll.cpp.o
 
 .PHONY : TControll/TControll.o
@@ -204,32 +258,86 @@ TControll/TControllBuilder.cpp.s:
 	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TControll/TControllBuilder.cpp.s
 .PHONY : TControll/TControllBuilder.cpp.s
 
-TControll/TGroupControll.o: TControll/TGroupControll.cpp.o
+TControll/TEditLabel.o: TControll/TEditLabel.cpp.o
 
-.PHONY : TControll/TGroupControll.o
+.PHONY : TControll/TEditLabel.o
 
 # target to build an object file
-TControll/TGroupControll.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TControll/TGroupControll.cpp.o
-.PHONY : TControll/TGroupControll.cpp.o
+TControll/TEditLabel.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TControll/TEditLabel.cpp.o
+.PHONY : TControll/TEditLabel.cpp.o
 
-TControll/TGroupControll.i: TControll/TGroupControll.cpp.i
+TControll/TEditLabel.i: TControll/TEditLabel.cpp.i
 
-.PHONY : TControll/TGroupControll.i
+.PHONY : TControll/TEditLabel.i
 
 # target to preprocess a source file
-TControll/TGroupControll.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TControll/TGroupControll.cpp.i
-.PHONY : TControll/TGroupControll.cpp.i
+TControll/TEditLabel.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TControll/TEditLabel.cpp.i
+.PHONY : TControll/TEditLabel.cpp.i
 
-TControll/TGroupControll.s: TControll/TGroupControll.cpp.s
+TControll/TEditLabel.s: TControll/TEditLabel.cpp.s
 
-.PHONY : TControll/TGroupControll.s
+.PHONY : TControll/TEditLabel.s
 
 # target to generate assembly for a file
-TControll/TGroupControll.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TControll/TGroupControll.cpp.s
-.PHONY : TControll/TGroupControll.cpp.s
+TControll/TEditLabel.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TControll/TEditLabel.cpp.s
+.PHONY : TControll/TEditLabel.cpp.s
+
+TControll/TGroupControllManager.o: TControll/TGroupControllManager.cpp.o
+
+.PHONY : TControll/TGroupControllManager.o
+
+# target to build an object file
+TControll/TGroupControllManager.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TControll/TGroupControllManager.cpp.o
+.PHONY : TControll/TGroupControllManager.cpp.o
+
+TControll/TGroupControllManager.i: TControll/TGroupControllManager.cpp.i
+
+.PHONY : TControll/TGroupControllManager.i
+
+# target to preprocess a source file
+TControll/TGroupControllManager.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TControll/TGroupControllManager.cpp.i
+.PHONY : TControll/TGroupControllManager.cpp.i
+
+TControll/TGroupControllManager.s: TControll/TGroupControllManager.cpp.s
+
+.PHONY : TControll/TGroupControllManager.s
+
+# target to generate assembly for a file
+TControll/TGroupControllManager.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TControll/TGroupControllManager.cpp.s
+.PHONY : TControll/TGroupControllManager.cpp.s
+
+TControll/TRadioButton.o: TControll/TRadioButton.cpp.o
+
+.PHONY : TControll/TRadioButton.o
+
+# target to build an object file
+TControll/TRadioButton.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TControll/TRadioButton.cpp.o
+.PHONY : TControll/TRadioButton.cpp.o
+
+TControll/TRadioButton.i: TControll/TRadioButton.cpp.i
+
+.PHONY : TControll/TRadioButton.i
+
+# target to preprocess a source file
+TControll/TRadioButton.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TControll/TRadioButton.cpp.i
+.PHONY : TControll/TRadioButton.cpp.i
+
+TControll/TRadioButton.s: TControll/TRadioButton.cpp.s
+
+.PHONY : TControll/TRadioButton.s
+
+# target to generate assembly for a file
+TControll/TRadioButton.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TControll/TRadioButton.cpp.s
+.PHONY : TControll/TRadioButton.cpp.s
 
 TControll/TStaticLabel.o: TControll/TStaticLabel.cpp.o
 
@@ -837,15 +945,27 @@ help:
 	@echo "... Main.o"
 	@echo "... Main.i"
 	@echo "... Main.s"
+	@echo "... TControll/TButton.o"
+	@echo "... TControll/TButton.i"
+	@echo "... TControll/TButton.s"
+	@echo "... TControll/TButtonBasic.o"
+	@echo "... TControll/TButtonBasic.i"
+	@echo "... TControll/TButtonBasic.s"
 	@echo "... TControll/TControll.o"
 	@echo "... TControll/TControll.i"
 	@echo "... TControll/TControll.s"
 	@echo "... TControll/TControllBuilder.o"
 	@echo "... TControll/TControllBuilder.i"
 	@echo "... TControll/TControllBuilder.s"
-	@echo "... TControll/TGroupControll.o"
-	@echo "... TControll/TGroupControll.i"
-	@echo "... TControll/TGroupControll.s"
+	@echo "... TControll/TEditLabel.o"
+	@echo "... TControll/TEditLabel.i"
+	@echo "... TControll/TEditLabel.s"
+	@echo "... TControll/TGroupControllManager.o"
+	@echo "... TControll/TGroupControllManager.i"
+	@echo "... TControll/TGroupControllManager.s"
+	@echo "... TControll/TRadioButton.o"
+	@echo "... TControll/TRadioButton.i"
+	@echo "... TControll/TRadioButton.s"
 	@echo "... TControll/TStaticLabel.o"
 	@echo "... TControll/TStaticLabel.i"
 	@echo "... TControll/TStaticLabel.s"

@@ -31,7 +31,7 @@ public:
 		return this->m_display == dp->m_display;
 	}
 
-	void addMenu(const TControllBuilder& bld);
+	void addMenu(const std::shared_ptr<TControll> ctl);
     bool clickedMenuEvent(const TPoint& point);
 
 	void erase();
@@ -81,10 +81,11 @@ private:
 	virtual void _timer() =0;
 	virtual void _draw() =0;
 
-	std::unordered_map<int, std::vector<std::shared_ptr<TControll>>> m_menus;
+	std::vector<std::shared_ptr<TControll>> m_menus;
 	std::string m_backgroundImgPath;
     std::shared_ptr<TWindow> m_window;
 
+    bool m_drawMenus = true;
 	bool m_goBack;
 	bool m_canGoOtherDisplay;
 	std::atomic_bool m_run = true;

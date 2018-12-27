@@ -63,7 +63,7 @@ add_executable(tetris_figure_class
         TMain/TMainOnlineDisplay.h
         TMain/TMainOnlineDisplay.cpp
         TOption/TOptionDisplay.cpp
-        TOption/TOptionDisplay.h TDisplay/TWindow.cpp TDisplay/TWindow.h TOption/TOptionManager.cpp TOption/TOptionManager.h TControll/TControll.cpp TControll/TControll.h TControll/TStaticLabel.cpp TControll/TStaticLabel.h TControll/TGroupControll.cpp TControll/TGroupControll.h)
+        TOption/TOptionDisplay.h TDisplay/TWindow.cpp TDisplay/TWindow.h TOption/TOptionManager.cpp TOption/TOptionManager.h TControll/TControll.cpp TControll/TControll.h TControll/TStaticLabel.cpp TControll/TStaticLabel.h TControll/TButton.cpp TControll/TButton.h TControll/TButtonBasic.cpp TControll/TButtonBasic.h TControll/TRadioButton.cpp TControll/TRadioButton.h TControll/TEditLabel.cpp TControll/TEditLabel.h TControll/TGroupControllManager.cpp TControll/TGroupControllManager.h)
 
 include_directories(tetris_figure_class
         SYSTEM ${Boost_INCLUDE_DIR}

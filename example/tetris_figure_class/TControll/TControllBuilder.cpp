@@ -6,95 +6,80 @@
 
 SDL_TETRIS
 
-TControllBuilder::TControllBuilder()
-    :m_currentMenu(std::make_shared<TControll>())
+TControllBuilder::TControllBuilder(const TPoint& point, const std::string& str)
 {
-    m_menus = container_type([](const value_type& lhs, const value_type& rhs) -> bool
-    {
-       return lhs->getPoint().y < rhs->getPoint().y ||
-       lhs->getPoint().x < rhs->getPoint().x ||
-       lhs->getHeight() < rhs->getHeight();
-    });
+    m_basic.id = getId();
+    m_basic.point = point;
+    m_basic.name = str;
 }
 
-TControllBuilder* TControllBuilder::name(const std::string& name)
+TControllBuilder::TControllBuilder(TPoint&& point, std::string&& str)
 {
-    m_currentMenu->setName(name);
-    return this;
+    m_basic.id = getId();
+    m_basic.point = point;
+    m_basic.name = str;
 }
+
 
 TControllBuilder* TControllBuilder::font(const TFont& font)
 {
-    m_currentMenu->setFont(font);
-    return this;
-}
-
-TControllBuilder* TControllBuilder::point(const TPoint& point)
-{
-    m_currentMenu->setPoint(point);
+    m_basic.font = font;
     return this;
 }
 
 TControllBuilder* TControllBuilder::background_color(const TColorCode color)
 {
-    m_currentMenu->setBackground_color(TColor{color});
+    m_basic.background_color = color;
     return this;
 }
 
 TControllBuilder* TControllBuilder::width(const t_size size)
 {
-    this->m_currentMenu->setWidth(size);
+    m_basic.width = size;
     return this;
 
 }
 
 TControllBuilder* TControllBuilder::height(const t_size size)
 {
-    this->m_currentMenu->setHeight(size);
+    m_basic.height = size;
     return this;
 }
 
 TControllBuilder* TControllBuilder::enabled(const bool enable)
 {
-    m_currentMenu->setEnabled(enable);
+    m_basic.enabled = enable;
     return this;
 }
 
 
 TControllBuilder* TControllBuilder::display(const TDisplay display)
 {
-    m_currentMenu->setDisplay(display);
+    m_basic.display = display;
     return this;
 }
 
 TControllBuilder* TControllBuilder::multiselected(const bool selected)
 {
-    m_currentMenu->setMultiselected( selected);
-    return this;
-}
-
-TControllBuilder* TControllBuilder::kind(const TOption option)
-{
-    m_currentMenu->setKind( option);
+    m_basic.multiselected = selected;
     return this;
 }
 
 TControllBuilder* TControllBuilder::grouping(const size_t idx)
 {
-    m_currentMenu->setGroup(idx);
+    m_basic.group = idx;
     return this;
 }
 
 TControllBuilder* TControllBuilder::carot()
 {
-    m_currentMenu->setCarot(true);
+    m_basic.carot = true;
     return this;
 }
 
-TControllBuilder* TControllBuilder::add()
+std::shared_ptr<TControllBasic> TControllBuilder::build() const
 {
-    m_menus.insert( m_currentMenu);
-    m_currentMenu.reset();
-    m_currentMenu = std::make_shared<TControll>();
-    return this;
+    auto basic = std::make_shared<TControllBasic>(m_basic);
+    return basic;
 }
+
