@@ -42,13 +42,15 @@ public:
 	inline void setBackgroundImgPath(const std::string &path) { m_backgroundImgPath = path;}
 	inline void setGoBack(const bool end) { m_goBack = end;}
 	inline void setRun(const bool run) { m_run = run;}
+	inline void setStopDraw(const bool set) { m_stopDraw = set;}
 
 	inline const bool getGoBack() const noexcept{ return m_goBack;}
 	inline const bool getRun() const noexcept{ return m_run;}
+	inline const bool getSetDraw() const noexcept{ return m_stopDraw;}
 	inline const TDisplay getDisplay() const noexcept{ return m_display;}
 
-
     virtual ~TDisplayInterface();
+	virtual void _event(const SDL_Event* event);
 	virtual bool clickedBack(const TDisplay disply) = 0;
 
 protected:
@@ -69,6 +71,7 @@ private:
 
 	void _initializing();
     void _drawMenus();
+    void _drawCarot();
 	void _release();
 
     inline std::shared_ptr<SDL_Event> getSDLEvent() const noexcept
@@ -77,7 +80,7 @@ private:
     }
 
 
-	virtual void _event(const SDL_Event* event) =0;
+
 	virtual void _timer() =0;
 	virtual void _draw() =0;
 
@@ -85,7 +88,7 @@ private:
 	std::string m_backgroundImgPath;
     std::shared_ptr<TWindow> m_window;
 
-    bool m_drawMenus = true;
+    bool m_stopDraw = false;
 	bool m_goBack;
 	bool m_canGoOtherDisplay;
 	std::atomic_bool m_run = true;

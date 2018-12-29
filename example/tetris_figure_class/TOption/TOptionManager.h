@@ -21,17 +21,17 @@ public:
     bool m_enabledGhostMode = false;
     bool m_enabledCombo = false;
 
-    TSpeed getM_speed() const;
-    void setM_speed(TSpeed m_speed);
+    TSpeed getSpeed() const;
+    void setSpeed(TSpeed m_speed);
 
-    TMap getM_map() const;
-    void setM_map(TMap m_map);
+    TMap getMap() const;
+    void setMap(TMap m_map);
 
-    bool isM_enabledGhostMode() const;
-    void setM_enabledGhostMode(bool m_enabledGhostMode);
+    bool isEnabledGhostMode() const;
+    void setEnabledGhostMode(bool m_enabledGhostMode);
 
-    bool isM_enabledCombo() const;
-    void setM_enabledCombo(bool m_enabledCombo);
+    bool isEnabledCombo() const;
+    void setEnabledCombo(bool m_enabledCombo);
 
     static std::shared_ptr<TOptionManager> getInstance();
 

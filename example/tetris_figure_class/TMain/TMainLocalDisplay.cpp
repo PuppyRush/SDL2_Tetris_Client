@@ -77,29 +77,11 @@ void TMainLocalDisplay::_timer()
 
 void TMainLocalDisplay::_event(const SDL_Event* event) {
 
-    switch (event->type) {
-        case SDL_QUIT:
-            setRun(false);
-            break;
-        case SDL_KEYDOWN:
-            break;
-        case SDL_MOUSEBUTTONDOWN: {
-            const TPoint point(event->button.x, event->button.y);
-            if (clickedMenuEvent(point))
-            {
-                setRun(false);
-                break;
-            }
-
-            break;
-        }
-        default:;
-    }
+    TDisplayInterface::_event(event);
 }
 
 void TMainLocalDisplay::_draw()
 {
-    auto renderer = getRenderer().get();
-    auto window = getWindow().get();
 
+    setStopDraw(true);
 }

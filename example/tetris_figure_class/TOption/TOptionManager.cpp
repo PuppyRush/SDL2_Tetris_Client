@@ -12,34 +12,34 @@ std::shared_ptr<TOptionManager> TOptionManager::getInstance()
     return inst;
 }
 
-TSpeed TOptionManager::getM_speed() const {
+TSpeed TOptionManager::getSpeed() const {
     return m_speed;
 }
 
-void TOptionManager::setM_speed(TSpeed m_speed) {
+void TOptionManager::setSpeed(TSpeed m_speed) {
     TOptionManager::m_speed = m_speed;
 }
 
-TMap TOptionManager::getM_map() const {
+TMap TOptionManager::getMap() const {
     return m_map;
 }
 
-void TOptionManager::setM_map(TMap m_map) {
+void TOptionManager::setMap(TMap m_map) {
     TOptionManager::m_map = m_map;
 }
 
-bool TOptionManager::isM_enabledGhostMode() const {
+bool TOptionManager::isEnabledGhostMode() const {
     return m_enabledGhostMode;
 }
 
-void TOptionManager::setM_enabledGhostMode(bool m_enabledGhostMode) {
+void TOptionManager::setEnabledGhostMode(bool m_enabledGhostMode) {
     TOptionManager::m_enabledGhostMode = m_enabledGhostMode;
 }
 
-bool TOptionManager::isM_enabledCombo() const {
+bool TOptionManager::isEnabledCombo() const {
     return m_enabledCombo;
 }
 
-void TOptionManager::setM_enabledCombo(bool m_enabledCombo) {
+void TOptionManager::setEnabledCombo(bool m_enabledCombo) {
     TOptionManager::m_enabledCombo = m_enabledCombo;
 }

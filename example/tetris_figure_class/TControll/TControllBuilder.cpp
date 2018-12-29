@@ -3,6 +3,7 @@
 //
 
 #include "TControllBuilder.h"
+#include "TGroupControllManager.h"
 
 SDL_TETRIS
 
@@ -35,6 +36,7 @@ TControllBuilder* TControllBuilder::background_color(const TColorCode color)
 
 TControllBuilder* TControllBuilder::width(const t_size size)
 {
+    m_basic.autoSize = false;
     m_basic.width = size;
     return this;
 
@@ -42,6 +44,7 @@ TControllBuilder* TControllBuilder::width(const t_size size)
 
 TControllBuilder* TControllBuilder::height(const t_size size)
 {
+    m_basic.autoSize = false;
     m_basic.height = size;
     return this;
 }
@@ -77,8 +80,21 @@ TControllBuilder* TControllBuilder::carot()
     return this;
 }
 
+TControllBuilder* TControllBuilder::addCallback(const std::function<void(TOptionManager& mng)>& fn)
+{
+    m_basic.callbackAry.emplace_back(fn);
+    return this;
+}
+
 std::shared_ptr<TControllBasic> TControllBuilder::build() const
 {
+    if(m_basic.group != TGroupControllManager::NONE)
+    {
+        TGroupControllManager::getInstance()->add(m_basic.group, m_basic.id);
+        if(m_basic.multiselected)
+            TGroupControllManager::getInstance()->setMultiselect(m_basic.group);
+    }
+
     auto basic = std::make_shared<TControllBasic>(m_basic);
     return basic;
 }

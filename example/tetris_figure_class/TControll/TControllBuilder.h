@@ -11,6 +11,7 @@
 #include <atomic>
 
 #include "THeader.h"
+#include "../TOption/TOptionManager.h"
 
 SDL_TETRIS_BEGIN
 
@@ -30,6 +31,7 @@ public:
     TControllBuilder* multiselected(const bool selected);
     TControllBuilder* grouping(const size_t idx);
     TControllBuilder* carot();
+    TControllBuilder* addCallback(const std::function<void(TOptionManager& mng)>& fn);
 
     std::shared_ptr<TControllBasic> build() const;
 

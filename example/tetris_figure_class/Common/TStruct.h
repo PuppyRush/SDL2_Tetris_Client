@@ -7,6 +7,9 @@
 
 #include <cassert>
 #include <string>
+#include <functional>
+
+#include <SDL2/SDL_image.h>
 
 #include "TType.h"
 #include "TProperty.h"
@@ -58,6 +61,19 @@ public:
         }
     }
 
+    static SDL_Color getColor(const TColorCode colorCode)
+    {
+        TColor col(colorCode);
+        SDL_Color color{col.r, col.g, col.b,255};
+        return color;
+    }
+
+    static const SDL_Color getTransparent()
+    {
+        TColor col(TColorCode::white);
+        SDL_Color color{col.r, col.g, col.b,0};
+        return color;
+    }
 };
 
 typedef struct TPoint {
@@ -86,7 +102,7 @@ typedef struct TFont
     {}
 }TFont;
 
-
+class TOptionManager;
 typedef struct TControllBasic
 {
     t_id    id;
@@ -102,14 +118,18 @@ typedef struct TControllBasic
     TControllKind kind = TControllKind::StaticLabel;
     int group = -1;
     bool carot = false;
-    bool clicked = false;
+    bool autoSize = true;
+    bool selected = false;
+
+    std::vector< std::function<void(TOptionManager& mng)>> callbackAry;
 
     TControllBasic() = default;
     TControllBasic(const TControllBasic& b)
         :id(b.id), point(b.point), width(b.width), height(b.height)
         ,font(b.font), background_color(b.background_color), name(b.name),
         display(b.display), enabled(b.enabled), multiselected(b.multiselected),
-        kind(b.kind), group(b.group), carot(b.carot),clicked(b.clicked)
+        kind(b.kind), group(b.group), carot(b.carot),
+        autoSize(b.autoSize), selected(b.selected)
     {
     }
 

@@ -13,11 +13,11 @@ class TRadioButton final : public TButtonBasic{
 public:
 
 
-    inline const bool isClicked() const noexcept{
-        TButtonBasic::isClicked();
+    inline const bool isSelected() const noexcept{
+        TButtonBasic::isSelected();
     }
-    inline void setClicked(bool clicked) noexcept{
-        TButtonBasic::setClicked(clicked);
+    inline void setSelected(bool clicked) noexcept{
+        TButtonBasic::setSelected(clicked);
     }
 
     static std::shared_ptr<TButtonBasic> getInstance(const TControllBuilder& bld);

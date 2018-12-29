@@ -80,22 +80,27 @@ public:
     inline void setDisplay(TDisplay display) noexcept{
         m_basic->display = display;
     }
+    inline const bool getAutoSize() const noexcept{
+        return  m_basic->autoSize;
+    }
+    inline auto getCallbackAry() const noexcept{
+        return  m_basic->callbackAry;
+    }
+    inline const bool isSelected() const noexcept{
+        return m_basic->selected;
+    }
+    inline void setSelected(bool selected) noexcept{
+        m_basic->selected = selected;
+    }
 
 protected:
 
     TControll(const TControllBuilder& bld, const TControllKind kind);
-
     inline const bool isMultiselected() const noexcept{
         m_basic->multiselected;
     }
     inline void setMultiselected(bool multiselected) noexcept{
         m_basic->multiselected = multiselected;
-    }
-    inline const bool isClicked() const noexcept{
-        m_basic->clicked;
-    }
-    inline void setClicked(bool clicked) noexcept{
-        m_basic->clicked = clicked;
     }
 
     virtual void lButtonClicked(){}
