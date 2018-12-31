@@ -8,6 +8,7 @@
 #include <cassert>
 #include <string>
 #include <functional>
+#include <iostream>
 
 #include <SDL2/SDL_image.h>
 
@@ -35,6 +36,7 @@ public:
                 g = 0;
                 b = 0;
                 break;
+            case TColorCode::none:  //pass
             case TColorCode::white:
                 r = 255;
                 g = 255;
@@ -55,7 +57,23 @@ public:
                 g = 0;
                 b = 255;
                 break;
+            case TColorCode::orange:
+                r = 255;
+                g = 140;
+                b = 0;
+                break;
+            case TColorCode::yellow:
+                r = 255;
+                g = 255;
+                b = 0;
+                break;
+            case TColorCode::purple:
+                r = 127;
+                g = 0;
+                b = 255;
+                break;
             default:
+                std::cerr << "cant found : " <<  static_cast<int>(code) << std::endl;
                 assert(0);
                 break;
         }
@@ -121,7 +139,7 @@ typedef struct TControllBasic
     bool autoSize = true;
     bool selected = false;
 
-    std::vector< std::function<void(TOptionManager& mng)>> callbackAry;
+    std::vector< std::function<void(TOptionManager& mng, bool isSelected)>> callbackAry;
 
     TControllBasic() = default;
     TControllBasic(const TControllBasic& b)

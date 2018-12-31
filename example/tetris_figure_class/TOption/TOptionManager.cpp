@@ -43,3 +43,13 @@ bool TOptionManager::isEnabledCombo() const {
 void TOptionManager::setEnabledCombo(bool m_enabledCombo) {
     TOptionManager::m_enabledCombo = m_enabledCombo;
 }
+
+bool TOptionManager::isDrawLine() const
+{
+    return TOptionManager::m_drawline;
+}
+
+void TOptionManager::setDrawLine(bool drawline)
+{
+    TOptionManager::m_drawline = drawline;
+}

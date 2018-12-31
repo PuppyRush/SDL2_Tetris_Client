@@ -19,8 +19,8 @@ public:
     const t_age getAge () const;
     void setAge (t_age m_age);
     
-    const TColorCode getColor () const;
-    void setColor (TColorCode m_color);
+    const TColor getColor () const;
+    void setColor (TColor color);
 
     UnitType getType () const;
     void setType (UnitType m_type);
@@ -34,7 +34,7 @@ public:
 private:
     TPoint m_point;
     t_age m_age;
-    TColorCode m_color;
+    TColor m_color;
     UnitType m_type;
     
 };

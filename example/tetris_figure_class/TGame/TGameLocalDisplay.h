@@ -37,6 +37,7 @@ private:
     virtual void _timer() final;
     virtual void _draw() final;
 
+    bool m_drawLine;
     std::shared_ptr<BoardController> m_ctl = BoardController::getInstance();
 };
 

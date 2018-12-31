@@ -80,7 +80,7 @@ TControllBuilder* TControllBuilder::carot()
     return this;
 }
 
-TControllBuilder* TControllBuilder::addCallback(const std::function<void(TOptionManager& mng)>& fn)
+TControllBuilder* TControllBuilder::addCallback(const std::function<void(TOptionManager& mng, bool isSelected)>& fn)
 {
     m_basic.callbackAry.emplace_back(fn);
     return this;

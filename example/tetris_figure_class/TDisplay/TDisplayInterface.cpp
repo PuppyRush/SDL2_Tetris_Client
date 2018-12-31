@@ -157,6 +157,7 @@ bool TDisplayInterface::clickedMenuEvent(const TPoint& point)
     {
         const auto menu_x = menu->getPoint().x;
         const auto menu_y = menu->getPoint().y;
+        bool isSelected = false;
 
         //check hit
         if ((menu_x <= point.x && point.x <= menu_x + menu->getWidth())
@@ -171,15 +172,18 @@ bool TDisplayInterface::clickedMenuEvent(const TPoint& point)
             setDisplay(menu->getDisplay());
             menu->setSelected(true);
 
-            for( auto callback : menu->getCallbackAry())
-            {
-                callback(*TOptionManager::getInstance().get());
-            }
-
-            return true;
+            return isSelected = true;
         }
-        else
+        else {
             menu->setSelected(false);
+            isSelected = false;
+        }
+
+        for( auto callback : menu->getCallbackAry())
+        {
+            callback(*TOptionManager::getInstance().get(), isSelected);
+        }
+
     }
     return false;
 }

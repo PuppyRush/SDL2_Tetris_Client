@@ -44,14 +44,14 @@ void TFigureUnit::setAge (t_age m_age)
     TFigureUnit::m_age = m_age;
 }
 
-const TColorCode TFigureUnit::getColor () const
+const TColor TFigureUnit::getColor () const
 {
     return m_color;
 }
 
-void TFigureUnit::setColor (TColorCode m_color)
+void TFigureUnit::setColor (TColor color)
 {
-    TFigureUnit::m_color = m_color;
+    TFigureUnit::m_color = color;
 }
 
 UnitType TFigureUnit::getType () const

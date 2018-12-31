@@ -33,9 +33,11 @@ public:
     inline void goRight() const
     {m_board->goRight ();}
     
-    inline TFigureBoard::BoardType getGameBoard() const
-    {return TFigureBoard::get ()->getBoard ();}
-    
+    inline TFigureBoard::board_type getGameBoard() const
+    {return TFigureBoard::getInstance()->getBoard ();}
+
+    inline TFigureBoard::nextfigure_board_type getNextFigureBoard() const
+    {return TFigureBoard::getInstance()->getNextFigureBoard ();}
     //singleton
     static  std::shared_ptr<BoardController> getInstance()
     {

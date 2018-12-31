@@ -7,7 +7,7 @@
 SDL_TETRIS
 
 BoardController::BoardController()
-:m_board(TFigureBoard::get ()
+:m_board(TFigureBoard::getInstance()
 )
 {
 

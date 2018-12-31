@@ -31,7 +31,7 @@ public:
     TControllBuilder* multiselected(const bool selected);
     TControllBuilder* grouping(const size_t idx);
     TControllBuilder* carot();
-    TControllBuilder* addCallback(const std::function<void(TOptionManager& mng)>& fn);
+    TControllBuilder* addCallback(const std::function<void(TOptionManager& mng, bool isSelected)>& fn);
 
     std::shared_ptr<TControllBasic> build() const;
 

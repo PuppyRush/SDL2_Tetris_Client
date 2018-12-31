@@ -63,6 +63,7 @@ const std::shared_ptr<TFigure> TFigure::copy() const
 {
     auto copied = _copy();
     copied->m_point = this->m_point;
+    copied->m_color = this->m_color;
     copied->m_height = this->m_height;
     copied->m_width = this->m_width;
     copied->m_figureType = this->m_figureType;
@@ -109,4 +110,13 @@ void TFigure::_goDown ()
 
 const TFigureType TFigure::getRandomlyFigureType() const {
     return EnumHelper<TFigureType>::getRandomly(getTypeBegin(), getTypeEnd());
+}
+
+void TFigure::_resetRelateivePoint(const TPoint& newPt)
+{
+    const auto ptDis = TPoint{newPt.x - getPoint().x, newPt.y - getPoint().y};
+    for(auto& p : m_relativeCoord)
+    {
+        p.setPoint({p.getPoint().x+ptDis.x, p.getPoint().y+ptDis.y});
+    }
 }

@@ -16,10 +16,6 @@ class TOptionManager final
 
 public:
 
-    TSpeed m_speed = TSpeed::_3;
-    TMap    m_map = TMap::None;
-    bool m_enabledGhostMode = false;
-    bool m_enabledCombo = false;
 
     TSpeed getSpeed() const;
     void setSpeed(TSpeed m_speed);
@@ -33,9 +29,19 @@ public:
     bool isEnabledCombo() const;
     void setEnabledCombo(bool m_enabledCombo);
 
+    bool isDrawLine() const;
+    void setDrawLine(bool drawline);
+
     static std::shared_ptr<TOptionManager> getInstance();
 
 private:
+    TSpeed m_speed = TSpeed::_3;
+    TMap    m_map = TMap::None;
+    bool m_enabledGhostMode = false;
+    bool m_enabledCombo = false;
+
+    //graphic
+    bool m_drawline;
 
     TOptionManager() = default;
 };

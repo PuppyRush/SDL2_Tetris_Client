@@ -82,6 +82,7 @@ private:
 
 };
 
+
 SDL_TETRIS_END
 
 #endif //TERIS_FIGURE_CLASS_TTYPETRAITS_H

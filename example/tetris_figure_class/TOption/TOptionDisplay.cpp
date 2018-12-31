@@ -32,7 +32,7 @@ void TOptionDisplay::_preInitialize() {
             height(50)->
             enabled(true)->
             carot()->
-            addCallback([](TOptionManager &mng) {
+            addCallback([](TOptionManager &mng, bool isSelected) {
                  mng.setSpeed(TSpeed::_1);
              })->
             grouping(0);
@@ -47,7 +47,7 @@ void TOptionDisplay::_preInitialize() {
             height(50)->
             enabled(true)->
             carot()->
-            addCallback([](TOptionManager &mng) {
+            addCallback([](TOptionManager &mng, bool isSelected) {
                mng.setSpeed(TSpeed::_2);
             })->
             grouping(0);
@@ -62,7 +62,7 @@ void TOptionDisplay::_preInitialize() {
             height(50)->
             enabled(true)->
             carot()->
-            addCallback([](TOptionManager &mng) {
+            addCallback([](TOptionManager &mng, bool isSelected) {
                mng.setSpeed(TSpeed::_3);
              })->
             grouping(0);
@@ -77,7 +77,7 @@ void TOptionDisplay::_preInitialize() {
             height(50)->
             enabled(true)->
             carot()->
-            addCallback([](TOptionManager &mng) {
+            addCallback([](TOptionManager &mng, bool isSelected) {
              mng.setSpeed(TSpeed::_4);
             })->
             grouping(0);
@@ -92,7 +92,7 @@ void TOptionDisplay::_preInitialize() {
             height(50)->
             enabled(true)->
             carot()->
-            addCallback([](TOptionManager &mng) {
+            addCallback([](TOptionManager &mng, bool isSelected) {
                mng.setSpeed(TSpeed::_5);
             })->
             grouping(0);
@@ -107,7 +107,7 @@ void TOptionDisplay::_preInitialize() {
             height(50)->
             enabled(true)->
             carot()->
-            addCallback([](TOptionManager &mng) {
+            addCallback([](TOptionManager &mng, bool isSelected) {
              mng.setSpeed(TSpeed::_6);
             })->
             grouping(0);
@@ -122,7 +122,7 @@ void TOptionDisplay::_preInitialize() {
             height(50)->
             enabled(true)->
             carot()->
-            addCallback([](TOptionManager &mng) {
+            addCallback([](TOptionManager &mng, bool isSelected) {
                 mng.setSpeed(TSpeed::_7);
             })->
             grouping(0);
@@ -137,7 +137,7 @@ void TOptionDisplay::_preInitialize() {
             height(50)->
             enabled(true)->
             carot()->
-            addCallback([](TOptionManager &mng) {
+            addCallback([](TOptionManager &mng, bool isSelected) {
           mng.setSpeed(TSpeed::_8);
         })->
             grouping(0);
@@ -168,7 +168,7 @@ void TOptionDisplay::_preInitialize() {
             height(50)->
             enabled(true)->
             carot()->
-            addCallback([](TOptionManager &mng) {
+            addCallback([](TOptionManager &mng, bool isSelected) {
           mng.setMap(TMap::Praymid);
         })->
             grouping(1);
@@ -184,7 +184,7 @@ void TOptionDisplay::_preInitialize() {
             height(50)->
             enabled(true)->
             carot()->
-            addCallback([](TOptionManager &mng) {
+            addCallback([](TOptionManager &mng, bool isSelected) {
           mng.setMap(TMap::Rain);
         })->
             grouping(1);
@@ -199,7 +199,7 @@ void TOptionDisplay::_preInitialize() {
             height(50)->
             enabled(true)->
             carot()->
-            addCallback([](TOptionManager &mng) {
+            addCallback([](TOptionManager &mng, bool isSelected) {
                mng.setMap(TMap::Randomly);
             })->
             grouping(1);
@@ -208,9 +208,36 @@ void TOptionDisplay::_preInitialize() {
     }
 
     begin_y += 100;
-
     {
-        TControllBuilder bld({begin_x-40, begin_y}, "Back");
+        TControllBuilder bld({begin_x - 100, begin_y}, "Graphic");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
+            background_color(TColorCode::black)->
+            width(100)->
+            height(50)->
+            enabled(true)->
+            addCallback([](TOptionManager &mng, bool isSelected) {
+                mng.setDrawLine(isSelected);
+            })->
+            display(TDisplay::Main);
+
+        addMenu(TButton::getInstance(bld));
+    }
+    {
+        TControllBuilder bld({begin_x+60, begin_y}, "DrwaLine");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
+            background_color(TColorCode::black)->
+            width(120)->
+            height(50)->
+            enabled(true)->
+            display(TDisplay::Main);
+
+        addMenu(TButton::getInstance(bld));
+    }
+
+
+    begin_y += 100;
+    {
+        TControllBuilder bld({begin_x-80, begin_y}, "Back");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
             background_color(TColorCode::black)->
             width(100)->

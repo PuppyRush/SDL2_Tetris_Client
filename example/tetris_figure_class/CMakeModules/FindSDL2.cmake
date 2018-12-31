@@ -24,7 +24,7 @@
 # Set SDL2_LIBRARY_TEMP to point to your SDL2 library, and configure again.
 # Similarly, if you see an empty SDL2MAIN_LIBRARY, you should set this value
 # as appropriate. These values are used to generate the final SDL2_LIBRARY
-# variable, but when these values are unset, SDL2_LIBRARY does not get created.
+# variable, but when these values are unset, SDL2_LIBRARY does not getInstance created.
 #
 #
 # $SDL2DIR is an environment variable that would

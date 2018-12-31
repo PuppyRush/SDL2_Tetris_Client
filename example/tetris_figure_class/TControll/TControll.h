@@ -9,6 +9,7 @@
 
 #include "THeader.h"
 #include "TControll/TControllBuilder.h"
+#include "TGroupControllManager.h"
 
 SDL_TETRIS_BEGIN
 
@@ -16,10 +17,12 @@ class TControll {
 
 public:
 
+    inline const t_id getId() const noexcept{
+        return m_basic->id;
+    }
     inline const TPoint &getPoint() const noexcept{
         return m_basic->point;
     }
-
     inline void setPoint(const TPoint &point) noexcept{
         m_basic->point = point;
     }
@@ -89,8 +92,16 @@ public:
     inline const bool isSelected() const noexcept{
         return m_basic->selected;
     }
-    inline void setSelected(bool selected) noexcept{
+    inline void setSelected(bool selected) noexcept
+    {
         m_basic->selected = selected;
+        if(m_basic->group != -1)
+        {
+            if(selected)
+                TGroupControllManager::getInstance()->get(m_basic->group).toSelected(m_basic->id);
+            else
+                TGroupControllManager::getInstance()->get(m_basic->group).toUnSelected(m_basic->id);
+        }
     }
 
 protected:

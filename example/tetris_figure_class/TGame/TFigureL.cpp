@@ -4,7 +4,9 @@
 using namespace tetris;
 
 TFigureL::TFigureL(const TFigureBuilder *bld)
-    : TFigure(bld) {
+    : TFigure(bld)
+{
+    m_color = {TColorCode::orange};
     _rotateLeft();
 }
 

@@ -20,10 +20,14 @@ class TFigureBoard final{
 
 public:
 
-    using BoardType = std::array< std::array<TFigureUnit,GAMEBOARD_WIDTH_COUNT>,GAMEBOARD_HEIGHT_COUNT >;
-    
-    BoardType getBoard() const
+    using board_type = std::array< std::array<TFigureUnit,GAMEBOARD_WIDTH_COUNT>,GAMEBOARD_HEIGHT_COUNT >;
+    using nextfigure_board_type = std::array< std::array<TFigureUnit,NEXTFIGURE_BOARD_WIDTH_COUNT>,NEXTFIGURE_BOARD_HEIGHT_COUNT>;
+
+    board_type getBoard() const
     {return m_board;}
+
+    nextfigure_board_type getNextFigureBoard() const
+    {return m_nextFigureBoard;}
 
     void rotate();
     void goDown();
@@ -37,19 +41,23 @@ public:
     void createNextFigureRandomly();
     std::shared_ptr<TFigure> getCurrentFigure();
     
-    static std::shared_ptr<TFigureBoard> get();
+    static std::shared_ptr<TFigureBoard> getInstance();
 
 private:
 
     TFigureBoard();
-    void eraseCoords();
-    void setCoords();
-    bool eraseLineIfFillLinesAndThenCollapse();
-    void collapseFigures();
-    const bool isValidation(const TFigure* destFigure);
+    void _eraseCoords();
+    void _setCoords();
+    void _eraseNextFigureCoords();
+    void _setNextFigureCoords();
+    bool _eraseLinesIfFillLineThenCollapse();
+    void _collapseFigures();
+    const bool _isValidation(const TFigure *destFigure);
     
     std::shared_ptr<TFigure> m_currentFigure;
-    BoardType m_board;
+    std::shared_ptr<TFigure> m_nextFigure;
+    board_type m_board;
+    nextfigure_board_type m_nextFigureBoard;
     std::mutex m_mutex;
 };
 

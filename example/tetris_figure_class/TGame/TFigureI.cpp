@@ -6,6 +6,7 @@ using namespace tetris;
 TFigureI::TFigureI (const TFigureBuilder *bld)
     : TFigure (bld)
 {
+    m_color = {TColorCode::yellow};
     _rotateLeft ();
 }
 

@@ -14,8 +14,11 @@
 SDL_TETRIS
 
 TFigureBoard::TFigureBoard()
-    : m_currentFigure(nullptr) {
+    : m_currentFigure(nullptr),
+    m_nextFigure(nullptr)
+{
     createNextFigureRandomly();
+    _setCoords();
 
     for (int i = 0 ; i < m_board.size() ; i++) {
         auto board = m_board[i];
@@ -25,22 +28,36 @@ TFigureBoard::TFigureBoard()
     }
 }
 
-void TFigureBoard::createNextFigureRandomly() {
-    if (m_currentFigure) {
-        m_currentFigure.reset();
+void TFigureBoard::createNextFigureRandomly()
+{
+    if(m_currentFigure.get() == nullptr)
+    {
+        TFigureBuilder *bld = new TFigureBuilder(TPoint(GAMEBOARD_WIDTH_COUNT / 2 - 1, 2));
+        m_currentFigure = bld->build();
+
+        TFigureBuilder *bld2 = new TFigureBuilder(TPoint(1,2));
+        m_nextFigure = bld2->build();
+    }
+    else{
+
+        _eraseNextFigureCoords();
+
+        m_currentFigure = m_nextFigure;
+        m_currentFigure->setPoint(TPoint(GAMEBOARD_WIDTH_COUNT / 2 - 1, 2));
+        m_nextFigure.reset();
+
+        TFigureBuilder *bld = new TFigureBuilder(TPoint(1,2));
+        m_nextFigure = bld->build();
     }
 
-    TFigureBuilder *bld = new TFigureBuilder(TPoint(GAMEBOARD_WIDTH_COUNT / 2 - 1, 2));
-    m_currentFigure = bld->build();
-
-    setCoords();
+    _setNextFigureCoords();
 }
 
 std::shared_ptr<TFigure> TFigureBoard::getCurrentFigure() {
     return m_currentFigure;
 }
 
-std::shared_ptr<TFigureBoard> TFigureBoard::get() {
+std::shared_ptr<TFigureBoard> TFigureBoard::getInstance() {
     static auto board = std::shared_ptr<TFigureBoard>(new TFigureBoard());
     return board;
 }
@@ -49,10 +66,10 @@ void TFigureBoard::goStraightDown()
 {
     std::lock_guard<std::mutex> lock(m_mutex);
 
-    eraseCoords();
+    _eraseCoords();
 
     std::shared_ptr<TFigure> copied(nullptr);
-    while(isValidation(m_currentFigure.get()))
+    while(_isValidation(m_currentFigure.get()))
     {
         copied = m_currentFigure->goDown();
     }
@@ -60,68 +77,68 @@ void TFigureBoard::goStraightDown()
     if(copied)
     {
         m_currentFigure = copied;
-        setCoords();
+        _setCoords();
     }
 
-    eraseLineIfFillLinesAndThenCollapse();
+    _eraseLinesIfFillLineThenCollapse();
 
     createNextFigureRandomly();
-    setCoords();
+    _setCoords();
 }
 
 void TFigureBoard::rotate() {
     std::lock_guard<std::mutex> lock(m_mutex);
 
-    eraseCoords();
+    _eraseCoords();
 
     auto copied = m_currentFigure->rotateLeft();
-    if (!isValidation(m_currentFigure.get()))
+    if (!_isValidation(m_currentFigure.get()))
         m_currentFigure = copied;
 
-    setCoords();
+    _setCoords();
 }
 
 void TFigureBoard::goDown() {
     std::lock_guard<std::mutex> lock(m_mutex);
 
-    eraseCoords();
+    _eraseCoords();
 
     auto copied = m_currentFigure->goDown();
 
-    if (!isValidation(m_currentFigure.get())) {
+    if (!_isValidation(m_currentFigure.get())) {
         m_currentFigure = copied;
-        setCoords();
+        _setCoords();
         createNextFigureRandomly();
     }
 
-    setCoords();
+    _setCoords();
 }
 
 void TFigureBoard::goLeft() {
     std::lock_guard<std::mutex> lock(m_mutex);
 
-    eraseCoords();
+    _eraseCoords();
 
     auto copied = m_currentFigure->goLeft();
-    if (!isValidation(m_currentFigure.get()))
+    if (!_isValidation(m_currentFigure.get()))
         m_currentFigure = copied;
 
-    setCoords();
+    _setCoords();
 }
 
 void TFigureBoard::goRight() {
     std::lock_guard<std::mutex> lock(m_mutex);
 
-    eraseCoords();
+    _eraseCoords();
 
     auto copied = m_currentFigure->goRight();
-    if (!isValidation(m_currentFigure.get()))
+    if (!_isValidation(m_currentFigure.get()))
         m_currentFigure = copied;
 
-    setCoords();
+    _setCoords();
 }
 
-const bool TFigureBoard::isValidation(const TFigure *destFigure) {
+const bool TFigureBoard::_isValidation(const TFigure *destFigure) {
 
     for (const auto coord : m_currentFigure->getCoords()) {
         const auto x = coord.getPoint().x;
@@ -137,25 +154,43 @@ const bool TFigureBoard::isValidation(const TFigure *destFigure) {
     return true;
 }
 
-void TFigureBoard::eraseCoords() {
+void TFigureBoard::_eraseCoords() {
     for (const auto coord : m_currentFigure->getCoords()) {
         const auto x = coord.getPoint().x;
         const auto y = coord.getPoint().y;
         m_board[y][x].setType(UnitType::Empty);
-        m_board[y][x].setColor(TColorCode::none);
     }
 }
 
-void TFigureBoard::setCoords() {
+void TFigureBoard::_setCoords() {
     for (const auto coord : m_currentFigure->getCoords()) {
         const auto x = coord.getPoint().x;
         const auto y = coord.getPoint().y;
         m_board[y][x].setType(UnitType::Fill);
-        m_board[y][x].setColor(coord.getColor());
+        m_board[y][x].setColor(m_currentFigure->getColor());
     }
 }
 
-bool TFigureBoard::eraseLineIfFillLinesAndThenCollapse()
+void TFigureBoard::_setNextFigureCoords()
+{
+    for (const auto coord : m_nextFigure->getCoords()) {
+        const auto x = coord.getPoint().x;
+        const auto y = coord.getPoint().y;
+        m_nextFigureBoard[y][x].setType(UnitType::Fill);
+        m_nextFigureBoard[y][x].setColor(m_nextFigure->getColor());
+    }
+}
+
+void TFigureBoard::_eraseNextFigureCoords()
+{
+    for (const auto coord : m_nextFigure->getCoords()) {
+        const auto x = coord.getPoint().x;
+        const auto y = coord.getPoint().y;
+        m_nextFigureBoard[y][x].setType(UnitType::Empty);
+    }
+}
+
+bool TFigureBoard::_eraseLinesIfFillLineThenCollapse()
 {
     std::set<tetris::t_coord, std::greater<t_coord>> collapseHeights;
     for(t_coord y = GAMEBOARD_HEIGHT_COUNT-1 ; y >= 0 ; --y)
@@ -171,7 +206,6 @@ bool TFigureBoard::eraseLineIfFillLinesAndThenCollapse()
             for(int x=0; x < GAMEBOARD_WIDTH_COUNT ; ++x)
             {
                 m_board[y][x].setType(UnitType::Empty);
-                m_board[y][x].setColor(TColorCode::none);
             }
         }
     }
