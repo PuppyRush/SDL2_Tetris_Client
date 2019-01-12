@@ -1,3 +1,0 @@
-/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/chaed/projects/SDL2_Tetris_Client/example/teris_figure_class/cmake-build-debug/CMakeFiles/teris_figure_class.dir
