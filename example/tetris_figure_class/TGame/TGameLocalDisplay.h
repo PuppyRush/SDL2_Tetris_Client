@@ -6,7 +6,7 @@
 #define TERIS_FIGURE_CLASS_TGAMELOCALDISPLAY_H
 
 #include "TGameDisplay.h"
-#include "TBoardController.h"
+#include <../TObject/TPlayer.h>
 
 SDL_TETRIS_BEGIN
 
@@ -37,8 +37,8 @@ private:
     virtual void _timer() final;
     virtual void _draw() final;
 
+
     bool m_drawLine;
-    std::shared_ptr<BoardController> m_ctl = BoardController::getInstance();
 };
 
 SDL_TETRIS_END

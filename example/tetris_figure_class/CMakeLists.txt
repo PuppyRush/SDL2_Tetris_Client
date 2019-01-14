@@ -31,8 +31,6 @@ add_executable(tetris_figure_class
         TGame/TFigureL.h
         TGame/TFigureBuilder.h
         TGame/TFigure.cpp
-        TGame/TBoardController.cpp
-        TGame/TBoardController.h
         TGame/TFigureBoard.cpp
         TGame/TFigureBoard.h
         TGame/TFigureBuilder.cpp
@@ -63,7 +61,27 @@ add_executable(tetris_figure_class
         TMain/TMainOnlineDisplay.h
         TMain/TMainOnlineDisplay.cpp
         TOption/TOptionDisplay.cpp
-        TOption/TOptionDisplay.h TDisplay/TWindow.cpp TDisplay/TWindow.h TOption/TOptionManager.cpp TOption/TOptionManager.h TControll/TControll.cpp TControll/TControll.h TControll/TStaticLabel.cpp TControll/TStaticLabel.h TControll/TButton.cpp TControll/TButton.h TControll/TButtonBasic.cpp TControll/TButtonBasic.h TControll/TRadioButton.cpp TControll/TRadioButton.h TControll/TEditLabel.cpp TControll/TEditLabel.h TControll/TGroupControllManager.cpp TControll/TGroupControllManager.h)
+        TOption/TOptionDisplay.h
+        TDisplay/TWindow.cpp
+        TDisplay/TWindow.h
+        TOption/TOptionManager.cpp
+        TOption/TOptionManager.h
+        TControll/TControll.cpp
+        TControll/TControll.h
+        TControll/TStaticLabel.cpp
+        TControll/TStaticLabel.h
+        TControll/TButton.cpp
+        TControll/TButton.h
+        TControll/TButtonBasic.cpp
+        TControll/TButtonBasic.h
+        TControll/TRadioButton.cpp
+        TControll/TRadioButton.h
+        TControll/TEditLabel.cpp
+        TControll/TEditLabel.h
+        TControll/TGroupControllManager.cpp
+        TControll/TGroupControllManager.h
+        TObject/TPlayer.cpp
+        TObject/TPlayer.h)
 
 include_directories(tetris_figure_class
         SYSTEM ${Boost_INCLUDE_DIR}

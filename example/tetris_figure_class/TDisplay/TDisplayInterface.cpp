@@ -57,7 +57,6 @@ void TDisplayInterface::show()
 
         _draw();
         _drawMenus();
-        _drawCarot();
 
         _release();
 
@@ -102,8 +101,8 @@ void TDisplayInterface::_drawMenus()
         SDL_Texture* text = SDL_CreateTextureFromSurface(renderer, textSurface);
         SDL_FreeSurface(textSurface);
 
-        const int text_width = textSurface->w;
-        const int text_height = textSurface->h;
+        const double text_width = static_cast<double>(textSurface->w);
+        const double text_height = static_cast<double>(textSurface->h);
 
         SDL_Rect rect;
         if(menu->getAutoSize())
@@ -123,6 +122,8 @@ void TDisplayInterface::_drawMenus()
         SDL_RenderCopy(renderer, text, NULL, &renderQuad);
 
     }
+
+    _drawCarot();
 }
 
 void TDisplayInterface::_release()

@@ -3,7 +3,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/tetris_figure_class.dir/TGame/TFigureUnit.cpp.o"
   "CMakeFiles/tetris_figure_class.dir/TGame/TFigureL.cpp.o"
   "CMakeFiles/tetris_figure_class.dir/TGame/TFigure.cpp.o"
-  "CMakeFiles/tetris_figure_class.dir/TGame/TBoardController.cpp.o"
   "CMakeFiles/tetris_figure_class.dir/TGame/TFigureBoard.cpp.o"
   "CMakeFiles/tetris_figure_class.dir/TGame/TFigureBuilder.cpp.o"
   "CMakeFiles/tetris_figure_class.dir/TGame/TFigureBoardBuilder.cpp.o"
@@ -29,6 +28,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/tetris_figure_class.dir/TControll/TRadioButton.cpp.o"
   "CMakeFiles/tetris_figure_class.dir/TControll/TEditLabel.cpp.o"
   "CMakeFiles/tetris_figure_class.dir/TControll/TGroupControllManager.cpp.o"
+  "CMakeFiles/tetris_figure_class.dir/TObject/TPlayer.cpp.o"
   "tetris_figure_class.pdb"
   "tetris_figure_class"
 )

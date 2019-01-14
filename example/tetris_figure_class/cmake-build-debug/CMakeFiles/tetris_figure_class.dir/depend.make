@@ -4,23 +4,24 @@
 CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../Common/THeader.h
 CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../TControll/TControll.h
 CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../TControll/TControllBuilder.h
-CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../Common/THeader.h
-CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../TControll/TGroupControllManager.h
-CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../TOption/TOptionManager.h
 CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../Common/TDefine.h
 CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../Common/THeader.h
 CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../Common/TProperty.h
-CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../Common/TStruct.h
 CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../Common/TType.h
+CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../TControll/TGroupControllManager.h
+CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../TGame/TFigure.h
+CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../TGame/TFigureBoard.h
+CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../TGame/TFigureUnit.h
+CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../TObject/TPlayer.h
+CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../TOption/TOptionManager.h
+CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../Common/THeader.h
+CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../Common/TProperty.h
+CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../Common/TStruct.h
 CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../Common/TypeTraits.h
 CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../Main.cpp
 CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../TDisplay/TDisplayController.h
 CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../TDisplay/TDisplayInterface.h
 CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../TDisplay/TWindow.h
-CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../TGame/TBoardController.h
-CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../TGame/TFigure.h
-CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../TGame/TFigureBoard.h
-CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../TGame/TFigureUnit.h
 CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../TGame/TGameDisplay.h
 CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../TGame/TGameLocalDisplay.h
 CMakeFiles/tetris_figure_class.dir/Main.cpp.o: ../TMain/TMainDisplay.h
@@ -190,12 +191,12 @@ CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayController.cpp.o: ../Common/
 CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayController.cpp.o: ../Common/TType.h
 CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayController.cpp.o: ../TControll/TGroupControllManager.h
 CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayController.cpp.o: ../TDisplay/TDisplayInterface.h
-CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayController.cpp.o: ../TGame/TBoardController.h
 CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayController.cpp.o: ../TGame/TFigure.h
 CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayController.cpp.o: ../TGame/TFigureBoard.h
 CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayController.cpp.o: ../TGame/TFigureUnit.h
 CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayController.cpp.o: ../TGame/TGameDisplay.h
 CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayController.cpp.o: ../TMain/TMainDisplay.h
+CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayController.cpp.o: ../TObject/TPlayer.h
 CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayController.cpp.o: ../TOption/TOptionManager.h
 CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayController.cpp.o: ../Common/TDefine.h
 CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayController.cpp.o: ../Common/THeader.h
@@ -366,19 +367,6 @@ CMakeFiles/tetris_figure_class.dir/TDisplay/TWindow.cpp.o: /usr/include/SDL2/SDL
 CMakeFiles/tetris_figure_class.dir/TDisplay/TWindow.cpp.o: /usr/include/SDL2/begin_code.h
 CMakeFiles/tetris_figure_class.dir/TDisplay/TWindow.cpp.o: /usr/include/SDL2/close_code.h
 
-CMakeFiles/tetris_figure_class.dir/TGame/TBoardController.cpp.o: ../Common/THeader.h
-CMakeFiles/tetris_figure_class.dir/TGame/TBoardController.cpp.o: ../Common/TProperty.h
-CMakeFiles/tetris_figure_class.dir/TGame/TBoardController.cpp.o: ../Common/TStruct.h
-CMakeFiles/tetris_figure_class.dir/TGame/TBoardController.cpp.o: ../Common/TypeTraits.h
-CMakeFiles/tetris_figure_class.dir/TGame/TBoardController.cpp.o: ../Common/TDefine.h
-CMakeFiles/tetris_figure_class.dir/TGame/TBoardController.cpp.o: ../Common/TProperty.h
-CMakeFiles/tetris_figure_class.dir/TGame/TBoardController.cpp.o: ../Common/TType.h
-CMakeFiles/tetris_figure_class.dir/TGame/TBoardController.cpp.o: ../TGame/TBoardController.cpp
-CMakeFiles/tetris_figure_class.dir/TGame/TBoardController.cpp.o: ../TGame/TBoardController.h
-CMakeFiles/tetris_figure_class.dir/TGame/TBoardController.cpp.o: ../TGame/TFigure.h
-CMakeFiles/tetris_figure_class.dir/TGame/TBoardController.cpp.o: ../TGame/TFigureBoard.h
-CMakeFiles/tetris_figure_class.dir/TGame/TBoardController.cpp.o: ../TGame/TFigureUnit.h
-
 CMakeFiles/tetris_figure_class.dir/TGame/TFigure.cpp.o: ../Common/THeader.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigure.cpp.o: ../Common/TypeTraits.h
 CMakeFiles/tetris_figure_class.dir/TGame/TFigure.cpp.o: ../Common/TDefine.h
@@ -507,8 +495,15 @@ CMakeFiles/tetris_figure_class.dir/TGame/TFigureZ.cpp.o: ../TGame/TFigureZ.h
 CMakeFiles/tetris_figure_class.dir/TGame/TGameDisplay.cpp.o: ../Common/THeader.h
 CMakeFiles/tetris_figure_class.dir/TGame/TGameDisplay.cpp.o: ../TControll/TControll.h
 CMakeFiles/tetris_figure_class.dir/TGame/TGameDisplay.cpp.o: ../TControll/TControllBuilder.h
+CMakeFiles/tetris_figure_class.dir/TGame/TGameDisplay.cpp.o: ../Common/TDefine.h
 CMakeFiles/tetris_figure_class.dir/TGame/TGameDisplay.cpp.o: ../Common/THeader.h
+CMakeFiles/tetris_figure_class.dir/TGame/TGameDisplay.cpp.o: ../Common/TProperty.h
+CMakeFiles/tetris_figure_class.dir/TGame/TGameDisplay.cpp.o: ../Common/TType.h
 CMakeFiles/tetris_figure_class.dir/TGame/TGameDisplay.cpp.o: ../TControll/TGroupControllManager.h
+CMakeFiles/tetris_figure_class.dir/TGame/TGameDisplay.cpp.o: ../TGame/TFigure.h
+CMakeFiles/tetris_figure_class.dir/TGame/TGameDisplay.cpp.o: ../TGame/TFigureBoard.h
+CMakeFiles/tetris_figure_class.dir/TGame/TGameDisplay.cpp.o: ../TGame/TFigureUnit.h
+CMakeFiles/tetris_figure_class.dir/TGame/TGameDisplay.cpp.o: ../TObject/TPlayer.h
 CMakeFiles/tetris_figure_class.dir/TGame/TGameDisplay.cpp.o: ../TOption/TOptionManager.h
 CMakeFiles/tetris_figure_class.dir/TGame/TGameDisplay.cpp.o: ../Common/TDefine.h
 CMakeFiles/tetris_figure_class.dir/TGame/TGameDisplay.cpp.o: ../Common/THeader.h
@@ -568,7 +563,6 @@ CMakeFiles/tetris_figure_class.dir/TGame/TGameDisplay.cpp.o: /usr/include/SDL2/c
 CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../Common/THeader.h
 CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../TControll/TControll.h
 CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../TControll/TControllBuilder.h
-CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../TGame/TBoardController.h
 CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../Common/TDefine.h
 CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../Common/THeader.h
 CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../Common/TProperty.h
@@ -577,6 +571,7 @@ CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../TControll/T
 CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../TGame/TFigure.h
 CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../TGame/TFigureBoard.h
 CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../TGame/TFigureUnit.h
+CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../TObject/TPlayer.h
 CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../TOption/TOptionManager.h
 CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../Common/THeader.h
 CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../Common/TProperty.h
@@ -584,7 +579,6 @@ CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../Common/TStr
 CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../Common/TypeTraits.h
 CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../TDisplay/TDisplayInterface.h
 CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../TDisplay/TWindow.h
-CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../TGame/TBoardController.h
 CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../TGame/TGameDisplay.h
 CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../TGame/TGameLocalDisplay.cpp
 CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o: ../TGame/TGameLocalDisplay.h
@@ -820,6 +814,19 @@ CMakeFiles/tetris_figure_class.dir/TMain/TMainOnlineDisplay.cpp.o: /usr/include/
 CMakeFiles/tetris_figure_class.dir/TMain/TMainOnlineDisplay.cpp.o: /usr/include/SDL2/SDL_video.h
 CMakeFiles/tetris_figure_class.dir/TMain/TMainOnlineDisplay.cpp.o: /usr/include/SDL2/begin_code.h
 CMakeFiles/tetris_figure_class.dir/TMain/TMainOnlineDisplay.cpp.o: /usr/include/SDL2/close_code.h
+
+CMakeFiles/tetris_figure_class.dir/TObject/TPlayer.cpp.o: ../Common/THeader.h
+CMakeFiles/tetris_figure_class.dir/TObject/TPlayer.cpp.o: ../Common/TProperty.h
+CMakeFiles/tetris_figure_class.dir/TObject/TPlayer.cpp.o: ../Common/TStruct.h
+CMakeFiles/tetris_figure_class.dir/TObject/TPlayer.cpp.o: ../Common/TypeTraits.h
+CMakeFiles/tetris_figure_class.dir/TObject/TPlayer.cpp.o: ../Common/TDefine.h
+CMakeFiles/tetris_figure_class.dir/TObject/TPlayer.cpp.o: ../Common/TProperty.h
+CMakeFiles/tetris_figure_class.dir/TObject/TPlayer.cpp.o: ../Common/TType.h
+CMakeFiles/tetris_figure_class.dir/TObject/TPlayer.cpp.o: ../TGame/TFigure.h
+CMakeFiles/tetris_figure_class.dir/TObject/TPlayer.cpp.o: ../TGame/TFigureBoard.h
+CMakeFiles/tetris_figure_class.dir/TObject/TPlayer.cpp.o: ../TGame/TFigureUnit.h
+CMakeFiles/tetris_figure_class.dir/TObject/TPlayer.cpp.o: ../TObject/TPlayer.cpp
+CMakeFiles/tetris_figure_class.dir/TObject/TPlayer.cpp.o: ../TObject/TPlayer.h
 
 CMakeFiles/tetris_figure_class.dir/TOption/TOptionDisplay.cpp.o: ../Common/THeader.h
 CMakeFiles/tetris_figure_class.dir/TOption/TOptionDisplay.cpp.o: ../TControll/TButton.h

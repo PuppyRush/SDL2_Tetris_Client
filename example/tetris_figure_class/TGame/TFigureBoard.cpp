@@ -57,11 +57,6 @@ std::shared_ptr<TFigure> TFigureBoard::getCurrentFigure() {
     return m_currentFigure;
 }
 
-std::shared_ptr<TFigureBoard> TFigureBoard::getInstance() {
-    static auto board = std::shared_ptr<TFigureBoard>(new TFigureBoard());
-    return board;
-}
-
 void TFigureBoard::goStraightDown()
 {
     std::lock_guard<std::mutex> lock(m_mutex);
@@ -237,3 +232,4 @@ bool TFigureBoard::_eraseLinesIfFillLineThenCollapse()
 
     return true;
 }
+

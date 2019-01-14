@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../TDisplay/TDisplayInterface.h"
+#include <../TObject/TPlayer.h>
 
 SDL_TETRIS_BEGIN
 
@@ -27,6 +28,8 @@ protected:
     virtual void _event(const SDL_Event* event) =0;
 	virtual void _timer() =0;
 	virtual void _draw() =0;
+
+	std::vector<std::shared_ptr<TPlayer>> m_player;
 };
 
 SDL_TETRIS_END

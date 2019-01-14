@@ -447,33 +447,6 @@ TDisplay/TWindow.cpp.s:
 	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TDisplay/TWindow.cpp.s
 .PHONY : TDisplay/TWindow.cpp.s
 
-TGame/TBoardController.o: TGame/TBoardController.cpp.o
-
-.PHONY : TGame/TBoardController.o
-
-# target to build an object file
-TGame/TBoardController.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TGame/TBoardController.cpp.o
-.PHONY : TGame/TBoardController.cpp.o
-
-TGame/TBoardController.i: TGame/TBoardController.cpp.i
-
-.PHONY : TGame/TBoardController.i
-
-# target to preprocess a source file
-TGame/TBoardController.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TGame/TBoardController.cpp.i
-.PHONY : TGame/TBoardController.cpp.i
-
-TGame/TBoardController.s: TGame/TBoardController.cpp.s
-
-.PHONY : TGame/TBoardController.s
-
-# target to generate assembly for a file
-TGame/TBoardController.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TGame/TBoardController.cpp.s
-.PHONY : TGame/TBoardController.cpp.s
-
 TGame/TFigure.o: TGame/TFigure.cpp.o
 
 .PHONY : TGame/TFigure.o
@@ -879,6 +852,33 @@ TMain/TMainOnlineDisplay.cpp.s:
 	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TMain/TMainOnlineDisplay.cpp.s
 .PHONY : TMain/TMainOnlineDisplay.cpp.s
 
+TObject/TPlayer.o: TObject/TPlayer.cpp.o
+
+.PHONY : TObject/TPlayer.o
+
+# target to build an object file
+TObject/TPlayer.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TObject/TPlayer.cpp.o
+.PHONY : TObject/TPlayer.cpp.o
+
+TObject/TPlayer.i: TObject/TPlayer.cpp.i
+
+.PHONY : TObject/TPlayer.i
+
+# target to preprocess a source file
+TObject/TPlayer.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TObject/TPlayer.cpp.i
+.PHONY : TObject/TPlayer.cpp.i
+
+TObject/TPlayer.s: TObject/TPlayer.cpp.s
+
+.PHONY : TObject/TPlayer.s
+
+# target to generate assembly for a file
+TObject/TPlayer.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TObject/TPlayer.cpp.s
+.PHONY : TObject/TPlayer.cpp.s
+
 TOption/TOptionDisplay.o: TOption/TOptionDisplay.cpp.o
 
 .PHONY : TOption/TOptionDisplay.o
@@ -978,9 +978,6 @@ help:
 	@echo "... TDisplay/TWindow.o"
 	@echo "... TDisplay/TWindow.i"
 	@echo "... TDisplay/TWindow.s"
-	@echo "... TGame/TBoardController.o"
-	@echo "... TGame/TBoardController.i"
-	@echo "... TGame/TBoardController.s"
 	@echo "... TGame/TFigure.o"
 	@echo "... TGame/TFigure.i"
 	@echo "... TGame/TFigure.s"
@@ -1026,6 +1023,9 @@ help:
 	@echo "... TMain/TMainOnlineDisplay.o"
 	@echo "... TMain/TMainOnlineDisplay.i"
 	@echo "... TMain/TMainOnlineDisplay.s"
+	@echo "... TObject/TPlayer.o"
+	@echo "... TObject/TPlayer.i"
+	@echo "... TObject/TPlayer.s"
 	@echo "... TOption/TOptionDisplay.o"
 	@echo "... TOption/TOptionDisplay.i"
 	@echo "... TOption/TOptionDisplay.s"

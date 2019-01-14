@@ -20,6 +20,9 @@ class TFigureBoard final{
 
 public:
 
+    TFigureBoard();
+
+    using figure_ptr = std::shared_ptr<TFigure>;
     using board_type = std::array< std::array<TFigureUnit,GAMEBOARD_WIDTH_COUNT>,GAMEBOARD_HEIGHT_COUNT >;
     using nextfigure_board_type = std::array< std::array<TFigureUnit,NEXTFIGURE_BOARD_WIDTH_COUNT>,NEXTFIGURE_BOARD_HEIGHT_COUNT>;
 
@@ -28,6 +31,22 @@ public:
 
     nextfigure_board_type getNextFigureBoard() const
     {return m_nextFigureBoard;}
+
+    inline const TPoint& getStartDisplayPoint() const {
+        return m_StartDisplayPoint;
+    }
+    inline void setStartDisplayPoint(const TPoint &m_StartDisplayPoint) {
+        TFigureBoard::m_StartDisplayPoint = m_StartDisplayPoint;
+    }
+    inline const t_size getblockLength() const {
+        return m_blockLength;
+    }
+    inline void setblockLength(t_size m_blockLength) {
+        TFigureBoard::m_blockLength = m_blockLength;
+    }
+
+    inline figure_ptr getNextFigure() const
+    {return m_nextFigure;}
 
     void rotate();
     void goDown();
@@ -40,12 +59,10 @@ public:
     void addBottomLine(const t_size = 1);
     void createNextFigureRandomly();
     std::shared_ptr<TFigure> getCurrentFigure();
-    
-    static std::shared_ptr<TFigureBoard> getInstance();
 
 private:
 
-    TFigureBoard();
+
     void _eraseCoords();
     void _setCoords();
     void _eraseNextFigureCoords();
@@ -53,9 +70,13 @@ private:
     bool _eraseLinesIfFillLineThenCollapse();
     void _collapseFigures();
     const bool _isValidation(const TFigure *destFigure);
-    
-    std::shared_ptr<TFigure> m_currentFigure;
-    std::shared_ptr<TFigure> m_nextFigure;
+
+    TPoint m_StartDisplayPoint;
+    t_size m_blockLength;
+
+private:
+    figure_ptr m_currentFigure;
+    figure_ptr m_nextFigure;
     board_type m_board;
     nextfigure_board_type m_nextFigureBoard;
     std::mutex m_mutex;
