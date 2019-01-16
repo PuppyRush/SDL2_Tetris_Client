@@ -47,6 +47,7 @@ void TDisplayInterface::show()
 {
     _preInitialize();
     _timer();
+    _refresh();
 
     while(m_run)
     {
@@ -54,9 +55,6 @@ void TDisplayInterface::show()
 
         SDL_WaitEvent(getSDLEvent().get());
         _event(getSDLEvent().get());
-
-        _draw();
-        _drawMenus();
 
         _release();
 
@@ -69,8 +67,15 @@ void TDisplayInterface::show()
 void TDisplayInterface::_event(const SDL_Event* event)
 {
     switch (event->type) {
+        case SDL_WINDOWEVENT:
+            _refresh();
+            break;
         case SDL_QUIT:
             setRun(false);
+            break;
+        case SDL_DRAWDISPLAY:
+            //_draw();
+            _drawMenus();
             break;
         case SDL_MOUSEBUTTONDOWN: {
             const TPoint point(event->button.x, event->button.y);
@@ -79,12 +84,11 @@ void TDisplayInterface::_event(const SDL_Event* event)
 
                 break;
             }
-
+            _refresh();
             break;
         }
         default:;
     }
-
 }
 
 void TDisplayInterface::_drawMenus()
@@ -97,6 +101,7 @@ void TDisplayInterface::_drawMenus()
         TTF_Font* font = TTF_OpenFont(fontinfo.font_name.c_str(), fontinfo.size);
         std::string score_text = menu->getName();
         SDL_Color textColor = { fontinfo.color.r, fontinfo.color.g, fontinfo.color.b, 0 };
+
         SDL_Surface* textSurface = TTF_RenderText_Solid(font, score_text.c_str(), textColor);
         SDL_Texture* text = SDL_CreateTextureFromSurface(renderer, textSurface);
         SDL_FreeSurface(textSurface);
@@ -106,21 +111,24 @@ void TDisplayInterface::_drawMenus()
 
         SDL_Rect rect;
         if(menu->getAutoSize())
-            rect = SDL_Rect{ menu->getPoint().x-20, menu->getPoint().y, text_width*1.2, text_height*1.4};
+            rect = SDL_Rect{ menu->getPoint().x-20,
+                             menu->getPoint().y,
+                             static_cast<int>(text_width*1.2),
+                             static_cast<int>(text_height*1.4)};
         else
             rect = SDL_Rect{ menu->getPoint().x, menu->getPoint().y, menu->getWidth(), menu->getHeight()};
 
         const auto& back_color = menu->getBackground_color();
         SDL_RenderFillRect(renderer, &rect);
         SDL_SetRenderDrawColor(renderer, back_color.r, back_color.g, back_color.b, 255);
+
         SDL_RenderDrawRect(renderer, &rect);
 
-        const t_coord font_x  = menu->getPoint().x + ( menu->getWidth() - text_width)/2;
-        const t_coord font_y  = menu->getPoint().y + ( menu->getHeight() - text_height)/2;
-
-        SDL_Rect renderQuad = { font_x, font_y , text_width, text_height };
-        SDL_RenderCopy(renderer, text, NULL, &renderQuad);
-
+        SDL_Rect renderQuad = { static_cast<int>(menu->getPoint().x + ( menu->getWidth() - text_width)/2)
+                                , static_cast<int>(menu->getPoint().y + ( menu->getHeight() - text_height)/2)
+                                , static_cast<int>(text_width)
+                                , static_cast<int>(text_height) };
+        SDL_RenderCopy(renderer, text, nullptr, &renderQuad);
     }
 
     _drawCarot();
@@ -210,4 +218,19 @@ void TDisplayInterface::setDisplay(const TDisplay dp)
 {
     TDisplayController::getInstance()->setDisplay(dp);
     m_display = dp;
+
+}
+
+
+void TDisplayInterface::_refresh()
+{
+    SDL_UserEvent userevent;
+    userevent.type = SDL_DRAWDISPLAY;
+    userevent.code = 0;
+
+    SDL_Event event;
+    event.type = SDL_DRAWDISPLAY;
+    event.user = userevent;
+
+    SDL_PushEvent(&event);
 }

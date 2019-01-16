@@ -109,7 +109,7 @@ private:
         t_id m_selectedId = -1;
         std::unordered_set<t_id>  m_unselectedIds;
         std::unordered_set<t_id>  m_selectedIds;
-    };
+    }group;
 
     TGroupControllManager() = default;
     std::unordered_map<int,group> m_group;

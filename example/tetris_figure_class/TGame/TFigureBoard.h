@@ -33,16 +33,28 @@ public:
     {return m_nextFigureBoard;}
 
     inline const TPoint& getStartDisplayPoint() const {
-        return m_StartDisplayPoint;
+        return m_startGameDisplayPoint;
     }
     inline void setStartDisplayPoint(const TPoint &m_StartDisplayPoint) {
-        TFigureBoard::m_StartDisplayPoint = m_StartDisplayPoint;
+        TFigureBoard::m_startGameDisplayPoint = m_StartDisplayPoint;
     }
     inline const t_size getblockLength() const {
-        return m_blockLength;
+        return m_gameblockLength;
     }
     inline void setblockLength(t_size m_blockLength) {
-        TFigureBoard::m_blockLength = m_blockLength;
+        TFigureBoard::m_gameblockLength = m_blockLength;
+    }
+    inline const TPoint &getStartNextFigureDisplayPoint() const {
+        return m_startNextFigureDisplayPoint;
+    }
+    inline void setStartNextFigureDisplayPoint(const TPoint &m_startNextFigureDisplayPoint) {
+        TFigureBoard::m_startNextFigureDisplayPoint = m_startNextFigureDisplayPoint;
+    }
+    inline const t_size getNextFigureblockLength() const {
+        return m_nextFigureblockLength;
+    }
+    inline void setNextFigureblockLength(t_size m_nextFigureblockLength) {
+        TFigureBoard::m_nextFigureblockLength = m_nextFigureblockLength;
     }
 
     inline figure_ptr getNextFigure() const
@@ -71,8 +83,12 @@ private:
     void _collapseFigures();
     const bool _isValidation(const TFigure *destFigure);
 
-    TPoint m_StartDisplayPoint;
-    t_size m_blockLength;
+    TPoint m_startGameDisplayPoint;
+    t_size m_gameblockLength;
+
+    TPoint m_startNextFigureDisplayPoint;
+    t_size m_nextFigureblockLength;
+public:
 
 private:
     figure_ptr m_currentFigure;

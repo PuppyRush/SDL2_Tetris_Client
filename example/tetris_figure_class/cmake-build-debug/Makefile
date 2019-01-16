@@ -150,6 +150,60 @@ Main.cpp.s:
 	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Main.cpp.s
 .PHONY : Main.cpp.s
 
+TClient/TClientConnector.o: TClient/TClientConnector.cpp.o
+
+.PHONY : TClient/TClientConnector.o
+
+# target to build an object file
+TClient/TClientConnector.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TClient/TClientConnector.cpp.o
+.PHONY : TClient/TClientConnector.cpp.o
+
+TClient/TClientConnector.i: TClient/TClientConnector.cpp.i
+
+.PHONY : TClient/TClientConnector.i
+
+# target to preprocess a source file
+TClient/TClientConnector.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TClient/TClientConnector.cpp.i
+.PHONY : TClient/TClientConnector.cpp.i
+
+TClient/TClientConnector.s: TClient/TClientConnector.cpp.s
+
+.PHONY : TClient/TClientConnector.s
+
+# target to generate assembly for a file
+TClient/TClientConnector.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TClient/TClientConnector.cpp.s
+.PHONY : TClient/TClientConnector.cpp.s
+
+TClient/TClientService.o: TClient/TClientService.cpp.o
+
+.PHONY : TClient/TClientService.o
+
+# target to build an object file
+TClient/TClientService.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TClient/TClientService.cpp.o
+.PHONY : TClient/TClientService.cpp.o
+
+TClient/TClientService.i: TClient/TClientService.cpp.i
+
+.PHONY : TClient/TClientService.i
+
+# target to preprocess a source file
+TClient/TClientService.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TClient/TClientService.cpp.i
+.PHONY : TClient/TClientService.cpp.i
+
+TClient/TClientService.s: TClient/TClientService.cpp.s
+
+.PHONY : TClient/TClientService.s
+
+# target to generate assembly for a file
+TClient/TClientService.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TClient/TClientService.cpp.s
+.PHONY : TClient/TClientService.cpp.s
+
 TControll/TButton.o: TControll/TButton.cpp.o
 
 .PHONY : TControll/TButton.o
@@ -879,6 +933,33 @@ TObject/TPlayer.cpp.s:
 	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TObject/TPlayer.cpp.s
 .PHONY : TObject/TPlayer.cpp.s
 
+TObject/TRoom.o: TObject/TRoom.cpp.o
+
+.PHONY : TObject/TRoom.o
+
+# target to build an object file
+TObject/TRoom.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TObject/TRoom.cpp.o
+.PHONY : TObject/TRoom.cpp.o
+
+TObject/TRoom.i: TObject/TRoom.cpp.i
+
+.PHONY : TObject/TRoom.i
+
+# target to preprocess a source file
+TObject/TRoom.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TObject/TRoom.cpp.i
+.PHONY : TObject/TRoom.cpp.i
+
+TObject/TRoom.s: TObject/TRoom.cpp.s
+
+.PHONY : TObject/TRoom.s
+
+# target to generate assembly for a file
+TObject/TRoom.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TObject/TRoom.cpp.s
+.PHONY : TObject/TRoom.cpp.s
+
 TOption/TOptionDisplay.o: TOption/TOptionDisplay.cpp.o
 
 .PHONY : TOption/TOptionDisplay.o
@@ -945,6 +1026,12 @@ help:
 	@echo "... Main.o"
 	@echo "... Main.i"
 	@echo "... Main.s"
+	@echo "... TClient/TClientConnector.o"
+	@echo "... TClient/TClientConnector.i"
+	@echo "... TClient/TClientConnector.s"
+	@echo "... TClient/TClientService.o"
+	@echo "... TClient/TClientService.i"
+	@echo "... TClient/TClientService.s"
 	@echo "... TControll/TButton.o"
 	@echo "... TControll/TButton.i"
 	@echo "... TControll/TButton.s"
@@ -1026,6 +1113,9 @@ help:
 	@echo "... TObject/TPlayer.o"
 	@echo "... TObject/TPlayer.i"
 	@echo "... TObject/TPlayer.s"
+	@echo "... TObject/TRoom.o"
+	@echo "... TObject/TRoom.i"
+	@echo "... TObject/TRoom.s"
 	@echo "... TOption/TOptionDisplay.o"
 	@echo "... TOption/TOptionDisplay.i"
 	@echo "... TOption/TOptionDisplay.s"

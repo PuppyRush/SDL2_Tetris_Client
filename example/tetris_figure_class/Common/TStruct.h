@@ -46,7 +46,7 @@ typedef struct TIPString
     }
 
     std::string ip;
-};
+}TIPString;
 
 
 typedef struct TColor
@@ -123,7 +123,7 @@ public:
         SDL_Color color{col.r, col.g, col.b,0};
         return color;
     }
-};
+}TColor;
 
 typedef struct TPoint {
 public:
@@ -182,7 +182,7 @@ typedef struct TControllBasic
     {
     }
 
-};
+}TControllBasic;
 
 
 SDL_TETRIS_END

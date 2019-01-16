@@ -5,14 +5,20 @@
 
 SDL_TETRIS
 
-int main()
+void init()
 {
 
+    //background
     TGameLocalDisplay::getInstance()->setBackgroundImgPath("../resources/images/background.png");
 
+    //Registry Event
+    SDL_RegisterEvents(SDL_DRAWDISPLAY);
+}
 
+int main()
+{
+    init();
 
     TDisplayController::getInstance()->setDisplay(TDisplay::Main);
-
     TDisplayController::getInstance()->operateGame();
 }

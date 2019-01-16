@@ -3,10 +3,14 @@ project(tetris_figure_class)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/CMakeModules;${CMAKE_MODULE_PATH}")
+
 set(SDL2_PATH "${PROJECT_SOURCE_DIR}/SDL")
+
 set(Boost_INCLUDE_DIR /usr/include)
 set(BOOST_SOURCE /usr/include)
 set(Boost_LIBRARIES /usr/lib/x86_64-linux-gnu/)
+
+set(ACE_LINK_FLAGS "${ACE_LINK_FLAGS}" CACHE INTERNAL "ace link flags")
 
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
@@ -15,6 +19,55 @@ find_package(Boost 1.65.1 REQUIRED COMPONENTS system filesystem serialization)
 
 add_library(boost::serialization INTERFACE IMPORTED)
 
+
+
+########################################################################
+##  general find
+
+find_path(ACE_INCLUDE_DIR ace/ACE.h ${CMAKE_SOURCE_DIR}/../ACE_wrappers/ /usr/include /usr/local/include $ENV{ACE_ROOT} $ENV{ACE_ROOT}/include DOC "directory containing ace/*.h for ACE library")
+
+find_library(ACE_LIBRARY NAMES ACE ace PATHS ${CMAKE_SOURCE_DIR}/../ACE_wrappers/lib/ /usr/lib /usr/local/lib $ENV{ACE_ROOT}/lib $ENV{ACE_ROOT} DOC "ACE library file")
+
+########################################################################
+## finished - now just set up flags and complain to user if necessary
+
+if (ACE_INCLUDE_DIR AND ACE_LIBRARY)
+    set(ACE_FOUND TRUE)
+else ()
+    set(ACE_FOUND FALSE)
+endif ()
+
+if (ACE_DEBUG_LIBRARY)
+    set(ACE_DEBUG_FOUND TRUE)
+else ()
+    set(ACE_DEBUG_LIBRARY ${ACE_LIBRARY})
+endif ()
+
+if (ACE_FOUND)
+    if (NOT Ace_FIND_QUIETLY)
+        message(STATUS "Found ACE library: ${ACE_LIBRARY}")
+        message(STATUS "Found ACE include: ${ACE_INCLUDE_DIR}")
+    endif ()
+else ()
+    if (Ace_FIND_REQUIRED)
+        message(FATAL_ERROR "Could not find ACE")
+    endif ()
+endif ()
+
+
+# TSS: backwards compatibility
+set(ACE_LIBRARIES ${ACE_LIBRARY})
+
+
+
+set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
+set(THREADS_PREFER_PTHREAD_FLAG TRUE)
+find_package(Threads REQUIRED)
+if (Threads_FOUND)
+    message("-- OK.")
+else ()
+    message(FATAL_ERROR "Threads not found.")
+endif ()
 
 add_executable(tetris_figure_class
         Main.cpp
@@ -48,12 +101,14 @@ add_executable(tetris_figure_class
         TGame/TGameLocalDisplay.h
         TGame/TGameDisplay.cpp
         TGame/TGameDisplay.h
-        TDisplay/TDisplayInterface.h
-        TDisplay/TDisplayInterface.cpp
         TControll/TControllBuilder.cpp
         TControll/TControllBuilder.h
+        TDisplay/TDisplayInterface.h
+        TDisplay/TDisplayInterface.cpp
         TDisplay/TDisplayController.cpp
         TDisplay/TDisplayInterface.h
+        TDisplay/TWindow.cpp
+        TDisplay/TWindow.h
         TMain/TMainLocalDisplay.h
         TMain/TMainLocalDisplay.cpp
         TMain/TMainDisplay.h
@@ -62,8 +117,6 @@ add_executable(tetris_figure_class
         TMain/TMainOnlineDisplay.cpp
         TOption/TOptionDisplay.cpp
         TOption/TOptionDisplay.h
-        TDisplay/TWindow.cpp
-        TDisplay/TWindow.h
         TOption/TOptionManager.cpp
         TOption/TOptionManager.h
         TControll/TControll.cpp
@@ -81,7 +134,13 @@ add_executable(tetris_figure_class
         TControll/TGroupControllManager.cpp
         TControll/TGroupControllManager.h
         TObject/TPlayer.cpp
-        TObject/TPlayer.h)
+        TObject/TPlayer.h
+        TObject/TRoom.cpp
+        TObject/TRoom.h
+        TClient/TClientConnector.cpp
+        TClient/TClientConnector.h
+        TClient/TClientService.cpp
+        TClient/TClientService.h)
 
 include_directories(tetris_figure_class
         SYSTEM ${Boost_INCLUDE_DIR}
@@ -91,12 +150,15 @@ include_directories(tetris_figure_class
         ${PROJECT_SOURCE_DIR}
         ${PROJECT_SOURCE_DIR}/TDisplay
         ${PROJECT_SOURCE_DIR}/TGame
-        ${PROJECT_SOURCE_DIR}/Common)
+        ${PROJECT_SOURCE_DIR}/Common
+        ${ACE_INCLUDE_DIR})
 
 target_link_libraries(tetris_figure_class
         ${Boost_PROGRAM_OPTIONS_LIBRARY}
         ${Boost_LIBRARIES}
         ${SDL2_IMAGE_LIBRARIES}
         ${SDL2_TTF_LIBRARIES}
-        ${SDL2_LIBRARY})
+        ${SDL2_LIBRARY}
+        ${ACE_LIBRARIES}
+        Threads::Threads)
 

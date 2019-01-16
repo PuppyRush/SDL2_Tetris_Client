@@ -71,6 +71,15 @@ CMakeFiles/tetris_figure_class.dir/Main.cpp.o: /usr/include/SDL2/SDL_video.h
 CMakeFiles/tetris_figure_class.dir/Main.cpp.o: /usr/include/SDL2/begin_code.h
 CMakeFiles/tetris_figure_class.dir/Main.cpp.o: /usr/include/SDL2/close_code.h
 
+CMakeFiles/tetris_figure_class.dir/TClient/TClientConnector.cpp.o: ../Common/TDefine.h
+CMakeFiles/tetris_figure_class.dir/TClient/TClientConnector.cpp.o: ../TClient/TClientConnector.cpp
+CMakeFiles/tetris_figure_class.dir/TClient/TClientConnector.cpp.o: ../TClient/TClientConnector.h
+CMakeFiles/tetris_figure_class.dir/TClient/TClientConnector.cpp.o: ../TClient/TClientService.h
+
+CMakeFiles/tetris_figure_class.dir/TClient/TClientService.cpp.o: ../Common/TDefine.h
+CMakeFiles/tetris_figure_class.dir/TClient/TClientService.cpp.o: ../TClient/TClientService.cpp
+CMakeFiles/tetris_figure_class.dir/TClient/TClientService.cpp.o: ../TClient/TClientService.h
+
 CMakeFiles/tetris_figure_class.dir/TControll/TButton.cpp.o: ../Common/THeader.h
 CMakeFiles/tetris_figure_class.dir/TControll/TButton.cpp.o: ../TControll/TControllBuilder.h
 CMakeFiles/tetris_figure_class.dir/TControll/TButton.cpp.o: ../Common/TDefine.h
@@ -827,6 +836,9 @@ CMakeFiles/tetris_figure_class.dir/TObject/TPlayer.cpp.o: ../TGame/TFigureBoard.
 CMakeFiles/tetris_figure_class.dir/TObject/TPlayer.cpp.o: ../TGame/TFigureUnit.h
 CMakeFiles/tetris_figure_class.dir/TObject/TPlayer.cpp.o: ../TObject/TPlayer.cpp
 CMakeFiles/tetris_figure_class.dir/TObject/TPlayer.cpp.o: ../TObject/TPlayer.h
+
+CMakeFiles/tetris_figure_class.dir/TObject/TRoom.cpp.o: ../TObject/TRoom.cpp
+CMakeFiles/tetris_figure_class.dir/TObject/TRoom.cpp.o: ../TObject/TRoom.h
 
 CMakeFiles/tetris_figure_class.dir/TOption/TOptionDisplay.cpp.o: ../Common/THeader.h
 CMakeFiles/tetris_figure_class.dir/TOption/TOptionDisplay.cpp.o: ../TControll/TButton.h

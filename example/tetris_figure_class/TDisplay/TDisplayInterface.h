@@ -54,8 +54,8 @@ public:
 	virtual bool clickedBack(const TDisplay disply) = 0;
 
 protected:
-    TDisplayInterface();
-	virtual void _preInitialize() = 0;
+	TDisplayInterface();
+	void _refresh();
 
     inline std::shared_ptr<SDL_Window> getWindow() const noexcept
     {
@@ -67,19 +67,17 @@ protected:
         return m_window->getRenderer();
     }
 
+	virtual void _preInitialize() = 0;
+
 private:
 
 	void _initializing();
-    void _drawMenus();
-    void _drawCarot();
+	void _drawMenus();
+	void _drawCarot();
 	void _release();
 
     inline std::shared_ptr<SDL_Event> getSDLEvent() const noexcept
-    {
-        return m_window->getSDLEvent();
-    }
-
-
+    {  return m_window->getSDLEvent();  }
 
 	virtual void _timer() =0;
 	virtual void _draw() =0;
@@ -94,7 +92,5 @@ private:
 	std::atomic_bool m_run = true;
 	TDisplay m_display;
 };
-
-
 
 SDL_TETRIS_END

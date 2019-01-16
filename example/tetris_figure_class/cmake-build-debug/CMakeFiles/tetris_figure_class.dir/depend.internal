@@ -71,6 +71,15 @@ CMakeFiles/tetris_figure_class.dir/Main.cpp.o
  /usr/include/SDL2/SDL_video.h
  /usr/include/SDL2/begin_code.h
  /usr/include/SDL2/close_code.h
+CMakeFiles/tetris_figure_class.dir/TClient/TClientConnector.cpp.o
+ ..//Common/TDefine.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TClient/TClientConnector.cpp
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TClient/TClientConnector.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TClient/TClientService.h
+CMakeFiles/tetris_figure_class.dir/TClient/TClientService.cpp.o
+ ..//Common/TDefine.h
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TClient/TClientService.cpp
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TClient/TClientService.h
 CMakeFiles/tetris_figure_class.dir/TControll/TButton.cpp.o
  ..//Common/THeader.h
  ..//TControll/TControllBuilder.h
@@ -828,6 +837,9 @@ CMakeFiles/tetris_figure_class.dir/TObject/TPlayer.cpp.o
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TFigureUnit.h
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TObject/TPlayer.cpp
  /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TObject/TPlayer.h
+CMakeFiles/tetris_figure_class.dir/TObject/TRoom.cpp.o
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TObject/TRoom.cpp
+ /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TObject/TRoom.h
 CMakeFiles/tetris_figure_class.dir/TOption/TOptionDisplay.cpp.o
  ..//Common/THeader.h
  ..//TControll/TButton.h
