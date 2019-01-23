@@ -5,15 +5,20 @@
 #ifndef TETRIS_FIGURE_CLASS_TCONTROLL_H
 #define TETRIS_FIGURE_CLASS_TCONTROLL_H
 
+#if _MSC_VER >= 1200
+  #pragma once
+#endif
+
 #include <atomic>
 
 #include "THeader.h"
 #include "TControll/TControllBuilder.h"
 #include "TGroupControllManager.h"
+#include "TGraphic/TGraphicInterface.h"
 
 SDL_TETRIS_BEGIN
 
-class TControll {
+class TControll : public TGraphicInterface{
 
 public:
 
@@ -104,9 +109,12 @@ public:
         }
     }
 
+    virtual void draw() override;
+
 protected:
 
     TControll(const TControllBuilder& bld, const TControllKind kind);
+
     inline const bool isMultiselected() const noexcept{
         m_basic->multiselected;
     }

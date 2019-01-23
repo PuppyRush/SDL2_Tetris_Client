@@ -5,7 +5,9 @@
 #ifndef SDLTETRIS_TCLIENT_TCLIENTSERVICE_H
 #define SDLTETRIS_TCLIENT_TCLIENTSERVICE_H
 
-#pragma  once
+#if _MSC_VER >= 1200
+  #pragma once
+#endif
 
 #include  <ace/Event_Handler.h>
 #include  <ace/Reactor.h>

@@ -5,6 +5,10 @@
 #ifndef UICLASSEXAMPLE_MAINONLINEDISPLAY_H
 #define UICLASSEXAMPLE_MAINONLINEDISPLAY_H
 
+#if _MSC_VER >= 1200
+  #pragma once
+#endif
+
 #include "TMainDisplay.h"
 
 SDL_TETRIS_BEGIN

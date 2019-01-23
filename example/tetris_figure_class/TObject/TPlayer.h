@@ -5,12 +5,21 @@
 #ifndef TETRIS_FIGURE_CLASS_TPLAYER_H
 #define TETRIS_FIGURE_CLASS_TPLAYER_H
 
+#if _MSC_VER >= 1200
+  #pragma once
+#endif
+
+
 #include "../Common/TDefine.h"
 #include "../TGame/TFigureBoard.h"
 
+#include "TObject.h"
+#include "TGame/TScore.h"
+
 SDL_TETRIS_BEGIN
 
-class TPlayer final {
+class TPlayer final : public TObject
+{
 public:
 
     using board_ptr = std::shared_ptr<TFigureBoard>;
@@ -44,11 +53,11 @@ public:
 
 private:
     int m_order;
-    std::string m_name;
-    TIPString m_ip;
     bool m_isReady;
     bool m_isSurvive;
-
+    TIPString m_ip;
+    std::string m_name;
+    TScore m_score;
     board_ptr m_board;
 };
 

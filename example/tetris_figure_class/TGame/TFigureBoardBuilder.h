@@ -5,6 +5,11 @@
 #ifndef TERIS_FIGURE_CLASS_TFIGUREBOARDBUILDER_H
 #define TERIS_FIGURE_CLASS_TFIGUREBOARDBUILDER_H
 
+#if _MSC_VER >= 1200
+  #pragma once
+#endif
+
+
 #include "../Common/TDefine.h"
 
 SDL_TETRIS_BEGIN

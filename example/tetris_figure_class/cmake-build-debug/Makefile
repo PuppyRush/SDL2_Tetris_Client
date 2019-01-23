@@ -474,6 +474,87 @@ TDisplay/TDisplayInterface.cpp.s:
 	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TDisplay/TDisplayInterface.cpp.s
 .PHONY : TDisplay/TDisplayInterface.cpp.s
 
+TDisplay/TGameDisplay.o: TDisplay/TGameDisplay.cpp.o
+
+.PHONY : TDisplay/TGameDisplay.o
+
+# target to build an object file
+TDisplay/TGameDisplay.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TDisplay/TGameDisplay.cpp.o
+.PHONY : TDisplay/TGameDisplay.cpp.o
+
+TDisplay/TGameDisplay.i: TDisplay/TGameDisplay.cpp.i
+
+.PHONY : TDisplay/TGameDisplay.i
+
+# target to preprocess a source file
+TDisplay/TGameDisplay.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TDisplay/TGameDisplay.cpp.i
+.PHONY : TDisplay/TGameDisplay.cpp.i
+
+TDisplay/TGameDisplay.s: TDisplay/TGameDisplay.cpp.s
+
+.PHONY : TDisplay/TGameDisplay.s
+
+# target to generate assembly for a file
+TDisplay/TGameDisplay.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TDisplay/TGameDisplay.cpp.s
+.PHONY : TDisplay/TGameDisplay.cpp.s
+
+TDisplay/TGameLocalDisplay.o: TDisplay/TGameLocalDisplay.cpp.o
+
+.PHONY : TDisplay/TGameLocalDisplay.o
+
+# target to build an object file
+TDisplay/TGameLocalDisplay.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TDisplay/TGameLocalDisplay.cpp.o
+.PHONY : TDisplay/TGameLocalDisplay.cpp.o
+
+TDisplay/TGameLocalDisplay.i: TDisplay/TGameLocalDisplay.cpp.i
+
+.PHONY : TDisplay/TGameLocalDisplay.i
+
+# target to preprocess a source file
+TDisplay/TGameLocalDisplay.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TDisplay/TGameLocalDisplay.cpp.i
+.PHONY : TDisplay/TGameLocalDisplay.cpp.i
+
+TDisplay/TGameLocalDisplay.s: TDisplay/TGameLocalDisplay.cpp.s
+
+.PHONY : TDisplay/TGameLocalDisplay.s
+
+# target to generate assembly for a file
+TDisplay/TGameLocalDisplay.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TDisplay/TGameLocalDisplay.cpp.s
+.PHONY : TDisplay/TGameLocalDisplay.cpp.s
+
+TDisplay/TOptionDisplay.o: TDisplay/TOptionDisplay.cpp.o
+
+.PHONY : TDisplay/TOptionDisplay.o
+
+# target to build an object file
+TDisplay/TOptionDisplay.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TDisplay/TOptionDisplay.cpp.o
+.PHONY : TDisplay/TOptionDisplay.cpp.o
+
+TDisplay/TOptionDisplay.i: TDisplay/TOptionDisplay.cpp.i
+
+.PHONY : TDisplay/TOptionDisplay.i
+
+# target to preprocess a source file
+TDisplay/TOptionDisplay.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TDisplay/TOptionDisplay.cpp.i
+.PHONY : TDisplay/TOptionDisplay.cpp.i
+
+TDisplay/TOptionDisplay.s: TDisplay/TOptionDisplay.cpp.s
+
+.PHONY : TDisplay/TOptionDisplay.s
+
+# target to generate assembly for a file
+TDisplay/TOptionDisplay.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TDisplay/TOptionDisplay.cpp.s
+.PHONY : TDisplay/TOptionDisplay.cpp.s
+
 TDisplay/TWindow.o: TDisplay/TWindow.cpp.o
 
 .PHONY : TDisplay/TWindow.o
@@ -771,59 +852,59 @@ TGame/TFigureZ.cpp.s:
 	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TGame/TFigureZ.cpp.s
 .PHONY : TGame/TFigureZ.cpp.s
 
-TGame/TGameDisplay.o: TGame/TGameDisplay.cpp.o
+TGame/TScore.o: TGame/TScore.cpp.o
 
-.PHONY : TGame/TGameDisplay.o
-
-# target to build an object file
-TGame/TGameDisplay.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TGame/TGameDisplay.cpp.o
-.PHONY : TGame/TGameDisplay.cpp.o
-
-TGame/TGameDisplay.i: TGame/TGameDisplay.cpp.i
-
-.PHONY : TGame/TGameDisplay.i
-
-# target to preprocess a source file
-TGame/TGameDisplay.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TGame/TGameDisplay.cpp.i
-.PHONY : TGame/TGameDisplay.cpp.i
-
-TGame/TGameDisplay.s: TGame/TGameDisplay.cpp.s
-
-.PHONY : TGame/TGameDisplay.s
-
-# target to generate assembly for a file
-TGame/TGameDisplay.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TGame/TGameDisplay.cpp.s
-.PHONY : TGame/TGameDisplay.cpp.s
-
-TGame/TGameLocalDisplay.o: TGame/TGameLocalDisplay.cpp.o
-
-.PHONY : TGame/TGameLocalDisplay.o
+.PHONY : TGame/TScore.o
 
 # target to build an object file
-TGame/TGameLocalDisplay.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.o
-.PHONY : TGame/TGameLocalDisplay.cpp.o
+TGame/TScore.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TGame/TScore.cpp.o
+.PHONY : TGame/TScore.cpp.o
 
-TGame/TGameLocalDisplay.i: TGame/TGameLocalDisplay.cpp.i
+TGame/TScore.i: TGame/TScore.cpp.i
 
-.PHONY : TGame/TGameLocalDisplay.i
+.PHONY : TGame/TScore.i
 
 # target to preprocess a source file
-TGame/TGameLocalDisplay.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.i
-.PHONY : TGame/TGameLocalDisplay.cpp.i
+TGame/TScore.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TGame/TScore.cpp.i
+.PHONY : TGame/TScore.cpp.i
 
-TGame/TGameLocalDisplay.s: TGame/TGameLocalDisplay.cpp.s
+TGame/TScore.s: TGame/TScore.cpp.s
 
-.PHONY : TGame/TGameLocalDisplay.s
+.PHONY : TGame/TScore.s
 
 # target to generate assembly for a file
-TGame/TGameLocalDisplay.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TGame/TGameLocalDisplay.cpp.s
-.PHONY : TGame/TGameLocalDisplay.cpp.s
+TGame/TScore.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TGame/TScore.cpp.s
+.PHONY : TGame/TScore.cpp.s
+
+TGraphic/TBorder.o: TGraphic/TBorder.cpp.o
+
+.PHONY : TGraphic/TBorder.o
+
+# target to build an object file
+TGraphic/TBorder.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TGraphic/TBorder.cpp.o
+.PHONY : TGraphic/TBorder.cpp.o
+
+TGraphic/TBorder.i: TGraphic/TBorder.cpp.i
+
+.PHONY : TGraphic/TBorder.i
+
+# target to preprocess a source file
+TGraphic/TBorder.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TGraphic/TBorder.cpp.i
+.PHONY : TGraphic/TBorder.cpp.i
+
+TGraphic/TBorder.s: TGraphic/TBorder.cpp.s
+
+.PHONY : TGraphic/TBorder.s
+
+# target to generate assembly for a file
+TGraphic/TBorder.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TGraphic/TBorder.cpp.s
+.PHONY : TGraphic/TBorder.cpp.s
 
 TMain/TMainDisplay.o: TMain/TMainDisplay.cpp.o
 
@@ -906,6 +987,33 @@ TMain/TMainOnlineDisplay.cpp.s:
 	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TMain/TMainOnlineDisplay.cpp.s
 .PHONY : TMain/TMainOnlineDisplay.cpp.s
 
+TObject/TObject.o: TObject/TObject.cpp.o
+
+.PHONY : TObject/TObject.o
+
+# target to build an object file
+TObject/TObject.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TObject/TObject.cpp.o
+.PHONY : TObject/TObject.cpp.o
+
+TObject/TObject.i: TObject/TObject.cpp.i
+
+.PHONY : TObject/TObject.i
+
+# target to preprocess a source file
+TObject/TObject.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TObject/TObject.cpp.i
+.PHONY : TObject/TObject.cpp.i
+
+TObject/TObject.s: TObject/TObject.cpp.s
+
+.PHONY : TObject/TObject.s
+
+# target to generate assembly for a file
+TObject/TObject.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TObject/TObject.cpp.s
+.PHONY : TObject/TObject.cpp.s
+
 TObject/TPlayer.o: TObject/TPlayer.cpp.o
 
 .PHONY : TObject/TPlayer.o
@@ -959,33 +1067,6 @@ TObject/TRoom.s: TObject/TRoom.cpp.s
 TObject/TRoom.cpp.s:
 	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TObject/TRoom.cpp.s
 .PHONY : TObject/TRoom.cpp.s
-
-TOption/TOptionDisplay.o: TOption/TOptionDisplay.cpp.o
-
-.PHONY : TOption/TOptionDisplay.o
-
-# target to build an object file
-TOption/TOptionDisplay.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TOption/TOptionDisplay.cpp.o
-.PHONY : TOption/TOptionDisplay.cpp.o
-
-TOption/TOptionDisplay.i: TOption/TOptionDisplay.cpp.i
-
-.PHONY : TOption/TOptionDisplay.i
-
-# target to preprocess a source file
-TOption/TOptionDisplay.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TOption/TOptionDisplay.cpp.i
-.PHONY : TOption/TOptionDisplay.cpp.i
-
-TOption/TOptionDisplay.s: TOption/TOptionDisplay.cpp.s
-
-.PHONY : TOption/TOptionDisplay.s
-
-# target to generate assembly for a file
-TOption/TOptionDisplay.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/TOption/TOptionDisplay.cpp.s
-.PHONY : TOption/TOptionDisplay.cpp.s
 
 TOption/TOptionManager.o: TOption/TOptionManager.cpp.o
 
@@ -1062,6 +1143,15 @@ help:
 	@echo "... TDisplay/TDisplayInterface.o"
 	@echo "... TDisplay/TDisplayInterface.i"
 	@echo "... TDisplay/TDisplayInterface.s"
+	@echo "... TDisplay/TGameDisplay.o"
+	@echo "... TDisplay/TGameDisplay.i"
+	@echo "... TDisplay/TGameDisplay.s"
+	@echo "... TDisplay/TGameLocalDisplay.o"
+	@echo "... TDisplay/TGameLocalDisplay.i"
+	@echo "... TDisplay/TGameLocalDisplay.s"
+	@echo "... TDisplay/TOptionDisplay.o"
+	@echo "... TDisplay/TOptionDisplay.i"
+	@echo "... TDisplay/TOptionDisplay.s"
 	@echo "... TDisplay/TWindow.o"
 	@echo "... TDisplay/TWindow.i"
 	@echo "... TDisplay/TWindow.s"
@@ -1095,12 +1185,12 @@ help:
 	@echo "... TGame/TFigureZ.o"
 	@echo "... TGame/TFigureZ.i"
 	@echo "... TGame/TFigureZ.s"
-	@echo "... TGame/TGameDisplay.o"
-	@echo "... TGame/TGameDisplay.i"
-	@echo "... TGame/TGameDisplay.s"
-	@echo "... TGame/TGameLocalDisplay.o"
-	@echo "... TGame/TGameLocalDisplay.i"
-	@echo "... TGame/TGameLocalDisplay.s"
+	@echo "... TGame/TScore.o"
+	@echo "... TGame/TScore.i"
+	@echo "... TGame/TScore.s"
+	@echo "... TGraphic/TBorder.o"
+	@echo "... TGraphic/TBorder.i"
+	@echo "... TGraphic/TBorder.s"
 	@echo "... TMain/TMainDisplay.o"
 	@echo "... TMain/TMainDisplay.i"
 	@echo "... TMain/TMainDisplay.s"
@@ -1110,15 +1200,15 @@ help:
 	@echo "... TMain/TMainOnlineDisplay.o"
 	@echo "... TMain/TMainOnlineDisplay.i"
 	@echo "... TMain/TMainOnlineDisplay.s"
+	@echo "... TObject/TObject.o"
+	@echo "... TObject/TObject.i"
+	@echo "... TObject/TObject.s"
 	@echo "... TObject/TPlayer.o"
 	@echo "... TObject/TPlayer.i"
 	@echo "... TObject/TPlayer.s"
 	@echo "... TObject/TRoom.o"
 	@echo "... TObject/TRoom.i"
 	@echo "... TObject/TRoom.s"
-	@echo "... TOption/TOptionDisplay.o"
-	@echo "... TOption/TOptionDisplay.i"
-	@echo "... TOption/TOptionDisplay.s"
 	@echo "... TOption/TOptionManager.o"
 	@echo "... TOption/TOptionManager.i"
 	@echo "... TOption/TOptionManager.s"

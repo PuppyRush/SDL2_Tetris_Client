@@ -5,6 +5,10 @@
 #ifndef TERIS_FIGURE_CLASS_TGAMECONTROLLER_H
 #define TERIS_FIGURE_CLASS_TGAMECONTROLLER_H
 
+#if _MSC_VER >= 1200
+  #pragma once
+#endif
+
 #include "unordered_map"
 
 #include "TDisplayInterface.h"

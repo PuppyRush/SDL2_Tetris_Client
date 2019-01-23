@@ -1,5 +1,5 @@
 
-#include "TGame/TGameLocalDisplay.h"
+#include "TDisplay/TGameLocalDisplay.h"
 #include "TDisplay/TDisplayController.h"
 #include "TMain/TMainLocalDisplay.h"
 

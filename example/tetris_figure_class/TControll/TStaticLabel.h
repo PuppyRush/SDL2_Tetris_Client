@@ -5,6 +5,10 @@
 #ifndef TETRIS_FIGURE_CLASS_TSTATICLABEL_H
 #define TETRIS_FIGURE_CLASS_TSTATICLABEL_H
 
+#if _MSC_VER >= 1200
+  #pragma once
+#endif
+
 #include "TButtonBasic.h"
 
 SDL_TETRIS_BEGIN

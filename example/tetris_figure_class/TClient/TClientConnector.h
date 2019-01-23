@@ -5,6 +5,10 @@
 #ifndef SDLTETRIS_TCLIENT_TCLIENTCONNECTOR_H
 #define SDLTETRIS_TCLIENT_TCLIENTCONNECTOR_H
 
+#if _MSC_VER >= 1200
+  #pragma once
+#endif
+
 #include <memory>
 
 #include  <ace/Event_Handler.h>

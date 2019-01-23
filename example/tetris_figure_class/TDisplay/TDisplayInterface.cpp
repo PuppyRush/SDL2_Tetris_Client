@@ -56,7 +56,6 @@ void TDisplayInterface::show()
         SDL_WaitEvent(getSDLEvent().get());
         _event(getSDLEvent().get());
 
-        _release();
 
     }
 
@@ -74,8 +73,9 @@ void TDisplayInterface::_event(const SDL_Event* event)
             setRun(false);
             break;
         case SDL_DRAWDISPLAY:
-            //_draw();
+            _draw();
             _drawMenus();
+            _release();
             break;
         case SDL_MOUSEBUTTONDOWN: {
             const TPoint point(event->button.x, event->button.y);
@@ -137,9 +137,10 @@ void TDisplayInterface::_drawMenus()
 void TDisplayInterface::_release()
 {
     auto renderer = getRenderer().get();
+
     SDL_RenderPresent(renderer);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    SDL_RenderClear(renderer);
+    //SDL_RenderClear(renderer);
 }
 
 void TDisplayInterface::hide()

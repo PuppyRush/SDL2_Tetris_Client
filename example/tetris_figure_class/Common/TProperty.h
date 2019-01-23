@@ -116,6 +116,14 @@ enum UnitType
 };
 
 
+typedef enum TETRIS_EVENT{
+
+    SDL_DRAWDISPLAY = 0x9000
+
+}TETRIS_EVENT;
+
+
+
 SDL_TETRIS_END
 
 

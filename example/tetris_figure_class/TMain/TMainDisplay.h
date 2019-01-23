@@ -1,4 +1,10 @@
-#pragma once
+#ifndef TETRIS_TMAIN_TMAINDISPLAY_H
+#define TETRIS_TMAIN_TMAINDISPLAY_H
+
+
+#if _MSC_VER >= 1200
+  #pragma once
+#endif
 
 #include "../TDisplay/TDisplayInterface.h"
 
@@ -30,3 +36,5 @@ protected:
 };
 
 SDL_TETRIS_END
+
+#endif

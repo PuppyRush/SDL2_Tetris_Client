@@ -5,6 +5,10 @@
 #ifndef TERIS_FIGURE_CLASS_TTYPETRAITS_H
 #define TERIS_FIGURE_CLASS_TTYPETRAITS_H
 
+#if _MSC_VER >= 1200
+  #pragma once
+#endif
+
 #include <cstdlib>
 #include <random>
 #include <ctime>

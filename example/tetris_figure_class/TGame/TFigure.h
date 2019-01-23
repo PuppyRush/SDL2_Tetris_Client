@@ -1,4 +1,9 @@
-#pragma once
+#ifndef TERIS_FIGURE_CLASS_TFIGURE_H
+#define TERIS_FIGURE_CLASS_TFIGURE_H
+
+#if _MSC_VER >= 1200
+  #pragma once
+#endif
 
 
 #include <cassert>
@@ -93,3 +98,5 @@ private:
 };
 
 SDL_TETRIS_END
+
+#endif

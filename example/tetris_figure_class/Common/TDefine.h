@@ -17,11 +17,4 @@
   #define CE
 #endif
 
-typedef enum TETRIS_EVENT{
-
-SDL_DRAWDISPLAY = 0x9000
-
-}TETRIS_EVENT;
-
-
 #endif //TERIS_FIGURE_CLASS_TDEFINE_H

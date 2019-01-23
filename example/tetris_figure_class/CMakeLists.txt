@@ -97,10 +97,12 @@ add_executable(tetris_figure_class
         TGame/TFigureO.h
         TGame/TFigureT.cpp
         TGame/TFigureT.h
-        TGame/TGameLocalDisplay.cpp
-        TGame/TGameLocalDisplay.h
-        TGame/TGameDisplay.cpp
-        TGame/TGameDisplay.h
+        TGame/TScore.cpp
+        TGame/TScore.h
+        TDisplay/TGameLocalDisplay.cpp
+        TDisplay/TGameLocalDisplay.h
+        TDisplay/TGameDisplay.cpp
+        TDisplay/TGameDisplay.h
         TControll/TControllBuilder.cpp
         TControll/TControllBuilder.h
         TDisplay/TDisplayInterface.h
@@ -115,8 +117,8 @@ add_executable(tetris_figure_class
         TMain/TMainDisplay.cpp
         TMain/TMainOnlineDisplay.h
         TMain/TMainOnlineDisplay.cpp
-        TOption/TOptionDisplay.cpp
-        TOption/TOptionDisplay.h
+        TDisplay/TOptionDisplay.cpp
+        TDisplay/TOptionDisplay.h
         TOption/TOptionManager.cpp
         TOption/TOptionManager.h
         TControll/TControll.cpp
@@ -137,10 +139,16 @@ add_executable(tetris_figure_class
         TObject/TPlayer.h
         TObject/TRoom.cpp
         TObject/TRoom.h
+        TObject/TAtomic.h
+        TObject/TObject.cpp
+        TObject/TObject.h
         TClient/TClientConnector.cpp
         TClient/TClientConnector.h
         TClient/TClientService.cpp
-        TClient/TClientService.h)
+        TClient/TClientService.h
+        TGraphic/TBorder.cpp
+        TGraphic/TBorder.h
+        TGraphic/TGraphicInterface.h)
 
 include_directories(tetris_figure_class
         SYSTEM ${Boost_INCLUDE_DIR}

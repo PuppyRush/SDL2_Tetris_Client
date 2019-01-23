@@ -1,19 +1,23 @@
-#pragma once
+#ifndef TETRIS_TFIGUREBUILDER_H
+#define TETRIS_TFIGUREBUILDER_H
 
+#if _MSC_VER >= 1200
+  #pragma once
+#endif
 
 #include "../Common/TDefine.h"
-
+#include "../Common/TType.h"
 #include "TFigure.h"
 #include "TFigureL.h"
 #include "TFigureZ.h"
 #include "TFigureI.h"
 #include "TFigureT.h"
 #include "TFigureO.h"
-#include "../Common/TType.h"
 
 SDL_TETRIS_BEGIN
 
-class TFigureBuilder final {
+class TFigureBuilder final
+{
 public:
 
     TFigureBuilder(const TPoint &point);
@@ -52,3 +56,5 @@ private:
 };
 
 SDL_TETRIS_END
+
+#endif

@@ -5,6 +5,10 @@
 #ifndef TETRIS_FIGURE_CLASS_TMENUBUILDER_H
 #define TETRIS_FIGURE_CLASS_TMENUBUILDER_H
 
+#if _MSC_VER >= 1200
+  #pragma once
+#endif
+
 #include <set>
 #include <functional>
 #include <memory>

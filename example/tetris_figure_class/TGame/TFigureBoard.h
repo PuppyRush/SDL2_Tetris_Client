@@ -5,6 +5,11 @@
 #ifndef TERIS_FIGURE_CLASS_FIGUREBOARD_H
 #define TERIS_FIGURE_CLASS_FIGUREBOARD_H
 
+#if _MSC_VER >= 1200
+  #pragma once
+#endif
+
+
 #include <array>
 #include <memory>
 #include <cassert>

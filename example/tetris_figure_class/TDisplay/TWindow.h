@@ -5,6 +5,11 @@
 #ifndef TETRIS_FIGURE_CLASS_TWINDOW_H
 #define TETRIS_FIGURE_CLASS_TWINDOW_H
 
+#if _MSC_VER >= 1200
+  #pragma once
+#endif
+
+
 #include <SDL.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
@@ -38,11 +43,11 @@ public:
         return m_event;
     }
 
+    TWindow();
+    
     static std::shared_ptr<TWindow> getInstance();
 
 private:
-
-    TWindow();
 
     std::shared_ptr<SDL_Window> m_window;
     std::shared_ptr<SDL_Renderer> m_renderer;

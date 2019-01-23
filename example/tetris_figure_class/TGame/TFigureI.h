@@ -1,8 +1,9 @@
-#pragma once
-
-
+#ifndef TETRIS_TFIGUREI
 #define TETRIS_TFIGUREI
-#ifdef TETRIS_TFIGUREI
+
+#if _MSC_VER >= 1200
+  #pragma once
+#endif
 
 #include "TFigure.h"
 

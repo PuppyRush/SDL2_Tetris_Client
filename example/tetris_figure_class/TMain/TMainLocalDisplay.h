@@ -1,4 +1,10 @@
-#pragma once
+#ifndef TETRIS_TMAIN_TMAINLOCALDISPLAY_H
+#define TETRIS_TMAIN_TMAINLOCALDISPLAY_H
+
+
+#if _MSC_VER >= 1200
+  #pragma once
+#endif
 
 #include <vector>
 #include <boost/serialization/singleton.hpp>
@@ -40,3 +46,5 @@ private:
 };
 
 SDL_TETRIS_END
+
+#endif

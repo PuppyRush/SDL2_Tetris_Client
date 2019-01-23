@@ -10,8 +10,8 @@
 #include "TDisplayController.h"
 #include "TMain/TMainLocalDisplay.h"
 #include "TMain/TMainOnlineDisplay.h"
-#include "TOption/TOptionDisplay.h"
-#include "TGame/TGameLocalDisplay.h"
+#include "TOptionDisplay.h"
+#include "TGameLocalDisplay.h"
 
 SDL_TETRIS
 

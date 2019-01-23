@@ -12,3 +12,7 @@ TControll::TControll(const TControllBuilder& bld, const TControllKind kind)
     m_basic->kind = kind;
 
 }
+
+void TControll::draw() {
+
+}

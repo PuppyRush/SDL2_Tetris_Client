@@ -1,4 +1,11 @@
-#pragma once
+
+#ifndef TERIS_FIGURE_CLASS_TDISPLAYINTERFACE_H
+#define TERIS_FIGURE_CLASS_TDISPLAYINTERFACE_H
+
+
+#if _MSC_VER >= 1200
+  #pragma once
+#endif
 
 #include <string>
 #include <vector>
@@ -86,6 +93,7 @@ private:
 	std::string m_backgroundImgPath;
     std::shared_ptr<TWindow> m_window;
 
+    int m_frameTime = 0;
     bool m_stopDraw = false;
 	bool m_goBack;
 	bool m_canGoOtherDisplay;
@@ -94,3 +102,5 @@ private:
 };
 
 SDL_TETRIS_END
+
+#endif

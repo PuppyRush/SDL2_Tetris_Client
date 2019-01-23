@@ -5,6 +5,10 @@
 #ifndef TETRIS_FIGURE_CLASS_TGROUPCONTROLLMANAGER_H
 #define TETRIS_FIGURE_CLASS_TGROUPCONTROLLMANAGER_H
 
+#if _MSC_VER >= 1200
+  #pragma once
+#endif
+
 #include <cassert>
 #include <unordered_set>
 #include <unordered_map>

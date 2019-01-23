@@ -5,6 +5,10 @@
 #ifndef TETRIS_FIGURE_CLASS_TEDIT_H
 #define TETRIS_FIGURE_CLASS_TEDIT_H
 
+#if _MSC_VER >= 1200
+  #pragma once
+#endif
+
 #include "TControll.h"
 
 SDL_TETRIS_BEGIN

@@ -1,4 +1,9 @@
-#pragma once
+#ifndef TETRIS_TFIGUREUNIT_H
+#define TETRIS_TFIGUREUNIT_H
+
+#if _MSC_VER > 1200
+  #pragma once
+#endif
 
 #include "THeader.h"
 
@@ -40,3 +45,5 @@ private:
 };
 
 SDL_TETRIS_END
+
+#endif
