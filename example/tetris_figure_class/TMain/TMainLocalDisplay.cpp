@@ -3,7 +3,7 @@
 //
 
 #include "TMainLocalDisplay.h"
-#include "TControll/TButton.h"
+#include "Interface/Controller/Button.h"
 
 SDL_TETRIS
 
@@ -24,7 +24,7 @@ void TMainLocalDisplay::_preInitialize() {
     constexpr const t_size begin_y = WINDOW_HEIGHT/3;
 
     {
-        TControllBuilder bld({WINDOW_WIDTH / 2 - 50, begin_y}, "START");
+        ControllBuilder bld(getWindow().get(), {WINDOW_WIDTH / 2 - 50, begin_y}, "START");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
             background_color(TColorCode::white)->
             width(100)->
@@ -32,10 +32,10 @@ void TMainLocalDisplay::_preInitialize() {
             enabled(true)->
             display(TDisplay::Game);
 
-        addMenu( TButton::getInstance(bld));
+        addMenu( Button::getInstance(bld));
     }
     {
-        TControllBuilder bld({WINDOW_WIDTH/2-50, begin_y+80}, "OPTION");
+        ControllBuilder bld(getWindow().get(), {WINDOW_WIDTH/2-50, begin_y+80}, "OPTION");
             bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
             background_color(TColorCode::white)->
             width(100)->
@@ -43,10 +43,10 @@ void TMainLocalDisplay::_preInitialize() {
             enabled(true)->
             display(TDisplay::Option);
 
-        addMenu( TButton::getInstance(bld));
+        addMenu( Button::getInstance(bld));
     }
     {
-        TControllBuilder bld({WINDOW_WIDTH/2-50, begin_y+160}, "EXIT");
+        ControllBuilder bld(getWindow().get(),{WINDOW_WIDTH/2-50, begin_y+160}, "EXIT");
             bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
             background_color(TColorCode::white)->
             width(100)->
@@ -54,7 +54,7 @@ void TMainLocalDisplay::_preInitialize() {
             enabled(true)->
             display(TDisplay::Exit);
 
-        addMenu( TButton::getInstance(bld));
+        addMenu( Button::getInstance(bld));
     }
 }
 
@@ -77,11 +77,11 @@ void TMainLocalDisplay::_timer()
 
 void TMainLocalDisplay::_event(const SDL_Event* event) {
 
-    TDisplayInterface::_event(event);
+    DisplayInterface::_event(event);
 }
 
 void TMainLocalDisplay::_draw()
 {
 
-    setStopDraw(true);
+    //setStopDraw(true);
 }

@@ -7,7 +7,7 @@
 SDL_TETRIS
 
 TMainDisplay::TMainDisplay()
-    :TDisplayInterface()
+    :DisplayInterface()
 {}
 
 

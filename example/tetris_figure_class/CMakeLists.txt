@@ -103,14 +103,14 @@ add_executable(tetris_figure_class
         TDisplay/TGameLocalDisplay.h
         TDisplay/TGameDisplay.cpp
         TDisplay/TGameDisplay.h
-        TControll/TControllBuilder.cpp
-        TControll/TControllBuilder.h
-        TDisplay/TDisplayInterface.h
-        TDisplay/TDisplayInterface.cpp
-        TDisplay/TDisplayController.cpp
-        TDisplay/TDisplayInterface.h
-        TDisplay/TWindow.cpp
-        TDisplay/TWindow.h
+        Interface/Controller/ControllBuilder.cpp
+        Interface/Controller/ControllBuilder.h
+        Interface/GUI/DisplayInterface.h
+        Interface/GUI/DisplayInterface.cpp
+        Interface/GUI/DisplayController.cpp
+        Interface/GUI/DisplayInterface.h
+        Interface/GUI/Window.cpp
+        Interface/GUI/Window.h
         TMain/TMainLocalDisplay.h
         TMain/TMainLocalDisplay.cpp
         TMain/TMainDisplay.h
@@ -121,34 +121,36 @@ add_executable(tetris_figure_class
         TDisplay/TOptionDisplay.h
         TOption/TOptionManager.cpp
         TOption/TOptionManager.h
-        TControll/TControll.cpp
-        TControll/TControll.h
-        TControll/TStaticLabel.cpp
-        TControll/TStaticLabel.h
-        TControll/TButton.cpp
-        TControll/TButton.h
-        TControll/TButtonBasic.cpp
-        TControll/TButtonBasic.h
-        TControll/TRadioButton.cpp
-        TControll/TRadioButton.h
-        TControll/TEditLabel.cpp
-        TControll/TEditLabel.h
-        TControll/TGroupControllManager.cpp
-        TControll/TGroupControllManager.h
-        TObject/TPlayer.cpp
-        TObject/TPlayer.h
-        TObject/TRoom.cpp
-        TObject/TRoom.h
-        TObject/TAtomic.h
-        TObject/TObject.cpp
-        TObject/TObject.h
+        Interface/Controller/Controll.cpp
+        Interface/Controller/Controll.h
+        Interface/Controller/StaticLabel.cpp
+        Interface/Controller/StaticLabel.h
+        Interface/Controller/Button.cpp
+        Interface/Controller/Button.h
+        Interface/Controller/ButtonBasic.cpp
+        Interface/Controller/ButtonBasic.h
+        Interface/Controller/RadioButton.cpp
+        Interface/Controller/RadioButton.h
+        Interface/Controller/EditLabel.cpp
+        Interface/Controller/EditLabel.h
+        Interface/Controller/GroupControllManager.cpp
+        Interface/Controller/GroupControllManager.h
+        Interface/Object/Player.cpp
+        Interface/Object/Player.h
+        Interface/Object/Room.cpp
+        Interface/Object/Room.h
+        Interface/Object/Atomic.h
+        Interface/Object/Object.cpp
+        Interface/Object/Object.h
         TClient/TClientConnector.cpp
         TClient/TClientConnector.h
         TClient/TClientService.cpp
         TClient/TClientService.h
-        TGraphic/TBorder.cpp
-        TGraphic/TBorder.h
-        TGraphic/TGraphicInterface.h)
+        Interface/Controller/Border.cpp
+        Interface/Controller/Border.h
+        Interface/GUI/GraphicInterface.h
+        TObject/TPlayer.h
+        TObject/TPlayer.cpp)
 
 include_directories(tetris_figure_class
         SYSTEM ${Boost_INCLUDE_DIR}

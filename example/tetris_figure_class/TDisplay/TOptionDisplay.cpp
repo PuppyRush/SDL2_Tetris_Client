@@ -3,8 +3,8 @@
 //
 
 #include "TOptionDisplay.h"
-#include "TControll/TStaticLabel.h"
-#include "TControll/TButton.h"
+#include "Interface/Controller/StaticLabel.h"
+#include "Interface/Controller/Button.h"
 
 SDL_TETRIS
 
@@ -15,17 +15,17 @@ void TOptionDisplay::_preInitialize() {
     t_size begin_x = WINDOW_WIDTH / 3;
 
     {
-        TControllBuilder bld({begin_x - 100, begin_y}, "SPEED");
+        ControllBuilder bld(getWindow().get(), {begin_x - 100, begin_y}, "SPEED");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
             background_color(TColorCode::black)->
             width(100)->
             height(50)->
             enabled(false);
 
-        addMenu(TStaticLabel::getInstance(bld));
+        addMenu(StaticLabel::getInstance(bld));
     }
     {
-        TControllBuilder bld({begin_x + 60, begin_y}, "1");
+        ControllBuilder bld(getWindow().get(),{begin_x + 60, begin_y}, "1");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
             background_color(TColorCode::black)->
             width(40)->
@@ -37,10 +37,10 @@ void TOptionDisplay::_preInitialize() {
              })->
             grouping(0);
 
-        addMenu(TButton::getInstance(bld));
+        addMenu(Button::getInstance(bld));
     }
     {
-        TControllBuilder bld({begin_x + 120, begin_y}, "2");
+        ControllBuilder bld(getWindow().get(),{begin_x + 120, begin_y}, "2");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
             background_color(TColorCode::black)->
             width(40)->
@@ -52,10 +52,10 @@ void TOptionDisplay::_preInitialize() {
             })->
             grouping(0);
 
-        addMenu(TButton::getInstance(bld));
+        addMenu(Button::getInstance(bld));
     }
     {
-        TControllBuilder bld({begin_x + 180, begin_y}, "3");
+        ControllBuilder bld(getWindow().get(),{begin_x + 180, begin_y}, "3");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
             background_color(TColorCode::black)->
             width(40)->
@@ -67,10 +67,10 @@ void TOptionDisplay::_preInitialize() {
              })->
             grouping(0);
 
-        addMenu(TButton::getInstance(bld));
+        addMenu(Button::getInstance(bld));
     }
     {
-        TControllBuilder bld({begin_x + 240, begin_y}, "4");
+        ControllBuilder bld(getWindow().get(),{begin_x + 240, begin_y}, "4");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
             background_color(TColorCode::black)->
             width(40)->
@@ -82,10 +82,10 @@ void TOptionDisplay::_preInitialize() {
             })->
             grouping(0);
 
-        addMenu(TButton::getInstance(bld));
+        addMenu(Button::getInstance(bld));
     }
     {
-        TControllBuilder bld({begin_x + 60, begin_y + 60}, "5");
+        ControllBuilder bld(getWindow().get(),{begin_x + 60, begin_y + 60}, "5");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
             background_color(TColorCode::black)->
             width(40)->
@@ -97,10 +97,10 @@ void TOptionDisplay::_preInitialize() {
             })->
             grouping(0);
 
-        addMenu(TButton::getInstance(bld));
+        addMenu(Button::getInstance(bld));
     }
     {
-        TControllBuilder bld({begin_x + 120, begin_y + 60}, "6");
+        ControllBuilder bld(getWindow().get(),{begin_x + 120, begin_y + 60}, "6");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
             background_color(TColorCode::black)->
             width(40)->
@@ -112,10 +112,10 @@ void TOptionDisplay::_preInitialize() {
             })->
             grouping(0);
 
-        addMenu(TButton::getInstance(bld));
+        addMenu(Button::getInstance(bld));
     }
     {
-        TControllBuilder bld({begin_x + 180, begin_y + 60}, "7");
+        ControllBuilder bld(getWindow().get(),{begin_x + 180, begin_y + 60}, "7");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
             background_color(TColorCode::black)->
             width(40)->
@@ -127,10 +127,10 @@ void TOptionDisplay::_preInitialize() {
             })->
             grouping(0);
 
-        addMenu(TButton::getInstance(bld));
+        addMenu(Button::getInstance(bld));
     }
     {
-        TControllBuilder bld({begin_x + 240, begin_y + 60}, "8");
+        ControllBuilder bld(getWindow().get(),{begin_x + 240, begin_y + 60}, "8");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
             background_color(TColorCode::black)->
             width(40)->
@@ -142,13 +142,13 @@ void TOptionDisplay::_preInitialize() {
         })->
             grouping(0);
 
-        addMenu(TButton::getInstance(bld));
+        addMenu(Button::getInstance(bld));
     }
 
     begin_y = WINDOW_HEIGHT / 4 + 200;
 
     {
-        TControllBuilder bld({begin_x - 100, begin_y}, "MAP");
+        ControllBuilder bld(getWindow().get(),{begin_x - 100, begin_y}, "MAP");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
             background_color(TColorCode::black)->
             width(80)->
@@ -157,11 +157,11 @@ void TOptionDisplay::_preInitialize() {
             carot()->
             grouping(1);
 
-        addMenu(TStaticLabel::getInstance(bld));
+        addMenu(StaticLabel::getInstance(bld));
     }
 
     {
-        TControllBuilder bld({begin_x + 60, begin_y}, "Pyramid");
+        ControllBuilder bld(getWindow().get(),{begin_x + 60, begin_y}, "Pyramid");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
             background_color(TColorCode::black)->
             width(120)->
@@ -173,11 +173,11 @@ void TOptionDisplay::_preInitialize() {
         })->
             grouping(1);
 
-        addMenu(TButton::getInstance(bld));
+        addMenu(Button::getInstance(bld));
     }
 
     {
-        TControllBuilder bld({begin_x + 210, begin_y}, "Rain");
+        ControllBuilder bld(getWindow().get(),{begin_x + 210, begin_y}, "Rain");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
             background_color(TColorCode::black)->
             width(80)->
@@ -189,10 +189,10 @@ void TOptionDisplay::_preInitialize() {
         })->
             grouping(1);
 
-        addMenu(TButton::getInstance(bld));
+        addMenu(Button::getInstance(bld));
     }
     {
-        TControllBuilder bld({begin_x + 320, begin_y}, "Randomly");
+        ControllBuilder bld(getWindow().get(),{begin_x + 320, begin_y}, "Randomly");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
             background_color(TColorCode::black)->
             width(140)->
@@ -204,12 +204,12 @@ void TOptionDisplay::_preInitialize() {
             })->
             grouping(1);
 
-        addMenu(TButton::getInstance(bld));
+        addMenu(Button::getInstance(bld));
     }
 
     begin_y += 100;
     {
-        TControllBuilder bld({begin_x - 100, begin_y}, "Graphic");
+        ControllBuilder bld(getWindow().get(),{begin_x - 100, begin_y}, "Graphic");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
             background_color(TColorCode::black)->
             width(100)->
@@ -220,10 +220,10 @@ void TOptionDisplay::_preInitialize() {
             })->
             display(TDisplay::Main);
 
-        addMenu(TButton::getInstance(bld));
+        addMenu(Button::getInstance(bld));
     }
     {
-        TControllBuilder bld({begin_x+60, begin_y}, "DrwaLine");
+        ControllBuilder bld(getWindow().get(),{begin_x+60, begin_y}, "DrwaLine");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
             background_color(TColorCode::black)->
             width(120)->
@@ -231,13 +231,13 @@ void TOptionDisplay::_preInitialize() {
             enabled(true)->
             display(TDisplay::Main);
 
-        addMenu(TButton::getInstance(bld));
+        addMenu(Button::getInstance(bld));
     }
 
 
     begin_y += 100;
     {
-        TControllBuilder bld({begin_x-80, begin_y}, "Back");
+        ControllBuilder bld(getWindow().get(),{begin_x-80, begin_y}, "Back");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
             background_color(TColorCode::black)->
             width(100)->
@@ -245,9 +245,8 @@ void TOptionDisplay::_preInitialize() {
             enabled(true)->
             display(TDisplay::Main);
 
-        addMenu(TButton::getInstance(bld));
+        addMenu(Button::getInstance(bld));
     }
-
 }
 
 void TOptionDisplay::_timer() {
@@ -259,12 +258,12 @@ void TOptionDisplay::_draw() {
 }
 
 void TOptionDisplay::_event(const SDL_Event *event) {
-    TDisplayInterface::_event(event);
+    DisplayInterface::_event(event);
 }
 
-std::shared_ptr<TDisplayInterface> TOptionDisplay::getInstance() {
+std::shared_ptr<DisplayInterface> TOptionDisplay::getInstance() {
 //boost::serialization::singleton<TMainLocalDisplay>::get_mutable_instance();
-    static std::shared_ptr<TDisplayInterface> inst = std::shared_ptr<TDisplayInterface>(new TOptionDisplay{});
+    static std::shared_ptr<DisplayInterface> inst = std::shared_ptr<DisplayInterface>(new TOptionDisplay{});
     return inst;
 }
 

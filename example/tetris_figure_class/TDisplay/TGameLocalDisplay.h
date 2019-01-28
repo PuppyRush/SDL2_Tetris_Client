@@ -11,7 +11,7 @@
 
 
 #include "TGameDisplay.h"
-#include <TObject/TPlayer.h>
+#include "TObject/TPlayer.h"
 
 SDL_TETRIS_BEGIN
 

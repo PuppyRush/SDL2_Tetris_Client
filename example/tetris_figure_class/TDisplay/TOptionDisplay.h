@@ -10,11 +10,11 @@
 #endif
 
 
-#include "TDisplayInterface.h"
+#include "Interface/GUI/DisplayInterface.h"
 
 SDL_TETRIS_BEGIN
 
-class TOptionDisplay final: public TDisplayInterface
+class TOptionDisplay final: public DisplayInterface
 {
 public:
     enum class UIResource : t_type
@@ -25,7 +25,7 @@ public:
 
     virtual bool clickedBack(const TDisplay disply) override {}
 
-    static std::shared_ptr<TDisplayInterface> getInstance();
+    static std::shared_ptr<DisplayInterface> getInstance();
 
 private:
 

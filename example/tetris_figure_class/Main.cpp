@@ -1,6 +1,6 @@
 
 #include "TDisplay/TGameLocalDisplay.h"
-#include "TDisplay/TDisplayController.h"
+#include "Interface/GUI/DisplayController.h"
 #include "TMain/TMainLocalDisplay.h"
 
 SDL_TETRIS
@@ -19,6 +19,6 @@ int main()
 {
     init();
 
-    TDisplayController::getInstance()->setDisplay(TDisplay::Main);
-    TDisplayController::getInstance()->operateGame();
+    DisplayController::getInstance()->setDisplay(TDisplay::Main);
+    DisplayController::getInstance()->operateGame();
 }

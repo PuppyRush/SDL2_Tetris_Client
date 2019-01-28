@@ -8,12 +8,12 @@
   #pragma once
 #endif
 
-#include "TDisplayInterface.h"
-#include <TObject/TPlayer.h>
+#include "Interface/GUI/DisplayInterface.h"
+#include "TObject/TPlayer.h"
 
 SDL_TETRIS_BEGIN
 
-class TGameDisplay : public TDisplayInterface
+class TGameDisplay : public DisplayInterface
 {
 public:
 

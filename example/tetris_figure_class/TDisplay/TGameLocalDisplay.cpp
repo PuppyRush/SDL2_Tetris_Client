@@ -69,7 +69,8 @@ void TGameLocalDisplay::_event(const SDL_Event* event) {
             _refresh();
             break;
         case SDL_KEYDOWN:
-            switch (event->key.keysym.sym) {
+            switch (event->key.keysym.sym)
+            {
                 case SDLK_LEFT:
                     ply->goLeft();
                     break;
@@ -93,7 +94,8 @@ void TGameLocalDisplay::_event(const SDL_Event* event) {
             ply->goDown();
             _refresh();
             break;
-        case SDL_MOUSEBUTTONDOWN: {
+        case SDL_MOUSEBUTTONDOWN:
+        {
             const TPoint point(event->button.x, event->button.y);
             if (clickedMenuEvent(point))
                 break;
@@ -102,7 +104,7 @@ void TGameLocalDisplay::_event(const SDL_Event* event) {
         }
         default:;
     }
-    TDisplayInterface::_event(event);
+    DisplayInterface::_event(event);
 }
 
 void TGameLocalDisplay::_timer()

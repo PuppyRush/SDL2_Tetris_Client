@@ -114,6 +114,102 @@
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common/TypeTraits.h">
 			<Option target="tetris_figure_class"/>
 		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Controller/Border.cpp">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Controller/Border.h">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Controller/Button.cpp">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Controller/Button.h">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Controller/ButtonBasic.cpp">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Controller/ButtonBasic.h">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Controller/Controll.cpp">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Controller/Controll.h">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Controller/ControllBuilder.cpp">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Controller/ControllBuilder.h">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Controller/EditLabel.cpp">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Controller/EditLabel.h">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Controller/GroupControllManager.cpp">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Controller/GroupControllManager.h">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Controller/RadioButton.cpp">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Controller/RadioButton.h">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Controller/StaticLabel.cpp">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Controller/StaticLabel.h">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/GUI/DisplayController.cpp">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/GUI/DisplayController.h">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/GUI/DisplayInterface.cpp">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/GUI/DisplayInterface.h">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/GUI/GraphicInterface.h">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/GUI/Window.cpp">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/GUI/Window.h">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Object/Atomic.h">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Object/Object.cpp">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Object/Object.h">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Object/Player.cpp">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Object/Player.h">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Object/Room.cpp">
+			<Option target="tetris_figure_class"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Interface/Object/Room.h">
+			<Option target="tetris_figure_class"/>
+		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Main.cpp">
 			<Option target="tetris_figure_class"/>
 		</Unit>
@@ -127,66 +223,6 @@
 			<Option target="tetris_figure_class"/>
 		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TClient/TClientService.h">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TButton.cpp">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TButton.h">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TButtonBasic.cpp">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TButtonBasic.h">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TControll.cpp">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TControll.h">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TControllBuilder.cpp">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TControllBuilder.h">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TEditLabel.cpp">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TEditLabel.h">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TGroupControllManager.cpp">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TGroupControllManager.h">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TRadioButton.cpp">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TRadioButton.h">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TStaticLabel.cpp">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TControll/TStaticLabel.h">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TDisplayController.cpp">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TDisplayController.h">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TDisplayInterface.cpp">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TDisplayInterface.h">
 			<Option target="tetris_figure_class"/>
 		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TGameDisplay.cpp">
@@ -205,12 +241,6 @@
 			<Option target="tetris_figure_class"/>
 		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TOptionDisplay.h">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TWindow.cpp">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay/TWindow.h">
 			<Option target="tetris_figure_class"/>
 		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TFigure.cpp">
@@ -279,15 +309,6 @@
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame/TScore.h">
 			<Option target="tetris_figure_class"/>
 		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGraphic/TBorder.cpp">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGraphic/TBorder.h">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGraphic/TGraphicInterface.h">
-			<Option target="tetris_figure_class"/>
-		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TMain/TMainDisplay.cpp">
 			<Option target="tetris_figure_class"/>
 		</Unit>
@@ -306,25 +327,10 @@
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TMain/TMainOnlineDisplay.h">
 			<Option target="tetris_figure_class"/>
 		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TObject/TAtomic.h">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TObject/TObject.cpp">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TObject/TObject.h">
-			<Option target="tetris_figure_class"/>
-		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TObject/TPlayer.cpp">
 			<Option target="tetris_figure_class"/>
 		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TObject/TPlayer.h">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TObject/TRoom.cpp">
-			<Option target="tetris_figure_class"/>
-		</Unit>
-		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TObject/TRoom.h">
 			<Option target="tetris_figure_class"/>
 		</Unit>
 		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TOption/TOptionManager.cpp">

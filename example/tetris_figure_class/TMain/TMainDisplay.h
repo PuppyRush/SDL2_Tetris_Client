@@ -6,11 +6,11 @@
   #pragma once
 #endif
 
-#include "../TDisplay/TDisplayInterface.h"
+#include "Interface/GUI/DisplayInterface.h"
 
 SDL_TETRIS_BEGIN
 
-class TMainDisplay : public TDisplayInterface
+class TMainDisplay : public DisplayInterface
 {
 public:
 

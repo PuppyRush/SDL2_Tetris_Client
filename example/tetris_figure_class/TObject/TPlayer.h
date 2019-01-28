@@ -10,15 +10,15 @@
 #endif
 
 
-#include "../Common/TDefine.h"
-#include "../TGame/TFigureBoard.h"
+#include "Common/TDefine.h"
+#include "TGame/TFigureBoard.h"
 
-#include "TObject.h"
+#include "Interface/Object/Player.h"
 #include "TGame/TScore.h"
 
 SDL_TETRIS_BEGIN
 
-class TPlayer final : public TObject
+class TPlayer final : public Player
 {
 public:
 
@@ -27,13 +27,11 @@ public:
     TPlayer();
     virtual ~TPlayer() {}
 
-    inline const std::string getUserName() const noexcept { return m_name; }
     inline const bool isReady() const noexcept { return m_isReady; }
     inline const int getOrder() const noexcept { return m_order; }
     inline const bool isSurvive() const noexcept { return m_isSurvive; }
 
     inline void setOrder(const int idx) noexcept { m_order = idx; }
-    inline void setName(const std::string name) { m_name = name; }
     inline void setReady(const bool rdy) noexcept { m_isReady = rdy; }
 
     inline const TFigureBoard::nextfigure_board_type getNextFigureBoard() const {
@@ -56,7 +54,6 @@ private:
     bool m_isReady;
     bool m_isSurvive;
     TIPString m_ip;
-    std::string m_name;
     TScore m_score;
     board_ptr m_board;
 };
