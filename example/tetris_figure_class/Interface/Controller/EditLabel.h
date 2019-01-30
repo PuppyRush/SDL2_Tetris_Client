@@ -16,6 +16,7 @@ SDL_TETRIS_BEGIN
 class EditLabel : public Controll{
 
 public:
+    virtual void initialize() override;
     static std::shared_ptr<Controll> getInstance(const ControllBuilder& bld);
 
 private:

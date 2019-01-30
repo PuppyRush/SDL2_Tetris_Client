@@ -21,6 +21,8 @@
 
 SDL_TETRIS_BEGIN
 
+
+
 class TFigureBoard final{
 
 public:
@@ -77,11 +79,11 @@ public:
     void createNextFigureRandomly();
     std::shared_ptr<TFigure> getCurrentFigure();
 
-private:
-
-
     void _eraseCoords();
     void _setCoords();
+
+private:
+
     void _eraseNextFigureCoords();
     void _setNextFigureCoords();
     bool _eraseLinesIfFillLineThenCollapse();
@@ -101,6 +103,23 @@ private:
     board_type m_board;
     nextfigure_board_type m_nextFigureBoard;
     std::mutex m_mutex;
+};
+
+class make_redrawer {
+
+public:
+    TFigureBoard& m_board;
+
+    make_redrawer(TFigureBoard& board)
+    :m_board(board)
+    {
+        board._setCoords();
+    }
+
+    ~make_redrawer()
+    {
+        m_board._eraseCoords();
+    }
 };
 
 SDL_TETRIS_END

@@ -12,6 +12,11 @@ StaticLabel::StaticLabel(const ControllBuilder& bld)
 {
 }
 
+void StaticLabel::initialize()
+{
+    Controll::initialize();
+}
+
 std::shared_ptr<ButtonBasic> StaticLabel::getInstance(const ControllBuilder& bld)
 {
     std::shared_ptr<ButtonBasic> inst = std::shared_ptr<StaticLabel>(new StaticLabel(bld));

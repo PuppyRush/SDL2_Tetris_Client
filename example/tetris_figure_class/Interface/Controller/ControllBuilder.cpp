@@ -82,6 +82,12 @@ ControllBuilder* ControllBuilder::carot()
     return this;
 }
 
+ControllBuilder* ControllBuilder::selected()
+{
+    m_basic.selected = true;
+    return this;
+}
+
 ControllBuilder* ControllBuilder::addCallback(const std::function<void(TOptionManager& mng, bool isSelected)>& fn)
 {
     m_basic.callbackAry.emplace_back(fn);

@@ -11,6 +11,11 @@ Button::Button(const ControllBuilder& bld)
 {
 }
 
+void Button::initialize()
+{
+    Controll::initialize();
+}
+
 std::shared_ptr<ButtonBasic> Button::getInstance(const ControllBuilder& bld)
 {
     std::shared_ptr<ButtonBasic> inst = std::shared_ptr<Button>(new Button(bld));

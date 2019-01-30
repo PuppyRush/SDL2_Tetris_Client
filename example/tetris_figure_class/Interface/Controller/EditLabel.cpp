@@ -11,6 +11,12 @@ EditLabel::EditLabel(const ControllBuilder& bld)
 {
 }
 
+
+void EditLabel::initialize()
+{
+    Controll::initialize();
+}
+
 std::shared_ptr<Controll> EditLabel::getInstance(const ControllBuilder& bld)
 {
     std::shared_ptr<Controll> inst = std::shared_ptr<EditLabel>(new EditLabel(bld));

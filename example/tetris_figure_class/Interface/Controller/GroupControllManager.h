@@ -41,6 +41,7 @@ public:
     void remove(const group_id grpId, const t_id ctlId);
     void setMultiselect(const group_id grpId);
     bool isGroup(const group_id grpId);
+    bool isSelected(const group_id grpId , const t_id ctlId);
 
     static std::shared_ptr<GroupControllManager> getInstance();
 
@@ -89,7 +90,7 @@ private:
             }
             else
             {
-                m_selectedId = GroupControllManager::NONE;
+                m_selectedId = id;
                 m_unselectedIds.erase(id);
             }
         }
@@ -106,8 +107,21 @@ private:
                 m_selectedId = -1;
                 m_unselectedIds.insert(id);
             }
+        }
+
+        const bool isSelected(const t_id id)
+        {
+            if(m_isMultiselection)
+            {
+                return m_selectedIds.count(id);
+            }
+            else
+            {
+                return m_selectedId == id;
+            }
 
         }
+
 
         bool m_isMultiselection = false;
 

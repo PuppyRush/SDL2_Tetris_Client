@@ -79,11 +79,7 @@ void DisplayInterface::_event(const SDL_Event* event)
             _release();
             break;
         case SDL_MOUSEBUTTONDOWN: {
-            const TPoint point(event->button.x, event->button.y);
-            if (clickedMenuEvent(point))
-            {
-                break;
-            }
+            clickedMenuEvent(TPoint{event->button.x, event->button.y});
             _refresh();
             break;
         }
@@ -110,6 +106,7 @@ void DisplayInterface::_release()
 
 void DisplayInterface::addMenu(const std::shared_ptr<Controll> ctl)
 {
+    ctl->initialize();
     m_menus.emplace_back(ctl);
 }
 
@@ -147,7 +144,6 @@ void DisplayInterface::setDisplay(const TDisplay dp)
 {
     DisplayController::getInstance()->setDisplay(dp);
     m_display = dp;
-
 }
 
 

@@ -14,7 +14,6 @@
 #include <memory>
 #include <atomic>
 
-#include "THeader.h"
 #include "Interface/GUI/Window.h"
 #include "TOption/TOptionManager.h"
 
@@ -36,6 +35,7 @@ public:
     ControllBuilder* multiselected(const bool selected);
     ControllBuilder* grouping(const size_t idx);
     ControllBuilder* carot();
+    ControllBuilder* selected();
     ControllBuilder* addCallback(const std::function<void(TOptionManager& mng, bool isSelected)>& fn);
 
     std::shared_ptr<TControllBasic> build() const;

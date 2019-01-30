@@ -11,6 +11,13 @@ RadioButton::RadioButton(const ControllBuilder& bld)
 {
 }
 
+
+void RadioButton::initialize()
+{
+    Controll::initialize();
+}
+
+
 std::shared_ptr<ButtonBasic> RadioButton::getInstance(const ControllBuilder& bld)
 {
     std::shared_ptr<ButtonBasic> inst = std::shared_ptr<RadioButton>(new RadioButton(bld));

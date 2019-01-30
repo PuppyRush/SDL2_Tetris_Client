@@ -24,6 +24,7 @@ public:
         ButtonBasic::setSelected(clicked);
     }
 
+    virtual void initialize() override;
     static std::shared_ptr<ButtonBasic> getInstance(const ControllBuilder& bld);
 
 private:

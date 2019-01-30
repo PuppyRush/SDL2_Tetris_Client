@@ -12,8 +12,13 @@ Controll::Controll(const ControllBuilder& bld, const TControllKind kind)
     m_basic = bld.build();
     m_basic->kind = kind;
 
+    setSelected(m_basic->selected);
 }
 
+void Controll::initialize()
+{
+
+}
 
 void Controll::draw()
 {
@@ -40,9 +45,9 @@ void Controll::draw()
         rect = SDL_Rect{ getPoint().x, getPoint().y, getWidth(), getHeight()};
 
     const auto& back_color = getBackground_color();
-    SDL_RenderFillRect(renderer, &rect);
-    SDL_SetRenderDrawColor(renderer, back_color.r, back_color.g, back_color.b, 255);
 
+    SDL_SetRenderDrawColor(renderer, back_color.r, back_color.g, back_color.b, 255);
+    SDL_RenderFillRect(renderer, &rect);
     SDL_RenderDrawRect(renderer, &rect);
 
     SDL_Rect renderQuad = { static_cast<int>(getPoint().x + ( getWidth() - text_width)/2)
@@ -64,11 +69,14 @@ void Controll::_drawCarot()
 
     if(m_basic->selected && m_basic->carot)
     {
-        SDL_Rect rect{m_basic->point.x-5, m_basic->point.y-5, m_basic->width+10, m_basic->height+10};
+        if( GroupControllManager::getInstance()->isSelected(m_basic->group, m_basic->id))
+        {
+            SDL_Rect rect{m_basic->point.x-5, m_basic->point.y-5, m_basic->width+10, m_basic->height+10};
 
-        const auto& linecolor = TColor::getColor(TColorCode::red);
-        SDL_SetRenderDrawColor(renderer, linecolor.r, linecolor.g, linecolor.b, 255);
-        SDL_RenderDrawRect(renderer, &rect);
+            const auto& linecolor = TColor::getColor(TColorCode::red);
+            SDL_SetRenderDrawColor(renderer, linecolor.r, linecolor.g, linecolor.b, 255);
+            SDL_RenderDrawRect(renderer, &rect);
+        }
     }
 }
 
@@ -76,13 +84,10 @@ void Controll::_drawCarot()
 void Controll::setSelected(bool selected)
 {
     m_basic->selected = selected;
-    if(m_basic->group != -1)
-    {
-        if(selected)
-            GroupControllManager::getInstance()->get(m_basic->group).toSelected(m_basic->id);
-        else
-            GroupControllManager::getInstance()->get(m_basic->group).toUnSelected(m_basic->id);
-    }
+    if(selected)
+        GroupControllManager::getInstance()->select(m_basic->group, m_basic->id);
+    else
+        GroupControllManager::getInstance()->unselecte(m_basic->group, m_basic->id);
 }
 
 const bool Controll::isHit(const TPoint& point)

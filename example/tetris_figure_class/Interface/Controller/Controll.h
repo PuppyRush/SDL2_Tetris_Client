@@ -103,7 +103,7 @@ public:
     const bool isHit(const TPoint& point);
     virtual void draw() override;
     virtual void clicked();
-
+    virtual void initialize();
 protected:
 
     Controll(const ControllBuilder& bld, const TControllKind kind);

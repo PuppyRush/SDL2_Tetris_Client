@@ -17,6 +17,7 @@ class StaticLabel : public ButtonBasic {
 
 public:
 
+    virtual void initialize() override;
     static std::shared_ptr<ButtonBasic> getInstance(const ControllBuilder& bld);
 
 private:

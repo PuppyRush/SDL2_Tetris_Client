@@ -82,7 +82,7 @@ void GroupControllManager::select(const group_id grpId, const t_id ctlId)
 {
     if(isGroup(grpId))
     {
-        get(grpId).toSelected(grpId);
+        get(grpId).toSelected(ctlId);
     }
 }
 
@@ -92,6 +92,16 @@ void GroupControllManager::unselecte(const group_id grpId, const t_id ctlId)
     {
         get(grpId).toUnSelected(grpId);
     }
+}
+
+bool GroupControllManager::isSelected(const group_id grpId , const t_id ctlId)
+{
+    if(isGroup(grpId))
+    {
+        return get(grpId).isSelected(ctlId);
+    }
+    else
+        return false;
 }
 
 std::shared_ptr<GroupControllManager> GroupControllManager::getInstance()

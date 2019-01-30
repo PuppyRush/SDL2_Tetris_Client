@@ -12,15 +12,10 @@
 #include <functional>
 #include <atomic>
 #include <unordered_map>
-
-#include <SDL.h>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_video.h>
+#include <mutex>
+#include <condition_variable>
 
 #include "Window.h"
-#include "Common/THeader.h"
 #include "Interface/Controller/ControllBuilder.h"
 #include "Interface/Controller/Controll.h"
 
@@ -95,8 +90,10 @@ private:
     int m_frameTime = 0;
     bool m_stopDraw = false;
     bool m_goBack;
-    std::atomic_bool m_run = true;
 
+    std::atomic_bool m_run = true;
+    std::mutex m;
+    std::condition_variable cv;
 private:
     TDisplay m_display;
 };

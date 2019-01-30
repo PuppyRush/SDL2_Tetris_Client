@@ -16,8 +16,8 @@ void TOptionDisplay::_preInitialize() {
 
     {
         ControllBuilder bld(getWindow().get(), {begin_x - 100, begin_y}, "SPEED");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-            background_color(TColorCode::black)->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
             width(100)->
             height(50)->
             enabled(false);
@@ -26,8 +26,8 @@ void TOptionDisplay::_preInitialize() {
     }
     {
         ControllBuilder bld(getWindow().get(),{begin_x + 60, begin_y}, "1");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-            background_color(TColorCode::black)->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
             width(40)->
             height(50)->
             enabled(true)->
@@ -41,8 +41,8 @@ void TOptionDisplay::_preInitialize() {
     }
     {
         ControllBuilder bld(getWindow().get(),{begin_x + 120, begin_y}, "2");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-            background_color(TColorCode::black)->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
             width(40)->
             height(50)->
             enabled(true)->
@@ -56,8 +56,8 @@ void TOptionDisplay::_preInitialize() {
     }
     {
         ControllBuilder bld(getWindow().get(),{begin_x + 180, begin_y}, "3");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-            background_color(TColorCode::black)->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
             width(40)->
             height(50)->
             enabled(true)->
@@ -71,8 +71,8 @@ void TOptionDisplay::_preInitialize() {
     }
     {
         ControllBuilder bld(getWindow().get(),{begin_x + 240, begin_y}, "4");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-            background_color(TColorCode::black)->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
             width(40)->
             height(50)->
             enabled(true)->
@@ -86,8 +86,8 @@ void TOptionDisplay::_preInitialize() {
     }
     {
         ControllBuilder bld(getWindow().get(),{begin_x + 60, begin_y + 60}, "5");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-            background_color(TColorCode::black)->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
             width(40)->
             height(50)->
             enabled(true)->
@@ -101,8 +101,8 @@ void TOptionDisplay::_preInitialize() {
     }
     {
         ControllBuilder bld(getWindow().get(),{begin_x + 120, begin_y + 60}, "6");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-            background_color(TColorCode::black)->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
             width(40)->
             height(50)->
             enabled(true)->
@@ -116,8 +116,8 @@ void TOptionDisplay::_preInitialize() {
     }
     {
         ControllBuilder bld(getWindow().get(),{begin_x + 180, begin_y + 60}, "7");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-            background_color(TColorCode::black)->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
             width(40)->
             height(50)->
             enabled(true)->
@@ -131,8 +131,8 @@ void TOptionDisplay::_preInitialize() {
     }
     {
         ControllBuilder bld(getWindow().get(),{begin_x + 240, begin_y + 60}, "8");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-            background_color(TColorCode::black)->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
             width(40)->
             height(50)->
             enabled(true)->
@@ -149,8 +149,8 @@ void TOptionDisplay::_preInitialize() {
 
     {
         ControllBuilder bld(getWindow().get(),{begin_x - 100, begin_y}, "MAP");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-            background_color(TColorCode::black)->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
             width(80)->
             height(50)->
             enabled(true)->
@@ -162,8 +162,8 @@ void TOptionDisplay::_preInitialize() {
 
     {
         ControllBuilder bld(getWindow().get(),{begin_x + 60, begin_y}, "Pyramid");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-            background_color(TColorCode::black)->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
             width(120)->
             height(50)->
             enabled(true)->
@@ -178,8 +178,8 @@ void TOptionDisplay::_preInitialize() {
 
     {
         ControllBuilder bld(getWindow().get(),{begin_x + 210, begin_y}, "Rain");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-            background_color(TColorCode::black)->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
             width(80)->
             height(50)->
             enabled(true)->
@@ -193,8 +193,8 @@ void TOptionDisplay::_preInitialize() {
     }
     {
         ControllBuilder bld(getWindow().get(),{begin_x + 320, begin_y}, "Randomly");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-            background_color(TColorCode::black)->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
             width(140)->
             height(50)->
             enabled(true)->
@@ -210,26 +210,25 @@ void TOptionDisplay::_preInitialize() {
     begin_y += 100;
     {
         ControllBuilder bld(getWindow().get(),{begin_x - 100, begin_y}, "Graphic");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-            background_color(TColorCode::black)->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
             width(100)->
             height(50)->
             enabled(true)->
             addCallback([](TOptionManager &mng, bool isSelected) {
                 mng.setDrawLine(isSelected);
-            })->
-            display(TDisplay::Main);
+            });
 
         addMenu(Button::getInstance(bld));
     }
     {
         ControllBuilder bld(getWindow().get(),{begin_x+60, begin_y}, "DrwaLine");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-            background_color(TColorCode::black)->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
             width(120)->
             height(50)->
-            enabled(true)->
-            display(TDisplay::Main);
+            carot()->
+            enabled(true);
 
         addMenu(Button::getInstance(bld));
     }
@@ -238,8 +237,8 @@ void TOptionDisplay::_preInitialize() {
     begin_y += 100;
     {
         ControllBuilder bld(getWindow().get(),{begin_x-80, begin_y}, "Back");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white})->
-            background_color(TColorCode::black)->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
             width(100)->
             height(50)->
             enabled(true)->
