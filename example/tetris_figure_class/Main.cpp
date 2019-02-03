@@ -1,7 +1,8 @@
 
-#include "TDisplay/TGameLocalDisplay.h"
-#include "Interface/GUI/DisplayController.h"
-#include "TMain/TMainLocalDisplay.h"
+#include "SDLEasyGUI/Windows/DisplayController.h"
+
+#include "Tetris/TDisplay/TGameLocalDisplay.h"
+#include "Tetris/TMain/TMainLocalDisplay.h"
 
 SDL_TETRIS
 
@@ -12,7 +13,7 @@ void init()
     TGameLocalDisplay::getInstance()->setBackgroundImgPath("../resources/images/background.png");
 
     //Registry Event
-    SDL_RegisterEvents(SDL_DRAWDISPLAY);
+    SDL_RegisterEvents(TETRIS_EVENT_FIGURETIMER);
 }
 
 int main()

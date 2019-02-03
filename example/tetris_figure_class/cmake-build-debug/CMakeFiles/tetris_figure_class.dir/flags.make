@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -pthread -std=gnu++1z
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/tetris_figure_class -isystem /usr/include/SDL2 -isystem /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class -isystem /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TDisplay -isystem /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/TGame -isystem /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common 
+CXX_INCLUDES = -I/home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/tetris_figure_class -isystem /usr/include/SDL2 -isystem /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class -isystem /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Tetris/TDisplay -isystem /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Tetris/TFiguers -isystem /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/Common 
 

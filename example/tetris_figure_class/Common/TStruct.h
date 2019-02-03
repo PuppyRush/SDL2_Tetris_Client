@@ -57,8 +57,9 @@ public:
     t_color r;
     t_color g;
     t_color b;
+    t_color a;
     TColor(){}
-    TColor(const TColorCode code)
+    TColor(const TColorCode code, const t_color alhpa = 255)
     {
         colorCode = code;
         switch(code)
@@ -104,11 +105,17 @@ public:
                 g = 0;
                 b = 255;
                 break;
+            case TColorCode::silver:
+                r = 169;
+                g = 169;
+                b = 169;
+                break;
             default:
                 std::cerr << "cant found : " <<  static_cast<int>(code) << std::endl;
                 assert(0);
                 break;
         }
+        a = 255;
     }
 
     static SDL_Color getColor(const TColorCode colorCode)

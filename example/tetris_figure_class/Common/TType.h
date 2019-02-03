@@ -18,5 +18,6 @@ using t_size = int;         //unify this type with SDL2
 using t_color = Uint8;      //unify this type with SDL2
 using t_unique = uint_fast16_t ;
 using t_uniqueAtomic = atomic<t_unique>;
+using t_eventType = unsigned int;
 
 SDL_TETRIS_END

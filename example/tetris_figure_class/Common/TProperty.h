@@ -68,6 +68,7 @@ enum class TColorCode : t_type
     green,
     black,
     white,
+    silver,
     none,
     Begin = red,
     End = green
@@ -111,14 +112,16 @@ enum class TMap : t_type
 enum UnitType
 {
     Fill = 1 << 0,
-    Shadow = 1 << 1,
-    Empty = 1 << 2
+    Figure = 1 << 1,
+    Ghost = 1 << 2,
+    Empty = 1 << 3
 };
 
 
 typedef enum TETRIS_EVENT{
 
-    SDL_DRAWDISPLAY = 0x9000
+    TETRIS_EVENT_FIGURETIMER = 0x9000,
+    SDL_DRAWDISPLAY = 0x9001
 
 }TETRIS_EVENT;
 
