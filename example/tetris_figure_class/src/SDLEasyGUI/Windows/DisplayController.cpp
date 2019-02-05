@@ -11,7 +11,7 @@
 #include "Tetris/TMain/TMainLocalDisplay.h"
 #include "Tetris/TMain/TMainOnlineDisplay.h"
 #include "Tetris/TDisplay/TOptionDisplay.h"
-#include "TGameLocalDisplay.h"
+#include "Tetris/TDisplay/TGameLocalDisplay.h"
 
 SDL_TETRIS
 
@@ -21,7 +21,7 @@ DisplayController::DisplayController()
 {
     using namespace std;
     m_displayMap.insert(make_pair( make_pair(TMode::Local, TDisplay::Main), TMainLocalDisplay::getInstance()));
-    m_displayMap.insert(make_pair( make_pair(TMode::Local, TDisplay::Game), TGameLocalDisplay::getInstance()));
+    m_displayMap.insert(make_pair( make_pair(TMode::Local, TDisplay::SingleGame), TGameLocalDisplay::getInstance()));
     m_displayMap.insert(make_pair( make_pair(TMode::Local, TDisplay::Option), TOptionDisplay::getInstance()));
 
     m_display = m_displayMap.at(make_pair(TMode::Local, TDisplay::Main));

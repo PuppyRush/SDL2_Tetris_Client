@@ -9,14 +9,8 @@
   #pragma once
 #endif
 
-
 #include "Common/TDefine.h"
-#include "Tetris/TFiguers/TFigureBoard.h"
-
 #include "GameInterface/Object/Object.h"
-#include "Tetris/TObject/TScore.h"
-
-SDL_TETRIS_BEGIN
 
 class Player : public Object
 {
@@ -26,12 +20,10 @@ public:
     virtual ~Player() = default;
 
     inline const std::string getUserName() const noexcept { return m_name; }
-    inline void setName(const std::string name) { m_name = name; }
+    inline void setName(const std::string& name) { m_name = name; }
 
 private:
     std::string m_name;
 };
-
-SDL_TETRIS_END
 
 #endif //TETRIS_FIGURE_CLASS_TPLAYER_H

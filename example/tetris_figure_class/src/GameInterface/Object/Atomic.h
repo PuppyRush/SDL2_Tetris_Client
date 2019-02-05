@@ -5,10 +5,7 @@
   #pragma once
 #endif
 
-#include "Common/TDefine.h"
-#include "TType.h"
-
-SDL_TETRIS_BEGIN
+#include "../../Common/TType.h"
 
 class Atomic
 {
@@ -32,7 +29,5 @@ public:
 private:
 	Atomic()	{}
 };
-
-SDL_TETRIS_END
 
 #endif

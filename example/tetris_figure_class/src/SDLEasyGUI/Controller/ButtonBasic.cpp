@@ -13,16 +13,16 @@ ButtonBasic::ButtonBasic(const ControllBuilder& bld, const TControllKind kind)
 
 }
 
-void ButtonBasic::draw()
+void ButtonBasic::onDraw()
 {
     _drawCarot();
-    Controll::draw();
+    Controll::onDraw();
 }
 
 
 void ButtonBasic::_drawCarot()
 {
-    auto renderer = getWindow()->getRenderer().get();
+    auto renderer = getWindow()->getSDLRenderer().get();
 
     if(isSelected() && isCarot())
     {

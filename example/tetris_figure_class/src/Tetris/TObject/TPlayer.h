@@ -9,11 +9,12 @@
   #pragma once
 #endif
 
+#include <cassert>
 
 #include "Common/TDefine.h"
-#include "Tetris/TFiguers/TFigureController.h"
-
 #include "GameInterface/Object/Player.h"
+#include "Tetris/TClient/TClientController.h"
+#include "Tetris/TFiguers/TFigureController.h"
 #include "Tetris/TObject/TScore.h"
 
 SDL_TETRIS_BEGIN
@@ -23,15 +24,22 @@ class TPlayer final : public Player
 public:
 
     TPlayer();
-    virtual ~TPlayer() {}
+    virtual ~TPlayer();
 
     inline const bool isReady() const noexcept { return m_isReady; }
     inline const int getOrder() const noexcept { return m_order; }
     inline const bool isSurvive() const noexcept { return m_isSurvive; }
-    inline const std::shared_ptr<TFigureController> getController() const noexcept { return m_ctl; }
+
+    inline const std::shared_ptr<TFigureController> getController() const noexcept {
+        assert(m_gameCtl && m_gameCtl.get());
+        return m_gameCtl;
+    }
 
     inline void setOrder(const int idx) noexcept { m_order = idx; }
     inline void setReady(const bool rdy) noexcept { m_isReady = rdy; }
+
+    void startGame();
+    void endGame();
 
 private:
     int m_order;
@@ -40,7 +48,8 @@ private:
     TIPString m_ip;
     TScore m_score;
 
-    std::shared_ptr<TFigureController> m_ctl;
+    std::shared_ptr<TFigureController> m_gameCtl;
+    TClientController m_clientCtl;
 };
 
 SDL_TETRIS_END

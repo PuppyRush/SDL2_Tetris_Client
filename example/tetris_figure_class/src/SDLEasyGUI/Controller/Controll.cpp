@@ -7,12 +7,10 @@
 SDL_TETRIS
 
 Controll::Controll(const ControllBuilder& bld, const TControllKind kind)
-    :m_window(bld.m_window)
 {
     m_basic = bld.build();
     m_basic->kind = kind;
-
-
+    setWindow(bld.m_window);
 }
 
 void Controll::initialize()
@@ -20,9 +18,9 @@ void Controll::initialize()
     setSelected(m_basic->selected);
 }
 
-void Controll::draw()
+void Controll::onDraw()
 {
-    auto renderer = m_window->getRenderer().get();
+    auto renderer = getWindow()->getSDLRenderer().get();
     const auto& fontinfo = getFont();
     TTF_Font* font = TTF_OpenFont(fontinfo.font_name.c_str(), fontinfo.size);
     std::string score_text = getName();

@@ -23,16 +23,16 @@ public:
         End
     };
 
-    virtual bool clickedBack(const TDisplay disply) override {}
+    virtual bool onClickedBack(const TDisplay disply) override {}
 
     static std::shared_ptr<DisplayInterface> getInstance();
 
 private:
 
-    virtual void _preInitialize() final;
+    virtual void onPreInitialize() final;
     virtual void _event(const SDL_Event* event) final;
     virtual void _timer() final;
-    virtual void _draw() final;
+    virtual void onDraw() final;
 
 };
 

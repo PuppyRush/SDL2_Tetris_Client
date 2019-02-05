@@ -46,7 +46,8 @@ enum class TDisplay : t_type
 {
     Main,
     Option,
-    Game,
+    SingleGame,
+    OnlineGame,
     Robby,
     Exit,
     None

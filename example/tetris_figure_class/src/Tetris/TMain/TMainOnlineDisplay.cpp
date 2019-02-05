@@ -14,7 +14,7 @@ std::shared_ptr<TMainDisplay> TMainOnlineDisplay::getInstance()
     return inst;
 }
 
-void TMainOnlineDisplay::_preInitialize() {
+void TMainOnlineDisplay::onPreInitialize() {
 
 }
 
@@ -24,7 +24,7 @@ void TMainOnlineDisplay::_timer()
 
 }
 
-void TMainOnlineDisplay::_draw()
+void TMainOnlineDisplay::onDraw()
 {
 
 }

@@ -14,7 +14,7 @@
 #include <memory>
 #include <atomic>
 
-#include "SDLEasyGUI/Windows/Window.h"
+#include "SDLEasyGUI/Windows/GraphicInterface.h"
 #include "Tetris/TOption/TOptionManager.h"
 
 SDL_TETRIS_BEGIN
@@ -23,8 +23,8 @@ class ControllBuilder final
 {
 public:
 
-    ControllBuilder(const Window* window, const TPoint& point, const std::string& str);
-    ControllBuilder(const Window* window, TPoint&& point, std::string&& str);
+    ControllBuilder(const GraphicInterface::window_ptr window, const TPoint& point, const std::string& str);
+    ControllBuilder(const GraphicInterface::window_ptr window, TPoint&& point, std::string&& str);
 
     ControllBuilder* font(const TFont& font);
     ControllBuilder* background_color(const TColorCode color);
@@ -40,7 +40,7 @@ public:
 
     std::shared_ptr<TControllBasic> build() const;
 
-    const Window* m_window;
+    GraphicInterface::window_ptr m_window;
 
 private:
 

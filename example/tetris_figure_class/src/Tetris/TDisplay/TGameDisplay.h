@@ -21,25 +21,19 @@ public:
 	{};
 
 	virtual ~TGameDisplay() {}
-
 	virtual bool clickedStart() =0;
 	virtual bool clickedSuspend() =0;
-    virtual bool clickedBack(const TDisplay disply)  = 0;
-
-
+    virtual bool onClickedBack(const TDisplay disply)  = 0;
 
 protected:
 
-
-
     TGameDisplay();
 
-	virtual void _preInitialize() = 0;
+	virtual void onPreInitialize() = 0;
+	virtual void onDraw() =0;
     virtual void _event(const SDL_Event* event) =0;
 	virtual void _timer() =0;
-	virtual void _draw() =0;
 
-	const int drawMask = UnitType::Fill | UnitType::Figure | UnitType::Ghost;
 	std::vector<std::shared_ptr<TPlayer>> m_player;
 
 };

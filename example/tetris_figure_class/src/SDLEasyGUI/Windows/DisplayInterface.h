@@ -21,7 +21,7 @@
 
 SDL_TETRIS_BEGIN
 
-class DisplayInterface {
+class DisplayInterface : public GraphicInterface{
 public:
     //imple 'enum class' at child class.
     enum class UIResource : t_type;
@@ -33,8 +33,8 @@ public:
     void addControll(const std::shared_ptr<Controll> ctl);
     bool clickedMenuEvent(const TPoint &point);
 
-    void show(){m_window->show();}
-    void hidden(){m_window->hidden();}
+    void show(){getWindow()->show();}
+    void hidden(){getWindow()->hidden();}
 
     void run();
     void setDisplay(const TDisplay dp);
@@ -44,8 +44,6 @@ public:
     inline void setRun(const bool run) { m_run = run; }
     inline void setStopDraw(const bool set) { m_stopDraw = set; }
 
-
-
     inline const bool getGoBack() const noexcept { return m_goBack; }
     inline const bool getRun() const noexcept { return m_run; }
     inline const bool getSetDraw() const noexcept { return m_stopDraw; }
@@ -53,44 +51,41 @@ public:
 
     virtual ~DisplayInterface();
     virtual void _event(const SDL_Event *event);
-    virtual bool clickedBack(const TDisplay disply) = 0;
+    virtual bool onClickedBack(const TDisplay disply) = 0;
 
 protected:
     DisplayInterface();
     void _refresh();
 
     inline std::shared_ptr<SDL_Window> getSDLWindow() const noexcept {
-        return m_window->getWindow();
+        return getWindow()->getSDLWindow();
     }
 
     inline std::shared_ptr<SDL_Renderer> getRenderer() const noexcept {
-        return m_window->getRenderer();
+        return getWindow()->getSDLRenderer();
     }
 
-    inline std::shared_ptr<Window> getWindow() const noexcept { return m_window; }
+    virtual void onPreInitialize();
+    virtual void onCreate();
+    virtual void onWindowEvent(const SDL_Event *event);
+    virtual void onClose();
+    virtual void onDestroy();
 
-    virtual void _preInitialize() = 0;
-    virtual void _draw() = 0;
+    virtual void onDraw() = 0;
 
 private:
 
-    void _initializing();
-    void _drawMenus();
-
     void _release();
-
-    inline std::shared_ptr<SDL_Event> getSDLEvent() const noexcept { return m_window->getSDLEvent(); }
-
+    void _initializing();
+    void _onDrawMenus();
     virtual void _timer() = 0;
+
+    inline std::shared_ptr<SDL_Event> getSDLEvent() const noexcept { return getWindow()->getSDLEvent(); }
 
     std::vector<std::shared_ptr<Controll>> m_menus;
     std::string m_backgroundImgPath;
-    std::shared_ptr<Window> m_window;
-
-    int m_frameTime = 0;
     bool m_stopDraw = false;
     bool m_goBack;
-
     std::atomic_bool m_run = true;
     std::mutex m;
     std::condition_variable cv;

@@ -24,28 +24,30 @@ public:
         End
     };
 
-
     virtual bool clickedStart() final;
     virtual bool clickedSuspend() final;
-    virtual bool clickedBack(const TDisplay disply) final;
+    virtual bool onClickedBack(const TDisplay disply) final;
 
     virtual ~TGameLocalDisplay(){}
 
     static std::shared_ptr<TGameDisplay> getInstance();
+    virtual void onDraw() override final;
+    virtual void onPreInitialize() override final;
+    virtual void onClose() override final;
+    virtual void onCreate() override final;
 
 private:
 
-    TGameLocalDisplay():TGameDisplay(){}
+    TGameLocalDisplay() = default;
 
-    virtual void _preInitialize() final;
     virtual void _event(const SDL_Event* event) final;
     virtual void _timer() final;
 
-    virtual void _draw() final;
     void _drawFigure(TFigureController::board_ptr board, TFigureController::figure_ptr figure);
     void _drawNextFigure();
 
     bool m_drawLine;
+    SDL_TimerID m_figureTimer;
 };
 
 SDL_TETRIS_END

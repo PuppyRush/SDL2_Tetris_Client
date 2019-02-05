@@ -5,7 +5,7 @@
   #pragma once
 #endif
 
-#include "THeader.h"
+#include "../../Common/THeader.h"
 
 SDL_TETRIS_BEGIN
 

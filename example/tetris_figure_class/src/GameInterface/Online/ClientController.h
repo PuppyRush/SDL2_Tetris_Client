@@ -1,0 +1,12 @@
+//
+// Created by chaed on 19. 2. 4.
+//
+
+#ifndef TETRIS_FIGURE_CLASS_CLIENTCONTROLLER_H
+#define TETRIS_FIGURE_CLASS_CLIENTCONTROLLER_H
+
+class ClientController {
+
+};
+
+#endif //TETRIS_FIGURE_CLASS_CLIENTCONTROLLER_H

@@ -23,7 +23,7 @@ public:
         Controll::setMultiselected(multiselected);
     }
 
-    virtual void draw() override;
+    virtual void onDraw() override;
 
 protected:
     ButtonBasic(const ControllBuilder& bld, const TControllKind kind);

@@ -35,14 +35,10 @@ public:
 
     TFigureBoard()
     {
-        for (int i = 0 ; i < m_board.size() ; i++)
-        {
-            auto board = m_board[i];
-            for (int l = 0 ; l < board.size() ; l++) {
-                board[l] = TFigureUnit{TPoint(i, l), 0, TColorCode::none, UnitType::Empty};
-            }
-        }
+        clear();
     }
+    ~TFigureBoard() = default;
+
 
 
     inline board_type getBoard() const noexcept
@@ -177,6 +173,18 @@ public:
         else
             return true;
     }
+
+    void clear()
+    {
+        for (int i = 0 ; i < m_board.size() ; i++)
+        {
+            auto board = m_board[i];
+            for (int l = 0 ; l < board.size() ; l++) {
+                board[l] = TFigureUnit{TPoint(i, l), 0, TColorCode::none, UnitType::Empty};
+            }
+        }
+    }
+
 
 private:
 

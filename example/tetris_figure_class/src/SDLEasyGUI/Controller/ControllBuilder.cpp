@@ -7,7 +7,7 @@
 
 SDL_TETRIS
 
-ControllBuilder::ControllBuilder(const Window* window,const TPoint& point, const std::string& str)
+ControllBuilder::ControllBuilder(const GraphicInterface::window_ptr window,const TPoint& point, const std::string& str)
     :m_window(window)
 {
     m_basic.id = getId();
@@ -15,7 +15,7 @@ ControllBuilder::ControllBuilder(const Window* window,const TPoint& point, const
     m_basic.name = str;
 }
 
-ControllBuilder::ControllBuilder(const Window* window,TPoint&& point, std::string&& str)
+ControllBuilder::ControllBuilder(const GraphicInterface::window_ptr window,TPoint&& point, std::string&& str)
     :m_window(window)
 {
     m_basic.id = getId();

@@ -10,22 +10,25 @@
 SDL_TETRIS
 
 DisplayInterface::DisplayInterface()
-     :m_goBack(true),
-//     m_canGoOtherDisplay(true),
-     m_window(make_shared<Window>())
+     :m_goBack(true)
 {
 }
 
 
 DisplayInterface::~DisplayInterface()
 {
-    SDL_DestroyRenderer(getRenderer().get());
-    SDL_DestroyWindow(getSDLWindow().get());
-    SDL_Quit();
+    onClose();
+
+}
+
+void DisplayInterface::onPreInitialize()
+{
+
 }
 
 void DisplayInterface::_initializing()
 {
+
 
    /* if(!m_backgroundImgPath.empty())
     {
@@ -46,9 +49,8 @@ void DisplayInterface::_initializing()
 
 void DisplayInterface::run()
 {
-    _preInitialize();
-    _timer();
-    _refresh();
+    onCreate();
+    onPreInitialize();
     show();
 
     while(m_run)
@@ -59,8 +61,8 @@ void DisplayInterface::run()
         _event(getSDLEvent().get());
     }
 
-    setRun(true);
-    hidden();
+    onClose();
+    onDestroy();
 }
 
 
@@ -68,31 +70,43 @@ void DisplayInterface::_event(const SDL_Event* event)
 {
     switch (event->type) {
         case SDL_WINDOWEVENT:
-            _refresh();
+            onWindowEvent(event);
             break;
         case SDL_QUIT:
             setRun(false);
             break;
         case SDL_DRAWDISPLAY:
-            _draw();
-            _drawMenus();
+            //dont call _refresh() in this case.
+            onDraw();
+            _onDrawMenus();
             _release();
             break;
         case SDL_MOUSEBUTTONDOWN: {
             clickedMenuEvent(TPoint{event->button.x, event->button.y});
-            _refresh();
             break;
         }
         default:;
     }
 }
 
-void DisplayInterface::_drawMenus()
+void DisplayInterface::onWindowEvent(const SDL_Event *event)
 {
-    for(const auto& menu : m_menus)
+    switch(event->window.type)
     {
-        menu->draw();
+        case SDL_WINDOWEVENT_CLOSE:
+            onDestroy();
+            break;
     }
+    _refresh();
+}
+
+void DisplayInterface::onCreate()
+{
+    auto window = make_shared<Window>();
+    setWindow(window);
+
+    _timer();
+    _refresh();
 }
 
 void DisplayInterface::_release()
@@ -103,6 +117,28 @@ void DisplayInterface::_release()
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 }
+
+void DisplayInterface::onClose()
+{
+    setRun(true);
+    hidden();
+}
+
+void DisplayInterface::onDestroy()
+{
+    SDL_DestroyRenderer(getRenderer().get());
+    SDL_DestroyWindow(getSDLWindow().get());
+    SDL_Quit();
+}
+
+void DisplayInterface::_onDrawMenus()
+{
+    for(const auto& menu : m_menus)
+    {
+        menu->onDraw();
+    }
+}
+
 
 void DisplayInterface::addControll(const std::shared_ptr<Controll> ctl)
 {

@@ -34,12 +34,12 @@ public:
     inline const size_t getDisplayWidth() const noexcept { return m_windowWidth; }
     inline const size_t getDisplayHeight() const noexcept{ return m_windowHeight; }
 
-    inline std::shared_ptr<SDL_Window> getWindow() const noexcept
+    inline std::shared_ptr<SDL_Window> getSDLWindow() const noexcept
     {
         return m_window;
     }
 
-    inline std::shared_ptr<SDL_Renderer> getRenderer() const noexcept
+    inline std::shared_ptr<SDL_Renderer> getSDLRenderer() const noexcept
     {
         return m_renderer;
     }

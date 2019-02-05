@@ -1,1 +1,12 @@
-CMakeLists.txt not found in /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class Select CMakeLists.txt file...
+/home/chaed/programs/clion-2018.3.1/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class
+-- Boost version: 1.65.1
+-- Found the following Boost libraries:
+--   system
+--   filesystem
+--   serialization
+-- Found ACE library: /usr/lib/libACE.so
+-- Found ACE include: /usr/include
+-- OK.
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/chaed/projects/SDL2_Tetris_Client/example/tetris_figure_class/cmake-build-debug

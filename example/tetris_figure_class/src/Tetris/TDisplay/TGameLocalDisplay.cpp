@@ -7,6 +7,7 @@
 #include <random>
 #include <functional>
 
+#include "SDLEasyGUI/Controller/Button.h"
 #include "TGameLocalDisplay.h"
 
 SDL_TETRIS
@@ -32,12 +33,18 @@ std::shared_ptr<TGameDisplay> TGameLocalDisplay::getInstance()
     return inst;
 }
 
-void TGameLocalDisplay::_preInitialize()
+void TGameLocalDisplay::onPreInitialize()
 {
-    m_drawLine = TOptionManager::getInstance()->isDrawLine();
-
     auto ply = std::make_shared<TPlayer>();
+    m_player.emplace_back(ply);
+
+    for(auto& ply : m_player)
+    {
+        ply->startGame();
+    }
     auto board = ply->getController()->getBoard();
+
+    m_drawLine = TOptionManager::getInstance()->isDrawLine();
 
     board->setStartDisplayPoint(TPoint{GAMEBOARD_BEGIN_X, GAMEBOARD_BEGIN_Y});
     board->setblockLength(FIGURE_UNIT_LEN);
@@ -46,10 +53,57 @@ void TGameLocalDisplay::_preInitialize()
     nextboard->setStartDisplayPoint(TPoint{GAMEBOARD_BEGIN_X + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN, GAMEBOARD_BEGIN_Y});
     nextboard->setblockLength(FIGURE_UNIT_LEN);
 
-    m_player.emplace_back(ply);
+    t_size begin_y = WINDOW_HEIGHT/10*3;
+    {
+        ControllBuilder bld(getWindow(), {WINDOW_WIDTH/5*3, begin_y}, "START");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
+            width(150)->
+            height(50)->
+            enabled(true);
+
+        addControll(Button::getInstance(bld));
+    }
+    begin_y += 80;
+    {
+        ControllBuilder bld(getWindow(), {WINDOW_WIDTH/5*3, begin_y}, "SUSPEND");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
+            width(150)->
+            height(50)->
+            enabled(true);
+
+        addControll(Button::getInstance(bld));
+    }
+    begin_y += 80;
+    {
+        ControllBuilder bld(getWindow(), {WINDOW_WIDTH/5*3, begin_y}, "EXIT");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
+            width(150)->
+            height(50)->
+            enabled(true)->
+            display(TDisplay::Main);
+
+        addControll(Button::getInstance(bld));
+    }
 }
 
-bool TGameLocalDisplay::clickedBack(const TDisplay disply)
+void TGameLocalDisplay::onClose()
+{
+    m_player.clear();
+    SDL_RemoveTimer(m_figureTimer);
+
+    DisplayInterface::onClose();
+}
+
+void TGameLocalDisplay::onCreate()
+{
+
+    DisplayInterface::onCreate();
+}
+
+bool TGameLocalDisplay::onClickedBack(const TDisplay disply)
 {
 
 }
@@ -80,7 +134,6 @@ void TGameLocalDisplay::_event(const SDL_Event* event) {
         case TETRIS_EVENT_FIGURETIMER:
             /* and now we can call the function we wanted to call in the timer but couldn't because of the multithreading problems */
             ply->getController()->command(SDLK_DOWN);
-            ply->getController()->setGhostFigure();
             _refresh();
             break;
         case SDL_MOUSEBUTTONDOWN:
@@ -99,10 +152,10 @@ void TGameLocalDisplay::_event(const SDL_Event* event) {
 
 void TGameLocalDisplay::_timer()
 {
-    SDL_AddTimer(1000, my_callbackfunc, nullptr);
+    m_figureTimer = SDL_AddTimer(1000, my_callbackfunc, nullptr);
 }
 
-void TGameLocalDisplay::_draw()
+void TGameLocalDisplay::onDraw()
 {
     using namespace std;
 

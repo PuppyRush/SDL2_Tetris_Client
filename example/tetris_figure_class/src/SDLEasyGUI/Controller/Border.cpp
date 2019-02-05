@@ -6,7 +6,7 @@
 
 SDL_TETRIS
 
-void Border::draw()
+void Border::onDraw()
 {
 
 

@@ -123,1031 +123,1058 @@ tetris_figure_class/fast:
 	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/build
 .PHONY : tetris_figure_class/fast
 
-GameInterface/Object/Object.o: GameInterface/Object/Object.cpp.o
+src/GameInterface/Object/Object.o: src/GameInterface/Object/Object.cpp.o
 
-.PHONY : GameInterface/Object/Object.o
-
-# target to build an object file
-GameInterface/Object/Object.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/GameInterface/Object/Object.cpp.o
-.PHONY : GameInterface/Object/Object.cpp.o
-
-GameInterface/Object/Object.i: GameInterface/Object/Object.cpp.i
-
-.PHONY : GameInterface/Object/Object.i
-
-# target to preprocess a source file
-GameInterface/Object/Object.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/GameInterface/Object/Object.cpp.i
-.PHONY : GameInterface/Object/Object.cpp.i
-
-GameInterface/Object/Object.s: GameInterface/Object/Object.cpp.s
-
-.PHONY : GameInterface/Object/Object.s
-
-# target to generate assembly for a file
-GameInterface/Object/Object.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/GameInterface/Object/Object.cpp.s
-.PHONY : GameInterface/Object/Object.cpp.s
-
-GameInterface/Object/Player.o: GameInterface/Object/Player.cpp.o
-
-.PHONY : GameInterface/Object/Player.o
+.PHONY : src/GameInterface/Object/Object.o
 
 # target to build an object file
-GameInterface/Object/Player.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/GameInterface/Object/Player.cpp.o
-.PHONY : GameInterface/Object/Player.cpp.o
+src/GameInterface/Object/Object.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/GameInterface/Object/Object.cpp.o
+.PHONY : src/GameInterface/Object/Object.cpp.o
 
-GameInterface/Object/Player.i: GameInterface/Object/Player.cpp.i
+src/GameInterface/Object/Object.i: src/GameInterface/Object/Object.cpp.i
 
-.PHONY : GameInterface/Object/Player.i
+.PHONY : src/GameInterface/Object/Object.i
 
 # target to preprocess a source file
-GameInterface/Object/Player.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/GameInterface/Object/Player.cpp.i
-.PHONY : GameInterface/Object/Player.cpp.i
+src/GameInterface/Object/Object.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/GameInterface/Object/Object.cpp.i
+.PHONY : src/GameInterface/Object/Object.cpp.i
 
-GameInterface/Object/Player.s: GameInterface/Object/Player.cpp.s
+src/GameInterface/Object/Object.s: src/GameInterface/Object/Object.cpp.s
 
-.PHONY : GameInterface/Object/Player.s
+.PHONY : src/GameInterface/Object/Object.s
 
 # target to generate assembly for a file
-GameInterface/Object/Player.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/GameInterface/Object/Player.cpp.s
-.PHONY : GameInterface/Object/Player.cpp.s
+src/GameInterface/Object/Object.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/GameInterface/Object/Object.cpp.s
+.PHONY : src/GameInterface/Object/Object.cpp.s
 
-GameInterface/Object/Room.o: GameInterface/Object/Room.cpp.o
+src/GameInterface/Object/Player.o: src/GameInterface/Object/Player.cpp.o
 
-.PHONY : GameInterface/Object/Room.o
+.PHONY : src/GameInterface/Object/Player.o
 
 # target to build an object file
-GameInterface/Object/Room.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/GameInterface/Object/Room.cpp.o
-.PHONY : GameInterface/Object/Room.cpp.o
+src/GameInterface/Object/Player.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/GameInterface/Object/Player.cpp.o
+.PHONY : src/GameInterface/Object/Player.cpp.o
 
-GameInterface/Object/Room.i: GameInterface/Object/Room.cpp.i
+src/GameInterface/Object/Player.i: src/GameInterface/Object/Player.cpp.i
 
-.PHONY : GameInterface/Object/Room.i
+.PHONY : src/GameInterface/Object/Player.i
 
 # target to preprocess a source file
-GameInterface/Object/Room.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/GameInterface/Object/Room.cpp.i
-.PHONY : GameInterface/Object/Room.cpp.i
+src/GameInterface/Object/Player.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/GameInterface/Object/Player.cpp.i
+.PHONY : src/GameInterface/Object/Player.cpp.i
 
-GameInterface/Object/Room.s: GameInterface/Object/Room.cpp.s
+src/GameInterface/Object/Player.s: src/GameInterface/Object/Player.cpp.s
 
-.PHONY : GameInterface/Object/Room.s
+.PHONY : src/GameInterface/Object/Player.s
 
 # target to generate assembly for a file
-GameInterface/Object/Room.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/GameInterface/Object/Room.cpp.s
-.PHONY : GameInterface/Object/Room.cpp.s
+src/GameInterface/Object/Player.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/GameInterface/Object/Player.cpp.s
+.PHONY : src/GameInterface/Object/Player.cpp.s
 
-Main.o: Main.cpp.o
+src/GameInterface/Object/Room.o: src/GameInterface/Object/Room.cpp.o
 
-.PHONY : Main.o
+.PHONY : src/GameInterface/Object/Room.o
 
 # target to build an object file
-Main.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Main.cpp.o
-.PHONY : Main.cpp.o
+src/GameInterface/Object/Room.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/GameInterface/Object/Room.cpp.o
+.PHONY : src/GameInterface/Object/Room.cpp.o
 
-Main.i: Main.cpp.i
+src/GameInterface/Object/Room.i: src/GameInterface/Object/Room.cpp.i
 
-.PHONY : Main.i
+.PHONY : src/GameInterface/Object/Room.i
 
 # target to preprocess a source file
-Main.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Main.cpp.i
-.PHONY : Main.cpp.i
+src/GameInterface/Object/Room.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/GameInterface/Object/Room.cpp.i
+.PHONY : src/GameInterface/Object/Room.cpp.i
 
-Main.s: Main.cpp.s
+src/GameInterface/Object/Room.s: src/GameInterface/Object/Room.cpp.s
 
-.PHONY : Main.s
+.PHONY : src/GameInterface/Object/Room.s
 
 # target to generate assembly for a file
-Main.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Main.cpp.s
-.PHONY : Main.cpp.s
+src/GameInterface/Object/Room.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/GameInterface/Object/Room.cpp.s
+.PHONY : src/GameInterface/Object/Room.cpp.s
 
-SDLEasyGUI/Controller/Border.o: SDLEasyGUI/Controller/Border.cpp.o
+src/GameInterface/Online/ClientController.o: src/GameInterface/Online/ClientController.cpp.o
 
-.PHONY : SDLEasyGUI/Controller/Border.o
+.PHONY : src/GameInterface/Online/ClientController.o
 
 # target to build an object file
-SDLEasyGUI/Controller/Border.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/Border.cpp.o
-.PHONY : SDLEasyGUI/Controller/Border.cpp.o
+src/GameInterface/Online/ClientController.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/GameInterface/Online/ClientController.cpp.o
+.PHONY : src/GameInterface/Online/ClientController.cpp.o
 
-SDLEasyGUI/Controller/Border.i: SDLEasyGUI/Controller/Border.cpp.i
+src/GameInterface/Online/ClientController.i: src/GameInterface/Online/ClientController.cpp.i
 
-.PHONY : SDLEasyGUI/Controller/Border.i
+.PHONY : src/GameInterface/Online/ClientController.i
 
 # target to preprocess a source file
-SDLEasyGUI/Controller/Border.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/Border.cpp.i
-.PHONY : SDLEasyGUI/Controller/Border.cpp.i
+src/GameInterface/Online/ClientController.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/GameInterface/Online/ClientController.cpp.i
+.PHONY : src/GameInterface/Online/ClientController.cpp.i
 
-SDLEasyGUI/Controller/Border.s: SDLEasyGUI/Controller/Border.cpp.s
+src/GameInterface/Online/ClientController.s: src/GameInterface/Online/ClientController.cpp.s
 
-.PHONY : SDLEasyGUI/Controller/Border.s
+.PHONY : src/GameInterface/Online/ClientController.s
 
 # target to generate assembly for a file
-SDLEasyGUI/Controller/Border.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/Border.cpp.s
-.PHONY : SDLEasyGUI/Controller/Border.cpp.s
+src/GameInterface/Online/ClientController.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/GameInterface/Online/ClientController.cpp.s
+.PHONY : src/GameInterface/Online/ClientController.cpp.s
 
-SDLEasyGUI/Controller/Button.o: SDLEasyGUI/Controller/Button.cpp.o
+src/GameInterface/Online/TClientConnector.o: src/GameInterface/Online/TClientConnector.cpp.o
 
-.PHONY : SDLEasyGUI/Controller/Button.o
+.PHONY : src/GameInterface/Online/TClientConnector.o
 
 # target to build an object file
-SDLEasyGUI/Controller/Button.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/Button.cpp.o
-.PHONY : SDLEasyGUI/Controller/Button.cpp.o
+src/GameInterface/Online/TClientConnector.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/GameInterface/Online/TClientConnector.cpp.o
+.PHONY : src/GameInterface/Online/TClientConnector.cpp.o
 
-SDLEasyGUI/Controller/Button.i: SDLEasyGUI/Controller/Button.cpp.i
+src/GameInterface/Online/TClientConnector.i: src/GameInterface/Online/TClientConnector.cpp.i
 
-.PHONY : SDLEasyGUI/Controller/Button.i
+.PHONY : src/GameInterface/Online/TClientConnector.i
 
 # target to preprocess a source file
-SDLEasyGUI/Controller/Button.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/Button.cpp.i
-.PHONY : SDLEasyGUI/Controller/Button.cpp.i
+src/GameInterface/Online/TClientConnector.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/GameInterface/Online/TClientConnector.cpp.i
+.PHONY : src/GameInterface/Online/TClientConnector.cpp.i
 
-SDLEasyGUI/Controller/Button.s: SDLEasyGUI/Controller/Button.cpp.s
+src/GameInterface/Online/TClientConnector.s: src/GameInterface/Online/TClientConnector.cpp.s
 
-.PHONY : SDLEasyGUI/Controller/Button.s
+.PHONY : src/GameInterface/Online/TClientConnector.s
 
 # target to generate assembly for a file
-SDLEasyGUI/Controller/Button.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/Button.cpp.s
-.PHONY : SDLEasyGUI/Controller/Button.cpp.s
+src/GameInterface/Online/TClientConnector.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/GameInterface/Online/TClientConnector.cpp.s
+.PHONY : src/GameInterface/Online/TClientConnector.cpp.s
 
-SDLEasyGUI/Controller/ButtonBasic.o: SDLEasyGUI/Controller/ButtonBasic.cpp.o
+src/GameInterface/Online/TClientService.o: src/GameInterface/Online/TClientService.cpp.o
 
-.PHONY : SDLEasyGUI/Controller/ButtonBasic.o
+.PHONY : src/GameInterface/Online/TClientService.o
 
 # target to build an object file
-SDLEasyGUI/Controller/ButtonBasic.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/ButtonBasic.cpp.o
-.PHONY : SDLEasyGUI/Controller/ButtonBasic.cpp.o
+src/GameInterface/Online/TClientService.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/GameInterface/Online/TClientService.cpp.o
+.PHONY : src/GameInterface/Online/TClientService.cpp.o
 
-SDLEasyGUI/Controller/ButtonBasic.i: SDLEasyGUI/Controller/ButtonBasic.cpp.i
+src/GameInterface/Online/TClientService.i: src/GameInterface/Online/TClientService.cpp.i
 
-.PHONY : SDLEasyGUI/Controller/ButtonBasic.i
+.PHONY : src/GameInterface/Online/TClientService.i
 
 # target to preprocess a source file
-SDLEasyGUI/Controller/ButtonBasic.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/ButtonBasic.cpp.i
-.PHONY : SDLEasyGUI/Controller/ButtonBasic.cpp.i
+src/GameInterface/Online/TClientService.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/GameInterface/Online/TClientService.cpp.i
+.PHONY : src/GameInterface/Online/TClientService.cpp.i
 
-SDLEasyGUI/Controller/ButtonBasic.s: SDLEasyGUI/Controller/ButtonBasic.cpp.s
+src/GameInterface/Online/TClientService.s: src/GameInterface/Online/TClientService.cpp.s
 
-.PHONY : SDLEasyGUI/Controller/ButtonBasic.s
+.PHONY : src/GameInterface/Online/TClientService.s
 
 # target to generate assembly for a file
-SDLEasyGUI/Controller/ButtonBasic.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/ButtonBasic.cpp.s
-.PHONY : SDLEasyGUI/Controller/ButtonBasic.cpp.s
+src/GameInterface/Online/TClientService.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/GameInterface/Online/TClientService.cpp.s
+.PHONY : src/GameInterface/Online/TClientService.cpp.s
 
-SDLEasyGUI/Controller/Controll.o: SDLEasyGUI/Controller/Controll.cpp.o
+src/Main.o: src/Main.cpp.o
 
-.PHONY : SDLEasyGUI/Controller/Controll.o
+.PHONY : src/Main.o
 
 # target to build an object file
-SDLEasyGUI/Controller/Controll.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/Controll.cpp.o
-.PHONY : SDLEasyGUI/Controller/Controll.cpp.o
+src/Main.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Main.cpp.o
+.PHONY : src/Main.cpp.o
 
-SDLEasyGUI/Controller/Controll.i: SDLEasyGUI/Controller/Controll.cpp.i
+src/Main.i: src/Main.cpp.i
 
-.PHONY : SDLEasyGUI/Controller/Controll.i
+.PHONY : src/Main.i
 
 # target to preprocess a source file
-SDLEasyGUI/Controller/Controll.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/Controll.cpp.i
-.PHONY : SDLEasyGUI/Controller/Controll.cpp.i
+src/Main.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Main.cpp.i
+.PHONY : src/Main.cpp.i
 
-SDLEasyGUI/Controller/Controll.s: SDLEasyGUI/Controller/Controll.cpp.s
+src/Main.s: src/Main.cpp.s
 
-.PHONY : SDLEasyGUI/Controller/Controll.s
+.PHONY : src/Main.s
 
 # target to generate assembly for a file
-SDLEasyGUI/Controller/Controll.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/Controll.cpp.s
-.PHONY : SDLEasyGUI/Controller/Controll.cpp.s
+src/Main.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Main.cpp.s
+.PHONY : src/Main.cpp.s
 
-SDLEasyGUI/Controller/ControllBuilder.o: SDLEasyGUI/Controller/ControllBuilder.cpp.o
+src/SDLEasyGUI/Controller/Border.o: src/SDLEasyGUI/Controller/Border.cpp.o
 
-.PHONY : SDLEasyGUI/Controller/ControllBuilder.o
+.PHONY : src/SDLEasyGUI/Controller/Border.o
 
 # target to build an object file
-SDLEasyGUI/Controller/ControllBuilder.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/ControllBuilder.cpp.o
-.PHONY : SDLEasyGUI/Controller/ControllBuilder.cpp.o
+src/SDLEasyGUI/Controller/Border.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/Border.cpp.o
+.PHONY : src/SDLEasyGUI/Controller/Border.cpp.o
 
-SDLEasyGUI/Controller/ControllBuilder.i: SDLEasyGUI/Controller/ControllBuilder.cpp.i
+src/SDLEasyGUI/Controller/Border.i: src/SDLEasyGUI/Controller/Border.cpp.i
 
-.PHONY : SDLEasyGUI/Controller/ControllBuilder.i
+.PHONY : src/SDLEasyGUI/Controller/Border.i
 
 # target to preprocess a source file
-SDLEasyGUI/Controller/ControllBuilder.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/ControllBuilder.cpp.i
-.PHONY : SDLEasyGUI/Controller/ControllBuilder.cpp.i
+src/SDLEasyGUI/Controller/Border.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/Border.cpp.i
+.PHONY : src/SDLEasyGUI/Controller/Border.cpp.i
 
-SDLEasyGUI/Controller/ControllBuilder.s: SDLEasyGUI/Controller/ControllBuilder.cpp.s
+src/SDLEasyGUI/Controller/Border.s: src/SDLEasyGUI/Controller/Border.cpp.s
 
-.PHONY : SDLEasyGUI/Controller/ControllBuilder.s
+.PHONY : src/SDLEasyGUI/Controller/Border.s
 
 # target to generate assembly for a file
-SDLEasyGUI/Controller/ControllBuilder.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/ControllBuilder.cpp.s
-.PHONY : SDLEasyGUI/Controller/ControllBuilder.cpp.s
+src/SDLEasyGUI/Controller/Border.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/Border.cpp.s
+.PHONY : src/SDLEasyGUI/Controller/Border.cpp.s
 
-SDLEasyGUI/Controller/EditLabel.o: SDLEasyGUI/Controller/EditLabel.cpp.o
+src/SDLEasyGUI/Controller/Button.o: src/SDLEasyGUI/Controller/Button.cpp.o
 
-.PHONY : SDLEasyGUI/Controller/EditLabel.o
+.PHONY : src/SDLEasyGUI/Controller/Button.o
 
 # target to build an object file
-SDLEasyGUI/Controller/EditLabel.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/EditLabel.cpp.o
-.PHONY : SDLEasyGUI/Controller/EditLabel.cpp.o
+src/SDLEasyGUI/Controller/Button.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/Button.cpp.o
+.PHONY : src/SDLEasyGUI/Controller/Button.cpp.o
 
-SDLEasyGUI/Controller/EditLabel.i: SDLEasyGUI/Controller/EditLabel.cpp.i
+src/SDLEasyGUI/Controller/Button.i: src/SDLEasyGUI/Controller/Button.cpp.i
 
-.PHONY : SDLEasyGUI/Controller/EditLabel.i
+.PHONY : src/SDLEasyGUI/Controller/Button.i
 
 # target to preprocess a source file
-SDLEasyGUI/Controller/EditLabel.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/EditLabel.cpp.i
-.PHONY : SDLEasyGUI/Controller/EditLabel.cpp.i
+src/SDLEasyGUI/Controller/Button.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/Button.cpp.i
+.PHONY : src/SDLEasyGUI/Controller/Button.cpp.i
 
-SDLEasyGUI/Controller/EditLabel.s: SDLEasyGUI/Controller/EditLabel.cpp.s
+src/SDLEasyGUI/Controller/Button.s: src/SDLEasyGUI/Controller/Button.cpp.s
 
-.PHONY : SDLEasyGUI/Controller/EditLabel.s
+.PHONY : src/SDLEasyGUI/Controller/Button.s
 
 # target to generate assembly for a file
-SDLEasyGUI/Controller/EditLabel.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/EditLabel.cpp.s
-.PHONY : SDLEasyGUI/Controller/EditLabel.cpp.s
+src/SDLEasyGUI/Controller/Button.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/Button.cpp.s
+.PHONY : src/SDLEasyGUI/Controller/Button.cpp.s
 
-SDLEasyGUI/Controller/GroupControllManager.o: SDLEasyGUI/Controller/GroupControllManager.cpp.o
+src/SDLEasyGUI/Controller/ButtonBasic.o: src/SDLEasyGUI/Controller/ButtonBasic.cpp.o
 
-.PHONY : SDLEasyGUI/Controller/GroupControllManager.o
+.PHONY : src/SDLEasyGUI/Controller/ButtonBasic.o
 
 # target to build an object file
-SDLEasyGUI/Controller/GroupControllManager.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/GroupControllManager.cpp.o
-.PHONY : SDLEasyGUI/Controller/GroupControllManager.cpp.o
+src/SDLEasyGUI/Controller/ButtonBasic.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/ButtonBasic.cpp.o
+.PHONY : src/SDLEasyGUI/Controller/ButtonBasic.cpp.o
 
-SDLEasyGUI/Controller/GroupControllManager.i: SDLEasyGUI/Controller/GroupControllManager.cpp.i
+src/SDLEasyGUI/Controller/ButtonBasic.i: src/SDLEasyGUI/Controller/ButtonBasic.cpp.i
 
-.PHONY : SDLEasyGUI/Controller/GroupControllManager.i
+.PHONY : src/SDLEasyGUI/Controller/ButtonBasic.i
 
 # target to preprocess a source file
-SDLEasyGUI/Controller/GroupControllManager.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/GroupControllManager.cpp.i
-.PHONY : SDLEasyGUI/Controller/GroupControllManager.cpp.i
+src/SDLEasyGUI/Controller/ButtonBasic.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/ButtonBasic.cpp.i
+.PHONY : src/SDLEasyGUI/Controller/ButtonBasic.cpp.i
 
-SDLEasyGUI/Controller/GroupControllManager.s: SDLEasyGUI/Controller/GroupControllManager.cpp.s
+src/SDLEasyGUI/Controller/ButtonBasic.s: src/SDLEasyGUI/Controller/ButtonBasic.cpp.s
 
-.PHONY : SDLEasyGUI/Controller/GroupControllManager.s
+.PHONY : src/SDLEasyGUI/Controller/ButtonBasic.s
 
 # target to generate assembly for a file
-SDLEasyGUI/Controller/GroupControllManager.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/GroupControllManager.cpp.s
-.PHONY : SDLEasyGUI/Controller/GroupControllManager.cpp.s
+src/SDLEasyGUI/Controller/ButtonBasic.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/ButtonBasic.cpp.s
+.PHONY : src/SDLEasyGUI/Controller/ButtonBasic.cpp.s
 
-SDLEasyGUI/Controller/RadioButton.o: SDLEasyGUI/Controller/RadioButton.cpp.o
+src/SDLEasyGUI/Controller/Controll.o: src/SDLEasyGUI/Controller/Controll.cpp.o
 
-.PHONY : SDLEasyGUI/Controller/RadioButton.o
+.PHONY : src/SDLEasyGUI/Controller/Controll.o
 
 # target to build an object file
-SDLEasyGUI/Controller/RadioButton.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/RadioButton.cpp.o
-.PHONY : SDLEasyGUI/Controller/RadioButton.cpp.o
+src/SDLEasyGUI/Controller/Controll.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/Controll.cpp.o
+.PHONY : src/SDLEasyGUI/Controller/Controll.cpp.o
 
-SDLEasyGUI/Controller/RadioButton.i: SDLEasyGUI/Controller/RadioButton.cpp.i
+src/SDLEasyGUI/Controller/Controll.i: src/SDLEasyGUI/Controller/Controll.cpp.i
 
-.PHONY : SDLEasyGUI/Controller/RadioButton.i
+.PHONY : src/SDLEasyGUI/Controller/Controll.i
 
 # target to preprocess a source file
-SDLEasyGUI/Controller/RadioButton.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/RadioButton.cpp.i
-.PHONY : SDLEasyGUI/Controller/RadioButton.cpp.i
+src/SDLEasyGUI/Controller/Controll.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/Controll.cpp.i
+.PHONY : src/SDLEasyGUI/Controller/Controll.cpp.i
 
-SDLEasyGUI/Controller/RadioButton.s: SDLEasyGUI/Controller/RadioButton.cpp.s
+src/SDLEasyGUI/Controller/Controll.s: src/SDLEasyGUI/Controller/Controll.cpp.s
 
-.PHONY : SDLEasyGUI/Controller/RadioButton.s
+.PHONY : src/SDLEasyGUI/Controller/Controll.s
 
 # target to generate assembly for a file
-SDLEasyGUI/Controller/RadioButton.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/RadioButton.cpp.s
-.PHONY : SDLEasyGUI/Controller/RadioButton.cpp.s
+src/SDLEasyGUI/Controller/Controll.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/Controll.cpp.s
+.PHONY : src/SDLEasyGUI/Controller/Controll.cpp.s
 
-SDLEasyGUI/Controller/StaticLabel.o: SDLEasyGUI/Controller/StaticLabel.cpp.o
+src/SDLEasyGUI/Controller/ControllBuilder.o: src/SDLEasyGUI/Controller/ControllBuilder.cpp.o
 
-.PHONY : SDLEasyGUI/Controller/StaticLabel.o
+.PHONY : src/SDLEasyGUI/Controller/ControllBuilder.o
 
 # target to build an object file
-SDLEasyGUI/Controller/StaticLabel.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/StaticLabel.cpp.o
-.PHONY : SDLEasyGUI/Controller/StaticLabel.cpp.o
+src/SDLEasyGUI/Controller/ControllBuilder.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/ControllBuilder.cpp.o
+.PHONY : src/SDLEasyGUI/Controller/ControllBuilder.cpp.o
 
-SDLEasyGUI/Controller/StaticLabel.i: SDLEasyGUI/Controller/StaticLabel.cpp.i
+src/SDLEasyGUI/Controller/ControllBuilder.i: src/SDLEasyGUI/Controller/ControllBuilder.cpp.i
 
-.PHONY : SDLEasyGUI/Controller/StaticLabel.i
+.PHONY : src/SDLEasyGUI/Controller/ControllBuilder.i
 
 # target to preprocess a source file
-SDLEasyGUI/Controller/StaticLabel.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/StaticLabel.cpp.i
-.PHONY : SDLEasyGUI/Controller/StaticLabel.cpp.i
+src/SDLEasyGUI/Controller/ControllBuilder.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/ControllBuilder.cpp.i
+.PHONY : src/SDLEasyGUI/Controller/ControllBuilder.cpp.i
 
-SDLEasyGUI/Controller/StaticLabel.s: SDLEasyGUI/Controller/StaticLabel.cpp.s
+src/SDLEasyGUI/Controller/ControllBuilder.s: src/SDLEasyGUI/Controller/ControllBuilder.cpp.s
 
-.PHONY : SDLEasyGUI/Controller/StaticLabel.s
+.PHONY : src/SDLEasyGUI/Controller/ControllBuilder.s
 
 # target to generate assembly for a file
-SDLEasyGUI/Controller/StaticLabel.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Controller/StaticLabel.cpp.s
-.PHONY : SDLEasyGUI/Controller/StaticLabel.cpp.s
+src/SDLEasyGUI/Controller/ControllBuilder.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/ControllBuilder.cpp.s
+.PHONY : src/SDLEasyGUI/Controller/ControllBuilder.cpp.s
 
-SDLEasyGUI/Windows/DisplayController.o: SDLEasyGUI/Windows/DisplayController.cpp.o
+src/SDLEasyGUI/Controller/EditLabel.o: src/SDLEasyGUI/Controller/EditLabel.cpp.o
 
-.PHONY : SDLEasyGUI/Windows/DisplayController.o
+.PHONY : src/SDLEasyGUI/Controller/EditLabel.o
 
 # target to build an object file
-SDLEasyGUI/Windows/DisplayController.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Windows/DisplayController.cpp.o
-.PHONY : SDLEasyGUI/Windows/DisplayController.cpp.o
+src/SDLEasyGUI/Controller/EditLabel.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/EditLabel.cpp.o
+.PHONY : src/SDLEasyGUI/Controller/EditLabel.cpp.o
 
-SDLEasyGUI/Windows/DisplayController.i: SDLEasyGUI/Windows/DisplayController.cpp.i
+src/SDLEasyGUI/Controller/EditLabel.i: src/SDLEasyGUI/Controller/EditLabel.cpp.i
 
-.PHONY : SDLEasyGUI/Windows/DisplayController.i
+.PHONY : src/SDLEasyGUI/Controller/EditLabel.i
 
 # target to preprocess a source file
-SDLEasyGUI/Windows/DisplayController.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Windows/DisplayController.cpp.i
-.PHONY : SDLEasyGUI/Windows/DisplayController.cpp.i
+src/SDLEasyGUI/Controller/EditLabel.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/EditLabel.cpp.i
+.PHONY : src/SDLEasyGUI/Controller/EditLabel.cpp.i
 
-SDLEasyGUI/Windows/DisplayController.s: SDLEasyGUI/Windows/DisplayController.cpp.s
+src/SDLEasyGUI/Controller/EditLabel.s: src/SDLEasyGUI/Controller/EditLabel.cpp.s
 
-.PHONY : SDLEasyGUI/Windows/DisplayController.s
+.PHONY : src/SDLEasyGUI/Controller/EditLabel.s
 
 # target to generate assembly for a file
-SDLEasyGUI/Windows/DisplayController.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Windows/DisplayController.cpp.s
-.PHONY : SDLEasyGUI/Windows/DisplayController.cpp.s
+src/SDLEasyGUI/Controller/EditLabel.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/EditLabel.cpp.s
+.PHONY : src/SDLEasyGUI/Controller/EditLabel.cpp.s
 
-SDLEasyGUI/Windows/DisplayInterface.o: SDLEasyGUI/Windows/DisplayInterface.cpp.o
+src/SDLEasyGUI/Controller/GroupControllManager.o: src/SDLEasyGUI/Controller/GroupControllManager.cpp.o
 
-.PHONY : SDLEasyGUI/Windows/DisplayInterface.o
+.PHONY : src/SDLEasyGUI/Controller/GroupControllManager.o
 
 # target to build an object file
-SDLEasyGUI/Windows/DisplayInterface.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Windows/DisplayInterface.cpp.o
-.PHONY : SDLEasyGUI/Windows/DisplayInterface.cpp.o
+src/SDLEasyGUI/Controller/GroupControllManager.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/GroupControllManager.cpp.o
+.PHONY : src/SDLEasyGUI/Controller/GroupControllManager.cpp.o
 
-SDLEasyGUI/Windows/DisplayInterface.i: SDLEasyGUI/Windows/DisplayInterface.cpp.i
+src/SDLEasyGUI/Controller/GroupControllManager.i: src/SDLEasyGUI/Controller/GroupControllManager.cpp.i
 
-.PHONY : SDLEasyGUI/Windows/DisplayInterface.i
+.PHONY : src/SDLEasyGUI/Controller/GroupControllManager.i
 
 # target to preprocess a source file
-SDLEasyGUI/Windows/DisplayInterface.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Windows/DisplayInterface.cpp.i
-.PHONY : SDLEasyGUI/Windows/DisplayInterface.cpp.i
+src/SDLEasyGUI/Controller/GroupControllManager.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/GroupControllManager.cpp.i
+.PHONY : src/SDLEasyGUI/Controller/GroupControllManager.cpp.i
 
-SDLEasyGUI/Windows/DisplayInterface.s: SDLEasyGUI/Windows/DisplayInterface.cpp.s
+src/SDLEasyGUI/Controller/GroupControllManager.s: src/SDLEasyGUI/Controller/GroupControllManager.cpp.s
 
-.PHONY : SDLEasyGUI/Windows/DisplayInterface.s
+.PHONY : src/SDLEasyGUI/Controller/GroupControllManager.s
 
 # target to generate assembly for a file
-SDLEasyGUI/Windows/DisplayInterface.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Windows/DisplayInterface.cpp.s
-.PHONY : SDLEasyGUI/Windows/DisplayInterface.cpp.s
+src/SDLEasyGUI/Controller/GroupControllManager.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/GroupControllManager.cpp.s
+.PHONY : src/SDLEasyGUI/Controller/GroupControllManager.cpp.s
 
-SDLEasyGUI/Windows/Window.o: SDLEasyGUI/Windows/Window.cpp.o
+src/SDLEasyGUI/Controller/RadioButton.o: src/SDLEasyGUI/Controller/RadioButton.cpp.o
 
-.PHONY : SDLEasyGUI/Windows/Window.o
+.PHONY : src/SDLEasyGUI/Controller/RadioButton.o
 
 # target to build an object file
-SDLEasyGUI/Windows/Window.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Windows/Window.cpp.o
-.PHONY : SDLEasyGUI/Windows/Window.cpp.o
+src/SDLEasyGUI/Controller/RadioButton.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/RadioButton.cpp.o
+.PHONY : src/SDLEasyGUI/Controller/RadioButton.cpp.o
 
-SDLEasyGUI/Windows/Window.i: SDLEasyGUI/Windows/Window.cpp.i
+src/SDLEasyGUI/Controller/RadioButton.i: src/SDLEasyGUI/Controller/RadioButton.cpp.i
 
-.PHONY : SDLEasyGUI/Windows/Window.i
+.PHONY : src/SDLEasyGUI/Controller/RadioButton.i
 
 # target to preprocess a source file
-SDLEasyGUI/Windows/Window.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Windows/Window.cpp.i
-.PHONY : SDLEasyGUI/Windows/Window.cpp.i
+src/SDLEasyGUI/Controller/RadioButton.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/RadioButton.cpp.i
+.PHONY : src/SDLEasyGUI/Controller/RadioButton.cpp.i
 
-SDLEasyGUI/Windows/Window.s: SDLEasyGUI/Windows/Window.cpp.s
+src/SDLEasyGUI/Controller/RadioButton.s: src/SDLEasyGUI/Controller/RadioButton.cpp.s
 
-.PHONY : SDLEasyGUI/Windows/Window.s
+.PHONY : src/SDLEasyGUI/Controller/RadioButton.s
 
 # target to generate assembly for a file
-SDLEasyGUI/Windows/Window.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/SDLEasyGUI/Windows/Window.cpp.s
-.PHONY : SDLEasyGUI/Windows/Window.cpp.s
+src/SDLEasyGUI/Controller/RadioButton.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/RadioButton.cpp.s
+.PHONY : src/SDLEasyGUI/Controller/RadioButton.cpp.s
 
-Tetris/TClient/TClientConnector.o: Tetris/TClient/TClientConnector.cpp.o
+src/SDLEasyGUI/Controller/StaticLabel.o: src/SDLEasyGUI/Controller/StaticLabel.cpp.o
 
-.PHONY : Tetris/TClient/TClientConnector.o
+.PHONY : src/SDLEasyGUI/Controller/StaticLabel.o
 
 # target to build an object file
-Tetris/TClient/TClientConnector.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TClient/TClientConnector.cpp.o
-.PHONY : Tetris/TClient/TClientConnector.cpp.o
+src/SDLEasyGUI/Controller/StaticLabel.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/StaticLabel.cpp.o
+.PHONY : src/SDLEasyGUI/Controller/StaticLabel.cpp.o
 
-Tetris/TClient/TClientConnector.i: Tetris/TClient/TClientConnector.cpp.i
+src/SDLEasyGUI/Controller/StaticLabel.i: src/SDLEasyGUI/Controller/StaticLabel.cpp.i
 
-.PHONY : Tetris/TClient/TClientConnector.i
+.PHONY : src/SDLEasyGUI/Controller/StaticLabel.i
 
 # target to preprocess a source file
-Tetris/TClient/TClientConnector.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TClient/TClientConnector.cpp.i
-.PHONY : Tetris/TClient/TClientConnector.cpp.i
+src/SDLEasyGUI/Controller/StaticLabel.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/StaticLabel.cpp.i
+.PHONY : src/SDLEasyGUI/Controller/StaticLabel.cpp.i
 
-Tetris/TClient/TClientConnector.s: Tetris/TClient/TClientConnector.cpp.s
+src/SDLEasyGUI/Controller/StaticLabel.s: src/SDLEasyGUI/Controller/StaticLabel.cpp.s
 
-.PHONY : Tetris/TClient/TClientConnector.s
+.PHONY : src/SDLEasyGUI/Controller/StaticLabel.s
 
 # target to generate assembly for a file
-Tetris/TClient/TClientConnector.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TClient/TClientConnector.cpp.s
-.PHONY : Tetris/TClient/TClientConnector.cpp.s
+src/SDLEasyGUI/Controller/StaticLabel.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Controller/StaticLabel.cpp.s
+.PHONY : src/SDLEasyGUI/Controller/StaticLabel.cpp.s
 
-Tetris/TClient/TClientService.o: Tetris/TClient/TClientService.cpp.o
+src/SDLEasyGUI/Windows/DisplayController.o: src/SDLEasyGUI/Windows/DisplayController.cpp.o
 
-.PHONY : Tetris/TClient/TClientService.o
+.PHONY : src/SDLEasyGUI/Windows/DisplayController.o
 
 # target to build an object file
-Tetris/TClient/TClientService.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TClient/TClientService.cpp.o
-.PHONY : Tetris/TClient/TClientService.cpp.o
+src/SDLEasyGUI/Windows/DisplayController.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Windows/DisplayController.cpp.o
+.PHONY : src/SDLEasyGUI/Windows/DisplayController.cpp.o
 
-Tetris/TClient/TClientService.i: Tetris/TClient/TClientService.cpp.i
+src/SDLEasyGUI/Windows/DisplayController.i: src/SDLEasyGUI/Windows/DisplayController.cpp.i
 
-.PHONY : Tetris/TClient/TClientService.i
+.PHONY : src/SDLEasyGUI/Windows/DisplayController.i
 
 # target to preprocess a source file
-Tetris/TClient/TClientService.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TClient/TClientService.cpp.i
-.PHONY : Tetris/TClient/TClientService.cpp.i
+src/SDLEasyGUI/Windows/DisplayController.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Windows/DisplayController.cpp.i
+.PHONY : src/SDLEasyGUI/Windows/DisplayController.cpp.i
 
-Tetris/TClient/TClientService.s: Tetris/TClient/TClientService.cpp.s
+src/SDLEasyGUI/Windows/DisplayController.s: src/SDLEasyGUI/Windows/DisplayController.cpp.s
 
-.PHONY : Tetris/TClient/TClientService.s
+.PHONY : src/SDLEasyGUI/Windows/DisplayController.s
 
 # target to generate assembly for a file
-Tetris/TClient/TClientService.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TClient/TClientService.cpp.s
-.PHONY : Tetris/TClient/TClientService.cpp.s
+src/SDLEasyGUI/Windows/DisplayController.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Windows/DisplayController.cpp.s
+.PHONY : src/SDLEasyGUI/Windows/DisplayController.cpp.s
 
-Tetris/TDisplay/TGameDisplay.o: Tetris/TDisplay/TGameDisplay.cpp.o
+src/SDLEasyGUI/Windows/DisplayInterface.o: src/SDLEasyGUI/Windows/DisplayInterface.cpp.o
 
-.PHONY : Tetris/TDisplay/TGameDisplay.o
+.PHONY : src/SDLEasyGUI/Windows/DisplayInterface.o
 
 # target to build an object file
-Tetris/TDisplay/TGameDisplay.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TDisplay/TGameDisplay.cpp.o
-.PHONY : Tetris/TDisplay/TGameDisplay.cpp.o
+src/SDLEasyGUI/Windows/DisplayInterface.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Windows/DisplayInterface.cpp.o
+.PHONY : src/SDLEasyGUI/Windows/DisplayInterface.cpp.o
 
-Tetris/TDisplay/TGameDisplay.i: Tetris/TDisplay/TGameDisplay.cpp.i
+src/SDLEasyGUI/Windows/DisplayInterface.i: src/SDLEasyGUI/Windows/DisplayInterface.cpp.i
 
-.PHONY : Tetris/TDisplay/TGameDisplay.i
+.PHONY : src/SDLEasyGUI/Windows/DisplayInterface.i
 
 # target to preprocess a source file
-Tetris/TDisplay/TGameDisplay.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TDisplay/TGameDisplay.cpp.i
-.PHONY : Tetris/TDisplay/TGameDisplay.cpp.i
+src/SDLEasyGUI/Windows/DisplayInterface.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Windows/DisplayInterface.cpp.i
+.PHONY : src/SDLEasyGUI/Windows/DisplayInterface.cpp.i
 
-Tetris/TDisplay/TGameDisplay.s: Tetris/TDisplay/TGameDisplay.cpp.s
+src/SDLEasyGUI/Windows/DisplayInterface.s: src/SDLEasyGUI/Windows/DisplayInterface.cpp.s
 
-.PHONY : Tetris/TDisplay/TGameDisplay.s
+.PHONY : src/SDLEasyGUI/Windows/DisplayInterface.s
 
 # target to generate assembly for a file
-Tetris/TDisplay/TGameDisplay.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TDisplay/TGameDisplay.cpp.s
-.PHONY : Tetris/TDisplay/TGameDisplay.cpp.s
+src/SDLEasyGUI/Windows/DisplayInterface.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Windows/DisplayInterface.cpp.s
+.PHONY : src/SDLEasyGUI/Windows/DisplayInterface.cpp.s
 
-Tetris/TDisplay/TGameLocalDisplay.o: Tetris/TDisplay/TGameLocalDisplay.cpp.o
+src/SDLEasyGUI/Windows/Window.o: src/SDLEasyGUI/Windows/Window.cpp.o
 
-.PHONY : Tetris/TDisplay/TGameLocalDisplay.o
+.PHONY : src/SDLEasyGUI/Windows/Window.o
 
 # target to build an object file
-Tetris/TDisplay/TGameLocalDisplay.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TDisplay/TGameLocalDisplay.cpp.o
-.PHONY : Tetris/TDisplay/TGameLocalDisplay.cpp.o
+src/SDLEasyGUI/Windows/Window.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Windows/Window.cpp.o
+.PHONY : src/SDLEasyGUI/Windows/Window.cpp.o
 
-Tetris/TDisplay/TGameLocalDisplay.i: Tetris/TDisplay/TGameLocalDisplay.cpp.i
+src/SDLEasyGUI/Windows/Window.i: src/SDLEasyGUI/Windows/Window.cpp.i
 
-.PHONY : Tetris/TDisplay/TGameLocalDisplay.i
+.PHONY : src/SDLEasyGUI/Windows/Window.i
 
 # target to preprocess a source file
-Tetris/TDisplay/TGameLocalDisplay.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TDisplay/TGameLocalDisplay.cpp.i
-.PHONY : Tetris/TDisplay/TGameLocalDisplay.cpp.i
+src/SDLEasyGUI/Windows/Window.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Windows/Window.cpp.i
+.PHONY : src/SDLEasyGUI/Windows/Window.cpp.i
 
-Tetris/TDisplay/TGameLocalDisplay.s: Tetris/TDisplay/TGameLocalDisplay.cpp.s
+src/SDLEasyGUI/Windows/Window.s: src/SDLEasyGUI/Windows/Window.cpp.s
 
-.PHONY : Tetris/TDisplay/TGameLocalDisplay.s
+.PHONY : src/SDLEasyGUI/Windows/Window.s
 
 # target to generate assembly for a file
-Tetris/TDisplay/TGameLocalDisplay.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TDisplay/TGameLocalDisplay.cpp.s
-.PHONY : Tetris/TDisplay/TGameLocalDisplay.cpp.s
+src/SDLEasyGUI/Windows/Window.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/SDLEasyGUI/Windows/Window.cpp.s
+.PHONY : src/SDLEasyGUI/Windows/Window.cpp.s
 
-Tetris/TDisplay/TOptionDisplay.o: Tetris/TDisplay/TOptionDisplay.cpp.o
+src/Tetris/TDisplay/TGameDisplay.o: src/Tetris/TDisplay/TGameDisplay.cpp.o
 
-.PHONY : Tetris/TDisplay/TOptionDisplay.o
+.PHONY : src/Tetris/TDisplay/TGameDisplay.o
 
 # target to build an object file
-Tetris/TDisplay/TOptionDisplay.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TDisplay/TOptionDisplay.cpp.o
-.PHONY : Tetris/TDisplay/TOptionDisplay.cpp.o
+src/Tetris/TDisplay/TGameDisplay.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TDisplay/TGameDisplay.cpp.o
+.PHONY : src/Tetris/TDisplay/TGameDisplay.cpp.o
 
-Tetris/TDisplay/TOptionDisplay.i: Tetris/TDisplay/TOptionDisplay.cpp.i
+src/Tetris/TDisplay/TGameDisplay.i: src/Tetris/TDisplay/TGameDisplay.cpp.i
 
-.PHONY : Tetris/TDisplay/TOptionDisplay.i
+.PHONY : src/Tetris/TDisplay/TGameDisplay.i
 
 # target to preprocess a source file
-Tetris/TDisplay/TOptionDisplay.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TDisplay/TOptionDisplay.cpp.i
-.PHONY : Tetris/TDisplay/TOptionDisplay.cpp.i
+src/Tetris/TDisplay/TGameDisplay.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TDisplay/TGameDisplay.cpp.i
+.PHONY : src/Tetris/TDisplay/TGameDisplay.cpp.i
 
-Tetris/TDisplay/TOptionDisplay.s: Tetris/TDisplay/TOptionDisplay.cpp.s
+src/Tetris/TDisplay/TGameDisplay.s: src/Tetris/TDisplay/TGameDisplay.cpp.s
 
-.PHONY : Tetris/TDisplay/TOptionDisplay.s
+.PHONY : src/Tetris/TDisplay/TGameDisplay.s
 
 # target to generate assembly for a file
-Tetris/TDisplay/TOptionDisplay.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TDisplay/TOptionDisplay.cpp.s
-.PHONY : Tetris/TDisplay/TOptionDisplay.cpp.s
+src/Tetris/TDisplay/TGameDisplay.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TDisplay/TGameDisplay.cpp.s
+.PHONY : src/Tetris/TDisplay/TGameDisplay.cpp.s
 
-Tetris/TFiguers/TFigure.o: Tetris/TFiguers/TFigure.cpp.o
+src/Tetris/TDisplay/TGameLocalDisplay.o: src/Tetris/TDisplay/TGameLocalDisplay.cpp.o
 
-.PHONY : Tetris/TFiguers/TFigure.o
+.PHONY : src/Tetris/TDisplay/TGameLocalDisplay.o
 
 # target to build an object file
-Tetris/TFiguers/TFigure.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigure.cpp.o
-.PHONY : Tetris/TFiguers/TFigure.cpp.o
+src/Tetris/TDisplay/TGameLocalDisplay.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TDisplay/TGameLocalDisplay.cpp.o
+.PHONY : src/Tetris/TDisplay/TGameLocalDisplay.cpp.o
 
-Tetris/TFiguers/TFigure.i: Tetris/TFiguers/TFigure.cpp.i
+src/Tetris/TDisplay/TGameLocalDisplay.i: src/Tetris/TDisplay/TGameLocalDisplay.cpp.i
 
-.PHONY : Tetris/TFiguers/TFigure.i
+.PHONY : src/Tetris/TDisplay/TGameLocalDisplay.i
 
 # target to preprocess a source file
-Tetris/TFiguers/TFigure.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigure.cpp.i
-.PHONY : Tetris/TFiguers/TFigure.cpp.i
+src/Tetris/TDisplay/TGameLocalDisplay.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TDisplay/TGameLocalDisplay.cpp.i
+.PHONY : src/Tetris/TDisplay/TGameLocalDisplay.cpp.i
 
-Tetris/TFiguers/TFigure.s: Tetris/TFiguers/TFigure.cpp.s
+src/Tetris/TDisplay/TGameLocalDisplay.s: src/Tetris/TDisplay/TGameLocalDisplay.cpp.s
 
-.PHONY : Tetris/TFiguers/TFigure.s
+.PHONY : src/Tetris/TDisplay/TGameLocalDisplay.s
 
 # target to generate assembly for a file
-Tetris/TFiguers/TFigure.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigure.cpp.s
-.PHONY : Tetris/TFiguers/TFigure.cpp.s
+src/Tetris/TDisplay/TGameLocalDisplay.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TDisplay/TGameLocalDisplay.cpp.s
+.PHONY : src/Tetris/TDisplay/TGameLocalDisplay.cpp.s
 
-Tetris/TFiguers/TFigureBoard.o: Tetris/TFiguers/TFigureBoard.cpp.o
+src/Tetris/TDisplay/TOptionDisplay.o: src/Tetris/TDisplay/TOptionDisplay.cpp.o
 
-.PHONY : Tetris/TFiguers/TFigureBoard.o
+.PHONY : src/Tetris/TDisplay/TOptionDisplay.o
 
 # target to build an object file
-Tetris/TFiguers/TFigureBoard.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureBoard.cpp.o
-.PHONY : Tetris/TFiguers/TFigureBoard.cpp.o
+src/Tetris/TDisplay/TOptionDisplay.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TDisplay/TOptionDisplay.cpp.o
+.PHONY : src/Tetris/TDisplay/TOptionDisplay.cpp.o
 
-Tetris/TFiguers/TFigureBoard.i: Tetris/TFiguers/TFigureBoard.cpp.i
+src/Tetris/TDisplay/TOptionDisplay.i: src/Tetris/TDisplay/TOptionDisplay.cpp.i
 
-.PHONY : Tetris/TFiguers/TFigureBoard.i
+.PHONY : src/Tetris/TDisplay/TOptionDisplay.i
 
 # target to preprocess a source file
-Tetris/TFiguers/TFigureBoard.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureBoard.cpp.i
-.PHONY : Tetris/TFiguers/TFigureBoard.cpp.i
+src/Tetris/TDisplay/TOptionDisplay.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TDisplay/TOptionDisplay.cpp.i
+.PHONY : src/Tetris/TDisplay/TOptionDisplay.cpp.i
 
-Tetris/TFiguers/TFigureBoard.s: Tetris/TFiguers/TFigureBoard.cpp.s
+src/Tetris/TDisplay/TOptionDisplay.s: src/Tetris/TDisplay/TOptionDisplay.cpp.s
 
-.PHONY : Tetris/TFiguers/TFigureBoard.s
+.PHONY : src/Tetris/TDisplay/TOptionDisplay.s
 
 # target to generate assembly for a file
-Tetris/TFiguers/TFigureBoard.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureBoard.cpp.s
-.PHONY : Tetris/TFiguers/TFigureBoard.cpp.s
+src/Tetris/TDisplay/TOptionDisplay.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TDisplay/TOptionDisplay.cpp.s
+.PHONY : src/Tetris/TDisplay/TOptionDisplay.cpp.s
 
-Tetris/TFiguers/TFigureBoardBuilder.o: Tetris/TFiguers/TFigureBoardBuilder.cpp.o
+src/Tetris/TFiguers/TFigure.o: src/Tetris/TFiguers/TFigure.cpp.o
 
-.PHONY : Tetris/TFiguers/TFigureBoardBuilder.o
+.PHONY : src/Tetris/TFiguers/TFigure.o
 
 # target to build an object file
-Tetris/TFiguers/TFigureBoardBuilder.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureBoardBuilder.cpp.o
-.PHONY : Tetris/TFiguers/TFigureBoardBuilder.cpp.o
+src/Tetris/TFiguers/TFigure.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigure.cpp.o
+.PHONY : src/Tetris/TFiguers/TFigure.cpp.o
 
-Tetris/TFiguers/TFigureBoardBuilder.i: Tetris/TFiguers/TFigureBoardBuilder.cpp.i
+src/Tetris/TFiguers/TFigure.i: src/Tetris/TFiguers/TFigure.cpp.i
 
-.PHONY : Tetris/TFiguers/TFigureBoardBuilder.i
+.PHONY : src/Tetris/TFiguers/TFigure.i
 
 # target to preprocess a source file
-Tetris/TFiguers/TFigureBoardBuilder.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureBoardBuilder.cpp.i
-.PHONY : Tetris/TFiguers/TFigureBoardBuilder.cpp.i
+src/Tetris/TFiguers/TFigure.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigure.cpp.i
+.PHONY : src/Tetris/TFiguers/TFigure.cpp.i
 
-Tetris/TFiguers/TFigureBoardBuilder.s: Tetris/TFiguers/TFigureBoardBuilder.cpp.s
+src/Tetris/TFiguers/TFigure.s: src/Tetris/TFiguers/TFigure.cpp.s
 
-.PHONY : Tetris/TFiguers/TFigureBoardBuilder.s
+.PHONY : src/Tetris/TFiguers/TFigure.s
 
 # target to generate assembly for a file
-Tetris/TFiguers/TFigureBoardBuilder.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureBoardBuilder.cpp.s
-.PHONY : Tetris/TFiguers/TFigureBoardBuilder.cpp.s
+src/Tetris/TFiguers/TFigure.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigure.cpp.s
+.PHONY : src/Tetris/TFiguers/TFigure.cpp.s
 
-Tetris/TFiguers/TFigureBuilder.o: Tetris/TFiguers/TFigureBuilder.cpp.o
+src/Tetris/TFiguers/TFigureBoard.o: src/Tetris/TFiguers/TFigureBoard.cpp.o
 
-.PHONY : Tetris/TFiguers/TFigureBuilder.o
+.PHONY : src/Tetris/TFiguers/TFigureBoard.o
 
 # target to build an object file
-Tetris/TFiguers/TFigureBuilder.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureBuilder.cpp.o
-.PHONY : Tetris/TFiguers/TFigureBuilder.cpp.o
+src/Tetris/TFiguers/TFigureBoard.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureBoard.cpp.o
+.PHONY : src/Tetris/TFiguers/TFigureBoard.cpp.o
 
-Tetris/TFiguers/TFigureBuilder.i: Tetris/TFiguers/TFigureBuilder.cpp.i
+src/Tetris/TFiguers/TFigureBoard.i: src/Tetris/TFiguers/TFigureBoard.cpp.i
 
-.PHONY : Tetris/TFiguers/TFigureBuilder.i
+.PHONY : src/Tetris/TFiguers/TFigureBoard.i
 
 # target to preprocess a source file
-Tetris/TFiguers/TFigureBuilder.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureBuilder.cpp.i
-.PHONY : Tetris/TFiguers/TFigureBuilder.cpp.i
+src/Tetris/TFiguers/TFigureBoard.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureBoard.cpp.i
+.PHONY : src/Tetris/TFiguers/TFigureBoard.cpp.i
 
-Tetris/TFiguers/TFigureBuilder.s: Tetris/TFiguers/TFigureBuilder.cpp.s
+src/Tetris/TFiguers/TFigureBoard.s: src/Tetris/TFiguers/TFigureBoard.cpp.s
 
-.PHONY : Tetris/TFiguers/TFigureBuilder.s
+.PHONY : src/Tetris/TFiguers/TFigureBoard.s
 
 # target to generate assembly for a file
-Tetris/TFiguers/TFigureBuilder.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureBuilder.cpp.s
-.PHONY : Tetris/TFiguers/TFigureBuilder.cpp.s
+src/Tetris/TFiguers/TFigureBoard.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureBoard.cpp.s
+.PHONY : src/Tetris/TFiguers/TFigureBoard.cpp.s
 
-Tetris/TFiguers/TFigureController.o: Tetris/TFiguers/TFigureController.cpp.o
+src/Tetris/TFiguers/TFigureBoardBuilder.o: src/Tetris/TFiguers/TFigureBoardBuilder.cpp.o
 
-.PHONY : Tetris/TFiguers/TFigureController.o
+.PHONY : src/Tetris/TFiguers/TFigureBoardBuilder.o
 
 # target to build an object file
-Tetris/TFiguers/TFigureController.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureController.cpp.o
-.PHONY : Tetris/TFiguers/TFigureController.cpp.o
+src/Tetris/TFiguers/TFigureBoardBuilder.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureBoardBuilder.cpp.o
+.PHONY : src/Tetris/TFiguers/TFigureBoardBuilder.cpp.o
 
-Tetris/TFiguers/TFigureController.i: Tetris/TFiguers/TFigureController.cpp.i
+src/Tetris/TFiguers/TFigureBoardBuilder.i: src/Tetris/TFiguers/TFigureBoardBuilder.cpp.i
 
-.PHONY : Tetris/TFiguers/TFigureController.i
+.PHONY : src/Tetris/TFiguers/TFigureBoardBuilder.i
 
 # target to preprocess a source file
-Tetris/TFiguers/TFigureController.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureController.cpp.i
-.PHONY : Tetris/TFiguers/TFigureController.cpp.i
+src/Tetris/TFiguers/TFigureBoardBuilder.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureBoardBuilder.cpp.i
+.PHONY : src/Tetris/TFiguers/TFigureBoardBuilder.cpp.i
 
-Tetris/TFiguers/TFigureController.s: Tetris/TFiguers/TFigureController.cpp.s
+src/Tetris/TFiguers/TFigureBoardBuilder.s: src/Tetris/TFiguers/TFigureBoardBuilder.cpp.s
 
-.PHONY : Tetris/TFiguers/TFigureController.s
+.PHONY : src/Tetris/TFiguers/TFigureBoardBuilder.s
 
 # target to generate assembly for a file
-Tetris/TFiguers/TFigureController.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureController.cpp.s
-.PHONY : Tetris/TFiguers/TFigureController.cpp.s
+src/Tetris/TFiguers/TFigureBoardBuilder.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureBoardBuilder.cpp.s
+.PHONY : src/Tetris/TFiguers/TFigureBoardBuilder.cpp.s
 
-Tetris/TFiguers/TFigureI.o: Tetris/TFiguers/TFigureI.cpp.o
+src/Tetris/TFiguers/TFigureBuilder.o: src/Tetris/TFiguers/TFigureBuilder.cpp.o
 
-.PHONY : Tetris/TFiguers/TFigureI.o
+.PHONY : src/Tetris/TFiguers/TFigureBuilder.o
 
 # target to build an object file
-Tetris/TFiguers/TFigureI.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureI.cpp.o
-.PHONY : Tetris/TFiguers/TFigureI.cpp.o
+src/Tetris/TFiguers/TFigureBuilder.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureBuilder.cpp.o
+.PHONY : src/Tetris/TFiguers/TFigureBuilder.cpp.o
 
-Tetris/TFiguers/TFigureI.i: Tetris/TFiguers/TFigureI.cpp.i
+src/Tetris/TFiguers/TFigureBuilder.i: src/Tetris/TFiguers/TFigureBuilder.cpp.i
 
-.PHONY : Tetris/TFiguers/TFigureI.i
+.PHONY : src/Tetris/TFiguers/TFigureBuilder.i
 
 # target to preprocess a source file
-Tetris/TFiguers/TFigureI.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureI.cpp.i
-.PHONY : Tetris/TFiguers/TFigureI.cpp.i
+src/Tetris/TFiguers/TFigureBuilder.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureBuilder.cpp.i
+.PHONY : src/Tetris/TFiguers/TFigureBuilder.cpp.i
 
-Tetris/TFiguers/TFigureI.s: Tetris/TFiguers/TFigureI.cpp.s
+src/Tetris/TFiguers/TFigureBuilder.s: src/Tetris/TFiguers/TFigureBuilder.cpp.s
 
-.PHONY : Tetris/TFiguers/TFigureI.s
+.PHONY : src/Tetris/TFiguers/TFigureBuilder.s
 
 # target to generate assembly for a file
-Tetris/TFiguers/TFigureI.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureI.cpp.s
-.PHONY : Tetris/TFiguers/TFigureI.cpp.s
+src/Tetris/TFiguers/TFigureBuilder.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureBuilder.cpp.s
+.PHONY : src/Tetris/TFiguers/TFigureBuilder.cpp.s
 
-Tetris/TFiguers/TFigureL.o: Tetris/TFiguers/TFigureL.cpp.o
+src/Tetris/TFiguers/TFigureController.o: src/Tetris/TFiguers/TFigureController.cpp.o
 
-.PHONY : Tetris/TFiguers/TFigureL.o
+.PHONY : src/Tetris/TFiguers/TFigureController.o
 
 # target to build an object file
-Tetris/TFiguers/TFigureL.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureL.cpp.o
-.PHONY : Tetris/TFiguers/TFigureL.cpp.o
+src/Tetris/TFiguers/TFigureController.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureController.cpp.o
+.PHONY : src/Tetris/TFiguers/TFigureController.cpp.o
 
-Tetris/TFiguers/TFigureL.i: Tetris/TFiguers/TFigureL.cpp.i
+src/Tetris/TFiguers/TFigureController.i: src/Tetris/TFiguers/TFigureController.cpp.i
 
-.PHONY : Tetris/TFiguers/TFigureL.i
+.PHONY : src/Tetris/TFiguers/TFigureController.i
 
 # target to preprocess a source file
-Tetris/TFiguers/TFigureL.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureL.cpp.i
-.PHONY : Tetris/TFiguers/TFigureL.cpp.i
+src/Tetris/TFiguers/TFigureController.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureController.cpp.i
+.PHONY : src/Tetris/TFiguers/TFigureController.cpp.i
 
-Tetris/TFiguers/TFigureL.s: Tetris/TFiguers/TFigureL.cpp.s
+src/Tetris/TFiguers/TFigureController.s: src/Tetris/TFiguers/TFigureController.cpp.s
 
-.PHONY : Tetris/TFiguers/TFigureL.s
+.PHONY : src/Tetris/TFiguers/TFigureController.s
 
 # target to generate assembly for a file
-Tetris/TFiguers/TFigureL.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureL.cpp.s
-.PHONY : Tetris/TFiguers/TFigureL.cpp.s
+src/Tetris/TFiguers/TFigureController.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureController.cpp.s
+.PHONY : src/Tetris/TFiguers/TFigureController.cpp.s
 
-Tetris/TFiguers/TFigureO.o: Tetris/TFiguers/TFigureO.cpp.o
+src/Tetris/TFiguers/TFigureI.o: src/Tetris/TFiguers/TFigureI.cpp.o
 
-.PHONY : Tetris/TFiguers/TFigureO.o
+.PHONY : src/Tetris/TFiguers/TFigureI.o
 
 # target to build an object file
-Tetris/TFiguers/TFigureO.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureO.cpp.o
-.PHONY : Tetris/TFiguers/TFigureO.cpp.o
+src/Tetris/TFiguers/TFigureI.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureI.cpp.o
+.PHONY : src/Tetris/TFiguers/TFigureI.cpp.o
 
-Tetris/TFiguers/TFigureO.i: Tetris/TFiguers/TFigureO.cpp.i
+src/Tetris/TFiguers/TFigureI.i: src/Tetris/TFiguers/TFigureI.cpp.i
 
-.PHONY : Tetris/TFiguers/TFigureO.i
+.PHONY : src/Tetris/TFiguers/TFigureI.i
 
 # target to preprocess a source file
-Tetris/TFiguers/TFigureO.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureO.cpp.i
-.PHONY : Tetris/TFiguers/TFigureO.cpp.i
+src/Tetris/TFiguers/TFigureI.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureI.cpp.i
+.PHONY : src/Tetris/TFiguers/TFigureI.cpp.i
 
-Tetris/TFiguers/TFigureO.s: Tetris/TFiguers/TFigureO.cpp.s
+src/Tetris/TFiguers/TFigureI.s: src/Tetris/TFiguers/TFigureI.cpp.s
 
-.PHONY : Tetris/TFiguers/TFigureO.s
+.PHONY : src/Tetris/TFiguers/TFigureI.s
 
 # target to generate assembly for a file
-Tetris/TFiguers/TFigureO.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureO.cpp.s
-.PHONY : Tetris/TFiguers/TFigureO.cpp.s
+src/Tetris/TFiguers/TFigureI.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureI.cpp.s
+.PHONY : src/Tetris/TFiguers/TFigureI.cpp.s
 
-Tetris/TFiguers/TFigureT.o: Tetris/TFiguers/TFigureT.cpp.o
+src/Tetris/TFiguers/TFigureL.o: src/Tetris/TFiguers/TFigureL.cpp.o
 
-.PHONY : Tetris/TFiguers/TFigureT.o
+.PHONY : src/Tetris/TFiguers/TFigureL.o
 
 # target to build an object file
-Tetris/TFiguers/TFigureT.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureT.cpp.o
-.PHONY : Tetris/TFiguers/TFigureT.cpp.o
+src/Tetris/TFiguers/TFigureL.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureL.cpp.o
+.PHONY : src/Tetris/TFiguers/TFigureL.cpp.o
 
-Tetris/TFiguers/TFigureT.i: Tetris/TFiguers/TFigureT.cpp.i
+src/Tetris/TFiguers/TFigureL.i: src/Tetris/TFiguers/TFigureL.cpp.i
 
-.PHONY : Tetris/TFiguers/TFigureT.i
+.PHONY : src/Tetris/TFiguers/TFigureL.i
 
 # target to preprocess a source file
-Tetris/TFiguers/TFigureT.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureT.cpp.i
-.PHONY : Tetris/TFiguers/TFigureT.cpp.i
+src/Tetris/TFiguers/TFigureL.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureL.cpp.i
+.PHONY : src/Tetris/TFiguers/TFigureL.cpp.i
 
-Tetris/TFiguers/TFigureT.s: Tetris/TFiguers/TFigureT.cpp.s
+src/Tetris/TFiguers/TFigureL.s: src/Tetris/TFiguers/TFigureL.cpp.s
 
-.PHONY : Tetris/TFiguers/TFigureT.s
+.PHONY : src/Tetris/TFiguers/TFigureL.s
 
 # target to generate assembly for a file
-Tetris/TFiguers/TFigureT.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureT.cpp.s
-.PHONY : Tetris/TFiguers/TFigureT.cpp.s
+src/Tetris/TFiguers/TFigureL.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureL.cpp.s
+.PHONY : src/Tetris/TFiguers/TFigureL.cpp.s
 
-Tetris/TFiguers/TFigureUnit.o: Tetris/TFiguers/TFigureUnit.cpp.o
+src/Tetris/TFiguers/TFigureO.o: src/Tetris/TFiguers/TFigureO.cpp.o
 
-.PHONY : Tetris/TFiguers/TFigureUnit.o
+.PHONY : src/Tetris/TFiguers/TFigureO.o
 
 # target to build an object file
-Tetris/TFiguers/TFigureUnit.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureUnit.cpp.o
-.PHONY : Tetris/TFiguers/TFigureUnit.cpp.o
+src/Tetris/TFiguers/TFigureO.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureO.cpp.o
+.PHONY : src/Tetris/TFiguers/TFigureO.cpp.o
 
-Tetris/TFiguers/TFigureUnit.i: Tetris/TFiguers/TFigureUnit.cpp.i
+src/Tetris/TFiguers/TFigureO.i: src/Tetris/TFiguers/TFigureO.cpp.i
 
-.PHONY : Tetris/TFiguers/TFigureUnit.i
+.PHONY : src/Tetris/TFiguers/TFigureO.i
 
 # target to preprocess a source file
-Tetris/TFiguers/TFigureUnit.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureUnit.cpp.i
-.PHONY : Tetris/TFiguers/TFigureUnit.cpp.i
+src/Tetris/TFiguers/TFigureO.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureO.cpp.i
+.PHONY : src/Tetris/TFiguers/TFigureO.cpp.i
 
-Tetris/TFiguers/TFigureUnit.s: Tetris/TFiguers/TFigureUnit.cpp.s
+src/Tetris/TFiguers/TFigureO.s: src/Tetris/TFiguers/TFigureO.cpp.s
 
-.PHONY : Tetris/TFiguers/TFigureUnit.s
+.PHONY : src/Tetris/TFiguers/TFigureO.s
 
 # target to generate assembly for a file
-Tetris/TFiguers/TFigureUnit.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureUnit.cpp.s
-.PHONY : Tetris/TFiguers/TFigureUnit.cpp.s
+src/Tetris/TFiguers/TFigureO.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureO.cpp.s
+.PHONY : src/Tetris/TFiguers/TFigureO.cpp.s
 
-Tetris/TFiguers/TFigureZ.o: Tetris/TFiguers/TFigureZ.cpp.o
+src/Tetris/TFiguers/TFigureT.o: src/Tetris/TFiguers/TFigureT.cpp.o
 
-.PHONY : Tetris/TFiguers/TFigureZ.o
+.PHONY : src/Tetris/TFiguers/TFigureT.o
 
 # target to build an object file
-Tetris/TFiguers/TFigureZ.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureZ.cpp.o
-.PHONY : Tetris/TFiguers/TFigureZ.cpp.o
+src/Tetris/TFiguers/TFigureT.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureT.cpp.o
+.PHONY : src/Tetris/TFiguers/TFigureT.cpp.o
 
-Tetris/TFiguers/TFigureZ.i: Tetris/TFiguers/TFigureZ.cpp.i
+src/Tetris/TFiguers/TFigureT.i: src/Tetris/TFiguers/TFigureT.cpp.i
 
-.PHONY : Tetris/TFiguers/TFigureZ.i
+.PHONY : src/Tetris/TFiguers/TFigureT.i
 
 # target to preprocess a source file
-Tetris/TFiguers/TFigureZ.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureZ.cpp.i
-.PHONY : Tetris/TFiguers/TFigureZ.cpp.i
+src/Tetris/TFiguers/TFigureT.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureT.cpp.i
+.PHONY : src/Tetris/TFiguers/TFigureT.cpp.i
 
-Tetris/TFiguers/TFigureZ.s: Tetris/TFiguers/TFigureZ.cpp.s
+src/Tetris/TFiguers/TFigureT.s: src/Tetris/TFiguers/TFigureT.cpp.s
 
-.PHONY : Tetris/TFiguers/TFigureZ.s
+.PHONY : src/Tetris/TFiguers/TFigureT.s
 
 # target to generate assembly for a file
-Tetris/TFiguers/TFigureZ.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TFiguers/TFigureZ.cpp.s
-.PHONY : Tetris/TFiguers/TFigureZ.cpp.s
+src/Tetris/TFiguers/TFigureT.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureT.cpp.s
+.PHONY : src/Tetris/TFiguers/TFigureT.cpp.s
 
-Tetris/TMain/TMainDisplay.o: Tetris/TMain/TMainDisplay.cpp.o
+src/Tetris/TFiguers/TFigureUnit.o: src/Tetris/TFiguers/TFigureUnit.cpp.o
 
-.PHONY : Tetris/TMain/TMainDisplay.o
+.PHONY : src/Tetris/TFiguers/TFigureUnit.o
 
 # target to build an object file
-Tetris/TMain/TMainDisplay.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TMain/TMainDisplay.cpp.o
-.PHONY : Tetris/TMain/TMainDisplay.cpp.o
+src/Tetris/TFiguers/TFigureUnit.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureUnit.cpp.o
+.PHONY : src/Tetris/TFiguers/TFigureUnit.cpp.o
 
-Tetris/TMain/TMainDisplay.i: Tetris/TMain/TMainDisplay.cpp.i
+src/Tetris/TFiguers/TFigureUnit.i: src/Tetris/TFiguers/TFigureUnit.cpp.i
 
-.PHONY : Tetris/TMain/TMainDisplay.i
+.PHONY : src/Tetris/TFiguers/TFigureUnit.i
 
 # target to preprocess a source file
-Tetris/TMain/TMainDisplay.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TMain/TMainDisplay.cpp.i
-.PHONY : Tetris/TMain/TMainDisplay.cpp.i
+src/Tetris/TFiguers/TFigureUnit.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureUnit.cpp.i
+.PHONY : src/Tetris/TFiguers/TFigureUnit.cpp.i
 
-Tetris/TMain/TMainDisplay.s: Tetris/TMain/TMainDisplay.cpp.s
+src/Tetris/TFiguers/TFigureUnit.s: src/Tetris/TFiguers/TFigureUnit.cpp.s
 
-.PHONY : Tetris/TMain/TMainDisplay.s
+.PHONY : src/Tetris/TFiguers/TFigureUnit.s
 
 # target to generate assembly for a file
-Tetris/TMain/TMainDisplay.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TMain/TMainDisplay.cpp.s
-.PHONY : Tetris/TMain/TMainDisplay.cpp.s
+src/Tetris/TFiguers/TFigureUnit.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureUnit.cpp.s
+.PHONY : src/Tetris/TFiguers/TFigureUnit.cpp.s
 
-Tetris/TMain/TMainLocalDisplay.o: Tetris/TMain/TMainLocalDisplay.cpp.o
+src/Tetris/TFiguers/TFigureZ.o: src/Tetris/TFiguers/TFigureZ.cpp.o
 
-.PHONY : Tetris/TMain/TMainLocalDisplay.o
+.PHONY : src/Tetris/TFiguers/TFigureZ.o
 
 # target to build an object file
-Tetris/TMain/TMainLocalDisplay.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TMain/TMainLocalDisplay.cpp.o
-.PHONY : Tetris/TMain/TMainLocalDisplay.cpp.o
+src/Tetris/TFiguers/TFigureZ.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureZ.cpp.o
+.PHONY : src/Tetris/TFiguers/TFigureZ.cpp.o
 
-Tetris/TMain/TMainLocalDisplay.i: Tetris/TMain/TMainLocalDisplay.cpp.i
+src/Tetris/TFiguers/TFigureZ.i: src/Tetris/TFiguers/TFigureZ.cpp.i
 
-.PHONY : Tetris/TMain/TMainLocalDisplay.i
+.PHONY : src/Tetris/TFiguers/TFigureZ.i
 
 # target to preprocess a source file
-Tetris/TMain/TMainLocalDisplay.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TMain/TMainLocalDisplay.cpp.i
-.PHONY : Tetris/TMain/TMainLocalDisplay.cpp.i
+src/Tetris/TFiguers/TFigureZ.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureZ.cpp.i
+.PHONY : src/Tetris/TFiguers/TFigureZ.cpp.i
 
-Tetris/TMain/TMainLocalDisplay.s: Tetris/TMain/TMainLocalDisplay.cpp.s
+src/Tetris/TFiguers/TFigureZ.s: src/Tetris/TFiguers/TFigureZ.cpp.s
 
-.PHONY : Tetris/TMain/TMainLocalDisplay.s
+.PHONY : src/Tetris/TFiguers/TFigureZ.s
 
 # target to generate assembly for a file
-Tetris/TMain/TMainLocalDisplay.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TMain/TMainLocalDisplay.cpp.s
-.PHONY : Tetris/TMain/TMainLocalDisplay.cpp.s
+src/Tetris/TFiguers/TFigureZ.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TFiguers/TFigureZ.cpp.s
+.PHONY : src/Tetris/TFiguers/TFigureZ.cpp.s
 
-Tetris/TMain/TMainOnlineDisplay.o: Tetris/TMain/TMainOnlineDisplay.cpp.o
+src/Tetris/TMain/TMainDisplay.o: src/Tetris/TMain/TMainDisplay.cpp.o
 
-.PHONY : Tetris/TMain/TMainOnlineDisplay.o
+.PHONY : src/Tetris/TMain/TMainDisplay.o
 
 # target to build an object file
-Tetris/TMain/TMainOnlineDisplay.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TMain/TMainOnlineDisplay.cpp.o
-.PHONY : Tetris/TMain/TMainOnlineDisplay.cpp.o
+src/Tetris/TMain/TMainDisplay.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TMain/TMainDisplay.cpp.o
+.PHONY : src/Tetris/TMain/TMainDisplay.cpp.o
 
-Tetris/TMain/TMainOnlineDisplay.i: Tetris/TMain/TMainOnlineDisplay.cpp.i
+src/Tetris/TMain/TMainDisplay.i: src/Tetris/TMain/TMainDisplay.cpp.i
 
-.PHONY : Tetris/TMain/TMainOnlineDisplay.i
+.PHONY : src/Tetris/TMain/TMainDisplay.i
 
 # target to preprocess a source file
-Tetris/TMain/TMainOnlineDisplay.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TMain/TMainOnlineDisplay.cpp.i
-.PHONY : Tetris/TMain/TMainOnlineDisplay.cpp.i
+src/Tetris/TMain/TMainDisplay.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TMain/TMainDisplay.cpp.i
+.PHONY : src/Tetris/TMain/TMainDisplay.cpp.i
 
-Tetris/TMain/TMainOnlineDisplay.s: Tetris/TMain/TMainOnlineDisplay.cpp.s
+src/Tetris/TMain/TMainDisplay.s: src/Tetris/TMain/TMainDisplay.cpp.s
 
-.PHONY : Tetris/TMain/TMainOnlineDisplay.s
+.PHONY : src/Tetris/TMain/TMainDisplay.s
 
 # target to generate assembly for a file
-Tetris/TMain/TMainOnlineDisplay.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TMain/TMainOnlineDisplay.cpp.s
-.PHONY : Tetris/TMain/TMainOnlineDisplay.cpp.s
+src/Tetris/TMain/TMainDisplay.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TMain/TMainDisplay.cpp.s
+.PHONY : src/Tetris/TMain/TMainDisplay.cpp.s
 
-Tetris/TObject/TPlayer.o: Tetris/TObject/TPlayer.cpp.o
+src/Tetris/TMain/TMainLocalDisplay.o: src/Tetris/TMain/TMainLocalDisplay.cpp.o
 
-.PHONY : Tetris/TObject/TPlayer.o
+.PHONY : src/Tetris/TMain/TMainLocalDisplay.o
 
 # target to build an object file
-Tetris/TObject/TPlayer.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TObject/TPlayer.cpp.o
-.PHONY : Tetris/TObject/TPlayer.cpp.o
+src/Tetris/TMain/TMainLocalDisplay.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TMain/TMainLocalDisplay.cpp.o
+.PHONY : src/Tetris/TMain/TMainLocalDisplay.cpp.o
 
-Tetris/TObject/TPlayer.i: Tetris/TObject/TPlayer.cpp.i
+src/Tetris/TMain/TMainLocalDisplay.i: src/Tetris/TMain/TMainLocalDisplay.cpp.i
 
-.PHONY : Tetris/TObject/TPlayer.i
+.PHONY : src/Tetris/TMain/TMainLocalDisplay.i
 
 # target to preprocess a source file
-Tetris/TObject/TPlayer.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TObject/TPlayer.cpp.i
-.PHONY : Tetris/TObject/TPlayer.cpp.i
+src/Tetris/TMain/TMainLocalDisplay.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TMain/TMainLocalDisplay.cpp.i
+.PHONY : src/Tetris/TMain/TMainLocalDisplay.cpp.i
 
-Tetris/TObject/TPlayer.s: Tetris/TObject/TPlayer.cpp.s
+src/Tetris/TMain/TMainLocalDisplay.s: src/Tetris/TMain/TMainLocalDisplay.cpp.s
 
-.PHONY : Tetris/TObject/TPlayer.s
+.PHONY : src/Tetris/TMain/TMainLocalDisplay.s
 
 # target to generate assembly for a file
-Tetris/TObject/TPlayer.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TObject/TPlayer.cpp.s
-.PHONY : Tetris/TObject/TPlayer.cpp.s
+src/Tetris/TMain/TMainLocalDisplay.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TMain/TMainLocalDisplay.cpp.s
+.PHONY : src/Tetris/TMain/TMainLocalDisplay.cpp.s
 
-Tetris/TObject/TScore.o: Tetris/TObject/TScore.cpp.o
+src/Tetris/TMain/TMainOnlineDisplay.o: src/Tetris/TMain/TMainOnlineDisplay.cpp.o
 
-.PHONY : Tetris/TObject/TScore.o
+.PHONY : src/Tetris/TMain/TMainOnlineDisplay.o
 
 # target to build an object file
-Tetris/TObject/TScore.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TObject/TScore.cpp.o
-.PHONY : Tetris/TObject/TScore.cpp.o
+src/Tetris/TMain/TMainOnlineDisplay.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TMain/TMainOnlineDisplay.cpp.o
+.PHONY : src/Tetris/TMain/TMainOnlineDisplay.cpp.o
 
-Tetris/TObject/TScore.i: Tetris/TObject/TScore.cpp.i
+src/Tetris/TMain/TMainOnlineDisplay.i: src/Tetris/TMain/TMainOnlineDisplay.cpp.i
 
-.PHONY : Tetris/TObject/TScore.i
+.PHONY : src/Tetris/TMain/TMainOnlineDisplay.i
 
 # target to preprocess a source file
-Tetris/TObject/TScore.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TObject/TScore.cpp.i
-.PHONY : Tetris/TObject/TScore.cpp.i
+src/Tetris/TMain/TMainOnlineDisplay.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TMain/TMainOnlineDisplay.cpp.i
+.PHONY : src/Tetris/TMain/TMainOnlineDisplay.cpp.i
 
-Tetris/TObject/TScore.s: Tetris/TObject/TScore.cpp.s
+src/Tetris/TMain/TMainOnlineDisplay.s: src/Tetris/TMain/TMainOnlineDisplay.cpp.s
 
-.PHONY : Tetris/TObject/TScore.s
+.PHONY : src/Tetris/TMain/TMainOnlineDisplay.s
 
 # target to generate assembly for a file
-Tetris/TObject/TScore.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TObject/TScore.cpp.s
-.PHONY : Tetris/TObject/TScore.cpp.s
+src/Tetris/TMain/TMainOnlineDisplay.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TMain/TMainOnlineDisplay.cpp.s
+.PHONY : src/Tetris/TMain/TMainOnlineDisplay.cpp.s
 
-Tetris/TOption/TOptionManager.o: Tetris/TOption/TOptionManager.cpp.o
+src/Tetris/TObject/TPlayer.o: src/Tetris/TObject/TPlayer.cpp.o
 
-.PHONY : Tetris/TOption/TOptionManager.o
+.PHONY : src/Tetris/TObject/TPlayer.o
 
 # target to build an object file
-Tetris/TOption/TOptionManager.cpp.o:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TOption/TOptionManager.cpp.o
-.PHONY : Tetris/TOption/TOptionManager.cpp.o
+src/Tetris/TObject/TPlayer.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TObject/TPlayer.cpp.o
+.PHONY : src/Tetris/TObject/TPlayer.cpp.o
 
-Tetris/TOption/TOptionManager.i: Tetris/TOption/TOptionManager.cpp.i
+src/Tetris/TObject/TPlayer.i: src/Tetris/TObject/TPlayer.cpp.i
 
-.PHONY : Tetris/TOption/TOptionManager.i
+.PHONY : src/Tetris/TObject/TPlayer.i
 
 # target to preprocess a source file
-Tetris/TOption/TOptionManager.cpp.i:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TOption/TOptionManager.cpp.i
-.PHONY : Tetris/TOption/TOptionManager.cpp.i
+src/Tetris/TObject/TPlayer.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TObject/TPlayer.cpp.i
+.PHONY : src/Tetris/TObject/TPlayer.cpp.i
 
-Tetris/TOption/TOptionManager.s: Tetris/TOption/TOptionManager.cpp.s
+src/Tetris/TObject/TPlayer.s: src/Tetris/TObject/TPlayer.cpp.s
 
-.PHONY : Tetris/TOption/TOptionManager.s
+.PHONY : src/Tetris/TObject/TPlayer.s
 
 # target to generate assembly for a file
-Tetris/TOption/TOptionManager.cpp.s:
-	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/Tetris/TOption/TOptionManager.cpp.s
-.PHONY : Tetris/TOption/TOptionManager.cpp.s
+src/Tetris/TObject/TPlayer.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TObject/TPlayer.cpp.s
+.PHONY : src/Tetris/TObject/TPlayer.cpp.s
+
+src/Tetris/TObject/TScore.o: src/Tetris/TObject/TScore.cpp.o
+
+.PHONY : src/Tetris/TObject/TScore.o
+
+# target to build an object file
+src/Tetris/TObject/TScore.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TObject/TScore.cpp.o
+.PHONY : src/Tetris/TObject/TScore.cpp.o
+
+src/Tetris/TObject/TScore.i: src/Tetris/TObject/TScore.cpp.i
+
+.PHONY : src/Tetris/TObject/TScore.i
+
+# target to preprocess a source file
+src/Tetris/TObject/TScore.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TObject/TScore.cpp.i
+.PHONY : src/Tetris/TObject/TScore.cpp.i
+
+src/Tetris/TObject/TScore.s: src/Tetris/TObject/TScore.cpp.s
+
+.PHONY : src/Tetris/TObject/TScore.s
+
+# target to generate assembly for a file
+src/Tetris/TObject/TScore.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TObject/TScore.cpp.s
+.PHONY : src/Tetris/TObject/TScore.cpp.s
+
+src/Tetris/TOption/TOptionManager.o: src/Tetris/TOption/TOptionManager.cpp.o
+
+.PHONY : src/Tetris/TOption/TOptionManager.o
+
+# target to build an object file
+src/Tetris/TOption/TOptionManager.cpp.o:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TOption/TOptionManager.cpp.o
+.PHONY : src/Tetris/TOption/TOptionManager.cpp.o
+
+src/Tetris/TOption/TOptionManager.i: src/Tetris/TOption/TOptionManager.cpp.i
+
+.PHONY : src/Tetris/TOption/TOptionManager.i
+
+# target to preprocess a source file
+src/Tetris/TOption/TOptionManager.cpp.i:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TOption/TOptionManager.cpp.i
+.PHONY : src/Tetris/TOption/TOptionManager.cpp.i
+
+src/Tetris/TOption/TOptionManager.s: src/Tetris/TOption/TOptionManager.cpp.s
+
+.PHONY : src/Tetris/TOption/TOptionManager.s
+
+# target to generate assembly for a file
+src/Tetris/TOption/TOptionManager.cpp.s:
+	$(MAKE) -f CMakeFiles/tetris_figure_class.dir/build.make CMakeFiles/tetris_figure_class.dir/src/Tetris/TOption/TOptionManager.cpp.s
+.PHONY : src/Tetris/TOption/TOptionManager.cpp.s
 
 # Help Target
 help:
@@ -1158,120 +1185,123 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... tetris_figure_class"
 	@echo "... edit_cache"
-	@echo "... GameInterface/Object/Object.o"
-	@echo "... GameInterface/Object/Object.i"
-	@echo "... GameInterface/Object/Object.s"
-	@echo "... GameInterface/Object/Player.o"
-	@echo "... GameInterface/Object/Player.i"
-	@echo "... GameInterface/Object/Player.s"
-	@echo "... GameInterface/Object/Room.o"
-	@echo "... GameInterface/Object/Room.i"
-	@echo "... GameInterface/Object/Room.s"
-	@echo "... Main.o"
-	@echo "... Main.i"
-	@echo "... Main.s"
-	@echo "... SDLEasyGUI/Controller/Border.o"
-	@echo "... SDLEasyGUI/Controller/Border.i"
-	@echo "... SDLEasyGUI/Controller/Border.s"
-	@echo "... SDLEasyGUI/Controller/Button.o"
-	@echo "... SDLEasyGUI/Controller/Button.i"
-	@echo "... SDLEasyGUI/Controller/Button.s"
-	@echo "... SDLEasyGUI/Controller/ButtonBasic.o"
-	@echo "... SDLEasyGUI/Controller/ButtonBasic.i"
-	@echo "... SDLEasyGUI/Controller/ButtonBasic.s"
-	@echo "... SDLEasyGUI/Controller/Controll.o"
-	@echo "... SDLEasyGUI/Controller/Controll.i"
-	@echo "... SDLEasyGUI/Controller/Controll.s"
-	@echo "... SDLEasyGUI/Controller/ControllBuilder.o"
-	@echo "... SDLEasyGUI/Controller/ControllBuilder.i"
-	@echo "... SDLEasyGUI/Controller/ControllBuilder.s"
-	@echo "... SDLEasyGUI/Controller/EditLabel.o"
-	@echo "... SDLEasyGUI/Controller/EditLabel.i"
-	@echo "... SDLEasyGUI/Controller/EditLabel.s"
-	@echo "... SDLEasyGUI/Controller/GroupControllManager.o"
-	@echo "... SDLEasyGUI/Controller/GroupControllManager.i"
-	@echo "... SDLEasyGUI/Controller/GroupControllManager.s"
-	@echo "... SDLEasyGUI/Controller/RadioButton.o"
-	@echo "... SDLEasyGUI/Controller/RadioButton.i"
-	@echo "... SDLEasyGUI/Controller/RadioButton.s"
-	@echo "... SDLEasyGUI/Controller/StaticLabel.o"
-	@echo "... SDLEasyGUI/Controller/StaticLabel.i"
-	@echo "... SDLEasyGUI/Controller/StaticLabel.s"
-	@echo "... SDLEasyGUI/Windows/DisplayController.o"
-	@echo "... SDLEasyGUI/Windows/DisplayController.i"
-	@echo "... SDLEasyGUI/Windows/DisplayController.s"
-	@echo "... SDLEasyGUI/Windows/DisplayInterface.o"
-	@echo "... SDLEasyGUI/Windows/DisplayInterface.i"
-	@echo "... SDLEasyGUI/Windows/DisplayInterface.s"
-	@echo "... SDLEasyGUI/Windows/Window.o"
-	@echo "... SDLEasyGUI/Windows/Window.i"
-	@echo "... SDLEasyGUI/Windows/Window.s"
-	@echo "... Tetris/TClient/TClientConnector.o"
-	@echo "... Tetris/TClient/TClientConnector.i"
-	@echo "... Tetris/TClient/TClientConnector.s"
-	@echo "... Tetris/TClient/TClientService.o"
-	@echo "... Tetris/TClient/TClientService.i"
-	@echo "... Tetris/TClient/TClientService.s"
-	@echo "... Tetris/TDisplay/TGameDisplay.o"
-	@echo "... Tetris/TDisplay/TGameDisplay.i"
-	@echo "... Tetris/TDisplay/TGameDisplay.s"
-	@echo "... Tetris/TDisplay/TGameLocalDisplay.o"
-	@echo "... Tetris/TDisplay/TGameLocalDisplay.i"
-	@echo "... Tetris/TDisplay/TGameLocalDisplay.s"
-	@echo "... Tetris/TDisplay/TOptionDisplay.o"
-	@echo "... Tetris/TDisplay/TOptionDisplay.i"
-	@echo "... Tetris/TDisplay/TOptionDisplay.s"
-	@echo "... Tetris/TFiguers/TFigure.o"
-	@echo "... Tetris/TFiguers/TFigure.i"
-	@echo "... Tetris/TFiguers/TFigure.s"
-	@echo "... Tetris/TFiguers/TFigureBoard.o"
-	@echo "... Tetris/TFiguers/TFigureBoard.i"
-	@echo "... Tetris/TFiguers/TFigureBoard.s"
-	@echo "... Tetris/TFiguers/TFigureBoardBuilder.o"
-	@echo "... Tetris/TFiguers/TFigureBoardBuilder.i"
-	@echo "... Tetris/TFiguers/TFigureBoardBuilder.s"
-	@echo "... Tetris/TFiguers/TFigureBuilder.o"
-	@echo "... Tetris/TFiguers/TFigureBuilder.i"
-	@echo "... Tetris/TFiguers/TFigureBuilder.s"
-	@echo "... Tetris/TFiguers/TFigureController.o"
-	@echo "... Tetris/TFiguers/TFigureController.i"
-	@echo "... Tetris/TFiguers/TFigureController.s"
-	@echo "... Tetris/TFiguers/TFigureI.o"
-	@echo "... Tetris/TFiguers/TFigureI.i"
-	@echo "... Tetris/TFiguers/TFigureI.s"
-	@echo "... Tetris/TFiguers/TFigureL.o"
-	@echo "... Tetris/TFiguers/TFigureL.i"
-	@echo "... Tetris/TFiguers/TFigureL.s"
-	@echo "... Tetris/TFiguers/TFigureO.o"
-	@echo "... Tetris/TFiguers/TFigureO.i"
-	@echo "... Tetris/TFiguers/TFigureO.s"
-	@echo "... Tetris/TFiguers/TFigureT.o"
-	@echo "... Tetris/TFiguers/TFigureT.i"
-	@echo "... Tetris/TFiguers/TFigureT.s"
-	@echo "... Tetris/TFiguers/TFigureUnit.o"
-	@echo "... Tetris/TFiguers/TFigureUnit.i"
-	@echo "... Tetris/TFiguers/TFigureUnit.s"
-	@echo "... Tetris/TFiguers/TFigureZ.o"
-	@echo "... Tetris/TFiguers/TFigureZ.i"
-	@echo "... Tetris/TFiguers/TFigureZ.s"
-	@echo "... Tetris/TMain/TMainDisplay.o"
-	@echo "... Tetris/TMain/TMainDisplay.i"
-	@echo "... Tetris/TMain/TMainDisplay.s"
-	@echo "... Tetris/TMain/TMainLocalDisplay.o"
-	@echo "... Tetris/TMain/TMainLocalDisplay.i"
-	@echo "... Tetris/TMain/TMainLocalDisplay.s"
-	@echo "... Tetris/TMain/TMainOnlineDisplay.o"
-	@echo "... Tetris/TMain/TMainOnlineDisplay.i"
-	@echo "... Tetris/TMain/TMainOnlineDisplay.s"
-	@echo "... Tetris/TObject/TPlayer.o"
-	@echo "... Tetris/TObject/TPlayer.i"
-	@echo "... Tetris/TObject/TPlayer.s"
-	@echo "... Tetris/TObject/TScore.o"
-	@echo "... Tetris/TObject/TScore.i"
-	@echo "... Tetris/TObject/TScore.s"
-	@echo "... Tetris/TOption/TOptionManager.o"
-	@echo "... Tetris/TOption/TOptionManager.i"
-	@echo "... Tetris/TOption/TOptionManager.s"
+	@echo "... src/GameInterface/Object/Object.o"
+	@echo "... src/GameInterface/Object/Object.i"
+	@echo "... src/GameInterface/Object/Object.s"
+	@echo "... src/GameInterface/Object/Player.o"
+	@echo "... src/GameInterface/Object/Player.i"
+	@echo "... src/GameInterface/Object/Player.s"
+	@echo "... src/GameInterface/Object/Room.o"
+	@echo "... src/GameInterface/Object/Room.i"
+	@echo "... src/GameInterface/Object/Room.s"
+	@echo "... src/GameInterface/Online/ClientController.o"
+	@echo "... src/GameInterface/Online/ClientController.i"
+	@echo "... src/GameInterface/Online/ClientController.s"
+	@echo "... src/GameInterface/Online/TClientConnector.o"
+	@echo "... src/GameInterface/Online/TClientConnector.i"
+	@echo "... src/GameInterface/Online/TClientConnector.s"
+	@echo "... src/GameInterface/Online/TClientService.o"
+	@echo "... src/GameInterface/Online/TClientService.i"
+	@echo "... src/GameInterface/Online/TClientService.s"
+	@echo "... src/Main.o"
+	@echo "... src/Main.i"
+	@echo "... src/Main.s"
+	@echo "... src/SDLEasyGUI/Controller/Border.o"
+	@echo "... src/SDLEasyGUI/Controller/Border.i"
+	@echo "... src/SDLEasyGUI/Controller/Border.s"
+	@echo "... src/SDLEasyGUI/Controller/Button.o"
+	@echo "... src/SDLEasyGUI/Controller/Button.i"
+	@echo "... src/SDLEasyGUI/Controller/Button.s"
+	@echo "... src/SDLEasyGUI/Controller/ButtonBasic.o"
+	@echo "... src/SDLEasyGUI/Controller/ButtonBasic.i"
+	@echo "... src/SDLEasyGUI/Controller/ButtonBasic.s"
+	@echo "... src/SDLEasyGUI/Controller/Controll.o"
+	@echo "... src/SDLEasyGUI/Controller/Controll.i"
+	@echo "... src/SDLEasyGUI/Controller/Controll.s"
+	@echo "... src/SDLEasyGUI/Controller/ControllBuilder.o"
+	@echo "... src/SDLEasyGUI/Controller/ControllBuilder.i"
+	@echo "... src/SDLEasyGUI/Controller/ControllBuilder.s"
+	@echo "... src/SDLEasyGUI/Controller/EditLabel.o"
+	@echo "... src/SDLEasyGUI/Controller/EditLabel.i"
+	@echo "... src/SDLEasyGUI/Controller/EditLabel.s"
+	@echo "... src/SDLEasyGUI/Controller/GroupControllManager.o"
+	@echo "... src/SDLEasyGUI/Controller/GroupControllManager.i"
+	@echo "... src/SDLEasyGUI/Controller/GroupControllManager.s"
+	@echo "... src/SDLEasyGUI/Controller/RadioButton.o"
+	@echo "... src/SDLEasyGUI/Controller/RadioButton.i"
+	@echo "... src/SDLEasyGUI/Controller/RadioButton.s"
+	@echo "... src/SDLEasyGUI/Controller/StaticLabel.o"
+	@echo "... src/SDLEasyGUI/Controller/StaticLabel.i"
+	@echo "... src/SDLEasyGUI/Controller/StaticLabel.s"
+	@echo "... src/SDLEasyGUI/Windows/DisplayController.o"
+	@echo "... src/SDLEasyGUI/Windows/DisplayController.i"
+	@echo "... src/SDLEasyGUI/Windows/DisplayController.s"
+	@echo "... src/SDLEasyGUI/Windows/DisplayInterface.o"
+	@echo "... src/SDLEasyGUI/Windows/DisplayInterface.i"
+	@echo "... src/SDLEasyGUI/Windows/DisplayInterface.s"
+	@echo "... src/SDLEasyGUI/Windows/Window.o"
+	@echo "... src/SDLEasyGUI/Windows/Window.i"
+	@echo "... src/SDLEasyGUI/Windows/Window.s"
+	@echo "... src/Tetris/TDisplay/TGameDisplay.o"
+	@echo "... src/Tetris/TDisplay/TGameDisplay.i"
+	@echo "... src/Tetris/TDisplay/TGameDisplay.s"
+	@echo "... src/Tetris/TDisplay/TGameLocalDisplay.o"
+	@echo "... src/Tetris/TDisplay/TGameLocalDisplay.i"
+	@echo "... src/Tetris/TDisplay/TGameLocalDisplay.s"
+	@echo "... src/Tetris/TDisplay/TOptionDisplay.o"
+	@echo "... src/Tetris/TDisplay/TOptionDisplay.i"
+	@echo "... src/Tetris/TDisplay/TOptionDisplay.s"
+	@echo "... src/Tetris/TFiguers/TFigure.o"
+	@echo "... src/Tetris/TFiguers/TFigure.i"
+	@echo "... src/Tetris/TFiguers/TFigure.s"
+	@echo "... src/Tetris/TFiguers/TFigureBoard.o"
+	@echo "... src/Tetris/TFiguers/TFigureBoard.i"
+	@echo "... src/Tetris/TFiguers/TFigureBoard.s"
+	@echo "... src/Tetris/TFiguers/TFigureBoardBuilder.o"
+	@echo "... src/Tetris/TFiguers/TFigureBoardBuilder.i"
+	@echo "... src/Tetris/TFiguers/TFigureBoardBuilder.s"
+	@echo "... src/Tetris/TFiguers/TFigureBuilder.o"
+	@echo "... src/Tetris/TFiguers/TFigureBuilder.i"
+	@echo "... src/Tetris/TFiguers/TFigureBuilder.s"
+	@echo "... src/Tetris/TFiguers/TFigureController.o"
+	@echo "... src/Tetris/TFiguers/TFigureController.i"
+	@echo "... src/Tetris/TFiguers/TFigureController.s"
+	@echo "... src/Tetris/TFiguers/TFigureI.o"
+	@echo "... src/Tetris/TFiguers/TFigureI.i"
+	@echo "... src/Tetris/TFiguers/TFigureI.s"
+	@echo "... src/Tetris/TFiguers/TFigureL.o"
+	@echo "... src/Tetris/TFiguers/TFigureL.i"
+	@echo "... src/Tetris/TFiguers/TFigureL.s"
+	@echo "... src/Tetris/TFiguers/TFigureO.o"
+	@echo "... src/Tetris/TFiguers/TFigureO.i"
+	@echo "... src/Tetris/TFiguers/TFigureO.s"
+	@echo "... src/Tetris/TFiguers/TFigureT.o"
+	@echo "... src/Tetris/TFiguers/TFigureT.i"
+	@echo "... src/Tetris/TFiguers/TFigureT.s"
+	@echo "... src/Tetris/TFiguers/TFigureUnit.o"
+	@echo "... src/Tetris/TFiguers/TFigureUnit.i"
+	@echo "... src/Tetris/TFiguers/TFigureUnit.s"
+	@echo "... src/Tetris/TFiguers/TFigureZ.o"
+	@echo "... src/Tetris/TFiguers/TFigureZ.i"
+	@echo "... src/Tetris/TFiguers/TFigureZ.s"
+	@echo "... src/Tetris/TMain/TMainDisplay.o"
+	@echo "... src/Tetris/TMain/TMainDisplay.i"
+	@echo "... src/Tetris/TMain/TMainDisplay.s"
+	@echo "... src/Tetris/TMain/TMainLocalDisplay.o"
+	@echo "... src/Tetris/TMain/TMainLocalDisplay.i"
+	@echo "... src/Tetris/TMain/TMainLocalDisplay.s"
+	@echo "... src/Tetris/TMain/TMainOnlineDisplay.o"
+	@echo "... src/Tetris/TMain/TMainOnlineDisplay.i"
+	@echo "... src/Tetris/TMain/TMainOnlineDisplay.s"
+	@echo "... src/Tetris/TObject/TPlayer.o"
+	@echo "... src/Tetris/TObject/TPlayer.i"
+	@echo "... src/Tetris/TObject/TPlayer.s"
+	@echo "... src/Tetris/TObject/TScore.o"
+	@echo "... src/Tetris/TObject/TScore.i"
+	@echo "... src/Tetris/TObject/TScore.s"
+	@echo "... src/Tetris/TOption/TOptionManager.o"
+	@echo "... src/Tetris/TOption/TOptionManager.i"
+	@echo "... src/Tetris/TOption/TOptionManager.s"
 .PHONY : help
 
 

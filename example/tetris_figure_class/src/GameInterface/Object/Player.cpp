@@ -3,5 +3,3 @@
 //
 
 #include "Player.h"
-
-SDL_TETRIS

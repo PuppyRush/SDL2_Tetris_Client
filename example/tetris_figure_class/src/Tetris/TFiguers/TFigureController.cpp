@@ -68,14 +68,9 @@ void TFigureController::command(const t_eventType event)
             _goStraightDown();
             break;
     }
+
     m_board->setGhostFigure(m_currentFigure, m_ghostFigure);
 }
-
-void TFigureController::setGhostFigure()
-{
-    m_board->setGhostFigure(m_currentFigure,m_ghostFigure);
-}
-
 
 void TFigureController::_goStraightDown()
 {
@@ -154,4 +149,14 @@ void TFigureController::_goRight() {
         m_currentFigure = copied;
 
     m_board->_setCoords(m_currentFigure);
+}
+
+void TFigureController::clear()
+{
+    delete this;
+    /*m_board->clear();
+    m_nextFigureBoard->clear();
+    m_currentFigure.reset();
+    m_nextFigure.reset();
+    m_ghostFigure.reset();*/
 }

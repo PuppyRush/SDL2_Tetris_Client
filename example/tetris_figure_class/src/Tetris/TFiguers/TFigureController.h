@@ -38,8 +38,8 @@ public:
     nextfigure_board_ptr getNextFigureBoard() const noexcept
     {return m_nextFigureBoard;}
 
-    void setGhostFigure();
     void command(const t_eventType event);
+    void clear();
     void eraseLine(const t_size lineNumber);
     void addLine(const t_size lineNumber);
     void eraseBottomLine(const t_size = 1);
@@ -47,7 +47,6 @@ public:
     void createNextFigureRandomly();
 
 private:
-
 
     figure_ptr m_currentFigure;
     figure_ptr m_ghostFigure;

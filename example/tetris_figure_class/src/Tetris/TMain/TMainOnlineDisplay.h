@@ -24,18 +24,19 @@ public:
         End
     };
 
-    virtual bool clickedEnterServer() final {}
-    virtual bool clickedStartLocalGame() final {}
-    virtual bool clickedBack(const TDisplay disply) final {}
+    virtual bool onClickedEnterServer() final {}
+    virtual bool onClickedStartLocalGame() final {}
+    virtual bool onClickedBack(const TDisplay disply) final {}
+    virtual void onDraw() final;
+
     static std::shared_ptr<TMainDisplay> getInstance();
 
 private:
     TMainOnlineDisplay(){}
 
-    virtual void _preInitialize() final;
+    virtual void onPreInitialize() final;
     virtual void _event(const SDL_Event* event) final;
     virtual void _timer() final;
-    virtual void _draw() final;
 
 };
 

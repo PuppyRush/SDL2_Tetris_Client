@@ -18,24 +18,37 @@ std::shared_ptr<TMainDisplay> TMainLocalDisplay::getInstance()
     return inst;
 }
 
-void TMainLocalDisplay::_preInitialize() {
+void TMainLocalDisplay::onPreInitialize() {
     setBackgroundImgPath("../resources/images/background.png");
 
-    constexpr const t_size begin_y = WINDOW_HEIGHT/3;
+    t_size begin_y = WINDOW_HEIGHT/3;
 
     {
-        ControllBuilder bld(getWindow().get(), {WINDOW_WIDTH / 2 - 50, begin_y}, "START");
+        ControllBuilder bld(getWindow(), {WINDOW_WIDTH / 2 - 100, begin_y}, "PLAY ALONE");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
             background_color(TColorCode::white)->
-            width(100)->
+            width(200)->
             height(50)->
             enabled(true)->
-            display(TDisplay::Game);
+            display(TDisplay::SingleGame);
 
         addControll(Button::getInstance(bld));
     }
+    begin_y+=80;
     {
-        ControllBuilder bld(getWindow().get(), {WINDOW_WIDTH/2-50, begin_y+80}, "OPTION");
+        ControllBuilder bld(getWindow(), {WINDOW_WIDTH / 2 - 120, begin_y}, "PLAY TOGETHER");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+            background_color(TColorCode::white)->
+            width(240)->
+            height(50)->
+            enabled(true)->
+            display(TDisplay::OnlineGame);
+
+        addControll(Button::getInstance(bld));
+    }
+    begin_y+=80;
+    {
+        ControllBuilder bld(getWindow(), {WINDOW_WIDTH/2-50, begin_y}, "OPTION");
             bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
             background_color(TColorCode::white)->
             width(100)->
@@ -45,8 +58,9 @@ void TMainLocalDisplay::_preInitialize() {
 
         addControll(Button::getInstance(bld));
     }
+    begin_y+=80;
     {
-        ControllBuilder bld(getWindow().get(),{WINDOW_WIDTH/2-50, begin_y+160}, "EXIT");
+        ControllBuilder bld(getWindow(),{WINDOW_WIDTH/2-50, begin_y}, "EXIT");
             bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
             background_color(TColorCode::white)->
             width(100)->
@@ -59,13 +73,13 @@ void TMainLocalDisplay::_preInitialize() {
 }
 
 
-bool TMainLocalDisplay::clickedEnterServer()
+bool TMainLocalDisplay::onClickedEnterServer()
 {}
 
-bool TMainLocalDisplay::clickedStartLocalGame()
+bool TMainLocalDisplay::onClickedStartLocalGame()
 {}
 
-bool TMainLocalDisplay::clickedBack(const TDisplay display)
+bool TMainLocalDisplay::onClickedBack(const TDisplay display)
 {
     setDisplay(display);
 }
@@ -80,8 +94,7 @@ void TMainLocalDisplay::_event(const SDL_Event* event) {
     DisplayInterface::_event(event);
 }
 
-void TMainLocalDisplay::_draw()
+void TMainLocalDisplay::onDraw()
 {
 
-    //setStopDraw(true);
 }

@@ -13,16 +13,15 @@
 
 #include "Object.h"
 
-SDL_TETRIS_BEGIN
+class Room final : public Object
+{
 
-class Room final : public Object{
-
+public:
+    Room();
 
 private:
     std::string m_roomname;
-    t_id_atomic m_roomnumber;
+    tetris::t_id_atomic m_roomnumber;
 };
-
-SDL_TETRIS_END
 
 #endif //TETRIS_FIGURE_CLASS_TROOM_H

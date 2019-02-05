@@ -11,8 +11,7 @@
 
 #include <atomic>
 
-#include "THeader.h"
-#include "SDLEasyGUI/Windows/Window.h"
+#include "../../Common/THeader.h"
 #include "ControllBuilder.h"
 #include "GroupControllManager.h"
 #include "../Windows/GraphicInterface.h"
@@ -101,7 +100,7 @@ public:
 
     void setSelected(bool selected);
     const bool isHit(const TPoint& point);
-    virtual void draw() override;
+    virtual void onDraw() override;
     virtual void clicked();
     virtual void initialize();
 protected:
@@ -115,18 +114,12 @@ protected:
         m_basic->multiselected = multiselected;
     }
 
-    const Window *getWindow() const {
-        return m_window;
-    }
-
     virtual void lButtonClicked(){}
 
 
 private:
 
     std::shared_ptr<TControllBasic> m_basic;
-    const Window* m_window;
-public:
 
 
 };
