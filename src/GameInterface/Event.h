@@ -1,0 +1,13 @@
+//
+// Created by chaed on 19. 2. 8.
+//
+
+#ifndef TETRIS_FIGURE_CLASS_EVENT_H
+#define TETRIS_FIGURE_CLASS_EVENT_H
+
+enum SDL_EASYGUI_EVENT {
+    RECV_DATA = SDL_USEREVENT+1,
+    SDLEASYGUI_END_EVENT
+};
+
+#endif //TETRIS_FIGURE_CLASS_EVENT_H
