@@ -19,8 +19,6 @@
 #include "TType.h"
 #include "Tetris/Common/TProperty.h"
 
-SDL_TETRIS_BEGIN
-
 typedef struct TIPString
 {
     TIPString()
@@ -49,7 +47,5 @@ typedef struct TIPString
     std::string ip;
 }TIPString;
 
-
-SDL_TETRIS_END
 
 #endif //TETRIS_FIGURE_CLASS_TSTRUCT_H

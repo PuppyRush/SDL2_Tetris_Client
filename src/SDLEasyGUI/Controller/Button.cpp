@@ -11,6 +11,11 @@ Button::Button(const ControllBuilder& bld)
 {
 }
 
+void Button::onDraw()
+{
+    ButtonBasic::onDraw();
+}
+
 void Button::initialize()
 {
     Controll::initialize();

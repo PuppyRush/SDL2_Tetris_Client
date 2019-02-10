@@ -9,11 +9,11 @@
 
 SDL_TETRIS_BEGIN
 
-class TGameOnlineDisplay : public TGameDisplay
+class TMultiGameRoomDisplay : public TGameDisplay
 {
 public:
-    TGameOnlineDisplay();
-    virtual ~TGameOnlineDisplay(){}
+    TMultiGameRoomDisplay();
+    virtual ~TMultiGameRoomDisplay(){}
 
 private:
 
@@ -26,9 +26,8 @@ private:
     virtual void onCreate() override final;
     virtual void registerEvent() override final;
 
+    virtual void onUserEvent(const SDL_UserEvent* event) override final;
 
-    virtual void event(const SDL_Event *event) override final;
-    virtual void timer() override final;
 };
 
 SDL_TETRIS_END

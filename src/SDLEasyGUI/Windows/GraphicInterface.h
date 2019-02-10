@@ -12,16 +12,16 @@
 
 #include "Tetris/Common/TDefine.h"
 #include "Window.h"
+#include "EventListener.h"
 
-SDL_TETRIS_BEGIN
-
-class GraphicInterface
+class GraphicInterface : public EventListener
 {
 
 public:
     using window_ptr = std::shared_ptr<Window>;
 
     virtual void onDraw() = 0;
+
     void setWindow(window_ptr window){m_window = window;}
     window_ptr getWindow() const noexcept {
         return m_window;
@@ -37,9 +37,6 @@ private:
     window_ptr m_window = nullptr;
 
 };
-
-
-SDL_TETRIS_END
 
 
 #endif //TETRIS_FIGURE_CLASS_TGRAPHICINTERFACE_H

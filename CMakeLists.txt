@@ -75,6 +75,8 @@ add_executable(tetris_figure_class
         src/Tetris/Common/TProperty.h
         src/Tetris/Common/TDefine.h
         src/Tetris/Common/THeader.h
+        src/Tetris/Common/Resource.h
+        src/Tetris/Common/Event.h
         src/Tetris/TFiguers/TFigureL.h
         src/Tetris/TFiguers/TFigureUnit.h
         src/Tetris/TFiguers/TFigureUnit.cpp
@@ -95,20 +97,16 @@ add_executable(tetris_figure_class
         src/Tetris/TFiguers/TFigureO.h
         src/Tetris/TFiguers/TFigureT.cpp
         src/Tetris/TFiguers/TFigureT.h
+        src/Tetris/TFiguers/TFigureController.cpp
+        src/Tetris/TFiguers/TFigureController.h
         src/Tetris/TObject/TScore.cpp
         src/Tetris/TObject/TScore.h
-        src/Tetris/TDisplay/TGameLocalDisplay.cpp
-        src/Tetris/TDisplay/TGameLocalDisplay.h
+        src/Tetris/TObject/TPlayer.h
+        src/Tetris/TObject/TPlayer.cpp
+        src/Tetris/TDisplay/TSingleGameDisplay.cpp
+        src/Tetris/TDisplay/TSingleGameDisplay.h
         src/Tetris/TDisplay/TGameDisplay.cpp
         src/Tetris/TDisplay/TGameDisplay.h
-        src/SDLEasyGUI/Controller/ControllBuilder.cpp
-        src/SDLEasyGUI/Controller/ControllBuilder.h
-        src/SDLEasyGUI/Windows/DisplayInterface.h
-        src/SDLEasyGUI/Windows/DisplayInterface.cpp
-        src/SDLEasyGUI/Windows/DisplayController.cpp
-        src/SDLEasyGUI/Windows/DisplayInterface.h
-        src/SDLEasyGUI/Windows/Window.cpp
-        src/SDLEasyGUI/Windows/Window.h
         src/Tetris/TDisplay/TMainLocalDisplay.h
         src/Tetris/TDisplay/TMainLocalDisplay.cpp
         src/Tetris/TDisplay/TMainDisplay.h
@@ -117,8 +115,23 @@ add_executable(tetris_figure_class
         src/Tetris/TDisplay/TMainOnlineDisplay.cpp
         src/Tetris/TDisplay/TOptionDisplay.cpp
         src/Tetris/TDisplay/TOptionDisplay.h
+        src/Tetris/TDisplay/TMultiGameRoomDisplay.cpp
+        src/Tetris/TDisplay/TMultiGameRoomDisplay.h
         src/Tetris/TOption/TOptionManager.cpp
         src/Tetris/TOption/TOptionManager.h
+        src/Tetris/TClient/TClientController.h
+        src/Tetris/TClient/TClientController.cpp
+        src/Tetris/TClient/JsonHelper.cpp
+        src/Tetris/TClient/JsonHelper.h
+        src/SDLEasyGUI/Windows/DisplayInterface.h
+        src/SDLEasyGUI/Windows/DisplayInterface.cpp
+        src/SDLEasyGUI/Windows/DisplayController.cpp
+        src/SDLEasyGUI/Windows/DisplayInterface.h
+        src/SDLEasyGUI/Windows/Window.cpp
+        src/SDLEasyGUI/Windows/Window.h
+        src/SDLEasyGUI/Windows/GraphicInterface.h
+        src/SDLEasyGUI/Controller/ControllBuilder.cpp
+        src/SDLEasyGUI/Controller/ControllBuilder.h
         src/SDLEasyGUI/Controller/Controll.cpp
         src/SDLEasyGUI/Controller/Controll.h
         src/SDLEasyGUI/Controller/StaticLabel.cpp
@@ -135,7 +148,6 @@ add_executable(tetris_figure_class
         src/SDLEasyGUI/Controller/GroupControllManager.h
         src/SDLEasyGUI/Controller/Border.cpp
         src/SDLEasyGUI/Controller/Border.h
-        src/SDLEasyGUI/Windows/GraphicInterface.h
         src/GameInterface/Object/Player.cpp
         src/GameInterface/Object/Player.h
         src/GameInterface/Object/Room.cpp
@@ -143,25 +155,18 @@ add_executable(tetris_figure_class
         src/GameInterface/Object/Atomic.h
         src/GameInterface/Object/Object.cpp
         src/GameInterface/Object/Object.h
+        src/GameInterface/Object/GameRoom.cpp
+        src/GameInterface/Object/GameRoom.h
+        src/GameInterface/Object/WaitingRoom.cpp
+        src/GameInterface/Object/WaitingRoom.h
         src/GameInterface/Online/ClientConnector.cpp
         src/GameInterface/Online/ClientConnector.h
         src/GameInterface/Online/ClientService.cpp
         src/GameInterface/Online/ClientService.h
         src/GameInterface/Event.h
-        src/GameInterface/TStruct.h
-        src/Tetris/TObject/TPlayer.h
-        src/Tetris/TObject/TPlayer.cpp
-        src/Tetris/TFiguers/TFigureController.cpp
-        src/Tetris/TFiguers/TFigureController.h
-        src/Tetris/TClient/TClientController.h
-        src/Tetris/TClient/TClientController.cpp
-        src/Tetris/Common/Resource.h
-        src/Tetris/Common/Event.h
-        src/Tetris/TDisplay/TGameOnlineDisplay.cpp
-        src/Tetris/TDisplay/TGameOnlineDisplay.h src/Tetris/TClient/JsonHelper.cpp src/Tetris/TClient/JsonHelper.h src/GameInterface/Object/GameRoom.cpp src/GameInterface/Object/GameRoom.h src/GameInterface/Object/WaitingRoom.cpp src/GameInterface/Object/WaitingRoom.h)
+        src/GameInterface/TStruct.h src/Tetris/TDisplay/TWaitingRoomDisplay.cpp src/Tetris/TDisplay/TWaitingRoomDisplay.h src/SDLEasyGUI/Windows/EventListener.h src/SDLEasyGUI/SEG_Initiator.h src/SDLEasyGUI/SEG_Constant.h src/SDLEasyGUI/SEG_Quit.h)
 
 include_directories(
-        tetris_figure_class/src
         SYSTEM ${Boost_INCLUDE_DIR}
         ${SDL2_INCLUDE_DIR}
         ${SDL2_IMAGE_INCLUDE_DIR}

@@ -10,7 +10,7 @@
 #endif
 
 #include "Tetris/Common/TDefine.h"
-#include "../../SDLEasyGUI/TStruct.h"
+#include "SDLEasyGUI/SEG_TStruct.h"
 
 SDL_TETRIS_BEGIN
 

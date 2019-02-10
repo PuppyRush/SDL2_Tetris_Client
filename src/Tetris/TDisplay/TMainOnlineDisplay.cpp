@@ -3,10 +3,11 @@
 //
 
 #include "TMainOnlineDisplay.h"
+#include "TOptionDisplay.h"
 #include "SDLEasyGUI/Controller/Button.h"
 #include "SDLEasyGUI/Windows/DisplayController.h"
 #include "Tetris/Common/Resource.h"
-#include "TGameOnlineDisplay.h"
+#include "TMultiGameRoomDisplay.h"
 
 SDL_TETRIS
 
@@ -17,9 +18,9 @@ TMainOnlineDisplay::TMainOnlineDisplay()
 
 void TMainOnlineDisplay::registerEvent()
 {
-
+    event_buttonClick(resource::MAIN_SINGLE_GAME_START_BUTTON, std::bind(&TMainOnlineDisplay::onClickedEnterServer, this));
+    event_buttonClick(resource::MAIN_OPTION_BUTTON, std::bind(&TMainOnlineDisplay::onClickedOption, this));
 }
-
 
 void TMainOnlineDisplay::onPreInitialize() {
 
@@ -59,26 +60,26 @@ void TMainOnlineDisplay::onPreInitialize() {
 
         addControll(Button::getInstance(bld));
     }
-    ::DisplayInterface::onPreInitialize();
 
+    ::DisplayInterface::onPreInitialize();
 }
 
-
-void TMainOnlineDisplay::timer()
+void TMainOnlineDisplay::onTimer()
 {
 
 }
 
 void TMainOnlineDisplay::onDraw()
 {
-
+    TMainDisplay::onDraw();
 }
-void TMainOnlineDisplay::event(const SDL_Event *event)
-{
 
+void TMainOnlineDisplay::onClickedOption()
+{
+    DisplayController::getInstance()->modal(make_shared<TOptionDisplay>());
 }
 
 void TMainOnlineDisplay::onClickedEnterServer()
 {
-    DisplayController::getInstance()->modal(make_shared<TGameOnlineDisplay>());
+    DisplayController::getInstance()->modal(make_shared<TMultiGameRoomDisplay>());
 }

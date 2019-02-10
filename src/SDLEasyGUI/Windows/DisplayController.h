@@ -10,21 +10,22 @@
 #endif
 
 #include <unordered_map>
-#include <stack>
+#include <queue>
 
 #include "DisplayInterface.h"
 #include "Tetris/Common/Resource.h"
+/*
 
 namespace std
 {
 template<>
-struct hash<TETRIS::DisplayInfo>
+struct hash<DisplayInfo>
 {
-    size_t operator()(const TETRIS::DisplayInfo& obj) const
+    size_t operator()(const DisplayInfo& obj) const
     {
-        using modeType = underlying_type_t <TETRIS::TLocalMode>;
-        using dpType = underlying_type_t <TETRIS::TDisplay >;
-        using dpModeType = underlying_type_t <TETRIS::TDisplayMode >;
+        using modeType = underlying_type_t <TLocalMode>;
+        using dpType = underlying_type_t <TDisplay >;
+        using dpModeType = underlying_type_t <TDisplayMode >;
         const auto mode = static_cast<modeType>(obj.mode);
         const auto dp = static_cast<dpType>(obj.display);
         const auto dpMode = static_cast<dpType>(obj.displayMode);
@@ -34,11 +35,11 @@ struct hash<TETRIS::DisplayInfo>
 }
 
 struct KeyHash {
-    std::size_t operator()(const TETRIS::DisplayInfo& obj) const
+    std::size_t operator()(const DisplayInfo& obj) const
     {
-        using modeType = underlying_type_t <TETRIS::TLocalMode>;
-        using dpType = underlying_type_t <TETRIS::TDisplay >;
-        using dpModeType = underlying_type_t <TETRIS::TDisplayMode >;
+        using modeType = underlying_type_t <TLocalMode>;
+        using dpType = underlying_type_t <TDisplay >;
+        using dpModeType = underlying_type_t <TDisplayMode >;
         const auto mode = static_cast<modeType>(obj.mode);
         const auto dp = static_cast<dpType>(obj.display);
         const auto dpMode = static_cast<dpType>(obj.displayMode);
@@ -48,7 +49,7 @@ struct KeyHash {
 
 
 struct KeyEqual {
-    bool operator()(const TETRIS::DisplayInfo& lhs, const TETRIS::DisplayInfo& rhs) const
+    bool operator()(const DisplayInfo& lhs, const DisplayInfo& rhs) const
     {
         return rhs.display == lhs.display &&
             rhs.mode == lhs.mode &&
@@ -56,6 +57,7 @@ struct KeyEqual {
             rhs.id == lhs.id;
     }
 };
+*/
 
 
 SDL_TETRIS_BEGIN
@@ -64,19 +66,31 @@ class DisplayController final{
 
 public:
     using display_ptr = std::shared_ptr<DisplayInterface>;
+    using modal_ary = std::deque<display_ptr>;
+    using modaless_ary =  std::vector<display_ptr>;
+    using modaless_ary_iterator = modaless_ary::const_iterator;
 
+    void run();
     resource modal(display_ptr);
     void modaless(display_ptr);
+    void close(const t_winid id);
+    display_ptr findFromId(const t_winid id);
 
     static std::shared_ptr<DisplayController> getInstance();
 
 private:
 
     DisplayController();
+
+    Uint32 getActivatedWindowID(const SDL_Event* event);
+
     void _release();
 
-    std::unordered_map< DisplayInfo, display_ptr, KeyHash, KeyEqual> m_modalessMap;
-    std::stack<display_ptr> m_modalStack;
+    template <class T>
+    display_ptr _find(const T& ary, const t_winid id);
+
+    modaless_ary m_modalessAry;
+    modal_ary m_modalStack;
 };
 
 SDL_TETRIS_END

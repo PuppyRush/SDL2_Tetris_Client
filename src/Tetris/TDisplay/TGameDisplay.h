@@ -33,8 +33,8 @@ protected:
 	virtual void onDraw() override;
 
 	virtual void onPreInitialize() = 0;
-    virtual void event(const SDL_Event *event) =0;
-	virtual void timer() =0;
+	virtual void onKeyboardEvent (const SDL_KeyboardEvent* key);
+	virtual void onUserEvent(const SDL_UserEvent* event);
 
 	void _drawFigure(TFigureController::board_ptr board, TFigureController::figure_ptr figure);
 	void _drawNextFigure();

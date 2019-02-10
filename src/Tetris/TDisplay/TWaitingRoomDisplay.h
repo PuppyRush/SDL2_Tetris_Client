@@ -1,0 +1,12 @@
+//
+// Created by chaed on 19. 2. 8.
+//
+
+#ifndef TETRIS_FIGURE_CLASS_TWAITINGROOMDISPLAY_H
+#define TETRIS_FIGURE_CLASS_TWAITINGROOMDISPLAY_H
+
+class TWaitingRoomDisplay {
+
+};
+
+#endif //TETRIS_FIGURE_CLASS_TWAITINGROOMDISPLAY_H

@@ -15,12 +15,12 @@
 
 SDL_TETRIS_BEGIN
 
-class TGameLocalDisplay final : public TGameDisplay{
+class TSingleGameDisplay final : public TGameDisplay{
 
 public:
 
-    TGameLocalDisplay();
-    virtual ~TGameLocalDisplay(){}
+    TSingleGameDisplay();
+    virtual ~TSingleGameDisplay(){}
 
 private:
     virtual void onClickedStart() override final;
@@ -31,10 +31,7 @@ private:
     virtual void onClose() override final;
     virtual void onCreate() override final;
     virtual void registerEvent() override final;
-
-
-    virtual void event(const SDL_Event *event) override final;
-    virtual void timer() override final;
+    virtual void onTimer() override final;
 
 };
 

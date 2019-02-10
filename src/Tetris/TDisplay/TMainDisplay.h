@@ -27,9 +27,8 @@ protected:
     TMainDisplay();
 
 	virtual void onPreInitialize() = 0;
-	virtual void event(const SDL_Event *event) =0;
-	virtual void timer() =0;
-    virtual void onDraw() =0;
+	virtual void onTimer() =0;
+    virtual void onDraw();
 };
 
 SDL_TETRIS_END

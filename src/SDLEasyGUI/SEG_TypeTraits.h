@@ -15,10 +15,8 @@
 #include <memory>
 #include <cassert>
 
-#include "TType.h"
+#include "SEG_TType.h"
 #include "GameInterface/TStruct.h"
-
-SDL_TETRIS_BEGIN
 
 
 template<class T>
@@ -86,7 +84,5 @@ private:
 
 };
 
-
-SDL_TETRIS_END
 
 #endif //TERIS_FIGURE_CLASS_TTYPETRAITS_H

@@ -12,10 +12,11 @@ StaticLabel::StaticLabel(const ControllBuilder& bld)
 {
 }
 
-void StaticLabel::initialize()
+void StaticLabel::onDraw()
 {
-    Controll::initialize();
+    ButtonBasic::onDraw();
 }
+
 
 std::shared_ptr<ButtonBasic> StaticLabel::getInstance(const ControllBuilder& bld)
 {

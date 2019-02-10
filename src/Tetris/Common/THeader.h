@@ -11,7 +11,7 @@
 
 #include "../../GameInterface/TStruct.h"
 #include "../../GameInterface/TypeTraits.h"
-#include "../../SDLEasyGUI/TStruct.h"
+#include "SDLEasyGUI/SEG_TStruct.h"
 #include "TProperty.h"
 
 #endif //TERIS_FIGURE_CLASS_THEADER_H

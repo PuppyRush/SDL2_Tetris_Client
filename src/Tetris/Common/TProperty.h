@@ -10,6 +10,7 @@
   #pragma once
 #endif
 
+#include "TDefine.h"
 #include "../../GameInterface/Event.h"
 
 SDL_TETRIS_BEGIN
@@ -133,7 +134,7 @@ enum UnitType
 
 enum EventType
 {
-    SDL_EASYGUI_EVENT_START = 0,//SDL_EASYGUI_EVENT::SDLEASYGUI_END_EVENT+1,
+    SDL_EASYGUI_EVENT_START =  0x9000,
     SDL_DRAW_DISPLAY ,
     SDL_CLICKED_CONTROLLER,
 };

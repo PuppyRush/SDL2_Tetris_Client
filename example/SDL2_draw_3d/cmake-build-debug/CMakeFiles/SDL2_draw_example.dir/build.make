@@ -45,7 +45,7 @@ EQUALS = =
 # The top-level source directory on which CMake was run.
 CMAKE_SOURCE_DIR = /home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d
 
-# The top-level build directory on which CMake was run.
+# The top-level build directory on which CMake was initialize.
 CMAKE_BINARY_DIR = /home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug
 
 # Include any dependencies generated for this target.

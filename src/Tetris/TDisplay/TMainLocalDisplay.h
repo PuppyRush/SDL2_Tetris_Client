@@ -22,11 +22,14 @@ public:
 
 private:
 
+	[[deprecated("dont call this function in TMainLocalDisplay")]]
+	virtual void onClickedEnterServer() {assert(0);};
+
 	virtual void onClickedStartLocalGame() final;
+	virtual void onClickedOption() final;
 	virtual void registerEvent() override final;
 	virtual void onPreInitialize() final;
-	virtual void event(const SDL_Event *event) final;
-	virtual void timer() final;
+	virtual void onTimer() final;
     virtual void onDraw() final;
 };
 

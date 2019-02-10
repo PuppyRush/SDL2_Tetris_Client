@@ -17,10 +17,8 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_video.h>
 
-#include "../TType.h"
-#include "../TStruct.h"
-
-SDL_TETRIS_BEGIN
+#include "SDLEasyGUI/SEG_TType.h"
+#include "SDLEasyGUI/SEG_TStruct.h"
 
 class Window final
 {
@@ -35,6 +33,8 @@ public:
 
     inline const size_t getDisplayWidth() const noexcept { return m_windowWidth; }
     inline const size_t getDisplayHeight() const noexcept{ return m_windowHeight; }
+    inline const t_winid getWindowID() const noexcept{ return m_windowID; }
+
 
     inline std::shared_ptr<SDL_Window> getSDLWindow() const noexcept
     {
@@ -46,23 +46,15 @@ public:
         return m_renderer;
     }
 
-    inline std::shared_ptr<SDL_Event> getSDLEvent() const noexcept
-    {
-        return m_event;
-    }
-
 private:
 
-    std::shared_ptr<SDL_Window> m_window;
-    std::shared_ptr<SDL_Renderer> m_renderer;
-    std::shared_ptr<SDL_Event> m_event;
+    std::shared_ptr<SDL_Window> m_window = nullptr;
+    std::shared_ptr<SDL_Renderer> m_renderer = nullptr;
 
-    const tetris::t_size m_windowWidth;
-    const tetris::t_size m_windowHeight;
-
+    const t_size m_windowWidth=0;
+    const t_size m_windowHeight=0;
+    Uint32 m_windowID;
     bool m_show = false;
 };
-
-SDL_TETRIS_END
 
 #endif //TETRIS_FIGURE_CLASS_TWINDOW_H

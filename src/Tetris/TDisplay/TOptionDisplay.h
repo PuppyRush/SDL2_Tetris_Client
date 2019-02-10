@@ -24,10 +24,8 @@ private:
 
     virtual void registerEvent() override final;
     virtual void onPreInitialize() override final;
-    virtual void event(const SDL_Event *event) override final;
-    virtual void timer() override final;
     virtual void onDraw() override final;
-
+    void onClickedBack();
 };
 
 

@@ -25,6 +25,8 @@ public:
     }
 
     virtual void initialize() override;
+    virtual void onDraw() override final;
+
     static std::shared_ptr<ButtonBasic> getInstance(const ControllBuilder& bld);
 
 private:

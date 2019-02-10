@@ -16,7 +16,7 @@ TOptionDisplay::TOptionDisplay()
 };
 
 void TOptionDisplay::registerEvent() {
-
+    event_buttonClick(resource::OPTION_BACK, std::bind(&TOptionDisplay::onClickedBack, this));
 }
 
 void TOptionDisplay::onPreInitialize() {
@@ -213,7 +213,7 @@ void TOptionDisplay::onPreInitialize() {
     {
         ControllBuilder bld(getWindow(),{begin_x-80, begin_y}, "Back");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
-            id(toUType(resource::MAIN_OPTION_BACK))->
+            id(toUType(resource::OPTION_BACK))->
             background_color(TColorCode::white)->
             width(100)->
             height(50)->
@@ -221,18 +221,17 @@ void TOptionDisplay::onPreInitialize() {
 
         addControll(Button::getInstance(bld));
     }
+    ::DisplayInterface::onPreInitialize();
 }
 
-void TOptionDisplay::timer() {
-
-}
 
 void TOptionDisplay::onDraw() {
-    setStopDraw(true);
+    DisplayInterface::onDraw();
 }
 
-void TOptionDisplay::event(const SDL_Event *event) {
-    DisplayInterface::event(event);
+void TOptionDisplay::onClickedBack()
+{
+    DisplayInterface::onOK();
 }
 
 

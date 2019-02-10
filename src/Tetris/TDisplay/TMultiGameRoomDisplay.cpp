@@ -4,7 +4,7 @@
 
 #include <jsoncpp/json/json.h>
 
-#include "TGameOnlineDisplay.h"
+#include "TMultiGameRoomDisplay.h"
 #include "../../GameInterface/Event.h"
 #include "../../SDLEasyGUI/Controller/Button.h"
 #include "../TClient/JsonHelper.h"
@@ -12,12 +12,14 @@
 
 SDL_TETRIS
 
+int id=0;
 
 Uint32 callback(Uint32 interval, void *param) {
 
     SDL_UserEvent userevent;
     userevent.type = TETRIS_EVENT_FIGURETIMER;
     userevent.code = 0;
+    userevent.windowID =  static_cast<TMultiGameRoomDisplay*>(param)->getWindowID();
 
     SDL_Event event;
     event.type = TETRIS_EVENT_FIGURETIMER;
@@ -27,13 +29,13 @@ Uint32 callback(Uint32 interval, void *param) {
     return (interval);
 }
 
-TGameOnlineDisplay::TGameOnlineDisplay()
+TMultiGameRoomDisplay::TMultiGameRoomDisplay()
 {
     m_display = TDisplay::Game;
     m_mode = TLocalMode::Online;
 }
 
-void TGameOnlineDisplay::onClickedStart()
+void TMultiGameRoomDisplay::onClickedStart()
 {
     {
         auto ply = std::make_shared<TPlayer>();
@@ -71,22 +73,22 @@ void TGameOnlineDisplay::onClickedStart()
     }
 
     m_drawLine = TOptionManager::getInstance()->isDrawLine();
-    m_figureTimer = SDL_AddTimer(1000, callback, nullptr);
+    m_figureTimer = SDL_AddTimer(1000, callback, this);
     m_gamestart = true;
 
     auto ctl = getControll(resource::GAME_START);
     ctl->setEnabled(false);
 }
 
-void TGameOnlineDisplay::onClickedSuspend()
+void TMultiGameRoomDisplay::onClickedSuspend()
 {}
 
-void TGameOnlineDisplay::onDraw()
+void TMultiGameRoomDisplay::onDraw()
 {
     TGameDisplay::onDraw();
 }
 
-void TGameOnlineDisplay::onPreInitialize()
+void TMultiGameRoomDisplay::onPreInitialize()
 {
 
 
@@ -130,29 +132,29 @@ void TGameOnlineDisplay::onPreInitialize()
     DisplayInterface::onPreInitialize();
 }
 
-void TGameOnlineDisplay::onClose()
+void TMultiGameRoomDisplay::onClose()
 {
     DisplayInterface::onClose();
 }
 
-void TGameOnlineDisplay::onCreate()
+void TMultiGameRoomDisplay::onCreate()
 {
     DisplayInterface::onCreate();
 }
 
-void TGameOnlineDisplay::registerEvent()
+void TMultiGameRoomDisplay::registerEvent()
 {
-    event_buttonClick(resource::GAME_START, std::bind(&TGameOnlineDisplay::onClickedStart, this));
+    event_buttonClick(resource::GAME_START, std::bind(&TMultiGameRoomDisplay::onClickedStart, this));
 }
 
-void TGameOnlineDisplay::event(const SDL_Event *event)
+void TMultiGameRoomDisplay::onUserEvent(const SDL_UserEvent* event)
 {
     switch (event->type) {
         case RECV_DATA:
             if(m_players.size()==2) {
 
                 Json::Value json;
-                string strbuf((char *)event->user.data1);
+                string strbuf((char *)event->data1);
 
                 Json::Reader reader;
                 reader.parse(strbuf, json);
@@ -180,10 +182,6 @@ void TGameOnlineDisplay::event(const SDL_Event *event)
         default:;
     }
 
-    TGameDisplay::event(event);
+    TGameDisplay::onUserEvent(event);
 }
 
-void TGameOnlineDisplay::timer()
-{
-
-}

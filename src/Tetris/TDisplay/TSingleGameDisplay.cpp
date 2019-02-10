@@ -10,20 +10,20 @@
 #include "Tetris/Common/Resource.h"
 #include "../Common/Event.h"
 #include "SDLEasyGUI/Controller/Button.h"
-#include "TGameLocalDisplay.h"
+#include "TSingleGameDisplay.h"
 
 SDL_TETRIS
 
 
 
-TGameLocalDisplay::TGameLocalDisplay()
+TSingleGameDisplay::TSingleGameDisplay()
 {
     m_display = TDisplay::Game;
     m_mode = TLocalMode::Local;
 }
 
 
-void TGameLocalDisplay::onClickedStart()
+void TSingleGameDisplay::onClickedStart()
 {
     auto ply = std::make_shared<TPlayer>();
     ply->startGame();
@@ -47,17 +47,17 @@ void TGameLocalDisplay::onClickedStart()
     ctl->setEnabled(false);
 }
 
-void TGameLocalDisplay::onClickedSuspend()
+void TSingleGameDisplay::onClickedSuspend()
 {
 
 }
 
-void TGameLocalDisplay::registerEvent() {
+void TSingleGameDisplay::registerEvent() {
 
-    event_buttonClick(resource::GAME_START, std::bind(&TGameLocalDisplay::onClickedStart, this));
+    event_buttonClick(resource::GAME_START, std::bind(&TSingleGameDisplay::onClickedStart, this));
 }
 
-void TGameLocalDisplay::onPreInitialize()
+void TSingleGameDisplay::onPreInitialize()
 {
 
 
@@ -101,29 +101,24 @@ void TGameLocalDisplay::onPreInitialize()
     DisplayInterface::onPreInitialize();
 }
 
-void TGameLocalDisplay::onClose()
+void TSingleGameDisplay::onClose()
 {
 
     TGameDisplay::onClose();
 }
 
-void TGameLocalDisplay::onCreate()
+void TSingleGameDisplay::onCreate()
 {
 
     TGameDisplay::onCreate();
 }
 
 
-void TGameLocalDisplay::event(const SDL_Event *event) {
-
-    TGameDisplay::event(event);
-}
-
-void TGameLocalDisplay::timer()
+void TSingleGameDisplay::onTimer()
 {
 
 }
 
-void TGameLocalDisplay::onDraw() {
+void TSingleGameDisplay::onDraw() {
     TGameDisplay::onDraw();
 }

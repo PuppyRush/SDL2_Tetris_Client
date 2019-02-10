@@ -20,7 +20,7 @@ class Border final : public GraphicInterface {
     Border(const TPoint& beginPoint,const t_size width, const t_size height);
     Border(const t_coord x, const t_coord y ,const t_size width, const t_size height);
 
-    virtual void onDraw() override;
+    virtual void onDraw() {}
 
 private:
     TColorCode m_backgounrdColor = TColorCode::none;

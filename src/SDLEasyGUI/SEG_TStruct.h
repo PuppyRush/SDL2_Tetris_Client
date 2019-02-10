@@ -16,7 +16,7 @@
 
 #include <SDL2/SDL_image.h>
 
-#include "TType.h"
+#include "SEG_TType.h"
 #include "Tetris/Common/TProperty.h"
 
 SDL_TETRIS_BEGIN

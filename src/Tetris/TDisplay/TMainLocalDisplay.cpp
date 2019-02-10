@@ -4,7 +4,8 @@
 
 
 #include "TMainLocalDisplay.h"
-#include "TGameLocalDisplay.h"
+#include "TSingleGameDisplay.h"
+#include "TOptionDisplay.h"
 #include "SDLEasyGUI/Windows/DisplayController.h"
 #include "SDLEasyGUI/Controller/Button.h"
 #include "Tetris/Common/Resource.h"
@@ -19,8 +20,7 @@ TMainLocalDisplay::TMainLocalDisplay()
 void TMainLocalDisplay::registerEvent() {
 
     event_buttonClick(resource::MAIN_SINGLE_GAME_START_BUTTON, std::bind(&TMainLocalDisplay::onClickedStartLocalGame, this));
-    event_buttonClick(resource::MAIN_MULTI_GAME_START_BUTTON, std::bind(&TMainLocalDisplay::onClickedEnterServer, this));
-
+    event_buttonClick(resource::MAIN_OPTION_BUTTON, std::bind(&TMainLocalDisplay::onClickedOption, this));
 }
 
 void TMainLocalDisplay::onPreInitialize() {
@@ -66,25 +66,22 @@ void TMainLocalDisplay::onPreInitialize() {
     ::DisplayInterface::onPreInitialize();
 }
 
-
-
-
 void TMainLocalDisplay::onClickedStartLocalGame()
 {
-    DisplayController::getInstance()->modal(make_shared<TGameLocalDisplay>());
+    DisplayController::getInstance()->modal(make_shared<TSingleGameDisplay>());
 }
 
-void TMainLocalDisplay::timer()
+void TMainLocalDisplay::onClickedOption()
+{
+    DisplayController::getInstance()->modal(make_shared<TOptionDisplay>());
+}
+
+void TMainLocalDisplay::onTimer()
 {
 
-}
-
-void TMainLocalDisplay::event(const SDL_Event *event) {
-
-    DisplayInterface::event(event);
 }
 
 void TMainLocalDisplay::onDraw()
 {
-
+    DisplayInterface::onDraw();
 }

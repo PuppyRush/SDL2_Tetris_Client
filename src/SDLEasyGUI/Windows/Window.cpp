@@ -10,26 +10,13 @@ SDL_TETRIS
 
 Window::Window()
     :m_windowHeight(tetris::WINDOW_HEIGHT),
-     m_windowWidth(tetris::WINDOW_WIDTH),
-     m_event( std::make_shared<SDL_Event>())
+     m_windowWidth(tetris::WINDOW_WIDTH)
 {
 
     using namespace std;
 
     try
     {
-        if( TTF_Init() != 0 ){
-            string s("TTF_Init error: " );
-            s.append(SDL_GetError());
-            throw runtime_error(s);
-        }
-
-        if(SDL_Init(SDL_INIT_VIDEO) != 0)
-        {
-            string s("SDL_Init error: " );
-            s.append(SDL_GetError());
-            throw runtime_error(s);
-        }
 
         auto window_deleter = [](SDL_Window* window) {
           if(window==nullptr) delete window;
@@ -52,6 +39,7 @@ Window::Window()
                                                                       -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC)
             , renderer_deleter);
 
+        m_windowID = SDL_GetWindowID(m_window.get());
 
     }
     catch(runtime_error &e)

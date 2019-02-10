@@ -115,11 +115,34 @@ protected:
 
     virtual void lButtonClicked(){}
 
+    virtual void onCommonEvent (const SDL_CommonEvent* common)  {};
+    virtual void onWindowEvent (const SDL_WindowEvent& window) {};
+    virtual void onKeyboardEvent (const SDL_KeyboardEvent* key)  {};
+    virtual void onTextEditingEvent (const SDL_TextEditingEvent* edit)  {};
+    virtual void onTextInputEvent (const SDL_TextInputEvent* text)  {};
+    virtual void onMouseMotionEvent (const SDL_MouseMotionEvent* motion)  {};
+    virtual void onMouseButtonEvent (const SDL_MouseButtonEvent* button) {}
+    virtual void onMouseWheelEvent (const SDL_MouseWheelEvent* wheel)  {};
+    virtual void onJoyAxisEvent (const SDL_JoyAxisEvent* jaxis)  {};
+    virtual void onJoyBallEvent (const SDL_JoyBallEvent*jball)  {};
+    virtual void onJoyHatEvent (const SDL_JoyHatEvent* jhat)  {};
+    virtual void onJoyButtonEvent (const SDL_JoyButtonEvent* jbutton)  {};
+    virtual void onJoyDeviceEvent (const SDL_JoyDeviceEvent* jdevice)  {};
+    virtual void onControllerAxisEvent (const SDL_ControllerAxisEvent* caxis)  {};
+    virtual void onControllerButtonEvent (const SDL_ControllerButtonEvent* cbutton)  {};
+    virtual void onControllerDeviceEvent (const SDL_ControllerDeviceEvent* cdevice)  {};
+    virtual void onAudioDeviceEvent (const SDL_AudioDeviceEvent* adevice)  {};
+    virtual void onQuitEvent (const SDL_QuitEvent *quit)  {};
+    virtual void onUserEvent (const SDL_UserEvent* user)  {}
+    virtual void onSysWMEvent (const SDL_SysWMEvent* syswm)  {};
+    virtual void onTouchFingerEvent (const SDL_TouchFingerEvent* tfinger)  {};
+    virtual void onMultiGestureEvent (const SDL_MultiGestureEvent* mgesture)  {};
+    virtual void onDollarGestureEvent (const SDL_DollarGestureEvent* dgesture)  {};
+    virtual void onDropEvent (const SDL_DropEvent* drop)  {};
 
 private:
 
     std::shared_ptr<TControllBasic> m_basic;
-
 
 };
 

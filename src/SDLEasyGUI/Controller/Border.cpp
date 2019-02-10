@@ -5,10 +5,3 @@
 #include "Border.h"
 
 SDL_TETRIS
-
-void Border::onDraw()
-{
-
-
-
-}

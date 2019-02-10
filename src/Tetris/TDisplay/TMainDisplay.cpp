@@ -13,3 +13,7 @@ TMainDisplay::TMainDisplay()
 }
 
 
+void TMainDisplay::onDraw()
+{
+    DisplayInterface::onDraw();
+}

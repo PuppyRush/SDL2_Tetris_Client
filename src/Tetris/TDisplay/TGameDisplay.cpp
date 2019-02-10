@@ -11,16 +11,25 @@ TGameDisplay::TGameDisplay()
     :DisplayInterface()
 {}
 
-
-void TGameDisplay::event(const SDL_Event *event)
+void TGameDisplay::onKeyboardEvent (const SDL_KeyboardEvent* key)
 {
-    switch (event->type) {
+    switch (key->type) {
         case SDL_KEYDOWN:
             if(!m_players.empty()) {
-                m_players.front()->command(event->key.keysym.sym);
+                m_players.front()->command(key->keysym.sym);
                 refresh();
             }
             break;
+        default:;
+    }
+
+    DisplayInterface::onKeyboardEvent(key);
+}
+
+
+void TGameDisplay::onUserEvent(const SDL_UserEvent* event) {
+
+    switch (event->type) {
         case TETRIS_EVENT_FIGURETIMER:
             /* and now we can call the function we wanted to call in the timer but couldn't because of the multithreading problems */
             if(!m_players.empty()) {
@@ -31,7 +40,7 @@ void TGameDisplay::event(const SDL_Event *event)
         default:;
     }
 
-    DisplayInterface::event(event);
+    DisplayInterface::onUserEvent(event);
 }
 
 void TGameDisplay::onClose()

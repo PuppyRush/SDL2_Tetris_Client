@@ -28,7 +28,7 @@ void DisplayInterface::onPreInitialize()
     registerEvent();
 }
 
-void DisplayInterface::_initializing()
+void DisplayInterface::onPreDraw()
 {
 
 
@@ -49,45 +49,19 @@ void DisplayInterface::_initializing()
     }*/
 }
 
-resource DisplayInterface::run()
+resource DisplayInterface::initialize()
 {
     onCreate();
     onPreInitialize();
     show();
 
-    auto _e = getSDLEvent().get();
-
-    while(m_run)
-    {
-        _initializing();
-
-        SDL_WaitEvent(_e);
-        event(_e);
-
-    }
-
-    onClose();
-    onDestroy();
 }
 
-
-void DisplayInterface::event(const SDL_Event *event)
-{
+void DisplayInterface::onUserEvent(const SDL_UserEvent* event) {
     switch (event->type) {
-        case SDL_WINDOWEVENT:
-            onWindowEvent(event);
-            refresh();
-            break;
-        case SDL_QUIT:
-            setRun(false);
-            break;
-        case SDL_MOUSEBUTTONDOWN:
-            clickedMenuEvent(TPoint{event->button.x, event->button.y});
-            refresh();
-            break;
         case SDL_CLICKED_CONTROLLER:
         {
-            auto id = static_cast<resource>(event->user.code);
+            auto id = static_cast<resource>(event->code);
             if(m_callback_no_param.count(id)>0)
                 m_callback_no_param.at(id)();
         }
@@ -95,22 +69,32 @@ void DisplayInterface::event(const SDL_Event *event)
         case SDL_DRAW_DISPLAY:
             //dont call _refresh() in this case.
             onDraw();
-            _onDrawMenus();
+            onDrawMenus();
             _release();
             break;
         default:;
     }
 }
 
-void DisplayInterface::onWindowEvent(const SDL_Event *event)
+void DisplayInterface::onMouseButtonEvent (const SDL_MouseButtonEvent* button)
 {
-    switch(event->window.type)
+    clickedMenuEvent(TPoint{button->x, button->y});
+    refresh();
+}
+
+
+void DisplayInterface::onWindowEvent (const SDL_WindowEvent& window)
+{
+    switch(window.type)
     {
+//      case SDL_QUIT:
+//            setRun(false);
+//            break;
         case SDL_WINDOWEVENT_CLOSE:
             onDestroy();
             break;
     }
-
+    refresh();
 }
 
 void DisplayInterface::onCreate()
@@ -118,7 +102,7 @@ void DisplayInterface::onCreate()
     auto window = make_shared<Window>();
     setWindow(window);
 
-    timer();
+    onTimer();
     refresh();
 }
 
@@ -135,6 +119,7 @@ void DisplayInterface::onClose()
 {
     setRun(true);
     hidden();
+    onDestroy();
 }
 
 void DisplayInterface::onOK()
@@ -156,17 +141,21 @@ void DisplayInterface::onDestroy()
 {
     SDL_DestroyRenderer(getRenderer().get());
     SDL_DestroyWindow(getSDLWindow().get());
-    SDL_Quit();
+
 }
 
-void DisplayInterface::_onDrawMenus()
+void DisplayInterface::onDraw()
+{
+    onDrawMenus();
+}
+
+void DisplayInterface::onDrawMenus()
 {
     for(const auto& menu : m_menus)
     {
         menu->onDraw();
     }
 }
-
 
 void DisplayInterface::addControll(const std::shared_ptr<Controll> ctl)
 {
@@ -202,9 +191,10 @@ void DisplayInterface::refresh()
     SDL_UserEvent userevent;
     userevent.type = SDL_DRAW_DISPLAY  ;
     userevent.code = 0;
+    userevent.windowID = this->getWindowID();
 
     SDL_Event event;
-    event.type = SDL_DRAW_DISPLAY;
+    event.type = SDL_USEREVENT;
     event.user = userevent;
 
     SDL_PushEvent(&event);
