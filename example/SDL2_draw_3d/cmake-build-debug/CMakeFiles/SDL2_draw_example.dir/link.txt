@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/SDL2_draw_example.dir/main.cpp.o  -o SDL2_draw_example /usr/lib/x86_64-linux-gnu/libSDL2main.a /usr/lib/x86_64-linux-gnu/libSDL2.so -lpthread 

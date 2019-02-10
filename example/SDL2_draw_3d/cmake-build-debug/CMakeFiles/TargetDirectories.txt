@@ -1,3 +1,0 @@
-/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/CMakeFiles/SDL2_draw_3d.dir
