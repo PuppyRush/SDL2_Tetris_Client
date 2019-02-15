@@ -17,8 +17,8 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_video.h>
 
-#include "SDLEasyGUI/SEG_TType.h"
-#include "SDLEasyGUI/SEG_TStruct.h"
+#include "SDLEasyGUI/SEG_Type.h"
+#include "SDLEasyGUI/SEG_Struct.h"
 
 class Window final
 {
@@ -33,7 +33,7 @@ public:
 
     inline const size_t getDisplayWidth() const noexcept { return m_windowWidth; }
     inline const size_t getDisplayHeight() const noexcept{ return m_windowHeight; }
-    inline const t_winid getWindowID() const noexcept{ return m_windowID; }
+    inline const t_id getWindowID() const noexcept{ return m_windowID; }
 
 
     inline std::shared_ptr<SDL_Window> getSDLWindow() const noexcept
@@ -53,7 +53,7 @@ private:
 
     const t_size m_windowWidth=0;
     const t_size m_windowHeight=0;
-    Uint32 m_windowID;
+    t_id m_windowID;
     bool m_show = false;
 };
 

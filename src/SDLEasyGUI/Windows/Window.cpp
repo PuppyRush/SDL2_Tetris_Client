@@ -6,11 +6,9 @@
 
 #include "Window.h"
 
-SDL_TETRIS
-
 Window::Window()
-    :m_windowHeight(tetris::WINDOW_HEIGHT),
-     m_windowWidth(tetris::WINDOW_WIDTH)
+    :m_windowHeight(WINDOW_HEIGHT),
+     m_windowWidth(WINDOW_WIDTH)
 {
 
     using namespace std;

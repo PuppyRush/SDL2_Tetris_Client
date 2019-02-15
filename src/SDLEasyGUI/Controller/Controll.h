@@ -11,12 +11,10 @@
 
 #include <atomic>
 
-#include "Tetris/Common/THeader.h"
+#include "SDLEasyGUI/SEG_Struct.h"
+#include "../Windows/GraphicInterface.h"
 #include "ControllBuilder.h"
 #include "GroupControllManager.h"
-#include "../Windows/GraphicInterface.h"
-
-SDL_TETRIS_BEGIN
 
 class Controll : public GraphicInterface{
 
@@ -24,7 +22,7 @@ public:
 
     using controll_ptr = std::shared_ptr<Controll>;
 
-    inline const t_id getId() const noexcept{
+    inline const t_res getId() const noexcept{
         return m_basic->id;
     }
     inline const TPoint &getPoint() const noexcept{
@@ -84,10 +82,10 @@ public:
     inline void setCarot(bool carot) noexcept{
         m_basic->carot = carot;
     }
-    inline const TDisplay getDisplay() const noexcept{
+    inline const t_display getDisplay() const noexcept{
         return m_basic->display;
     }
-    inline void setDisplay(TDisplay display) noexcept{
+    inline void setDisplay(t_display display) noexcept{
         m_basic->display = display;
     }
     inline const bool getAutoSize() const noexcept{
@@ -100,7 +98,6 @@ public:
     void setSelected(bool selected);
     const bool isHit(const TPoint& point);
     virtual void onDraw() override;
-    virtual void clicked();
     virtual void initialize();
 protected:
 
@@ -142,10 +139,10 @@ protected:
 
 private:
 
-    std::shared_ptr<TControllBasic> m_basic;
+    virtual bool validId(const t_id id) override final;
+
+    std::shared_ptr<ControllBasic> m_basic;
 
 };
-
-SDL_TETRIS_END
 
 #endif //TETRIS_FIGURE_CLASS_TCONTROLL_H

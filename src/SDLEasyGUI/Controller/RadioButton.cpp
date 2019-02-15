@@ -4,8 +4,6 @@
 
 #include "RadioButton.h"
 
-SDL_TETRIS
-
 RadioButton::RadioButton(const ControllBuilder& bld)
     :ButtonBasic(bld, TControllKind::StaticLabel)
 {

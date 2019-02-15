@@ -2,8 +2,8 @@
 // Created by chaed on 19. 2. 8.
 //
 
-#ifndef TETRIS_FIGURE_CLASS_SDL_INITIATOR_H
-#define TETRIS_FIGURE_CLASS_SDL_INITIATOR_H
+#ifndef SDLEASYGUIDE_INITIATOR_H
+#define SDLEASYGUIDE_INITIATOR_H
 
 #include <string>
 #include <memory>
@@ -14,8 +14,9 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_video.h>
 
+#include "Windows/DisplayController.h"
 
-static void SDLEasyGUI_Init()
+extern void SDLEasyGUI_Init()
 {
     if( TTF_Init() != 0 ){
         std::string s("TTF_Init error: " );
@@ -29,6 +30,8 @@ static void SDLEasyGUI_Init()
         s.append(SDL_GetError());
         throw std::runtime_error(s);
     }
+
+    DisplayController::getInstance()->run();
 }
 
 

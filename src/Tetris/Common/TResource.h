@@ -12,15 +12,12 @@
 
 
 #include "../../GameInterface/TType.h"
+#include "../Common/TDefine.h"
 
 SDL_TETRIS_BEGIN
 
 //dont use resource id as 0x0000 (NULL)
-enum class resource : t_id {
-
-    BTN_OK = 0x1000,
-    BTN_NO,
-    BTN_CANCEL,
+enum class resource : t_res {
 
     MAIN_SINGLE_GAME_START_BUTTON = 0x2000,
     MAIN_MULTI_GAME_START_BUTTON,

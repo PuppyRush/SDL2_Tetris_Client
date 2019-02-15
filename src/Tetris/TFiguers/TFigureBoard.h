@@ -114,7 +114,7 @@ public:
 
     bool _eraseLinesIfFillLineThenCollapse()
     {
-        std::set<tetris::t_coord, std::greater<t_coord>> collapedLines;
+        std::set<t_coord, std::greater<t_coord>> collapedLines;
         for(t_coord y = GAMEBOARD_HEIGHT_COUNT-1 ; y >= 0 ; --y)
         {
             int x=0;

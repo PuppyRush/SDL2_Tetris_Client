@@ -2,8 +2,8 @@
 // Created by chaed on 18. 11. 25.
 //
 
-#ifndef TERIS_FIGURE_CLASS_TTYPETRAITS_H
-#define TERIS_FIGURE_CLASS_TTYPETRAITS_H
+#ifndef GAMEINTERFACE_TYPETRAITS_H
+#define GAMEINTERFACE_TYPETRAITS_H
 
 #if _MSC_VER >= 1200
   #pragma once
@@ -16,9 +16,7 @@
 #include <cassert>
 
 #include "TType.h"
-#include "GameInterface/TStruct.h"
-
-SDL_TETRIS_BEGIN
+#include "TStruct.h"
 
 
 template<class T>
@@ -86,7 +84,5 @@ private:
 
 };
 
-
-SDL_TETRIS_END
 
 #endif //TERIS_FIGURE_CLASS_TTYPETRAITS_H

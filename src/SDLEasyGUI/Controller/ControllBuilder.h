@@ -17,9 +17,11 @@
 #include "SDLEasyGUI/Windows/GraphicInterface.h"
 #include "Tetris/TOption/TOptionManager.h"
 
-SDL_TETRIS_BEGIN
 
-class ControllBuilder final
+//predeclaration.
+class Controll;
+
+class ControllBuilder
 {
 public:
 
@@ -89,15 +91,21 @@ public:
         return this;
     }
 
-    std::shared_ptr<TControllBasic> build() const;
-    GraphicInterface::window_ptr m_window;
+    const GraphicInterface::window_ptr getWindow() const {
+        return m_window;
+    }
+
+    const TControllBasic getBasic() const {
+        return m_basic;
+    }
+
+    virtual std::shared_ptr<Controll> build() = 0;
 
 private:
 
+    GraphicInterface::window_ptr m_window;
     TControllBasic m_basic;
 
 };
-
-SDL_TETRIS_END
 
 #endif //TETRIS_FIGURE_CLASS_TMENUBUILDER_H

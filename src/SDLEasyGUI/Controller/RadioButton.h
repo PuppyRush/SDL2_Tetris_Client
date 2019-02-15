@@ -11,8 +11,6 @@
 
 #include "ButtonBasic.h"
 
-SDL_TETRIS_BEGIN
-
 class RadioButton : public ButtonBasic{
 public:
 
@@ -32,7 +30,5 @@ public:
 private:
     RadioButton(const ControllBuilder& bld);
 };
-
-SDL_TETRIS_END
 
 #endif //TETRIS_FIGURE_CLASS_TRADIOBUTTON_H

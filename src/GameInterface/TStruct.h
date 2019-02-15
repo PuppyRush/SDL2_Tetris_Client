@@ -2,8 +2,8 @@
 // Created by chaed on 18. 12. 22.
 //
 
-#ifndef TETRIS_FIGURE_CLASS_TSTRUCT_H
-#define TETRIS_FIGURE_CLASS_TSTRUCT_H
+#ifndef GAMEINTERFACE_TSTRUCT_H
+#define GAMEINTERFACE_TSTRUCT_H
 
 #if _MSC_VER >= 1200
   #pragma once
@@ -17,7 +17,7 @@
 #include <SDL2/SDL_image.h>
 
 #include "TType.h"
-#include "Tetris/Common/TProperty.h"
+//#include "Tetris/Common/TProperty.h"
 
 typedef struct TIPString
 {

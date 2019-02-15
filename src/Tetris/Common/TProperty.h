@@ -16,8 +16,6 @@
 SDL_TETRIS_BEGIN
 
 const t_size UNIT_LENGTH = 30;
-const t_size WINDOW_HEIGHT = 900;
-const t_size WINDOW_WIDTH = 1000;
 const t_size GAMEBOARD_WIDTH_COUNT = 10;
 const t_size GAMEBOARD_HEIGHT_COUNT = 20;
 const t_size GAMEBOARD_DISPLAY_HEIGHT = UNIT_LENGTH*GAMEBOARD_HEIGHT_COUNT;
@@ -40,14 +38,6 @@ enum class TSpeed : t_type
     _8,
 };
 
-enum class TControllKind : t_type
-{
-    StaticLabel,
-    EditLabel,
-    Button,
-    RadioButton,
-};
-
 enum class TDisplay : t_type
 {
     Main,
@@ -56,36 +46,6 @@ enum class TDisplay : t_type
     Robby,
     Exit,
     None
-};
-
-enum class TDisplayMode : t_type
-{
-    Modal,
-    Modaless
-};
-
-
-enum class TLocalMode : t_type
-{
-    Local,
-    Online,
-    All
-};
-
-enum class TColorCode : t_type
-{
-    red = 0,
-    blue,
-    orange,
-    yellow,
-    purple,
-    green,
-    black,
-    white,
-    silver,
-    none,
-    Begin = red,
-    End = green
 };
 
 enum class TFigureClass : t_type
@@ -131,13 +91,6 @@ enum UnitType
     Empty = 1 << 3
 };
 
-
-enum EventType
-{
-    SDL_EASYGUI_EVENT_START =  0x9000,
-    SDL_DRAW_DISPLAY ,
-    SDL_CLICKED_CONTROLLER,
-};
 
 enum TetrisEvent{
 

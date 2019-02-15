@@ -4,9 +4,7 @@
 
 #include "Button.h"
 
-SDL_TETRIS
-
-Button::Button(const ControllBuilder& bld)
+Button::Button(const ButtonBuilder& bld)
     :ButtonBasic(bld, TControllKind::Button)
 {
 }
@@ -19,11 +17,5 @@ void Button::onDraw()
 void Button::initialize()
 {
     Controll::initialize();
-}
-
-std::shared_ptr<ButtonBasic> Button::getInstance(const ControllBuilder& bld)
-{
-    std::shared_ptr<ButtonBasic> inst = std::shared_ptr<Button>(new Button(bld));
-    return inst;
 }
 

@@ -50,7 +50,7 @@ public:
 
 private:
     TIPString m_ip;
-    tetris::t_port m_port;
+    t_port m_port;
     std::shared_ptr<ClientConnector> m_connetor;
     std::shared_ptr<ClientService> m_service;
     std::shared_ptr<ACE_Reactor> m_reactor;

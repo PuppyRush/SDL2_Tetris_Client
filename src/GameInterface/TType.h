@@ -1,4 +1,7 @@
 
+#ifndef GAMEINTERFACE_TTYPE_H
+#define GAMEINTERFACE_TTYPE_H
+
 
 #if _MSC_VER >= 1200
   #pragma once
@@ -10,10 +13,7 @@
 
 #include <SDL2/SDL_stdinc.h>
 
-#include "Tetris/Common/TDefine.h"
 using namespace std;
-
-SDL_TETRIS_BEGIN
 
 using t_id = uint32_t ;
 using t_id_atomic = std::atomic<t_id>;
@@ -28,4 +28,4 @@ using t_eventType = unsigned int;
 using t_port = unsigned short;
 using t_res = unsigned int;
 
-SDL_TETRIS_END
+#endif

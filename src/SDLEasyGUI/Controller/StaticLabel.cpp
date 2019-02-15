@@ -4,8 +4,6 @@
 
 #include "StaticLabel.h"
 
-SDL_TETRIS
-
 
 StaticLabel::StaticLabel(const ControllBuilder& bld)
     :ButtonBasic(bld, TControllKind::StaticLabel)

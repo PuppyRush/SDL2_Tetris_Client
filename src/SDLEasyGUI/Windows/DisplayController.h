@@ -11,9 +11,12 @@
 
 #include <unordered_map>
 #include <queue>
+#include <thread>
+#include <condition_variable>
 
+#include "SDLEasyGUI/SEG_Type.h"
+#include "../SEG_Resource.h"
 #include "DisplayInterface.h"
-#include "Tetris/Common/Resource.h"
 /*
 
 namespace std
@@ -59,22 +62,22 @@ struct KeyEqual {
 };
 */
 
-
-SDL_TETRIS_BEGIN
-
 class DisplayController final{
 
 public:
-    using display_ptr = std::shared_ptr<DisplayInterface>;
+    using display_ptr = DisplayInterface*;
     using modal_ary = std::deque<display_ptr>;
     using modaless_ary =  std::vector<display_ptr>;
     using modaless_ary_iterator = modaless_ary::const_iterator;
 
     void run();
-    resource modal(display_ptr);
+
+    void modal_open(display_ptr);
+    void modal_close();
+
     void modaless(display_ptr);
-    void close(const t_winid id);
-    display_ptr findFromId(const t_winid id);
+    void close(const t_id id);
+    void refreshModal();
 
     static std::shared_ptr<DisplayController> getInstance();
 
@@ -82,17 +85,36 @@ private:
 
     DisplayController();
 
-    Uint32 getActivatedWindowID(const SDL_Event* event);
+    t_id getActivatedWindowID(const SDL_Event* event);
+    display_ptr findFromId(const t_id id);
 
     void _release();
+    void _pumpEvent();
 
     template <class T>
-    display_ptr _find(const T& ary, const t_winid id);
+    display_ptr _find(const T& ary, const t_id id);
 
     modaless_ary m_modalessAry;
     modal_ary m_modalStack;
+
+    std::thread m_thread;
+    std::atomic_bool m_run = true;
+    std::condition_variable m_modalAryCV;
+    std::mutex m_modalAryMutex;
 };
 
-SDL_TETRIS_END
+struct modal_opener
+{
+    explicit modal_opener(DisplayController::display_ptr display)
+    {
+        DisplayController::getInstance()->modal_open(display);
+    }
+
+    ~modal_opener()
+    {
+        DisplayController::getInstance()->modal_close();
+    }
+
+};
 
 #endif //TERIS_FIGURE_CLASS_TGAMECONTROLLER_H

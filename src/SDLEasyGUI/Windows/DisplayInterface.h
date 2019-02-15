@@ -11,17 +11,16 @@
 #include <memory>
 #include <functional>
 #include <atomic>
+#include <thread>
 #include <unordered_map>
 #include <mutex>
 #include <condition_variable>
 
 #include "Window.h"
 #include "EventListener.h"
-#include "Tetris/Common/Resource.h"
+#include "EventQueue.h"
 #include "SDLEasyGUI/Controller/ControllBuilder.h"
 #include "SDLEasyGUI/Controller/Controll.h"
-
-SDL_TETRIS_BEGIN
 
 class DisplayInterface : public GraphicInterface
 {
@@ -32,22 +31,25 @@ public:
     void addControll(const std::shared_ptr<Controll> ctl);
     bool clickedMenuEvent(const TPoint &point);
 
+    t_res modal();
+    void modaless();
+
     void show() { getWindow()->show(); }
     void hidden() { getWindow()->hidden(); }
-    resource initialize();
-    void refresh();
+    t_res initialize();
+    void pushDrawDisplayEvent();
     virtual void onDraw();
 
     inline void setBackgroundImgPath(const std::string &path) { m_backgroundImgPath = path; }
     inline void setRun(const bool run) { m_run = run; }
     inline void setStopDraw(const bool set) { m_stopDraw = set; }
 
-    inline const TDisplay getDisplay() const noexcept {   return m_display;  }
+    inline const t_display getDisplay() const noexcept {   return m_display;  }
     inline const TLocalMode getMode() const noexcept {  return m_mode;  }
     inline const bool getRun() const noexcept { return m_run; }
     inline const bool getSetDraw() const noexcept { return m_stopDraw; }
     inline const t_id getID() const noexcept { return m_id; }
-    inline const t_winid getWindowID() const noexcept { return getWindow()->getWindowID(); }
+    inline const t_id getWindowID() const noexcept { return getWindow()->getWindowID(); }
 
     virtual ~DisplayInterface();
 
@@ -63,7 +65,7 @@ protected:
     }
 
     virtual void registerEvent() {}
-    virtual void event_buttonClick(const resource, const BTN_CLICK callback_fn);
+    virtual void event_buttonClick(const t_res, const BTN_CLICK callback_fn);
 
     virtual void onPreDraw();
     virtual void onPreInitialize();
@@ -73,7 +75,6 @@ protected:
     virtual void onNO();
     virtual void onCancel();
     virtual void onDestroy();
-
 
     //events
     virtual void onCommonEvent (const SDL_CommonEvent* common)  {};
@@ -101,33 +102,32 @@ protected:
     virtual void onDollarGestureEvent (const SDL_DollarGestureEvent* dgesture)  {};
     virtual void onDropEvent (const SDL_DropEvent* drop)  {};
 
-    Controll::controll_ptr getControll(const resource);
+    Controll::controll_ptr getControll(const t_res);
 
-    TDisplay m_display;
+    t_display m_display;
     TLocalMode m_mode;
 
-    std::unordered_map<resource, std::function<void(void)>> m_callback_no_param;
-    std::unordered_map<resource, std::function<void(const void*)>> m_callback_one_param;
-    std::unordered_map<resource, std::function<void(const void*,const void*)>> m_callback_two_param;
+    std::unordered_map<t_res, std::function<void(void)>> m_callback_no_param;
+    std::unordered_map<t_res, std::function<void(const void*)>> m_callback_one_param;
+    std::unordered_map<t_res, std::function<void(const void*,const void*)>> m_callback_two_param;
 
 private:
 
     void _release();
+    void _run();
+
     void onDrawMenus();
     virtual void onTimer(){}
-
-    std::condition_variable m_cv;
-    std::mutex m_mutex;
+    virtual bool validId(const t_id id) override final;
 
     std::vector<std::shared_ptr<Controll>> m_menus;
 
     std::string m_backgroundImgPath;
     t_id m_id;
     bool m_stopDraw = false;
+    std::thread m_thread;
     std::atomic_bool m_run = true;
 
 };
-
-SDL_TETRIS_END
 
 #endif

@@ -17,7 +17,7 @@ void TGameDisplay::onKeyboardEvent (const SDL_KeyboardEvent* key)
         case SDL_KEYDOWN:
             if(!m_players.empty()) {
                 m_players.front()->command(key->keysym.sym);
-                refresh();
+                pushDrawDisplayEvent();
             }
             break;
         default:;
@@ -34,7 +34,7 @@ void TGameDisplay::onUserEvent(const SDL_UserEvent* event) {
             /* and now we can call the function we wanted to call in the timer but couldn't because of the multithreading problems */
             if(!m_players.empty()) {
                 m_players.front()->command(SDLK_DOWN);
-                refresh();
+                pushDrawDisplayEvent();
             }
             break;
         default:;

@@ -6,7 +6,6 @@
 
 #include "GroupControllManager.h"
 
-SDL_TETRIS
 using namespace std;
 
 GroupControllManager::group& GroupControllManager::get(const group_id grpId)

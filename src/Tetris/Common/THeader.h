@@ -9,9 +9,10 @@
   #pragma once
 #endif
 
+#include "TDefine.h"
 #include "../../GameInterface/TStruct.h"
 #include "../../GameInterface/TypeTraits.h"
-#include "SDLEasyGUI/SEG_TStruct.h"
+#include "../../SDLEasyGUI/SEG_Struct.h"
 #include "TProperty.h"
 
 #endif //TERIS_FIGURE_CLASS_THEADER_H

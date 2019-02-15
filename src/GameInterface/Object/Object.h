@@ -23,14 +23,14 @@ public:
 	inline const bool operator!=(const Object& object) const noexcept
 	{	return m_unique != object.getUnique(); }
 
-	inline const tetris::t_unique getUnique() const noexcept
+	inline const t_unique getUnique() const noexcept
 	{ return m_unique;	}
 
 protected:
 	Object();
 
 private:
-	tetris::t_unique m_unique;
+	t_unique m_unique;
 };
 
 #endif

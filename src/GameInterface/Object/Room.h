@@ -27,7 +27,7 @@ public:
 
 private:
     std::string m_roomname;
-    tetris::t_id_atomic m_roomnumber;
+    t_id_atomic m_roomnumber;
     std::vector<player_ptr> m_players;
 };
 

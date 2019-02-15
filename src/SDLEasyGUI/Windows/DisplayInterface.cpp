@@ -8,6 +8,7 @@
 #include "GameInterface/Object/Atomic.h"
 #include "DisplayController.h"
 #include "DisplayInterface.h"
+#include "../SEG_Resource.h"
 
 SDL_TETRIS
 
@@ -49,7 +50,7 @@ void DisplayInterface::onPreDraw()
     }*/
 }
 
-resource DisplayInterface::initialize()
+t_res DisplayInterface::initialize()
 {
     onCreate();
     onPreInitialize();
@@ -57,11 +58,34 @@ resource DisplayInterface::initialize()
 
 }
 
+t_res DisplayInterface::modal()
+{
+    modal_opener opener{this};
+
+    m_thread = std::thread(&DisplayInterface::_run, this);
+    m_thread.join();
+}
+
+void DisplayInterface::modaless()
+{
+    DisplayController::getInstance()->modaless(this);
+    m_thread = std::thread(&DisplayInterface::_run, this);
+}
+
+void DisplayInterface::_run(){
+
+    while(m_run)
+    {
+        const event_mover e = popEvent();
+        onEvent(e.event);
+    }
+}
+
 void DisplayInterface::onUserEvent(const SDL_UserEvent* event) {
     switch (event->type) {
         case SDL_CLICKED_CONTROLLER:
         {
-            auto id = static_cast<resource>(event->code);
+            auto id = static_cast<t_res>(event->code);
             if(m_callback_no_param.count(id)>0)
                 m_callback_no_param.at(id)();
         }
@@ -79,7 +103,7 @@ void DisplayInterface::onUserEvent(const SDL_UserEvent* event) {
 void DisplayInterface::onMouseButtonEvent (const SDL_MouseButtonEvent* button)
 {
     clickedMenuEvent(TPoint{button->x, button->y});
-    refresh();
+    pushDrawDisplayEvent();
 }
 
 
@@ -94,16 +118,15 @@ void DisplayInterface::onWindowEvent (const SDL_WindowEvent& window)
             onDestroy();
             break;
     }
-    refresh();
+    DisplayController::getInstance()->refreshModal();
 }
 
 void DisplayInterface::onCreate()
 {
     auto window = make_shared<Window>();
     setWindow(window);
-
     onTimer();
-    refresh();
+    pushDrawDisplayEvent();
 }
 
 void DisplayInterface::_release()
@@ -117,7 +140,7 @@ void DisplayInterface::_release()
 
 void DisplayInterface::onClose()
 {
-    setRun(true);
+    setRun(false);
     hidden();
     onDestroy();
 }
@@ -163,11 +186,11 @@ void DisplayInterface::addControll(const std::shared_ptr<Controll> ctl)
     m_menus.emplace_back(ctl);
 }
 
-Controll::controll_ptr DisplayInterface::getControll(const resource res)
+Controll::controll_ptr DisplayInterface::getControll(const t_res res)
 {
     return *std::find_if(begin(m_menus), end(m_menus),[res](Controll::controll_ptr ptr)
     {
-        if(ptr->getId() == toUType(res))
+        if(ptr->getId() == res)
             return true;
         return false;
     });
@@ -186,7 +209,7 @@ bool DisplayInterface::clickedMenuEvent(const TPoint& point)
     return false;
 }
 
-void DisplayInterface::refresh()
+void DisplayInterface::pushDrawDisplayEvent()
 {
     SDL_UserEvent userevent;
     userevent.type = SDL_DRAW_DISPLAY  ;
@@ -201,7 +224,12 @@ void DisplayInterface::refresh()
 }
 
 
-void DisplayInterface::event_buttonClick(const resource id, const BTN_CLICK callback_fn)
+void DisplayInterface::event_buttonClick(const t_res id, const BTN_CLICK callback_fn)
 {
     m_callback_no_param.insert(make_pair(id,callback_fn));
+}
+
+bool  DisplayInterface::validId(const t_id id)
+{
+    return getWindowID() == id;
 }

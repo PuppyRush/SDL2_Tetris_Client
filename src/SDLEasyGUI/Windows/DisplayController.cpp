@@ -12,11 +12,13 @@
 #include <SDL2/SDL.h>
 
 #include "../SEG_Constant.h"
+#include "SDLEasyGUI/SEG_Type.h"
+
 #include "DisplayController.h"
-#include "Tetris/TDisplay/TMainLocalDisplay.h"
-#include "Tetris/TDisplay/TMainOnlineDisplay.h"
+#include "Tetris/TDisplay/Main/TMainLocalDisplay.h"
+#include "Tetris/TDisplay/Main/TMainOnlineDisplay.h"
 #include "Tetris/TDisplay/TOptionDisplay.h"
-#include "Tetris/TDisplay/TSingleGameDisplay.h"
+#include "Tetris/TDisplay/Game/TSingleGameDisplay.h"
 
 SDL_TETRIS
 
@@ -24,24 +26,30 @@ DisplayController::DisplayController()
 {
 }
 
-resource DisplayController::modal(display_ptr display)
+
+void DisplayController::modal_open(display_ptr display)
 {
     m_modalStack.emplace_back(display);
+    m_modalAryCV.notify_one();
 
     display->initialize();
 
-    resource result;
     if(!m_modalStack.empty())
     {
         auto parent = m_modalStack.front();
         SDL_SetWindowModalFor(display->getWindow()->getSDLWindow().get(),
-            parent->getWindow()->getSDLWindow().get());
+                              parent->getWindow()->getSDLWindow().get());
     }
 
-    display->refresh();
-
-    return result;
+    display->pushDrawDisplayEvent();
 }
+
+void DisplayController::modal_close()
+{
+    auto display = m_modalStack.back();
+    m_modalStack.pop_back();
+}
+
 
 void DisplayController::modaless(display_ptr display)
 {
@@ -53,13 +61,12 @@ void DisplayController::modaless(display_ptr display)
     {
         m_modalessAry.emplace_back(display);
     }
+
     display->initialize();
-    display->refresh();
-
-
+    display->pushDrawDisplayEvent();
 }
 
-void DisplayController::close(const t_winid id)
+void DisplayController::close(const t_id id)
 {
     if(!m_modalStack.empty() && m_modalStack.back()->getWindowID() == id)
     {
@@ -78,39 +85,49 @@ void DisplayController::close(const t_winid id)
 
 void DisplayController::run()
 {
-    while(true)
+    //_pumpEvent();
+    m_thread = std::thread(&DisplayController::_pumpEvent, this);
+}
+
+void DisplayController::_pumpEvent()
+{
+    std::unique_lock<std::mutex> lock(m_modalAryMutex);
+    m_modalAryCV.wait(lock, [=](){return !m_modalStack.empty() ;});
+
+    while(m_run)
     {
+        SDL_Event event;
 
-        auto sharedEvent = make_shared<SDL_Event>();
-        auto event = sharedEvent.get();
-        SDL_WaitEvent(event);
+        SDL_WaitEvent(&event);
 
-        const auto winid = getActivatedWindowID(event);
+        const auto winid = getActivatedWindowID(&event);
         if(winid != NULL_WINDOW_ID)
         {
             if(auto display = findFromId(winid)
                 ; display != nullptr)
             {
-                display->onEvent(event);
-                //display->refresh();
+                SDL_Event* e = new SDL_Event{event};
+                display->receiveEvent(winid, e);
             }
         }
         else
         {
+            //broadcasting event if not found something targeted id (display, controller)
+            SDL_Event* e = new SDL_Event{event};
+
             auto topDisplay = m_modalStack.back();
-            topDisplay->onEvent(event);
-           // topDisplay->refresh();
+            topDisplay->receiveEvent(NULL_WINDOW_ID, e);
 
             for(const auto modaless : m_modalessAry) {
-                modaless->onEvent(event);
-                //modaless->refresh();
+                modaless->receiveEvent(NULL_WINDOW_ID, e);
             }
         }
 
     }
 }
 
-DisplayController::display_ptr DisplayController::findFromId(const t_winid id)
+
+DisplayController::display_ptr DisplayController::findFromId(const t_id id)
 {
     if( display_ptr display = _find(m_modalessAry, id);
         display != nullptr)
@@ -121,9 +138,9 @@ DisplayController::display_ptr DisplayController::findFromId(const t_winid id)
     }
 }
 
-t_winid DisplayController::getActivatedWindowID(const SDL_Event* event)
+t_id DisplayController::getActivatedWindowID(const SDL_Event* event)
 {
-    t_winid windowId = NULL_WINDOW_ID;
+    t_id windowId = NULL_WINDOW_ID;
     switch(event->type)
     {
         case SDL_USEREVENT:
@@ -168,7 +185,7 @@ t_winid DisplayController::getActivatedWindowID(const SDL_Event* event)
 
 
 template <class T>
-DisplayController::display_ptr DisplayController::_find(const T& ary, const t_winid id)
+DisplayController::display_ptr DisplayController::_find(const T& ary, const t_id id)
 {
     auto it = std::find_if(begin(ary), end(ary), [id](const display_ptr ptr)
     {
@@ -180,6 +197,12 @@ DisplayController::display_ptr DisplayController::_find(const T& ary, const t_wi
 
 void DisplayController::_release()
 {
+}
+
+void DisplayController::refreshModal()
+{
+    for(const auto display : m_modalStack)
+        display->onDraw();
 }
 
 

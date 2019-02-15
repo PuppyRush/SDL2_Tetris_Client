@@ -7,14 +7,16 @@
 
 #include <cassert>
 
-#include <SDL.h>
 #include <SDL2/SDL.h>
 
+#include "SDLEasyGUI/SEG_Type.h"
 
-class EventListener {
+class EventListener
+{
 
-public:
-    void onEvent(const SDL_Event* event)
+protected:
+
+    void onEvent(const event_type event)
     {
         switch(event->type)
         {
@@ -132,6 +134,8 @@ public:
     virtual void onMultiGestureEvent (const SDL_MultiGestureEvent* mgesture)  =0;
     virtual void onDollarGestureEvent (const SDL_DollarGestureEvent* dgesture)  =0;
     virtual void onDropEvent (const SDL_DropEvent* drop)  =0;
+
+private:
 
 
 };

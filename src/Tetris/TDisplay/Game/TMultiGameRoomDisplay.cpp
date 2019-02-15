@@ -5,14 +5,13 @@
 #include <jsoncpp/json/json.h>
 
 #include "TMultiGameRoomDisplay.h"
-#include "../../GameInterface/Event.h"
-#include "../../SDLEasyGUI/Controller/Button.h"
-#include "../TClient/JsonHelper.h"
-#include "../TFiguers/TFigureBuilder.h"
+#include "SDLEasyGUI/Controller/Button.h"
+#include "GameInterface/Event.h"
+#include "Tetris/TClient/JsonHelper.h"
+#include "Tetris/Common/TResource.h"
+#include "Tetris/TFiguers/TFigureBuilder.h"
 
 SDL_TETRIS
-
-int id=0;
 
 Uint32 callback(Uint32 interval, void *param) {
 
@@ -31,7 +30,7 @@ Uint32 callback(Uint32 interval, void *param) {
 
 TMultiGameRoomDisplay::TMultiGameRoomDisplay()
 {
-    m_display = TDisplay::Game;
+    m_display = toUType( TDisplay::Game);
     m_mode = TLocalMode::Online;
 }
 
@@ -76,7 +75,7 @@ void TMultiGameRoomDisplay::onClickedStart()
     m_figureTimer = SDL_AddTimer(1000, callback, this);
     m_gamestart = true;
 
-    auto ctl = getControll(resource::GAME_START);
+    auto ctl = getControll(toUType(resource::GAME_START));
     ctl->setEnabled(false);
 }
 
@@ -94,7 +93,7 @@ void TMultiGameRoomDisplay::onPreInitialize()
 
     t_size begin_y = WINDOW_HEIGHT/10*3;
     {
-        ControllBuilder bld(getWindow(), {WINDOW_WIDTH/10*4+50, begin_y}, "START");
+        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH/10*4+50, begin_y}, "START");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
             id(toUType(resource::GAME_START))->
             background_color(TColorCode::white)->
@@ -102,11 +101,11 @@ void TMultiGameRoomDisplay::onPreInitialize()
             height(50)->
             enabled(true);
 
-        addControll(Button::getInstance(bld));
+        addControll(bld.build());
     }
     begin_y += 80;
     {
-        ControllBuilder bld(getWindow(), {WINDOW_WIDTH/10*4+50, begin_y}, "SUSPEND");
+        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH/10*4+50, begin_y}, "SUSPEND");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
             id(toUType(resource::GAME_SUSPEND))->
             background_color(TColorCode::white)->
@@ -114,11 +113,11 @@ void TMultiGameRoomDisplay::onPreInitialize()
             height(50)->
             enabled(true);
 
-        addControll(Button::getInstance(bld));
+        addControll(bld.build());
     }
     begin_y += 80;
     {
-        ControllBuilder bld(getWindow(), {WINDOW_WIDTH/10*4+50, begin_y}, "EXIT");
+        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH/10*4+50, begin_y}, "EXIT");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
             id(toUType(resource::GAME_END))->
             background_color(TColorCode::white)->
@@ -126,7 +125,7 @@ void TMultiGameRoomDisplay::onPreInitialize()
             height(50)->
             enabled(true);
 
-        addControll(Button::getInstance(bld));
+        addControll(bld.build());
     }
 
     DisplayInterface::onPreInitialize();
@@ -144,7 +143,7 @@ void TMultiGameRoomDisplay::onCreate()
 
 void TMultiGameRoomDisplay::registerEvent()
 {
-    event_buttonClick(resource::GAME_START, std::bind(&TMultiGameRoomDisplay::onClickedStart, this));
+    event_buttonClick(toUType(resource::GAME_START), std::bind(&TMultiGameRoomDisplay::onClickedStart, this));
 }
 
 void TMultiGameRoomDisplay::onUserEvent(const SDL_UserEvent* event)
@@ -176,7 +175,7 @@ void TMultiGameRoomDisplay::onUserEvent(const SDL_UserEvent* event)
 
                 auto figure = bld.build();
                 m_players.at(1)->getController()->forceSet(figure.get());
-                refresh();
+                pushDrawDisplayEvent();
             }
             break;
         default:;

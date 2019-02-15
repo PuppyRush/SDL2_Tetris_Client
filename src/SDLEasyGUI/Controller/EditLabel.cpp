@@ -4,8 +4,6 @@
 
 #include "EditLabel.h"
 
-SDL_TETRIS
-
 EditLabel::EditLabel(const ControllBuilder& bld)
     :Controll(bld, TControllKind::Button)
 {

@@ -11,23 +11,40 @@
 
 #include "ButtonBasic.h"
 
-SDL_TETRIS_BEGIN
-
+class ButtonBuilder;
 class Button : public ButtonBasic
 {
 
 public:
+    Button(const ButtonBuilder& bld);
 
     virtual void initialize() override;
     virtual void onDraw();
 
-    static std::shared_ptr<ButtonBasic> getInstance(const ControllBuilder& bld);
+};
 
-private:
-    Button(const ControllBuilder& bld);
+
+class ButtonBuilder : public ControllBuilder
+{
+public:
+
+    ButtonBuilder(const GraphicInterface::window_ptr window, const TPoint& point, const std::string& str)
+        :ControllBuilder(window,point,str)
+    {
+    }
+
+    ButtonBuilder(const GraphicInterface::window_ptr window, TPoint&& point, std::string&& str)
+        :ControllBuilder(window,point,str)
+    {
+    }
+
+    virtual std::shared_ptr<Controll> build() final
+    {
+        return make_shared<Button>(*this);
+    }
 
 };
 
-SDL_TETRIS_END
+
 
 #endif //TETRIS_FIGURE_CLASS_TBUTTON_H

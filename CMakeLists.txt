@@ -75,8 +75,8 @@ add_executable(tetris_figure_class
         src/Tetris/Common/TProperty.h
         src/Tetris/Common/TDefine.h
         src/Tetris/Common/THeader.h
-        src/Tetris/Common/Resource.h
-        src/Tetris/Common/Event.h
+        src/Tetris/Common/TResource.h
+        src/Tetris/Common/TEvent.h
         src/Tetris/TFiguers/TFigureL.h
         src/Tetris/TFiguers/TFigureUnit.h
         src/Tetris/TFiguers/TFigureUnit.cpp
@@ -103,26 +103,30 @@ add_executable(tetris_figure_class
         src/Tetris/TObject/TScore.h
         src/Tetris/TObject/TPlayer.h
         src/Tetris/TObject/TPlayer.cpp
-        src/Tetris/TDisplay/TSingleGameDisplay.cpp
-        src/Tetris/TDisplay/TSingleGameDisplay.h
-        src/Tetris/TDisplay/TGameDisplay.cpp
-        src/Tetris/TDisplay/TGameDisplay.h
-        src/Tetris/TDisplay/TMainLocalDisplay.h
-        src/Tetris/TDisplay/TMainLocalDisplay.cpp
-        src/Tetris/TDisplay/TMainDisplay.h
-        src/Tetris/TDisplay/TMainDisplay.cpp
-        src/Tetris/TDisplay/TMainOnlineDisplay.h
-        src/Tetris/TDisplay/TMainOnlineDisplay.cpp
+        src/Tetris/TDisplay/Game/TSingleGameDisplay.cpp
+        src/Tetris/TDisplay/Game/TSingleGameDisplay.h
+        src/Tetris/TDisplay/Game/TGameDisplay.cpp
+        src/Tetris/TDisplay/Game/TGameDisplay.h
+        src/Tetris/TDisplay/Main/TMainLocalDisplay.h
+        src/Tetris/TDisplay/Main/TMainLocalDisplay.cpp
+        src/Tetris/TDisplay/Main/TMainDisplay.h
+        src/Tetris/TDisplay/Main/TMainDisplay.cpp
+        src/Tetris/TDisplay/Main/TMainOnlineDisplay.h
+        src/Tetris/TDisplay/Main/TMainOnlineDisplay.cpp
         src/Tetris/TDisplay/TOptionDisplay.cpp
         src/Tetris/TDisplay/TOptionDisplay.h
-        src/Tetris/TDisplay/TMultiGameRoomDisplay.cpp
-        src/Tetris/TDisplay/TMultiGameRoomDisplay.h
+        src/Tetris/TDisplay/Game/TMultiGameRoomDisplay.cpp
+        src/Tetris/TDisplay/Game/TMultiGameRoomDisplay.h
         src/Tetris/TOption/TOptionManager.cpp
         src/Tetris/TOption/TOptionManager.h
         src/Tetris/TClient/TClientController.h
         src/Tetris/TClient/TClientController.cpp
         src/Tetris/TClient/JsonHelper.cpp
         src/Tetris/TClient/JsonHelper.h
+        src/Tetris/TDisplay/Waiting/TWaitingRoomDisplay.cpp
+        src/Tetris/TDisplay/Waiting/TWaitingRoomDisplay.h
+        src/Tetris/TDisplay/Main/TEnterServerDisplay.cpp
+        src/Tetris/TDisplay/Main/TEnterServerDisplay.h
         src/SDLEasyGUI/Windows/DisplayInterface.h
         src/SDLEasyGUI/Windows/DisplayInterface.cpp
         src/SDLEasyGUI/Windows/DisplayController.cpp
@@ -148,6 +152,15 @@ add_executable(tetris_figure_class
         src/SDLEasyGUI/Controller/GroupControllManager.h
         src/SDLEasyGUI/Controller/Border.cpp
         src/SDLEasyGUI/Controller/Border.h
+        src/SDLEasyGUI/Windows/EventListener.h
+        src/SDLEasyGUI/SEG_Initiator.h
+        src/SDLEasyGUI/SEG_Constant.h
+        src/SDLEasyGUI/SEG_Quit.h
+        src/SDLEasyGUI/Windows/EventQueue.cpp
+        src/SDLEasyGUI/Windows/EventQueue.h
+        src/SDLEasyGUI/Windows/EventDelivery.h
+        src/SDLEasyGUI/Command/Commander.h
+        src/SDLEasyGUI/Command/EventCommand.h
         src/GameInterface/Object/Player.cpp
         src/GameInterface/Object/Player.h
         src/GameInterface/Object/Room.cpp
@@ -164,7 +177,10 @@ add_executable(tetris_figure_class
         src/GameInterface/Online/ClientService.cpp
         src/GameInterface/Online/ClientService.h
         src/GameInterface/Event.h
-        src/GameInterface/TStruct.h src/Tetris/TDisplay/TWaitingRoomDisplay.cpp src/Tetris/TDisplay/TWaitingRoomDisplay.h src/SDLEasyGUI/Windows/EventListener.h src/SDLEasyGUI/SEG_Initiator.h src/SDLEasyGUI/SEG_Constant.h src/SDLEasyGUI/SEG_Quit.h)
+        src/GameInterface/TStruct.h
+
+        src/Tetris/TDisplay/Waiting/TWaitingRoomCard.cpp src/Tetris/TDisplay/Waiting/TWaitingRoomCard.h)
+
 
 include_directories(
         SYSTEM ${Boost_INCLUDE_DIR}
@@ -172,6 +188,9 @@ include_directories(
         ${SDL2_IMAGE_INCLUDE_DIR}
         ${SDL2_TTF_INCLUDE_DIR}
         ${PROJECT_SOURCE_DIR}/src
+        ${PROJECT_SOURCE_DIR}/src/GameInterface
+        ${PROJECT_SOURCE_DIR}/src/SDLEasyGUI
+        ${PROJECT_SOURCE_DIR}/src/Tetris
         ${ACE_INCLUDE_DIR})
 
 target_link_libraries(

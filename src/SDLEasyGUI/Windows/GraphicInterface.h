@@ -13,8 +13,10 @@
 #include "Tetris/Common/TDefine.h"
 #include "Window.h"
 #include "EventListener.h"
+#include "EventDelivery.h"
 
-class GraphicInterface : public EventListener
+
+class GraphicInterface : public EventListener, public EventDelivery
 {
 
 public:
@@ -23,6 +25,7 @@ public:
     virtual void onDraw() = 0;
 
     void setWindow(window_ptr window){m_window = window;}
+
     window_ptr getWindow() const noexcept {
         return m_window;
     }
@@ -33,6 +36,8 @@ protected:
     virtual ~GraphicInterface() = default;
 
 private:
+
+    virtual bool validId(const t_id id) = 0;
 
     window_ptr m_window = nullptr;
 

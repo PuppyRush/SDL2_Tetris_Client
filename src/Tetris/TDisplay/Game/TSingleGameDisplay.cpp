@@ -7,18 +7,16 @@
 #include <random>
 #include <functional>
 
-#include "Tetris/Common/Resource.h"
-#include "../Common/Event.h"
+#include "Tetris/Common/TResource.h"
+#include "Tetris/Common/TEvent.h"
 #include "SDLEasyGUI/Controller/Button.h"
 #include "TSingleGameDisplay.h"
 
 SDL_TETRIS
 
-
-
 TSingleGameDisplay::TSingleGameDisplay()
 {
-    m_display = TDisplay::Game;
+    m_display = toUType(TDisplay::Game);
     m_mode = TLocalMode::Local;
 }
 
@@ -43,7 +41,7 @@ void TSingleGameDisplay::onClickedStart()
     m_figureTimer = SDL_AddTimer(1000, my_callbackfunc, nullptr);
     m_gamestart = true;
 
-    auto ctl = getControll(resource::GAME_START);
+    auto ctl = getControll(toUType(resource::GAME_START));
     ctl->setEnabled(false);
 }
 
@@ -54,7 +52,7 @@ void TSingleGameDisplay::onClickedSuspend()
 
 void TSingleGameDisplay::registerEvent() {
 
-    event_buttonClick(resource::GAME_START, std::bind(&TSingleGameDisplay::onClickedStart, this));
+    event_buttonClick(toUType(resource::GAME_START), std::bind(&TSingleGameDisplay::onClickedStart, this));
 }
 
 void TSingleGameDisplay::onPreInitialize()
@@ -63,7 +61,7 @@ void TSingleGameDisplay::onPreInitialize()
 
     t_size begin_y = WINDOW_HEIGHT/10*3;
     {
-        ControllBuilder bld(getWindow(), {WINDOW_WIDTH/5*3, begin_y}, "START");
+        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH/5*3, begin_y}, "START");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
             id(toUType(resource::GAME_START))->
             background_color(TColorCode::white)->
@@ -71,11 +69,11 @@ void TSingleGameDisplay::onPreInitialize()
             height(50)->
             enabled(true);
 
-        addControll(Button::getInstance(bld));
+        addControll(bld.build());
     }
     begin_y += 80;
     {
-        ControllBuilder bld(getWindow(), {WINDOW_WIDTH/5*3, begin_y}, "SUSPEND");
+        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH/5*3, begin_y}, "SUSPEND");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
             id(toUType(resource::GAME_SUSPEND))->
             background_color(TColorCode::white)->
@@ -83,11 +81,11 @@ void TSingleGameDisplay::onPreInitialize()
             height(50)->
             enabled(true);
 
-        addControll(Button::getInstance(bld));
+        addControll(bld.build());
     }
     begin_y += 80;
     {
-        ControllBuilder bld(getWindow(), {WINDOW_WIDTH/5*3, begin_y}, "EXIT");
+        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH/5*3, begin_y}, "EXIT");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
             id(toUType(resource::GAME_END))->
             background_color(TColorCode::white)->
@@ -95,7 +93,7 @@ void TSingleGameDisplay::onPreInitialize()
             height(50)->
             enabled(true);
 
-        addControll(Button::getInstance(bld));
+        addControll(bld.build());
     }
 
     DisplayInterface::onPreInitialize();

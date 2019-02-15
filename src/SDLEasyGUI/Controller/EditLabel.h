@@ -11,8 +11,6 @@
 
 #include "Controll.h"
 
-SDL_TETRIS_BEGIN
-
 class EditLabel : public Controll{
 
 public:
@@ -30,7 +28,5 @@ private:
     bool m_isOnlyString = false;
     t_size m_maxlen = 20;
 };
-
-SDL_TETRIS_END
 
 #endif //TETRIS_FIGURE_CLASS_TEDIT_H

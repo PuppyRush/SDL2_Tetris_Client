@@ -2,8 +2,8 @@
 // Created by chaed on 18. 11. 25.
 //
 
-#ifndef TERIS_FIGURE_CLASS_TTYPETRAITS_H
-#define TERIS_FIGURE_CLASS_TTYPETRAITS_H
+#ifndef SDLEASYGUIDE_TYPE_TRAITS_H
+#define SDLEASYGUIDE_TYPE_TRAITS_H
 
 #if _MSC_VER >= 1200
   #pragma once
@@ -15,8 +15,8 @@
 #include <memory>
 #include <cassert>
 
-#include "SEG_TType.h"
-#include "GameInterface/TStruct.h"
+#include "SEG_Type.h"
+#include "SEG_Struct.h"
 
 
 template<class T>

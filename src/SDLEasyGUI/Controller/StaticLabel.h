@@ -11,8 +11,6 @@
 
 #include "ButtonBasic.h"
 
-SDL_TETRIS_BEGIN
-
 class StaticLabel : public ButtonBasic {
 
 public:
@@ -24,7 +22,5 @@ private:
     StaticLabel(const ControllBuilder& bld);
 
 };
-
-SDL_TETRIS_END
 
 #endif //TETRIS_FIGURE_CLASS_TSTATICLABEL_H

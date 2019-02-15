@@ -4,18 +4,24 @@
 
 #include "Controll.h"
 
-SDL_TETRIS
-
 Controll::Controll(const ControllBuilder& bld, const TControllKind kind)
 {
-    m_basic = bld.build();
+    m_basic = std::make_shared<ControllBasic>(bld.getBasic());
     m_basic->kind = kind;
-    setWindow(bld.m_window);
+    setWindow(bld.getWindow());
+
 }
 
 void Controll::initialize()
 {
     setSelected(m_basic->selected);
+
+    if(m_basic->group != GroupControllManager::NONE)
+    {
+        GroupControllManager::getInstance()->add(m_basic->group, m_basic->id);
+        if(m_basic->multiselected)
+            GroupControllManager::getInstance()->setMultiselect(m_basic->group);
+    }
 }
 
 void Controll::onDraw()
@@ -89,7 +95,7 @@ const bool Controll::isHit(const TPoint& point)
     }
 }
 
-void Controll::clicked()
+bool Controll::validId(const t_id id)
 {
-
+    return getId() == id;
 }

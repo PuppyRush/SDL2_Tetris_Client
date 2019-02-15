@@ -2,8 +2,8 @@
 // Created by chaed on 19. 2. 10.
 //
 
-#ifndef TETRIS_FIGURE_CLASS_SEG_QUIT_H
-#define TETRIS_FIGURE_CLASS_SEG_QUIT_H
+#ifndef SDLEASYGUIDE_QUIT_H
+#define SDLEASYGUIDE_QUIT_H
 
 #include "SDL2/SDL.h"
 

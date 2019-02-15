@@ -13,15 +13,15 @@ public:
 	~Atomic()
 	{}
 
-	static const tetris::t_unique newUnique() noexcept
+	static const t_unique newUnique() noexcept
 	{
-		static tetris::t_uniqueAtomic _atomic;
+		static t_uniqueAtomic _atomic;
 		return _atomic.fetch_add(1);
 	}
 
-	static const tetris::t_unique newWaitingRoomNumber() noexcept
+	static const t_unique newWaitingRoomNumber() noexcept
 	{
-		static tetris::t_uniqueAtomic _atomic;
+		static t_uniqueAtomic _atomic;
 		return _atomic.fetch_add(1);
 	}
 

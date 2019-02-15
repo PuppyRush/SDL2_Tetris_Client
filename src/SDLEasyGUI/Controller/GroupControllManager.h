@@ -16,8 +16,6 @@
 
 #include "Tetris/Common/THeader.h"
 
-SDL_TETRIS_BEGIN
-
 class GroupControllManager final {
 
 //pre-declareation
@@ -134,7 +132,5 @@ private:
     std::unordered_map<int,group> m_group;
 
 };
-
-SDL_TETRIS_END
 
 #endif //TETRIS_FIGURE_CLASS_TGROUPCONTROLLMANAGER_H

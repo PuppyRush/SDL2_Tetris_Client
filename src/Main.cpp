@@ -3,11 +3,11 @@
 #include "SDLEasyGUI/SEG_Initiator.h"
 #include "SDLEasyGUI/SEG_Quit.h"
 
-#include "Tetris/Common/Resource.h"
-#include "Tetris/TDisplay/TSingleGameDisplay.h"
-#include "Tetris/TDisplay/TMultiGameRoomDisplay.h"
-#include "Tetris/TDisplay/TMainLocalDisplay.h"
-#include "Tetris/TDisplay/TMainOnlineDisplay.h"
+#include "Tetris/Common/TResource.h"
+#include "Tetris/TDisplay/Game/TSingleGameDisplay.h"
+#include "Tetris/TDisplay/Game/TMultiGameRoomDisplay.h"
+#include "Tetris/TDisplay/Main/TMainLocalDisplay.h"
+#include "Tetris/TDisplay/Main/TMainOnlineDisplay.h"
 
 #define SDL_DEBUG_EVENTS
 
@@ -29,9 +29,10 @@ void init()
 int main() {
     init();
 
-    auto ctl = DisplayController::getInstance();
-    auto result = ctl->modal(make_shared<TMainOnlineDisplay>());
-    ctl->run();
+
+
+    auto maindlg = make_shared<TMainOnlineDisplay>();
+    maindlg->modal();
 
     SDLEasyGUI_Quit();
 }

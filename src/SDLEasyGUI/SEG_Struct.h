@@ -2,8 +2,8 @@
 // Created by chaed on 18. 12. 22.
 //
 
-#ifndef SDLEASYGUIDE_FIGURE_CLASS_TSTRUCT_H
-#define SDLEASYGUIDE_FIGURE_CLASS_TSTRUCT_H
+#ifndef SDLEASYGUIDE_TSTRUCT_H
+#define SDLEASYGUIDE_TSTRUCT_H
 
 #if _MSC_VER >= 1200
   #pragma once
@@ -16,14 +16,12 @@
 
 #include <SDL2/SDL_image.h>
 
-#include "SEG_TType.h"
-#include "Tetris/Common/TProperty.h"
-
-SDL_TETRIS_BEGIN
+#include "SEG_Type.h"
+#include "SEG_Property.h"
 
 typedef struct DisplayInfo
 {
-    TDisplay display;
+    t_display display;
     TLocalMode mode;
     TDisplayMode displayMode;
     t_id id;
@@ -139,16 +137,17 @@ typedef struct TFont
     {}
 }TFont;
 
-typedef struct TControllBasic
+typedef struct ControllBasic
 {
-    t_id    id;
+    t_res    id;
     TPoint point = TPoint(-100,-100);
+    t_size depth = 0;
     t_size width = 100;
     t_size height = 50;
     TFont font = {"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white};
     TColor background_color = TColorCode::black;
     std::string name = "";
-    TDisplay display = TDisplay::None;
+    t_display display = std::numeric_limits<t_display>::max();
     bool enabled = true;
     bool multiselected = false;
     TControllKind kind = TControllKind::StaticLabel;
@@ -157,19 +156,16 @@ typedef struct TControllBasic
     bool autoSize = true;
     bool selected = false;
 
-    TControllBasic() = default;
-    TControllBasic(const TControllBasic& b)
+    ControllBasic() = default;
+    ControllBasic(const ControllBasic& b)
         :id(b.id), point(b.point), width(b.width), height(b.height)
         ,font(b.font), background_color(b.background_color), name(b.name),
         display(b.display), enabled(b.enabled), multiselected(b.multiselected),
         kind(b.kind), group(b.group), carot(b.carot),
-        autoSize(b.autoSize), selected(b.selected)
+        autoSize(b.autoSize), selected(b.selected), depth(b.depth)
     {
     }
 
 }TControllBasic;
-
-
-SDL_TETRIS_END
 
 #endif //TETRIS_FIGURE_CLASS_TSTRUCT_H

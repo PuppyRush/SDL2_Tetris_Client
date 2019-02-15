@@ -11,8 +11,6 @@
 
 #include "Controll.h"
 
-SDL_TETRIS_BEGIN
-
 class ButtonBasic : public Controll{
 public:
 
@@ -31,7 +29,5 @@ protected:
 private:
     void _drawCarot();
 };
-
-SDL_TETRIS_END
 
 #endif //TETRIS_FIGURE_CLASS_TBUTTONBASIC_H
