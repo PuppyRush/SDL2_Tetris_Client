@@ -17,8 +17,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_video.h>
 
-#include "SDLEasyGUI/SEG_Type.h"
-#include "SDLEasyGUI/SEG_Struct.h"
+#include "../SEG_Struct.h"
 
 class Window final
 {

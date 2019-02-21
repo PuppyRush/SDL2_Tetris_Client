@@ -14,31 +14,78 @@
 #include <thread>
 #include <unordered_map>
 #include <mutex>
+#include <tuple>
 #include <condition_variable>
+#include <utility>
 
 #include "Window.h"
 #include "EventListener.h"
 #include "EventQueue.h"
-#include "SDLEasyGUI/Controller/ControllBuilder.h"
-#include "SDLEasyGUI/Controller/Controll.h"
+#include "../Controller/ControllBuilder.h"
+#include "../Controller/Controll.h"
+#include "GameInterface/Online/PacketQueue.h"
 
-class DisplayInterface : public GraphicInterface
+class DisplayInterface : public GraphicInterface, public game_interface::Observer
 {
 public:
+
+    template<std::size_t __i, typename _Tp>
+    using __tuple_element_t = typename std::tuple_element<__i, _Tp>::type;
+
+    template<typename _Tuple>
+    struct _Invoker
+    {
+        _Tuple _M_t;
+
+        template<size_t _Index>
+        static __tuple_element_t<_Index, _Tuple>&&
+        _S_declval();
+
+        template<size_t... _Ind>
+        auto
+        _M_invoke(std::_Index_tuple<_Ind...>)
+        noexcept(noexcept(std::__invoke(_S_declval<_Ind>()...)))
+        -> decltype(std::__invoke(_S_declval<_Ind>()...))
+        { return std::__invoke(std::get<_Ind>(std::move(_M_t))...); }
+
+        using _Indices
+        = typename std::_Build_index_tuple<std::tuple_size<_Tuple>::value>::__type;
+
+        auto
+        operator()()
+        noexcept(noexcept(std::declval<_Invoker&>()._M_invoke(_Indices())))
+        -> decltype(std::declval<_Invoker&>()._M_invoke(_Indices()))
+        { return _M_invoke(_Indices()); }
+    };
+
+    //refer std::thread.
+    template<typename... _Tp>
+    using __decayed_tuple = std::tuple<typename std::decay<_Tp>::type...>;
+
+    template<typename _Callable, typename... _Args>
+    _Invoker<__decayed_tuple<_Callable, _Args...>>
+    _make_invoker(_Callable &&__callable, _Args &&... __args)
+    {
+        return { __decayed_tuple<_Callable, _Args...>{
+            std::forward<_Callable>(__callable), std::forward<_Args>(__args)...
+        } };
+    }
+
 
     using BTN_CLICK = std::function<void(void)>;
 
     void addControll(const std::shared_ptr<Controll> ctl);
-    bool clickedMenuEvent(const TPoint &point);
+    bool clickedMenuEvent(const Point &point);
 
     t_res modal();
     void modaless();
-
     void show() { getWindow()->show(); }
     void hidden() { getWindow()->hidden(); }
     t_res initialize();
-    void pushDrawDisplayEvent();
     virtual void onDraw();
+
+    virtual void refresh() override;
+    virtual void updateObserver(const Observer&, const game_interface::Packet &) =0;
 
     inline void setBackgroundImgPath(const std::string &path) { m_backgroundImgPath = path; }
     inline void setRun(const bool run) { m_run = run; }
@@ -50,6 +97,18 @@ public:
     inline const bool getSetDraw() const noexcept { return m_stopDraw; }
     inline const t_id getID() const noexcept { return m_id; }
     inline const t_id getWindowID() const noexcept { return getWindow()->getWindowID(); }
+    inline Controll* getCurrentControll() const noexcept {return m_currentCtl;};
+
+    template <class T>
+    Controll::controll_ptr getControll(const T res)
+    {
+        return *find_if(begin(m_menus), end(m_menus),[res](Controll::controll_ptr ptr)
+        {
+          if(ptr->getId() == game_interface::toUType(res))
+              return true;
+          return false;
+        });
+    }
 
     virtual ~DisplayInterface();
 
@@ -64,7 +123,18 @@ protected:
         return getWindow()->getSDLRenderer();
     }
 
+
     virtual void registerEvent() {}
+
+    /*template<typename _Callable, typename... _Args>
+    void event_buttonClick(const t_res id, _Callable&& __f, _Args&&... __args)
+    {
+        auto fn = _make_invoker(std::forward<_Callable>(__f),
+                                std::forward<_Args>(__args)...);
+        fn();
+        //m_callback_no_param.insert(make_pair(id,callback_fn));
+    }*/
+
     virtual void event_buttonClick(const t_res, const BTN_CLICK callback_fn);
 
     virtual void onPreDraw();
@@ -102,7 +172,8 @@ protected:
     virtual void onDollarGestureEvent (const SDL_DollarGestureEvent* dgesture)  {};
     virtual void onDropEvent (const SDL_DropEvent* drop)  {};
 
-    Controll::controll_ptr getControll(const t_res);
+    virtual void onAttachFocus() {};
+    virtual void onDetachFocus() {};
 
     t_display m_display;
     TLocalMode m_mode;
@@ -113,14 +184,15 @@ protected:
 
 private:
 
-    void _release();
+    void release();
     void _run();
 
     void onDrawMenus();
     virtual void onTimer(){}
-    virtual bool validId(const t_id id) override final;
+    virtual bool validId(const game_interface::t_id id) override final;
 
-    std::vector<std::shared_ptr<Controll>> m_menus;
+    std::vector<Controll::controll_ptr > m_menus;
+    Controll* m_currentCtl;
 
     std::string m_backgroundImgPath;
     t_id m_id;

@@ -40,7 +40,6 @@ public:
 
     void command(const t_eventType event);
     void forceSet(const TFigure* fig);
-    void clear();
     void eraseLine(const t_size lineNumber);
     void addLine(const t_size lineNumber);
     void eraseBottomLine(const t_size = 1);

@@ -35,32 +35,22 @@ struct hash<DisplayInfo>
         return hash<modeType>()(mode)*13 + hash<modeType>()(dp)*21 * hash<dpModeType>()(dpMode)*37 * obj.id*53;
     }
 };
-}
+}*/
 
+using controll_map_key = std::pair<game_interface::t_id, game_interface::t_id>;
 struct KeyHash {
-    std::size_t operator()(const DisplayInfo& obj) const
-    {
-        using modeType = underlying_type_t <TLocalMode>;
-        using dpType = underlying_type_t <TDisplay >;
-        using dpModeType = underlying_type_t <TDisplayMode >;
-        const auto mode = static_cast<modeType>(obj.mode);
-        const auto dp = static_cast<dpType>(obj.display);
-        const auto dpMode = static_cast<dpType>(obj.displayMode);
-        return hash<modeType>()(mode)*13 + hash<modeType>()(dp)*21 * hash<dpModeType>()(dpMode)*37 * obj.id*53;
+    std::size_t operator()(const controll_map_key &obj) const {
+        return std::hash<game_interface::t_id>()(obj.first) * 13 + std::hash<game_interface::t_id>()(obj.second) * 21;
     }
 };
-
 
 struct KeyEqual {
-    bool operator()(const DisplayInfo& lhs, const DisplayInfo& rhs) const
-    {
-        return rhs.display == lhs.display &&
-            rhs.mode == lhs.mode &&
-            rhs.displayMode == lhs.displayMode &&
-            rhs.id == lhs.id;
+    bool operator()(const controll_map_key &lhs, const controll_map_key &rhs) const {
+        return rhs.first == lhs.first &&
+            rhs.second == rhs.second;
     }
 };
-*/
+
 
 class DisplayController final{
 
@@ -74,9 +64,8 @@ public:
 
     void modal_open(display_ptr);
     void modal_close();
-
     void modaless(display_ptr);
-    void close(const t_id id);
+    void close(const game_interface::t_id id);
     void refreshModal();
 
     static std::shared_ptr<DisplayController> getInstance();
@@ -85,14 +74,14 @@ private:
 
     DisplayController();
 
-    t_id getActivatedWindowID(const SDL_Event* event);
-    display_ptr findFromId(const t_id id);
+    game_interface::t_id getActivatedWindowID(const SDL_Event* event);
+    display_ptr findFromId(const game_interface::t_id id);
 
     void _release();
     void _pumpEvent();
 
     template <class T>
-    display_ptr _find(const T& ary, const t_id id);
+    display_ptr _find(const T& ary, const game_interface::t_id id);
 
     modaless_ary m_modalessAry;
     modal_ary m_modalStack;

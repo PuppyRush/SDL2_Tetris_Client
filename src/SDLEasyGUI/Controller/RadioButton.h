@@ -14,6 +14,7 @@
 class RadioButton : public ButtonBasic{
 public:
 
+    explicit RadioButton(ControllBuilder& bld);
 
     inline const bool isSelected() const noexcept{
         ButtonBasic::isSelected();
@@ -25,10 +26,6 @@ public:
     virtual void initialize() override;
     virtual void onDraw() override final;
 
-    static std::shared_ptr<ButtonBasic> getInstance(const ControllBuilder& bld);
-
-private:
-    RadioButton(const ControllBuilder& bld);
 };
 
 #endif //TETRIS_FIGURE_CLASS_TRADIOBUTTON_H

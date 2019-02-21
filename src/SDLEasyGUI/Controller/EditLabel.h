@@ -9,24 +9,66 @@
   #pragma once
 #endif
 
-#include "Controll.h"
+#include "Border.h"
+#include "SEG_Event.h"
 
-class EditLabel : public Controll{
-
-public:
-    virtual void initialize() override;
-    virtual void onDraw() {};
-
-    static std::shared_ptr<Controll> getInstance(const ControllBuilder& bld);
-
-private:
-    EditLabel(const ControllBuilder& bld);
-
+typedef struct EditLabelBasic
+{
     bool m_canWritable = true;
     bool m_canReadable = true;
     bool m_isOnlyNumber = false;
     bool m_isOnlyString = false;
     t_size m_maxlen = 20;
+}EditLabelBasic;
+
+
+class EditLabelBuilder;
+class EditLabel : public Border{
+
+public:
+    explicit EditLabel(EditLabelBuilder& bld);
+
+protected:
+    virtual void onUserEvent (const SDL_UserEvent* user) override;
+    virtual void onKeyboardEvent (const SDL_KeyboardEvent* key);
+    virtual void onTextInputEvent (const SDL_TextInputEvent* text) override;
+    virtual void initialize() override;
+    virtual void onDraw();
+    virtual void onDrawBackground() override;
+
+private:
+    virtual void onAttachFocus();
+    virtual void onDetachFocus();
+    virtual void onTimer() override;
+
+    bool m_textCursor;
+    t_timer m_textCursorTimer = NULL_TIMER_ID;
+    EditLabelBasic m_labelBasic;
+    std::shared_ptr<TimerAdder> m_textCursorTimerAdder;
+};
+
+
+class EditLabelBuilder : public BorderBuilder
+{
+public:
+
+    EditLabelBuilder(const GraphicInterface::window_ptr window, const Point& point, const std::string& str)
+        :BorderBuilder(window,point,str)
+    {
+    }
+
+    EditLabelBuilder(const GraphicInterface::window_ptr window, Point&& point, std::string&& str)
+        :BorderBuilder(window,point,str)
+    {
+    }
+
+    virtual std::shared_ptr<Controll> build()
+    {
+        return make_shared<EditLabel>(*this);
+    }
+
+    EditLabelBasic m_editBasic;
+
 };
 
 #endif //TETRIS_FIGURE_CLASS_TEDIT_H

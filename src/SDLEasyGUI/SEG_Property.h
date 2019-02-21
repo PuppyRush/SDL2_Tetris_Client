@@ -14,8 +14,9 @@ const t_size WINDOW_HEIGHT = 900;
 const t_size WINDOW_WIDTH = 1000;
 
 
-enum class TControllKind : t_type
+enum class ControllKind : t_type
 {
+    ListBox,
     StaticLabel,
     EditLabel,
     Button,
@@ -37,7 +38,7 @@ enum class TLocalMode : t_type
     All
 };
 
-enum class TColorCode : t_type
+enum class ColorCode : t_type
 {
     red = 0,
     blue,
@@ -57,12 +58,34 @@ enum EventType
 {
     SDL_EASYGUI_EVENT_START =  0x9000,
     SDL_DRAW_DISPLAY ,
+    SDL_DRAW_CONTROLLER,
     SDL_CLICKED_CONTROLLER,
 };
 
-typedef struct UserEvent {
-    static  t_eventType SDLEASYGUI_EVENT;
-}UserEvent;
+enum class BorderBoundaryType : t_type
+{
+    angle,
+    ellipse,
+    round
+};
 
+enum class BorderBoundaryLineType : t_type
+{
+    none,
+    straight,
+    single_dashed,
+    double_dashed,
+    round,
+    rectagle,
+};
+
+enum SEG_Event {
+
+    SEGEVENT_START = 0x8500,
+    DETACH_FOCUS,
+    ATTACH_FOCUS,
+    EDITLABEL_CHAR_TEXTCURSOR
+
+};
 
 #endif //TERIS_FIGURE_CLASS_TPROPERTY_H

@@ -7,6 +7,8 @@
 #include  <ace/INET_Addr.h>
 #include  <iostream>
 
+using namespace game_interface;
+
 ClientConnector::ClientConnector(const  char* ipstr,ACE_Reactor* reactor, ClientService& stream)
         :ACE_Event_Handler(reactor),m_stream(stream)
 {

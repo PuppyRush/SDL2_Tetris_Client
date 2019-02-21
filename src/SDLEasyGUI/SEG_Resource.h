@@ -18,7 +18,7 @@ enum resource : t_res {
     BTN_NO,
     BTN_CANCEL,
 
-    RESROUCE_END = 0x3000
+    SEG_RESROUCE_END = 0x3000
 };
 
 

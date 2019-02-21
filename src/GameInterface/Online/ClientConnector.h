@@ -17,8 +17,9 @@
 
 #include  "ClientService.h"
 
-class ClientConnector : public ACE_Event_Handler
-{
+namespace game_interface {
+
+class ClientConnector : public ACE_Event_Handler {
 
 public:
     ClientConnector(const char *ipstr, ACE_Reactor *reactor, ClientService &stream);
@@ -35,7 +36,9 @@ public:
 private:
 
     ACE_SOCK_Connector m_connector;
-    ClientService& m_stream;
+    ClientService &m_stream;
 };
+
+}
 
 #endif //SIMPLE_ECHOCLIENT_GCONNECTOR_H

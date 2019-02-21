@@ -45,10 +45,10 @@ public:
     {
         return m_board;
     }
-    inline const TPoint& getStartDisplayPoint() const {
+    inline const Point& getStartDisplayPoint() const {
         return m_startGameDisplayPoint;
     }
-    inline void setStartDisplayPoint(const TPoint &m_StartDisplayPoint) {
+    inline void setStartDisplayPoint(const Point &m_StartDisplayPoint) {
         TFigureBoard::m_startGameDisplayPoint = m_StartDisplayPoint;
     }
     inline const t_size getblockLength() const {
@@ -62,7 +62,7 @@ public:
     {
         dest = src->copy();
         dest->setAll(UnitType::Ghost);
-        dest->setAll(TColor{TColorCode::silver,64});
+        dest->setAll(TColor{ColorCode::silver,64});
 
         _eraseCoords(dest);
 
@@ -151,7 +151,7 @@ public:
                         m_board[y+removedCnt][x].set(UnitType::Fill);
                         m_board[y+removedCnt][x].set(m_board[y][x].getColor());
                         m_board[y][x].set(static_cast<UnitType>(UnitType::Empty));
-                        m_board[y][x].set(TColorCode::none);
+                        m_board[y][x].set(ColorCode::none);
                     }
                 }
             }
@@ -180,7 +180,7 @@ public:
         {
             auto board = m_board[i];
             for (int l = 0 ; l < board.size() ; l++) {
-                board[l] = TFigureUnit{TPoint(i, l), 0, TColorCode::none, UnitType::Empty};
+                board[l] = TFigureUnit{Point(i, l), 0, ColorCode::none, UnitType::Empty};
             }
         }
     }
@@ -188,7 +188,7 @@ public:
 
 private:
 
-    TPoint m_startGameDisplayPoint;
+    Point m_startGameDisplayPoint;
     t_size m_gameblockLength;
 
     board_type m_board;

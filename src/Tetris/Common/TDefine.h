@@ -10,10 +10,10 @@
   #pragma once
 #endif
 
-#define TETRIS  tetris
-#define SDL_TETRIS_BEGIN namespace TETRIS{
+#define GAMEINTERFACE  tetris
+#define SDL_TETRIS_BEGIN namespace GAMEINTERFACE{
 #define SDL_TETRIS_END }
-#define SDL_TETRIS using namespace TETRIS;
+#define SDL_TETRIS using namespace GAMEINTERFACE;
 
 //#define CONSTEXPR
 #ifdef CONSTEXPR

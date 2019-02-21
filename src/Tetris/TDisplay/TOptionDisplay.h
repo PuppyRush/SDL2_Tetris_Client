@@ -26,6 +26,8 @@ private:
     virtual void onPreInitialize() override final;
     virtual void onDraw() override final;
     void onClickedBack();
+
+    virtual void updateObserver(const Observer&, const game_interface::Packet &) override final {}
 };
 
 

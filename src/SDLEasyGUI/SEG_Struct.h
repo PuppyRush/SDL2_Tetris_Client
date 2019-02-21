@@ -31,59 +31,59 @@ typedef struct DisplayInfo
 typedef struct TColor
 {
 public:
-    TColorCode colorCode;
+    ColorCode colorCode;
     t_color r;
     t_color g;
     t_color b;
     t_color a;
     TColor(){}
-    TColor(const TColorCode code, const t_color alhpa = 255)
+    TColor(const ColorCode code, const t_color alhpa = 255)
     {
         colorCode = code;
         switch(code)
         {
-            case TColorCode::black:
+            case ColorCode::black:
                 r = 0;
                 g = 0;
                 b = 0;
                 break;
-            case TColorCode::none:  //pass
-            case TColorCode::white:
+            case ColorCode::none:  //pass
+            case ColorCode::white:
                 r = 255;
                 g = 255;
                 b = 255;
                 break;
-            case TColorCode::red:
+            case ColorCode::red:
                 r = 255;
                 g = 0;
                 b = 0;
                 break;
-            case TColorCode::green:
+            case ColorCode::green:
                 r = 0;
                 g = 255;
                 b = 0;
                 break;
-            case TColorCode::blue:
+            case ColorCode::blue:
                 r = 0;
                 g = 0;
                 b = 255;
                 break;
-            case TColorCode::orange:
+            case ColorCode::orange:
                 r = 255;
                 g = 140;
                 b = 0;
                 break;
-            case TColorCode::yellow:
+            case ColorCode::yellow:
                 r = 255;
                 g = 255;
                 b = 0;
                 break;
-            case TColorCode::purple:
+            case ColorCode::purple:
                 r = 127;
                 g = 0;
                 b = 255;
                 break;
-            case TColorCode::silver:
+            case ColorCode::silver:
                 r = 169;
                 g = 169;
                 b = 169;
@@ -96,7 +96,17 @@ public:
         a = 255;
     }
 
-    static SDL_Color getColor(const TColorCode colorCode)
+    bool operator==(const TColor& color)
+    {
+        return this->r == color.r && this->g == color.g && this->b == color.b;
+    }
+
+    const bool compare( const TColor& rhs) const
+    {
+        return this->colorCode == rhs.colorCode;
+    }
+
+    static SDL_Color getColor(const ColorCode colorCode)
     {
         TColor col(colorCode);
         SDL_Color color{col.r, col.g, col.b,255};
@@ -105,11 +115,13 @@ public:
 
     static const SDL_Color getTransparent()
     {
-        TColor col(TColorCode::white);
+        TColor col(ColorCode::white);
         SDL_Color color{col.r, col.g, col.b,0};
         return color;
     }
 }TColor;
+
+
 
 typedef struct TPoint {
 public:
@@ -124,7 +136,7 @@ public:
         : x(x), y(y),z(z)
     {}
 
-} TPoint;
+} Point;
 
 typedef struct TFont
 {
@@ -132,7 +144,7 @@ typedef struct TFont
     t_size size;
     TColor color;
     TFont() = default;
-    TFont(const std::string& str, const t_size size, const TColorCode color)
+    TFont(const std::string& str, const t_size size, const ColorCode color)
         :font_name(str), size(size), color(color)
     {}
 }TFont;
@@ -140,21 +152,28 @@ typedef struct TFont
 typedef struct ControllBasic
 {
     t_res    id;
-    TPoint point = TPoint(-100,-100);
+    Point point = Point(-100,-100);
     t_size depth = 0;
     t_size width = 100;
     t_size height = 50;
-    TFont font = {"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::white};
-    TColor background_color = TColorCode::black;
+    TFont font = {"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::white};
+    TColor background_color = ColorCode::black;
     std::string name = "";
     t_display display = std::numeric_limits<t_display>::max();
     bool enabled = true;
     bool multiselected = false;
-    TControllKind kind = TControllKind::StaticLabel;
+    ControllKind kind = ControllKind::StaticLabel;
     int group = -1;
     bool carot = false;
     bool autoSize = true;
     bool selected = false;
+
+    //border types
+    BorderBoundaryLineType borderLineType = BorderBoundaryLineType::straight;
+    BorderBoundaryType borderType = BorderBoundaryType::angle;
+    TColor borderColor = ColorCode::white;
+    int borderAngle = 0;
+    int borderThick = 1;
 
     ControllBasic() = default;
     ControllBasic(const ControllBasic& b)
@@ -162,7 +181,9 @@ typedef struct ControllBasic
         ,font(b.font), background_color(b.background_color), name(b.name),
         display(b.display), enabled(b.enabled), multiselected(b.multiselected),
         kind(b.kind), group(b.group), carot(b.carot),
-        autoSize(b.autoSize), selected(b.selected), depth(b.depth)
+        autoSize(b.autoSize), selected(b.selected), depth(b.depth),
+        borderLineType(b.borderLineType), borderType(b.borderType), borderAngle(b.borderAngle),
+        borderThick(b.borderThick), borderColor(b.borderColor)
     {
     }
 

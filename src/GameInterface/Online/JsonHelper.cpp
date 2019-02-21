@@ -8,6 +8,7 @@
 #include <fstream>
 
 using namespace std;
+using namespace game_interface;
 
 bitset<35> JsonHelper::toGameboardBitset(int tetrimino, int direction, int x, int y) {
 

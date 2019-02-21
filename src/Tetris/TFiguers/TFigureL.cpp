@@ -2,6 +2,7 @@
 
 
 using namespace tetris;
+using namespace game_interface;
 
 TFigureL::TFigureL(const TFigureBuilder *bld)
     : TFigure(bld)

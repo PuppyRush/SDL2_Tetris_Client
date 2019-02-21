@@ -4,6 +4,8 @@
 
 #include "Room.h"
 
+using namespace game_interface;
+
 Room::Room()
 : m_roomnumber(Atomic::newWaitingRoomNumber())
 {}

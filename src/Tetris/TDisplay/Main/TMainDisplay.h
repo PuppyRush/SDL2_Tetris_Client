@@ -21,6 +21,7 @@ public:
 	virtual ~TMainDisplay() {}
 	virtual void onClickedEnterServer() =0;
 	virtual void onClickedStartLocalGame() =0;
+	virtual void onClickedOption() =0;
 
 
 protected:

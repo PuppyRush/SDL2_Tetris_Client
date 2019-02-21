@@ -7,18 +7,33 @@
 
 #include "SDLEasyGUI/Controller/EditLabel.h"
 #include "SDLEasyGUI/Controller/Button.h"
+#include "SDLEasyGUI/Windows/DisplayInterface.h"
 
 #include "../../Common/THeader.h"
 
 SDL_TETRIS_BEGIN
 
-class TEnterServerDisplay {
+class TEnterServerDisplay : public DisplayInterface
+{
 
-    EditLabel m_idLabel;
-    Button m_enterBtn;
-    Button m_backBtn;
+public:
 
+    TEnterServerDisplay() = default;
+
+    void registerEvent();
+    void onPreInitialize() ;
+    void onClickedEnterServer();
+
+private:
+
+    //EditLabel m_idLabel;
+    //Button m_enterBtn;
+    //Button m_backBtn;
+
+    virtual void updateObserver(const Observer&, const game_interface::Packet &) override final {}
 };
+
+
 
 SDL_TETRIS_END
 

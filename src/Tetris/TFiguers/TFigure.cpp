@@ -3,6 +3,7 @@
 #include "../../GameInterface/TypeTraits.h"
 
 using namespace tetris;
+using namespace game_interface;
 
 TFigure::TFigure()
 {}
@@ -182,9 +183,9 @@ const TFigureType TFigure::getRandomlyFigureType() const {
     return EnumHelper<TFigureType>::getRandomly(getTypeBegin(), getTypeEnd());
 }
 
-void TFigure::_resetRelateivePoint(const TPoint& newPt)
+void TFigure::_resetRelateivePoint(const Point& newPt)
 {
-    const auto ptDis = TPoint{newPt.x - getPoint().x, newPt.y - getPoint().y};
+    const auto ptDis = Point{newPt.x - getPoint().x, newPt.y - getPoint().y};
     for(auto& p : m_relativeCoord)
     {
         p.set({p.getPoint().x+ptDis.x, p.getPoint().y+ptDis.y});

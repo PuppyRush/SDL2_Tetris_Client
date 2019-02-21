@@ -5,20 +5,19 @@
 #include "StaticLabel.h"
 
 
-StaticLabel::StaticLabel(const ControllBuilder& bld)
-    :ButtonBasic(bld, TControllKind::StaticLabel)
+StaticLabel::StaticLabel(StaticLabelBuilder& bld)
+    :Border(bld)
 {
+    bld.kind(ControllKind::StaticLabel);
 }
 
 void StaticLabel::onDraw()
 {
-    ButtonBasic::onDraw();
+    Border::onDraw();
 }
 
-
-std::shared_ptr<ButtonBasic> StaticLabel::getInstance(const ControllBuilder& bld)
+void StaticLabel::initialize()
 {
-    std::shared_ptr<ButtonBasic> inst = std::shared_ptr<StaticLabel>(new StaticLabel(bld));
-    return inst;
+    Border::initialize();
 }
 

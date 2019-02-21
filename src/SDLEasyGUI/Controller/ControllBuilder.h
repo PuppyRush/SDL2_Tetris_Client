@@ -15,8 +15,6 @@
 #include <atomic>
 
 #include "SDLEasyGUI/Windows/GraphicInterface.h"
-#include "Tetris/TOption/TOptionManager.h"
-
 
 //predeclaration.
 class Controll;
@@ -25,8 +23,8 @@ class ControllBuilder
 {
 public:
 
-    ControllBuilder(const GraphicInterface::window_ptr window, const TPoint& point, const std::string& str);
-    ControllBuilder(const GraphicInterface::window_ptr window, TPoint&& point, std::string&& str);
+    ControllBuilder(const GraphicInterface::window_ptr window, const Point& point, const std::string& str);
+    ControllBuilder(const GraphicInterface::window_ptr window, Point&& point, std::string&& str);
 
     inline ControllBuilder* id(const t_id id) noexcept
     {
@@ -40,7 +38,19 @@ public:
         return this;
     }
 
-    inline ControllBuilder* background_color(const TColorCode color) noexcept
+    inline ControllBuilder* fontSize(const t_size& size)  noexcept
+    {
+        m_basic.font.size = size;
+        return this;
+    }
+
+    inline ControllBuilder* fontColor(const TColor& color)  noexcept
+    {
+        m_basic.font.color = color;
+        return this;
+    }
+
+    inline ControllBuilder* backgroundColor(const ColorCode color) noexcept
     {
         m_basic.background_color = color;
         return this;
@@ -91,13 +101,40 @@ public:
         return this;
     }
 
+    inline ControllBuilder* borderLineType(const BorderBoundaryLineType lineType) {
+        m_basic.borderLineType = lineType;
+        return this;
+    }
+    inline ControllBuilder* borderBoundaryType(const BorderBoundaryType type) {
+        m_basic.borderType = type;
+        return this;
+    }
+    inline ControllBuilder* borderColor(const TColor &lineColor) {
+        m_basic.borderColor = lineColor;
+        return this;
+    }
+    inline ControllBuilder* borderAngle(const int borderAngle) {
+        m_basic.borderAngle = borderAngle;
+        return this;
+    }
+    inline ControllBuilder* borderThick(const int borderThick) {
+        m_basic.borderThick = borderThick;
+        return this;
+    }
+    
     const GraphicInterface::window_ptr getWindow() const {
         return m_window;
     }
 
-    const TControllBasic getBasic() const {
+    const TControllBasic& getBasic() const {
         return m_basic;
     }
+
+    void kind(const ControllKind kind)
+    {
+        m_basic.kind = kind;
+    }
+
 
     virtual std::shared_ptr<Controll> build() = 0;
 

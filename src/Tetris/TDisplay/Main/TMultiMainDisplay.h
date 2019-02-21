@@ -13,24 +13,26 @@
 
 SDL_TETRIS_BEGIN
 
-class TMainOnlineDisplay final : public TMainDisplay
+class TMultiMainDisplay final : public TMainDisplay
 {
 public:
 
-    TMainOnlineDisplay();
-    virtual ~TMainOnlineDisplay(){}
+    TMultiMainDisplay();
+    virtual ~TMultiMainDisplay(){}
 
 
 private:
-    virtual void onClickedOption() final;
-    virtual void onClickedEnterServer() final;
+    virtual void onClickedOption() override final;
+    virtual void onClickedEnterServer() override final;
     virtual void registerEvent() override final;
     virtual void onDraw() override final;
     virtual void onPreInitialize() override final;
     virtual void onTimer() override final;
 
-    [[deprecated("dont call this function in TMainOnlineDisplay")]]
+    [[deprecated("dont call this function in TMultiMainDisplay")]]
     virtual void onClickedStartLocalGame() override final {}
+
+    virtual void updateObserver(const Observer&, const game_interface::Packet &) override final {}
 };
 
 SDL_TETRIS_END

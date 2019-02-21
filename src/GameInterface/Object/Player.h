@@ -9,21 +9,23 @@
   #pragma once
 #endif
 
-#include "Tetris/Common/TDefine.h"
-#include "GameInterface/Object/Object.h"
+#include "GameInterface/Observer/Observer.h"
 
-class Player : public Object
-{
+namespace game_interface {
+
+class Player : public Observer {
 public:
 
     Player() = default;
     virtual ~Player() = default;
 
     inline const std::string getUserName() const noexcept { return m_name; }
-    inline void setName(const std::string& name) { m_name = name; }
+    inline void setUserName(const std::string &name) { m_name = name; }
 
 private:
     std::string m_name;
 };
+
+}
 
 #endif //TETRIS_FIGURE_CLASS_TPLAYER_H

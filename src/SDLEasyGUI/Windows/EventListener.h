@@ -14,14 +14,21 @@
 class EventListener
 {
 
-protected:
+public:
 
     void onEvent(const event_type event)
     {
-        switch(event->type)
-        {
+        switch(event->type) {
             case SDL_WINDOWEVENT   :
                 onWindowEvent(event->window);
+                switch (event->window.type) {
+                    case SDL_WINDOWEVENT_FOCUS_GAINED:
+                        onDetachFocus();
+                        break;
+                    case SDL_WINDOWEVENT_FOCUS_LOST:
+                        onAttachFocus();
+                        break;
+                }
                 break;
             case SDL_SYSWMEVENT    :
                 onSysWMEvent(&event->syswm);
@@ -106,10 +113,20 @@ protected:
                 assert(0);
                 break;
             default:
-                onUserEvent(&event->user);
+                switch (event->user.type) {
+                    case ATTACH_FOCUS:
+                        onAttachFocus();
+                        break;
+                    case DETACH_FOCUS:
+                        onDetachFocus();
+                        break;
+                    default:
+                        onUserEvent(&event->user);
+                }
         }
     }
 
+    //SDL Events
     virtual void onCommonEvent (const SDL_CommonEvent* common)  =0;
     virtual void onWindowEvent (const SDL_WindowEvent& window) =0;
     virtual void onKeyboardEvent (const SDL_KeyboardEvent* key)  =0;
@@ -134,6 +151,11 @@ protected:
     virtual void onMultiGestureEvent (const SDL_MultiGestureEvent* mgesture)  =0;
     virtual void onDollarGestureEvent (const SDL_DollarGestureEvent* dgesture)  =0;
     virtual void onDropEvent (const SDL_DropEvent* drop)  =0;
+
+    //SEG Events
+    virtual void onAttachFocus() = 0;
+    virtual void onDetachFocus() = 0;
+
 
 private:
 

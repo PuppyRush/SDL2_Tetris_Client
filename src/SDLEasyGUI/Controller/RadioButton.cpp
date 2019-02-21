@@ -4,9 +4,10 @@
 
 #include "RadioButton.h"
 
-RadioButton::RadioButton(const ControllBuilder& bld)
-    :ButtonBasic(bld, TControllKind::StaticLabel)
+RadioButton::RadioButton(ControllBuilder& bld)
+    :ButtonBasic(bld)
 {
+    bld.kind(ControllKind::StaticLabel);
 }
 
 
@@ -18,11 +19,4 @@ void RadioButton::initialize()
 void RadioButton::onDraw()
 {
     ButtonBasic:onDraw();
-}
-
-
-std::shared_ptr<ButtonBasic> RadioButton::getInstance(const ControllBuilder& bld)
-{
-    std::shared_ptr<ButtonBasic> inst = std::shared_ptr<RadioButton>(new RadioButton(bld));
-    return inst;
 }

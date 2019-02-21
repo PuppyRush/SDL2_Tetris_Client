@@ -9,7 +9,7 @@ SDL_TETRIS
 TMainDisplay::TMainDisplay()
     :DisplayInterface()
 {
-    m_display = toUType(TDisplay::Main);
+    m_display = game_interface::toUType(TDisplay::Main);
 }
 
 

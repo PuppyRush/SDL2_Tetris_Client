@@ -4,9 +4,10 @@
 
 #include "Button.h"
 
-Button::Button(const ButtonBuilder& bld)
-    :ButtonBasic(bld, TControllKind::Button)
+Button::Button(ButtonBuilder& bld)
+    :ButtonBasic(bld)
 {
+    bld.kind(ControllKind::Button);
 }
 
 void Button::onDraw()
@@ -16,6 +17,6 @@ void Button::onDraw()
 
 void Button::initialize()
 {
-    Controll::initialize();
+    ButtonBasic::initialize();
 }
 

@@ -13,12 +13,12 @@ class TFigureUnit final {
 public:
 
     TFigureUnit();
-    TFigureUnit(const TPoint point, const t_age age, const TColorCode color, const UnitType type);
+    TFigureUnit(const Point point, const t_age age, const ColorCode color, const UnitType type);
     ~TFigureUnit();
 
     bool operator!=(const TFigureUnit &unit);
 
-    inline const TPoint &getPoint() const noexcept {
+    inline const Point &getPoint() const noexcept {
         return m_point;
     }
     inline t_age getAge() const noexcept {
@@ -31,10 +31,10 @@ public:
         return m_type;
     }
 
-    inline void set(const TPoint &m_point) {
+    inline void set(const Point &m_point) {
         this->m_point = m_point;
     }
-    inline void set(TPoint &&m_point) {
+    inline void set(Point &&m_point) {
         this->m_point = m_point;
     }
     inline void set(const t_age age) noexcept {
@@ -52,12 +52,12 @@ public:
     }
 
     static TFigureUnit &getDefaultUnit() {
-        static TFigureUnit unit(TPoint(0, 0), 0, TColorCode::none, UnitType::Empty);
+        static TFigureUnit unit(Point(0, 0), 0, ColorCode::none, UnitType::Empty);
         return unit;
     }
 
 private:
-    TPoint m_point;
+    Point m_point;
     t_age m_age;
     TColor m_color;
     UnitType m_type;

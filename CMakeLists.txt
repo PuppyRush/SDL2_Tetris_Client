@@ -76,7 +76,6 @@ add_executable(tetris_figure_class
         src/Tetris/Common/TDefine.h
         src/Tetris/Common/THeader.h
         src/Tetris/Common/TResource.h
-        src/Tetris/Common/TEvent.h
         src/Tetris/TFiguers/TFigureL.h
         src/Tetris/TFiguers/TFigureUnit.h
         src/Tetris/TFiguers/TFigureUnit.cpp
@@ -84,7 +83,6 @@ add_executable(tetris_figure_class
         src/Tetris/TFiguers/TFigureL.h
         src/Tetris/TFiguers/TFigureBuilder.h
         src/Tetris/TFiguers/TFigure.cpp
-        src/Tetris/TFiguers/TFigureBoard.cpp
         src/Tetris/TFiguers/TFigureBoard.h
         src/Tetris/TFiguers/TFigureBuilder.cpp
         src/Tetris/TFiguers/TFigureBoardBuilder.cpp
@@ -107,26 +105,27 @@ add_executable(tetris_figure_class
         src/Tetris/TDisplay/Game/TSingleGameDisplay.h
         src/Tetris/TDisplay/Game/TGameDisplay.cpp
         src/Tetris/TDisplay/Game/TGameDisplay.h
-        src/Tetris/TDisplay/Main/TMainLocalDisplay.h
-        src/Tetris/TDisplay/Main/TMainLocalDisplay.cpp
+        src/Tetris/TDisplay/Main/TLocalMainDisplay.h
+        src/Tetris/TDisplay/Main/TLocalMainDisplay.cpp
         src/Tetris/TDisplay/Main/TMainDisplay.h
         src/Tetris/TDisplay/Main/TMainDisplay.cpp
-        src/Tetris/TDisplay/Main/TMainOnlineDisplay.h
-        src/Tetris/TDisplay/Main/TMainOnlineDisplay.cpp
+        src/Tetris/TDisplay/Main/TMultiMainDisplay.h
+        src/Tetris/TDisplay/Main/TMultiMainDisplay.cpp
         src/Tetris/TDisplay/TOptionDisplay.cpp
         src/Tetris/TDisplay/TOptionDisplay.h
         src/Tetris/TDisplay/Game/TMultiGameRoomDisplay.cpp
         src/Tetris/TDisplay/Game/TMultiGameRoomDisplay.h
-        src/Tetris/TOption/TOptionManager.cpp
-        src/Tetris/TOption/TOptionManager.h
-        src/Tetris/TClient/TClientController.h
-        src/Tetris/TClient/TClientController.cpp
-        src/Tetris/TClient/JsonHelper.cpp
-        src/Tetris/TClient/JsonHelper.h
+        src/Tetris/TDisplay/Waiting/TWaitingRoomCard.cpp
+        src/Tetris/TDisplay/Waiting/TWaitingRoomCard.h
         src/Tetris/TDisplay/Waiting/TWaitingRoomDisplay.cpp
         src/Tetris/TDisplay/Waiting/TWaitingRoomDisplay.h
         src/Tetris/TDisplay/Main/TEnterServerDisplay.cpp
         src/Tetris/TDisplay/Main/TEnterServerDisplay.h
+        src/Tetris/TOption/TOptionManager.cpp
+        src/Tetris/TOption/TOptionManager.h
+        src/Tetris/TClient/TClientController.h
+        src/Tetris/TClient/TClientController.cpp
+        src/SDLEasyGUI/SEG_Event.h
         src/SDLEasyGUI/Windows/DisplayInterface.h
         src/SDLEasyGUI/Windows/DisplayInterface.cpp
         src/SDLEasyGUI/Windows/DisplayController.cpp
@@ -152,6 +151,8 @@ add_executable(tetris_figure_class
         src/SDLEasyGUI/Controller/GroupControllManager.h
         src/SDLEasyGUI/Controller/Border.cpp
         src/SDLEasyGUI/Controller/Border.h
+        src/SDLEasyGUI/Controller/ListBox.cpp
+        src/SDLEasyGUI/Controller/ListBox.h
         src/SDLEasyGUI/Windows/EventListener.h
         src/SDLEasyGUI/SEG_Initiator.h
         src/SDLEasyGUI/SEG_Constant.h
@@ -161,6 +162,9 @@ add_executable(tetris_figure_class
         src/SDLEasyGUI/Windows/EventDelivery.h
         src/SDLEasyGUI/Command/Commander.h
         src/SDLEasyGUI/Command/EventCommand.h
+        src/SDLEasyGUI/SEG_Event.cpp
+        src/GameInterface/Online/JsonHelper.cpp
+        src/GameInterface/Online/JsonHelper.h
         src/GameInterface/Object/Player.cpp
         src/GameInterface/Object/Player.h
         src/GameInterface/Object/Room.cpp
@@ -178,8 +182,13 @@ add_executable(tetris_figure_class
         src/GameInterface/Online/ClientService.h
         src/GameInterface/Event.h
         src/GameInterface/TStruct.h
-
-        src/Tetris/TDisplay/Waiting/TWaitingRoomCard.cpp src/Tetris/TDisplay/Waiting/TWaitingRoomCard.h)
+        src/GameInterface/Observer/Observer.h
+        src/GameInterface/Online/MessageType.h
+        src/GameInterface/Online/Packet.cpp
+        src/GameInterface/Online/Packet.h
+        src/GameInterface/Online/PacketQueue.h
+        src/GameInterface/Online/PacketQueue.cpp
+        src/GameInterface/Define.h)
 
 
 include_directories(

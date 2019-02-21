@@ -9,6 +9,10 @@
 #include "../Event.h"
 #include  "ClientService.h"
 
+#include "PacketQueue.h"
+
+using namespace game_interface;
+
 ClientService::ClientService(ACE_Reactor* reactor)
     :ACE_Event_Handler(reactor),peer_(ACE_INVALID_HANDLE),state_(C_INIT)
 {
@@ -54,9 +58,10 @@ ClientService::handle_input (ACE_HANDLE  fd/* = ACE_INVALID_HANDLE*/){
     }
 
     in[len]=NULL;
-    //std::cout<<std::endl<<"Server Data:"<<in<<std::endl;
 
-    SDL_UserEvent userevent;
+    PacketQueue::getInstance().pushEvent(Packet{in,len});
+
+    /*SDL_UserEvent userevent;
     userevent.type = RECV_DATA;
     userevent.code = 0;
     userevent.data1 = in;
@@ -65,7 +70,7 @@ ClientService::handle_input (ACE_HANDLE  fd/* = ACE_INVALID_HANDLE*/){
     event.type = RECV_DATA;
     event.user = userevent;
 
-    SDL_PushEvent(&event);
+    SDL_PushEvent(&event);*/
 
     return 0;
 }

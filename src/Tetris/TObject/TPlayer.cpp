@@ -5,9 +5,12 @@
 
 #include "TPlayer.h"
 #include "../TFiguers/TFigureBuilder.h"
-#include "../TClient/JsonHelper.h"
+#include "GameInterface/Online/JsonHelper.h"
+
 SDL_TETRIS
 
+using namespace std;
+using namespace game_interface;
 
 TPlayer::TPlayer()
 {}
@@ -24,7 +27,25 @@ void TPlayer::startGame(){
 void TPlayer::command(const t_eventType event)
 {
     m_gameCtl->command(event);
-    send(TClientController::packet_type("",3));
+
+    auto fig = this->m_gameCtl->getCurrentFigure();
+
+    time_t rawtime;
+    time (&rawtime);
+
+    string timeStr = to_string(rawtime);
+    auto gameboardBitset = JsonHelper::toGameboardBitset(
+        toUType( fig->getClass()),
+        toUType( fig->getType()),
+        fig->getPoint().x,
+        fig->getPoint().y);
+
+    auto jsonObj = JsonHelper::toJson("test", m_ip.str(), timeStr, gameboardBitset.to_string());
+    //Json::StyledWriter styledWriter;
+    //auto bufstr = styledWriter.write(jsonObj);
+
+    Packet packet{{getUnique(), messageDirection::CLIENT, messageInfo::GAME_TETRISBOARD_INFO}, jsonObj};
+    this->sendPacket(packet);
 }
 
 void TPlayer::endGame()
@@ -41,38 +62,16 @@ void TPlayer::endGame()
 
 void TPlayer::connectServer()
 {
+    assert(!getUserName().empty());
     m_clientCtl.connectServer();
 }
 
-void TPlayer::send(TClientController::packet_type packet)
+void TPlayer::sendPacket(Packet &packet)
 {
-
-    auto fig = this->m_gameCtl->getCurrentFigure();
-
-    time_t rawtime;
-    time (&rawtime);
-
-    string timeStr = to_string(rawtime);
-    auto gameboardBitset = JsonHelper::toGameboardBitset(
-        toUType( fig->getClass()),
-        toUType( fig->getType()),
-        fig->getPoint().x,
-        fig->getPoint().y);
-
-    auto jsonObj = JsonHelper::toJson("test", m_ip.str(), timeStr, gameboardBitset.to_string());
-    Json::StyledWriter styledWriter;
-    auto bufstr = styledWriter.write(jsonObj);
-
-    m_clientCtl.send(make_pair(bufstr.c_str(), bufstr.size()));
+    m_clientCtl.send(packet);
 }
 
-TClientController::packet_type TPlayer::recv()
+void TPlayer::updateObserver(const Observer&, const Packet &)
 {
-    TClientController::packet_type packet = m_clientCtl.recv();
-
-
-
-
-
 
 }

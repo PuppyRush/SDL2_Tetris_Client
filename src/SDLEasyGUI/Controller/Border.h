@@ -10,66 +10,45 @@
 #endif
 
 #include "Controll.h"
-#include "SDLEasyGUI/Windows/GraphicInterface.h"
 #include "ControllBuilder.h"
 
-enum class BorderBoundaryType : char
-{
-    angle,
-    ellipse,
-    round
-};
-
-enum class BorderBoundaryLineType : char
-{
-    straight,
-    single_dashed,
-    double_dashed,
-};
-
-typedef struct BorderBasic
-{
-    BorderBoundaryLineType lineType = BorderBoundaryLineType::straight;
-    BorderBoundaryType type = BorderBoundaryType::angle;
-    int angle = 0;
-};
-
-
+using namespace std;
 
 class BorderBuilder;
 class Border : public Controll {
 
 public:
-    Border(const BorderBuilder& basic);
+    explicit Border(ControllBuilder& basic);
 
     virtual void onDraw() override;
+    virtual void onDrawBackground(){}
 
+protected:
+
+    virtual void initialize() override;
 
 private:
 
-    BorderBasic m_borderBasic;
 };
 
 class BorderBuilder : public ControllBuilder
 {
 public:
 
-    BorderBuilder(const GraphicInterface::window_ptr window, const TPoint& point, const std::string& str)
+    BorderBuilder(const GraphicInterface::window_ptr window, const Point& point, const std::string& str)
         :ControllBuilder(window,point,str)
     {
     }
 
-    BorderBuilder(const GraphicInterface::window_ptr window, TPoint&& point, std::string&& str)
+    BorderBuilder(const GraphicInterface::window_ptr window, Point&& point, std::string&& str)
         :ControllBuilder(window,point,str)
     {
     }
 
-    virtual std::shared_ptr<Controll> build() final
+    virtual std::shared_ptr<Controll> build()
     {
         return make_shared<Border>(*this);
     }
-
-    BorderBasic m_borderBasic;
 
 };
 

@@ -37,7 +37,7 @@
 # and providing a more controlled/consistent search behavior.
 # Added new modifications to recognize OS X frameworks and
 # additional Unix paths (FreeBSD, etc).
-# Also corrected the header search path to follow "proper" SDL guidelines.
+# Also corrected the m_header search path to follow "proper" SDL guidelines.
 # Added a search for SDL2main which is needed by some platforms.
 # Added a search for threads which is needed by some platforms.
 # Added needed compile switches for MinGW.
@@ -47,7 +47,7 @@
 # SDL2_LIBRARY to override this selection or set the CMake environment
 # CMAKE_INCLUDE_PATH to modify the search paths.
 #
-# Note that the header path has changed from SDL2/SDL.h to just SDL.h
+# Note that the m_header path has changed from SDL2/SDL.h to just SDL.h
 # This needed to change because "proper" SDL convention
 # is #include "SDL.h", not <SDL2/SDL.h>. This is done for portability
 # reasons because not all systems place things in SDL2/ (see FreeBSD).

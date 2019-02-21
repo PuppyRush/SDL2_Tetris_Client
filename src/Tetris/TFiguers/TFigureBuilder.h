@@ -5,7 +5,6 @@
   #pragma once
 #endif
 
-#include "Tetris/Common/TDefine.h"
 #include "../Common/TType.h"
 #include "TFigure.h"
 #include "TFigureL.h"
@@ -20,10 +19,10 @@ class TFigureBuilder final
 {
 public:
 
-    TFigureBuilder(const TPoint &point);
+    TFigureBuilder(const Point &point);
     virtual ~TFigureBuilder() {}
 
-    inline TFigureBuilder* color(const TColorCode& color)
+    inline TFigureBuilder* color(const ColorCode& color)
     {
         this->m_color = color;
         return this;
@@ -54,8 +53,8 @@ public:
         return this;
     }
 
-    inline const TPoint getPoint() const noexcept { return m_point; }
-    inline const TColorCode getColor() const noexcept { return m_color; }
+    inline const Point getPoint() const noexcept { return m_point; }
+    inline const ColorCode getColor() const noexcept { return m_color; }
     inline const TFigureType getType() const noexcept { return m_figureType; }
     inline const t_age getAge() const noexcept { return m_age; }
     inline const t_size getHeight() const noexcept { return m_height; }
@@ -74,8 +73,8 @@ private:
 
     t_size m_width;
     t_size m_height;
-    TColorCode m_color;
-    TPoint m_point;
+    ColorCode m_color;
+    Point m_point;
     TFigureType m_figureType;
     TFigureClass  m_figureClass = TFigureClass::End;
     t_age m_age;

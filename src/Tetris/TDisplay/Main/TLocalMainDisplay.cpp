@@ -3,7 +3,7 @@
 //
 
 
-#include "TMainLocalDisplay.h"
+#include "TLocalMainDisplay.h"
 #include "Tetris/TDisplay/Game/TSingleGameDisplay.h"
 #include "Tetris/TDisplay/TOptionDisplay.h"
 #include "SDLEasyGUI/Windows/DisplayController.h"
@@ -11,27 +11,28 @@
 #include "Tetris/Common/TResource.h"
 
 SDL_TETRIS
+using namespace game_interface;
 
-TMainLocalDisplay::TMainLocalDisplay()
+TLocalMainDisplay::TLocalMainDisplay()
 {
     m_mode = TLocalMode::Local;
 }
 
-void TMainLocalDisplay::registerEvent() {
+void TLocalMainDisplay::registerEvent() {
 
-    event_buttonClick(toUType(resource::MAIN_SINGLE_GAME_START_BUTTON), std::bind(&TMainLocalDisplay::onClickedStartLocalGame, this));
-    event_buttonClick(toUType(resource::MAIN_OPTION_BUTTON), std::bind(&TMainLocalDisplay::onClickedOption, this));
+    event_buttonClick(toUType(resource::MAIN_SINGLE_GAME_START_BUTTON), std::bind(&TLocalMainDisplay::onClickedStartLocalGame, this));
+    event_buttonClick(toUType(resource::MAIN_OPTION_BUTTON), std::bind(&TLocalMainDisplay::onClickedOption, this));
 }
 
-void TMainLocalDisplay::onPreInitialize() {
+void TLocalMainDisplay::onPreInitialize() {
     //setBackgroundImgPath("../resources/images/background.png");
 
     t_size begin_y = WINDOW_HEIGHT/3;
 
     {
         ButtonBuilder bld(getWindow(), {WINDOW_WIDTH / 2 - 100, begin_y}, "PLAY ALONE");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
-            background_color(TColorCode::white)->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
+            backgroundColor(ColorCode::white)->
             id(toUType(resource::MAIN_SINGLE_GAME_START_BUTTON))->
             width(200)->
             height(50)->
@@ -42,9 +43,9 @@ void TMainLocalDisplay::onPreInitialize() {
     begin_y+=80;
     {
         ButtonBuilder bld(getWindow(), {WINDOW_WIDTH/2-50, begin_y}, "OPTION");
-            bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
             id(toUType(resource::MAIN_OPTION_BUTTON))->
-            background_color(TColorCode::white)->
+            backgroundColor(ColorCode::white)->
             width(100)->
             height(50)->
             enabled(true);
@@ -54,9 +55,9 @@ void TMainLocalDisplay::onPreInitialize() {
     begin_y+=80;
     {
         ButtonBuilder bld(getWindow(),{WINDOW_WIDTH/2-50, begin_y}, "EXIT");
-            bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
             id(toUType(resource::MAIN_EXIT))->
-            background_color(TColorCode::white)->
+            backgroundColor(ColorCode::white)->
             width(100)->
             height(50)->
             enabled(true);
@@ -66,24 +67,24 @@ void TMainLocalDisplay::onPreInitialize() {
     ::DisplayInterface::onPreInitialize();
 }
 
-void TMainLocalDisplay::onClickedStartLocalGame()
+void TLocalMainDisplay::onClickedStartLocalGame()
 {
     auto dlg = make_shared<TSingleGameDisplay>();
     dlg->modal();
 }
 
-void TMainLocalDisplay::onClickedOption()
+void TLocalMainDisplay::onClickedOption()
 {
     auto dlg = make_shared<TOptionDisplay>();
     dlg->modal();
 }
 
-void TMainLocalDisplay::onTimer()
+void TLocalMainDisplay::onTimer()
 {
 
 }
 
-void TMainLocalDisplay::onDraw()
+void TLocalMainDisplay::onDraw()
 {
     DisplayInterface::onDraw();
 }

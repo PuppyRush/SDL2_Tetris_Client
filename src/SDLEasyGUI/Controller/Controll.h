@@ -25,10 +25,10 @@ public:
     inline const t_res getId() const noexcept{
         return m_basic->id;
     }
-    inline const TPoint &getPoint() const noexcept{
+    inline const Point &getPoint() const noexcept{
         return m_basic->point;
     }
-    inline void setPoint(const TPoint &point) noexcept{
+    inline void setPoint(const Point &point) noexcept{
         m_basic->point = point;
     }
     inline const t_size getWidth() const noexcept{
@@ -49,7 +49,7 @@ public:
     inline void setFont(const TFont &font) noexcept{
         m_basic->font = font;
     }
-    inline const TColor getBackground_color() const noexcept{
+    inline const TColor getBackgroundColor() const noexcept{
         return  m_basic->background_color;
     }
     inline void setBackground_color(const TColor &background_color) noexcept{
@@ -67,7 +67,7 @@ public:
     inline void setEnabled(bool enabled) noexcept{
         m_basic->enabled = enabled;
     }
-    inline const TControllKind getKind() const noexcept{
+    inline const ControllKind getKind() const noexcept{
         return  m_basic->kind;
     }
     inline const int getGroup() const noexcept{
@@ -91,17 +91,42 @@ public:
     inline const bool getAutoSize() const noexcept{
         return  m_basic->autoSize;
     }
+    inline const BorderBoundaryLineType getBorderBoundaryLineType() const noexcept{
+        return m_basic->borderLineType;
+    }
+    inline const BorderBoundaryType getBorderBoundaryType() const noexcept{
+        return m_basic->borderType;
+    }
+    inline const TColor &getBorderLineColor() const noexcept{
+        return m_basic->borderColor;
+    }
+    inline const int getBorderAngle() const noexcept{
+        return m_basic->borderAngle;
+    }
+    inline const int getBorderThick() const noexcept{
+        return m_basic->borderThick;
+    }
     inline const bool isSelected() const noexcept{
         return m_basic->selected;
     }
 
+    inline const bool isFoucs() const {
+        return m_isFoucs;
+    }
+
+    inline void setFoucs(bool m_isFoucs) {
+        Controll::m_isFoucs = m_isFoucs;
+    }
+
     void setSelected(bool selected);
-    const bool isHit(const TPoint& point);
-    virtual void onDraw() override;
+    const bool isHit(const Point& point);
+    void onVirtualDraw();
+
     virtual void initialize();
+
 protected:
 
-    Controll(const ControllBuilder& bld, const TControllKind kind);
+    explicit Controll(const ControllBuilder& bld);
 
     inline const bool isMultiselected() const noexcept{
         m_basic->multiselected;
@@ -110,13 +135,15 @@ protected:
         m_basic->multiselected = multiselected;
     }
 
-    virtual void lButtonClicked(){}
+    virtual void onDraw() = 0;
+    virtual void onDrawBackground() = 0;
+    virtual void refresh();
 
     virtual void onCommonEvent (const SDL_CommonEvent* common)  {};
     virtual void onWindowEvent (const SDL_WindowEvent& window) {};
-    virtual void onKeyboardEvent (const SDL_KeyboardEvent* key)  {};
+    virtual void onKeyboardEvent (const SDL_KeyboardEvent* key);
     virtual void onTextEditingEvent (const SDL_TextEditingEvent* edit)  {};
-    virtual void onTextInputEvent (const SDL_TextInputEvent* text)  {};
+    virtual void onTextInputEvent (const SDL_TextInputEvent* text) ;
     virtual void onMouseMotionEvent (const SDL_MouseMotionEvent* motion)  {};
     virtual void onMouseButtonEvent (const SDL_MouseButtonEvent* button) {}
     virtual void onMouseWheelEvent (const SDL_MouseWheelEvent* wheel)  {};
@@ -137,11 +164,16 @@ protected:
     virtual void onDollarGestureEvent (const SDL_DollarGestureEvent* dgesture)  {};
     virtual void onDropEvent (const SDL_DropEvent* drop)  {};
 
+    virtual void onAttachFocus() {};
+    virtual void onDetachFocus() {};
+
+    bool m_isFoucs = false;
+    std::shared_ptr<ControllBasic> m_basic;
+
 private:
 
-    virtual bool validId(const t_id id) override final;
-
-    std::shared_ptr<ControllBasic> m_basic;
+    virtual bool validId(const game_interface::t_id id) override final;
+    virtual void onTimer() {};
 
 };
 

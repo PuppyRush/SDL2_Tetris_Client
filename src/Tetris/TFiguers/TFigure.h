@@ -55,10 +55,10 @@ public:
     inline const TColor getColor()
     { return m_color;}
 
-    inline const TPoint getPoint()
+    inline const Point getPoint()
     { return m_point;}
 
-    inline void setPoint(const TPoint& point)
+    inline void setPoint(const Point& point)
     { _resetRelateivePoint(point); m_point = point; }
 
     inline FigureCoords& getCoords()
@@ -104,7 +104,7 @@ protected:
     t_size m_figureTypeCount;
     t_size m_width;
     t_size m_height;
-    TPoint m_point;
+    Point m_point;
     TColor m_color;
     TFigureClass  m_figureClass;
     TFigureType m_figureType;
@@ -119,7 +119,7 @@ private:
     virtual bool _validation() = 0;
     virtual void _rotateLeft() = 0;
     virtual void _rotateRight() = 0;
-    void _resetRelateivePoint(const TPoint& exPt);
+    void _resetRelateivePoint(const Point& exPt);
 };
 
 SDL_TETRIS_END

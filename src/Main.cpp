@@ -6,8 +6,8 @@
 #include "Tetris/Common/TResource.h"
 #include "Tetris/TDisplay/Game/TSingleGameDisplay.h"
 #include "Tetris/TDisplay/Game/TMultiGameRoomDisplay.h"
-#include "Tetris/TDisplay/Main/TMainLocalDisplay.h"
-#include "Tetris/TDisplay/Main/TMainOnlineDisplay.h"
+#include "Tetris/TDisplay/Main/TLocalMainDisplay.h"
+#include "Tetris/TDisplay/Main/TMultiMainDisplay.h"
 
 #define SDL_DEBUG_EVENTS
 
@@ -22,16 +22,14 @@ void init()
     //TGameLocalDisplay::getInstance()->setBackgroundImgPath("../resources/images/background.png");
 
     //Registry Event
-    auto ev = SDL_RegisterEvents(100);
+    //auto ev = SDL_RegisterEvents(100);
 
 }
 
 int main() {
     init();
 
-
-
-    auto maindlg = make_shared<TMainOnlineDisplay>();
+    auto maindlg = std::make_shared<TMultiMainDisplay>();
     maindlg->modal();
 
     SDLEasyGUI_Quit();

@@ -9,9 +9,9 @@
   #pragma once
 #endif
 
-#include "Controll.h"
+#include "Border.h"
 
-class ButtonBasic : public Controll{
+class ButtonBasic : public Border{
 public:
 
     inline const bool isMultiselected() const noexcept{
@@ -22,12 +22,19 @@ public:
     }
 
     virtual void onDraw() override;
+    virtual void onDrawBackground() override;
 
 protected:
-    ButtonBasic(const ControllBuilder& bld, const TControllKind kind);
+    explicit ButtonBasic(ControllBuilder& bld);
+    virtual void initialize() override;
 
 private:
+
     void _drawCarot();
+
+    int m_textWidth = 0;
+    int m_textHeight = 0;
+    std::shared_ptr<SDL_Texture> m_texture;
 };
 
 #endif //TETRIS_FIGURE_CLASS_TBUTTONBASIC_H

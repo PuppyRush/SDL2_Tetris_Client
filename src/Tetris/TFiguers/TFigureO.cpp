@@ -1,6 +1,7 @@
 #include "TFigureO.h"
 
 using namespace tetris;
+using namespace game_interface;
 
 TFigureO::TFigureO (const TFigureBuilder *bld)
     : TFigure (bld)

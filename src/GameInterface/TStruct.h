@@ -16,36 +16,33 @@
 
 #include <SDL2/SDL_image.h>
 
-#include "TType.h"
-//#include "Tetris/Common/TProperty.h"
+#include "Type.h"
 
-typedef struct TIPString
-{
+namespace game_interface {
+
+typedef struct TIPString {
     TIPString()
-    :TIPString({192,168,0,1})
-    {
+        : TIPString({192, 168, 0, 1}) {
 
     }
 
-    TIPString(std::initializer_list<size_t> fields)
-    {
+    TIPString(std::initializer_list<size_t> fields) {
         assert(fields.size() == 4);
         ip.reserve(16);
-        for (size_t b : fields)
-        {
+        for (size_t b : fields) {
             ip.append(std::to_string(static_cast<long>(b)));
             ip.append(".");
         }
         ip.pop_back();
     }
 
-    const char* str() const
-    {
+    const char *str() const {
         return ip.c_str();
     }
 
     std::string ip;
-}TIPString;
+} TIPString;
 
+}
 
 #endif //TETRIS_FIGURE_CLASS_TSTRUCT_H

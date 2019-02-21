@@ -10,9 +10,9 @@
 #endif
 
 
-#include  <thread>
-#include  <string>
-#include  <iostream>
+#include <thread>
+#include <string>
+#include <iostream>
 #include <memory>
 
 #include  <ace/ACE.h>
@@ -22,8 +22,9 @@
 #include  <ace/OS.h>
 
 #include "Tetris/Common/THeader.h"
-#include "../../GameInterface/TType.h"
+#include "GameInterface/Type.h"
 #include "GameInterface/TStruct.h"
+#include "GameInterface/Online/Packet.h"
 #include  "GameInterface/Online/ClientConnector.h"
 #include  "GameInterface/Online/ClientService.h"
 
@@ -33,13 +34,13 @@ SDL_TETRIS_BEGIN
 class TClientController final
 {
 public:
-    using packet_type = std::pair<const char*, const size_t>;
+
 
     TClientController();
     ~TClientController();
     void connectServer();
-    void send(const packet_type);
-    const packet_type recv();
+    void send(game_interface::Packet& pcket);
+    //const Packet recv();
 
     bool isEndConnect() const {
         return m_endConnect;
@@ -49,10 +50,10 @@ public:
     }
 
 private:
-    TIPString m_ip;
-    t_port m_port;
-    std::shared_ptr<ClientConnector> m_connetor;
-    std::shared_ptr<ClientService> m_service;
+    game_interface::TIPString m_ip;
+    game_interface::t_port m_port;
+    std::shared_ptr<game_interface::ClientConnector> m_connetor;
+    std::shared_ptr<game_interface::ClientService> m_service;
     std::shared_ptr<ACE_Reactor> m_reactor;
     std::shared_ptr<ACE_Select_Reactor> m_aceSelectReactor;
     std::thread m_clientThread;

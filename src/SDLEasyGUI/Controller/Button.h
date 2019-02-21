@@ -16,31 +16,31 @@ class Button : public ButtonBasic
 {
 
 public:
-    Button(const ButtonBuilder& bld);
+    explicit Button(ButtonBuilder& bld);
 
     virtual void initialize() override;
-    virtual void onDraw();
+    virtual void onDraw() override;
 
 };
 
 
-class ButtonBuilder : public ControllBuilder
+class ButtonBuilder : public BorderBuilder
 {
 public:
 
-    ButtonBuilder(const GraphicInterface::window_ptr window, const TPoint& point, const std::string& str)
-        :ControllBuilder(window,point,str)
+    ButtonBuilder(const GraphicInterface::window_ptr window, const Point& point, const std::string& str)
+        :BorderBuilder(window,point,str)
     {
     }
 
-    ButtonBuilder(const GraphicInterface::window_ptr window, TPoint&& point, std::string&& str)
-        :ControllBuilder(window,point,str)
+    ButtonBuilder(const GraphicInterface::window_ptr window, Point&& point, std::string&& str)
+        :BorderBuilder(window,point,str)
     {
     }
 
     virtual std::shared_ptr<Controll> build() final
     {
-        return make_shared<Button>(*this);
+        return std::make_shared<Button>(*this );
     }
 
 };

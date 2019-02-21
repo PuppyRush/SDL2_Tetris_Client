@@ -6,6 +6,9 @@
 
 SDL_TETRIS
 
+using namespace std;
+using namespace game_interface;
+
 void fn(ACE_Reactor* app){
     app->owner( ACE_OS::thr_self());
     app->run_reactor_event_loop();
@@ -16,7 +19,6 @@ TClientController::TClientController()
      m_ip({127,0,0,1}),
      m_connetor(nullptr),
      m_service(nullptr)
-    // m_aceSelectReactor(make_shared<ACE_Select_Reactor>())
 {
     /*ACE::init();
 
@@ -41,17 +43,13 @@ void TClientController::connectServer()
 
     new  ClientConnector("127.0.0.1:12345",m_reactor.get(), *m_service.get());
 
-    m_clientThread = std::thread(fn,m_reactor.get());
+    m_clientThread = thread(fn,m_reactor.get());
 
 }
 
-void TClientController::send(const packet_type packet) {
-    m_service->send((void *) packet.first, packet.second);
+void TClientController::send(Packet& packet) {
+
+    auto bytes = packet.toByte();
+    m_service->send((void *) bytes.first, bytes.second);
 }
 
-const TClientController::packet_type TClientController::recv() {
-    char buf[512];
-    ssize_t len=0;
-   // m_service->recv(buf,len);
-    return make_pair(buf,len);
-}

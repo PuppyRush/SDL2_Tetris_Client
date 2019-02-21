@@ -12,10 +12,8 @@
 
 #include <SDL2/SDL_stdinc.h>
 
-#include "../../GameInterface/TType.h"
-#include "Tetris/Common/TDefine.h"
-
-using namespace std;
+#include "GameInterface/Type.h"
+#include "TDefine.h"
 
 SDL_TETRIS_BEGIN
 

@@ -8,11 +8,13 @@
 #include <functional>
 
 #include "Tetris/Common/TResource.h"
-#include "Tetris/Common/TEvent.h"
+#include "SDLEasyGUI/SEG_Event.h"
 #include "SDLEasyGUI/Controller/Button.h"
 #include "TSingleGameDisplay.h"
+#include "TOption/TOptionManager.h"
 
 SDL_TETRIS
+using namespace game_interface;
 
 TSingleGameDisplay::TSingleGameDisplay()
 {
@@ -23,7 +25,7 @@ TSingleGameDisplay::TSingleGameDisplay()
 
 void TSingleGameDisplay::onClickedStart()
 {
-    auto ply = std::make_shared<TPlayer>();
+    auto ply = TPlayer::getPlayer();
     ply->startGame();
     m_players.emplace_back(ply);
 
@@ -31,17 +33,19 @@ void TSingleGameDisplay::onClickedStart()
 
     m_drawLine = TOptionManager::getInstance()->isDrawLine();
 
-    board->setStartDisplayPoint(TPoint{GAMEBOARD_BEGIN_X, GAMEBOARD_BEGIN_Y});
+    board->setStartDisplayPoint(Point{GAMEBOARD_BEGIN_X, GAMEBOARD_BEGIN_Y});
     board->setblockLength(FIGURE_UNIT_LEN);
 
     auto nextboard = ply->getController()->getNextFigureBoard();
-    nextboard->setStartDisplayPoint(TPoint{GAMEBOARD_BEGIN_X + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN, GAMEBOARD_BEGIN_Y});
+    nextboard->setStartDisplayPoint(Point{GAMEBOARD_BEGIN_X + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN, GAMEBOARD_BEGIN_Y});
     nextboard->setblockLength(FIGURE_UNIT_LEN);
 
-    m_figureTimer = SDL_AddTimer(1000, my_callbackfunc, nullptr);
+    TimerAdder tAdder(1000,toUType(TetrisEvent::TETRIS_EVENT_FIGURETIMER));
+    m_figureTimer = tAdder.addTimer();
+
     m_gamestart = true;
 
-    auto ctl = getControll(toUType(resource::GAME_START));
+    auto ctl = getControll(resource::GAME_START);
     ctl->setEnabled(false);
 }
 
@@ -62,9 +66,9 @@ void TSingleGameDisplay::onPreInitialize()
     t_size begin_y = WINDOW_HEIGHT/10*3;
     {
         ButtonBuilder bld(getWindow(), {WINDOW_WIDTH/5*3, begin_y}, "START");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
             id(toUType(resource::GAME_START))->
-            background_color(TColorCode::white)->
+            backgroundColor(ColorCode::white)->
             width(150)->
             height(50)->
             enabled(true);
@@ -74,9 +78,9 @@ void TSingleGameDisplay::onPreInitialize()
     begin_y += 80;
     {
         ButtonBuilder bld(getWindow(), {WINDOW_WIDTH/5*3, begin_y}, "SUSPEND");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
             id(toUType(resource::GAME_SUSPEND))->
-            background_color(TColorCode::white)->
+            backgroundColor(ColorCode::white)->
             width(150)->
             height(50)->
             enabled(true);
@@ -86,9 +90,9 @@ void TSingleGameDisplay::onPreInitialize()
     begin_y += 80;
     {
         ButtonBuilder bld(getWindow(), {WINDOW_WIDTH/5*3, begin_y}, "EXIT");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
             id(toUType(resource::GAME_END))->
-            background_color(TColorCode::white)->
+            backgroundColor(ColorCode::white)->
             width(150)->
             height(50)->
             enabled(true);

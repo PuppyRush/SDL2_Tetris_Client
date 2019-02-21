@@ -7,14 +7,14 @@
 
 using namespace tetris;
 
-TFigureBuilder::TFigureBuilder(const TPoint &point)
+TFigureBuilder::TFigureBuilder(const Point &point)
     : m_point(point),
       m_width(0),
       m_height(0),
-      m_color(EnumHelper<TColorCode>::getRandomly ()),
+      m_color(game_interface::EnumHelper<ColorCode>::getRandomly ()),
       m_age(1),
       m_figureType(TFigureType::A),
-      m_figureClass(EnumHelper<TFigureClass>::getRandomly())
+      m_figureClass(game_interface::EnumHelper<TFigureClass>::getRandomly())
   {
   }
 
@@ -26,19 +26,19 @@ std::shared_ptr<TFigure> TFigureBuilder::build()
     switch(getClass())
     {
         case TFigureClass::L:
-            this->color(TColorCode::green);
+            this->color(ColorCode::green);
             return TFigureL::get(this);
         case TFigureClass::Z:
-            this->color(TColorCode::red);
+            this->color(ColorCode::red);
             return TFigureZ::get(this);
         case TFigureClass ::I:
-            this->color(TColorCode::yellow);
+            this->color(ColorCode::yellow);
             return TFigureI::get(this);
         case TFigureClass ::O:
-            this->color(TColorCode::orange);
+            this->color(ColorCode::orange);
             return TFigureO::get(this);
         case TFigureClass ::T:
-            this->color(TColorCode::blue);
+            this->color(ColorCode::blue);
             return TFigureT::get(this);
         default:
             assert(0);

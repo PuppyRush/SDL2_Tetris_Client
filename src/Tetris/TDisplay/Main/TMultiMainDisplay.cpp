@@ -2,36 +2,39 @@
 // Created by chaed on 18. 12. 18.
 //
 
-#include "TMainOnlineDisplay.h"
-#include "Tetris/TDisplay/TOptionDisplay.h"
+#include "TMultiMainDisplay.h"
+#include "TEnterServerDisplay.h"
 #include "SDLEasyGUI/Controller/Button.h"
 #include "SDLEasyGUI/Windows/DisplayController.h"
-#include "Tetris/Common/TResource.h"
-#include "Tetris/TDisplay/Game/TMultiGameRoomDisplay.h"
+#include "../TOptionDisplay.h"
+#include "../../Common/TResource.h"
 
 SDL_TETRIS
+using namespace game_interface;
 
-TMainOnlineDisplay::TMainOnlineDisplay()
+TMultiMainDisplay::TMultiMainDisplay()
 {
     m_mode = TLocalMode::Online;
 }
 
-void TMainOnlineDisplay::registerEvent()
+void TMultiMainDisplay::registerEvent()
 {
-    event_buttonClick(toUType(resource::MAIN_SINGLE_GAME_START_BUTTON), std::bind(&TMainOnlineDisplay::onClickedEnterServer, this));
-    event_buttonClick(toUType(resource::MAIN_OPTION_BUTTON), std::bind(&TMainOnlineDisplay::onClickedOption, this));
+    event_buttonClick(toUType(resource::MAIN_MULTI_GAME_START_BUTTON), std::bind(&TMultiMainDisplay::onClickedEnterServer, this));
+    event_buttonClick(toUType(resource::MAIN_OPTION_BUTTON), std::bind(&TMultiMainDisplay::onClickedOption, this));
 }
 
-void TMainOnlineDisplay::onPreInitialize() {
+void TMultiMainDisplay::onPreInitialize() {
 
     t_size begin_y = WINDOW_HEIGHT/3;
     {
         ButtonBuilder bld(getWindow(), {WINDOW_WIDTH / 2 - 120, begin_y}, "PLAY TOGETHER");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
-            background_color(TColorCode::white)->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
+            backgroundColor(ColorCode::white)->
             id(toUType(resource::MAIN_MULTI_GAME_START_BUTTON))->
             width(240)->
             height(50)->
+            borderColor(ColorCode::silver)->
+            borderThick(4)->
             enabled(true);
 
         addControll(bld.build());
@@ -39,9 +42,9 @@ void TMainOnlineDisplay::onPreInitialize() {
     begin_y+=80;
     {
         ButtonBuilder bld(getWindow(), {WINDOW_WIDTH/2-50, begin_y}, "OPTION");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
             id(toUType(resource::MAIN_OPTION_BUTTON))->
-            background_color(TColorCode::white)->
+            backgroundColor(ColorCode::white)->
             width(100)->
             height(50)->
             enabled(true);
@@ -51,9 +54,9 @@ void TMainOnlineDisplay::onPreInitialize() {
     begin_y+=80;
     {
         ButtonBuilder bld(getWindow(),{WINDOW_WIDTH/2-50, begin_y}, "EXIT");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
             id(toUType(resource::MAIN_EXIT))->
-            background_color(TColorCode::white)->
+            backgroundColor(ColorCode::white)->
             width(100)->
             height(50)->
             enabled(true);
@@ -64,24 +67,24 @@ void TMainOnlineDisplay::onPreInitialize() {
     ::DisplayInterface::onPreInitialize();
 }
 
-void TMainOnlineDisplay::onTimer()
+void TMultiMainDisplay::onTimer()
 {
 
 }
 
-void TMainOnlineDisplay::onDraw()
+void TMultiMainDisplay::onDraw()
 {
     TMainDisplay::onDraw();
 }
 
-void TMainOnlineDisplay::onClickedOption()
+void TMultiMainDisplay::onClickedOption()
 {
     auto dlg = make_shared<TOptionDisplay>();
     dlg->modal();
 }
 
-void TMainOnlineDisplay::onClickedEnterServer()
+void TMultiMainDisplay::onClickedEnterServer()
 {
-    auto dlg = make_shared<TMultiGameRoomDisplay>();
+    auto dlg = make_shared<TEnterServerDisplay>();
     dlg->modal();
 }

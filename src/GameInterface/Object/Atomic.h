@@ -5,7 +5,9 @@
   #pragma once
 #endif
 
-#include "../TType.h"
+#include "GameInterface/Type.h"
+
+namespace game_interface {
 
 class Atomic
 {
@@ -29,5 +31,7 @@ public:
 private:
 	Atomic()	{}
 };
+
+}
 
 #endif

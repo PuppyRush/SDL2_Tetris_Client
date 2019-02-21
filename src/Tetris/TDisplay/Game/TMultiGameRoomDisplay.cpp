@@ -7,11 +7,13 @@
 #include "TMultiGameRoomDisplay.h"
 #include "SDLEasyGUI/Controller/Button.h"
 #include "GameInterface/Event.h"
-#include "Tetris/TClient/JsonHelper.h"
+#include "GameInterface/Online/JsonHelper.h"
 #include "Tetris/Common/TResource.h"
 #include "Tetris/TFiguers/TFigureBuilder.h"
+#include "../../TOption/TOptionManager.h"
 
 SDL_TETRIS
+using namespace game_interface;
 
 Uint32 callback(Uint32 interval, void *param) {
 
@@ -44,11 +46,11 @@ void TMultiGameRoomDisplay::onClickedStart()
         ply->connectServer();
         auto board = ply->getController()->getBoard();
 
-        board->setStartDisplayPoint(TPoint{GAMEBOARD_BEGIN_X, GAMEBOARD_BEGIN_Y});
+        board->setStartDisplayPoint(Point{GAMEBOARD_BEGIN_X, GAMEBOARD_BEGIN_Y});
         board->setblockLength(FIGURE_UNIT_LEN);
 
         auto nextboard = ply->getController()->getNextFigureBoard();
-        nextboard->setStartDisplayPoint(TPoint{GAMEBOARD_BEGIN_X + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN,
+        nextboard->setStartDisplayPoint(Point{GAMEBOARD_BEGIN_X + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN,
                                                GAMEBOARD_BEGIN_Y});
         nextboard->setblockLength(FIGURE_UNIT_LEN);
     }
@@ -62,11 +64,11 @@ void TMultiGameRoomDisplay::onClickedStart()
         auto board = echoPly->getController()->getBoard();
 
         const auto beginX = GAMEBOARD_BEGIN_X+600;
-        board->setStartDisplayPoint(TPoint{beginX, GAMEBOARD_BEGIN_Y});
+        board->setStartDisplayPoint(Point{beginX, GAMEBOARD_BEGIN_Y});
         board->setblockLength(FIGURE_UNIT_LEN);
 
         auto nextboard = echoPly->getController()->getNextFigureBoard();
-        nextboard->setStartDisplayPoint(TPoint{beginX + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN,
+        nextboard->setStartDisplayPoint(Point{beginX + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN,
                                                GAMEBOARD_BEGIN_Y});
         nextboard->setblockLength(FIGURE_UNIT_LEN);
     }
@@ -75,7 +77,7 @@ void TMultiGameRoomDisplay::onClickedStart()
     m_figureTimer = SDL_AddTimer(1000, callback, this);
     m_gamestart = true;
 
-    auto ctl = getControll(toUType(resource::GAME_START));
+    auto ctl = getControll(resource::GAME_START);
     ctl->setEnabled(false);
 }
 
@@ -94,9 +96,9 @@ void TMultiGameRoomDisplay::onPreInitialize()
     t_size begin_y = WINDOW_HEIGHT/10*3;
     {
         ButtonBuilder bld(getWindow(), {WINDOW_WIDTH/10*4+50, begin_y}, "START");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
             id(toUType(resource::GAME_START))->
-            background_color(TColorCode::white)->
+            backgroundColor(ColorCode::white)->
             width(150)->
             height(50)->
             enabled(true);
@@ -106,9 +108,9 @@ void TMultiGameRoomDisplay::onPreInitialize()
     begin_y += 80;
     {
         ButtonBuilder bld(getWindow(), {WINDOW_WIDTH/10*4+50, begin_y}, "SUSPEND");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
             id(toUType(resource::GAME_SUSPEND))->
-            background_color(TColorCode::white)->
+            backgroundColor(ColorCode::white)->
             width(150)->
             height(50)->
             enabled(true);
@@ -118,9 +120,9 @@ void TMultiGameRoomDisplay::onPreInitialize()
     begin_y += 80;
     {
         ButtonBuilder bld(getWindow(), {WINDOW_WIDTH/10*4+50, begin_y}, "EXIT");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, TColorCode::black})->
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
             id(toUType(resource::GAME_END))->
-            background_color(TColorCode::white)->
+            backgroundColor(ColorCode::white)->
             width(150)->
             height(50)->
             enabled(true);
@@ -175,7 +177,7 @@ void TMultiGameRoomDisplay::onUserEvent(const SDL_UserEvent* event)
 
                 auto figure = bld.build();
                 m_players.at(1)->getController()->forceSet(figure.get());
-                pushDrawDisplayEvent();
+                refresh();
             }
             break;
         default:;

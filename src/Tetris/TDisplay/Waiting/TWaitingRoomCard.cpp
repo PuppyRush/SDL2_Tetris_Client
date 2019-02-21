@@ -3,3 +3,22 @@
 //
 
 #include "TWaitingRoomCard.h"
+
+SDL_TETRIS
+
+TWaitingRoomCard::TWaitingRoomCard(TWaitingRoomCardBuilder& bld)
+    :Border(bld)
+{
+    bld.kind(ControllKind::ListBox);
+}
+
+void TWaitingRoomCard::onDraw()
+{
+    Border::onDraw();
+}
+
+void TWaitingRoomCard::initialize()
+{
+    Border::initialize();
+}
+

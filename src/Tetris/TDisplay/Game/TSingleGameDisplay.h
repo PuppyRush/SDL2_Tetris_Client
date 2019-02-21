@@ -33,6 +33,7 @@ private:
     virtual void registerEvent() override final;
     virtual void onTimer() override final;
 
+    virtual void updateObserver(const Observer&, const game_interface::Packet &) override final {}
 };
 
 SDL_TETRIS_END

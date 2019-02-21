@@ -5,27 +5,43 @@
 #include "Border.h"
 
 
-Border::Border(const BorderBuilder& basic)
-    :Controll(basic ,TControllKind::Border),
-    m_borderBasic{basic.m_borderBasic}
+Border::Border(ControllBuilder& basic)
+    :Controll(basic )
 {
-
+    basic.kind(ControllKind::Border);
 }
+
+void Border::initialize()
+{
+}
+
 
 void Border::onDraw()
 {
     auto renderer = getWindow()->getSDLRenderer().get();
 
-    switch(m_borderBasic.type)
+    const int x = getPoint().x;
+    const int y = getPoint().y;
+    const int w = getWidth();
+    const int h = getHeight();
+
+    switch(getBorderBoundaryType())
     {
         case BorderBoundaryType::angle: {
-            SDL_Rect rect{getPoint().x, getPoint().y, getWidth(), getHeight()};
+            const auto &lineColor = getBorderLineColor();
+            const size_t cnt = 5;
+            for(int i=0 ; i < getBorderThick() ; i++)
+            {
+                SDL_Point points[cnt] =
+                    {{x+i,y+i},
+                     {x+w-i,y+i},
+                     {x+w-i,y+h-i},
+                     {x+i,y+h-i},
+                     {x+i,y+i}};
 
-            const auto &back_color = getBackground_color();
-
-            SDL_SetRenderDrawColor(renderer, back_color.r, back_color.g, back_color.b, 255);
-            SDL_RenderFillRect(renderer, &rect);
-            //SDL_RenderDrawRect(renderer, &rect);
+                SDL_SetRenderDrawColor(renderer, lineColor.r, lineColor.g, lineColor.b, 255);
+                SDL_RenderDrawLines(renderer, points, cnt);
+            }
         }
         break;
         case BorderBoundaryType::ellipse:
@@ -36,4 +52,5 @@ void Border::onDraw()
             assert(0);
             break;
     }
+
 }

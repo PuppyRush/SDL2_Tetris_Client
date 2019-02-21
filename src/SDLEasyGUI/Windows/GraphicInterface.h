@@ -9,7 +9,6 @@
   #pragma once
 #endif
 
-
 #include "Tetris/Common/TDefine.h"
 #include "Window.h"
 #include "EventListener.h"
@@ -35,9 +34,12 @@ protected:
     GraphicInterface() = default;
     virtual ~GraphicInterface() = default;
 
+    virtual void refresh() = 0;
+
 private:
 
-    virtual bool validId(const t_id id) = 0;
+    virtual bool validId(const game_interface::t_id id) = 0;
+    virtual void onTimer() = 0;
 
     window_ptr m_window = nullptr;
 

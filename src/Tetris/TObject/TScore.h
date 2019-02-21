@@ -35,7 +35,7 @@ public:
 private:
 
     int m_score = 0;
-    TPoint m_boardBegin;
+    Point m_boardBegin;
     TColor m_backColor;
     TFont m_font;
 

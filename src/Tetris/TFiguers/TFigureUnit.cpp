@@ -4,14 +4,14 @@ SDL_TETRIS
 
 TFigureUnit::TFigureUnit()
     :m_type(UnitType::Empty),
-     m_point(TPoint(0,0)),
-     m_color(TColorCode::none),
+     m_point(Point(0,0)),
+     m_color(ColorCode::none),
      m_age(0)
 {
 
 }
 
-TFigureUnit::TFigureUnit(const TPoint point, const t_age age, const TColorCode color, const UnitType type)
+TFigureUnit::TFigureUnit(const Point point, const t_age age, const ColorCode color, const UnitType type)
     :m_type(type),
     m_point(point),
     m_color(color),

@@ -10,21 +10,17 @@
 #include <memory>
 
 #include "Atomic.h"
-#include "../TType.h"
+#include "GameInterface/Type.h"
 
-class Object
-{
+namespace game_interface {
+
+class Object {
 public:
 	virtual ~Object() {}
 
-	inline const bool operator==(const Object& object) const noexcept
-	{	return m_unique == object.getUnique(); }
+	inline const bool compareUnique(const t_unique unique) const noexcept { return m_unique == unique; }
 
-	inline const bool operator!=(const Object& object) const noexcept
-	{	return m_unique != object.getUnique(); }
-
-	inline const t_unique getUnique() const noexcept
-	{ return m_unique;	}
+	inline const t_unique getUnique() const noexcept { return m_unique; }
 
 protected:
 	Object();
@@ -32,5 +28,7 @@ protected:
 private:
 	t_unique m_unique;
 };
+
+}
 
 #endif
