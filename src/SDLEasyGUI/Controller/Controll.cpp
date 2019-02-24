@@ -3,6 +3,9 @@
 //
 
 #include "Controll.h"
+#include "../SEG_Event.h"
+
+using namespace sdleasygui;
 
 Controll::Controll(const ControllBuilder& bld)
 {
@@ -17,7 +20,7 @@ void Controll::initialize()
 
     if(m_basic->group != GroupControllManager::NONE)
     {
-        GroupControllManager::getInstance()->add(m_basic->group, m_basic->id);
+        GroupControllManager::getInstance()->add(m_basic->group, m_basic->resourceId);
         if(m_basic->multiselected)
             GroupControllManager::getInstance()->setMultiselect(m_basic->group);
     }
@@ -42,23 +45,15 @@ void Controll::onVirtualDraw()
 
 void Controll::refresh()
 {
-    SDL_UserEvent userevent;
-    userevent.type = SDL_DRAW_CONTROLLER  ;
-    userevent.code = this->getId();
-    userevent.windowID = this->getWindow()->getWindowID();
-
-    SDL_Event event;
-    event.type = SDL_USEREVENT;
-    event.user = userevent;
-
-    SDL_PushEvent(&event);
+    EventPusher event{this->getWindow()->getWindowID(), this->getResourceId(), SEG_DRAW_CONTROLLER };
+    event.pushEvent();
 }
 
 void Controll::setSelected(bool selected)
 {
     m_basic->selected = selected;
     if(selected)
-        GroupControllManager::getInstance()->select(m_basic->group, m_basic->id);
+        GroupControllManager::getInstance()->select(m_basic->group, m_basic->resourceId);
 }
 
 const bool Controll::isHit(const Point& point)
@@ -68,15 +63,8 @@ const bool Controll::isHit(const Point& point)
         && (menu_point.y <= point.y && point.y <= menu_point.y + m_basic->height)) {
         setSelected(!isSelected());
 
-        SDL_UserEvent userevent;
-        userevent.type = SDL_CLICKED_CONTROLLER;
-        userevent.code = this->getId();
-
-        SDL_Event event;
-        event.type = SDL_CLICKED_CONTROLLER;
-        event.user = userevent;
-
-        SDL_PushEvent(&event);
+        EventPusher event{this->getWindow()->getWindowID(), this->getResourceId(), SEG_CLICKED_CONTROLLER };
+        event.pushEvent();
 
         return true;
     }
@@ -87,5 +75,5 @@ const bool Controll::isHit(const Point& point)
 
 bool Controll::validId(const game_interface::t_id id)
 {
-    return getId() == id;
+    return getResourceId() == id;
 }

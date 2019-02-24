@@ -13,20 +13,25 @@
 
 #include "SDLEasyGUI/SEG_Type.h"
 
-struct event_mover
-{
+namespace sdleasygui {
+
+struct event_mover {
     const event_type event;
     explicit event_mover(const event_type event)
-    :event(event)
-    {};
+        : event(event) {};
 
-    ~event_mover()
-    {
-        if(event)
+    ~event_mover() {
+        if(event->type >= 0x8000)
+        {
+            if(event->user.data1 != nullptr)
+                delete event->user.data1;
+            if(event->user.data2 != nullptr)
+                delete event->user.data2;
+        }
+        if (event)
             delete event;
     }
 };
-
 
 class EventQueue {
 
@@ -38,7 +43,6 @@ public:
     void pushEvent(const event_type event);
     const event_mover popEvent();
 
-
 private:
     std::queue<event_type> m_eventQ;
     std::condition_variable m_cond;
@@ -46,5 +50,7 @@ private:
     std::atomic_bool m_isContinue;
 
 };
+
+}
 
 #endif //TETRIS_FIGURE_CLASS_EVENTQUEUE_H

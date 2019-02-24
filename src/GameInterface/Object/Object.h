@@ -22,6 +22,10 @@ public:
 
 	inline const t_unique getUnique() const noexcept { return m_unique; }
 
+	inline void setUnique(const t_unique unique) {
+	    m_unique = unique;
+	}
+
 protected:
 	Object();
 

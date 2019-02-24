@@ -15,15 +15,16 @@
 #include "EventDelivery.h"
 
 
-class GraphicInterface : public EventListener, public EventDelivery
-{
+namespace sdleasygui {
+
+class GraphicInterface : public EventListener, public EventDelivery {
 
 public:
     using window_ptr = std::shared_ptr<Window>;
 
     virtual void onDraw() = 0;
 
-    void setWindow(window_ptr window){m_window = window;}
+    void setWindow(window_ptr window) { m_window = window; }
 
     window_ptr getWindow() const noexcept {
         return m_window;
@@ -45,5 +46,6 @@ private:
 
 };
 
+}
 
 #endif //TETRIS_FIGURE_CLASS_TGRAPHICINTERFACE_H

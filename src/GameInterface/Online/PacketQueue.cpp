@@ -26,24 +26,26 @@ void PacketQueue::pushEvent(const Packet& event)
     m_cond.notify_one();
 }
 
-const Packet PacketQueue::popEvent()
+Packet PacketQueue::popEvent()
 {
     std::unique_lock<std::mutex> lock(m_mutex);
     m_cond.wait(lock, [=](){return !m_packetQ.empty() || !m_isContinue;});
 
     const auto msg = m_packetQ.front();
     m_packetQ.pop();
-
+    return msg;
 }
 
 void PacketQueue::notify()
 {
     while(m_isContinue)
     {
-        auto& packet = popEvent();
-        if(getContainer().count(packet.getHeader().objectId)) {
-            const auto& obj = getContainer().at(packet.getHeader().objectId);
-            getContainer().at(packet.getHeader().objectId)->updateObserver(*obj, packet);
+        auto packet = popEvent();
+        if(exist(packet.getHeader().objectId)){
+            const auto& obj = at(packet.getHeader().objectId);
+            packet.toPacket();
+
+            obj->updateObserver(*obj, packet);
         }
     }
 }

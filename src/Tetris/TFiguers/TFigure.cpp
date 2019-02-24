@@ -4,6 +4,7 @@
 
 using namespace tetris;
 using namespace game_interface;
+using namespace sdleasygui;
 
 TFigure::TFigure()
 {}

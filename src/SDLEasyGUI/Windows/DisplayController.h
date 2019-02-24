@@ -17,6 +17,9 @@
 #include "SDLEasyGUI/SEG_Type.h"
 #include "../SEG_Resource.h"
 #include "DisplayInterface.h"
+
+namespace sdleasygui {
+
 /*
 
 namespace std
@@ -51,11 +54,10 @@ struct KeyEqual {
     }
 };
 
-
-class DisplayController final{
+class DisplayController final {
 
 public:
-    using display_ptr = DisplayInterface*;
+    using display_ptr = DisplayInterface *;
     using modal_ary = std::deque<display_ptr>;
     using modaless_ary =  std::vector<display_ptr>;
     using modaless_ary_iterator = modaless_ary::const_iterator;
@@ -74,14 +76,14 @@ private:
 
     DisplayController();
 
-    game_interface::t_id getActivatedWindowID(const SDL_Event* event);
+    game_interface::t_id getActivatedWindowID(const SDL_Event *event);
     display_ptr findFromId(const game_interface::t_id id);
 
     void _release();
     void _pumpEvent();
 
-    template <class T>
-    display_ptr _find(const T& ary, const game_interface::t_id id);
+    template<class T>
+    display_ptr _find(const T &ary, const game_interface::t_id id);
 
     modaless_ary m_modalessAry;
     modal_ary m_modalStack;
@@ -92,18 +94,17 @@ private:
     std::mutex m_modalAryMutex;
 };
 
-struct modal_opener
-{
-    explicit modal_opener(DisplayController::display_ptr display)
-    {
+struct modal_opener {
+    explicit modal_opener(DisplayController::display_ptr display) {
         DisplayController::getInstance()->modal_open(display);
     }
 
-    ~modal_opener()
-    {
+    ~modal_opener() {
         DisplayController::getInstance()->modal_close();
     }
 
 };
+
+}
 
 #endif //TERIS_FIGURE_CLASS_TGAMECONTROLLER_H

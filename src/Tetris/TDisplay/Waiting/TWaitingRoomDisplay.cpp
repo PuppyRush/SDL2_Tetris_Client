@@ -3,3 +3,5 @@
 //
 
 #include "TWaitingRoomDisplay.h"
+
+using namespace sdleasygui;

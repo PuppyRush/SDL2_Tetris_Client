@@ -14,7 +14,7 @@
 
 SDL_TETRIS_BEGIN
 
-class TOptionDisplay final: public DisplayInterface
+class TOptionDisplay final: public sdleasygui::DisplayInterface
 {
 public:
 
@@ -27,7 +27,7 @@ private:
     virtual void onDraw() override final;
     void onClickedBack();
 
-    virtual void updateObserver(const Observer&, const game_interface::Packet &) override final {}
+    virtual void updateObserver(const Observer&, const game_interface::Packet ) override final {}
 };
 
 

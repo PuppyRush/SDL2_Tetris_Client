@@ -18,30 +18,29 @@
 #include <SDL2/SDL_video.h>
 
 #include "../SEG_Struct.h"
+#include "../SEG_Constant.h"
 
-class Window final
-{
+namespace sdleasygui {
+
+class Window final {
 
 public:
 
     Window();
 
-    inline void setShow(const bool b){m_show = b;}
+    inline void setShow(const bool b) { m_show = b; }
     void show();
     void hidden();
 
     inline const size_t getDisplayWidth() const noexcept { return m_windowWidth; }
-    inline const size_t getDisplayHeight() const noexcept{ return m_windowHeight; }
-    inline const t_id getWindowID() const noexcept{ return m_windowID; }
+    inline const size_t getDisplayHeight() const noexcept { return m_windowHeight; }
+    inline const t_id getWindowID() const noexcept { return m_windowID; }
 
-
-    inline std::shared_ptr<SDL_Window> getSDLWindow() const noexcept
-    {
+    inline std::shared_ptr<SDL_Window> getSDLWindow() const noexcept {
         return m_window;
     }
 
-    inline std::shared_ptr<SDL_Renderer> getSDLRenderer() const noexcept
-    {
+    inline std::shared_ptr<SDL_Renderer> getSDLRenderer() const noexcept {
         return m_renderer;
     }
 
@@ -50,10 +49,12 @@ private:
     std::shared_ptr<SDL_Window> m_window = nullptr;
     std::shared_ptr<SDL_Renderer> m_renderer = nullptr;
 
-    const t_size m_windowWidth=0;
-    const t_size m_windowHeight=0;
-    t_id m_windowID;
+    const t_size m_windowWidth = 0;
+    const t_size m_windowHeight = 0;
+    t_id m_windowID = NULL_WINDOW_ID;
     bool m_show = false;
 };
+
+}
 
 #endif //TETRIS_FIGURE_CLASS_TWINDOW_H

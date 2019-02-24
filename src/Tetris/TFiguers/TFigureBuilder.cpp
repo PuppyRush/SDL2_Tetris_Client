@@ -6,6 +6,7 @@
 #include "../../GameInterface/TypeTraits.h"
 
 using namespace tetris;
+using namespace sdleasygui;
 
 TFigureBuilder::TFigureBuilder(const Point &point)
     : m_point(point),

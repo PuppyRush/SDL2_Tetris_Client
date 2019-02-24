@@ -15,11 +15,11 @@
 #include <boost/serialization/singleton.hpp>
 
 #include "Packet.h"
-#include "../Observer/Subject.h"
+#include "../Subjector/MapSubject.h"
 
 namespace game_interface {
 
-class PacketQueue : public Subject, public boost::noncopyable, public boost::serialization::singleton<PacketQueue> {
+class PacketQueue : public MapSubject, public boost::serialization::singleton<PacketQueue> {
 public:
 
     friend class boost::serialization::singleton<PacketQueue>;
@@ -31,12 +31,17 @@ public:
 
     void pushEvent(Packet &&event);
     void pushEvent(const Packet &event);
-    const Packet popEvent();
+    Packet popEvent();
 
     static PacketQueue &getInstance() {
 
         return boost::serialization::singleton<PacketQueue>::get_mutable_instance();
     }
+
+protected:
+
+    virtual void postDetach(unique_type ) override {}
+    virtual void postAttach(object_type) override {};
 
 private:
 

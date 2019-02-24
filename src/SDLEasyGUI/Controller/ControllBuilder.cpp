@@ -5,8 +5,7 @@
 #include "ControllBuilder.h"
 #include "GroupControllManager.h"
 
-
-
+using namespace sdleasygui;
 SDL_TETRIS
 
 ControllBuilder::ControllBuilder(const GraphicInterface::window_ptr window,const Point& point, const std::string& str)

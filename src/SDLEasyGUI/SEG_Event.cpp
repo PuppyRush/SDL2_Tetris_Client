@@ -4,9 +4,11 @@
 
 #include "SEG_Event.h"
 
+namespace sdleasygui {
+
 Uint32 timerCallback(Uint32 interval, void *param) {
 
-    SDL_UserEvent* myevent = reinterpret_cast<SDL_UserEvent*>(param);
+    SDL_UserEvent *myevent = reinterpret_cast<SDL_UserEvent *>(param);
 
     SDL_UserEvent userevent;
     userevent.type = myevent->type;
@@ -15,9 +17,11 @@ Uint32 timerCallback(Uint32 interval, void *param) {
     userevent.data2 = myevent->data2;
 
     SDL_Event event;
-    event.type =  myevent->type;
+    event.type = myevent->type;
     event.user = userevent;
 
     SDL_PushEvent(&event);
     return (interval);
+}
+
 }

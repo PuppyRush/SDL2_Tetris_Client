@@ -5,6 +5,7 @@
 #include "TMainDisplay.h"
 
 SDL_TETRIS
+using namespace sdleasygui;
 
 TMainDisplay::TMainDisplay()
     :DisplayInterface()

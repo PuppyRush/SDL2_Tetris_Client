@@ -12,16 +12,18 @@
 #include <string>
 #include <vector>
 
-#include "Object.h"
+#include "Observer.h"
 #include "Player.h"
 
 namespace game_interface {
 
-class Room final : public Object {
+class Room : public Observer {
 public:
     using player_ptr = std::shared_ptr<Player>;
 
     Room();
+
+    void setRoomname(const std::string& name);
 
     virtual void enter(player_ptr ply) = 0;
     virtual void exit(player_ptr ply) = 0;

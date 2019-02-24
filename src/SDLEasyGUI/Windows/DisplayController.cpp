@@ -24,6 +24,7 @@ SDL_TETRIS
 
 using namespace std;
 using namespace game_interface;
+using namespace sdleasygui;
 
 DisplayController::DisplayController()
 {
@@ -39,9 +40,9 @@ void DisplayController::modal_open(display_ptr display)
 
     if(!m_modalStack.empty())
     {
-        auto parent = m_modalStack.front();
+        /*auto parent = m_modalStack.front();
         SDL_SetWindowModalFor(display->getWindow()->getSDLWindow().get(),
-                              parent->getWindow()->getSDLWindow().get());
+                              parent->getWindow()->getSDLWindow().get());*/
     }
 
     display->refresh();

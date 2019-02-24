@@ -7,11 +7,13 @@
 
 #include "SDLEasyGUI/SEG_Type.h"
 
-class Commander
-{
+namespace sdleasygui {
+
+class Commander {
 
     virtual void execute() = 0;
 
 };
 
+}
 #endif //TETRIS_FIGURE_CLASS_COMMANDER_H

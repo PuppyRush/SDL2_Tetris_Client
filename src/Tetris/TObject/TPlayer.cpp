@@ -6,14 +6,19 @@
 #include "TPlayer.h"
 #include "../TFiguers/TFigureBuilder.h"
 #include "GameInterface/Online/JsonHelper.h"
+#include "GameInterface/Online/PacketQueue.h"
 
 SDL_TETRIS
 
 using namespace std;
 using namespace game_interface;
+using namespace sdleasygui;
 
 TPlayer::TPlayer()
-{}
+{
+    //after set id recvied init data from server
+    setUnique(NULL_ID);
+}
 
 TPlayer::~TPlayer()
 {
@@ -71,7 +76,31 @@ void TPlayer::sendPacket(Packet &packet)
     m_clientCtl.send(packet);
 }
 
-void TPlayer::updateObserver(const Observer&, const Packet &)
+void TPlayer::updateObserver(const Observer&, const Packet packet)
 {
+    switch(packet.getHeader().message)
+    {
+        case messageInfo::PLAYER_INIT_INFO:
+            recvInfo(packet);
+            break;
+    }
+}
+
+void TPlayer::recvInfo(const game_interface::Packet& packet)
+{
+    const Json::Value json = packet.getPayload();
+    setUnique(json.asInt());
+
+    requestInfo();
+}
+
+void TPlayer::requestInfo()
+{
+    Json::Value json;
+    json["id"] = this->getUserName();
+
+    Packet::Header header{this->getUnique(),messageDirection::CLIENT, messageInfo::PLAYER_INIT_INFO};
+    Packet p{header, json};
+    sendPacket(p);
 
 }

@@ -10,17 +10,16 @@
 #include "EventQueue.h"
 #include "EventListener.h"
 
-class EventDelivery : public EventQueue
-{
+namespace sdleasygui {
+
+class EventDelivery : public EventQueue {
 public:
 
-    bool receiveEvent(const game_interface::t_id id, event_type event)
-    {
-        if(id == NULL_WINDOW_ID || validId(id)) {
+    bool receiveEvent(const game_interface::t_id id, event_type event) {
+        if (id == NULL_WINDOW_ID || validId(id)) {
             pushEvent(event);
             return true;
-        }
-        else
+        } else
             return false;
     }
 
@@ -29,5 +28,7 @@ private:
     virtual bool validId(const game_interface::t_id id) = 0;
 
 };
+
+}
 
 #endif //TETRIS_FIGURE_CLASS_EVENTDELIVERY_H

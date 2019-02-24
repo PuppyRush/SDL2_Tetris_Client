@@ -9,6 +9,7 @@
 
 SDL_TETRIS
 using namespace game_interface;
+using namespace sdleasygui;
 
 TOptionDisplay::TOptionDisplay()
 {

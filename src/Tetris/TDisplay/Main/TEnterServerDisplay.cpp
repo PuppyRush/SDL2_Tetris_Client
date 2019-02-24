@@ -7,9 +7,11 @@
 #include "../../Common/TResource.h"
 #include "../Waiting/TWaitingRoomDisplay.h"
 #include "../../TObject/TPlayer.h"
+#include "GameInterface/Online/PacketQueue.h"
 
 SDL_TETRIS
 using namespace game_interface;
+using namespace sdleasygui;
 
 void TEnterServerDisplay::registerEvent()
 {
@@ -58,6 +60,8 @@ void TEnterServerDisplay::onClickedEnterServer()
     player->setUserName(btn->getName());
     player->connectServer();
 
-    auto dlg = make_shared<TWaitingRoomDisplay>();
+    PacketQueue::getInstance().attach(player);
+
+    auto dlg = std::make_shared<TWaitingRoomDisplay>();
     dlg->modal();
 }

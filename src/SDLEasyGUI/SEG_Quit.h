@@ -7,10 +7,12 @@
 
 #include "SDL2/SDL.h"
 
-void SDLEasyGUI_Quit()
-{
+namespace sdleasygui {
+
+void SDLEasyGUI_Quit() {
     SDL_Quit();
 }
 
+}
 
 #endif //TETRIS_FIGURE_CLASS_SEG_QUIT_H

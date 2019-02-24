@@ -4,6 +4,7 @@
 
 #include "StaticLabel.h"
 
+using namespace sdleasygui;
 
 StaticLabel::StaticLabel(StaticLabelBuilder& bld)
     :Border(bld)

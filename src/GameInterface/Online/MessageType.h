@@ -5,7 +5,7 @@
 #ifndef TETRIS_FIGURE_CLASS_MESSAGETYPE_H
 #define TETRIS_FIGURE_CLASS_MESSAGETYPE_H
 
-#include "Type.h"
+#include "../Type.h"
 
 namespace game_interface {
 

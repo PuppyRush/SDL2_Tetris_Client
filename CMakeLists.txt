@@ -188,7 +188,7 @@ add_executable(tetris_figure_class
         src/GameInterface/Online/Packet.h
         src/GameInterface/Online/PacketQueue.h
         src/GameInterface/Online/PacketQueue.cpp
-        src/GameInterface/Define.h)
+        src/GameInterface/Define.h src/Tetris/Common/TStruct.h)
 
 
 include_directories(

@@ -2,10 +2,12 @@
 
 SDL_TETRIS
 
+using namespace sdleasygui;
+
 TFigureUnit::TFigureUnit()
     :m_type(UnitType::Empty),
-     m_point(Point(0,0)),
-     m_color(ColorCode::none),
+     m_point(sdleasygui::Point(0,0)),
+     m_color(sdleasygui::ColorCode::none),
      m_age(0)
 {
 

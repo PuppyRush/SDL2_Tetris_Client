@@ -7,15 +7,16 @@
 
 #include "Commander.h"
 
-class EventCommand : public Commander
-{
+namespace sdleasygui {
 
-    virtual void execute() override final
-    {
+class EventCommand : public Commander {
+
+    virtual void execute() override final {
 
     }
 
 };
 
+}
 
 #endif //TETRIS_FIGURE_CLASS_EVENTCOMMAND_H

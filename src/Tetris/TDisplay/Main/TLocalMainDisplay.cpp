@@ -11,7 +11,9 @@
 #include "Tetris/Common/TResource.h"
 
 SDL_TETRIS
+using namespace std;
 using namespace game_interface;
+using namespace sdleasygui;
 
 TLocalMainDisplay::TLocalMainDisplay()
 {

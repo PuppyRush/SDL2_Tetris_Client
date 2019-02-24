@@ -15,15 +15,10 @@ void fn(ACE_Reactor* app){
 }
 
 TClientController::TClientController()
-    :m_port(12345),
-     m_ip({127,0,0,1}),
+     :m_ip({127,0,0,1},12345),
      m_connetor(nullptr),
      m_service(nullptr)
 {
-    /*ACE::init();
-
-    m_reactor = make_shared<ACE_Reactor>(m_aceSelectReactor.get());
-    m_service = make_shared<ClientService>(m_reactor.get());*/
 }
 
 TClientController::~TClientController()
@@ -47,7 +42,8 @@ void TClientController::connectServer()
 
 }
 
-void TClientController::send(Packet& packet) {
+void TClientController::send(Packet& packet)
+{
 
     auto bytes = packet.toByte();
     m_service->send((void *) bytes.first, bytes.second);

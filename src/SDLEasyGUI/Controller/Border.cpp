@@ -4,6 +4,7 @@
 
 #include "Border.h"
 
+using namespace sdleasygui;
 
 Border::Border(ControllBuilder& basic)
     :Controll(basic )

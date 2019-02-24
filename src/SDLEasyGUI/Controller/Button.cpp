@@ -4,6 +4,8 @@
 
 #include "Button.h"
 
+using namespace sdleasygui;
+
 Button::Button(ButtonBuilder& bld)
     :ButtonBasic(bld)
 {

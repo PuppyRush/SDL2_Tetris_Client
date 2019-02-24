@@ -4,6 +4,8 @@
 
 #include "RadioButton.h"
 
+using namespace sdleasygui;
+
 RadioButton::RadioButton(ControllBuilder& bld)
     :ButtonBasic(bld)
 {

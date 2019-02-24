@@ -10,12 +10,12 @@
   #pragma once
 #endif
 
+namespace sdleasygui {
+
 const t_size WINDOW_HEIGHT = 900;
 const t_size WINDOW_WIDTH = 1000;
 
-
-enum class ControllKind : t_type
-{
+enum class ControllKind : t_type {
     ListBox,
     StaticLabel,
     EditLabel,
@@ -24,22 +24,18 @@ enum class ControllKind : t_type
     Border
 };
 
-enum class TDisplayMode : t_type
-{
+enum class TDisplayMode : t_type {
     Modal,
     Modaless
 };
 
-
-enum class TLocalMode : t_type
-{
+enum class TLocalMode : t_type {
     Local,
     Online,
     All
 };
 
-enum class ColorCode : t_type
-{
+enum class ColorCode : t_type {
     red = 0,
     blue,
     orange,
@@ -54,23 +50,20 @@ enum class ColorCode : t_type
     End = green
 };
 
-enum EventType
-{
-    SDL_EASYGUI_EVENT_START =  0x9000,
-    SDL_DRAW_DISPLAY ,
-    SDL_DRAW_CONTROLLER,
-    SDL_CLICKED_CONTROLLER,
+enum EventType {
+    SEG_EASYGUI_EVENT_START = 0x9001,
+    SEG_DRAW_DISPLAY,
+    SEG_DRAW_CONTROLLER,
+    SEG_CLICKED_CONTROLLER,
 };
 
-enum class BorderBoundaryType : t_type
-{
+enum class BorderBoundaryType : t_type {
     angle,
     ellipse,
     round
 };
 
-enum class BorderBoundaryLineType : t_type
-{
+enum class BorderBoundaryLineType : t_type {
     none,
     straight,
     single_dashed,
@@ -87,5 +80,7 @@ enum SEG_Event {
     EDITLABEL_CHAR_TEXTCURSOR
 
 };
+
+}
 
 #endif //TERIS_FIGURE_CLASS_TPROPERTY_H

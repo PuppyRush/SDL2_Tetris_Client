@@ -5,7 +5,8 @@
 #include "TGameDisplay.h"
 
 SDL_TETRIS
-
+using namespace sdleasygui;
+using namespace sdleasygui;
 
 TGameDisplay::TGameDisplay()
     :DisplayInterface()

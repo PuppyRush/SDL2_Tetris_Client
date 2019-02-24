@@ -5,6 +5,8 @@
 #include "EventQueue.h"
 #include "../SEG_Constant.h"
 
+using namespace sdleasygui;
+
 EventQueue::EventQueue()
     :m_isContinue(true)
 {

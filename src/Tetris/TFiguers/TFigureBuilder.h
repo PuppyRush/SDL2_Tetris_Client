@@ -19,10 +19,10 @@ class TFigureBuilder final
 {
 public:
 
-    TFigureBuilder(const Point &point);
+    TFigureBuilder(const sdleasygui::Point &point);
     virtual ~TFigureBuilder() {}
 
-    inline TFigureBuilder* color(const ColorCode& color)
+    inline TFigureBuilder* color(const sdleasygui::ColorCode& color)
     {
         this->m_color = color;
         return this;
@@ -53,28 +53,28 @@ public:
         return this;
     }
 
-    inline const Point getPoint() const noexcept { return m_point; }
-    inline const ColorCode getColor() const noexcept { return m_color; }
+    inline const sdleasygui::Point getPoint() const noexcept { return m_point; }
+    inline const sdleasygui::ColorCode getColor() const noexcept { return m_color; }
     inline const TFigureType getType() const noexcept { return m_figureType; }
     inline const t_age getAge() const noexcept { return m_age; }
-    inline const t_size getHeight() const noexcept { return m_height; }
-    inline const t_size getWidth() const noexcept { return m_width; }
+    inline const sdleasygui::t_size getHeight() const noexcept { return m_height; }
+    inline const sdleasygui::t_size getWidth() const noexcept { return m_width; }
     inline const UnitType getUnitType() const noexcept { return m_unitType; }
     inline constexpr const TFigureClass getClass() const noexcept { return m_figureClass; }
 
     std::shared_ptr<TFigure> build();
 
 private:
-    inline void width(const t_size width)
+    inline void width(const sdleasygui::t_size width)
     { m_width = width;}
 
-    inline void height(const t_size height)
+    inline void height(const sdleasygui::t_size height)
     { m_height = height;}
 
-    t_size m_width;
-    t_size m_height;
-    ColorCode m_color;
-    Point m_point;
+    sdleasygui::t_size m_width;
+    sdleasygui::t_size m_height;
+    sdleasygui::ColorCode m_color;
+    sdleasygui::Point m_point;
     TFigureType m_figureType;
     TFigureClass  m_figureClass = TFigureClass::End;
     t_age m_age;

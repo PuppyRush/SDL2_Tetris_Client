@@ -32,7 +32,7 @@ private:
     [[deprecated("dont call this function in TMultiMainDisplay")]]
     virtual void onClickedStartLocalGame() override final {}
 
-    virtual void updateObserver(const Observer&, const game_interface::Packet &) override final {}
+    virtual void updateObserver(const Observer&, const game_interface::Packet ) override final {}
 };
 
 SDL_TETRIS_END

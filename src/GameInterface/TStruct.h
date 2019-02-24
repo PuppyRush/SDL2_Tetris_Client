@@ -22,11 +22,13 @@ namespace game_interface {
 
 typedef struct TIPString {
     TIPString()
-        : TIPString({192, 168, 0, 1}) {
+        : TIPString({192, 168, 0, 1},12345) {
 
     }
 
-    TIPString(std::initializer_list<size_t> fields) {
+    TIPString(std::initializer_list<size_t> fields, const t_port port)
+        :port(port)
+    {
         assert(fields.size() == 4);
         ip.reserve(16);
         for (size_t b : fields) {
@@ -41,6 +43,7 @@ typedef struct TIPString {
     }
 
     std::string ip;
+    t_port port;
 } TIPString;
 
 }

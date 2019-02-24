@@ -8,6 +8,7 @@
 SDL_TETRIS
 
 using namespace std;
+using namespace sdleasygui;
 
 TFigureController::TFigureController()
 :m_currentFigure(nullptr),

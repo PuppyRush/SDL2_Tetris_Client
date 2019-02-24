@@ -51,7 +51,6 @@ public:
 
 private:
     game_interface::TIPString m_ip;
-    game_interface::t_port m_port;
     std::shared_ptr<game_interface::ClientConnector> m_connetor;
     std::shared_ptr<game_interface::ClientService> m_service;
     std::shared_ptr<ACE_Reactor> m_reactor;

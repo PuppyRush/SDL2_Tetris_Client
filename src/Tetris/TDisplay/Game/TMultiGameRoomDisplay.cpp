@@ -14,21 +14,8 @@
 
 SDL_TETRIS
 using namespace game_interface;
-
-Uint32 callback(Uint32 interval, void *param) {
-
-    SDL_UserEvent userevent;
-    userevent.type = TETRIS_EVENT_FIGURETIMER;
-    userevent.code = 0;
-    userevent.windowID =  static_cast<TMultiGameRoomDisplay*>(param)->getWindowID();
-
-    SDL_Event event;
-    event.type = TETRIS_EVENT_FIGURETIMER;
-    event.user = userevent;
-
-    SDL_PushEvent(&event);
-    return (interval);
-}
+using namespace sdleasygui;
+using namespace std;
 
 TMultiGameRoomDisplay::TMultiGameRoomDisplay()
 {
@@ -73,8 +60,11 @@ void TMultiGameRoomDisplay::onClickedStart()
         nextboard->setblockLength(FIGURE_UNIT_LEN);
     }
 
+    TimerAdder tAdder(1000,toUType(TetrisEvent::TETRIS_EVENT_FIGURETIMER));
+    tAdder.windowsId(this->getWindowID());
+    m_figureTimer = tAdder.addTimer();
+
     m_drawLine = TOptionManager::getInstance()->isDrawLine();
-    m_figureTimer = SDL_AddTimer(1000, callback, this);
     m_gamestart = true;
 
     auto ctl = getControll(resource::GAME_START);

@@ -4,6 +4,7 @@
 
 #include "ListBox.h"
 
+using namespace sdleasygui;
 
 ListBox::ListBox(ListBoxBuilder& bld)
     :Border(bld)

@@ -5,11 +5,13 @@
 #ifndef GAMEINTERFACE_CONSTATNT_H
 #define GAMEINTERFACE_CONSTATNT_H
 
-#include "SEG_Type.h"
+#include <limits>
+
+#include "Type.h"
 
 namespace game_interface {
 
-constexpr const t_id NULL_ID = std::numeric_limits<t_unique>::max();
+constexpr const t_id NULL_ID = std::numeric_limits<t_id>::max();
 
 }
 #endif //TETRIS_FIGURE_CLASS_SEG_CONSTANT_H

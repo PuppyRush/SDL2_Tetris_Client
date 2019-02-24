@@ -13,11 +13,11 @@
 
 SDL_TETRIS_BEGIN
 
-class TGameDisplay : public DisplayInterface
+class TGameDisplay : public sdleasygui::DisplayInterface
 {
 public:
 
-	enum class UIResource : t_type
+	enum class UIResource : sdleasygui::t_type
 	{};
 
 	virtual ~TGameDisplay() {}

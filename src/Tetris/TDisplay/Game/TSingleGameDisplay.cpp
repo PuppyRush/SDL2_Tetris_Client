@@ -13,8 +13,10 @@
 #include "TSingleGameDisplay.h"
 #include "TOption/TOptionManager.h"
 
+
 SDL_TETRIS
 using namespace game_interface;
+using namespace sdleasygui;
 
 TSingleGameDisplay::TSingleGameDisplay()
 {
@@ -41,6 +43,7 @@ void TSingleGameDisplay::onClickedStart()
     nextboard->setblockLength(FIGURE_UNIT_LEN);
 
     TimerAdder tAdder(1000,toUType(TetrisEvent::TETRIS_EVENT_FIGURETIMER));
+    tAdder.windowsId(this->getWindowID());
     m_figureTimer = tAdder.addTimer();
 
     m_gamestart = true;

@@ -46,3 +46,9 @@ void JsonHelper::jsonRef(Json::Value json, string &id, string &ip, string &time,
     time = json["time"].asString();
     gameBoard = json["gameBoard"].asString();
 }
+
+
+template <class T>
+Json::Value JsonHelper::toJson(std::initializer_list<KeyValue<T>> va)
+{
+}

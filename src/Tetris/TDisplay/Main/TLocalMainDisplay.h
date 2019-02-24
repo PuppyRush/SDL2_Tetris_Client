@@ -32,7 +32,8 @@ private:
 	virtual void onTimer() override final;
     virtual void onDraw() override final;
 
-	virtual void updateObserver(const Observer&, const game_interface::Packet &) override final {}
+	[[deprecated("dont call this function in TLocalMainDisplay")]]
+	virtual void updateObserver(const Observer&, const game_interface::Packet ) override final {}
 };
 
 SDL_TETRIS_END

@@ -16,13 +16,13 @@ SDL_TETRIS
 void init()
 {
 
-    SDLEasyGUI_Init();
+    sdleasygui::SDLEasyGUI_Init();
 
     //background
     //TGameLocalDisplay::getInstance()->setBackgroundImgPath("../resources/images/background.png");
 
     //Registry Event
-    //auto ev = SDL_RegisterEvents(100);
+//    SDL_RegisterEvents(SEG_DRAW_DISPLAY);
 
 }
 
@@ -32,5 +32,5 @@ int main() {
     auto maindlg = std::make_shared<TMultiMainDisplay>();
     maindlg->modal();
 
-    SDLEasyGUI_Quit();
+    sdleasygui::SDLEasyGUI_Quit();
 }

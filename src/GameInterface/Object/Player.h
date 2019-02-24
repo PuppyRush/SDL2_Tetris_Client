@@ -9,7 +9,7 @@
   #pragma once
 #endif
 
-#include "GameInterface/Observer/Observer.h"
+#include "Observer.h"
 
 namespace game_interface {
 

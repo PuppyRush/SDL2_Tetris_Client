@@ -2,15 +2,17 @@
 // Created by chaed on 18. 12. 18.
 //
 
-#include "TMultiMainDisplay.h"
-#include "TEnterServerDisplay.h"
 #include "SDLEasyGUI/Controller/Button.h"
 #include "SDLEasyGUI/Windows/DisplayController.h"
+
+#include "TMultiMainDisplay.h"
+#include "TEnterServerDisplay.h"
 #include "../TOptionDisplay.h"
 #include "../../Common/TResource.h"
 
 SDL_TETRIS
 using namespace game_interface;
+using namespace sdleasygui;
 
 TMultiMainDisplay::TMultiMainDisplay()
 {
@@ -79,12 +81,12 @@ void TMultiMainDisplay::onDraw()
 
 void TMultiMainDisplay::onClickedOption()
 {
-    auto dlg = make_shared<TOptionDisplay>();
+    auto dlg = std::make_shared<TOptionDisplay>();
     dlg->modal();
 }
 
 void TMultiMainDisplay::onClickedEnterServer()
 {
-    auto dlg = make_shared<TEnterServerDisplay>();
+    auto dlg = std::make_shared<TEnterServerDisplay>();
     dlg->modal();
 }

@@ -15,18 +15,18 @@
 
 SDL_TETRIS_BEGIN
 
-const t_size UNIT_LENGTH = 30;
-const t_size GAMEBOARD_WIDTH_COUNT = 10;
-const t_size GAMEBOARD_HEIGHT_COUNT = 20;
-const t_size GAMEBOARD_DISPLAY_HEIGHT = UNIT_LENGTH*GAMEBOARD_HEIGHT_COUNT;
-const t_size GAMEBOARD_DISPLAY_WIDTH = UNIT_LENGTH*GAMEBOARD_WIDTH_COUNT;
-const t_size NEXTFIGURE_BOARD_WIDTH_COUNT = 3;
-const t_size NEXTFIGURE_BOARD_HEIGHT_COUNT = 4;
-const t_size GAMEBOARD_BEGIN_X = 20;
-const t_size GAMEBOARD_BEGIN_Y = 20;
-const t_size FIGURE_UNIT_LEN = 30;
+const sdleasygui::t_size UNIT_LENGTH = 30;
+const sdleasygui::t_size GAMEBOARD_WIDTH_COUNT = 10;
+const sdleasygui::t_size GAMEBOARD_HEIGHT_COUNT = 20;
+const sdleasygui::t_size GAMEBOARD_DISPLAY_HEIGHT = UNIT_LENGTH*GAMEBOARD_HEIGHT_COUNT;
+const sdleasygui::t_size GAMEBOARD_DISPLAY_WIDTH = UNIT_LENGTH*GAMEBOARD_WIDTH_COUNT;
+const sdleasygui::t_size NEXTFIGURE_BOARD_WIDTH_COUNT = 3;
+const sdleasygui::t_size NEXTFIGURE_BOARD_HEIGHT_COUNT = 4;
+const sdleasygui::t_size GAMEBOARD_BEGIN_X = 20;
+const sdleasygui::t_size GAMEBOARD_BEGIN_Y = 20;
+const sdleasygui::t_size FIGURE_UNIT_LEN = 30;
 
-enum class TSpeed : t_type
+enum class TSpeed : sdleasygui::t_type
 {
     _1,
     _2,
@@ -38,7 +38,7 @@ enum class TSpeed : t_type
     _8,
 };
 
-enum class TDisplay : t_type
+enum class TDisplay : sdleasygui::t_type
 {
     Main,
     Option,
@@ -48,7 +48,7 @@ enum class TDisplay : t_type
     None
 };
 
-enum class TFigureClass : t_type
+enum class TFigureClass : sdleasygui::t_type
 {
     L=0,
     Z,
@@ -61,7 +61,7 @@ enum class TFigureClass : t_type
     End = T
 };
 
-enum class TFigureType : t_type
+enum class TFigureType : sdleasygui::t_type
 {
     A,
     B,
@@ -72,7 +72,7 @@ enum class TFigureType : t_type
     End = D
 };
 
-enum class TMap : t_type
+enum class TMap : sdleasygui::t_type
 {
     Rain,
     Praymid,
@@ -95,11 +95,10 @@ enum UnitType
 enum TetrisEvent{
 
     TETRIS_EVENT_FIGURETIMER = 0x0000,
-    TETRIS_EVENT_RECV_PACKET,
 };
 
 typedef struct UserEvent {
-    static  t_eventType SDLEASYGUI_EVENT;
+    static  sdleasygui::t_eventType SDLEASYGUI_EVENT;
 }UserEvent;
 
 SDL_TETRIS_END

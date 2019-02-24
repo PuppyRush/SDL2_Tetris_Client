@@ -16,9 +16,9 @@
 SDL_TETRIS_BEGIN
 
 //dont use resource id as 0x0000 (NULL)
-enum class resource : t_res {
+enum class resource : sdleasygui::t_res {
 
-    RESOURCE_START = SEG_RESROUCE_END+1,
+    RESOURCE_START = sdleasygui::SEG_RESROUCE_END+1,
 
     MAIN_SINGLE_GAME_START_BUTTON,
     MAIN_MULTI_GAME_START_BUTTON,

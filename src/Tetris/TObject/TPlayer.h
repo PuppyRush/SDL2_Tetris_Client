@@ -39,13 +39,16 @@ public:
     inline void setOrder(const int idx) noexcept { m_order = idx; }
     inline void setReady(const bool rdy) noexcept { m_isReady = rdy; }
 
-    void command(const t_eventType event);
+    void command(const sdleasygui::t_eventType event);
     void sendPacket(game_interface::Packet &);
     void startGame();
     void endGame();
     void connectServer();
 
-    virtual void updateObserver(const Observer&, const game_interface::Packet &) override;
+    virtual void updateObserver(const Observer&, const game_interface::Packet) override;
+
+    void recvInfo(const game_interface::Packet&);
+    void requestInfo();
 
     static std::shared_ptr<TPlayer> getPlayer()
     {

@@ -11,6 +11,8 @@
 
 #include "SEG_Type.h"
 
+namespace sdleasygui {
+
 //dont use resource id as 0x0000 (NULL)
 enum resource : t_res {
 
@@ -21,5 +23,6 @@ enum resource : t_res {
     SEG_RESROUCE_END = 0x3000
 };
 
+}
 
 #endif //TETRIS_FIGURE_CLASS_RESOURCE_H

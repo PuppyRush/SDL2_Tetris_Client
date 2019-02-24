@@ -10,10 +10,10 @@
 
 SDL_TETRIS_BEGIN
 
-class TWaitingRoomDisplay : public DisplayInterface{
+class TWaitingRoomDisplay : public sdleasygui::DisplayInterface{
 
 public:
-    virtual void updateObserver(const Observer&, const game_interface::Packet &) override final {}
+    virtual void updateObserver(const Observer&, const game_interface::Packet ) override final {}
 
 private:
 

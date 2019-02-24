@@ -10,7 +10,7 @@
 
 SDL_TETRIS_BEGIN
 
-class TMainDisplay : public DisplayInterface
+class TMainDisplay : public sdleasygui::DisplayInterface
 {
 public:
 

@@ -9,3 +9,8 @@ using namespace game_interface;
 Room::Room()
 : m_roomnumber(Atomic::newWaitingRoomNumber())
 {}
+
+void Room::setRoomname(const std::string& name)
+{
+    m_roomname = name;
+}

@@ -11,13 +11,15 @@
 
 #include "Border.h"
 
-class ButtonBasic : public Border{
+namespace sdleasygui {
+
+class ButtonBasic : public Border {
 public:
 
-    inline const bool isMultiselected() const noexcept{
+    inline const bool isMultiselected() const noexcept {
         Controll::isMultiselected();
     }
-    inline void setMultiselected(bool multiselected) noexcept{
+    inline void setMultiselected(bool multiselected) noexcept {
         Controll::setMultiselected(multiselected);
     }
 
@@ -25,7 +27,7 @@ public:
     virtual void onDrawBackground() override;
 
 protected:
-    explicit ButtonBasic(ControllBuilder& bld);
+    explicit ButtonBasic(ControllBuilder &bld);
     virtual void initialize() override;
 
 private:
@@ -36,5 +38,7 @@ private:
     int m_textHeight = 0;
     std::shared_ptr<SDL_Texture> m_texture;
 };
+
+}
 
 #endif //TETRIS_FIGURE_CLASS_TBUTTONBASIC_H

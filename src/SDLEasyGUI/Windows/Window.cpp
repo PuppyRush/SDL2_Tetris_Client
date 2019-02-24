@@ -6,6 +6,8 @@
 
 #include "Window.h"
 
+using namespace sdleasygui;
+
 Window::Window()
     :m_windowHeight(WINDOW_HEIGHT),
      m_windowWidth(WINDOW_WIDTH)

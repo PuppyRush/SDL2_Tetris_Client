@@ -45,16 +45,16 @@ public:
     {
         return m_board;
     }
-    inline const Point& getStartDisplayPoint() const {
+    inline const sdleasygui::Point& getStartDisplayPoint() const {
         return m_startGameDisplayPoint;
     }
-    inline void setStartDisplayPoint(const Point &m_StartDisplayPoint) {
+    inline void setStartDisplayPoint(const sdleasygui::Point &m_StartDisplayPoint) {
         TFigureBoard::m_startGameDisplayPoint = m_StartDisplayPoint;
     }
-    inline const t_size getblockLength() const {
+    inline const sdleasygui::t_size getblockLength() const {
         return m_gameblockLength;
     }
-    inline void setblockLength(t_size m_blockLength) {
+    inline void setblockLength(sdleasygui::t_size m_blockLength) {
         TFigureBoard::m_gameblockLength = m_blockLength;
     }
 
@@ -62,7 +62,7 @@ public:
     {
         dest = src->copy();
         dest->setAll(UnitType::Ghost);
-        dest->setAll(TColor{ColorCode::silver,64});
+        dest->setAll(sdleasygui::TColor{sdleasygui::ColorCode::silver,64});
 
         _eraseCoords(dest);
 
@@ -114,8 +114,8 @@ public:
 
     bool _eraseLinesIfFillLineThenCollapse()
     {
-        std::set<t_coord, std::greater<t_coord>> collapedLines;
-        for(t_coord y = GAMEBOARD_HEIGHT_COUNT-1 ; y >= 0 ; --y)
+        std::set<sdleasygui::t_coord, std::greater<sdleasygui::t_coord>> collapedLines;
+        for(sdleasygui::t_coord y = GAMEBOARD_HEIGHT_COUNT-1 ; y >= 0 ; --y)
         {
             int x=0;
             for(; x < GAMEBOARD_WIDTH_COUNT ; ++x)
@@ -135,9 +135,9 @@ public:
         if(collapedLines.empty())
             return false;
 
-        for(t_coord x=0 ; x < GAMEBOARD_WIDTH_COUNT ; ++x)
+        for(sdleasygui::t_coord x=0 ; x < GAMEBOARD_WIDTH_COUNT ; ++x)
         {
-            for(t_coord y = GAMEBOARD_HEIGHT_COUNT-1 ; y >= 0 ; --y)
+            for(sdleasygui::t_coord y = GAMEBOARD_HEIGHT_COUNT-1 ; y >= 0 ; --y)
             {
                 if( ( m_board[y][x].getType() & UnitType ::Fill) == UnitType ::Fill)
                 {
@@ -151,7 +151,7 @@ public:
                         m_board[y+removedCnt][x].set(UnitType::Fill);
                         m_board[y+removedCnt][x].set(m_board[y][x].getColor());
                         m_board[y][x].set(static_cast<UnitType>(UnitType::Empty));
-                        m_board[y][x].set(ColorCode::none);
+                        m_board[y][x].set(sdleasygui::ColorCode::none);
                     }
                 }
             }
@@ -180,7 +180,7 @@ public:
         {
             auto board = m_board[i];
             for (int l = 0 ; l < board.size() ; l++) {
-                board[l] = TFigureUnit{Point(i, l), 0, ColorCode::none, UnitType::Empty};
+                board[l] = TFigureUnit{sdleasygui::Point(i, l), 0, sdleasygui::ColorCode::none, UnitType::Empty};
             }
         }
     }
@@ -188,8 +188,8 @@ public:
 
 private:
 
-    Point m_startGameDisplayPoint;
-    t_size m_gameblockLength;
+    sdleasygui::Point m_startGameDisplayPoint;
+    sdleasygui::t_size m_gameblockLength;
 
     board_type m_board;
 };

@@ -10,9 +10,9 @@
 #endif
 
 #include "TDefine.h"
-#include "../../GameInterface/TStruct.h"
+#include "TType.h"
+#include "TStruct.h"
 #include "../../GameInterface/TypeTraits.h"
-#include "../../SDLEasyGUI/SEG_Struct.h"
 #include "TProperty.h"
 
 #endif //TERIS_FIGURE_CLASS_THEADER_H

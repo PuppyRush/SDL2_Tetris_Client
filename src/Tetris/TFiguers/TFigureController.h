@@ -38,12 +38,12 @@ public:
     nextfigure_board_ptr getNextFigureBoard() const noexcept
     {return m_nextFigureBoard;}
 
-    void command(const t_eventType event);
+    void command(const sdleasygui::t_eventType event);
     void forceSet(const TFigure* fig);
-    void eraseLine(const t_size lineNumber);
-    void addLine(const t_size lineNumber);
-    void eraseBottomLine(const t_size = 1);
-    void addBottomLine(const t_size = 1);
+    void eraseLine(const sdleasygui::t_size lineNumber);
+    void addLine(const sdleasygui::t_size lineNumber);
+    void eraseBottomLine(const sdleasygui::t_size = 1);
+    void addBottomLine(const sdleasygui::t_size = 1);
     void createNextFigureRandomly();
 
 private:

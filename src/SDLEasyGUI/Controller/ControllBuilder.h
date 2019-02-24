@@ -15,126 +15,114 @@
 #include <atomic>
 
 #include "SDLEasyGUI/Windows/GraphicInterface.h"
+#include "../SEG_Event.h"
+
+namespace sdleasygui {
 
 //predeclaration.
 class Controll;
 
-class ControllBuilder
-{
+class ControllBuilder {
 public:
 
-    ControllBuilder(const GraphicInterface::window_ptr window, const Point& point, const std::string& str);
-    ControllBuilder(const GraphicInterface::window_ptr window, Point&& point, std::string&& str);
+    ControllBuilder(const GraphicInterface::window_ptr window, const Point &point, const std::string &str);
+    ControllBuilder(const GraphicInterface::window_ptr window, Point &&point, std::string &&str);
 
-    inline ControllBuilder* id(const t_id id) noexcept
-    {
-        m_basic.id = id;
+    inline ControllBuilder *id(const t_id id) noexcept {
+        m_basic.resourceId = id;
         return this;
     }
 
-    inline ControllBuilder* font(const TFont& font)  noexcept
-    {
+    inline ControllBuilder *font(const TFont &font) noexcept {
         m_basic.font = font;
         return this;
     }
 
-    inline ControllBuilder* fontSize(const t_size& size)  noexcept
-    {
+    inline ControllBuilder *fontSize(const t_size &size) noexcept {
         m_basic.font.size = size;
         return this;
     }
 
-    inline ControllBuilder* fontColor(const TColor& color)  noexcept
-    {
+    inline ControllBuilder *fontColor(const TColor &color) noexcept {
         m_basic.font.color = color;
         return this;
     }
 
-    inline ControllBuilder* backgroundColor(const ColorCode color) noexcept
-    {
+    inline ControllBuilder *backgroundColor(const ColorCode color) noexcept {
         m_basic.background_color = color;
         return this;
     }
 
-    inline ControllBuilder* width(const t_size size) noexcept
-    {
+    inline ControllBuilder *width(const t_size size) noexcept {
         m_basic.autoSize = false;
         m_basic.width = size;
         return this;
 
     }
 
-    inline ControllBuilder* height(const t_size size) noexcept
-    {
+    inline ControllBuilder *height(const t_size size) noexcept {
         m_basic.autoSize = false;
         m_basic.height = size;
         return this;
     }
 
-    inline ControllBuilder* enabled(const bool enable) noexcept
-    {
+    inline ControllBuilder *enabled(const bool enable) noexcept {
         m_basic.enabled = enable;
         return this;
     }
 
-    inline ControllBuilder* multiselected(const bool selected) noexcept
-    {
+    inline ControllBuilder *multiselected(const bool selected) noexcept {
         m_basic.multiselected = selected;
         return this;
     }
 
-    inline ControllBuilder* grouping(const size_t idx) noexcept
-    {
+    inline ControllBuilder *grouping(const size_t idx) noexcept {
         m_basic.group = idx;
         return this;
     }
 
-    inline ControllBuilder* carot() noexcept
-    {
+    inline ControllBuilder *carot() noexcept {
         m_basic.carot = true;
         return this;
     }
 
-    inline ControllBuilder* selected() noexcept
-    {
+    inline ControllBuilder *selected() noexcept {
         m_basic.selected = true;
         return this;
     }
 
-    inline ControllBuilder* borderLineType(const BorderBoundaryLineType lineType) {
+    inline ControllBuilder *borderLineType(const BorderBoundaryLineType lineType) {
         m_basic.borderLineType = lineType;
         return this;
     }
-    inline ControllBuilder* borderBoundaryType(const BorderBoundaryType type) {
+    inline ControllBuilder *borderBoundaryType(const BorderBoundaryType type) {
         m_basic.borderType = type;
         return this;
     }
-    inline ControllBuilder* borderColor(const TColor &lineColor) {
+    inline ControllBuilder *borderColor(const TColor &lineColor) {
         m_basic.borderColor = lineColor;
         return this;
     }
-    inline ControllBuilder* borderAngle(const int borderAngle) {
+    inline ControllBuilder *borderAngle(const int borderAngle) {
         m_basic.borderAngle = borderAngle;
         return this;
     }
-    inline ControllBuilder* borderThick(const int borderThick) {
+    inline ControllBuilder *borderThick(const int borderThick) {
         m_basic.borderThick = borderThick;
         return this;
     }
-    
+
     const GraphicInterface::window_ptr getWindow() const {
         return m_window;
     }
 
-    const TControllBasic& getBasic() const {
+    const TControllBasic &getBasic() const {
         return m_basic;
     }
 
-    void kind(const ControllKind kind)
-    {
+    void kind(const ControllKind kind) {
         m_basic.kind = kind;
     }
-
 
     virtual std::shared_ptr<Controll> build() = 0;
 
@@ -144,5 +132,7 @@ private:
     TControllBasic m_basic;
 
 };
+
+}
 
 #endif //TETRIS_FIGURE_CLASS_TMENUBUILDER_H

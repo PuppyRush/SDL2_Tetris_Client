@@ -13,10 +13,12 @@
 #include <SDL2/SDL_stdinc.h>
 
 #include "GameInterface/Type.h"
+#include "SDLEasyGUI/SEG_Type.h"
 #include "TDefine.h"
 
 SDL_TETRIS_BEGIN
 
+using t_age = uint16_t;
 
 SDL_TETRIS_END
 

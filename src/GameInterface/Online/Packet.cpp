@@ -8,14 +8,22 @@
 
 using namespace game_interface;
 
+Packet::Packet(const Header& header)
+    :m_header(header)
+{
+}
+
+
 Packet::Packet(const Header& _header, const Json::Value& _payload)
     :m_header(_header), m_payload(_payload)
 {
+    this->m_header.timestamp = std::time(nullptr);
 }
 
 Packet::Packet(Header&& _header, Json::Value&& _payload)
     :m_header(_header), m_payload(_payload)
 {
+    this->m_header.timestamp = std::time(nullptr);
 }
 
 Packet::Packet(buffer_ptr buf, const size_type size)
@@ -23,6 +31,7 @@ Packet::Packet(buffer_ptr buf, const size_type size)
 {
     assert(size<BUF_MAX_SIZE);
     memcpy(m_buf,buf,size);
+    this->m_header.timestamp = std::time(nullptr);
 }
 
 Packet::Packet(const packet_type _packet)
@@ -30,7 +39,17 @@ Packet::Packet(const packet_type _packet)
 {
     assert(_packet.second <= 1024);
     memcpy(m_buf,_packet.first, _packet.second);
+
+    this->m_header.timestamp = std::time(nullptr);
 }
+
+Packet::Packet(const char* buf, const size_type len)
+{
+     char* b = const_cast<char*>(buf);
+     memcpy(m_buf,b,len);
+}
+
+
 
 std::pair<std::__decay_and_strip<unsigned char (&)[1024]>::__type, long>
 Packet::toByte()

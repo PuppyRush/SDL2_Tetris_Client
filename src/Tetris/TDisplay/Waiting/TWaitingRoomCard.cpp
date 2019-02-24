@@ -9,7 +9,7 @@ SDL_TETRIS
 TWaitingRoomCard::TWaitingRoomCard(TWaitingRoomCardBuilder& bld)
     :Border(bld)
 {
-    bld.kind(ControllKind::ListBox);
+    bld.kind(sdleasygui::ControllKind::ListBox);
 }
 
 void TWaitingRoomCard::onDraw()

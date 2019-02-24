@@ -16,22 +16,25 @@
 
 #include "Windows/DisplayController.h"
 
-extern void SDLEasyGUI_Init()
-{
-    if( TTF_Init() != 0 ){
-        std::string s("TTF_Init error: " );
+namespace sdleasygui {
+
+extern void SDLEasyGUI_Init() {
+    if (TTF_Init() != 0) {
+        std::string s("TTF_Init error: ");
         s.append(SDL_GetError());
         throw std::runtime_error(s);
     }
 
-    if(SDL_Init(SDL_INIT_VIDEO) != 0)
-    {
-        std::string s("SDL_Init error: " );
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+        std::string s("SDL_Init error: ");
         s.append(SDL_GetError());
         throw std::runtime_error(s);
     }
+    SDL_RegisterEvents(SEG_DRAW_DISPLAY);
 
     DisplayController::getInstance()->run();
+}
+
 }
 
 

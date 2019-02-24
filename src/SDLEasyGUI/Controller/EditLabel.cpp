@@ -6,6 +6,7 @@
 #include "../SEG_Event.h"
 
 using namespace std;
+using namespace sdleasygui;
 
 EditLabel::EditLabel(EditLabelBuilder& bld)
     :Border(bld), m_labelBasic(bld.m_editBasic)

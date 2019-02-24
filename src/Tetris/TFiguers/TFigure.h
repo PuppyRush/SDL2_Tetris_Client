@@ -52,13 +52,13 @@ public:
     inline const size_t getHeight()
     { return m_height;}
 
-    inline const TColor getColor()
+    inline const sdleasygui::TColor getColor()
     { return m_color;}
 
-    inline const Point getPoint()
+    inline const sdleasygui::Point getPoint()
     { return m_point;}
 
-    inline void setPoint(const Point& point)
+    inline void setPoint(const sdleasygui::Point& point)
     { _resetRelateivePoint(point); m_point = point; }
 
     inline FigureCoords& getCoords()
@@ -101,11 +101,11 @@ protected:
     TFigure(const TFigureBuilder *bld);
     TFigure();
 
-    t_size m_figureTypeCount;
-    t_size m_width;
-    t_size m_height;
-    Point m_point;
-    TColor m_color;
+    sdleasygui::t_size m_figureTypeCount;
+    sdleasygui::t_size m_width;
+    sdleasygui::t_size m_height;
+    sdleasygui::Point m_point;
+    sdleasygui::TColor m_color;
     TFigureClass  m_figureClass;
     TFigureType m_figureType;
     FigureCoords m_relativeCoord;
@@ -119,7 +119,7 @@ private:
     virtual bool _validation() = 0;
     virtual void _rotateLeft() = 0;
     virtual void _rotateRight() = 0;
-    void _resetRelateivePoint(const Point& exPt);
+    void _resetRelateivePoint(const sdleasygui::Point& exPt);
 };
 
 SDL_TETRIS_END

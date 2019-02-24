@@ -9,6 +9,7 @@
 
 #include <cstddef>
 #include <atomic>
+#include <ctime>
 
 namespace game_interface {
 using t_type = uint8_t;
@@ -21,6 +22,7 @@ using t_display = unsigned short;
 using t_id = uint16_t;
 using t_id_atomic = std::atomic<t_id>;
 
+using t_time = std::time_t;
 using t_coord = int;
 using t_size = int;
 using t_color = uint8_t;

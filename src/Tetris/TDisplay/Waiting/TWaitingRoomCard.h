@@ -12,7 +12,7 @@
 SDL_TETRIS_BEGIN
 
 class TWaitingRoomCardBuilder;
-class TWaitingRoomCard final : public Border
+class TWaitingRoomCard final : public sdleasygui::Border
 {
 public:
 
@@ -23,27 +23,27 @@ public:
 private:
 
     std::unique_ptr<TMultiGameRoomDisplay> m_gameroom;
-    std::unique_ptr<StaticLabel> m_name;
-    std::unique_ptr<StaticLabel> m_partyNumber;
-    std::unique_ptr<StaticLabel> m_state;
+    std::unique_ptr<sdleasygui::StaticLabel> m_name;
+    std::unique_ptr<sdleasygui::StaticLabel> m_partyNumber;
+    std::unique_ptr<sdleasygui::StaticLabel> m_state;
 };
 
 
-class TWaitingRoomCardBuilder : public BorderBuilder
+class TWaitingRoomCardBuilder : public sdleasygui::BorderBuilder
 {
 public:
 
-    TWaitingRoomCardBuilder(const GraphicInterface::window_ptr window, const Point& point, const std::string& str)
+    TWaitingRoomCardBuilder(const sdleasygui::GraphicInterface::window_ptr window, const sdleasygui::Point& point, const std::string& str)
         :BorderBuilder(window,point,str)
     {
     }
 
-    TWaitingRoomCardBuilder(const GraphicInterface::window_ptr window, Point&& point, std::string&& str)
+    TWaitingRoomCardBuilder(const sdleasygui::GraphicInterface::window_ptr window, sdleasygui::Point&& point, std::string&& str)
         :BorderBuilder(window,point,str)
     {
     }
 
-    virtual std::shared_ptr<Controll> build() final
+    virtual std::shared_ptr<sdleasygui::Controll> build() final
     {
         return std::make_shared<TWaitingRoomCard>(*this );
     }
