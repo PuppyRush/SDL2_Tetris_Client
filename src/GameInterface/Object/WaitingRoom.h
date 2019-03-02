@@ -6,16 +6,23 @@
 #define TETRIS_FIGURE_CLASS_WAITINGROOM_H
 
 #include "Room.h"
+#include "GameRoom.h"
 
 namespace game_interface {
 
 class WaitingRoom : public Room {
 
-    virtual void updateObserver(const Observer &, const Packet ) override;
+public:
+    using room_ptr = GameRoom::room_ptr ;
+    using unique_type = GameRoom::unique_type ;
 
-    virtual void enter(player_ptr ply) override;
-    virtual void exit(player_ptr ply) override;
+    virtual void updateObserver(const Packet& ) =0;
+    virtual void addGameRoom(room_ptr room);
+    virtual void removeGameRoom(const unique_type unique);
 
+private:
+    std::vector<room_ptr> m_rooms;
+    std::mutex m_roomMutex;
 };
 
 }

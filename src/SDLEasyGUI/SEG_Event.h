@@ -14,6 +14,20 @@
 
 namespace sdleasygui {
 
+constexpr const int timer_code = 123456789;
+
+typedef struct SDL_TimerEvent
+{
+    Uint32 timer_id;
+    Uint32 timestamp;   /**< In milliseconds, populated using SDL_GetTicks() */
+    Uint32 windowID;    /**< The associated window if any */
+    Sint32 code;        /**< User defined event code */
+    void *data1;        /**< User defined data pointer */
+    void *data2;        /**< User defined data pointer */
+} SDL_TimerEvent;
+
+
+
 //must call by TimerAdder
 Uint32 timerCallback(Uint32 interval, void *param);
 

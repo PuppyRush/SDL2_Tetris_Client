@@ -35,11 +35,11 @@ void TSingleGameDisplay::onClickedStart()
 
     m_drawLine = TOptionManager::getInstance()->isDrawLine();
 
-    board->setStartDisplayPoint(Point{GAMEBOARD_BEGIN_X, GAMEBOARD_BEGIN_Y});
+    board->setStartDisplayPoint(TPoint{GAMEBOARD_BEGIN_X, GAMEBOARD_BEGIN_Y});
     board->setblockLength(FIGURE_UNIT_LEN);
 
     auto nextboard = ply->getController()->getNextFigureBoard();
-    nextboard->setStartDisplayPoint(Point{GAMEBOARD_BEGIN_X + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN, GAMEBOARD_BEGIN_Y});
+    nextboard->setStartDisplayPoint(TPoint{GAMEBOARD_BEGIN_X + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN, GAMEBOARD_BEGIN_Y});
     nextboard->setblockLength(FIGURE_UNIT_LEN);
 
     TimerAdder tAdder(1000,toUType(TetrisEvent::TETRIS_EVENT_FIGURETIMER));
@@ -118,11 +118,6 @@ void TSingleGameDisplay::onCreate()
     TGameDisplay::onCreate();
 }
 
-
-void TSingleGameDisplay::onTimer()
-{
-
-}
 
 void TSingleGameDisplay::onDraw() {
     TGameDisplay::onDraw();

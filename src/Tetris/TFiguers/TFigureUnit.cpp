@@ -6,14 +6,14 @@ using namespace sdleasygui;
 
 TFigureUnit::TFigureUnit()
     :m_type(UnitType::Empty),
-     m_point(sdleasygui::Point(0,0)),
+     m_point(sdleasygui::TPoint(0,0)),
      m_color(sdleasygui::ColorCode::none),
      m_age(0)
 {
 
 }
 
-TFigureUnit::TFigureUnit(const Point point, const t_age age, const ColorCode color, const UnitType type)
+TFigureUnit::TFigureUnit(const TPoint point, const t_age age, const ColorCode color, const UnitType type)
     :m_type(type),
     m_point(point),
     m_color(color),

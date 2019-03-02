@@ -11,6 +11,14 @@
 
 SDL_TETRIS_BEGIN
 
+typedef struct WaitingroomCardBasic {
+    std::string name;
+    int partyNumber;
+    int roomnumber;
+    bool state;
+} WaitingroomCardBasic;
+
+
 class TWaitingRoomCardBuilder;
 class TWaitingRoomCard final : public sdleasygui::Border
 {
@@ -21,7 +29,7 @@ public:
     virtual void initialize() override final;
 
 private:
-
+    WaitingroomCardBasic m_cardBasic;
     std::unique_ptr<TMultiGameRoomDisplay> m_gameroom;
     std::unique_ptr<sdleasygui::StaticLabel> m_name;
     std::unique_ptr<sdleasygui::StaticLabel> m_partyNumber;
@@ -33,14 +41,34 @@ class TWaitingRoomCardBuilder : public sdleasygui::BorderBuilder
 {
 public:
 
-    TWaitingRoomCardBuilder(const sdleasygui::GraphicInterface::window_ptr window, const sdleasygui::Point& point, const std::string& str)
+    TWaitingRoomCardBuilder(const sdleasygui::GraphicInterface::window_ptr window, const sdleasygui::TPoint& point, const std::string& str)
         :BorderBuilder(window,point,str)
     {
     }
 
-    TWaitingRoomCardBuilder(const sdleasygui::GraphicInterface::window_ptr window, sdleasygui::Point&& point, std::string&& str)
+    TWaitingRoomCardBuilder(const sdleasygui::GraphicInterface::window_ptr window, sdleasygui::TPoint&& point, std::string&& str)
         :BorderBuilder(window,point,str)
     {
+    }
+
+    inline TWaitingRoomCardBuilder *roomname(const std::string roomname) noexcept {
+        m_cardBasic.name = roomname;
+        return this;
+    }
+
+    inline TWaitingRoomCardBuilder *roomnumber(const int number) noexcept {
+        m_cardBasic.roomnumber = number;
+        return this;
+    }
+
+    inline TWaitingRoomCardBuilder *partyNumber(const int number) noexcept {
+        m_cardBasic.partyNumber = number;
+        return this;
+    }
+
+    inline TWaitingRoomCardBuilder *state(const bool state) noexcept {
+        m_cardBasic.state = state;
+        return this;
     }
 
     virtual std::shared_ptr<sdleasygui::Controll> build() final
@@ -48,6 +76,7 @@ public:
         return std::make_shared<TWaitingRoomCard>(*this );
     }
 
+    WaitingroomCardBasic m_cardBasic;
 };
 
 

@@ -69,6 +69,9 @@ void TPlayer::connectServer()
 {
     assert(!getUserName().empty());
     m_clientCtl.connectServer();
+
+    //first call faster than server.
+    sendDummySignal();
 }
 
 void TPlayer::sendPacket(Packet &packet)
@@ -76,8 +79,11 @@ void TPlayer::sendPacket(Packet &packet)
     m_clientCtl.send(packet);
 }
 
-void TPlayer::updateObserver(const Observer&, const Packet packet)
+void TPlayer::updateObserver(const Packet& packet)
 {
+    if(packet.getHeader().message == messageInfo::PLAYER_INIT_INFO)
+        this->setUnique(packet.getHeader().objectId);
+
     switch(packet.getHeader().message)
     {
         case messageInfo::PLAYER_INIT_INFO:
@@ -89,18 +95,25 @@ void TPlayer::updateObserver(const Observer&, const Packet packet)
 void TPlayer::recvInfo(const game_interface::Packet& packet)
 {
     const Json::Value json = packet.getPayload();
-    setUnique(json.asInt());
+    setUnique(json["unique"].asInt());
 
-    requestInfo();
+    sendInitInfo();
 }
 
-void TPlayer::requestInfo()
+void TPlayer::sendDummySignal()
+{
+    Packet::Header header{this->getUnique(),messageDirection::CLIENT, messageInfo::DUMMY_SIGNAL};
+    Packet p{header};
+    sendPacket(p);
+}
+
+void TPlayer::sendInitInfo()
 {
     Json::Value json;
     json["id"] = this->getUserName();
+    json["ip"] = this->m_ip.ip;
 
     Packet::Header header{this->getUnique(),messageDirection::CLIENT, messageInfo::PLAYER_INIT_INFO};
     Packet p{header, json};
     sendPacket(p);
-
 }

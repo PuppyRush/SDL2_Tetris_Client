@@ -33,11 +33,11 @@ void TMultiGameRoomDisplay::onClickedStart()
         ply->connectServer();
         auto board = ply->getController()->getBoard();
 
-        board->setStartDisplayPoint(Point{GAMEBOARD_BEGIN_X, GAMEBOARD_BEGIN_Y});
+        board->setStartDisplayPoint(TPoint{GAMEBOARD_BEGIN_X, GAMEBOARD_BEGIN_Y});
         board->setblockLength(FIGURE_UNIT_LEN);
 
         auto nextboard = ply->getController()->getNextFigureBoard();
-        nextboard->setStartDisplayPoint(Point{GAMEBOARD_BEGIN_X + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN,
+        nextboard->setStartDisplayPoint(TPoint{GAMEBOARD_BEGIN_X + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN,
                                                GAMEBOARD_BEGIN_Y});
         nextboard->setblockLength(FIGURE_UNIT_LEN);
     }
@@ -51,11 +51,11 @@ void TMultiGameRoomDisplay::onClickedStart()
         auto board = echoPly->getController()->getBoard();
 
         const auto beginX = GAMEBOARD_BEGIN_X+600;
-        board->setStartDisplayPoint(Point{beginX, GAMEBOARD_BEGIN_Y});
+        board->setStartDisplayPoint(TPoint{beginX, GAMEBOARD_BEGIN_Y});
         board->setblockLength(FIGURE_UNIT_LEN);
 
         auto nextboard = echoPly->getController()->getNextFigureBoard();
-        nextboard->setStartDisplayPoint(Point{beginX + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN,
+        nextboard->setStartDisplayPoint(TPoint{beginX + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN,
                                                GAMEBOARD_BEGIN_Y});
         nextboard->setblockLength(FIGURE_UNIT_LEN);
     }

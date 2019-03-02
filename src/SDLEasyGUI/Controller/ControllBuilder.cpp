@@ -8,14 +8,14 @@
 using namespace sdleasygui;
 SDL_TETRIS
 
-ControllBuilder::ControllBuilder(const GraphicInterface::window_ptr window,const Point& point, const std::string& str)
+ControllBuilder::ControllBuilder(const GraphicInterface::window_ptr window,const TPoint& point, const std::string& str)
     :m_window(window)
 {
     m_basic.point = point;
     m_basic.name = str;
 }
 
-ControllBuilder::ControllBuilder(const GraphicInterface::window_ptr window,Point&& point, std::string&& str)
+ControllBuilder::ControllBuilder(const GraphicInterface::window_ptr window, TPoint&& point, std::string&& str)
     :m_window(window)
 {
     m_basic.point = point;

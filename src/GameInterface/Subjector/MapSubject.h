@@ -14,40 +14,41 @@
 namespace game_interface {
 
 class Observer;
-class MapSubject : public SubjectInterface<t_unique, Observer, std::unordered_map<t_unique, std::shared_ptr<Observer>>>
+
+template <class _Observer>
+class MapSubject : public SubjectInterface<_Observer, std::unordered_map<typename _Observer::unique_type, std::shared_ptr<_Observer>>>
 {
 public:
 
-    virtual ~MapSubject() {}
+    using _Base = SubjectInterface<_Observer, std::unordered_map<t_unique, std::shared_ptr<_Observer>>>;
+    using object_type = typename _Base::object_type ;
+    using unique_type = typename _Base::unique_type;
 
+    virtual ~MapSubject() {}
     virtual void notify() = 0;
 
 protected:
     MapSubject() {}
 
-    virtual void insert(object_type obs) {
-        m_objects.insert(std::make_pair(obs->getUnique(), obs));
+    virtual void insert(object_type obs) override {
+        _Base::m_objects.insert(std::make_pair(obs->getUnique(), obs));
     }
 
     virtual void remove(const unique_type unique){
-        m_objects.erase(unique);
+        _Base::m_objects.erase(unique);
     }
 
     virtual bool exist(const unique_type unique) const {
-        return m_objects.count(unique);
+        return _Base::m_objects.count(unique);
     }
 
     virtual object_type at(const unique_type unique) {
         if(exist(unique))
-            return m_objects.at(unique);
+            return _Base::m_objects.at(unique);
         else
             return nullptr;
     }
 
-private:
-
-    std::condition_variable m_objCond;
-    std::mutex m_objMutex;
 };
 
 }

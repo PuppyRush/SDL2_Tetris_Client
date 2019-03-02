@@ -38,10 +38,7 @@ void ButtonBasic::onDrawBackground()
     rect.h = (rect.h - getBorderThick()*2)+1;
     rect.w = (rect.w - getBorderThick()*2)+1;
 
-    const auto &back_color = getBackgroundColor();
-    SDL_SetRenderDrawColor(renderer, back_color.r, back_color.g, back_color.b, 255);
-    SDL_RenderFillRect(renderer, &rect);
-    SDL_RenderDrawRect(renderer, &rect);
+    drawBackground(rect, getBackgroundColor());
 
     SDL_Rect renderQuad = { static_cast<int>(getPoint().x + ( getWidth() - m_textWidth)/2)
         , static_cast<int>(getPoint().y + ( getHeight() - m_textHeight)/2)

@@ -61,17 +61,6 @@ ClientService::handle_input (ACE_HANDLE  fd/* = ACE_INVALID_HANDLE*/){
 
     PacketQueue::getInstance().pushEvent(Packet{in,len});
 
-    /*SDL_UserEvent userevent;
-    userevent.type = RECV_DATA;
-    userevent.code = 0;
-    userevent.data1 = in;
-
-    SDL_Event event;
-    event.type = RECV_DATA;
-    event.user = userevent;
-
-    SDL_PushEvent(&event);*/
-
     return 0;
 }
 

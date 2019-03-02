@@ -66,10 +66,10 @@ void TMultiMainDisplay::onPreInitialize() {
         addControll(bld.build());
     }
 
-    ::DisplayInterface::onPreInitialize();
+    DisplayInterface::onPreInitialize();
 }
 
-void TMultiMainDisplay::onTimer()
+void TMultiMainDisplay::onTimerEvent()
 {
 
 }

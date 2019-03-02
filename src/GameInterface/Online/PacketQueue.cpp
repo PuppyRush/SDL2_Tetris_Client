@@ -3,6 +3,7 @@
 //
 
 #include "PacketQueue.h"
+#include "GameInterface/Subjector/ManagerController.h"
 
 using namespace game_interface;
 
@@ -38,14 +39,36 @@ Packet PacketQueue::popEvent()
 
 void PacketQueue::notify()
 {
-    while(m_isContinue)
-    {
-        auto packet = popEvent();
-        if(exist(packet.getHeader().objectId)){
-            const auto& obj = at(packet.getHeader().objectId);
+    auto& mngCtl = *server::ManagerController::getInstance();
+
+    if(m_isServer) {
+
+        while (m_isContinue) {
+            auto packet = popEvent();
             packet.toPacket();
 
-            obj->updateObserver(*obj, packet);
+            printf("client recv : %d %d %ld\n", packet.getHeader().objectId, toUType(packet.getHeader().message),
+                   packet.getHeader().timestamp);
+
+            mngCtl.updateObserver(packet);
+        }
+    }
+    else
+    {
+        while (m_isContinue) {
+            auto packet = popEvent();
+            packet.toPacket();
+
+            if(packet.getHeader().where == messageDirection::CLIENT)
+                continue;
+
+            printf("client recv : %d %d %ld\n", packet.getHeader().objectId, toUType(packet.getHeader().message),
+                   packet.getHeader().timestamp);
+
+            for(auto& obj : m_objects)
+            {
+                obj->updateObserver(packet);
+            }
         }
     }
 }

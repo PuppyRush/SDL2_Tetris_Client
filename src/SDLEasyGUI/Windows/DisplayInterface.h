@@ -71,7 +71,7 @@ public:
     using BTN_CLICK = std::function<void(void)>;
 
     void addControll(const std::shared_ptr<Controll> ctl);
-    bool clickedMenuEvent(const Point &point);
+    bool clickedMenuEvent(const TPoint &point);
 
     t_res modal();
     void modaless();
@@ -81,7 +81,7 @@ public:
     virtual void onDraw();
 
     virtual void refresh() override;
-    virtual void updateObserver(const Observer &, const game_interface::Packet) = 0;
+    virtual void updateObserver(const game_interface::Packet&) = 0;
 
     inline void setBackgroundImgPath(const std::string &path) { m_backgroundImgPath = path; }
     inline void setRun(const bool run) { m_run = run; }
@@ -163,6 +163,7 @@ protected:
     virtual void onMultiGestureEvent(const SDL_MultiGestureEvent *mgesture) {};
     virtual void onDollarGestureEvent(const SDL_DollarGestureEvent *dgesture) {};
     virtual void onDropEvent(const SDL_DropEvent *drop) {};
+    virtual void onTimerEvent(const SDL_UserEvent *user) {}
 
     virtual void onAttachFocus() {};
     virtual void onDetachFocus() {};
@@ -178,9 +179,7 @@ private:
 
     void release();
     void _run();
-
     void onDrawMenus();
-    virtual void onTimer() {}
     virtual bool validId(const game_interface::t_id id) override final;
 
     std::vector<Controll::controll_ptr> m_menus;

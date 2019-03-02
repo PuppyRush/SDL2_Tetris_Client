@@ -29,6 +29,7 @@ enum class resource : sdleasygui::t_res {
     GAME_SUSPEND,
     ENTERSERVER_ID,
     ENTERSERVER_OK,
+    WAITINGROOM_GAMEROOM,
 
     GAME_END
 };

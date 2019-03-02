@@ -182,7 +182,12 @@ add_executable(tetris_figure_class
         src/GameInterface/Online/ClientService.h
         src/GameInterface/Event.h
         src/GameInterface/TStruct.h
-        src/GameInterface/Observer/Observer.h
+        src/GameInterface/Object/Observer.h
+        src/GameInterface/Subjector/VectorSubject.h
+        src/GameInterface/Subjector/ManagerController.h
+        src/GameInterface/Subjector/ManagerController.cpp
+        src/GameInterface/Subjector/MapSubject.h
+        src/GameInterface/Subjector/SubjectInterface.h
         src/GameInterface/Online/MessageType.h
         src/GameInterface/Online/Packet.cpp
         src/GameInterface/Online/Packet.h

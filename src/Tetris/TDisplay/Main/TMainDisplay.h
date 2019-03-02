@@ -28,7 +28,7 @@ protected:
     TMainDisplay();
 
 	virtual void onPreInitialize() = 0;
-	virtual void onTimer() =0;
+	virtual void onTimerEvent() =0;
     virtual void onDraw();
 };
 

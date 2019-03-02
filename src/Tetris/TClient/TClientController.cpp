@@ -2,6 +2,7 @@
 // Created by kim on 19. 1. 10.
 //
 
+#include <chrono>
 #include "TClientController.h"
 
 SDL_TETRIS
@@ -37,13 +38,15 @@ void TClientController::connectServer()
     m_service = make_shared<ClientService>(m_reactor.get());
 
     new  ClientConnector("127.0.0.1:12345",m_reactor.get(), *m_service.get());
-
     m_clientThread = thread(fn,m_reactor.get());
 
+    std::this_thread::sleep_for (std::chrono::milliseconds(500));
 }
 
 void TClientController::send(Packet& packet)
 {
+    printf("clinet send : %d %d %ld\n", packet.getHeader().objectId, toUType( packet.getHeader().message),
+        packet.getHeader().timestamp);
 
     auto bytes = packet.toByte();
     m_service->send((void *) bytes.first, bytes.second);

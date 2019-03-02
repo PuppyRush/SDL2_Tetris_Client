@@ -1,13 +1,10 @@
-#include <cassert>
-#include <GameInterface/Constant.h>
+#include <ctime>
 
 #include "Object.h"
 
 using namespace game_interface;
 
 Object::Object()
-    :m_unique(Atomic::newUnique())
+    :m_unique(Atomic::newUnique()), m_maketime(std::time(nullptr))
 {
-    //full unique
-    assert(m_unique != NULL_ID);
 }

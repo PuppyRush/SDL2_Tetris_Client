@@ -16,21 +16,24 @@ namespace game_interface {
 
 class Object {
 public:
+
+	using unique_type = t_unique;
+
 	virtual ~Object() {}
 
-	inline const bool compareUnique(const t_unique unique) const noexcept { return m_unique == unique; }
+	inline const bool compareUnique(const unique_type unique) const noexcept { return m_unique == unique; }
 
-	inline const t_unique getUnique() const noexcept { return m_unique; }
+	inline void setUnique(const unique_type unique) { m_unique = unique; }
+	inline const unique_type getUnique() const noexcept { return m_unique; }
 
-	inline void setUnique(const t_unique unique) {
-	    m_unique = unique;
-	}
+	inline const t_time getMaketime() { return m_maketime;}
 
 protected:
 	Object();
 
 private:
-	t_unique m_unique;
+	unique_type m_unique;
+	t_time m_maketime;
 };
 
 }

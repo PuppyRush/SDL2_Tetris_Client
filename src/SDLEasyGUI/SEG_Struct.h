@@ -86,6 +86,11 @@ public:
                 g = 169;
                 b = 169;
                 break;
+            case ColorCode::dimgray:
+                r = 99;
+                g = 112;
+                b = 117;
+                break;
             default:
                 std::cerr << "cant found : " << static_cast<int>(code) << std::endl;
                 assert(0);
@@ -127,7 +132,7 @@ public:
     TPoint(const t_coord &x, const t_coord &y, const t_coord &z = 0)
         : x(x), y(y), z(z) {}
 
-} Point;
+} TPoint;
 
 typedef struct TFont {
     std::string font_name;
@@ -140,7 +145,7 @@ typedef struct TFont {
 
 typedef struct ControllBasic {
     t_res resourceId;
-    Point point = Point(-100, -100);
+    TPoint point = TPoint(-100, -100);
     t_size depth = 0;
     t_size width = 100;
     t_size height = 50;

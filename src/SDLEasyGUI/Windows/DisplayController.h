@@ -13,6 +13,7 @@
 #include <queue>
 #include <thread>
 #include <condition_variable>
+#include <boost/serialization/singleton.hpp>
 
 #include "SDLEasyGUI/SEG_Type.h"
 #include "../SEG_Resource.h"
@@ -54,7 +55,8 @@ struct KeyEqual {
     }
 };
 
-class DisplayController final {
+class DisplayController : public boost::serialization::singleton<DisplayController>
+{
 
 public:
     using display_ptr = DisplayInterface *;

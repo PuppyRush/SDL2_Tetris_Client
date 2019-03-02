@@ -60,7 +60,7 @@ void TEnterServerDisplay::onClickedEnterServer()
     player->setUserName(btn->getName());
     player->connectServer();
 
-    PacketQueue::getInstance().attach(player);
+    game_interface::PacketQueue::getInstance().attach(player);
 
     auto dlg = std::make_shared<TWaitingRoomDisplay>();
     dlg->modal();

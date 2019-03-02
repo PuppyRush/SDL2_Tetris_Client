@@ -19,6 +19,7 @@
 #include "Tetris/TDisplay/Main/TMultiMainDisplay.h"
 #include "Tetris/TDisplay/TOptionDisplay.h"
 #include "Tetris/TDisplay/Game/TSingleGameDisplay.h"
+#include "GameInterface/Online/PacketQueue.h"
 
 SDL_TETRIS
 
@@ -46,6 +47,9 @@ void DisplayController::modal_open(display_ptr display)
     }
 
     display->refresh();
+
+    game_interface::PacketQueue::getInstance().attach( std::shared_ptr<Observer>(display));
+
 }
 
 void DisplayController::modal_close()
@@ -57,7 +61,9 @@ void DisplayController::modal_close()
 
 void DisplayController::modaless(display_ptr display)
 {
-    DisplayInfo info{display->getDisplay(), display->getMode(), TDisplayMode::Modaless, display->getID()};
+    game_interface::PacketQueue::getInstance().attach( std::shared_ptr<Observer>(display));
+
+
     if( auto it = std::find_if(begin(m_modalessAry), end(m_modalessAry), [display](const display_ptr ptr)
     {
         return display->getID() == ptr->getID();
@@ -100,7 +106,6 @@ void DisplayController::_pumpEvent()
     while(m_run)
     {
         SDL_Event event;
-
         SDL_WaitEvent(&event);
 
         const auto winid = getActivatedWindowID(&event);

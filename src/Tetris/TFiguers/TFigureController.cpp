@@ -27,11 +27,11 @@ void TFigureController::createNextFigureRandomly()
 {
     if(m_currentFigure.get() == nullptr)
     {
-        TFigureBuilder bld{Point{GAMEBOARD_WIDTH_COUNT / 2 - 1, 2}};
+        TFigureBuilder bld{TPoint{GAMEBOARD_WIDTH_COUNT / 2 - 1, 2}};
         bld.unitType(UnitType::Figure);
         m_currentFigure = bld.build();
 
-        TFigureBuilder bld2{Point{1,2}};
+        TFigureBuilder bld2{TPoint{1,2}};
         bld2.unitType(UnitType::Figure);
         m_nextFigure = bld2.build();
     }
@@ -40,10 +40,10 @@ void TFigureController::createNextFigureRandomly()
         m_nextFigureBoard->_eraseCoords(m_nextFigure);
 
         m_currentFigure = m_nextFigure->copy();
-        m_currentFigure->setPoint(Point(GAMEBOARD_WIDTH_COUNT / 2 - 1, 2));
+        m_currentFigure->setPoint(TPoint(GAMEBOARD_WIDTH_COUNT / 2 - 1, 2));
         m_nextFigure.reset();
 
-        TFigureBuilder bld{Point{1,2}};
+        TFigureBuilder bld{TPoint{1,2}};
         bld.unitType(UnitType::Figure);
         m_nextFigure = bld.build();
     }

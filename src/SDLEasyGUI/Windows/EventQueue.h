@@ -23,10 +23,10 @@ struct event_mover {
     ~event_mover() {
         if(event->type >= 0x8000)
         {
-            if(event->user.data1 != nullptr)
+            /*if(event->user.data1 != nullptr)
                 delete event->user.data1;
             if(event->user.data2 != nullptr)
-                delete event->user.data2;
+                delete event->user.data2;*/
         }
         if (event)
             delete event;

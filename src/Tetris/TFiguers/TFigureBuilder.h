@@ -19,7 +19,7 @@ class TFigureBuilder final
 {
 public:
 
-    TFigureBuilder(const sdleasygui::Point &point);
+    TFigureBuilder(const sdleasygui::TPoint &point);
     virtual ~TFigureBuilder() {}
 
     inline TFigureBuilder* color(const sdleasygui::ColorCode& color)
@@ -53,7 +53,7 @@ public:
         return this;
     }
 
-    inline const sdleasygui::Point getPoint() const noexcept { return m_point; }
+    inline const sdleasygui::TPoint getPoint() const noexcept { return m_point; }
     inline const sdleasygui::ColorCode getColor() const noexcept { return m_color; }
     inline const TFigureType getType() const noexcept { return m_figureType; }
     inline const t_age getAge() const noexcept { return m_age; }
@@ -74,7 +74,7 @@ private:
     sdleasygui::t_size m_width;
     sdleasygui::t_size m_height;
     sdleasygui::ColorCode m_color;
-    sdleasygui::Point m_point;
+    sdleasygui::TPoint m_point;
     TFigureType m_figureType;
     TFigureClass  m_figureClass = TFigureClass::End;
     t_age m_age;

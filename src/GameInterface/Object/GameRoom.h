@@ -10,11 +10,12 @@
 namespace game_interface {
 
 class GameRoom : public Room{
+public:
+    using unique_type = Room::unique_type ;
+    using room_ptr = Room::room_ptr ;
 
-    virtual void updateObserver(const Observer &, const Packet ) override;
+    virtual void updateObserver(const Packet& ) =0;
 
-    virtual void enter(player_ptr ply) override;
-    virtual void exit(player_ptr ply) override;
 };
 
 }

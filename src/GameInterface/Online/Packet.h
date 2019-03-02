@@ -46,8 +46,11 @@ public:
 
     Packet *toPacket();
 
+    inline void setTimestamp(const t_time time) { m_header.timestamp = time;}
+    inline void setUnique(const t_unique id){m_header.objectId = id;}
+
     inline const Header &getHeader() const noexcept {
-        assert(m_header.where != messageDirection::UNKOWN and
+        assert( m_header.where != messageDirection::UNKOWN and
             m_header.message != messageInfo::UNKWON);
 
         return m_header;

@@ -101,13 +101,13 @@ void DisplayInterface::onUserEvent(const SDL_UserEvent* event) {
 
 void DisplayInterface::onMouseButtonEvent (const SDL_MouseButtonEvent* button)
 {
-    clickedMenuEvent(Point{button->x, button->y});
+    clickedMenuEvent(TPoint{button->x, button->y});
     refresh();
 }
 
 void DisplayInterface::onMouseMotionEvent(const SDL_MouseMotionEvent *motion)
 {
-    refresh();
+    //refresh();
 }
 
 
@@ -129,7 +129,6 @@ void DisplayInterface::onCreate()
 {
     auto window = make_shared<Window>();
     setWindow(window);
-    onTimer();
     refresh();
 }
 
@@ -191,7 +190,7 @@ void DisplayInterface::addControll(const shared_ptr<Controll> ctl)
 
 }
 
-bool DisplayInterface::clickedMenuEvent(const Point& point)
+bool DisplayInterface::clickedMenuEvent(const TPoint& point)
 {
     for(const auto& menu : m_menus)
     {
@@ -214,6 +213,9 @@ bool DisplayInterface::clickedMenuEvent(const Point& point)
 
 void DisplayInterface::refresh()
 {
+    SDL_RenderClear(getRenderer().get());
+    SDL_RenderPresent(getRenderer().get());
+    SDL_UpdateWindowSurface(getSDLWindow().get());
     EventPusher event{this->getWindowID(), SEG_DRAW_DISPLAY };
     event.pushEvent();
 }

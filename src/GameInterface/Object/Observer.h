@@ -14,16 +14,13 @@ namespace game_interface {
 //pre-declarcation
 class Observer : public Object {
 public:
+
+    using unique_type = Object::unique_type ;
+
     Observer() = default;
     virtual ~Observer() {}
 
-    virtual void updateObserver(const Observer &, const Packet ) = 0;
-
-private:
-    virtual void _update(const Observer &obs, const Packet &packet) {
-        if (obs.compareUnique(this->getUnique()))
-            updateObserver(obs, packet);
-    }
+    virtual void updateObserver(const Packet& ) = 0;
 
 };
 

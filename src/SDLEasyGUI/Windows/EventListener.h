@@ -120,6 +120,9 @@ public:
                     case DETACH_FOCUS:
                         onDetachFocus();
                         break;
+                    case SDL_TIMER_EVENT:
+                        onTimerEvent(&event->user);
+                        break;
                     default:
                         onUserEvent(&event->user);
                 }
@@ -152,6 +155,7 @@ public:
     virtual void onMultiGestureEvent(const SDL_MultiGestureEvent *mgesture) = 0;
     virtual void onDollarGestureEvent(const SDL_DollarGestureEvent *dgesture) = 0;
     virtual void onDropEvent(const SDL_DropEvent *drop) = 0;
+    virtual void onTimerEvent(const SDL_UserEvent *user) = 0;
 
     //SEG Events
     virtual void onAttachFocus() = 0;

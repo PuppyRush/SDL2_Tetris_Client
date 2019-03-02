@@ -81,7 +81,7 @@ void TLocalMainDisplay::onClickedOption()
     dlg->modal();
 }
 
-void TLocalMainDisplay::onTimer()
+void TLocalMainDisplay::onTimerEvent()
 {
 
 }

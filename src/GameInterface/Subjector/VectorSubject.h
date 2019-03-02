@@ -18,9 +18,14 @@
 
 namespace game_interface {
 
-class VectorSubject : public SubjectInterface<t_unique, Observer, std::vector<std::shared_ptr<Observer>>>
+template <class _Observer>
+class VectorSubject : public SubjectInterface<_Observer, std::vector<std::shared_ptr<_Observer>>>
 {
 public:
+
+    using _Base = SubjectInterface<_Observer, std::vector<std::shared_ptr<_Observer>>>;
+    using object_type = typename _Base::object_type ;
+    using unique_type = typename _Base::unique_type;
 
     virtual ~VectorSubject() {}
 
@@ -29,47 +34,41 @@ public:
 protected:
     VectorSubject() {}
 
-    virtual void insert(object_type obs) {
-        m_objects.emplace_back(obs);
+    virtual void insert(object_type obs) override {
+        _Base::m_objects.emplace_back(obs);
     }
 
-    virtual void remove(const unique_type unique) {
-        const auto it = std::remove_if(begin(m_objects), end(m_objects), [unique](object_type element)
+    virtual void remove(const unique_type unique) override {
+        const auto it = std::remove_if(begin(_Base::m_objects), end(_Base::m_objects), [unique]( object_type element)
         {
-          return unique == element->getUnique();
+          return element->compareUnique(unique);
         });
 
-        if(it != m_objects.end())
-            m_objects.erase(it);
+        if(it != _Base::m_objects.end())
+            _Base::m_objects.erase(it);
     }
 
     virtual bool exist(const unique_type unique) const
     {
-        const auto cnt = std::count_if(begin(m_objects), end(m_objects), [unique](object_type element)
+        const auto cnt = std::count_if(begin(_Base::m_objects), end(_Base::m_objects), [unique]( object_type element)
         {
-          return unique == element->getUnique();
+          return element->compareUnique(unique);
         });
 
         return cnt>0;
     }
 
-    virtual object_type at(const unique_type unique) {
-        const auto it = std::find_if(begin(m_objects), end(m_objects), [unique](object_type element)
+    virtual object_type at(const  unique_type unique) override {
+        const auto it = std::find_if(begin(_Base::m_objects), end(_Base::m_objects), [unique]( object_type element)
         {
-          return unique == element->getUnique();
+          return element->compareUnique(unique);
         });
 
-        if(it != m_objects.end())
+        if(it != _Base::m_objects.end())
             return *it;
         else
             nullptr;
     }
-
-
-private:
-
-    std::condition_variable m_objCond;
-    std::mutex m_objMutex;
 };
 
 }

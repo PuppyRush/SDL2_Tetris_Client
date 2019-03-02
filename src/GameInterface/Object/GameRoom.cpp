@@ -7,11 +7,5 @@
 using namespace game_interface;
 
 
-void GameRoom::updateObserver(const Observer &, const Packet )
-{}
-
-void GameRoom::enter(player_ptr ply)
-{}
-
-void GameRoom::exit(player_ptr ply)
+void GameRoom::updateObserver(const Packet& )
 {}

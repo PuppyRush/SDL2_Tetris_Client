@@ -25,8 +25,8 @@ class Controll;
 class ControllBuilder {
 public:
 
-    ControllBuilder(const GraphicInterface::window_ptr window, const Point &point, const std::string &str);
-    ControllBuilder(const GraphicInterface::window_ptr window, Point &&point, std::string &&str);
+    ControllBuilder(const GraphicInterface::window_ptr window, const TPoint &point, const std::string &str);
+    ControllBuilder(const GraphicInterface::window_ptr window, TPoint &&point, std::string &&str);
 
     inline ControllBuilder *id(const t_id id) noexcept {
         m_basic.resourceId = id;

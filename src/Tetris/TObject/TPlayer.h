@@ -45,10 +45,11 @@ public:
     void endGame();
     void connectServer();
 
-    virtual void updateObserver(const Observer&, const game_interface::Packet) override;
+    virtual void updateObserver(const game_interface::Packet&) override;
 
     void recvInfo(const game_interface::Packet&);
-    void requestInfo();
+    void sendInitInfo();
+    void sendDummySignal();
 
     static std::shared_ptr<TPlayer> getPlayer()
     {

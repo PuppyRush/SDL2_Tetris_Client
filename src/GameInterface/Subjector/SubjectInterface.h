@@ -20,13 +20,13 @@ namespace game_interface {
 
 class Observer;
 
-template <class _Unique, class _Object, class _Container>
+template <class _Object, class _Container>
 class SubjectInterface : private boost::noncopyable{
 public:
 
     using object_type = std::shared_ptr<_Object>;
-    using unique_type = _Unique;
     using container_type = _Container;
+    using unique_type = typename _Object::unique_type;
 
     virtual ~SubjectInterface() {}
 
@@ -37,13 +37,13 @@ public:
         std::lock_guard<std::mutex> lock(m_objMutex);
 
         insert(obs);
-
         m_objCond.notify_one();
 
         postAttach(obs);
     }
 
-    void detach(const unique_type unique) {
+    void detach(const unique_type unique)
+    {
         assert(!exist(unique));
 
         std::unique_lock<std::mutex> lock(m_objMutex);
@@ -53,10 +53,16 @@ public:
         postDetach(unique);
     }
 
-
+    inline container_type& getContainer() { return m_objects;}
 
 protected:
+
     SubjectInterface() {}
+
+    inline const bool compare(const object_type& lhs, const object_type& rhs)
+    {
+        return lhs->getUnique() == rhs->getUnique();
+    }
 
     virtual void postAttach(object_type ) = 0;
     virtual void postDetach(unique_type) = 0;
@@ -66,8 +72,6 @@ protected:
     virtual object_type at(const unique_type unique) = 0;
 
     container_type m_objects;
-private:
-
     std::condition_variable m_objCond;
     std::mutex m_objMutex;
 };

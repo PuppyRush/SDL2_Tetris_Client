@@ -5,6 +5,8 @@
 #ifndef TETRIS_FIGURE_CLASS_LIST_H
 #define TETRIS_FIGURE_CLASS_LIST_H
 
+#include <vector>
+
 #include "Border.h"
 
 namespace sdleasygui {
@@ -27,19 +29,24 @@ class ListBox : public Border {
 public:
     explicit ListBox(ListBoxBuilder &bld);
 
+    void appendItem(const std::string& str);
+
     virtual void initialize() override;
     virtual void onDraw() override;
+
+private:
+    std::vector<std::string> m_menus;
 
 };
 
 class ListBoxBuilder : public BorderBuilder {
 public:
 
-    ListBoxBuilder(const GraphicInterface::window_ptr window, const Point &point, const std::string &str)
+    ListBoxBuilder(const GraphicInterface::window_ptr window, const TPoint &point, const std::string &str)
         : BorderBuilder(window, point, str) {
     }
 
-    ListBoxBuilder(const GraphicInterface::window_ptr window, Point &&point, std::string &&str)
+    ListBoxBuilder(const GraphicInterface::window_ptr window, TPoint &&point, std::string &&str)
         : BorderBuilder(window, point, str) {
     }
 

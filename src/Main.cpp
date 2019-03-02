@@ -8,6 +8,7 @@
 #include "Tetris/TDisplay/Game/TMultiGameRoomDisplay.h"
 #include "Tetris/TDisplay/Main/TLocalMainDisplay.h"
 #include "Tetris/TDisplay/Main/TMultiMainDisplay.h"
+#include "GameInterface/Online/PacketQueue.h"
 
 #define SDL_DEBUG_EVENTS
 
@@ -16,6 +17,7 @@ SDL_TETRIS
 void init()
 {
 
+    game_interface::PacketQueue::getInstance().setServer(false);
     sdleasygui::SDLEasyGUI_Init();
 
     //background

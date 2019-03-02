@@ -25,8 +25,10 @@ enum class messgaeType : t_type
 enum class messageInfo : t_type
 {
     UNKWON,
+    DUMMY_SIGNAL,
     PLAYER_INIT_INFO,
-    WAITING_ROOMS_INFO,
+    WAITINGROOMS_INIT_INFO_ROOMS,
+    WAITINGROOMS_INIT_INFO_PLAYERS,
     GAME_TETRISBOARD_INFO,
 };
 

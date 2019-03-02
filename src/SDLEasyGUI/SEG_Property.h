@@ -45,6 +45,7 @@ enum class ColorCode : t_type {
     black,
     white,
     silver,
+    dimgray,
     none,
     Begin = red,
     End = green
@@ -75,6 +76,7 @@ enum class BorderBoundaryLineType : t_type {
 enum SEG_Event {
 
     SEGEVENT_START = 0x8500,
+    SDL_TIMER_EVENT,
     DETACH_FOCUS,
     ATTACH_FOCUS,
     EDITLABEL_CHAR_TEXTCURSOR

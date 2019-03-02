@@ -27,11 +27,11 @@ public:
 class ButtonBuilder : public BorderBuilder {
 public:
 
-    ButtonBuilder(const GraphicInterface::window_ptr window, const Point &point, const std::string &str)
+    ButtonBuilder(const GraphicInterface::window_ptr window, const TPoint &point, const std::string &str)
         : BorderBuilder(window, point, str) {
     }
 
-    ButtonBuilder(const GraphicInterface::window_ptr window, Point &&point, std::string &&str)
+    ButtonBuilder(const GraphicInterface::window_ptr window, TPoint &&point, std::string &&str)
         : BorderBuilder(window, point, str) {
     }
 

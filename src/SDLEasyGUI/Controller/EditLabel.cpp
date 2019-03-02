@@ -16,9 +16,10 @@ EditLabel::EditLabel(EditLabelBuilder& bld)
     m_textCursorTimerAdder = make_shared<TimerAdder>(700,game_interface::toUType(SEG_Event::EDITLABEL_CHAR_TEXTCURSOR));
 }
 
-void EditLabel::onTimer()
+void EditLabel::onTimerEvent(const SDL_UserEvent *user)
 {
-
+    m_textCursor = !m_textCursor;
+    onDraw();
 }
 
 void EditLabel::onUserEvent (const SDL_UserEvent* user)
@@ -90,25 +91,30 @@ void EditLabel::onDraw()
     SDL_Surface* textSurface = TTF_RenderText_Solid(font, m_basic->name.c_str(), textColor);
     SDL_Texture* text = SDL_CreateTextureFromSurface(renderer, textSurface);
     SDL_FreeSurface(textSurface);
-
-    const double text_width = static_cast<double>(textSurface->w);
-    const double text_height = static_cast<double>(textSurface->h);
-
-    const auto point = getPoint();
-    SDL_Rect renderQuad = { static_cast<int>(point.x +5)
-        , static_cast<int>(point.y + ( getHeight() - text_height)/2)
-        , static_cast<int>(text_width)
-        , static_cast<int>(text_height) };
-    SDL_RenderCopy(renderer, text, nullptr, &renderQuad);
-
-    if(m_textCursor)
+    if(textSurface)
     {
-        SDL_Point points[]
-        ={  { static_cast<t_size>(point.x + text_width+10), point.y+5},
-            { static_cast<t_size>(point.x + text_width+10), point.y+ static_cast<t_size>(getHeight()) -5},
-            { static_cast<t_size>(point.x + text_width+10), point.y+5}};
+        const double text_width = static_cast<double>(textSurface->w);
+        const double text_height = static_cast<double>(textSurface->h);
 
-        TColor lineColor{ColorCode::white};
+        const auto point = getPoint();
+        SDL_Rect renderQuad = { static_cast<int>(point.x +5)
+            , static_cast<int>(point.y + ( getHeight() - text_height)/2)
+            , static_cast<int>(text_width)
+            , static_cast<int>(text_height) };
+        SDL_RenderCopy(renderer, text, nullptr, &renderQuad);
+
+
+        SDL_Point points[]
+            ={  { static_cast<t_size>(point.x + text_width+7), point.y+5},
+                { static_cast<t_size>(point.x + text_width+7), point.y+ static_cast<t_size>(getHeight()) -5},
+                { static_cast<t_size>(point.x + text_width+7), point.y+5}};
+
+        TColor lineColor;
+        if(m_textCursor)
+            lineColor = ColorCode::black;
+        else
+            lineColor = ColorCode::white;
+
         SDL_SetRenderDrawColor(renderer, lineColor.r, lineColor.g, lineColor.b, 255);
         SDL_RenderDrawLines(renderer,points,SDL_arraysize(points));
     }

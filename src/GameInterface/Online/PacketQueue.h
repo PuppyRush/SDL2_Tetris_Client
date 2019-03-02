@@ -15,11 +15,11 @@
 #include <boost/serialization/singleton.hpp>
 
 #include "Packet.h"
-#include "../Subjector/MapSubject.h"
+#include "../Subjector/VectorSubject.h"
 
 namespace game_interface {
 
-class PacketQueue : public MapSubject, public boost::serialization::singleton<PacketQueue> {
+class PacketQueue : public VectorSubject<game_interface::Observer>, public boost::serialization::singleton<PacketQueue> {
 public:
 
     friend class boost::serialization::singleton<PacketQueue>;
@@ -32,6 +32,7 @@ public:
     void pushEvent(Packet &&event);
     void pushEvent(const Packet &event);
     Packet popEvent();
+    inline void setServer(bool b){ m_isServer = b;}
 
     static PacketQueue &getInstance() {
 
@@ -50,7 +51,7 @@ private:
     std::mutex m_mutex;
     std::atomic_bool m_isContinue = true;
     std::thread m_thread;
-
+    bool m_isServer = true;
 };
 
 }

@@ -56,7 +56,7 @@ void Controll::setSelected(bool selected)
         GroupControllManager::getInstance()->select(m_basic->group, m_basic->resourceId);
 }
 
-const bool Controll::isHit(const Point& point)
+const bool Controll::isHit(const TPoint& point)
 {
     const auto& menu_point = m_basic->point;
     if (this->isEnabled() && (menu_point.x <= point.x && point.x <= menu_point.x + m_basic->width)
@@ -76,4 +76,13 @@ const bool Controll::isHit(const Point& point)
 bool Controll::validId(const game_interface::t_id id)
 {
     return getResourceId() == id;
+}
+
+void Controll::drawBackground(const SDL_Rect rect, const TColor color)
+{
+    auto renderer = getWindow()->getSDLRenderer().get();
+
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, 255);
+    SDL_RenderFillRect(renderer, &rect);
+    SDL_RenderDrawRect(renderer, &rect);
 }

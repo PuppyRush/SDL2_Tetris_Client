@@ -11,6 +11,7 @@
 
 #include <string>
 #include <vector>
+#include <mutex>
 
 #include "Observer.h"
 #include "Player.h"
@@ -19,19 +20,26 @@ namespace game_interface {
 
 class Room : public Observer {
 public:
+    using room_ptr = std::shared_ptr<Room>;
     using player_ptr = std::shared_ptr<Player>;
+    using player_container = std::vector<player_ptr>;
 
     Room();
 
-    void setRoomname(const std::string& name);
+    inline const t_id getRoomNumber() { return m_roomnumber.load();}
+    inline const std::string getRoomName() { return m_roomname;}
+    void setRoomName(const std::string &name);
+    inline const player_container& getContainer(){ return m_players;}
 
-    virtual void enter(player_ptr ply) = 0;
-    virtual void exit(player_ptr ply) = 0;
+    virtual void updateObserver(const Packet& ) =0;
+    virtual void enter(player_ptr ply) ;
+    virtual void exit(const unique_type unique);
 
 private:
+    std::mutex m_mutex;
     std::string m_roomname;
     t_id_atomic m_roomnumber;
-    std::vector<player_ptr> m_players;
+    player_container m_players;
 };
 
 }

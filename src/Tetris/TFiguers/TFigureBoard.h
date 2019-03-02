@@ -45,10 +45,10 @@ public:
     {
         return m_board;
     }
-    inline const sdleasygui::Point& getStartDisplayPoint() const {
+    inline const sdleasygui::TPoint& getStartDisplayPoint() const {
         return m_startGameDisplayPoint;
     }
-    inline void setStartDisplayPoint(const sdleasygui::Point &m_StartDisplayPoint) {
+    inline void setStartDisplayPoint(const sdleasygui::TPoint &m_StartDisplayPoint) {
         TFigureBoard::m_startGameDisplayPoint = m_StartDisplayPoint;
     }
     inline const sdleasygui::t_size getblockLength() const {
@@ -180,7 +180,7 @@ public:
         {
             auto board = m_board[i];
             for (int l = 0 ; l < board.size() ; l++) {
-                board[l] = TFigureUnit{sdleasygui::Point(i, l), 0, sdleasygui::ColorCode::none, UnitType::Empty};
+                board[l] = TFigureUnit{sdleasygui::TPoint(i, l), 0, sdleasygui::ColorCode::none, UnitType::Empty};
             }
         }
     }
@@ -188,7 +188,7 @@ public:
 
 private:
 
-    sdleasygui::Point m_startGameDisplayPoint;
+    sdleasygui::TPoint m_startGameDisplayPoint;
     sdleasygui::t_size m_gameblockLength;
 
     board_type m_board;

@@ -30,7 +30,7 @@ private:
     //Button m_enterBtn;
     //Button m_backBtn;
 
-    virtual void updateObserver(const Observer&, const game_interface::Packet ) override final {}
+    virtual void updateObserver(const game_interface::Packet& ) override final {}
 };
 
 

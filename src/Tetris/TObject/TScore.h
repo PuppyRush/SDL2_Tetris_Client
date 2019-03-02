@@ -35,7 +35,7 @@ public:
 private:
 
     int m_score = 0;
-    sdleasygui::Point m_boardBegin;
+    sdleasygui::TPoint m_boardBegin;
     sdleasygui::TColor m_backColor;
     sdleasygui::TFont m_font;
 

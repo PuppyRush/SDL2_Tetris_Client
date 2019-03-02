@@ -27,10 +27,10 @@ public:
     inline const t_res getResourceId() const noexcept {
         return m_basic->resourceId;
     }
-    inline const Point &getPoint() const noexcept {
+    inline const TPoint &getPoint() const noexcept {
         return m_basic->point;
     }
-    inline void setPoint(const Point &point) noexcept {
+    inline void setPoint(const TPoint &point) noexcept {
         m_basic->point = point;
     }
     inline const t_size getWidth() const noexcept {
@@ -121,7 +121,7 @@ public:
     }
 
     void setSelected(bool selected);
-    const bool isHit(const Point &point);
+    const bool isHit(const TPoint &point);
     void onVirtualDraw();
 
     virtual void initialize();
@@ -137,6 +137,7 @@ protected:
         m_basic->multiselected = multiselected;
     }
 
+    void drawBackground(const SDL_Rect rect, const TColor color);
     virtual void onDraw() = 0;
     virtual void onDrawBackground() = 0;
     virtual void refresh();
@@ -165,6 +166,7 @@ protected:
     virtual void onMultiGestureEvent(const SDL_MultiGestureEvent *mgesture) {};
     virtual void onDollarGestureEvent(const SDL_DollarGestureEvent *dgesture) {};
     virtual void onDropEvent(const SDL_DropEvent *drop) {};
+    virtual void onTimerEvent(const SDL_UserEvent *user) {}
 
     virtual void onAttachFocus() {};
     virtual void onDetachFocus() {};
@@ -173,10 +175,7 @@ protected:
     std::shared_ptr<ControllBasic> m_basic;
 
 private:
-
     virtual bool validId(const game_interface::t_id id) override final;
-    virtual void onTimer() {};
-
 };
 
 }

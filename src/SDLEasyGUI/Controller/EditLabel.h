@@ -35,11 +35,11 @@ protected:
     virtual void initialize() override;
     virtual void onDraw();
     virtual void onDrawBackground() override;
+    virtual void onTimerEvent(const SDL_UserEvent *user) override;
 
 private:
     virtual void onAttachFocus();
     virtual void onDetachFocus();
-    virtual void onTimer() override;
 
     bool m_textCursor;
     t_timer m_textCursorTimer = NULL_TIMER_ID;
@@ -50,11 +50,11 @@ private:
 class EditLabelBuilder : public BorderBuilder {
 public:
 
-    EditLabelBuilder(const GraphicInterface::window_ptr window, const Point &point, const std::string &str)
+    EditLabelBuilder(const GraphicInterface::window_ptr window, const TPoint &point, const std::string &str)
         : BorderBuilder(window, point, str) {
     }
 
-    EditLabelBuilder(const GraphicInterface::window_ptr window, Point &&point, std::string &&str)
+    EditLabelBuilder(const GraphicInterface::window_ptr window, TPoint &&point, std::string &&str)
         : BorderBuilder(window, point, str) {
     }
 

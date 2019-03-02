@@ -25,10 +25,9 @@ private:
     virtual void onClose() override final;
     virtual void onCreate() override final;
     virtual void registerEvent() override final;
-
     virtual void onUserEvent(const SDL_UserEvent* event) override final;
 
-    virtual void updateObserver(const Observer&, const game_interface::Packet ) override final {}
+    virtual void updateObserver(const game_interface::Packet& ) override final {}
 };
 
 SDL_TETRIS_END

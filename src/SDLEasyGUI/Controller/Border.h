@@ -34,11 +34,11 @@ private:
 class BorderBuilder : public ControllBuilder {
 public:
 
-    BorderBuilder(const GraphicInterface::window_ptr window, const Point &point, const std::string &str)
+    BorderBuilder(const GraphicInterface::window_ptr window, const TPoint &point, const std::string &str)
         : ControllBuilder(window, point, str) {
     }
 
-    BorderBuilder(const GraphicInterface::window_ptr window, Point &&point, std::string &&str)
+    BorderBuilder(const GraphicInterface::window_ptr window, TPoint &&point, std::string &&str)
         : ControllBuilder(window, point, str) {
     }
 

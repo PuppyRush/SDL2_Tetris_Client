@@ -27,12 +27,12 @@ private:
     virtual void registerEvent() override final;
     virtual void onDraw() override final;
     virtual void onPreInitialize() override final;
-    virtual void onTimer() override final;
+    virtual void onTimerEvent() override final;
 
     [[deprecated("dont call this function in TMultiMainDisplay")]]
     virtual void onClickedStartLocalGame() override final {}
 
-    virtual void updateObserver(const Observer&, const game_interface::Packet ) override final {}
+    virtual void updateObserver(const game_interface::Packet& ) override final {}
 };
 
 SDL_TETRIS_END
