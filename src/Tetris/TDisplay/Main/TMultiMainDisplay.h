@@ -18,11 +18,12 @@ class TMultiMainDisplay final : public TMainDisplay
 public:
 
     TMultiMainDisplay();
-    virtual ~TMultiMainDisplay(){}
+    virtual ~TMultiMainDisplay() = default;
 
 
 private:
     virtual void onClickedOption() override final;
+    virtual void onClickedBack() override final;
     virtual void onClickedEnterServer() override final;
     virtual void registerEvent() override final;
     virtual void onDraw() override final;

@@ -76,6 +76,7 @@ enum class BorderBoundaryLineType : t_type {
 enum SEG_Event {
 
     SEGEVENT_START = 0x8500,
+    WINDOW_CLOSE,
     SDL_TIMER_EVENT,
     DETACH_FOCUS,
     ATTACH_FOCUS,

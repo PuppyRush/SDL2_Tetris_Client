@@ -44,10 +44,9 @@ public:
 
     void detach(const unique_type unique)
     {
-        assert(!exist(unique));
+        assert(exist(unique));
 
-        std::unique_lock<std::mutex> lock(m_objMutex);
-        m_objCond.wait(lock, [=]() { return !exist(unique); });
+        std::lock_guard<std::mutex> lock(m_objMutex);
 
         remove(unique);
         postDetach(unique);

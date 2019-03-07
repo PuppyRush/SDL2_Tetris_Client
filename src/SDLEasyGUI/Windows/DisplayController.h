@@ -64,6 +64,8 @@ public:
     using modaless_ary =  std::vector<display_ptr>;
     using modaless_ary_iterator = modaless_ary::const_iterator;
 
+    friend class boost::serialization::singleton<DisplayController>;
+
     void run();
 
     void modal_open(display_ptr);
@@ -72,7 +74,14 @@ public:
     void close(const game_interface::t_id id);
     void refreshModal();
 
-    static std::shared_ptr<DisplayController> getInstance();
+    static std::shared_ptr<DisplayController> getInstance() {
+
+        static auto inst = std::shared_ptr<DisplayController>
+            (&boost::serialization::singleton<DisplayController>::get_mutable_instance());
+        return inst;
+    }
+
+    inline bool isRunningDisplay(){return !(m_modalessAry.empty() && m_modalStack.empty());}
 
 private:
 

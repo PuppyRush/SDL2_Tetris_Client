@@ -18,7 +18,7 @@ using namespace game_interface;
 using namespace sdleasygui;
 
 DisplayInterface::DisplayInterface()
-    :m_id(Atomic::newUnique()), m_currentCtl(nullptr)
+    :m_currentCtl(nullptr)
 {
 }
 
@@ -26,7 +26,6 @@ DisplayInterface::DisplayInterface()
 DisplayInterface::~DisplayInterface()
 {
     onClose();
-
 }
 
 void DisplayInterface::onPreInitialize()
@@ -42,22 +41,31 @@ t_res DisplayInterface::initialize()
 
 }
 
-t_res DisplayInterface::modal()
+std::underlying_type_t<resource> DisplayInterface::modal()
 {
     modal_opener opener{this};
 
-    m_thread = thread(&DisplayInterface::_run, this);
+    promise<resource> pm;
+    auto f = pm.get_future();
+
+    m_thread = thread(&DisplayInterface::_run, this, std::move(pm) );
     m_thread.join();
+
+    return toUType(f.get());
 }
 
 void DisplayInterface::modaless()
 {
+    promise<resource> pm;
+    auto f = pm.get_future();
+
     DisplayController::getInstance()->modaless(this);
 
-    m_thread = thread(&DisplayInterface::_run, this);
+    m_thread = thread(&DisplayInterface::_run, this, std::move(pm));
+    f.get();
 }
 
-void DisplayInterface::_run(){
+void DisplayInterface::_run(std::promise<resource> &&pm){
 
     while(m_run)
     {
@@ -69,6 +77,8 @@ void DisplayInterface::_run(){
             m_currentCtl->onEvent(e.event);
         }
     }
+
+    pm.set_value(m_modalresult);
 }
 
 void DisplayInterface::onUserEvent(const SDL_UserEvent* event) {
@@ -78,23 +88,30 @@ void DisplayInterface::onUserEvent(const SDL_UserEvent* event) {
             t_res id = *static_cast<t_res*>(event->data1);
             if(m_callback_no_param.count(id)>0)
                 m_callback_no_param.at(id)();
-        }
             break;
+        }
         case SEG_DRAW_DISPLAY:
             //dont call _refresh() in this case.
             onDraw();
             onDrawMenus();
             release();
             break;
-        case SEG_DRAW_CONTROLLER: {
-            const auto it = std::find_if(begin(m_menus), end(m_menus), [event](const Controll::controll_ptr ctl) {
-              return ctl->getResourceId() == static_cast<game_interface::t_id>(event->code);
+        case SEG_DRAW_CONTROLLER:
+        {
+            refresh();
+            /*const auto it = std::find_if(begin(m_items), end(m_items), [event](const Controll::controll_ptr ctl) {
+              return ctl->getResourceId() == *static_cast<game_interface::t_id*>(event->data1);
             });
+            if(it != m_items.end())
             {
-                m_currentCtl->onVirtualDraw();
+                (*it)->onVirtualDraw();
             }
+            release();*/
             break;
         }
+        case WINDOW_CLOSE:
+            onClose();
+            break;
         default:;
     }
 }
@@ -107,7 +124,6 @@ void DisplayInterface::onMouseButtonEvent (const SDL_MouseButtonEvent* button)
 
 void DisplayInterface::onMouseMotionEvent(const SDL_MouseMotionEvent *motion)
 {
-    //refresh();
 }
 
 
@@ -118,6 +134,7 @@ void DisplayInterface::onWindowEvent (const SDL_WindowEvent& window)
 //      case SDL_QUIT:
 //            setRun(false);
 //            break;
+        case SDL_WINDOWEVENT_MOVED:
         case SDL_WINDOWEVENT_CLOSE:
             onDestroy();
             break;
@@ -143,23 +160,29 @@ void DisplayInterface::release()
 
 void DisplayInterface::onClose()
 {
+    if(m_modalresult == resource::NONE)
+        m_modalresult = resource::BTN_CLOSE;
+
     setRun(false);
     hidden();
     onDestroy();
+
 }
 
 void DisplayInterface::onOK()
 {
-
+    m_modalresult = BTN_OK;
     onClose();
 }
 
 void DisplayInterface::onNO(){
+    m_modalresult = BTN_NO;
     onClose();
 }
 
 void DisplayInterface::onCancel()
 {
+    m_modalresult = BTN_CANCEL;
     onClose();
 }
 
@@ -213,9 +236,6 @@ bool DisplayInterface::clickedMenuEvent(const TPoint& point)
 
 void DisplayInterface::refresh()
 {
-    SDL_RenderClear(getRenderer().get());
-    SDL_RenderPresent(getRenderer().get());
-    SDL_UpdateWindowSurface(getSDLWindow().get());
     EventPusher event{this->getWindowID(), SEG_DRAW_DISPLAY };
     event.pushEvent();
 }
@@ -226,7 +246,7 @@ void DisplayInterface::event_buttonClick(const t_res id, const BTN_CLICK callbac
 }
 
 
-bool  DisplayInterface::validId(const game_interface::t_id id)
+bool  DisplayInterface::validId(const game_interface::t_id id) noexcept
 {
     return getWindowID() == id;
 }

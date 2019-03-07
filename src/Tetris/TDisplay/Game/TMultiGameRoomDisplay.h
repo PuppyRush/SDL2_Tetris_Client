@@ -13,7 +13,7 @@ class TMultiGameRoomDisplay : public TGameDisplay
 {
 public:
     TMultiGameRoomDisplay();
-    virtual ~TMultiGameRoomDisplay(){}
+    virtual ~TMultiGameRoomDisplay() = default;
 
 private:
 

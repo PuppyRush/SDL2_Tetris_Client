@@ -6,6 +6,7 @@
   #pragma once
 #endif
 
+#include <future>
 #include <string>
 #include <vector>
 #include <memory>
@@ -21,6 +22,7 @@
 #include "Window.h"
 #include "EventListener.h"
 #include "EventQueue.h"
+#include "../SEG_Resource.h"
 #include "../Controller/ControllBuilder.h"
 #include "../Controller/Controll.h"
 #include "GameInterface/Online/PacketQueue.h"
@@ -73,7 +75,7 @@ public:
     void addControll(const std::shared_ptr<Controll> ctl);
     bool clickedMenuEvent(const TPoint &point);
 
-    t_res modal();
+    std::underlying_type_t<resource> modal();
     void modaless();
     void show() { getWindow()->show(); }
     void hidden() { getWindow()->hidden(); }
@@ -91,7 +93,6 @@ public:
     inline const TLocalMode getMode() const noexcept { return m_mode; }
     inline const bool getRun() const noexcept { return m_run; }
     inline const bool getSetDraw() const noexcept { return m_stopDraw; }
-    inline const t_id getID() const noexcept { return m_id; }
     inline const t_id getWindowID() const noexcept { return getWindow()->getWindowID(); }
     inline Controll *getCurrentControll() const noexcept { return m_currentCtl; };
 
@@ -178,20 +179,20 @@ protected:
 private:
 
     void release();
-    void _run();
+    void _run(std::promise<resource> &&pm);
     void onDrawMenus();
-    virtual bool validId(const game_interface::t_id id) override final;
+    virtual bool validId(const game_interface::t_id id) noexcept override final;
 
     std::vector<Controll::controll_ptr> m_menus;
     Controll *m_currentCtl;
 
     std::string m_backgroundImgPath;
-    t_id m_id;
     bool m_stopDraw = false;
     std::thread m_thread;
     std::atomic_bool m_run = true;
-
+    resource m_modalresult = NONE;
 };
+
 
 }
 

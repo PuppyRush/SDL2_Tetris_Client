@@ -9,6 +9,7 @@
   #pragma once
 #endif
 
+#include <boost/serialization/singleton.hpp>
 #include <cassert>
 
 #include "GameInterface/Online/Packet.h"
@@ -20,9 +21,12 @@
 
 SDL_TETRIS_BEGIN
 
-class TPlayer final : public game_interface::Player
+class TPlayer : public game_interface::Player, public boost::serialization::singleton<TPlayer>
 {
 public:
+
+    friend class boost::serialization::singleton<TPlayer>;
+
 
     TPlayer();
     virtual ~TPlayer();
@@ -51,12 +55,12 @@ public:
     void sendInitInfo();
     void sendDummySignal();
 
-    static std::shared_ptr<TPlayer> getPlayer()
-    {
-        static auto player = std::make_shared<TPlayer>();
-        return player;
-    }
+    static std::shared_ptr<TPlayer> getInstance() {
 
+        static auto inst = std::shared_ptr<TPlayer>
+            (&boost::serialization::singleton<TPlayer>::get_mutable_instance());
+        return inst;
+    }
 
 private:
     int m_order;

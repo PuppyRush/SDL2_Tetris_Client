@@ -46,10 +46,8 @@ void TPlayer::command(const t_eventType event)
         fig->getPoint().y);
 
     auto jsonObj = JsonHelper::toJson("test", m_ip.str(), timeStr, gameboardBitset.to_string());
-    //Json::StyledWriter styledWriter;
-    //auto bufstr = styledWriter.write(jsonObj);
 
-    Packet packet{{getUnique(), messageDirection::CLIENT, messageInfo::GAME_TETRISBOARD_INFO}, jsonObj};
+    Packet packet{{getUnique(), getUnique(), messageInfo::GAME_TETRISBOARD_INFO}, jsonObj};
     this->sendPacket(packet);
 }
 
@@ -71,6 +69,7 @@ void TPlayer::connectServer()
     m_clientCtl.connectServer();
 
     //first call faster than server.
+
     sendDummySignal();
 }
 
@@ -81,8 +80,8 @@ void TPlayer::sendPacket(Packet &packet)
 
 void TPlayer::updateObserver(const Packet& packet)
 {
-    if(packet.getHeader().message == messageInfo::PLAYER_INIT_INFO)
-        this->setUnique(packet.getHeader().objectId);
+    /*if(packet.getHeader().message == messageInfo::PLAYER_INIT_INFO)
+        this->setUnique(packet.getHeader().destId);*/
 
     switch(packet.getHeader().message)
     {
@@ -94,6 +93,8 @@ void TPlayer::updateObserver(const Packet& packet)
 
 void TPlayer::recvInfo(const game_interface::Packet& packet)
 {
+    setUnique(packet.getHeader().senderId);
+
     const Json::Value json = packet.getPayload();
     setUnique(json["unique"].asInt());
 
@@ -102,7 +103,7 @@ void TPlayer::recvInfo(const game_interface::Packet& packet)
 
 void TPlayer::sendDummySignal()
 {
-    Packet::Header header{this->getUnique(),messageDirection::CLIENT, messageInfo::DUMMY_SIGNAL};
+    Packet::Header header{this->getUnique(), this->getUnique(), messageInfo::DUMMY_SIGNAL};
     Packet p{header};
     sendPacket(p);
 }
@@ -113,7 +114,7 @@ void TPlayer::sendInitInfo()
     json["id"] = this->getUserName();
     json["ip"] = this->m_ip.ip;
 
-    Packet::Header header{this->getUnique(),messageDirection::CLIENT, messageInfo::PLAYER_INIT_INFO};
+    Packet::Header header{this->getUnique(), this->getUnique(), messageInfo::PLAYER_INIT_INFO};
     Packet p{header, json};
     sendPacket(p);
 }

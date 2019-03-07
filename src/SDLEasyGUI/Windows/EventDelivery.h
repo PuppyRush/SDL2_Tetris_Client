@@ -15,6 +15,9 @@ namespace sdleasygui {
 class EventDelivery : public EventQueue {
 public:
 
+    EventDelivery() = default;
+    virtual ~EventDelivery() = default;
+
     bool receiveEvent(const game_interface::t_id id, event_type event) {
         if (id == NULL_WINDOW_ID || validId(id)) {
             pushEvent(event);

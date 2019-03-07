@@ -48,7 +48,8 @@ void DisplayController::modal_open(display_ptr display)
 
     display->refresh();
 
-    game_interface::PacketQueue::getInstance().attach( std::shared_ptr<Observer>(display));
+    auto dis_ptr = std::shared_ptr<Observer>(display);
+    game_interface::PacketQueue::getInstance().attach(dis_ptr);
 
 }
 
@@ -56,6 +57,8 @@ void DisplayController::modal_close()
 {
     auto display = m_modalStack.back();
     m_modalStack.pop_back();
+
+    game_interface::PacketQueue::getInstance().detach( display->getUnique());
 }
 
 
@@ -66,7 +69,7 @@ void DisplayController::modaless(display_ptr display)
 
     if( auto it = std::find_if(begin(m_modalessAry), end(m_modalessAry), [display](const display_ptr ptr)
     {
-        return display->getID() == ptr->getID();
+        return display->compareUnique(ptr->getUnique());
     }); it== m_modalessAry.end())
     {
         m_modalessAry.emplace_back(display);
@@ -211,11 +214,4 @@ void DisplayController::refreshModal()
 {
     for(const auto display : m_modalStack)
         display->onDraw();
-}
-
-
-std::shared_ptr<DisplayController> DisplayController::getInstance()
-{
-    static auto inst = std::shared_ptr<DisplayController>(new DisplayController());
-    return inst;
 }

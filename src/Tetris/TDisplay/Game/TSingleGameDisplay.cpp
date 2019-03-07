@@ -27,7 +27,7 @@ TSingleGameDisplay::TSingleGameDisplay()
 
 void TSingleGameDisplay::onClickedStart()
 {
-    auto ply = TPlayer::getPlayer();
+    auto ply = TPlayer::getInstance();
     ply->startGame();
     m_players.emplace_back(ply);
 

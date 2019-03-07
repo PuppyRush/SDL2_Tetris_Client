@@ -129,7 +129,7 @@ public:
     TPoint()
         : x(0), y(0), z(0) {}
 
-    TPoint(const t_coord &x, const t_coord &y, const t_coord &z = 0)
+    TPoint(const t_coord x, const t_coord y, const t_coord z = 0)
         : x(x), y(y), z(z) {}
 
 } TPoint;
@@ -190,8 +190,8 @@ typedef struct ControllBasic {
           borderType(b.borderType),
           borderAngle(b.borderAngle),
           borderThick(b.borderThick),
-          borderColor(b.borderColor) {
-    }
+          borderColor(b.borderColor)
+          { }
 
 } TControllBasic;
 

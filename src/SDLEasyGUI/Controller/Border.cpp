@@ -53,5 +53,4 @@ void Border::onDraw()
             assert(0);
             break;
     }
-
 }

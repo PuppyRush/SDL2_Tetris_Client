@@ -41,6 +41,32 @@ private:
 
 };
 
+class textDrawer
+{
+    SDL_Surface* textSurface;
+    SDL_Texture* texture;
+public:
+
+    textDrawer(SDL_Renderer* renderer, const TFont& fontinfo, const std::string str)
+        :textSurface(nullptr)
+    {
+        TTF_Font* font = TTF_OpenFont(fontinfo.font_name.c_str(), fontinfo.size);
+        SDL_Color textColor = { fontinfo.color.r, fontinfo.color.g, fontinfo.color.b, 0 };
+
+        textSurface = TTF_RenderText_Solid(font, str.c_str(), textColor);
+        texture = SDL_CreateTextureFromSurface(renderer, textSurface);
+    }
+
+    inline SDL_Texture* getTexture() { return texture;}
+    inline SDL_Surface* getTextSurface() { return textSurface;}
+
+    ~textDrawer()
+    {
+        SDL_FreeSurface(textSurface);
+    }
+};
+
+
 }
 
 #endif //TETRIS_FIGURE_CLASS_TGRAPHICINTERFACE_H

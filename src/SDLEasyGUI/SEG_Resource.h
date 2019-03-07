@@ -16,8 +16,10 @@ namespace sdleasygui {
 //dont use resource id as 0x0000 (NULL)
 enum resource : t_res {
 
-    BTN_OK = 0x0010,
+    NONE = 0x0010,
+    BTN_OK,
     BTN_NO,
+    BTN_CLOSE,
     BTN_CANCEL,
 
     SEG_RESROUCE_END = 0x3000

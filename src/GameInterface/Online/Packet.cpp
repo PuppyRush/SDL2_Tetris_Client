@@ -53,7 +53,9 @@ Packet::toByte()
 {
     memset(m_buf,0,BUF_MAX_SIZE);
 
-    assert(m_header.message != messageInfo::UNKWON and m_header.where != messageDirection::UNKOWN);
+    assert( m_header.where != messageDirection::UNKOWN and
+        m_header.message != messageInfo::UNKWON and
+        m_header.timestamp != 0 );
 
     Json::StyledWriter styledWriter;
     const auto plyloadbuf = styledWriter.write(m_payload);

@@ -59,7 +59,10 @@ ClientService::handle_input (ACE_HANDLE  fd/* = ACE_INVALID_HANDLE*/){
 
     in[len]=NULL;
 
-    PacketQueue::getInstance().pushEvent(Packet{in,len});
+    Packet p{in,len};
+    p.toPacket();
+
+    PacketQueue::getInstance().pushEvent(p);
 
     return 0;
 }

@@ -27,6 +27,7 @@ class Window final {
 public:
 
     Window();
+    virtual ~Window();
 
     inline void setShow(const bool b) { m_show = b; }
     void show();

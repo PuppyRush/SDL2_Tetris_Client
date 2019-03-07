@@ -14,14 +14,16 @@ class TMainDisplay : public sdleasygui::DisplayInterface
 {
 public:
 
+	virtual ~TMainDisplay() = default;
+
 	bool clickedOption();
 	bool clickedDown();
 	bool clickedUp();
 
-	virtual ~TMainDisplay() {}
 	virtual void onClickedEnterServer() =0;
 	virtual void onClickedStartLocalGame() =0;
 	virtual void onClickedOption() =0;
+	virtual void onClickedBack() =0;
 
 
 protected:

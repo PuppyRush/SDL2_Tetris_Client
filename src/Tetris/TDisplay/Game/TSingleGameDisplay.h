@@ -20,7 +20,7 @@ class TSingleGameDisplay final : public TGameDisplay{
 public:
 
     TSingleGameDisplay();
-    virtual ~TSingleGameDisplay(){}
+    virtual ~TSingleGameDisplay() = default;
 
 private:
     virtual void onClickedStart() override final;

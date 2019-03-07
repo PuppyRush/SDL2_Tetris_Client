@@ -45,8 +45,12 @@ void TClientController::connectServer()
 
 void TClientController::send(Packet& packet)
 {
-    printf("clinet send : %d %d %ld\n", packet.getHeader().objectId, toUType( packet.getHeader().message),
+    packet.setHeader().where = messageDirection::CLIENT;
+    packet.setHeader().timestamp = std::time(nullptr);
+
+    printf("clinet send : %d %d %ld\n", packet.getHeader().destId, toUType( packet.getHeader().message),
         packet.getHeader().timestamp);
+
 
     auto bytes = packet.toByte();
     m_service->send((void *) bytes.first, bytes.second);

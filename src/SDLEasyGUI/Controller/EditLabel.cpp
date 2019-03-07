@@ -84,15 +84,13 @@ void EditLabel::onTextInputEvent (const SDL_TextInputEvent* text)
 void EditLabel::onDraw()
 {
     auto renderer = getWindow()->getSDLRenderer().get();
-    const auto& fontinfo = getFont();
-    TTF_Font* font = TTF_OpenFont(fontinfo.font_name.c_str(), fontinfo.size);
-    SDL_Color textColor = { fontinfo.color.r, fontinfo.color.g, fontinfo.color.b, 0 };
+    textDrawer textDrawer{renderer, getFont(), m_basic->name};
+    auto textSurface = textDrawer.getTextSurface();
 
-    SDL_Surface* textSurface = TTF_RenderText_Solid(font, m_basic->name.c_str(), textColor);
-    SDL_Texture* text = SDL_CreateTextureFromSurface(renderer, textSurface);
-    SDL_FreeSurface(textSurface);
     if(textSurface)
     {
+        auto texture = textDrawer.getTexture();
+
         const double text_width = static_cast<double>(textSurface->w);
         const double text_height = static_cast<double>(textSurface->h);
 
@@ -101,8 +99,7 @@ void EditLabel::onDraw()
             , static_cast<int>(point.y + ( getHeight() - text_height)/2)
             , static_cast<int>(text_width)
             , static_cast<int>(text_height) };
-        SDL_RenderCopy(renderer, text, nullptr, &renderQuad);
-
+        SDL_RenderCopy(renderer, texture, nullptr, &renderQuad);
 
         SDL_Point points[]
             ={  { static_cast<t_size>(point.x + text_width+7), point.y+5},

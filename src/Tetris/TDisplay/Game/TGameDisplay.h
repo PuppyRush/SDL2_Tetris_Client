@@ -20,7 +20,7 @@ public:
 	enum class UIResource : sdleasygui::t_type
 	{};
 
-	virtual ~TGameDisplay() {}
+	virtual ~TGameDisplay() = default;
 	virtual void onClickedStart() =0;
 	virtual void onClickedSuspend() =0;
 

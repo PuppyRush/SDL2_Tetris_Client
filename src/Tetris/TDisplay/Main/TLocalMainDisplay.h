@@ -18,7 +18,7 @@ class TLocalMainDisplay final : public TMainDisplay
 public:
 
 	TLocalMainDisplay();
-    ~TLocalMainDisplay(){}
+    virtual ~TLocalMainDisplay() = default;
 
 private:
 
@@ -27,6 +27,7 @@ private:
 
 	virtual void onClickedStartLocalGame() override final;
 	virtual void onClickedOption() override final;
+	virtual void onClickedBack()  override {}
 	virtual void registerEvent() override final;
 	virtual void onPreInitialize() override final;
 	virtual void onTimerEvent() override final;

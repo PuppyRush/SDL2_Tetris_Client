@@ -1,3 +1,4 @@
+
 //
 // Created by chaed on 18. 12. 18.
 //
@@ -23,6 +24,7 @@ void TMultiMainDisplay::registerEvent()
 {
     event_buttonClick(toUType(resource::MAIN_MULTI_GAME_START_BUTTON), std::bind(&TMultiMainDisplay::onClickedEnterServer, this));
     event_buttonClick(toUType(resource::MAIN_OPTION_BUTTON), std::bind(&TMultiMainDisplay::onClickedOption, this));
+    event_buttonClick(toUType(resource::MAIN_EXIT), std::bind(&TMultiMainDisplay::onClickedBack, this));
 }
 
 void TMultiMainDisplay::onPreInitialize() {
@@ -82,11 +84,19 @@ void TMultiMainDisplay::onDraw()
 void TMultiMainDisplay::onClickedOption()
 {
     auto dlg = std::make_shared<TOptionDisplay>();
-    dlg->modal();
+    auto res = dlg->modal();
+
+    DisplayInterface::onOK();
 }
 
 void TMultiMainDisplay::onClickedEnterServer()
 {
     auto dlg = std::make_shared<TEnterServerDisplay>();
     dlg->modal();
+    DisplayInterface::onOK();
+}
+
+void TMultiMainDisplay::onClickedBack()
+{
+    DisplayInterface::onClose();
 }

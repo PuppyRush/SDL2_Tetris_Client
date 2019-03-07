@@ -19,6 +19,7 @@ class TOptionDisplay final: public sdleasygui::DisplayInterface
 public:
 
     TOptionDisplay();
+    virtual ~TOptionDisplay(){}
 
 private:
 

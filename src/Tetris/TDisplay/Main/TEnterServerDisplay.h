@@ -19,10 +19,12 @@ class TEnterServerDisplay : public sdleasygui::DisplayInterface
 public:
 
     TEnterServerDisplay() = default;
+    virtual ~TEnterServerDisplay() = default;
 
     void registerEvent();
     void onPreInitialize() ;
     void onClickedEnterServer();
+    void onClickedBack();
 
 private:
 

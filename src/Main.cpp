@@ -1,4 +1,6 @@
 
+#include <condition_variable>
+#include <mutex>
 #include "SDLEasyGUI/Windows/DisplayController.h"
 #include "SDLEasyGUI/SEG_Initiator.h"
 #include "SDLEasyGUI/SEG_Quit.h"
@@ -31,8 +33,12 @@ void init()
 int main() {
     init();
 
-    auto maindlg = std::make_shared<TMultiMainDisplay>();
-    maindlg->modal();
+
+    sdleasygui::t_res res;
+    do{
+        auto maindlg = std::make_shared<TMultiMainDisplay>();
+        res = maindlg->modal();
+    }while(res != game_interface::toUType(resource::MAIN_EXIT));
 
     sdleasygui::SDLEasyGUI_Quit();
 }

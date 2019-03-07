@@ -38,7 +38,7 @@ class EventQueue {
 public:
 
     EventQueue();
-    ~EventQueue();
+    virtual ~EventQueue();
 
     void pushEvent(const event_type event);
     const event_mover popEvent();

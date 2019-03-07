@@ -18,7 +18,7 @@ public:
     using unique_type = Object::unique_type ;
 
     Observer() = default;
-    virtual ~Observer() {}
+    virtual ~Observer() = default;
 
     virtual void updateObserver(const Packet& ) = 0;
 

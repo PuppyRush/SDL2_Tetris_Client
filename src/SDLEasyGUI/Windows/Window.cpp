@@ -19,7 +19,7 @@ Window::Window()
     {
 
         auto window_deleter = [](SDL_Window* window) {
-          if(window==nullptr) delete window;
+            if(window==nullptr) delete window;
         };
 
 
@@ -30,6 +30,11 @@ Window::Window()
                                                                 m_windowWidth,
                                                                 m_windowHeight,
                                                                 show), window_deleter);
+
+        if(m_window.get() == nullptr)
+        {
+            assert(0);
+        }
 
         auto renderer_deleter = [](SDL_Renderer* window) {
           if(window==nullptr) delete window;
@@ -53,6 +58,11 @@ Window::Window()
 
 }
 
+Window::~Window()
+{
+
+}
+
 void Window::show()
 {
     SDL_ShowWindow(m_window.get());
@@ -62,3 +72,4 @@ void Window::hidden()
 {
     SDL_HideWindow(m_window.get());
 }
+

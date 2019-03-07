@@ -19,11 +19,18 @@ namespace game_interface {
 class Packet final{
 public:
 
-    typedef struct {
-        t_unique objectId = NULL_ID;
+    typedef struct Header{
+
+        Header() = default;
+        Header(const t_unique _destId ,const t_unique _senderId, const messageInfo _message )
+            :destId(_destId), senderId(_senderId), message(_message)
+        {}
+
+        t_unique destId = NULL_ID;
+        t_unique senderId = NULL_ID;
         messageDirection where = messageDirection::UNKOWN;
         messageInfo message = messageInfo::UNKWON;
-        t_time timestamp;
+        t_time timestamp = 0;
     } Header;
 
     static constexpr const size_t BUF_MAX_SIZE = 1024;
@@ -47,12 +54,13 @@ public:
     Packet *toPacket();
 
     inline void setTimestamp(const t_time time) { m_header.timestamp = time;}
-    inline void setUnique(const t_unique id){m_header.objectId = id;}
+    inline void setUnique(const t_unique id){m_header.destId = id;}
 
-    inline const Header &getHeader() const noexcept {
-        assert( m_header.where != messageDirection::UNKOWN and
-            m_header.message != messageInfo::UNKWON);
+    inline Header& setHeader() noexcept {
+        return m_header;
+    }
 
+    inline const Header& getHeader() const noexcept {
         return m_header;
     };
 

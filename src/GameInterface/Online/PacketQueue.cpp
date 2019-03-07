@@ -45,9 +45,9 @@ void PacketQueue::notify()
 
         while (m_isContinue) {
             auto packet = popEvent();
-            packet.toPacket();
 
-            printf("client recv : %d %d %ld\n", packet.getHeader().objectId, toUType(packet.getHeader().message),
+
+            printf("client recv : %d %d %ld\n", packet.getHeader().destId, toUType(packet.getHeader().message),
                    packet.getHeader().timestamp);
 
             mngCtl.updateObserver(packet);
@@ -59,11 +59,11 @@ void PacketQueue::notify()
             auto packet = popEvent();
             packet.toPacket();
 
+            printf("client recv : %d %d %ld\n", packet.getHeader().destId, toUType(packet.getHeader().message),
+                   packet.getHeader().timestamp);
+
             if(packet.getHeader().where == messageDirection::CLIENT)
                 continue;
-
-            printf("client recv : %d %d %ld\n", packet.getHeader().objectId, toUType(packet.getHeader().message),
-                   packet.getHeader().timestamp);
 
             for(auto& obj : m_objects)
             {

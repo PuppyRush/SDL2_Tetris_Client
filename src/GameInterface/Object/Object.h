@@ -19,7 +19,7 @@ public:
 
 	using unique_type = t_unique;
 
-	virtual ~Object() {}
+	virtual ~Object() = default;
 
 	inline const bool compareUnique(const unique_type unique) const noexcept { return m_unique == unique; }
 

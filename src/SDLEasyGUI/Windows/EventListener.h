@@ -17,6 +17,8 @@ class EventListener {
 
 public:
 
+    virtual ~EventListener() = default;
+
     void onEvent(const event_type event) {
         switch (event->type) {
             case SDL_WINDOWEVENT   :
@@ -160,6 +162,9 @@ public:
     //SEG Events
     virtual void onAttachFocus() = 0;
     virtual void onDetachFocus() = 0;
+
+protected:
+    EventListener() = default;
 
 private:
 
