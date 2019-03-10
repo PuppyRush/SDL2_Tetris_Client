@@ -63,8 +63,8 @@ void EditLabel::onKeyboardEvent (const SDL_KeyboardEvent* key)
             switch(key->keysym.sym)
             {
                 case SDLK_BACKSPACE:
-                    if(!m_basic->name.empty())
-                        m_basic->name.pop_back();
+                    if(!m_labelBasic.editstring.empty())
+                        m_labelBasic.editstring.pop_back();
                     break;
             }
             break;
@@ -77,14 +77,14 @@ void EditLabel::onTextInputEvent (const SDL_TextInputEvent* text)
     if(!isSelected())
         return;
 
-    m_basic->name.append(text->text);
+    m_labelBasic.editstring.append(text->text);
     Border::onTextInputEvent(text);
 }
 
 void EditLabel::onDraw()
 {
     auto renderer = getWindow()->getSDLRenderer().get();
-    textDrawer textDrawer{renderer, getFont(), m_basic->name};
+    textDrawer textDrawer{renderer, getFont(), m_labelBasic.editstring};
     auto textSurface = textDrawer.getTextSurface();
 
     if(textSurface)

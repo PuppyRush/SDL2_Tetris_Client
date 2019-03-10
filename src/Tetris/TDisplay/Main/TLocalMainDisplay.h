@@ -29,7 +29,7 @@ private:
 	virtual void onClickedOption() override final;
 	virtual void onClickedBack()  override {}
 	virtual void registerEvent() override final;
-	virtual void onPreInitialize() override final;
+	virtual void onInitialize() override final;
 	virtual void onTimerEvent() override final;
     virtual void onDraw() override final;
 

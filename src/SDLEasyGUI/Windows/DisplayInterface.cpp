@@ -28,7 +28,7 @@ DisplayInterface::~DisplayInterface()
     onClose();
 }
 
-void DisplayInterface::onPreInitialize()
+void DisplayInterface::onInitialize()
 {
     registerEvent();
 }
@@ -36,7 +36,7 @@ void DisplayInterface::onPreInitialize()
 t_res DisplayInterface::initialize()
 {
     onCreate();
-    onPreInitialize();
+    onInitialize();
     show();
 
 }
@@ -144,8 +144,6 @@ void DisplayInterface::onWindowEvent (const SDL_WindowEvent& window)
 
 void DisplayInterface::onCreate()
 {
-    auto window = make_shared<Window>();
-    setWindow(window);
     refresh();
 }
 

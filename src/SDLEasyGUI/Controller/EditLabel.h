@@ -15,11 +15,12 @@
 namespace sdleasygui {
 
 typedef struct EditLabelBasic {
-    bool m_canWritable = true;
-    bool m_canReadable = true;
-    bool m_isOnlyNumber = false;
-    bool m_isOnlyString = false;
-    t_size m_maxlen = 20;
+    bool canWritable = true;
+    bool canReadable = true;
+    bool isOnlyNumber = false;
+    bool isOnlyString = false;
+    t_size maxlen = 20;
+    std::string editstring;
 } EditLabelBasic;
 
 class EditLabelBuilder;
@@ -27,6 +28,8 @@ class EditLabel : public Border {
 
 public:
     explicit EditLabel(EditLabelBuilder &bld);
+
+    inline const std::string& getString() const noexcept {return m_labelBasic.editstring;}
 
 protected:
     virtual void onUserEvent(const SDL_UserEvent *user) override;

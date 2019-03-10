@@ -26,7 +26,7 @@ void TLocalMainDisplay::registerEvent() {
     event_buttonClick(toUType(resource::MAIN_OPTION_BUTTON), std::bind(&TLocalMainDisplay::onClickedOption, this));
 }
 
-void TLocalMainDisplay::onPreInitialize() {
+void TLocalMainDisplay::onInitialize() {
     //setBackgroundImgPath("../resources/images/background.png");
 
     t_size begin_y = WINDOW_HEIGHT/3;
@@ -66,18 +66,22 @@ void TLocalMainDisplay::onPreInitialize() {
 
         addControll(bld.build());
     }
-    ::DisplayInterface::onPreInitialize();
+    ::DisplayInterface::onInitialize();
 }
 
 void TLocalMainDisplay::onClickedStartLocalGame()
 {
     auto dlg = make_shared<TSingleGameDisplay>();
+    dlg->setWindowHeight(WINDOW_HEIGHT);
+    dlg->setWindowWidth(WINDOW_WIDTH);
     dlg->modal();
 }
 
 void TLocalMainDisplay::onClickedOption()
 {
     auto dlg = make_shared<TOptionDisplay>();
+    dlg->setWindowHeight(WINDOW_HEIGHT);
+    dlg->setWindowWidth(WINDOW_WIDTH);
     dlg->modal();
 }
 

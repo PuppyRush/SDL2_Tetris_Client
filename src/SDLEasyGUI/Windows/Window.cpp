@@ -8,18 +8,27 @@
 
 using namespace sdleasygui;
 
-Window::Window()
-    :m_windowHeight(WINDOW_HEIGHT),
-     m_windowWidth(WINDOW_WIDTH)
+Window::Window(const t_size width,const t_size height)
+    :m_windowHeight(height),
+     m_windowWidth(width)
 {
 
+}
+
+Window::~Window()
+{
+
+}
+
+void Window::initialize()
+{
     using namespace std;
 
     try
     {
 
         auto window_deleter = [](SDL_Window* window) {
-            if(window==nullptr) delete window;
+          if(window==nullptr) delete window;
         };
 
 
@@ -55,13 +64,8 @@ Window::Window()
     {
         std::cerr << "fail tetris game init because of unkwon error ";
     }
-
 }
 
-Window::~Window()
-{
-
-}
 
 void Window::show()
 {

@@ -79,7 +79,7 @@ void TMultiGameRoomDisplay::onDraw()
     TGameDisplay::onDraw();
 }
 
-void TMultiGameRoomDisplay::onPreInitialize()
+void TMultiGameRoomDisplay::onInitialize()
 {
 
 
@@ -120,7 +120,7 @@ void TMultiGameRoomDisplay::onPreInitialize()
         addControll(bld.build());
     }
 
-    DisplayInterface::onPreInitialize();
+    DisplayInterface::onInitialize();
 }
 
 void TMultiGameRoomDisplay::onClose()

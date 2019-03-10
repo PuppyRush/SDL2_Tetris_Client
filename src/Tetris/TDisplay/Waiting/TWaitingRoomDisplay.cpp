@@ -6,13 +6,14 @@
 
 #include "TWaitingRoomDisplay.h"
 #include "TWaitingRoomCard.h"
+#include "CreateGameroomWindow.h"
+
 #include "SDLEasyGUI/Controller/ListBox.h"
 #include "SDLEasyGUI/Controller/Button.h"
 #include "SDLEasyGUI/Controller/EditLabel.h"
 #include "SDLEasyGUI/SEG_TypeTraits.h"
 #include "../../Common/TResource.h"
 #include "../../TObject/TPlayer.h"
-
 SDL_TETRIS
 
 using namespace std;
@@ -21,10 +22,10 @@ using namespace game_interface;
 
 void TWaitingRoomDisplay::registerEvent()
 {
-   // event_buttonClick(toUType(resource::MAIN_MULTI_GAME_START_BUTTON), std::bind(&TWaitingRoomDisplay::onClickedEnterServer, this));
+    event_buttonClick(sdleasygui::toUType(resource::WAITINGROOM_CREATE), std::bind(&TWaitingRoomDisplay::createGameRoom, this));
 }
 
-void TWaitingRoomDisplay::onPreInitialize() {
+void TWaitingRoomDisplay::onInitialize() {
 
     {
         ListBoxBuilder bld(getWindow(), {m_chatBoxBeginPoint.x, m_chatBoxBeginPoint.y}, "");
@@ -79,7 +80,7 @@ void TWaitingRoomDisplay::onPreInitialize() {
           addControll(bld.build());
     }
 
-    DisplayInterface::onPreInitialize();
+    DisplayInterface::onInitialize();
 }
 
 void TWaitingRoomDisplay::onDraw() {
@@ -143,7 +144,6 @@ void TWaitingRoomDisplay::recvGameRoomInfo(const game_interface::Packet &packet)
 
         addControll(bld.build());
     }
-
 }
 
 void TWaitingRoomDisplay::recvInitPlayerInfo(const game_interface::Packet& packet)
@@ -167,3 +167,19 @@ void TWaitingRoomDisplay::recvInitPlayerInfo(const game_interface::Packet& packe
     }
 }
 
+void TWaitingRoomDisplay::createGameRoom()
+{
+    auto dlg = std::make_shared<CreateGameroomWindow>();
+    dlg->setWindowHeight(250);
+    dlg->setWindowWidth(350);
+    auto res = dlg->modal();
+
+    const string& roomname = dlg->m_roomname;
+
+    Json::Value root;
+    root["roomname"] = roomname;
+
+    Packet packet{{getUnique(), TPlayer::getInstance()->getUnique(), messageInfo::WAITINGROOMS_REQUEST_CREATE}, root};
+    TPlayer::getInstance()->sendPacket(packet);
+
+}

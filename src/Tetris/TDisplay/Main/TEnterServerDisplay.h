@@ -22,7 +22,7 @@ public:
     virtual ~TEnterServerDisplay() = default;
 
     void registerEvent();
-    void onPreInitialize() ;
+    void onInitialize() ;
     void onClickedEnterServer();
     void onClickedBack();
 

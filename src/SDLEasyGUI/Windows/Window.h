@@ -26,12 +26,15 @@ class Window final {
 
 public:
 
-    Window();
+    Window(const t_size width = WINDOW_WIDTH, const t_size height = WINDOW_HEIGHT);
     virtual ~Window();
 
+    inline void setWidth(const t_size width){ m_windowWidth = width;}
+    inline void setHeight(const t_size height){ m_windowHeight = height;}
     inline void setShow(const bool b) { m_show = b; }
     void show();
     void hidden();
+    void initialize();
 
     inline const size_t getDisplayWidth() const noexcept { return m_windowWidth; }
     inline const size_t getDisplayHeight() const noexcept { return m_windowHeight; }
@@ -50,8 +53,8 @@ private:
     std::shared_ptr<SDL_Window> m_window = nullptr;
     std::shared_ptr<SDL_Renderer> m_renderer = nullptr;
 
-    const t_size m_windowWidth = 0;
-    const t_size m_windowHeight = 0;
+    t_size m_windowWidth = 0;
+    t_size m_windowHeight = 0;
     t_id m_windowID = NULL_WINDOW_ID;
     bool m_show = false;
 };

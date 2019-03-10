@@ -56,19 +56,15 @@ public:
     { return m_color;}
 
     inline const sdleasygui::TPoint getPoint()
-    { return m_point;}
+    { return m_absoluteCoord;}
 
     inline void setPoint(const sdleasygui::TPoint& point)
-    { _resetRelateivePoint(point); m_point = point; }
+    { _resetRelateivePoint(point); m_absoluteCoord = point; }
 
     inline FigureCoords& getCoords()
     { return m_relativeCoord;}
 
-    std::shared_ptr<TFigure> goRight();
-    std::shared_ptr<TFigure> goLeft();
-    std::shared_ptr<TFigure> goDown();
-    std::shared_ptr<TFigure> rotateLeft();
-    std::shared_ptr<TFigure> rotateRight();
+    std::shared_ptr<TFigure> move(const sdleasygui::t_eventType event);
 
     TFigureUnit getLeftmost();
     TFigureUnit getRightmost();
@@ -104,10 +100,10 @@ protected:
     sdleasygui::t_size m_figureTypeCount;
     sdleasygui::t_size m_width;
     sdleasygui::t_size m_height;
-    sdleasygui::TPoint m_point;
     sdleasygui::TColor m_color;
     TFigureClass  m_figureClass;
     TFigureType m_figureType;
+    sdleasygui::TPoint m_absoluteCoord;
     FigureCoords m_relativeCoord;
     
 private:

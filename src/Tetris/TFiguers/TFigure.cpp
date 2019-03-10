@@ -1,3 +1,5 @@
+#include <cassert>
+
 #include "TFigure.h"
 #include "TFigureBuilder.h"
 #include "../../GameInterface/TypeTraits.h"
@@ -13,14 +15,14 @@ TFigure::TFigure(const TFigureBuilder* bld)
    : m_width(bld->getWidth()),
     m_height(bld->getHeight()),
     m_figureType(bld->getType ()),
-    m_point(bld->getPoint ()),
+    m_absoluteCoord(bld->getPoint ()),
     m_color(bld->getColor()),
     m_figureClass(bld->getClass())
 {
     if(m_figureType == TFigureType::None)
     {
         m_figureType = TFigureType::A;
-        rotateLeft ();
+        move(SDLK_LEFT);
     }
 
     setAll(bld->getUnitType());
@@ -32,37 +34,29 @@ TFigure::~TFigure()
 {
 }
 
-std::shared_ptr<TFigure> TFigure::goRight()
-{
-    auto copied = copy();
-    _goRight ();
-    return copied;
-}
-std::shared_ptr<TFigure> TFigure::goLeft()
-{
-    auto copied = copy();
-    _goLeft ();
-    return copied;
-}
 
-std::shared_ptr<TFigure> TFigure::goDown()
+std::shared_ptr<TFigure> TFigure::move(const sdleasygui::t_eventType event)
 {
     auto copied = copy();
-    _goDown ();
-    return copied;
-}
 
-std::shared_ptr<TFigure> TFigure::rotateLeft()
-{
-    auto copied = copy();
-    _rotateLeft ();
-    return copied;
-}
+    switch (event)
+    {
+        case SDLK_LEFT:
+            _goLeft();
+            break;
+        case SDLK_RIGHT:
+            _goRight ();
+            break;
+        case SDLK_UP:
+            _rotateLeft();
+            break;
+        case SDLK_DOWN:
+            _goDown();
+            break;
+        default:
+            assert(0);
+    }
 
-std::shared_ptr<TFigure> TFigure::rotateRight()
-{
-    auto copied = copy();
-    _rotateRight ();
     return copied;
 }
 
@@ -121,7 +115,7 @@ TFigureUnit TFigure::getDownmost()
 const std::shared_ptr<TFigure> TFigure::copy() const
 {
     auto copied = _copy();
-    copied->m_point = this->m_point;
+    copied->m_absoluteCoord = this->m_absoluteCoord;
     copied->m_color = this->m_color;
     copied->m_height = this->m_height;
     copied->m_width = this->m_width;
@@ -135,7 +129,7 @@ const std::shared_ptr<TFigure> TFigure::copy() const
 
 void TFigure::copy(const TFigure& fig)
 {
-    this->m_point = fig.m_point;
+    this->m_absoluteCoord = fig.m_absoluteCoord;
     this->m_color = fig.m_color;
     this->m_height = fig.m_height;
     this->m_width = fig.m_width;
@@ -155,7 +149,7 @@ void TFigure::_goRight ()
         auto x = m_relativeCoord[i].getPoint ().x;
         m_relativeCoord[i].set ({x+1,y});
     }
-    m_point.x +=1;
+    m_absoluteCoord.x +=1;
 }
 
 void TFigure::_goLeft ()
@@ -166,7 +160,7 @@ void TFigure::_goLeft ()
         auto x = m_relativeCoord[i].getPoint ().x;
         m_relativeCoord[i].set ({x-1,y});
     }
-    m_point.x -=1;
+    m_absoluteCoord.x -=1;
 }
 
 void TFigure::_goDown ()
@@ -177,7 +171,7 @@ void TFigure::_goDown ()
         auto x = m_relativeCoord[i].getPoint ().x;
         m_relativeCoord[i].set ({x,y+1});
     }
-    m_point.y +=1;
+    m_absoluteCoord.y +=1;
 }
 
 const TFigureType TFigure::getRandomlyFigureType() const {

@@ -118,7 +118,7 @@ void TGameDisplay::onDraw()
             for (int x = 0 ; x < board_width ; x++)
             {
                 auto unit = gameboard[y][x];
-                if(unit.getType() & UnitType::Fill)
+                if(unit.getType() & UnitType::Fixed)
                 {
                     SDL_Rect rect{beginX + x * figureLen,
                                   beginY + y * figureLen,

@@ -40,10 +40,12 @@ public:
     void recvInitPlayerInfo(const game_interface::Packet &);
 
     virtual void registerEvent() override;
-    virtual void onPreInitialize() override;
+    virtual void onInitialize() override;
     virtual void onDraw() override;
 
 private:
+
+    void createGameRoom();
 
     const sdleasygui::TPoint m_controllBeginPoint = sdleasygui::TPoint{ 50, 50 };
 

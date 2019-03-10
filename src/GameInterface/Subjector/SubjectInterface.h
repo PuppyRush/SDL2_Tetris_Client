@@ -21,7 +21,7 @@ namespace game_interface {
 class Observer;
 
 template <class _Object, class _Container>
-class SubjectInterface : private boost::noncopyable{
+class SubjectInterface {
 public:
 
     using object_type = std::shared_ptr<_Object>;
@@ -37,13 +37,13 @@ public:
         std::lock_guard<std::mutex> lock(m_objMutex);
 
         insert(obs);
+
         m_objCond.notify_one();
 
         postAttach(obs);
     }
 
-    void detach(const unique_type unique)
-    {
+    void detach(const unique_type unique) {
         assert(exist(unique));
 
         std::lock_guard<std::mutex> lock(m_objMutex);

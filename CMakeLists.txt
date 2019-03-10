@@ -193,7 +193,7 @@ add_executable(tetris_figure_class
         src/GameInterface/Online/Packet.h
         src/GameInterface/Online/PacketQueue.h
         src/GameInterface/Online/PacketQueue.cpp
-        src/GameInterface/Define.h src/Tetris/Common/TStruct.h src/SDLEasyGUI/Display/MessageDialog.cpp src/SDLEasyGUI/Display/MessageDialog.h src/SDLEasyGUI/Display/InputDialog.cpp src/SDLEasyGUI/Display/InputDialog.h)
+        src/GameInterface/Define.h src/Tetris/Common/TStruct.h src/SDLEasyGUI/Display/MessageDialog.cpp src/SDLEasyGUI/Display/MessageDialog.h src/SDLEasyGUI/Display/InputDialog.cpp src/SDLEasyGUI/Display/InputDialog.h src/Tetris/TDisplay/Waiting/CreateGameroomWindow.cpp src/Tetris/TDisplay/Waiting/CreateGameroomWindow.h src/SDLEasyGUI/Controller/ComboBox.cpp src/SDLEasyGUI/Controller/ComboBox.h)
 
 
 include_directories(

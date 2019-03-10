@@ -21,7 +21,7 @@ private:
     virtual void onClickedSuspend() override final;
 
     virtual void onDraw() override final;
-    virtual void onPreInitialize() override final;
+    virtual void onInitialize() override final;
     virtual void onClose() override final;
     virtual void onCreate() override final;
     virtual void registerEvent() override final;

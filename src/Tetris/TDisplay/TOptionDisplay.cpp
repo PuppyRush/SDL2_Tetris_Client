@@ -21,7 +21,7 @@ void TOptionDisplay::registerEvent() {
     event_buttonClick(toUType(resource::OPTION_BACK), std::bind(&TOptionDisplay::onClickedBack, this));
 }
 
-void TOptionDisplay::onPreInitialize() {
+void TOptionDisplay::onInitialize() {
     setBackgroundImgPath("../resources/images/background.png");
 
     t_size begin_y = WINDOW_HEIGHT / 4;
@@ -223,7 +223,7 @@ void TOptionDisplay::onPreInitialize() {
 
         addControll(bld.build());
     }
-    ::DisplayInterface::onPreInitialize();
+    ::DisplayInterface::onInitialize();
 }
 
 

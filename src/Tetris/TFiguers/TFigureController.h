@@ -5,15 +5,20 @@
 #ifndef TETRIS_FIGURE_CLASS_TFIGURECONTROLLER_H
 #define TETRIS_FIGURE_CLASS_TFIGURECONTROLLER_H
 
+#include <boost/serialization/singleton.hpp>
+
 #include "TFigure.h"
 #include "TFigureBoard.h"
 #include "Tetris/Common/TProperty.h"
 
+
 SDL_TETRIS_BEGIN
 
-class TFigureController final {
+class TFigureController : public boost::serialization::singleton<TFigureController> {
 
 public:
+
+    friend class boost::serialization::singleton<TFigureController>;
 
     using figure_ptr = std::shared_ptr<TFigure>;
     using board_type = TFigureBoard<GAMEBOARD_WIDTH_COUNT,GAMEBOARD_HEIGHT_COUNT >;
@@ -46,6 +51,13 @@ public:
     void addBottomLine(const sdleasygui::t_size = 1);
     void createNextFigureRandomly();
 
+    static std::shared_ptr<TFigureController> getInstance() {
+
+        static auto inst = std::shared_ptr<TFigureController>
+            (&boost::serialization::singleton<TFigureController>::get_mutable_instance());
+        return inst;
+    }
+
 private:
 
     figure_ptr m_currentFigure;
@@ -54,11 +66,11 @@ private:
     board_ptr m_board;
     nextfigure_board_ptr m_nextFigureBoard;
 
-    void _rotate();
-    void _goDown();
-    void _goLeft();
-    void _goRight();
-    void _goStraightDown();
+    void _rotate(const sdleasygui::t_eventType event);
+    void _goDown(const sdleasygui::t_eventType event);
+    void _goLeft(const sdleasygui::t_eventType event);
+    void _goRight(const sdleasygui::t_eventType event);
+    void _goStraightDown(const sdleasygui::t_eventType event);
     void _set();
 };
 

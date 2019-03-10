@@ -27,7 +27,7 @@ void TMultiMainDisplay::registerEvent()
     event_buttonClick(toUType(resource::MAIN_EXIT), std::bind(&TMultiMainDisplay::onClickedBack, this));
 }
 
-void TMultiMainDisplay::onPreInitialize() {
+void TMultiMainDisplay::onInitialize() {
 
     t_size begin_y = WINDOW_HEIGHT/3;
     {
@@ -68,7 +68,7 @@ void TMultiMainDisplay::onPreInitialize() {
         addControll(bld.build());
     }
 
-    DisplayInterface::onPreInitialize();
+    DisplayInterface::onInitialize();
 }
 
 void TMultiMainDisplay::onTimerEvent()
@@ -84,6 +84,8 @@ void TMultiMainDisplay::onDraw()
 void TMultiMainDisplay::onClickedOption()
 {
     auto dlg = std::make_shared<TOptionDisplay>();
+    dlg->setWindowHeight(WINDOW_HEIGHT);
+    dlg->setWindowWidth(WINDOW_WIDTH);
     auto res = dlg->modal();
 
     DisplayInterface::onOK();
@@ -92,7 +94,10 @@ void TMultiMainDisplay::onClickedOption()
 void TMultiMainDisplay::onClickedEnterServer()
 {
     auto dlg = std::make_shared<TEnterServerDisplay>();
+    dlg->setWindowHeight(WINDOW_HEIGHT);
+    dlg->setWindowWidth(WINDOW_WIDTH);
     dlg->modal();
+
     DisplayInterface::onOK();
 }
 

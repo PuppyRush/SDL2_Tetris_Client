@@ -29,7 +29,7 @@ public:
 protected:
     TMainDisplay();
 
-	virtual void onPreInitialize() = 0;
+	virtual void onInitialize() = 0;
 	virtual void onTimerEvent() =0;
     virtual void onDraw();
 };

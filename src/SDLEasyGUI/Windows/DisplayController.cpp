@@ -34,6 +34,8 @@ DisplayController::DisplayController()
 
 void DisplayController::modal_open(display_ptr display)
 {
+    display->getWindow()->initialize();
+
     m_modalStack.emplace_back(display);
     m_modalAryCV.notify_one();
 
@@ -98,10 +100,10 @@ void DisplayController::close(const game_interface::t_id id)
 void DisplayController::run()
 {
     //_pumpEvent();
-    m_thread = std::thread(&DisplayController::_pumpEvent, this);
+    m_thread = std::thread(&DisplayController::pumpEvent, this);
 }
 
-void DisplayController::_pumpEvent()
+void DisplayController::pumpEvent()
 {
     std::unique_lock<std::mutex> lock(m_modalAryMutex);
     m_modalAryCV.wait(lock, [=](){return !m_modalStack.empty() ;});

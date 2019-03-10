@@ -21,26 +21,6 @@
 
 namespace sdleasygui {
 
-/*
-
-namespace std
-{
-template<>
-struct hash<DisplayInfo>
-{
-    size_t operator()(const DisplayInfo& obj) const
-    {
-        using modeType = underlying_type_t <TLocalMode>;
-        using dpType = underlying_type_t <TDisplay >;
-        using dpModeType = underlying_type_t <TDisplayMode >;
-        const auto mode = static_cast<modeType>(obj.mode);
-        const auto dp = static_cast<dpType>(obj.display);
-        const auto dpMode = static_cast<dpType>(obj.displayMode);
-        return hash<modeType>()(mode)*13 + hash<modeType>()(dp)*21 * hash<dpModeType>()(dpMode)*37 * obj.id*53;
-    }
-};
-}*/
-
 using controll_map_key = std::pair<game_interface::t_id, game_interface::t_id>;
 struct KeyHash {
     std::size_t operator()(const controll_map_key &obj) const {
@@ -91,7 +71,7 @@ private:
     display_ptr findFromId(const game_interface::t_id id);
 
     void _release();
-    void _pumpEvent();
+    void pumpEvent();
 
     template<class T>
     display_ptr _find(const T &ary, const game_interface::t_id id);

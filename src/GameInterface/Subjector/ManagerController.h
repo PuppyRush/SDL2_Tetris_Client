@@ -10,11 +10,13 @@
 
 #include "VectorSubject.h"
 #include "../Object/Observer.h"
+#include "ManagerInterface.h"
 
-namespace server {
+namespace game_interface
+{
 
-class ManagerController : public game_interface::Observer ,
-                        public game_interface::VectorSubject<game_interface::Observer>,
+class ManagerController : public Observer ,
+                        public VectorSubject<ManagerInterface>,
                             public boost::serialization::singleton<ManagerController>
 {
 
@@ -39,7 +41,7 @@ public:
 
 protected:
 
-    virtual void postDetach(_Base::unique_type) override {}
+    virtual void postDetach(_Base::unique_type) override;
     virtual void postAttach(object_type ) override {}
 
 };

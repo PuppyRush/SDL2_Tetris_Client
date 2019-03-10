@@ -24,7 +24,7 @@ public:
 private:
 
     virtual void registerEvent() override final;
-    virtual void onPreInitialize() override final;
+    virtual void onInitialize() override final;
     virtual void onDraw() override final;
     void onClickedBack();
 

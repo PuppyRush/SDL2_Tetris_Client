@@ -28,11 +28,11 @@ void TFigureController::createNextFigureRandomly()
     if(m_currentFigure.get() == nullptr)
     {
         TFigureBuilder bld{TPoint{GAMEBOARD_WIDTH_COUNT / 2 - 1, 2}};
-        bld.unitType(UnitType::Figure);
+        bld.unitType(UnitType::Moving);
         m_currentFigure = bld.build();
 
         TFigureBuilder bld2{TPoint{1,2}};
-        bld2.unitType(UnitType::Figure);
+        bld2.unitType(UnitType::Moving);
         m_nextFigure = bld2.build();
     }
     else{
@@ -44,7 +44,7 @@ void TFigureController::createNextFigureRandomly()
         m_nextFigure.reset();
 
         TFigureBuilder bld{TPoint{1,2}};
-        bld.unitType(UnitType::Figure);
+        bld.unitType(UnitType::Moving);
         m_nextFigure = bld.build();
     }
 
@@ -57,19 +57,19 @@ void TFigureController::command(const t_eventType event)
     switch (event)
     {
         case SDLK_LEFT:
-            _goLeft();
+            _goLeft(event);
             break;
         case SDLK_RIGHT:
-            _goRight();
+            _goRight(event);
             break;
         case SDLK_UP:
-            _rotate();
+            _rotate(event);
             break;
         case SDLK_DOWN:
-            _goDown();
+            _goDown(event);
             break;
         case SDLK_SPACE:
-            _goStraightDown();
+            _goStraightDown(event);
             break;
     }
 
@@ -77,20 +77,20 @@ void TFigureController::command(const t_eventType event)
 }
 
 
-void TFigureController::_goStraightDown()
+void TFigureController::_goStraightDown(const sdleasygui::t_eventType event)
 {
     m_board->_eraseCoords(m_currentFigure);
 
     shared_ptr<TFigure> copied(nullptr);
     while(m_board->_isValidation(m_currentFigure))
     {
-        copied = m_currentFigure->goDown();
+        copied = m_currentFigure->move(event);
     }
 
     if(copied)
     {
         m_currentFigure = copied;
-        m_currentFigure->setAll(UnitType::Fill);
+        m_currentFigure->setAll(UnitType::Fixed);
         m_board->_setCoords(m_currentFigure);
     }
 
@@ -100,19 +100,19 @@ void TFigureController::_goStraightDown()
     m_board->_setCoords(m_currentFigure);
 }
 
-void TFigureController::_rotate() {
+void TFigureController::_rotate(const sdleasygui::t_eventType event) {
     m_board->_eraseCoords(m_currentFigure);
 
-    auto copied = m_currentFigure->rotateLeft();
+    auto copied = m_currentFigure->move(event);
 
     while(m_board->isHit(m_currentFigure->getLeftmost()))
     {
-        m_currentFigure->goRight();
+        m_currentFigure->move(event);
     }
 
     while(m_board->isHit(m_currentFigure->getRightmost()))
     {
-        m_currentFigure->goLeft();
+        m_currentFigure->move(event);
     }
 
     if(!m_board->_isValidation(m_currentFigure))
@@ -121,14 +121,14 @@ void TFigureController::_rotate() {
     m_board->_setCoords(m_currentFigure);
 }
 
-void TFigureController::_goDown() {
+void TFigureController::_goDown(const sdleasygui::t_eventType event) {
     m_board->_eraseCoords(m_currentFigure);
 
-    auto copied = m_currentFigure->goDown();
+    auto copied = m_currentFigure->move(event);
 
     if (!m_board->_isValidation(m_currentFigure)) {
         m_currentFigure = copied;
-        m_currentFigure->setAll(UnitType::Fill);
+        m_currentFigure->setAll(UnitType::Fixed);
         m_board->_setCoords(m_currentFigure);
         createNextFigureRandomly();
     }
@@ -136,20 +136,20 @@ void TFigureController::_goDown() {
     m_board->_setCoords(m_currentFigure);
 }
 
-void TFigureController::_goLeft() {
+void TFigureController::_goLeft(const sdleasygui::t_eventType event) {
     m_board->_eraseCoords(m_currentFigure);
 
-    auto copied = m_currentFigure->goLeft();
+    auto copied = m_currentFigure->move(event);
     if (!m_board->_isValidation(m_currentFigure))
         m_currentFigure = copied;
 
     m_board->_setCoords(m_currentFigure);
 }
 
-void TFigureController::_goRight() {
+void TFigureController::_goRight(const sdleasygui::t_eventType event) {
     m_board->_eraseCoords(m_currentFigure);
 
-    auto copied = m_currentFigure->goRight();
+    auto copied = m_currentFigure->move(event);
     if (!m_board->_isValidation(m_currentFigure))
         m_currentFigure = copied;
 

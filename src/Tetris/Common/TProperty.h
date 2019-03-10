@@ -85,8 +85,8 @@ enum class TMap : sdleasygui::t_type
 
 enum UnitType
 {
-    Fill = 1 << 0,
-    Figure = 1 << 1,
+    Fixed = 1 << 0,
+    Moving = 1 << 1,
     Ghost = 1 << 2,
     Empty = 1 << 3
 };

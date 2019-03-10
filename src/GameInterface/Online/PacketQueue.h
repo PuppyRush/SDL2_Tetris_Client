@@ -27,8 +27,8 @@ public:
     PacketQueue();
     ~PacketQueue() = default;
 
-    virtual void notify() override;
 
+    void initialize();
     void pushEvent(Packet &&event);
     void pushEvent(const Packet &event);
     Packet popEvent();
@@ -45,6 +45,8 @@ protected:
     virtual void postAttach(object_type) override {};
 
 private:
+
+    virtual void notify() override;
 
     std::queue<Packet> m_packetQ;
     std::condition_variable m_cond;

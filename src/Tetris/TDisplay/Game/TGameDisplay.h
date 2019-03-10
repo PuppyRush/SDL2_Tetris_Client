@@ -32,7 +32,7 @@ protected:
 	virtual void onCreate() override;
 	virtual void onDraw() override;
 
-	virtual void onPreInitialize() = 0;
+	virtual void onInitialize() = 0;
 	virtual void onKeyboardEvent (const SDL_KeyboardEvent* key);
 	virtual void onUserEvent(const SDL_UserEvent* event);
 

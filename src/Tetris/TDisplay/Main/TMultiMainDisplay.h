@@ -27,7 +27,7 @@ private:
     virtual void onClickedEnterServer() override final;
     virtual void registerEvent() override final;
     virtual void onDraw() override final;
-    virtual void onPreInitialize() override final;
+    virtual void onInitialize() override final;
     virtual void onTimerEvent() override final;
 
     [[deprecated("dont call this function in TMultiMainDisplay")]]

@@ -9,9 +9,12 @@ using namespace game_interface;
 
 PacketQueue::PacketQueue()
 {
-    this->m_thread = std::thread(&PacketQueue::notify, this);
 }
 
+void PacketQueue::initialize()
+{
+    this->m_thread = std::thread(&PacketQueue::notify, this);
+}
 
 void PacketQueue::pushEvent(Packet&& event)
 {
@@ -39,10 +42,10 @@ Packet PacketQueue::popEvent()
 
 void PacketQueue::notify()
 {
-    auto& mngCtl = *server::ManagerController::getInstance();
+    auto& mngCtl = *game_interface::ManagerController::getInstance();
 
-    if(m_isServer) {
-
+    if(m_isServer)
+    {
         while (m_isContinue) {
             auto packet = popEvent();
 

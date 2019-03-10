@@ -62,7 +62,7 @@ void TSingleGameDisplay::registerEvent() {
     event_buttonClick(toUType(resource::GAME_START), std::bind(&TSingleGameDisplay::onClickedStart, this));
 }
 
-void TSingleGameDisplay::onPreInitialize()
+void TSingleGameDisplay::onInitialize()
 {
 
 
@@ -103,7 +103,7 @@ void TSingleGameDisplay::onPreInitialize()
         addControll(bld.build());
     }
 
-    DisplayInterface::onPreInitialize();
+    DisplayInterface::onInitialize();
 }
 
 void TSingleGameDisplay::onClose()

@@ -19,7 +19,7 @@ void TEnterServerDisplay::registerEvent()
     event_buttonClick(toUType(resource::ENTERSERVER_BACK), std::bind(&TEnterServerDisplay::onClickedBack, this));
 }
 
-void TEnterServerDisplay::onPreInitialize() {
+void TEnterServerDisplay::onInitialize() {
 
     t_size begin_y = WINDOW_HEIGHT/3;
     {
@@ -61,7 +61,7 @@ void TEnterServerDisplay::onPreInitialize() {
         addControll(bld.build());
     }
 
-    ::DisplayInterface::onPreInitialize();
+    ::DisplayInterface::onInitialize();
 }
 
 void TEnterServerDisplay::onClickedEnterServer()

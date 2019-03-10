@@ -61,8 +61,6 @@ private:
     t_age m_age;
     sdleasygui::TColor m_color;
     UnitType m_type;
-public:
-
 };
 
 SDL_TETRIS_END

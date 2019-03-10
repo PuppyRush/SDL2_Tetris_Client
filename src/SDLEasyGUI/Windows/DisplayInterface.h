@@ -131,7 +131,7 @@ protected:
 
     virtual void event_buttonClick(const t_res, const BTN_CLICK callback_fn);
 
-    virtual void onPreInitialize();
+    virtual void onInitialize();
     virtual void onCreate();
     virtual void onClose();
     virtual void onOK();

@@ -69,7 +69,7 @@ public:
         std::shared_ptr<TFigure> copied(nullptr);
         while(_isValidation(dest))
         {
-            copied = dest->goDown();
+            copied = dest->move(SDLK_DOWN);
         }
 
         if(copied)
@@ -120,7 +120,7 @@ public:
             int x=0;
             for(; x < GAMEBOARD_WIDTH_COUNT ; ++x)
             {
-                if( (m_board[y][x].getType() & UnitType ::Fill) != UnitType ::Fill)
+                if( (m_board[y][x].getType() & UnitType ::Fixed) != UnitType ::Fixed)
                     break;
             }
             if(x==GAMEBOARD_WIDTH_COUNT) {
@@ -139,7 +139,7 @@ public:
         {
             for(sdleasygui::t_coord y = GAMEBOARD_HEIGHT_COUNT-1 ; y >= 0 ; --y)
             {
-                if( ( m_board[y][x].getType() & UnitType ::Fill) == UnitType ::Fill)
+                if( ( m_board[y][x].getType() & UnitType ::Fixed) == UnitType ::Fixed)
                 {
                     const size_t removedCnt = std::count_if(collapedLines.begin(), collapedLines.end(),
                                                             [y](const auto _y){
@@ -148,7 +148,7 @@ public:
 
                     if(removedCnt>0)
                     {
-                        m_board[y+removedCnt][x].set(UnitType::Fill);
+                        m_board[y+removedCnt][x].set(UnitType::Fixed);
                         m_board[y+removedCnt][x].set(m_board[y][x].getColor());
                         m_board[y][x].set(static_cast<UnitType>(UnitType::Empty));
                         m_board[y][x].set(sdleasygui::ColorCode::none);
@@ -169,7 +169,7 @@ public:
     inline const bool isHit(const TFigureUnit& unit) const noexcept
     {
         if(!isExterior(unit))
-            return (m_board[unit.getPoint().y][unit.getPoint().x].getType() & UnitType::Fill)== UnitType::Fill;
+            return (m_board[unit.getPoint().y][unit.getPoint().x].getType() & UnitType::Fixed)== UnitType::Fixed;
         else
             return true;
     }

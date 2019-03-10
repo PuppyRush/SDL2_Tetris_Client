@@ -25,20 +25,26 @@ public:
     virtual ~GraphicInterface() = default;
     virtual void onDraw() = 0;
 
+    inline void setWindowWidth(const t_size width){ m_window->setWidth(width);}
+    inline void setWindowHeight(const t_size height){ m_window->setHeight(height);}
+
     void setWindow(window_ptr window) { m_window = window; }
     window_ptr getWindow() const noexcept {  return m_window;  }
 
 protected:
 
-    GraphicInterface() = default;
+    GraphicInterface()
+        :m_window(std::make_shared<Window>())
+    {}
+
     virtual void refresh() = 0;
+
 
 private:
 
     virtual bool validId(const game_interface::t_id id) = 0;
 
     window_ptr m_window = nullptr;
-
 };
 
 class textDrawer
