@@ -1,0 +1,43 @@
+//
+// Created by chaed on 18. 12. 15.
+//
+
+#ifndef TERIS_FIGURE_CLASS_TGAMELOCALDISPLAY_H
+#define TERIS_FIGURE_CLASS_TGAMELOCALDISPLAY_H
+
+#if _MSC_VER >= 1200
+  #pragma once
+#endif
+
+
+#include "TGameDisplay.h"
+#include "../../TObject/TPlayer.h"
+
+SDL_TETRIS_BEGIN
+
+class TSingleGameDisplay final : public TGameDisplay
+{
+
+public:
+
+    TSingleGameDisplay();
+    virtual ~TSingleGameDisplay() = default;
+
+private:
+    virtual void onClickedStart() override final;
+    virtual void onClickedSuspend() override final;
+
+    virtual void onDraw() override final;
+    virtual void onInitialize() override final;
+    virtual void onClose() override final;
+    virtual void onCreate() override final;
+    virtual void registerEvent() override final;
+
+    virtual Json::Value toJson() const override {}
+    virtual const std::string_view& getUniqueName() const override {}
+
+};
+
+SDL_TETRIS_END
+
+#endif //TERIS_FIGURE_CLASS_TGAMECONTROLLER_H
