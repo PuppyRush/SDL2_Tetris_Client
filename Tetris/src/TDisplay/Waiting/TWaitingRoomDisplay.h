@@ -10,6 +10,7 @@
 #include "SDL2EasyGUI/src/Controller/ListBox.h"
 #include "TDisplay/TDisplayInterface.h"
 #include "TWaitingRoomCard.h"
+#include "../../TObject/TWaitingRoom.h"
 
 SDL_TETRIS_BEGIN
 
@@ -19,9 +20,10 @@ typedef struct UserInfo : sdleasygui::ListItem
     game_interface::t_time maketime;
     sdleasygui::t_unique  unique;
 
-    UserInfo(const std::string& str, const game_interface::t_time maketime,  const sdleasygui::t_unique unique)
-        :username(str), maketime(maketime), unique(unique)
-    {}
+    UserInfo(const std::string& name, game_interface::t_time time,  sdleasygui::t_unique  unique)
+        :username(name), unique(unique), maketime(time)
+    {
+    }
 
     virtual ~UserInfo() = default;
 
@@ -31,6 +33,25 @@ typedef struct UserInfo : sdleasygui::ListItem
     }
 }UserInfo;
 
+typedef struct ChatInfo : sdleasygui::ListItem
+{
+    std::string username;
+    std::string chat;
+    game_interface::t_time maketime;
+
+    ChatInfo(const std::string& name, const std::string& chat, game_interface::t_time time)
+        :username(name), chat(chat), maketime(time)
+    {
+    }
+
+    virtual ~ChatInfo() = default;
+
+    virtual const std::string& getString()  const noexcept override
+    {
+        return chat;
+    }
+}ChatInfo;
+
 
 class TWaitingRoomDisplay : public TDisplayInterface
 {
@@ -38,20 +59,22 @@ public:
     virtual ~TWaitingRoomDisplay() = default;
 
     virtual void updateObserver(const game_interface::Packet& ) override;
-    void recvGameRoomInfo(const game_interface::Packet &packet);
-    void recvInitPlayerInfo(const game_interface::Packet &);
 
     virtual void registerEvent() override;
     virtual void onInitialize() override;
     virtual void onDraw() override;
 
 protected:
-    virtual void postCreate() override;
+    virtual void postCreate(TDisplayInterface::display_ptr) override;
 
 private:
 
     void createGameRoom();
-    void enterChat(const void*);
+    void sendChat(const void *);
+    void recvChat(const game_interface::Packet &packet);
+    void createGameroom(const game_interface::Packet &packet);
+    void recvGameRoomInfo(const game_interface::Packet &packet);
+
     virtual Json::Value toJson() const override {}
     virtual const std::string_view& getUniqueName() const override {}
 
@@ -70,6 +93,7 @@ private:
     const sdleasygui::t_size m_btnHeight = 50;
     const sdleasygui::TPoint m_createBtnBeginPoint = sdleasygui::TPoint{m_userBoxBeginPoint.x, m_chatBoxBeginPoint.y+50};
 
+    TWaitingRoom m_waitingRoom;
     std::vector<TWaitingRoomCard> m_gamerooms;
     std::unordered_map<sdleasygui::t_unique, std::function<void()>> m_roomClickedFn;
 };

@@ -21,9 +21,9 @@ void TEnterServerDisplay::registerEvent()
 
 void TEnterServerDisplay::onInitialize() {
 
-    t_size begin_y = WINDOW_HEIGHT/3;
+    t_size begin_y = getWindowHeight()/3;
     {
-        EditLabelBuilder bld(getWindow(), {WINDOW_WIDTH / 2 - 120, begin_y}, "Player");
+        EditLabelBuilder bld(getWindow(), {getWindowWidth() / 2 - 120, begin_y}, "Player");
         bld.id(sdleasygui::toUType(resource::ENTERSERVER_ID))->
             fontColor(ColorCode::black)->
             width(240)->
@@ -38,7 +38,7 @@ void TEnterServerDisplay::onInitialize() {
 
     begin_y += 80;
     {
-        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH / 2 - 120, begin_y}, "ENTER");
+        ButtonBuilder bld(getWindow(), {getWindowWidth() / 2 - 120, begin_y}, "ENTER");
         bld.id(sdleasygui::toUType(resource::ENTERSERVER_OK))->
             width(100)->
             height(50)->
@@ -48,9 +48,9 @@ void TEnterServerDisplay::onInitialize() {
 
         addControll(bld.build());
     }
-    begin_y += 80;
+
     {
-        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH / 2 - 120, begin_y}, "BACK");
+        ButtonBuilder bld(getWindow(), {getWindowWidth() / 2 , begin_y}, "BACK");
         bld.id(sdleasygui::toUType(resource::ENTERSERVER_BACK))->
             width(100)->
             height(50)->
@@ -67,16 +67,16 @@ void TEnterServerDisplay::onInitialize() {
 void TEnterServerDisplay::onClickedEnterServer()
 {
     auto player = TPlayer::getInstance();
-    const  auto btn = std::static_pointer_cast<EditLabel>(getControll(resource::ENTERSERVER_ID));
+    const  auto btn = dynamic_cast<EditLabel*>(getControll(resource::ENTERSERVER_ID));
     assert(btn != nullptr );
 
     player->setUserName(btn->getString());
     player->connectServer();
 
-    game_interface::PacketQueue::getInstance().attach(player.get());
+    game_interface::PacketQueue::getInstance().attach(player);
 
     auto dlg = std::make_shared<TWaitingRoomDisplay>();
-    dlg->modal();
+    dlg->modal(dlg);
 }
 
 

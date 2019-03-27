@@ -11,6 +11,14 @@ PacketQueue::PacketQueue()
 {
 }
 
+PacketQueue::~PacketQueue()
+{
+    end();
+    m_cond.notify_one();
+    m_thread.join();
+}
+
+
 void PacketQueue::initialize()
 {
     this->m_thread = std::thread(&PacketQueue::notify, this);
@@ -35,6 +43,9 @@ Packet PacketQueue::popEvent()
     std::unique_lock<std::mutex> lock(m_mutex);
     m_cond.wait(lock, [=](){return !m_packetQ.empty() || !m_isContinue;});
 
+    if(!m_isContinue)
+        return Packet::getNullPacket();
+
     const auto msg = m_packetQ.front();
     m_packetQ.pop();
     return msg;
@@ -42,7 +53,7 @@ Packet PacketQueue::popEvent()
 
 void PacketQueue::notify()
 {
-    auto& mngCtl = *game_interface::ManagerController::getInstance();
+    auto& mngCtl = game_interface::ManagerController::getInstance();
 
     if(m_isServer)
     {

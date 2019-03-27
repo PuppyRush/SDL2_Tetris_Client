@@ -110,7 +110,7 @@ ADD_LIBRARY(GameInterface STATIC
         src/Online/PacketQueue.h
         src/Online/PacketQueue.cpp
         src/Define.h
-        )
+        src/Quit.h)
 
 
 

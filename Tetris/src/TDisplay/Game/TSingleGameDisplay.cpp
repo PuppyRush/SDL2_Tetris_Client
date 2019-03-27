@@ -31,14 +31,14 @@ void TSingleGameDisplay::onClickedStart()
     ply->startGame();
     m_players.emplace_back(ply);
 
-    auto board = ply->getController()->getBoard();
+    auto board = ply->getController().getBoard();
 
     m_drawLine = TOptionManager::getInstance()->isDrawLine();
 
     board->setStartDisplayPoint(TPoint{GAMEBOARD_BEGIN_X, GAMEBOARD_BEGIN_Y});
     board->setblockLength(FIGURE_UNIT_LEN);
 
-    auto nextboard = ply->getController()->getNextFigureBoard();
+    auto nextboard = ply->getController().getNextFigureBoard();
     nextboard->setStartDisplayPoint(TPoint{GAMEBOARD_BEGIN_X + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN, GAMEBOARD_BEGIN_Y});
     nextboard->setblockLength(FIGURE_UNIT_LEN);
 
@@ -59,8 +59,9 @@ void TSingleGameDisplay::onClickedSuspend()
 
 void TSingleGameDisplay::registerEvent() {
 
-    addLButtonClickEvent(game_interface::toUType(resource::GAME_START),
-                         std::bind(&TSingleGameDisplay::onClickedStart, this));
+    SEG_LBUTTONCLICK(game_interface::toUType(resource::GAME_START),
+                     &TSingleGameDisplay::onClickedStart,
+                     this);
 }
 
 void TSingleGameDisplay::onInitialize()

@@ -22,7 +22,7 @@ class Controll : public GraphicInterface {
 
 public:
 
-    using controll_ptr = std::shared_ptr<Controll>;
+    using controll_ptr = Controll*;
 
     virtual ~Controll() = default;
 

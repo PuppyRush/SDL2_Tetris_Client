@@ -15,15 +15,12 @@ using namespace sdleasygui;
 DisplayInterface::DisplayInterface()
     :m_currentCtl(nullptr)
 {
+    m_window = new SEG_Window;
 }
 
 
 DisplayInterface::~DisplayInterface()
 {
-    while(!m_menus.empty())
-    {
-        m_menus.pop_back();
-    }
     onClose();
 }
 
@@ -34,15 +31,17 @@ void DisplayInterface::onInitialize()
 
 t_res DisplayInterface::initialize()
 {
+    getWindow()->initialize();
+
     onCreate();
     onInitialize();
     show();
 
 }
 
-std::underlying_type_t<resource> DisplayInterface::modal()
+std::underlying_type_t<resource> DisplayInterface::modal(std::shared_ptr<DisplayInterface> display)
 {
-    modal_opener opener{this};
+    modal_opener opener{display, true};
 
     promise<resource> pm;
     auto f = pm.get_future();
@@ -53,19 +52,18 @@ std::underlying_type_t<resource> DisplayInterface::modal()
     return toUType(f.get());
 }
 
-void DisplayInterface::modaless()
+void DisplayInterface::modaless(std::shared_ptr<DisplayInterface> display)
 {
-    postCreate();
+    modal_opener opener{display, false};
 
-    promise<resource> pm;
-    auto f = pm.get_future();
+    m_modalessFuture = m_modalessPromise.get_future();
+    m_thread = thread(&DisplayInterface::_run, this, std::move(m_modalessPromise));
+}
 
-    DisplayController::getInstance()->modaless(this);
-
-    m_thread = thread(&DisplayInterface::_run, this, std::move(pm));
-    f.get();
-
-    postDestroy();
+std::underlying_type_t<resource> DisplayInterface::waitModaless()
+{
+    m_thread.join();
+    return toUType(m_modalessFuture.get());
 }
 
 void DisplayInterface::_run(std::promise<resource> &&pm){
@@ -81,7 +79,7 @@ void DisplayInterface::_run(std::promise<resource> &&pm){
         }
     }
 
-    pm.set_value(m_modalresult);
+    pm.set_value(m_resultResrouce);
 }
 
 void DisplayInterface::onUserEvent(const SDL_UserEvent* event) {
@@ -104,8 +102,6 @@ void DisplayInterface::onUserEvent(const SDL_UserEvent* event) {
         case SEG_DRAW_DISPLAY:
             //dont call _refresh() in this case.
             onDraw();
-            _onDrawMenus();
-            _release();
             break;
         case SEG_DRAW_CONTROLLER:
         {
@@ -132,17 +128,22 @@ void DisplayInterface::onMouseMotionEvent(const SDL_MouseMotionEvent *motion)
 
 void DisplayInterface::onWindowEvent (const SDL_WindowEvent& window)
 {
-    switch(window.type)
+    switch(window.event)
     {
-//      case SDL_QUIT:
-//            setRun(false);
-//            break;
+        case SDL_WINDOWEVENT_MAXIMIZED:
         case SDL_WINDOWEVENT_MOVED:
+        case SDL_WINDOWEVENT_SHOWN:
+        case SDL_WINDOWEVENT_RESIZED:
+        case SDL_WINDOWEVENT_SIZE_CHANGED:
+        case SDL_WINDOWEVENT_RESTORED:
+        case SDL_WINDOWEVENT_FOCUS_GAINED:
+            refresh();
+            break;
         case SDL_WINDOWEVENT_CLOSE:
             onDestroy();
             break;
     }
-    DisplayController::getInstance()->refreshModal();
+    DisplayController::getInstance().refreshModal();
 }
 
 void DisplayInterface::onCreate()
@@ -161,8 +162,8 @@ void DisplayInterface::_release()
 
 void DisplayInterface::onClose()
 {
-    if(m_modalresult == resource::NONE)
-        m_modalresult = resource::BTN_CLOSE;
+    if(m_resultResrouce == resource::NONE)
+        m_resultResrouce = resource::BTN_CLOSE;
 
     setRun(false);
     hidden();
@@ -172,30 +173,30 @@ void DisplayInterface::onClose()
 
 void DisplayInterface::onOK()
 {
-    m_modalresult = BTN_OK;
+    m_resultResrouce = BTN_OK;
     onClose();
 }
 
 void DisplayInterface::onNO(){
-    m_modalresult = BTN_NO;
+    m_resultResrouce = BTN_NO;
     onClose();
 }
 
 void DisplayInterface::onCancel()
 {
-    m_modalresult = BTN_CANCEL;
+    m_resultResrouce = BTN_CANCEL;
     onClose();
 }
 
 void DisplayInterface::onDestroy()
 {
-    //SDL_DestroyRenderer(getRenderer().get());
-    //SDL_DestroyWindow(getSDLWindow().get());
+
 }
 
 void DisplayInterface::onDraw()
 {
     _onDrawMenus();
+    _release();
 }
 
 void DisplayInterface::_onDrawMenus()
@@ -206,11 +207,10 @@ void DisplayInterface::_onDrawMenus()
     }
 }
 
-void DisplayInterface::addControll(const shared_ptr<Controll> ctl)
+void DisplayInterface::addControll(const controll_ptr ctl)
 {
     ctl->initialize();
     m_menus.emplace_back(ctl);
-
 }
 
 bool DisplayInterface::clickedMenuEvent(const TPoint& point)
@@ -219,7 +219,7 @@ bool DisplayInterface::clickedMenuEvent(const TPoint& point)
     {
         if(menu->isHit(point))
         {
-            m_currentCtl = menu.get();
+            m_currentCtl = menu;
 
             EventPusher event{this->getWindowID(), menu->getResourceId(), ATTACH_FOCUS };
             event.pushEvent();

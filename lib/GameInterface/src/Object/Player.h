@@ -21,7 +21,9 @@ public:
 
     virtual void updateObserver(const Packet& ) =0;
     virtual void sendPacket(game_interface::Packet &) = 0;
+
     virtual Json::Value toJson() const override;
+    virtual void fromJson(const Json::Value& json);
 
     inline const std::string getUserName() const noexcept { return m_name; }
     inline void setUserName(const std::string &name) { m_name = name; }

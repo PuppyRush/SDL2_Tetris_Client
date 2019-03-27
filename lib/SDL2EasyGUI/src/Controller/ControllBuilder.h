@@ -125,7 +125,7 @@ public:
         m_basic.kind = kind;
     }
 
-    virtual std::shared_ptr<Controll> build() = 0;
+    virtual Controll* build() = 0;
 
 private:
 

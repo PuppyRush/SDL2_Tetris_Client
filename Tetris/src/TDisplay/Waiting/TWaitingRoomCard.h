@@ -5,6 +5,7 @@
 #ifndef TETRIS_FIGURE_CLASS_TWAITINGROOMCARD_H
 #define TETRIS_FIGURE_CLASS_TWAITINGROOMCARD_H
 
+#include "SDL2EasyGUI/src/Controller/Controll.h"
 #include "SDL2EasyGUI/src/Controller/Border.h"
 #include "SDL2EasyGUI/src/Controller/StaticLabel.h"
 #include "../Game/TMultiGameRoomDisplay.h"
@@ -72,9 +73,9 @@ public:
         return this;
     }
 
-    virtual std::shared_ptr<sdleasygui::Controll> build() final
+    virtual sdleasygui::Controll* build() final
     {
-        return std::make_shared<TWaitingRoomCard>(*this );
+        return new TWaitingRoomCard(*this );
     }
 
     WaitingroomCardBasic m_cardBasic;

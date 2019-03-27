@@ -7,8 +7,8 @@
 
 #include <boost/serialization/singleton.hpp>
 
-#include "GameInterface/src/Type.h"
-#include "GameInterface/src/Constant.h"
+#include "../Type.h"
+#include "../Constant.h"
 
 namespace game_interface {
 

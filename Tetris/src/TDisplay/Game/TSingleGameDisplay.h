@@ -33,8 +33,7 @@ private:
     virtual void onCreate() override final;
     virtual void registerEvent() override final;
 
-    virtual Json::Value toJson() const override {}
-    virtual const std::string_view& getUniqueName() const override {}
+
 
 };
 

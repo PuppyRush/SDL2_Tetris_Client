@@ -28,8 +28,6 @@ public:
 
 private:
 
-    virtual Json::Value toJson() const override {}
-    virtual const std::string_view& getUniqueName() const override {}
     //EditLabel m_idLabel;
     //Button m_enterBtn;
     //Button m_backBtn;

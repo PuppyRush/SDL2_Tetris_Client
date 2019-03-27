@@ -68,8 +68,8 @@ void TGameDisplay::onDraw()
 
     for(const auto& playerPtr : m_players)
     {
-        const auto& ply = *playerPtr.get();
-        const auto board = ply.getController()->getBoard();
+        auto& ply = *playerPtr.get();
+        const auto board = ply.getController().getBoard();
         const auto beginX = board->getStartDisplayPoint().x;
         const auto beginY = board->getStartDisplayPoint().y;
         const auto figureLen = board->getblockLength();
@@ -105,8 +105,8 @@ void TGameDisplay::onDraw()
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
         SDL_RenderDrawLines(renderer, line, 5);
 
-        _drawFigure(board, ply.getController()->getCurrentFigure());
-        _drawFigure(board, ply.getController()->getGhostFigure());
+        _drawFigure(board, ply.getController().getCurrentFigure());
+        _drawFigure(board, ply.getController().getGhostFigure());
 
 
         const auto gameboard = board->getBoard();
@@ -182,8 +182,8 @@ void TGameDisplay::_drawNextFigure()
 
     //next figure
     const auto& ply = m_players.front();
-    const auto board = ply->getController()->getNextFigureBoard();
-    const auto nextFigure = ply->getController()->getNextFigure();
+    const auto board = ply->getController().getNextFigureBoard();
+    const auto nextFigure = ply->getController().getNextFigure();
 
     const auto beginX = board->getStartDisplayPoint().x;
     const auto beginY = board->getStartDisplayPoint().y;

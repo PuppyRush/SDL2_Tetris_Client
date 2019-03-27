@@ -19,12 +19,12 @@
 namespace game_interface {
 
 template <class _Observer>
-class VectorSubject : public Subject<_Observer, std::vector<_Observer*>>
+class VectorSubject : public Subject<_Observer, std::vector<std::shared_ptr<_Observer>>>
 {
 public:
 
-    using _Base = Subject<_Observer, std::vector<_Observer*>>;
-    using element_type = typename _Base::element_type ;
+    using _Base = Subject<_Observer, std::vector<std::shared_ptr<_Observer>>>;
+    using object_type = typename _Base::object_type ;
     using unique_type = typename _Base::unique_type;
 
     VectorSubject() {}
@@ -34,16 +34,16 @@ public:
 
     virtual bool exist(const unique_type unique) const
     {
-        const auto cnt = std::count_if(begin(_Base::m_objects), end(_Base::m_objects), [unique]( element_type element)
+        const auto cnt = std::count_if(begin(_Base::m_objects), end(_Base::m_objects), [unique]( object_type element)
         {
-            return element->compareUnique(unique);
+          return element->compareUnique(unique);
         });
 
         return cnt>0;
     }
 
-    virtual element_type at(const  unique_type unique) override {
-        const auto it = std::find_if(begin(_Base::m_objects), end(_Base::m_objects), [unique]( element_type element)
+    virtual object_type at(const  unique_type unique) override {
+        const auto it = std::find_if(begin(_Base::m_objects), end(_Base::m_objects), [unique]( object_type element)
         {
           return element->compareUnique(unique);
         });
@@ -55,12 +55,12 @@ public:
     }
 
 protected:
-    virtual void insert(element_type obs) override {
+    virtual void insert(object_type obs) override {
         _Base::m_objects.emplace_back(obs);
     }
 
     virtual void remove(const unique_type unique) override {
-        const auto it = std::remove_if(begin(_Base::m_objects), end(_Base::m_objects), [unique]( element_type element)
+        const auto it = std::remove_if(begin(_Base::m_objects), end(_Base::m_objects), [unique]( object_type element)
         {
           return element->compareUnique(unique);
         });

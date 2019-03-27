@@ -33,9 +33,6 @@ private:
 	virtual void onTimerEvent() override final;
     virtual void onDraw() override final;
 
-	virtual Json::Value toJson() const override {}
-	virtual const std::string_view& getUniqueName() const override {}
-
 };
 
 SDL_TETRIS_END

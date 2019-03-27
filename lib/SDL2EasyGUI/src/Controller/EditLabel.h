@@ -65,8 +65,8 @@ public:
 
     virtual ~EditLabelBuilder() = default;
 
-    virtual std::shared_ptr<Controll> build() {
-        return std::make_shared<EditLabel>(*this);
+    virtual Controll::controll_ptr build() {
+        return new EditLabel(*this);
     }
 
     EditLabelBasic m_editBasic;

@@ -14,8 +14,10 @@ public:
     using unique_type = Room::unique_type ;
     using room_ptr = Room::room_ptr ;
 
-    virtual void updateObserver(const Packet& ) =0;
     virtual Json::Value toJson() const override;
+    virtual void fromJson(const Json::Value& json);
+
+    virtual void updateObserver(const Packet& ) =0;
 
 protected:
     virtual void postEnter(player_ptr ply) =0;

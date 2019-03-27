@@ -12,6 +12,7 @@
 #include "TDisplay/Main/TLocalMainDisplay.h"
 #include "TDisplay/Main/TMultiMainDisplay.h"
 #include "GameInterface/src/Online/PacketQueue.h"
+#include "GameInterface/src/Quit.h"
 
 #define SDL_DEBUG_EVENTS
 
@@ -27,8 +28,6 @@ void init()
     //background
     //TGameLocalDisplay::getInstance()->setBackgroundImgPath("../resources/images/background.png");
 
-    //Registry Event
-//    SDL_RegisterEvents(SEG_DRAW_DISPLAY);
 
 }
 
@@ -36,10 +35,19 @@ int main() {
     init();
 
     sdleasygui::t_res res;
-    do{
-        auto maindlg = std::make_shared<TMultiMainDisplay>();
-        res = maindlg->modal();
-    }while(res != game_interface::toUType(resource::MAIN_EXIT));
+    auto maindlg = std::make_shared<TMultiMainDisplay>();
 
+    maindlg->modaless(maindlg);
+
+    if(res != game_interface::toUType(resource::MAIN_EXIT))
+    {
+
+    }
+
+
+
+    while(true);
+
+    game_interface::GameInterface_Quit();
     sdleasygui::SDLEasyGUI_Quit();
 }

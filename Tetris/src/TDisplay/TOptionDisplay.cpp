@@ -18,8 +18,8 @@ TOptionDisplay::TOptionDisplay()
 };
 
 void TOptionDisplay::registerEvent() {
-    addLButtonClickEvent(game_interface::toUType(resource::OPTION_BACK),
-                         std::bind(&TOptionDisplay::onClickedBack, this));
+
+    SEG_LBUTTONCLICK(sdleasygui::toUType(resource::OPTION_BACK), &TOptionDisplay::onClickedBack, this);
 }
 
 void TOptionDisplay::onInitialize() {

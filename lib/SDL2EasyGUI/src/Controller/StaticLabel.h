@@ -41,8 +41,8 @@ public:
 
     virtual ~StaticLabelBuilder() = default;
 
-    virtual std::shared_ptr<Controll> build() final {
-        return std::make_shared<StaticLabel>(*this);
+    virtual Controll::controll_ptr build() final {
+        return new StaticLabel(*this);
     }
 
     StaticLabelBasic m_borderBasic;

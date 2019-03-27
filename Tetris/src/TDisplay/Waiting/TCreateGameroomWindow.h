@@ -11,12 +11,12 @@
 
 SDL_TETRIS_BEGIN
 
-class CreateGameroomWindow : public TDisplayInterface
+class TCreateGameroomWindow : public TDisplayInterface
 {
 public:
 
     std::string m_roomname;
-    virtual ~CreateGameroomWindow() = default;
+    virtual ~TCreateGameroomWindow() = default;
 
 protected:
     virtual void registerEvent() override;
@@ -28,8 +28,6 @@ protected:
 
 private:
 
-    virtual Json::Value toJson() const override {}
-    virtual const std::string_view& getUniqueName() const override {}
 };
 
 SDL_TETRIS_END

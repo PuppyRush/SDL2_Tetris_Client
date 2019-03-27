@@ -18,14 +18,18 @@ void fn(ACE_Reactor* app){
 TClientController::TClientController()
      :m_ip({127,0,0,1},12345),
      m_connetor(nullptr),
-     m_service(nullptr)
+     m_service(nullptr),
+     m_endConnect(false)
 {
 }
 
 TClientController::~TClientController()
 {
-    ACE::fini();
-    m_reactor->end_reactor_event_loop();
+    if(m_endConnect)
+    {
+        ACE::fini();
+        m_reactor->end_reactor_event_loop();
+    }
 }
 
 void TClientController::connectServer()
@@ -39,6 +43,7 @@ void TClientController::connectServer()
 
     new  ClientConnector("127.0.0.1:12345",m_reactor.get(), *m_service.get());
     m_clientThread = thread(fn,m_reactor.get());
+    m_endConnect = true;
 
     std::this_thread::sleep_for (std::chrono::milliseconds(500));
 }

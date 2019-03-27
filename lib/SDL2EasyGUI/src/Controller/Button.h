@@ -38,8 +38,8 @@ public:
 
     virtual ~ButtonBuilder() = default;
 
-    virtual std::shared_ptr<Controll> build() final {
-        return std::make_shared<Button>(*this);
+    virtual Controll::controll_ptr build() final {
+        return new Button(*this);
     }
 
 };

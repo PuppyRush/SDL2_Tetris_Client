@@ -24,13 +24,13 @@ template <class _Object, class _Container>
 class Subject {
 public:
 
-    using element_type = _Object*;
+    using object_type = std::shared_ptr<_Object>;
     using container_type = _Container;
     using unique_type = typename _Object::unique_type;
 
     virtual ~Subject() {}
 
-    void attach(element_type obs)
+    void attach(object_type obs)
     {
         assert(!exist(obs->getUnique()));
 
@@ -55,20 +55,20 @@ public:
     inline container_type& getContainer() { return m_objects;}
 
     virtual bool exist(const unique_type unique) const = 0;
-    virtual element_type at(const unique_type unique) = 0;
+    virtual object_type at(const unique_type unique) = 0;
 
 protected:
 
     Subject() {}
 
-    inline const bool compare(const element_type& lhs, const element_type& rhs)
+    inline const bool compare(const object_type& lhs, const object_type& rhs)
     {
         return lhs->getUnique() == rhs->getUnique();
     }
 
-    virtual void postAttach(element_type ) = 0;
+    virtual void postAttach(object_type ) = 0;
     virtual void postDetach(unique_type) = 0;
-    virtual void insert(element_type obs) = 0 ;
+    virtual void insert(object_type obs) = 0 ;
     virtual void remove(const unique_type unique) = 0 ;
 
     container_type m_objects;

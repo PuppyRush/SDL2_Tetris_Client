@@ -7,7 +7,7 @@
 #include "SDL2EasyGUI/src/Windows/DisplayController.h"
 
 #include "TMultiMainDisplay.h"
-#include "TEnterServerDisplay.h"
+
 #include "../TOptionDisplay.h"
 #include "../../Common/TResource.h"
 
@@ -16,6 +16,8 @@ using namespace game_interface;
 using namespace sdleasygui;
 
 TMultiMainDisplay::TMultiMainDisplay()
+:m_optionDisplay(std::make_shared<TOptionDisplay>()),
+ m_enterServerDisplay(std::make_shared<TEnterServerDisplay>())
 {
     m_mode = TLocalMode::Online;
 }
@@ -87,25 +89,26 @@ void TMultiMainDisplay::onDraw()
 
 void TMultiMainDisplay::onClickedOption()
 {
-    auto dlg = std::make_shared<TOptionDisplay>();
-    dlg->setWindowHeight(WINDOW_HEIGHT);
-    dlg->setWindowWidth(WINDOW_WIDTH);
-    auto res = dlg->modal();
 
-    DisplayInterface::onOK();
+    m_optionDisplay->setWindowHeight(WINDOW_HEIGHT);
+    m_optionDisplay->setWindowWidth(WINDOW_WIDTH);
+    m_optionDisplay->setWindowTitle("Option Dialog");
+    m_optionDisplay->modaless(m_optionDisplay);
+    m_optionDisplay->waitModaless();
+    //DisplayInterface::onOK();
 }
 
 void TMultiMainDisplay::onClickedEnterServer()
 {
-    auto dlg = std::make_shared<TEnterServerDisplay>();
-    dlg->setWindowHeight(WINDOW_HEIGHT);
-    dlg->setWindowWidth(WINDOW_WIDTH);
-    dlg->modal();
+    m_enterServerDisplay->setWindowHeight(300);
+    m_enterServerDisplay->setWindowWidth(300);
+    m_enterServerDisplay->setWindowTitle("Input Your Nickname");
+    m_enterServerDisplay->modal(m_enterServerDisplay);
 
     DisplayInterface::onOK();
 }
 
 void TMultiMainDisplay::onClickedBack()
 {
-    DisplayInterface::onClose();
+    TDisplayInterface::onClose();
 }

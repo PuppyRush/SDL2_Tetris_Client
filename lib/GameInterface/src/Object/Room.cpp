@@ -49,7 +49,6 @@ void Room::exit(const unique_type unique)
 
     if(it == m_players.end())
     {
-        assert(0);
     }
     else
     {
@@ -58,11 +57,37 @@ void Room::exit(const unique_type unique)
     }
 }
 
+const bool Room::exist(const unique_type unique) const noexcept
+{
+    std::unique_lock<std::mutex>(m_mutex);
+
+    auto it = std::find_if(begin(m_players), end(m_players), [unique](const player_ptr element)
+    {
+      return element->compareUnique(unique);
+    });
+
+    if(it == m_players.end())
+    {
+    }
+    else
+    {
+        return true;
+    }
+}
+
+
 Json::Value Room::toJson() const
 {
     auto json = Object::toJson();
-    json["roomname"] = getRoomName();
-    json["roomnumber"] = getRoomNumber();
+    json["name"] = getRoomName();
+    json["number"] = getRoomNumber();
 
     return json;
+}
+
+void Room::fromJson(const Json::Value& json)
+{
+    setRoomName(json["name"].asString());
+    setRoomNumber(json["number"].asUInt64());
+    Object::fromJson(json);
 }

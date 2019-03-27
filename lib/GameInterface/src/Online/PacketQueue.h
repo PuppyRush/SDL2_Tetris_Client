@@ -18,20 +18,25 @@
 #include "Packet.h"
 #include "../SubScription/VectorSubject.h"
 
+
 namespace game_interface {
 
-class PacketQueue : public VectorSubject<game_interface::Observer>, public boost::serialization::singleton<PacketQueue> {
+class PacketQueue : public VectorSubject<game_interface::Observer>,
+                    public boost::serialization::singleton<PacketQueue> {
 public:
 
     friend class boost::serialization::singleton<PacketQueue>;
 
-    ~PacketQueue() = default;
+    PacketQueue();
+    virtual ~PacketQueue();
 
+    virtual void notify() override;
 
     void initialize();
     void pushEvent(Packet &&event);
     void pushEvent(const Packet &event);
     Packet popEvent();
+    inline void end() { m_isContinue.exchange(false);}
     inline void setServer(bool b){ m_isServer = b;}
 
     static PacketQueue &getInstance() {
@@ -42,12 +47,9 @@ public:
 protected:
 
     virtual void postDetach(unique_type ) override {}
-    virtual void postAttach(element_type) override {};
+    virtual void postAttach(object_type) override {};
 
 private:
-
-    PacketQueue();
-    virtual void notify() override;
 
     std::queue<Packet> m_packetQ;
     std::condition_variable m_cond;
@@ -58,5 +60,4 @@ private:
 };
 
 }
-
 #endif //TETRIS_FIGURE_CLASS_PACKETQUEUE_H

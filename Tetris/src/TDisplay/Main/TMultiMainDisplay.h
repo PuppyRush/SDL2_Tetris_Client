@@ -10,6 +10,8 @@
 #endif
 
 #include "TMainDisplay.h"
+#include "../TOptionDisplay.h"
+#include "TEnterServerDisplay.h"
 
 SDL_TETRIS_BEGIN
 
@@ -33,8 +35,8 @@ private:
     [[deprecated("dont call this function in TMultiMainDisplay")]]
     virtual void onClickedStartLocalGame() override final {}
 
-    virtual Json::Value toJson() const override {}
-    virtual const std::string_view& getUniqueName() const override {}
+    std::shared_ptr<TOptionDisplay> m_optionDisplay;
+    std::shared_ptr<TEnterServerDisplay> m_enterServerDisplay;
 };
 
 SDL_TETRIS_END

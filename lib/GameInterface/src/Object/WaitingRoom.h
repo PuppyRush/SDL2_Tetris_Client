@@ -19,8 +19,11 @@ public:
     virtual void updateObserver(const Packet& ) =0;
 
     virtual Json::Value toJson() const override;
+    virtual void fromJson(const Json::Value& json);
+
     virtual void addGameRoom(room_ptr room);
     virtual void removeGameRoom(const unique_type unique);
+    virtual const bool existGameRoom(const unique_type unique) const noexcept;
 
     inline const room_container& getGameRoomContiner() const noexcept { return m_rooms;}
 

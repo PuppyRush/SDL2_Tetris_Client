@@ -16,8 +16,8 @@ namespace game_interface
 {
 
 class ManagerController : public Observer ,
-                        public VectorSubject<ManagerInterface>,
-                            public boost::serialization::singleton<ManagerController>
+                          public VectorSubject<ManagerInterface>,
+                          public boost::serialization::singleton<ManagerController>
 {
 
 public:
@@ -31,23 +31,20 @@ public:
 
     virtual void updateObserver(const game_interface::Packet& packet);
     virtual void notify() override {}
-    virtual Json::Value toJson() const override {}
-    virtual const std::string_view& getUniqueName() const override {}
 
-    static std::shared_ptr<ManagerController> getInstance() {
-
-        static auto inst = std::shared_ptr<ManagerController>
-            (&boost::serialization::singleton<ManagerController>::get_mutable_instance());
-        return inst;
+    static ManagerController& getInstance() {
+        return boost::serialization::singleton<ManagerController>::get_mutable_instance();
     }
+
+    virtual const std::string_view& getUniqueName() const override {}
+    virtual Json::Value toJson() const override {};
 
 protected:
 
     virtual void postDetach(_Base::unique_type) override;
-    virtual void postAttach(element_type ) override {}
+    virtual void postAttach(object_type ) override {}
 
 };
-
 }
 
 #endif //SDL2_TETRIS_SERVER_MANAGERSUBJECT_H

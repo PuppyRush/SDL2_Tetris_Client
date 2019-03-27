@@ -74,7 +74,7 @@ void TLocalMainDisplay::onClickedStartLocalGame()
     auto dlg = make_shared<TSingleGameDisplay>();
     dlg->setWindowHeight(WINDOW_HEIGHT);
     dlg->setWindowWidth(WINDOW_WIDTH);
-    dlg->modal();
+    dlg->modal(dlg);
 }
 
 void TLocalMainDisplay::onClickedOption()
@@ -82,7 +82,7 @@ void TLocalMainDisplay::onClickedOption()
     auto dlg = make_shared<TOptionDisplay>();
     dlg->setWindowHeight(WINDOW_HEIGHT);
     dlg->setWindowWidth(WINDOW_WIDTH);
-    dlg->modal();
+    dlg->modal(dlg);
 }
 
 void TLocalMainDisplay::onTimerEvent()

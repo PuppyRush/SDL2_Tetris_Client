@@ -28,8 +28,6 @@ private:
     virtual void onDraw() override final;
     void onClickedBack();
 
-    virtual Json::Value toJson() const override {}
-    virtual const std::string_view& getUniqueName() const override {}
 };
 
 
