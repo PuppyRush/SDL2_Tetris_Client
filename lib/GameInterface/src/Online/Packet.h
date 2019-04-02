@@ -72,6 +72,12 @@ public:
         return m_payload;
     }
 
+    static Packet& getNullPacket()
+    {
+        static Packet p{Header{}};
+        return p;
+    }
+
 private:
 
     inline const bool validObjectLeastOne(const Json::Value& json)

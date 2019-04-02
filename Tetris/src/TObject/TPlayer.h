@@ -27,7 +27,6 @@ public:
 
     friend class boost::serialization::singleton<TPlayer>;
 
-
     TPlayer();
     virtual ~TPlayer();
 
@@ -35,8 +34,11 @@ public:
     inline const int getOrder() const noexcept { return m_order; }
     inline const bool isSurvive() const noexcept { return m_isSurvive; }
 
-    inline const std::shared_ptr<TFigureController> getController() const noexcept {
-        assert(m_gameCtl && m_gameCtl.get());
+    inline TClientController& getClientController() noexcept {
+        return m_clientCtl;
+    }
+
+    inline TFigureController& getController() noexcept {
         return m_gameCtl;
     }
 
@@ -47,16 +49,15 @@ public:
     void sendPacket(game_interface::Packet &);
     void startGame();
     void endGame();
-    void connectServer();
+    const bool connectServer();
 
     virtual void updateObserver(const game_interface::Packet&) override;
 
-    void recvWaitingRoomInit(const game_interface::Packet&);
     void recvInfo(const game_interface::Packet&);
-    void sendInitInfo();
     void sendDummySignal();
+    void requestWaitingRoomInitInfo();
 
-    virtual Json::Value toJson() const override {}
+    virtual Json::Value toJson() const override { return Player::toJson();}
     virtual const std::string_view& getUniqueName() const override {}
 
     static std::shared_ptr<TPlayer> getInstance() {
@@ -73,8 +74,8 @@ private:
     game_interface::TIPString m_ip;
     TScore m_score;
 
-    std::shared_ptr<TFigureController> m_gameCtl;
-    TClientController m_clientCtl;
+    TFigureController m_gameCtl;
+    TClientController& m_clientCtl = TClientController::getInstance();
 };
 
 SDL_TETRIS_END

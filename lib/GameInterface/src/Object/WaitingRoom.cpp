@@ -6,7 +6,7 @@
 #include "WaitingRoom.h"
 
 using namespace game_interface;
-
+using namespace std;
 
 void WaitingRoom::updateObserver(const Packet& )
 {}
@@ -40,13 +40,31 @@ void WaitingRoom::removeGameRoom(const unique_type unique)
       return element->compareUnique(unique);
     });
 
-    if(it != m_rooms.end())
+    if(it == m_rooms.end())
     {
-        assert(0);
     }
     else
     {
+        m_rooms.erase(it);
         postRemovedGameRoom(unique);
+    }
+}
+
+const bool WaitingRoom::existGameRoom(const unique_type unique) const noexcept
+{
+    std::unique_lock<std::mutex>(m_roomMutex);
+
+    auto it = std::find_if(begin(m_rooms), end(m_rooms), [unique](const room_ptr element)
+    {
+      return element->compareUnique(unique);
+    });
+
+    if(it != m_rooms.end())
+    {
+        return true;
+    }
+    else
+    {
     }
 }
 
@@ -54,38 +72,28 @@ Json::Value WaitingRoom::toJson() const
 {
     auto root = Room::toJson();
 
-    auto roomContainer = getGameRoomContiner();
-    auto playerContainer = getPlayerContainer();
-
     size_t i = 0;
-    Json::Value room,player;
+    Json::Value room{Json::arrayValue}, player{Json::arrayValue};
 
-    room["gameroom_count"] = static_cast<Json::UInt >(roomContainer.size());
+    auto roomContainer = getGameRoomContiner();
+    root["gameroom_count"] = static_cast<Json::UInt >(roomContainer.size());
     for (const auto &groom : roomContainer) {
-
-        Json::Value jsonroom;
-        jsonroom.append(groom->toJson());
-
-        std::string name = groom->getUniqueName().data();
-        name += std::to_string(i);
-        room[name.c_str()] = jsonroom;
-        i++;
+        room.append(groom->toJson());
     }
-    root["room"] = room;
+    root[game_interface::NAME_GAMEROOM.data()] = room;
 
 
-    room["player_count"] = static_cast<Json::UInt >(playerContainer.size());
+    auto playerContainer = getPlayerContainer();
+    root["player_count"] = static_cast<Json::UInt >(playerContainer.size());
     for (const auto &ply : playerContainer) {
-
-        Json::Value jsonroom;
-        jsonroom.append(ply->toJson());
-
-        std::string name = ply->getUniqueName().data();
-        name += std::to_string(i);
-        room[name.c_str()] = jsonroom;
-        i++;
+        player.append(ply->toJson());
     }
+    root[game_interface::NAME_PLAYER.data()] = player;
 
     return root;
 }
 
+void WaitingRoom::fromJson(const Json::Value& json)
+{
+    Room::fromJson(json);
+}

@@ -26,14 +26,13 @@ TPlayer::~TPlayer()
 }
 
 void TPlayer::startGame(){
-    m_gameCtl = make_shared<TFigureController>();
 }
 
 void TPlayer::command(const t_eventType event)
 {
-    m_gameCtl->command(event);
+    m_gameCtl.command(event);
 
-    auto fig = this->m_gameCtl->getCurrentFigure();
+    auto fig = this->m_gameCtl.getCurrentFigure();
 
     time_t rawtime;
     time (&rawtime);
@@ -53,24 +52,18 @@ void TPlayer::command(const t_eventType event)
 
 void TPlayer::endGame()
 {
-    if(m_gameCtl && m_gameCtl.get())
-    {
-        m_gameCtl.reset();
-        m_gameCtl = nullptr;
-    }
-    else if(m_gameCtl)
-        m_gameCtl = nullptr;
 
 }
 
-void TPlayer::connectServer()
+const bool TPlayer::connectServer()
 {
     assert(!getUserName().empty());
-    m_clientCtl.connectServer();
+    auto result = m_clientCtl.connectServer();
 
     //first call faster than server.
-
     sendDummySignal();
+
+    return result;
 }
 
 void TPlayer::sendPacket(Packet &packet)
@@ -87,27 +80,9 @@ void TPlayer::updateObserver(const Packet& packet)
     {
         case messageInfo::PLAYER_INIT_INFO:
             recvInfo(packet);
-            break;
-        case messageInfo::WAITINGROOMS_INIT:
-            recvWaitingRoomInit(packet);
+            requestWaitingRoomInitInfo();
             break;
 
-    }
-}
-
-void TPlayer::recvWaitingRoomInit(const game_interface::Packet& packet)
-{
-    const Json::Value json = packet.getPayload();
-    if(json["wroom_count"].asUInt()==1)
-    {
-        Json::Value wroom = json["wroom0"];
-        string roomname =  wroom["roomname"].asString();
-        t_id roomnumber =  wroom["roomnumber"].asUInt();
-    }
-    else
-    {
-        //wroom 두개일땐 다시 구현.
-        assert(0);
     }
 }
 
@@ -119,7 +94,11 @@ void TPlayer::recvInfo(const game_interface::Packet& packet)
     const Json::Value json = packet.getPayload();
     setUnique(json["unique"].asInt());
 
-    sendInitInfo();
+    auto playerJosn = toJson();
+
+    Packet::Header header{this->getUnique(), this->getUnique(), messageInfo::PLAYER_INIT_INFO};
+    Packet p{header, playerJosn};
+    sendPacket(p);
 }
 
 void TPlayer::sendDummySignal()
@@ -129,13 +108,9 @@ void TPlayer::sendDummySignal()
     sendPacket(p);
 }
 
-void TPlayer::sendInitInfo()
+void TPlayer::requestWaitingRoomInitInfo()
 {
-    Json::Value json;
-    json["id"] = this->getUserName();
-    json["ip"] = this->m_ip.ip;
-
-    Packet::Header header{this->getUnique(), this->getUnique(), messageInfo::PLAYER_INIT_INFO};
-    Packet p{header, json};
+    Packet::Header header{this->getUnique(), this->getUnique(), messageInfo::WAITINGROOMS_REQUEST_INIT_INFO};
+    Packet p{header};
     sendPacket(p);
 }

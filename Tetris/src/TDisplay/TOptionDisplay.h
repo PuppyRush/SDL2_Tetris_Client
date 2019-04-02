@@ -26,10 +26,8 @@ private:
     virtual void registerEvent() override final;
     virtual void onInitialize() override final;
     virtual void onDraw() override final;
-    void onClickedBack();
+    void onClickedBack(const void*);
 
-    virtual Json::Value toJson() const override {}
-    virtual const std::string_view& getUniqueName() const override {}
 };
 
 

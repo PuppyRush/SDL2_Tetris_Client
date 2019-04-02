@@ -102,7 +102,7 @@ ADD_LIBRARY( SDL2EasyGUI STATIC
     src/SEG_Struct.h
     src/SEG_Type.h
     src/SEG_TypeTraits.h
-        src/SEG_Define.h src/Windows/GraphicInterface.cpp)
+        src/SEG_Define.h src/Windows/GraphicInterface.cpp src/Controller/ImageStatic.cpp src/Controller/ImageStatic.h src/Controller/LabelBasic.cpp src/Controller/LabelBasic.h)
 
 target_link_libraries(SDL2EasyGUI
         ${Boost_PROGRAM_OPTIONS_LIBRARY}

@@ -24,8 +24,8 @@ public:
     virtual ~TSingleGameDisplay() = default;
 
 private:
-    virtual void onClickedStart() override final;
-    virtual void onClickedSuspend() override final;
+    virtual void onClickedStart(const void* click) override final;
+    virtual void onClickedSuspend(const void* click) override final;
 
     virtual void onDraw() override final;
     virtual void onInitialize() override final;
@@ -33,8 +33,7 @@ private:
     virtual void onCreate() override final;
     virtual void registerEvent() override final;
 
-    virtual Json::Value toJson() const override {}
-    virtual const std::string_view& getUniqueName() const override {}
+
 
 };
 

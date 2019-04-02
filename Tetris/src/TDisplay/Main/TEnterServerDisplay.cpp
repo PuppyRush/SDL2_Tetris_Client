@@ -5,9 +5,10 @@
 
 #include "TEnterServerDisplay.h"
 #include "../../Common/TResource.h"
-#include "../Waiting/TWaitingRoomDisplay.h"
+
 #include "../../TObject/TPlayer.h"
 #include "GameInterface/src/Online/PacketQueue.h"
+#include "SDL2EasyGUI/src/Controller/EditLabel.h"
 
 SDL_TETRIS
 using namespace game_interface;
@@ -21,9 +22,9 @@ void TEnterServerDisplay::registerEvent()
 
 void TEnterServerDisplay::onInitialize() {
 
-    t_size begin_y = WINDOW_HEIGHT/3;
+    t_size begin_y = getWindowHeight()/3;
     {
-        EditLabelBuilder bld(getWindow(), {WINDOW_WIDTH / 2 - 120, begin_y}, "Player");
+        EditLabelBuilder bld(getWindow(), {getWindowWidth() / 2 - 120, begin_y}, "Player");
         bld.id(sdleasygui::toUType(resource::ENTERSERVER_ID))->
             fontColor(ColorCode::black)->
             width(240)->
@@ -38,7 +39,7 @@ void TEnterServerDisplay::onInitialize() {
 
     begin_y += 80;
     {
-        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH / 2 - 120, begin_y}, "ENTER");
+        ButtonBuilder bld(getWindow(), {getWindowWidth() / 2 - 120, begin_y}, "ENTER");
         bld.id(sdleasygui::toUType(resource::ENTERSERVER_OK))->
             width(100)->
             height(50)->
@@ -48,9 +49,9 @@ void TEnterServerDisplay::onInitialize() {
 
         addControll(bld.build());
     }
-    begin_y += 80;
+
     {
-        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH / 2 - 120, begin_y}, "BACK");
+        ButtonBuilder bld(getWindow(), {getWindowWidth() / 2 , begin_y}, "BACK");
         bld.id(sdleasygui::toUType(resource::ENTERSERVER_BACK))->
             width(100)->
             height(50)->
@@ -64,23 +65,19 @@ void TEnterServerDisplay::onInitialize() {
     ::DisplayInterface::onInitialize();
 }
 
-void TEnterServerDisplay::onClickedEnterServer()
+void TEnterServerDisplay::onClickedEnterServer(const void* click)
 {
     auto player = TPlayer::getInstance();
-    const  auto btn = std::static_pointer_cast<EditLabel>(getControll(resource::ENTERSERVER_ID));
+    const  auto btn = getControll<EditLabel>(resource::ENTERSERVER_ID);
+
     assert(btn != nullptr );
-
     player->setUserName(btn->getString());
-    player->connectServer();
 
-    game_interface::PacketQueue::getInstance().attach(player.get());
-
-    auto dlg = std::make_shared<TWaitingRoomDisplay>();
-    dlg->modal();
+    DisplayInterface::onButtonClick(click);
 }
 
 
-void TEnterServerDisplay::onClickedBack()
+void TEnterServerDisplay::onClickedBack(const void* click)
 {
-    DisplayInterface::onClose();
+    DisplayInterface::onOK();
 }

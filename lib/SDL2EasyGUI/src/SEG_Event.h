@@ -11,8 +11,26 @@
 #include <SDL2/SDL.h>
 
 #include "SEG_Type.h"
+#include "SEG_Struct.h"
+#include "SEG_TypeTraits.h"
+#include "SEG_Resource.h"
 
 namespace sdleasygui {
+
+typedef struct SEG_Click
+{
+    TPoint point = {-100,-100};
+    t_res resourceId = toUType(resource::NONE);
+
+    SEG_Click(const TPoint& point, const t_res& res)
+    :point(point), resourceId(res)
+    {}
+
+    SEG_Click(TPoint&& point, t_res&& res)
+        :point(point), resourceId(res)
+    {}
+};
+
 
 constexpr const int timer_code = 123456789;
 

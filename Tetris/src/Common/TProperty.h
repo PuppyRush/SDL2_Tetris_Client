@@ -55,10 +55,8 @@ enum class TFigureClass : sdleasygui::t_type
     I,
     O,
     T,
-    S,
-    J,
     Begin = L,
-    End = T
+    End = T + 1
 };
 
 enum class TFigureType : sdleasygui::t_type

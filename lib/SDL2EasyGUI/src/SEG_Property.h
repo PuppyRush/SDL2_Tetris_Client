@@ -21,7 +21,8 @@ enum class ControllKind : t_type {
     EditLabel,
     Button,
     RadioButton,
-    Border
+    Border,
+    ComboBox
 };
 
 enum class TDisplayMode : t_type {
@@ -86,6 +87,13 @@ enum SEG_Event {
     ATTACH_FOCUS,
     EDITLABEL_CHAR_TEXTCURSOR
 
+};
+
+enum class MessageDialogKind
+{
+    error,
+    warining,
+    alert
 };
 
 }

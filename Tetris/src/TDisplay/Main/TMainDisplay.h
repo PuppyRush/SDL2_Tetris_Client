@@ -7,6 +7,7 @@
 #endif
 
 #include "TDisplay/TDisplayInterface.h"
+#include "SDL2EasyGUI/src/SEG_Event.h"
 
 SDL_TETRIS_BEGIN
 
@@ -16,14 +17,10 @@ public:
 
 	virtual ~TMainDisplay() = default;
 
-	bool clickedOption();
-	bool clickedDown();
-	bool clickedUp();
-
-	virtual void onClickedEnterServer() =0;
-	virtual void onClickedStartLocalGame() =0;
-	virtual void onClickedOption() =0;
-	virtual void onClickedBack() =0;
+	virtual void onClickedEnterServer(const void* click) =0;
+	virtual void onClickedStartLocalGame(const void* click) =0;
+	virtual void onClickedOption(const void* click) =0;
+	virtual void onClickedBack(const void* click) =0;
 
 
 protected:

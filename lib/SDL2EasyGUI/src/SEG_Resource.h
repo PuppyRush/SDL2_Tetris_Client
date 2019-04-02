@@ -18,9 +18,12 @@ enum resource : t_res {
 
     NONE = 0x0010,
     BTN_OK,
+    BTN_YES,
     BTN_NO,
     BTN_CLOSE,
     BTN_CANCEL,
+
+    MESSAGEDIALOG_MSG,
 
     SEG_RESROUCE_END = 0x3000
 };

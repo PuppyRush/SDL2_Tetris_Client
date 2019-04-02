@@ -22,7 +22,7 @@ class Controll : public GraphicInterface {
 
 public:
 
-    using controll_ptr = std::shared_ptr<Controll>;
+    using controll_ptr = Controll*;
 
     virtual ~Controll() = default;
 
@@ -137,6 +137,11 @@ protected:
     }
     inline void setMultiselected(bool multiselected) noexcept {
         m_basic->multiselected = multiselected;
+    }
+
+    inline std::shared_ptr<ControllBasic> getBasic()
+    {
+        return m_basic;
     }
 
     void drawBackground(const SDL_Rect rect, const TColor color);

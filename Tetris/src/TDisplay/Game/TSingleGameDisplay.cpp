@@ -12,7 +12,7 @@
 #include "SDL2EasyGUI/src/Controller/Button.h"
 #include "TSingleGameDisplay.h"
 #include "TOption/TOptionManager.h"
-
+#include "SDL2EasyGUI/src/Controller/Button.h"
 
 SDL_TETRIS
 using namespace game_interface;
@@ -25,20 +25,20 @@ TSingleGameDisplay::TSingleGameDisplay()
 }
 
 
-void TSingleGameDisplay::onClickedStart()
+void TSingleGameDisplay::onClickedStart(const void* click)
 {
     auto ply = TPlayer::getInstance();
     ply->startGame();
     m_players.emplace_back(ply);
 
-    auto board = ply->getController()->getBoard();
+    auto board = ply->getController().getBoard();
 
     m_drawLine = TOptionManager::getInstance()->isDrawLine();
 
     board->setStartDisplayPoint(TPoint{GAMEBOARD_BEGIN_X, GAMEBOARD_BEGIN_Y});
     board->setblockLength(FIGURE_UNIT_LEN);
 
-    auto nextboard = ply->getController()->getNextFigureBoard();
+    auto nextboard = ply->getController().getNextFigureBoard();
     nextboard->setStartDisplayPoint(TPoint{GAMEBOARD_BEGIN_X + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN, GAMEBOARD_BEGIN_Y});
     nextboard->setblockLength(FIGURE_UNIT_LEN);
 
@@ -48,25 +48,24 @@ void TSingleGameDisplay::onClickedStart()
 
     m_gamestart = true;
 
-    auto ctl = getControll(resource::GAME_START);
+    auto ctl = getControll<Button>(resource::GAME_START);
     ctl->setEnabled(false);
 }
 
-void TSingleGameDisplay::onClickedSuspend()
+void TSingleGameDisplay::onClickedSuspend(const void* click)
 {
 
 }
 
 void TSingleGameDisplay::registerEvent() {
 
-    addLButtonClickEvent(game_interface::toUType(resource::GAME_START),
-                         std::bind(&TSingleGameDisplay::onClickedStart, this));
+    SEG_LBUTTONCLICK(game_interface::toUType(resource::GAME_START),
+                     &TSingleGameDisplay::onClickedStart,
+                     this);
 }
 
 void TSingleGameDisplay::onInitialize()
 {
-
-
     t_size begin_y = WINDOW_HEIGHT/10*3;
     {
         ButtonBuilder bld(getWindow(), {WINDOW_WIDTH/5*3, begin_y}, "START");

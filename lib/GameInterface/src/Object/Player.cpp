@@ -10,7 +10,14 @@ using namespace game_interface;
 Json::Value Player::toJson() const
 {
     Json::Value json = Object::toJson();
-    json["player_name"] = getUserName();
+    json["name"] = getUserName();
 
     return json;
+}
+
+
+void Player::fromJson(const Json::Value& json)
+{
+    setUserName(json["name"].asString());
+    Object::fromJson(json);
 }

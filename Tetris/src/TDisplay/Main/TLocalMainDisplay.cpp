@@ -69,20 +69,20 @@ void TLocalMainDisplay::onInitialize() {
     ::DisplayInterface::onInitialize();
 }
 
-void TLocalMainDisplay::onClickedStartLocalGame()
+void TLocalMainDisplay::onClickedStartLocalGame(const void* click)
 {
     auto dlg = make_shared<TSingleGameDisplay>();
     dlg->setWindowHeight(WINDOW_HEIGHT);
     dlg->setWindowWidth(WINDOW_WIDTH);
-    dlg->modal();
+    dlg->modal(dlg);
 }
 
-void TLocalMainDisplay::onClickedOption()
+void TLocalMainDisplay::onClickedOption(const void* click)
 {
     auto dlg = make_shared<TOptionDisplay>();
     dlg->setWindowHeight(WINDOW_HEIGHT);
     dlg->setWindowWidth(WINDOW_WIDTH);
-    dlg->modal();
+    dlg->modal(dlg);
 }
 
 void TLocalMainDisplay::onTimerEvent()

@@ -45,8 +45,8 @@ public:
 
     virtual ~BorderBuilder() = default;
 
-    virtual std::shared_ptr<Controll> build() {
-        return std::make_shared<Border>(*this);
+    virtual Controll::controll_ptr build() {
+        return new Border(*this);
     }
 
 };

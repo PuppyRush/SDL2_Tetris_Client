@@ -105,7 +105,7 @@ ClientService::handle_output (ACE_HANDLE  fd/* = ACE_INVALID_HANDLE*/){
         ssize_t len = this->peer_.send( mb->rd_ptr(), mb->length(),&rt);
         if( len < 0){//통신  에러  발생
             mb->release();
-            return -1;
+            return handle_input(fd);
         }
 
         mb->rd_ptr(len);

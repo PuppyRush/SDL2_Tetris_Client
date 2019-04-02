@@ -23,7 +23,7 @@ TMultiGameRoomDisplay::TMultiGameRoomDisplay()
     m_mode = TLocalMode::Online;
 }
 
-void TMultiGameRoomDisplay::onClickedStart()
+void TMultiGameRoomDisplay::onClickedStart(const void* click)
 {
     {
         auto ply = std::make_shared<TPlayer>();
@@ -31,12 +31,12 @@ void TMultiGameRoomDisplay::onClickedStart()
         m_players.emplace_back(ply);
 
         ply->connectServer();
-        auto board = ply->getController()->getBoard();
+        auto board = ply->getController().getBoard();
 
         board->setStartDisplayPoint(TPoint{GAMEBOARD_BEGIN_X, GAMEBOARD_BEGIN_Y});
         board->setblockLength(FIGURE_UNIT_LEN);
 
-        auto nextboard = ply->getController()->getNextFigureBoard();
+        auto nextboard = ply->getController().getNextFigureBoard();
         nextboard->setStartDisplayPoint(TPoint{GAMEBOARD_BEGIN_X + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN,
                                                GAMEBOARD_BEGIN_Y});
         nextboard->setblockLength(FIGURE_UNIT_LEN);
@@ -48,13 +48,13 @@ void TMultiGameRoomDisplay::onClickedStart()
         echoPly->startGame();
         m_players.emplace_back(echoPly);
 
-        auto board = echoPly->getController()->getBoard();
+        auto board = echoPly->getController().getBoard();
 
         const auto beginX = GAMEBOARD_BEGIN_X+600;
         board->setStartDisplayPoint(TPoint{beginX, GAMEBOARD_BEGIN_Y});
         board->setblockLength(FIGURE_UNIT_LEN);
 
-        auto nextboard = echoPly->getController()->getNextFigureBoard();
+        auto nextboard = echoPly->getController().getNextFigureBoard();
         nextboard->setStartDisplayPoint(TPoint{beginX + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN,
                                                GAMEBOARD_BEGIN_Y});
         nextboard->setblockLength(FIGURE_UNIT_LEN);
@@ -67,11 +67,11 @@ void TMultiGameRoomDisplay::onClickedStart()
     m_drawLine = TOptionManager::getInstance()->isDrawLine();
     m_gamestart = true;
 
-    auto ctl = getControll(resource::GAME_START);
+    auto ctl = getControll<Button>(resource::GAME_START);
     ctl->setEnabled(false);
 }
 
-void TMultiGameRoomDisplay::onClickedSuspend()
+void TMultiGameRoomDisplay::onClickedSuspend(const void* click)
 {}
 
 void TMultiGameRoomDisplay::onDraw()
@@ -81,11 +81,10 @@ void TMultiGameRoomDisplay::onDraw()
 
 void TMultiGameRoomDisplay::onInitialize()
 {
-
-
-    t_size begin_y = WINDOW_HEIGHT/10*3;
+    t_size begin_y = WINDOW_HEIGHT-300;
+    t_size begin_x = WINDOW_WIDTH- 200;
     {
-        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH/10*4+50, begin_y}, "START");
+        ButtonBuilder bld(getWindow(), {begin_x, begin_y}, "START");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
             id(game_interface::toUType(resource::GAME_START))->
             backgroundColor(ColorCode::white)->
@@ -97,7 +96,7 @@ void TMultiGameRoomDisplay::onInitialize()
     }
     begin_y += 80;
     {
-        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH/10*4+50, begin_y}, "SUSPEND");
+        ButtonBuilder bld(getWindow(), {begin_x, begin_y}, "SUSPEND");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
             id(game_interface::toUType(resource::GAME_SUSPEND))->
             backgroundColor(ColorCode::white)->
@@ -109,7 +108,7 @@ void TMultiGameRoomDisplay::onInitialize()
     }
     begin_y += 80;
     {
-        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH/10*4+50, begin_y}, "EXIT");
+        ButtonBuilder bld(getWindow(), {begin_x, begin_y}, "EXIT");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
             id(game_interface::toUType(resource::GAME_END))->
             backgroundColor(ColorCode::white)->
@@ -119,6 +118,8 @@ void TMultiGameRoomDisplay::onInitialize()
 
         addControll(bld.build());
     }
+
+
 
     DisplayInterface::onInitialize();
 }
@@ -135,8 +136,10 @@ void TMultiGameRoomDisplay::onCreate()
 
 void TMultiGameRoomDisplay::registerEvent()
 {
-    addLButtonClickEvent(game_interface::toUType(resource::GAME_START),
-                         std::bind(&TMultiGameRoomDisplay::onClickedStart, this));
+    SEG_LBUTTONCLICK(game_interface::toUType(resource::GAME_START),
+                     &TMultiGameRoomDisplay::onClickedStart,
+                     this);
+
 }
 
 void TMultiGameRoomDisplay::onUserEvent(const SDL_UserEvent* event)
@@ -167,7 +170,7 @@ void TMultiGameRoomDisplay::onUserEvent(const SDL_UserEvent* event)
                 bld.type(TFigureType(type));
 
                 auto figure = bld.build();
-                m_players.at(1)->getController()->forceSet(figure.get());
+                m_players.at(1)->getController().forceSet(figure.get());
                 refresh();
             }
             break;

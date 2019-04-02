@@ -14,8 +14,10 @@
 #include  <ace/Event_Handler.h>
 #include  <ace/Reactor.h>
 #include  <ace/SOCK_Connector.h>
+#include <ace/Init_ACE.h>
 
 #include  "ClientService.h"
+#include "GameInterface/src/TStruct.h"
 
 namespace game_interface {
 
@@ -24,6 +26,10 @@ class ClientConnector : public ACE_Event_Handler {
 public:
     ClientConnector(const char *ipstr, ACE_Reactor *reactor, ClientService &stream);
     virtual ~ClientConnector(void);
+
+    void connect();
+
+    inline const bool isConnection() const noexcept { return m_isConnection;}
 
     virtual ACE_HANDLE get_handle(void) const;
     //접속  이벤트
@@ -34,7 +40,8 @@ public:
     virtual int handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask);
 
 private:
-
+    std::string m_ipstring;
+    int m_isConnection;
     ACE_SOCK_Connector m_connector;
     ClientService &m_stream;
 };

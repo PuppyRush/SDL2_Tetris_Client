@@ -7,18 +7,37 @@
 using namespace sdleasygui;
 
 StaticLabel::StaticLabel(StaticLabelBuilder& bld)
-    :Border(bld)
+    :LabelBasic(bld)
 {
     bld.kind(ControllKind::StaticLabel);
+    m_labelString = bld.getBasic().name;
 }
 
 void StaticLabel::onDraw()
 {
-    Border::onDraw();
+    LabelBasic::onDraw();
+}
+
+void StaticLabel::onDrawBackground()
+{
+
+    LabelBasic::onDrawBackground();
 }
 
 void StaticLabel::initialize()
 {
-    Border::initialize();
-}
+    auto renderer = getWindow()->getSDLRenderer();
+    TextDrawer textDrawer{renderer, getFont(), m_labelString};
+    auto textSurface = textDrawer.getTextSurface();
 
+    if(textSurface) {
+        auto texture = textDrawer.getTexture();
+
+        m_textWidth = static_cast<double>(textSurface->w);
+        m_textHeight = static_cast<double>(textSurface->h);
+
+        getBasic()->height = m_textHeight;
+        getBasic()->width = m_textWidth;
+    }
+    LabelBasic::initialize();
+}

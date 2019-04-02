@@ -2,7 +2,7 @@
 // Created by chaed on 19. 3. 8.
 //
 
-#include "CreateGameroomWindow.h"
+#include "TCreateGameroomWindow.h"
 
 #include "SDL2EasyGUI/src/Controller/EditLabel.h"
 #include "SDL2EasyGUI/src/Controller/Button.h"
@@ -15,15 +15,15 @@ using namespace game_interface;
 
 SDL_TETRIS
 
-void CreateGameroomWindow::registerEvent()
+void TCreateGameroomWindow::registerEvent()
 {
     SEG_LBUTTONCLICK(sdleasygui::toUType(tetris::resource::WAITINGROOM_CREATE_OK),
-                         &CreateGameroomWindow::onOK, this);
+                         &TCreateGameroomWindow::onClickOk, this);
     SEG_LBUTTONCLICK(sdleasygui::toUType(tetris::resource::WAITINGROOM_CREATE_CANCEL),
-                         &CreateGameroomWindow::onCancel, this);
+                         &TCreateGameroomWindow::onClickCancel, this);
 }
 
-void CreateGameroomWindow::onInitialize()
+void TCreateGameroomWindow::onInitialize()
 {
     {
         EditLabelBuilder bld(getWindow(), {100,50}, "");
@@ -56,7 +56,7 @@ void CreateGameroomWindow::onInitialize()
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 28, ColorCode::white})->
             backgroundColor(ColorCode::dimgray)->
             id(sdleasygui::toUType(tetris::resource::WAITINGROOM_CREATE_CANCEL))->
-            width(100)->
+            width(120)->
             height(50)->
             borderColor(ColorCode::white)->
             borderThick(2)->
@@ -68,25 +68,25 @@ void CreateGameroomWindow::onInitialize()
     DisplayInterface::onInitialize();
 }
 
-void CreateGameroomWindow::onClose()
+void TCreateGameroomWindow::onClose()
 {
-    const auto ctl = std::static_pointer_cast<EditLabel>(getControll(tetris::resource::WAITINGROOM_CREATE_GAMEROOMNAME));
+    const auto ctl = getControll<EditLabel>(tetris::resource::WAITINGROOM_CREATE_GAMEROOMNAME);
     m_roomname = ctl->getString();
 
     DisplayInterface::onClose();
 }
 
-void CreateGameroomWindow::onDraw()
+void TCreateGameroomWindow::onDraw()
 {
     DisplayInterface::onDraw();
 }
 
-void CreateGameroomWindow::onOK()
+void TCreateGameroomWindow::onClickOk(const void *)
 {
     DisplayInterface::onOK();
 }
 
-void CreateGameroomWindow::onCancel()
+void TCreateGameroomWindow::onClickCancel(const void *)
 {
     DisplayInterface::onCancel();
 }

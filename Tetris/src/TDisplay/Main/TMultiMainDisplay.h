@@ -10,6 +10,9 @@
 #endif
 
 #include "TMainDisplay.h"
+#include "../TOptionDisplay.h"
+#include "TEnterServerDisplay.h"
+
 
 SDL_TETRIS_BEGIN
 
@@ -22,19 +25,17 @@ public:
 
 
 private:
-    virtual void onClickedOption() override final;
-    virtual void onClickedBack() override final;
-    virtual void onClickedEnterServer() override final;
+    virtual void onClickedBack(const void* click) override final;
+    virtual void onClickedOption(const void* click) override final;
+    virtual void onClickedEnterServer(const void* click) override final;
     virtual void registerEvent() override final;
     virtual void onDraw() override final;
     virtual void onInitialize() override final;
     virtual void onTimerEvent() override final;
 
     [[deprecated("dont call this function in TMultiMainDisplay")]]
-    virtual void onClickedStartLocalGame() override final {}
+    virtual void onClickedStartLocalGame(const void* click) override final {}
 
-    virtual Json::Value toJson() const override {}
-    virtual const std::string_view& getUniqueName() const override {}
 };
 
 SDL_TETRIS_END

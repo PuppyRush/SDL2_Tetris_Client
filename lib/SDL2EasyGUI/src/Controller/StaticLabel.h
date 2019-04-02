@@ -9,7 +9,7 @@
   #pragma once
 #endif
 
-#include "Border.h"
+#include "LabelBasic.h"
 
 namespace sdleasygui {
 
@@ -17,15 +17,17 @@ typedef struct StaticLabelBasic : public ControllBasic {
 }StaticLabelBasic;
 
 class StaticLabelBuilder;
-class StaticLabel : public Border {
+class StaticLabel : public LabelBasic {
 
 public:
     virtual ~StaticLabel() = default;
     explicit StaticLabel(StaticLabelBuilder &bld);
 
+
+protected:
+    virtual void onDrawBackground() override;
     virtual void onDraw() override final;
     virtual void initialize() override final;
-
 };
 
 class StaticLabelBuilder : public ControllBuilder {
@@ -41,8 +43,8 @@ public:
 
     virtual ~StaticLabelBuilder() = default;
 
-    virtual std::shared_ptr<Controll> build() final {
-        return std::make_shared<StaticLabel>(*this);
+    virtual Controll::controll_ptr build() final {
+        return new StaticLabel(*this);
     }
 
     StaticLabelBasic m_borderBasic;

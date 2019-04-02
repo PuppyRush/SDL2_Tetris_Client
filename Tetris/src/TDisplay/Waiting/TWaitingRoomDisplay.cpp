@@ -6,7 +6,8 @@
 
 #include "TWaitingRoomDisplay.h"
 #include "TWaitingRoomCard.h"
-#include "CreateGameroomWindow.h"
+#include "TCreateGameroomWindow.h"
+#include "../Game/TMultiGameRoomDisplay.h"
 
 #include "SDL2EasyGUI/src/Controller/ListBox.h"
 #include "SDL2EasyGUI/src/Controller/Button.h"
@@ -14,6 +15,7 @@
 #include "SDL2EasyGUI/src/SEG_TypeTraits.h"
 #include "../../Common/TResource.h"
 #include "../../TObject/TPlayer.h"
+
 SDL_TETRIS
 
 using namespace std;
@@ -22,16 +24,17 @@ using namespace game_interface;
 
 void TWaitingRoomDisplay::registerEvent()
 {
-    SEG_LBUTTONCLICK(sdleasygui::toUType(resource::WAITINGROOM_CREATE), &TWaitingRoomDisplay::createGameRoom, this);
-    SEG_KEYDOWN(sdleasygui::toUType(resource::WAITINGROOM_CHAREDIT), &TWaitingRoomDisplay::enterChat, this);
+    SEG_LBUTTONCLICK(sdleasygui::toUType(resource::WAITINGROOM_CREATE),
+                     &TWaitingRoomDisplay::onClickCreateGameRoom, this);
+    SEG_KEYDOWN(sdleasygui::toUType(resource::WAITINGROOM_CHAREDIT), &TWaitingRoomDisplay::sendChat, this);
 }
 
-void TWaitingRoomDisplay::postCreate()
+void TWaitingRoomDisplay::postCreate(TDisplayInterface::display_ptr display)
 {
     Packet packet{{getUnique(), TPlayer::getInstance()->getUnique(), messageInfo::WAITINGROOMS_REQUEST_INIT_INFO}};
     TPlayer::getInstance()->sendPacket(packet);
 
-    TDisplayInterface::postCreate();
+    TDisplayInterface::postCreate(display);
 }
 
 void TWaitingRoomDisplay::onInitialize() {
@@ -89,7 +92,7 @@ void TWaitingRoomDisplay::onInitialize() {
           addControll(bld.build());
     }
     {
-        ButtonBuilder bld(getWindow(), {m_createBtnBeginPoint.x, m_createBtnBeginPoint.y+m_btnHeight + 10}, "CREATE");
+        ButtonBuilder bld(getWindow(), {m_createBtnBeginPoint.x, m_createBtnBeginPoint.y+m_btnHeight + 10}, "EXIT");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 28, ColorCode::white})->
             backgroundColor(ColorCode::dimgray)->
             id(sdleasygui::toUType(resource::WAITINGROOM_DISCONNECT))->
@@ -113,8 +116,14 @@ void TWaitingRoomDisplay::updateObserver(const Packet& packet)
 {
     switch(packet.getHeader().message)
     {
-        case messageInfo::WAITINGROOMS_REQUEST_INIT_INFO:
+        case messageInfo::WAITINGROOMS_INIT_INFO_ROOMS_PLAYERS:
             recvGameRoomInfo(packet);
+            break;
+        case messageInfo ::WAITINGROOMS_RECV_CHAT:
+            recvChat(packet);
+            break;
+        case messageInfo ::WAITINGROOMS_RESPONSE_CREATE:
+            createGameroom(packet);
             break;
     }
     refresh();
@@ -126,25 +135,28 @@ void TWaitingRoomDisplay::recvGameRoomInfo(const game_interface::Packet &packet)
     t_size begin_y = m_controllBeginPoint.y;
 
     const Json::Value root = packet.getPayload();
-    const int count = root["gameroom_count"].asInt();
 
-    for(int i=0 ; i < count ; ++i)
+    const auto wroomname = root["name"].asString();
+    const auto wroomunique = root["unique"].asUInt();
+
+    m_waitingRoom.setUnique(wroomunique);
+    m_waitingRoom.setRoomName(wroomname);
+
+    const int roomCount = root["gameroom_count"].asInt();
+    const Json::Value roomRoot = root[game_interface::NAME_GAMEROOM.data()];
+    for(int i=0 ; i < roomCount ; ++i)
     {
-        string roomname = "room";
-        roomname += to_string(i);
+        const Json::Value jsonroom = roomRoot[i];
 
-        const Json::Value jsonroom = root[roomname];
-        string name  = jsonroom["name"].asString();
-        int number = jsonroom["number"].asInt();
-        t_unique unique = jsonroom["unique"].asInt();
-        t_time time =  atoll(jsonroom["time"].asCString());
+        TGameRoom gameroom;
+        gameroom.fromJson(jsonroom);
 
-        if(m_roomClickedFn.count(unique)>0)
-            continue;
+        //if(m_roomClickedFn.count(unique)>0)
+        //    continue;
 
-        const t_id resrouceId =sdleasygui::toUType(resource::WAITINGROOM_GAMEROOM_BEGIN)+unique;
+        //const t_id resrouceId =sdleasygui::toUType(resource::WAITINGROOM_GAMEROOM_BEGIN)+unique;
 
-        TWaitingRoomCardBuilder bld(getWindow(), {begin_x, begin_y}, "");
+       /* TWaitingRoomCardBuilder bld(getWindow(), {begin_x, begin_y}, "");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
             backgroundColor(ColorCode::dimgray)->
             id( resrouceId )->
@@ -153,69 +165,63 @@ void TWaitingRoomDisplay::recvGameRoomInfo(const game_interface::Packet &packet)
             borderColor(ColorCode::white)->
             borderThick(3)->
             enabled(true);
+*/
+        /*SEG_LBUTTONCLICK( resrouceId, [this, unique](void) ->void {
 
-        m_roomClickedFn.insert(make_pair(unique, [this, unique](){
-
-            Packet packet{{unique, getUnique(), messageInfo::WAITINGROOMS_REQUEST_ENTER}};
+            Packet packet{{unique, this->getUnique(), messageInfo::WAITINGROOMS_REQUEST_ENTER}};
             TPlayer::getInstance()->sendPacket(packet);
 
-        }));
+        }, this);*/
 
-        addControll(bld.build());
+        //addControll(bld.build());
+    }
+
+    const auto ctl = getControll<ListBox>(tetris::resource::WAITINGROOM_USERBOX);
+
+    const size_t plyCount = root["player_count"].asUInt();
+    const Json::Value playerRoot = root[game_interface::NAME_PLAYER.data()];
+    for(int i=0 ; i < plyCount ; ++i)
+    {
+        const Json::Value jsonPlayer = playerRoot[i];
+        auto player = make_shared<TPlayer>();
+        player->fromJson(jsonPlayer);
+
+        ctl->appendItem(make_shared<UserInfo>(player->getUserName(),player->getMaketime(), player->getUnique()));
     }
 }
 
-void TWaitingRoomDisplay::recvInitPlayerInfo(const game_interface::Packet& packet)
+void TWaitingRoomDisplay::onClickCreateGameRoom(const void* click)
 {
-    const Json::Value root = packet.getPayload();
-    const int count = root["player_count"].asInt();
-    const int wroom_unique = root["wroom_unique"].asInt();
-
-    auto userBox = std::dynamic_pointer_cast<ListBox>(getControll(resource::WAITINGROOM_USERBOX));
-
-    for(int i=0 ; i < count ; ++i) {
-        string plyname = "player";
-        plyname += to_string(i);
-
-        const Json::Value jsonply = root[plyname];
-        string name  = jsonply["name"].asString();
-        t_unique unique = jsonply["unique"].asInt();
-        t_time time =  atoll(jsonply["time"].asCString());
-
-        userBox->appendItem(make_shared<UserInfo>(name,time,unique));
-    }
-}
-
-void TWaitingRoomDisplay::createGameRoom()
-{
-    auto dlg = std::make_shared<CreateGameroomWindow>();
+    auto dlg = std::make_shared<TCreateGameroomWindow>();
     dlg->setWindowHeight(250);
     dlg->setWindowWidth(350);
-    auto res = dlg->modal();
+    if(dlg->modal(dlg) == sdleasygui::resource ::BTN_OK)
+    {
+        const string& roomname = dlg->m_roomname;
 
-    const string& roomname = dlg->m_roomname;
+        Json::Value root;
+        root["name"] = roomname;
 
-    Json::Value root;
-    root["roomname"] = roomname;
+        Packet packet{{ m_waitingRoom.getUnique(), TPlayer::getInstance()->getUnique(), messageInfo::WAITINGROOMS_REQUEST_CREATE}, root};
+        TPlayer::getInstance()->sendPacket(packet);
+    }
 
-    Packet packet{{getUnique(), TPlayer::getInstance()->getUnique(), messageInfo::WAITINGROOMS_REQUEST_CREATE}, root};
-    TPlayer::getInstance()->sendPacket(packet);
-
+    DisplayInterface::onButtonClick(click);
 }
 
 
-void TWaitingRoomDisplay::enterChat(const void* event)
+void TWaitingRoomDisplay::sendChat(const void *event)
 {
     auto keyevent = static_cast<const SDL_KeyboardEvent*>(event);
     if(keyevent->keysym.sym == SDLK_RETURN)
     {
-        const auto ctl = std::static_pointer_cast<EditLabel>(getControll(tetris::resource::WAITINGROOM_CHAREDIT));
+        const auto ctl = getControll<EditLabel>(tetris::resource::WAITINGROOM_CHAREDIT);
         const auto chat = ctl->getString();
 
         Json::Value root;
         root["chat"] = chat;
 
-        Packet packet{{getUnique(), TPlayer::getInstance()->getUnique(), messageInfo::WAITINGROOMS_SEND_CHAT}, root};
+        Packet packet{{m_waitingRoom.getUnique(), TPlayer::getInstance()->getUnique(), messageInfo::WAITINGROOMS_SEND_CHAT}, root};
         TPlayer::getInstance()->sendPacket(packet);
 
         ctl->clearString();
@@ -223,3 +229,19 @@ void TWaitingRoomDisplay::enterChat(const void* event)
 
 }
 
+void TWaitingRoomDisplay::recvChat(const game_interface::Packet &packet)
+{
+    const string chat = packet.getPayload()["chat"].asString();
+    const auto ctl = getControll<ListBox>(tetris::resource::WAITINGROOM_CHATBOX);
+
+    const string name{"Dd"};
+    ctl->appendItem(make_shared<ChatInfo>(name,chat,packet.getHeader().timestamp));
+}
+
+void TWaitingRoomDisplay::createGameroom(const game_interface::Packet &packet){
+
+    auto gameroom = make_shared<TMultiGameRoomDisplay>();
+    gameroom->setWindowTitle("Tetris Game");
+    gameroom->modal(gameroom);
+
+}

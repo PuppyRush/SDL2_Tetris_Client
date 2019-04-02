@@ -17,3 +17,10 @@ Json::Value Object::toJson() const
 
     return json;
 }
+
+
+void Object::fromJson(const Json::Value& json)
+{
+    setUnique(json["unique"].asUInt64());
+    setMaketime(json["maketime"].asUInt64());
+}

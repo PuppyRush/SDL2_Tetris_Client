@@ -2,6 +2,7 @@
 // Created by chaed on 18. 12. 26.
 //
 
+#include <SDL2EasyGUI/src/SEG_TypeTraits.h>
 #include "Controll.h"
 #include "../SEG_Event.h"
 
@@ -20,9 +21,9 @@ void Controll::initialize()
 
     if(m_basic->group != GroupControllManager::NONE)
     {
-        GroupControllManager::getInstance()->add(m_basic->group, m_basic->resourceId);
+        GroupControllManager::getInstance().add(m_basic->group, m_basic->resourceId);
         if(m_basic->multiselected)
-            GroupControllManager::getInstance()->setMultiselect(m_basic->group);
+            GroupControllManager::getInstance().setMultiselect(m_basic->group);
     }
 }
 
@@ -53,7 +54,7 @@ void Controll::setSelected(bool selected)
 {
     m_basic->selected = selected;
     if(selected)
-        GroupControllManager::getInstance()->select(m_basic->group, m_basic->resourceId);
+        GroupControllManager::getInstance().select(m_basic->group, m_basic->resourceId);
 }
 
 const bool Controll::isHit(const TPoint& point)
@@ -64,6 +65,7 @@ const bool Controll::isHit(const TPoint& point)
         setSelected(!isSelected());
 
         EventPusher event{this->getWindow()->getWindowID(), this->getResourceId(), SEG_CLICKED_CONTROLLER };
+        event.setUserData( new SEG_Click{ point, this->getResourceId() });
         event.pushEvent();
 
         return true;

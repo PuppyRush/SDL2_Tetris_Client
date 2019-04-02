@@ -10,21 +10,28 @@
 using namespace game_interface;
 
 ClientConnector::ClientConnector(const  char* ipstr,ACE_Reactor* reactor, ClientService& stream)
-        :ACE_Event_Handler(reactor),m_stream(stream)
+        :ACE_Event_Handler(reactor),m_stream(stream), m_ipstring(ipstr)
 {
-    ACE_INET_Addr addr(ipstr);
-    ACE_Time_Value rt(0,0);
-
-    m_connector.connect( m_stream.peer(),addr,&rt);
-    m_stream.state( ClientService::C_CONNECTING);
-
-    this->reactor()->register_handler(this,ACE_Event_Handler::CONNECT_MASK);
 
 }
 
-
 ClientConnector::~ClientConnector(void)
 {
+}
+
+void ClientConnector::connect()
+{
+    ACE_INET_Addr addr(m_ipstring.c_str());
+    ACE_Time_Value rt(0,0);
+
+    m_isConnection = m_connector.connect( m_stream.peer(),addr,&rt);
+
+    if(m_isConnection)
+    {
+        m_stream.state( ClientService::C_CONNECTING);
+        this->reactor()->register_handler(this,ACE_Event_Handler::CONNECT_MASK);
+    }
+
 }
 
 
@@ -61,6 +68,6 @@ int
 ClientConnector::handle_close (ACE_HANDLE  handle,ACE_Reactor_Mask  close_mask){
     ACE_Reactor_Mask m =ACE_Event_Handler::ALL_EVENTS_MASK|ACE_Event_Handler::DONT_CALL;
     this->reactor()->remove_handler(this, m);
-    delete  this;
+    //delete  this;
     return 0;
 }
