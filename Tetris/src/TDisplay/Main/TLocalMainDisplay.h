@@ -23,11 +23,11 @@ public:
 private:
 
 	[[deprecated("dont call this function in TLocalMainDisplay")]]
-	virtual void onClickedEnterServer() {assert(0);};
+	virtual void onClickedEnterServer(const void* click) {assert(0);};
 
-	virtual void onClickedStartLocalGame() override final;
-	virtual void onClickedOption() override final;
-	virtual void onClickedBack()  override {}
+	virtual void onClickedStartLocalGame(const void* click) override final;
+	virtual void onClickedOption(const void* click) override final;
+	virtual void onClickedBack(const void* click)  override {}
 	virtual void registerEvent() override final;
 	virtual void onInitialize() override final;
 	virtual void onTimerEvent() override final;

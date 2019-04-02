@@ -55,14 +55,15 @@ void TPlayer::endGame()
 
 }
 
-void TPlayer::connectServer()
+const bool TPlayer::connectServer()
 {
     assert(!getUserName().empty());
-    m_clientCtl.connectServer();
+    auto result = m_clientCtl.connectServer();
 
     //first call faster than server.
-
     sendDummySignal();
+
+    return result;
 }
 
 void TPlayer::sendPacket(Packet &packet)

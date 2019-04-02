@@ -43,6 +43,7 @@ class DisplayController : private boost::serialization::singleton<DisplayControl
 public:
     using display_type = DisplayInterface;
     using display_ptr = std::shared_ptr<display_type> ;
+    using alert_ary = std::deque<display_type*>;
     using modal_ary = std::deque<display_ptr>;
     using modaless_ary =  std::vector<display_ptr>;
     using modaless_ary_iterator = modaless_ary::const_iterator;
@@ -54,6 +55,8 @@ public:
     void run();
     void finish();
 
+    void alert(display_type*);
+    void alert_close();
     void modal_open(display_ptr);
     void modal_close();
     void modaless_open(display_ptr);
@@ -74,14 +77,16 @@ private:
     t_id getActivatedWindowID(const SDL_Event *event);
     display_ptr findFromId(const t_id id);
 
+    void _open(display_ptr display);
     void _release();
-    void pumpEvent();
+    void _pumpEvent();
 
     template<class T>
     display_ptr _find(const T &ary, const t_id id);
 
     modaless_ary m_modalessAry;
     modal_ary m_modalStack;
+    alert_ary m_alertAry;
 
     std::thread m_thread;
     std::atomic_bool m_run = true;
@@ -92,23 +97,15 @@ private:
 struct modal_opener {
 
     DisplayController::display_ptr display;
-    bool modal;
 
-    explicit modal_opener(DisplayController::display_ptr display, bool m)
-        :display(display), modal(m)
+    explicit modal_opener(DisplayController::display_ptr display)
+        :display(display)
     {
-        if(modal)
-            DisplayController::getInstance().modal_open(display);
-        else
-            DisplayController::getInstance().modaless_open(display);
-
-        display->postCreate(display);
+        DisplayController::getInstance().modal_open(display);
     }
 
     ~modal_opener() {
-        if(modal) {
-            DisplayController::getInstance().modal_close();
-        }
+        DisplayController::getInstance().modal_close();
     }
 
 };

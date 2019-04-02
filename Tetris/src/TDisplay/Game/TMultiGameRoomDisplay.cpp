@@ -23,7 +23,7 @@ TMultiGameRoomDisplay::TMultiGameRoomDisplay()
     m_mode = TLocalMode::Online;
 }
 
-void TMultiGameRoomDisplay::onClickedStart()
+void TMultiGameRoomDisplay::onClickedStart(const void* click)
 {
     {
         auto ply = std::make_shared<TPlayer>();
@@ -67,11 +67,11 @@ void TMultiGameRoomDisplay::onClickedStart()
     m_drawLine = TOptionManager::getInstance()->isDrawLine();
     m_gamestart = true;
 
-    auto ctl = getControll(resource::GAME_START);
+    auto ctl = getControll<Button>(resource::GAME_START);
     ctl->setEnabled(false);
 }
 
-void TMultiGameRoomDisplay::onClickedSuspend()
+void TMultiGameRoomDisplay::onClickedSuspend(const void* click)
 {}
 
 void TMultiGameRoomDisplay::onDraw()

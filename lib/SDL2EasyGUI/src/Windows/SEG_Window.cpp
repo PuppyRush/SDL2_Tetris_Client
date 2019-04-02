@@ -19,8 +19,8 @@ SEG_Window::SEG_Window(const t_size width,const t_size height)
 
 SEG_Window::~SEG_Window()
 {
-    //SDL_DestroyRenderer(m_renderer);
-    //SDL_DestroyWindow(m_window);
+    SDL_DestroyRenderer(m_renderer);
+    SDL_DestroyWindow(m_window);
     /*if(m_window) {
         delete m_window;
         m_window = nullptr;

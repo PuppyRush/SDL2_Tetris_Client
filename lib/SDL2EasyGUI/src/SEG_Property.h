@@ -89,6 +89,13 @@ enum SEG_Event {
 
 };
 
+enum class MessageDialogKind
+{
+    error,
+    warining,
+    alert
+};
+
 }
 
 #endif //TERIS_FIGURE_CLASS_TPROPERTY_H

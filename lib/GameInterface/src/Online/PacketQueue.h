@@ -32,7 +32,7 @@ public:
 
     virtual void notify() override;
 
-    void initialize();
+    void run();
     void pushEvent(Packet &&event);
     void pushEvent(const Packet &event);
     Packet popEvent();

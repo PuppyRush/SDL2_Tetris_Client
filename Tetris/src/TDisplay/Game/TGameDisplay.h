@@ -21,8 +21,8 @@ public:
 	{};
 
 	virtual ~TGameDisplay() = default;
-	virtual void onClickedStart() =0;
-	virtual void onClickedSuspend() =0;
+	virtual void onClickedStart(const void* click) =0;
+	virtual void onClickedSuspend(const void* click) =0;
 
 protected:
 

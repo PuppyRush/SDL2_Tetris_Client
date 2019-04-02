@@ -24,7 +24,8 @@ using namespace game_interface;
 
 void TWaitingRoomDisplay::registerEvent()
 {
-    SEG_LBUTTONCLICK(sdleasygui::toUType(resource::WAITINGROOM_CREATE), &TWaitingRoomDisplay::createGameRoom, this);
+    SEG_LBUTTONCLICK(sdleasygui::toUType(resource::WAITINGROOM_CREATE),
+                     &TWaitingRoomDisplay::onClickCreateGameRoom, this);
     SEG_KEYDOWN(sdleasygui::toUType(resource::WAITINGROOM_CHAREDIT), &TWaitingRoomDisplay::sendChat, this);
 }
 
@@ -175,7 +176,7 @@ void TWaitingRoomDisplay::recvGameRoomInfo(const game_interface::Packet &packet)
         //addControll(bld.build());
     }
 
-    const auto ctl = dynamic_cast<ListBox*>(getControll(tetris::resource::WAITINGROOM_USERBOX));
+    const auto ctl = getControll<ListBox>(tetris::resource::WAITINGROOM_USERBOX);
 
     const size_t plyCount = root["player_count"].asUInt();
     const Json::Value playerRoot = root[game_interface::NAME_PLAYER.data()];
@@ -189,7 +190,7 @@ void TWaitingRoomDisplay::recvGameRoomInfo(const game_interface::Packet &packet)
     }
 }
 
-void TWaitingRoomDisplay::createGameRoom()
+void TWaitingRoomDisplay::onClickCreateGameRoom(const void* click)
 {
     auto dlg = std::make_shared<TCreateGameroomWindow>();
     dlg->setWindowHeight(250);
@@ -204,6 +205,8 @@ void TWaitingRoomDisplay::createGameRoom()
         Packet packet{{ m_waitingRoom.getUnique(), TPlayer::getInstance()->getUnique(), messageInfo::WAITINGROOMS_REQUEST_CREATE}, root};
         TPlayer::getInstance()->sendPacket(packet);
     }
+
+    DisplayInterface::onButtonClick(click);
 }
 
 
@@ -212,7 +215,7 @@ void TWaitingRoomDisplay::sendChat(const void *event)
     auto keyevent = static_cast<const SDL_KeyboardEvent*>(event);
     if(keyevent->keysym.sym == SDLK_RETURN)
     {
-        const auto ctl = dynamic_cast<EditLabel*>(getControll(tetris::resource::WAITINGROOM_CHAREDIT));
+        const auto ctl = getControll<EditLabel>(tetris::resource::WAITINGROOM_CHAREDIT);
         const auto chat = ctl->getString();
 
         Json::Value root;
@@ -229,7 +232,7 @@ void TWaitingRoomDisplay::sendChat(const void *event)
 void TWaitingRoomDisplay::recvChat(const game_interface::Packet &packet)
 {
     const string chat = packet.getPayload()["chat"].asString();
-    const auto ctl = dynamic_cast<ListBox*>(getControll(tetris::resource::WAITINGROOM_CHATBOX));
+    const auto ctl = getControll<ListBox>(tetris::resource::WAITINGROOM_CHATBOX);
 
     const string name{"Dd"};
     ctl->appendItem(make_shared<ChatInfo>(name,chat,packet.getHeader().timestamp));

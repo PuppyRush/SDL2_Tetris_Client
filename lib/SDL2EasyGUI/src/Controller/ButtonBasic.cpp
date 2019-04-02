@@ -70,6 +70,7 @@ void ButtonBasic::initialize()
 
     Border::initialize();
 }
+
 void ButtonBasic::_drawCarot()
 {
     auto renderer = getWindow()->getSDLRenderer();

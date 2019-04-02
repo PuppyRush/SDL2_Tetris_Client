@@ -69,7 +69,7 @@ protected:
 
 private:
 
-    void createGameRoom();
+    void onClickCreateGameRoom(const void *);
     void sendChat(const void *);
     void recvChat(const game_interface::Packet &packet);
     void createGameroom(const game_interface::Packet &packet);

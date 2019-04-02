@@ -34,6 +34,10 @@ public:
     inline const int getOrder() const noexcept { return m_order; }
     inline const bool isSurvive() const noexcept { return m_isSurvive; }
 
+    inline TClientController& getClientController() noexcept {
+        return m_clientCtl;
+    }
+
     inline TFigureController& getController() noexcept {
         return m_gameCtl;
     }
@@ -45,7 +49,7 @@ public:
     void sendPacket(game_interface::Packet &);
     void startGame();
     void endGame();
-    void connectServer();
+    const bool connectServer();
 
     virtual void updateObserver(const game_interface::Packet&) override;
 
@@ -71,7 +75,7 @@ private:
     TScore m_score;
 
     TFigureController m_gameCtl;
-    TClientController m_clientCtl;
+    TClientController& m_clientCtl = TClientController::getInstance();
 };
 
 SDL_TETRIS_END

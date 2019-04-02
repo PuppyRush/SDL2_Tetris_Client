@@ -19,7 +19,7 @@ PacketQueue::~PacketQueue()
 }
 
 
-void PacketQueue::initialize()
+void PacketQueue::run()
 {
     this->m_thread = std::thread(&PacketQueue::notify, this);
 }

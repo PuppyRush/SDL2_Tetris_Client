@@ -23,8 +23,8 @@ protected:
     virtual void onInitialize() override;
     virtual void onDraw() override;
     virtual void onClose() override;
-    virtual void onOK() override;
-    virtual void onCancel() override;
+    void onClickOk(const void *);
+    void onClickCancel(const void *);
 
 private:
 

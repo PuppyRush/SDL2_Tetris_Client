@@ -49,13 +49,13 @@ private:
 
 };
 
-class textDrawer
+class TextDrawer
 {
     SDL_Surface* textSurface;
     SDL_Texture* texture;
 public:
 
-    textDrawer(SDL_Renderer* renderer, const TFont& fontinfo, const std::string str)
+    TextDrawer(SDL_Renderer* renderer, const TFont& fontinfo, const std::string str)
         :textSurface(nullptr)
     {
         TTF_Font* font = TTF_OpenFont(fontinfo.font_name.c_str(), fontinfo.size);
@@ -64,14 +64,17 @@ public:
         textSurface = TTF_RenderText_Solid(font, str.c_str(), textColor);
         texture = SDL_CreateTextureFromSurface(renderer, textSurface);
     }
+    ~TextDrawer()
+    {
+        SDL_FreeSurface(textSurface);
+    }
 
     inline SDL_Texture* getTexture() { return texture;}
     inline SDL_Surface* getTextSurface() { return textSurface;}
 
-    ~textDrawer()
-    {
-        SDL_FreeSurface(textSurface);
-    }
+    inline const double getTextWidth() { return static_cast<double>(textSurface->w);}
+    inline const double getTextHeight() { return static_cast<double>(textSurface->h);}
+
 };
 
 

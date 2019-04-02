@@ -21,16 +21,13 @@ public:
     TEnterServerDisplay() = default;
     virtual ~TEnterServerDisplay() = default;
 
-    void registerEvent();
-    void onInitialize() ;
-    void onClickedEnterServer();
-    void onClickedBack();
+    virtual void registerEvent() override;
+    virtual void onInitialize() override;
+    void onClickedEnterServer(const void* click);
+    void onClickedBack(const void* click);
 
 private:
 
-    //EditLabel m_idLabel;
-    //Button m_enterBtn;
-    //Button m_backBtn;
 };
 
 

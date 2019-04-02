@@ -5,9 +5,10 @@
 
 #include "TEnterServerDisplay.h"
 #include "../../Common/TResource.h"
-#include "../Waiting/TWaitingRoomDisplay.h"
+
 #include "../../TObject/TPlayer.h"
 #include "GameInterface/src/Online/PacketQueue.h"
+#include "SDL2EasyGUI/src/Controller/EditLabel.h"
 
 SDL_TETRIS
 using namespace game_interface;
@@ -64,23 +65,19 @@ void TEnterServerDisplay::onInitialize() {
     ::DisplayInterface::onInitialize();
 }
 
-void TEnterServerDisplay::onClickedEnterServer()
+void TEnterServerDisplay::onClickedEnterServer(const void* click)
 {
     auto player = TPlayer::getInstance();
-    const  auto btn = dynamic_cast<EditLabel*>(getControll(resource::ENTERSERVER_ID));
+    const  auto btn = getControll<EditLabel>(resource::ENTERSERVER_ID);
+
     assert(btn != nullptr );
-
     player->setUserName(btn->getString());
-    player->connectServer();
 
-    game_interface::PacketQueue::getInstance().attach(player);
-
-    auto dlg = std::make_shared<TWaitingRoomDisplay>();
-    dlg->modal(dlg);
+    DisplayInterface::onButtonClick(click);
 }
 
 
-void TEnterServerDisplay::onClickedBack()
+void TEnterServerDisplay::onClickedBack(const void* click)
 {
-    DisplayInterface::onClose();
+    DisplayInterface::onOK();
 }

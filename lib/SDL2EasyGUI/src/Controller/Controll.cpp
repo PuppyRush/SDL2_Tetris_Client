@@ -2,6 +2,7 @@
 // Created by chaed on 18. 12. 26.
 //
 
+#include <SDL2EasyGUI/src/SEG_TypeTraits.h>
 #include "Controll.h"
 #include "../SEG_Event.h"
 
@@ -64,6 +65,7 @@ const bool Controll::isHit(const TPoint& point)
         setSelected(!isSelected());
 
         EventPusher event{this->getWindow()->getWindowID(), this->getResourceId(), SEG_CLICKED_CONTROLLER };
+        event.setUserData( new SEG_Click{ point, this->getResourceId() });
         event.pushEvent();
 
         return true;

@@ -30,7 +30,7 @@ void ListBox::onDraw()
 
     for(const item_ptr item : m_items)
     {
-        textDrawer textDrawer{renderer, getFont(), item->getString()};
+        TextDrawer textDrawer{renderer, getFont(), item->getString()};
         auto textSurface = textDrawer.getTextSurface();
 
         if(textSurface != nullptr) {

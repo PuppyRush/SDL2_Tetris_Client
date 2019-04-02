@@ -16,8 +16,6 @@ using namespace game_interface;
 using namespace sdleasygui;
 
 TMultiMainDisplay::TMultiMainDisplay()
-:m_optionDisplay(std::make_shared<TOptionDisplay>()),
- m_enterServerDisplay(std::make_shared<TEnterServerDisplay>())
 {
     m_mode = TLocalMode::Online;
 }
@@ -37,7 +35,7 @@ void TMultiMainDisplay::onInitialize() {
 
     t_size begin_y = WINDOW_HEIGHT/3;
     {
-        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH / 2 - 120, begin_y}, "PLAY TOGETHER");
+        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH / 2 - 220, begin_y}, "PLAY TOGETHER");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
             backgroundColor(ColorCode::white)->
             id(game_interface::toUType(resource::MAIN_MULTI_GAME_START_BUTTON))->
@@ -51,7 +49,7 @@ void TMultiMainDisplay::onInitialize() {
     }
     begin_y+=80;
     {
-        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH/2-50, begin_y}, "OPTION");
+        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH/2 - 150, begin_y}, "OPTION");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
             id(game_interface::toUType(resource::MAIN_OPTION_BUTTON))->
             backgroundColor(ColorCode::white)->
@@ -63,7 +61,7 @@ void TMultiMainDisplay::onInitialize() {
     }
     begin_y+=80;
     {
-        ButtonBuilder bld(getWindow(),{WINDOW_WIDTH/2-50, begin_y}, "EXIT");
+        ButtonBuilder bld(getWindow(),{WINDOW_WIDTH/2 - 150, begin_y}, "EXIT");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
             id(game_interface::toUType(resource::MAIN_EXIT))->
             backgroundColor(ColorCode::white)->
@@ -87,28 +85,22 @@ void TMultiMainDisplay::onDraw()
     TMainDisplay::onDraw();
 }
 
-void TMultiMainDisplay::onClickedOption()
+void TMultiMainDisplay::onClickedOption(const void* click)
 {
 
-    m_optionDisplay->setWindowHeight(WINDOW_HEIGHT);
-    m_optionDisplay->setWindowWidth(WINDOW_WIDTH);
-    m_optionDisplay->setWindowTitle("Option Dialog");
-    m_optionDisplay->modaless(m_optionDisplay);
-    m_optionDisplay->waitModaless();
-    //DisplayInterface::onOK();
+
+
+    DisplayInterface::onButtonClick(click);
 }
 
-void TMultiMainDisplay::onClickedEnterServer()
+void TMultiMainDisplay::onClickedEnterServer(const void* click)
 {
-    m_enterServerDisplay->setWindowHeight(300);
-    m_enterServerDisplay->setWindowWidth(300);
-    m_enterServerDisplay->setWindowTitle("Input Your Nickname");
-    m_enterServerDisplay->modal(m_enterServerDisplay);
 
-    DisplayInterface::onOK();
+
+    DisplayInterface::onButtonClick(click);
 }
 
-void TMultiMainDisplay::onClickedBack()
+void TMultiMainDisplay::onClickedBack(const void* click)
 {
-    TDisplayInterface::onClose();
+    TDisplayInterface::onOK();
 }

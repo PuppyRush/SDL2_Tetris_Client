@@ -21,8 +21,7 @@ public:
     using unique_type = typename sdleasygui::DisplayInterface::unique_type ;
 
     virtual ~TDisplayInterface()
-    {
-    }
+    {  }
 
 protected:
 

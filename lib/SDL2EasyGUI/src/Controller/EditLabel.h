@@ -9,7 +9,7 @@
   #pragma once
 #endif
 
-#include "Border.h"
+#include "LabelBasic.h"
 #include "../SEG_Event.h"
 
 namespace sdleasygui {
@@ -24,14 +24,14 @@ typedef struct EditLabelBasic {
 } EditLabelBasic;
 
 class EditLabelBuilder;
-class EditLabel : public Border {
+class EditLabel : public LabelBasic {
 
 public:
     virtual ~EditLabel() = default;
     explicit EditLabel(EditLabelBuilder &bld);
 
-    inline void clearString() _GLIBCXX_NOEXCEPT { m_labelBasic.editstring.clear();}
-    inline const std::string& getString() const noexcept {return m_labelBasic.editstring;}
+    inline void clearString() _GLIBCXX_NOEXCEPT { m_labelString.clear();}
+    inline const std::string& getString() const noexcept {return m_labelString;}
 
 protected:
     virtual void onUserEvent(const SDL_UserEvent *user) override;

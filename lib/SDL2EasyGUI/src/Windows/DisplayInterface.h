@@ -42,9 +42,10 @@ public:
 
     virtual ~DisplayInterface();
 
-    void addControll(const controll_ptr ctl);
-    bool clickedMenuEvent(const TPoint &point);
+    void addControll(const controll_ptr newCtl);
+    bool menuHitTest(const TPoint &point);
 
+    std::underlying_type_t<resource> alert();
     std::underlying_type_t<resource> modal(std::shared_ptr<DisplayInterface> display);
     void modaless(std::shared_ptr<DisplayInterface> display);
     std::underlying_type_t<resource> waitModaless();
@@ -62,20 +63,20 @@ public:
     inline void setRun(const bool run) { m_run = run; }
     inline void setStopDraw(const bool set) { m_stopDraw = set; }
 
+    inline const t_res getResult() const noexcept { return m_resultResrouce;}
     inline const t_display getDisplay() const noexcept { return m_display; }
-    inline const TLocalMode getMode() const noexcept { return m_mode; }
     inline const bool isRun() const noexcept { return m_run; }
     inline const bool getSetDraw() const noexcept { return m_stopDraw; }
     inline const unique_type getWindowID() const noexcept { return getWindow()->getWindowID(); }
     inline Controll *getCurrentControll() const noexcept { return m_currentCtl; };
 
-    template<class T>
-    Controll::controll_ptr getControll(const T res) {
-        return *find_if(begin(m_menus), end(m_menus), [res](Controll::controll_ptr ptr) {
-          if (ptr->getResourceId() == toUType(res))
-              return true;
-          return false;
+    template<class T, class U>
+    auto getControll(const U resourceId)  {
+        auto ctl = *find_if(begin(m_menus), end(m_menus), [resourceId](Controll::controll_ptr ptr) {
+          return ptr->getResourceId() == toUType(resourceId);
         });
+
+        return dynamic_cast<T*>(ctl);
     }
 
 protected:
@@ -103,6 +104,8 @@ protected:
     {
         m_callback_two_param.insert(make_pair(id,callback_fn));
     }
+
+    void onButtonClick(const void *);
 
     virtual void registerEvent() = 0;
     virtual void onInitialize();
@@ -153,7 +156,7 @@ protected:
 private:
 
     void _release();
-    void _run(std::promise<resource> &&pm);
+    void _run();
     void _onDrawMenus();
 
     std::vector<controll_ptr> m_menus;
@@ -163,9 +166,7 @@ private:
     bool m_stopDraw = false;
     std::thread m_thread;
     std::atomic_bool m_run = true;
-    resource m_resultResrouce = NONE;
-    std::promise<resource> m_modalessPromise;
-    std::future<resource> m_modalessFuture;
+    t_res m_resultResrouce = NONE;
 };
 
 
@@ -173,7 +174,7 @@ private:
 #define SEG_EVENT_1PARAM(id,fx,obj) DisplayInterface::_oneParamEvent(id,std::bind(fx,obj,std::placeholders::_1))
 #define SEG_EVENT_2PARAM(id,fx,obj) DisplayInterface::_twoParamEvent(id,std::bind(fx,obj,std::placeholders::_1, std::placeholders::_2))
 
-#define SEG_LBUTTONCLICK(id,fx,obj) SEG_EVENT_NO_PARAM(id,fx,obj)
+#define SEG_LBUTTONCLICK(id,fx,obj) SEG_EVENT_1PARAM(id,fx,obj)
 #define SEG_KEYDOWN(id,fx,obj) SEG_EVENT_1PARAM(id,fx,obj)
 
 }

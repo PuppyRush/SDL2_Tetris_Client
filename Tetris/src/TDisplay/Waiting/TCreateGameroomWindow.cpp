@@ -18,9 +18,9 @@ SDL_TETRIS
 void TCreateGameroomWindow::registerEvent()
 {
     SEG_LBUTTONCLICK(sdleasygui::toUType(tetris::resource::WAITINGROOM_CREATE_OK),
-                         &TCreateGameroomWindow::onOK, this);
+                         &TCreateGameroomWindow::onClickOk, this);
     SEG_LBUTTONCLICK(sdleasygui::toUType(tetris::resource::WAITINGROOM_CREATE_CANCEL),
-                         &TCreateGameroomWindow::onCancel, this);
+                         &TCreateGameroomWindow::onClickCancel, this);
 }
 
 void TCreateGameroomWindow::onInitialize()
@@ -70,7 +70,7 @@ void TCreateGameroomWindow::onInitialize()
 
 void TCreateGameroomWindow::onClose()
 {
-    const auto ctl = dynamic_cast<EditLabel*>(getControll(tetris::resource::WAITINGROOM_CREATE_GAMEROOMNAME));
+    const auto ctl = getControll<EditLabel>(tetris::resource::WAITINGROOM_CREATE_GAMEROOMNAME);
     m_roomname = ctl->getString();
 
     DisplayInterface::onClose();
@@ -81,12 +81,12 @@ void TCreateGameroomWindow::onDraw()
     DisplayInterface::onDraw();
 }
 
-void TCreateGameroomWindow::onOK()
+void TCreateGameroomWindow::onClickOk(const void *)
 {
     DisplayInterface::onOK();
 }
 
-void TCreateGameroomWindow::onCancel()
+void TCreateGameroomWindow::onClickCancel(const void *)
 {
     DisplayInterface::onCancel();
 }

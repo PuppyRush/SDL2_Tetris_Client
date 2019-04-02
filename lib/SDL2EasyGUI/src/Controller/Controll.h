@@ -139,6 +139,11 @@ protected:
         m_basic->multiselected = multiselected;
     }
 
+    inline std::shared_ptr<ControllBasic> getBasic()
+    {
+        return m_basic;
+    }
+
     void drawBackground(const SDL_Rect rect, const TColor color);
     virtual void onDraw() = 0;
     virtual void onDrawBackground() = 0;
