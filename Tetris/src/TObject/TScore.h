@@ -10,7 +10,7 @@
 #endif
 
 #include "../Common/TDefine.h"
-#include "SDL2EasyGUI/src/SEG_Struct.h"
+#include "SDL2EasyGUI/include/SEG_Struct.h"
 
 SDL_TETRIS_BEGIN
 

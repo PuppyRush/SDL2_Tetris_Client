@@ -82,22 +82,22 @@ ADD_LIBRARY(GameInterface STATIC
         src/Online/JsonHelper.cpp
         src/Online/JsonHelper.h
         src/Object/Player.cpp
-        src/Object/Player.h
+        include/Player.h
         src/Object/Room.cpp
-        src/Object/Room.h
-        src/Object/Atomic.h
+        include/Room.h
+        include/Atomic.h
         src/Object/Object.cpp
-        src/Object/Object.h
+        include/Object.h
         src/Object/GameRoom.cpp
-        src/Object/GameRoom.h
+        include/GameRoom.h
         src/Object/WaitingRoom.cpp
-        src/Object/WaitingRoom.h
+        include/WaitingRoom.h
         src/Online/ClientConnector.cpp
         src/Online/ClientConnector.h
         src/Online/ClientService.cpp
         src/Online/ClientService.h
-        src/Event.h
-        src/TStruct.h
+        include/Event.h
+        include/TStruct.h
         src/SubScription/Observer.h
         src/SubScription/VectorSubject.h
         src/SubScription/ManagerController.h
@@ -109,8 +109,8 @@ ADD_LIBRARY(GameInterface STATIC
         src/Online/Packet.h
         src/Online/PacketQueue.h
         src/Online/PacketQueue.cpp
-        src/Define.h
-        src/Quit.h)
+        include/Define.h
+        include/Quit.h include/JsonPackage.h)
 
 
 

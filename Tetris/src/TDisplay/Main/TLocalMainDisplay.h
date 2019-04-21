@@ -17,7 +17,7 @@ class TLocalMainDisplay final : public TMainDisplay
 {
 public:
 
-	TLocalMainDisplay();
+	explicit TLocalMainDisplay(const sdleasygui::t_id displayId);
     virtual ~TLocalMainDisplay() = default;
 
 private:
@@ -30,7 +30,6 @@ private:
 	virtual void onClickedBack(const void* click)  override {}
 	virtual void registerEvent() override final;
 	virtual void onInitialize() override final;
-	virtual void onTimerEvent() override final;
     virtual void onDraw() override final;
 
 };

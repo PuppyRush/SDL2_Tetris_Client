@@ -5,14 +5,15 @@
 #include <exception>
 #include <algorithm>
 
-#include "DisplayController.h"
-#include "DisplayInterface.h"
-#include "../SEG_Resource.h"
+#include "SDL2EasyGUI/include/DisplayController.h"
+#include "include/DisplayInterface.h"
+#include "SDL2EasyGUI/include/SEG_Resource.h"
 
 using namespace std;
 using namespace sdleasygui;
 
-DisplayInterface::DisplayInterface()
+DisplayInterface::DisplayInterface(const t_id displayId)
+    :m_displayId(displayId)
 {
     m_window = new SEG_Window;
 }
@@ -82,13 +83,14 @@ void DisplayInterface::_run(){
 
     while(m_run)
     {
-        const event_mover e = popEvent();
-        onEvent(e.event);
+        auto event = m_eventDelivery.popEvent();
+        onEvent(event);
 
         if( m_currentCtl )
         {
-            m_currentCtl->onEvent(e.event);
+            m_currentCtl->onEvent(event);
         }
+        delete event;
     }
 
 }
@@ -117,6 +119,7 @@ void DisplayInterface::onUserEvent(const SDL_UserEvent* event) {
         }
         case SEG_DRAW_DISPLAY:
             //dont call _refresh() in this case.
+            onDrawBackground();
             onDraw();
             break;
         case SEG_DRAW_CONTROLLER:
@@ -131,16 +134,33 @@ void DisplayInterface::onUserEvent(const SDL_UserEvent* event) {
     }
 }
 
+void DisplayInterface::onKeyboardEvent(const SDL_KeyboardEvent *key)
+{
+    switch(key->keysym.sym)
+    {
+        case SDLK_RETURN:
+            if( auto res = getCurrentController() ;
+                    res.first && res.second->isFoucs())
+            {
+                res.second->clickController();
+            }
+            break;
+        case SDLK_ESCAPE:
+            if( auto res = getCurrentController() ;
+                res.first && res.second->isFoucs())
+            {
+                res.second->setFoucs(false);
+            }
+            break;
+    }
+}
+
+
 void DisplayInterface::onMouseButtonEvent (const SDL_MouseButtonEvent* button)
 {
     menuHitTest(TPoint{button->x, button->y});
     refresh();
 }
-
-void DisplayInterface::onMouseMotionEvent(const SDL_MouseMotionEvent *motion)
-{
-}
-
 
 void DisplayInterface::onWindowEvent (const SDL_WindowEvent& window)
 {
@@ -159,7 +179,7 @@ void DisplayInterface::onWindowEvent (const SDL_WindowEvent& window)
             onDestroy();
             break;
     }
-    DisplayController::getInstance().refreshModal();
+    //DisplayController::getInstance().refreshModal();
 }
 
 void DisplayInterface::onCreate()
@@ -183,8 +203,8 @@ void DisplayInterface::onClose()
 
     setRun(false);
     hidden();
-    onDestroy();
 
+    onDestroy();
 }
 
 void DisplayInterface::onButtonClick(const void *event)
@@ -217,7 +237,7 @@ void DisplayInterface::onDestroy()
     m_menus.clear();
 }
 
-void DisplayInterface::onDraw()
+void DisplayInterface::onDrawBackground()
 {
     if(!m_backgroundImgPath.empty())
     {
@@ -235,6 +255,12 @@ void DisplayInterface::onDraw()
         SDL_RenderCopy(renderer, img, NULL, &texr);
     }
 
+    SDL_Rect rect = SDL_Rect{ 0,0, getWindowWidth(), getWindowHeight()};
+    GraphicInterface::_drawBackground(rect);
+}
+
+void DisplayInterface::onDraw()
+{
     _onDrawMenus();
     _release();
 }
@@ -247,11 +273,11 @@ void DisplayInterface::_onDrawMenus()
     }
 }
 
-void DisplayInterface::addControll(const controll_ptr newCtl)
+void DisplayInterface::addControll(const controller_ptr newCtl)
 {
     newCtl->initialize();
 
-    auto it = std::find_if(begin(m_menus), end(m_menus), [newCtl](controll_ptr exCtl){
+    auto it = std::find_if(begin(m_menus), end(m_menus), [newCtl](controller_ptr exCtl){
         return newCtl->getResourceId() == exCtl->getResourceId();
     });
 

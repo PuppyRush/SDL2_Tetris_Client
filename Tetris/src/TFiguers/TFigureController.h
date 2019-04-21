@@ -14,11 +14,9 @@
 
 SDL_TETRIS_BEGIN
 
-class TFigureController : public boost::serialization::singleton<TFigureController> {
+class TFigureController{
 
 public:
-
-    friend class boost::serialization::singleton<TFigureController>;
 
     using figure_ptr = std::shared_ptr<TFigure>;
     using board_type = TFigureBoard<GAMEBOARD_WIDTH_COUNT,GAMEBOARD_HEIGHT_COUNT >;
@@ -43,6 +41,15 @@ public:
     nextfigure_board_ptr getNextFigureBoard() const noexcept
     {return m_nextFigureBoard;}
 
+    inline bool isGhostMode() const noexcept{
+        return m_ghostmode;
+    }
+
+    inline void setGhostMode(bool mGhostmode) noexcept {
+        m_ghostmode = mGhostmode;
+    }
+
+
     void command(const sdleasygui::t_eventType event);
     void forceSet(const TFigure* fig);
     void eraseLine(const sdleasygui::t_size lineNumber);
@@ -51,13 +58,6 @@ public:
     void addBottomLine(const sdleasygui::t_size = 1);
     void createNextFigureRandomly();
 
-    static std::shared_ptr<TFigureController> getInstance() {
-
-        static auto inst = std::shared_ptr<TFigureController>
-            (&boost::serialization::singleton<TFigureController>::get_mutable_instance());
-        return inst;
-    }
-
 private:
 
     figure_ptr m_currentFigure;
@@ -65,6 +65,7 @@ private:
     figure_ptr m_nextFigure;
     board_ptr m_board;
     nextfigure_board_ptr m_nextFigureBoard;
+    bool m_ghostmode = true;
 
     void _rotate(const sdleasygui::t_eventType event);
     void _goDown(const sdleasygui::t_eventType event);

@@ -4,7 +4,7 @@
 
 #include <string>
 
-#include "GameRoom.h"
+#include "GameInterface/include/GameRoom.h"
 
 using namespace game_interface;
 using namespace std;
@@ -17,8 +17,8 @@ Json::Value GameRoom::toJson() const {
     auto json = Room::toJson();
 
     const auto& container = getPlayerContainer();
-    Json::Value root, playerJs{Json::arrayValue};
-    root["player_count"] = static_cast<Json::UInt >(container.size());
+    Json::Value playerJs{Json::arrayValue};
+    json["player_count"] = static_cast<Json::UInt >(container.size());
 
     for(const auto& player : container)
     {
@@ -26,15 +26,10 @@ Json::Value GameRoom::toJson() const {
     }
 
     json[NAME_PLAYER.data()] = playerJs;
-    return root;
+    return json;
 }
 
 void GameRoom::fromJson(const Json::Value& json)
 {
-    const size_t player_count = json["player_count"].asUInt();
-    const auto roomJs = json[NAME_GAMEROOM.data()];
-    for(int i=0 ; i < player_count ; i++)
-    {
-        Room::fromJson(roomJs[i]);
-    }
+    Room::fromJson(json);
 }

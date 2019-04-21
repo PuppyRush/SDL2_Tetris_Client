@@ -3,7 +3,7 @@
 //
 
 #include "TFigureBuilder.h"
-#include "GameInterface/src/TypeTraits.h"
+#include "GameInterface/include/TypeTraits.h"
 
 using namespace tetris;
 using namespace sdleasygui;
@@ -22,7 +22,7 @@ TFigureBuilder::TFigureBuilder(const TPoint &point)
 
 std::shared_ptr<TFigure> TFigureBuilder::build()
 {
-    assert(m_figureClass != TFigureClass::End);
+   // assert(m_figureClass != TFigureClass::End);
 
     switch(getClass())
     {

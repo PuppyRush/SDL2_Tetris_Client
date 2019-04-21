@@ -10,7 +10,7 @@
   #pragma once
 #endif
 
-#include "SDL2EasyGUI/src/SEG_Resource.h"
+#include "SDL2EasyGUI/include/SEG_Resource.h"
 #include "../Common/TDefine.h"
 
 SDL_TETRIS_BEGIN
@@ -19,6 +19,15 @@ SDL_TETRIS_BEGIN
 enum class resource : sdleasygui::t_res {
 
     RESOURCE_START = sdleasygui::SEG_RESROUCE_END+1,
+
+    MAIN_MULTI_DISPLAY,
+    MAIN_SINGLE_DISPLAY,
+    OPTION_DISPLAY,
+    ENTERSERVER_DISPLAY,
+    WAITINGROOM_DISPLAY,
+    CREATEROOM_DISPLAY,
+    MULTIGAME_DISPLAY,
+    SINGLEGAME_DISPLAY,
 
     MAIN_SINGLE_GAME_START_BUTTON,
     MAIN_MULTI_GAME_START_BUTTON,

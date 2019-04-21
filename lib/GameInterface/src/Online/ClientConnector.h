@@ -17,7 +17,7 @@
 #include <ace/Init_ACE.h>
 
 #include  "ClientService.h"
-#include "GameInterface/src/TStruct.h"
+#include "GameInterface/include/TStruct.h"
 
 namespace game_interface {
 

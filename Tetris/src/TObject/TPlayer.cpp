@@ -5,8 +5,9 @@
 
 #include "TPlayer.h"
 #include "../TFiguers/TFigureBuilder.h"
-#include "GameInterface/src/Online/JsonHelper.h"
+
 #include "GameInterface/src/Online/PacketQueue.h"
+#include "GameInterface/src/Online/JsonHelper.h"
 
 SDL_TETRIS
 
@@ -32,21 +33,10 @@ void TPlayer::command(const t_eventType event)
 {
     m_gameCtl.command(event);
 
-    auto fig = this->m_gameCtl.getCurrentFigure();
+    Json::Value json;
+    json["command"] = event;
 
-    time_t rawtime;
-    time (&rawtime);
-
-    string timeStr = to_string(rawtime);
-    auto gameboardBitset = JsonHelper::toGameboardBitset(
-        toUType( fig->getClass()),
-        toUType( fig->getType()),
-        fig->getPoint().x,
-        fig->getPoint().y);
-
-    auto jsonObj = JsonHelper::toJson("test", m_ip.str(), timeStr, gameboardBitset.to_string());
-
-    Packet packet{{getUnique(), getUnique(), messageInfo::GAME_TETRISBOARD_INFO}, jsonObj};
+    Packet packet{{getUnique(), getUnique(), messageInfo::GAME_REQUEST_BOARDINFO}, json};
     this->sendPacket(packet);
 }
 
@@ -86,6 +76,40 @@ void TPlayer::updateObserver(const Packet& packet)
     }
 }
 
+void TPlayer::sendBoardInfo(const t_id gameRoomUnique)
+{
+    /*auto fig = this->m_gameCtl.getCurrentFigure();
+
+    time_t rawtime;
+    time (&rawtime);
+
+    auto plyJson = this->toJson();
+    plyJson[fig->getUniqueName().data()] = fig->toJson();
+
+    Packet packet{{gameRoomUnique, getUnique(), messageInfo::GAME_REQUEST_BOARDINFO}, plyJson};
+    this->sendPacket(packet);*/
+}
+
+
+void TPlayer::recvBoardInfo(const game_interface::Packet& packet)
+{
+    auto json = packet.getPayload();
+    command(json["command"].asInt());
+
+
+    /*auto plyJson = packet.getPayload();
+
+    TFigureBuilder dummyBld({0,0});
+    auto dummyFigure = dummyBld.build();
+    dummyFigure->fromJson(plyJson[dummyFigure->getUniqueName().data()]);
+
+    TFigureBuilder bld{dummyFigure->getPoint()};
+    bld.figure(dummyFigure->getClass());
+    bld.unitType(UnitType::Moving);
+    auto figure = bld.build();
+
+    m_gameCtl.forceSet(figure.get());*/
+}
 
 void TPlayer::recvInfo(const game_interface::Packet& packet)
 {

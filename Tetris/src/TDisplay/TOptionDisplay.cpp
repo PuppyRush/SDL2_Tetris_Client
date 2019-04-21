@@ -4,14 +4,15 @@
 
 #include "TOptionDisplay.h"
 #include "../Common/TResource.h"
-#include "SDL2EasyGUI/src/Controller/Button.h"
-#include "SDL2EasyGUI/src/Controller/StaticLabel.h"
+#include "SDL2EasyGUI/src/Controller/Button/Button.h"
+#include "SDL2EasyGUI/src/Controller/Label/StaticLabel.h"
 
 SDL_TETRIS
 using namespace game_interface;
 using namespace sdleasygui;
 
-TOptionDisplay::TOptionDisplay()
+TOptionDisplay::TOptionDisplay(const sdleasygui::t_id displayId)
+    :TDisplayInterface(displayId)
 {
     m_display = game_interface::toUType(TDisplay::Option);
     m_mode = TLocalMode::All;

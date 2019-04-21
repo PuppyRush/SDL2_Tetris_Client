@@ -7,29 +7,31 @@
 
 
 #include <boost/serialization/singleton.hpp>
-#include "GameInterface/src/Object/GameRoom.h"
+#include "GameInterface/include/GameRoom.h"
 #include "../Common/TDefine.h"
 
 SDL_TETRIS_BEGIN
 
-class TGameRoom : public game_interface::GameRoom , private boost::serialization::singleton<TGameRoom>{
+class TGameRoom : public game_interface::GameRoom {
 
 public:
 
-    friend class boost::serialization::singleton<TGameRoom>;
+    TGameRoom() = default;
 
     static std::shared_ptr<TGameRoom> getInstance() {
-        static auto inst = std::shared_ptr<TGameRoom>
-            (&boost::serialization::singleton<TGameRoom>::get_mutable_instance());
+        static auto inst = std::make_shared<TGameRoom>();
         return inst;
     }
 
     virtual void postEnter(player_ptr ply) override;
     virtual void postExit(const unique_type unique) override;
+    virtual void fromJson(const Json::Value& json);
 
 private:
-    virtual Json::Value toJson() const override {}
-    virtual const std::string_view& getUniqueName() const override {}
+
+
+
+    virtual const std::string_view& getUniqueName() const override { return game_interface::NAME_GAMEROOM; }
     virtual void updateObserver(const game_interface::Packet& ) override;
 
 };

@@ -3,8 +3,8 @@
 // Created by chaed on 18. 12. 18.
 //
 
-#include "SDL2EasyGUI/src/Controller/Button.h"
-#include "SDL2EasyGUI/src/Windows/DisplayController.h"
+#include "SDL2EasyGUI/src/Controller/Button/Button.h"
+#include "SDL2EasyGUI/include/DisplayController.h"
 
 #include "TMultiMainDisplay.h"
 
@@ -15,7 +15,8 @@ SDL_TETRIS
 using namespace game_interface;
 using namespace sdleasygui;
 
-TMultiMainDisplay::TMultiMainDisplay()
+TMultiMainDisplay::TMultiMainDisplay(const sdleasygui::t_id displayId)
+    :TMainDisplay(displayId)
 {
     m_mode = TLocalMode::Online;
 }
@@ -41,6 +42,7 @@ void TMultiMainDisplay::onInitialize() {
             id(game_interface::toUType(resource::MAIN_MULTI_GAME_START_BUTTON))->
             width(240)->
             height(50)->
+            borderBoundaryType(BorderBoundaryType::roundedAngle)->
             borderColor(ColorCode::silver)->
             borderThick(4)->
             enabled(true);
@@ -53,6 +55,7 @@ void TMultiMainDisplay::onInitialize() {
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
             id(game_interface::toUType(resource::MAIN_OPTION_BUTTON))->
             backgroundColor(ColorCode::white)->
+            borderBoundaryType(BorderBoundaryType::roundedAngle)->
             width(100)->
             height(50)->
             enabled(true);
@@ -65,6 +68,7 @@ void TMultiMainDisplay::onInitialize() {
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
             id(game_interface::toUType(resource::MAIN_EXIT))->
             backgroundColor(ColorCode::white)->
+            borderBoundaryType(BorderBoundaryType::roundedAngle)->
             width(100)->
             height(50)->
             enabled(true);
@@ -72,12 +76,7 @@ void TMultiMainDisplay::onInitialize() {
         addControll(bld.build());
     }
 
-    DisplayInterface::onInitialize();
-}
-
-void TMultiMainDisplay::onTimerEvent()
-{
-
+    TMainDisplay::onInitialize();
 }
 
 void TMultiMainDisplay::onDraw()
@@ -90,17 +89,15 @@ void TMultiMainDisplay::onClickedOption(const void* click)
 
 
 
-    DisplayInterface::onButtonClick(click);
+    TMainDisplay::onButtonClick(click);
 }
 
 void TMultiMainDisplay::onClickedEnterServer(const void* click)
 {
-
-
-    DisplayInterface::onButtonClick(click);
+    TMainDisplay::onButtonClick(click);
 }
 
 void TMultiMainDisplay::onClickedBack(const void* click)
 {
-    TDisplayInterface::onOK();
+    TMainDisplay::onOK();
 }

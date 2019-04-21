@@ -21,11 +21,10 @@ ClientConnector::~ClientConnector(void)
 
 void ClientConnector::connect()
 {
-    ACE_INET_Addr addr(m_ipstring.c_str());
+    ACE_INET_Addr addr("127.0.0.1:12345");
     ACE_Time_Value rt(0,0);
 
     m_isConnection = m_connector.connect( m_stream.peer(),addr,&rt);
-
     if(m_isConnection)
     {
         m_stream.state( ClientService::C_CONNECTING);

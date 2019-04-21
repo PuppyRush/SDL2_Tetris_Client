@@ -13,23 +13,22 @@
 #include <cassert>
 
 #include "GameInterface/src/Online/Packet.h"
-#include "GameInterface/src/Object/Player.h"
+#include "GameInterface/include/Player.h"
 #include "../Common/TDefine.h"
-#include "../TClient/TClientController.h"
+#include "../../include/TClientController.h"
 #include "../TFiguers/TFigureController.h"
 #include "../TObject/TScore.h"
 
 SDL_TETRIS_BEGIN
 
-class TPlayer : public game_interface::Player, public boost::serialization::singleton<TPlayer>
+class TPlayer : public game_interface::Player
 {
 public:
-
-    friend class boost::serialization::singleton<TPlayer>;
 
     TPlayer();
     virtual ~TPlayer();
 
+    inline const game_interface::TIPString& getIP() const noexcept { return m_ip; }
     inline const bool isReady() const noexcept { return m_isReady; }
     inline const int getOrder() const noexcept { return m_order; }
     inline const bool isSurvive() const noexcept { return m_isSurvive; }
@@ -52,18 +51,18 @@ public:
     const bool connectServer();
 
     virtual void updateObserver(const game_interface::Packet&) override;
+    void sendBoardInfo(const game_interface::t_id gameRoomUnique);
+    void recvBoardInfo(const game_interface::Packet& packet);
 
     void recvInfo(const game_interface::Packet&);
     void sendDummySignal();
     void requestWaitingRoomInitInfo();
 
     virtual Json::Value toJson() const override { return Player::toJson();}
-    virtual const std::string_view& getUniqueName() const override {}
+    virtual const std::string_view& getUniqueName() const override { return game_interface::NAME_PLAYER; }
 
-    static std::shared_ptr<TPlayer> getInstance() {
-
-        static auto inst = std::shared_ptr<TPlayer>
-            (&boost::serialization::singleton<TPlayer>::get_mutable_instance());
+    static auto& getInstance() {
+        static auto inst = std::make_shared<TPlayer>();
         return inst;
     }
 
@@ -74,7 +73,7 @@ private:
     game_interface::TIPString m_ip;
     TScore m_score;
 
-    TFigureController m_gameCtl;
+    TFigureController m_gameCtl = TFigureController{};
     TClientController& m_clientCtl = TClientController::getInstance();
 };
 

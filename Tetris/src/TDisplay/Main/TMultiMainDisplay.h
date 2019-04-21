@@ -20,7 +20,7 @@ class TMultiMainDisplay final : public TMainDisplay
 {
 public:
 
-    TMultiMainDisplay();
+    explicit TMultiMainDisplay(const sdleasygui::t_id displayId);
     virtual ~TMultiMainDisplay() = default;
 
 
@@ -31,7 +31,6 @@ private:
     virtual void registerEvent() override final;
     virtual void onDraw() override final;
     virtual void onInitialize() override final;
-    virtual void onTimerEvent() override final;
 
     [[deprecated("dont call this function in TMultiMainDisplay")]]
     virtual void onClickedStartLocalGame(const void* click) override final {}

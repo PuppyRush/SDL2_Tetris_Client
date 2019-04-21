@@ -7,13 +7,8 @@
 SDL_TETRIS
 using namespace sdleasygui;
 
-TMainDisplay::TMainDisplay()
+TMainDisplay::TMainDisplay(const sdleasygui::t_id displayId)
+    :TDisplayInterface(displayId)
 {
     m_display = game_interface::toUType(TDisplay::Main);
-}
-
-
-void TMainDisplay::onDraw()
-{
-    DisplayInterface::onDraw();
 }

@@ -21,20 +21,21 @@ public:
 	{};
 
 	virtual ~TGameDisplay() = default;
-	virtual void onClickedStart(const void* click) =0;
+	virtual void onClickedStart(const void* click);
 	virtual void onClickedSuspend(const void* click) =0;
 
 protected:
 
-    TGameDisplay();
+    explicit TGameDisplay(const sdleasygui::t_id displayId);
 
 	virtual void onClose() override;
 	virtual void onCreate() override;
 	virtual void onDraw() override;
 
-	virtual void onInitialize() = 0;
-	virtual void onKeyboardEvent (const SDL_KeyboardEvent* key);
-	virtual void onUserEvent(const SDL_UserEvent* event);
+	virtual void onInitialize() { TDisplayInterface::onInitialize(); }
+	virtual void onKeyboardEvent (const SDL_KeyboardEvent* key) override;
+	virtual void onUserEvent(const SDL_UserEvent* event) override;
+    virtual void onTimerEvent(const SDL_UserEvent *user) override;
 
 	void _drawFigure(TFigureController::board_ptr board, TFigureController::figure_ptr figure);
 	void _drawNextFigure();

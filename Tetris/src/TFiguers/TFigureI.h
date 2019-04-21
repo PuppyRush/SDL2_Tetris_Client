@@ -27,9 +27,8 @@ public:
 
     virtual ~TFigureI();
     virtual void initialize() final;
-    virtual const TFigureType getTypeBegin() const final;
-    virtual const TFigureType getTypeEnd() const final;
-
+    virtual TFigureType getTypeBegin() const noexcept final;
+    virtual TFigureType getTypeEnd() const noexcept final;
 
     //hide base ctr, make object from builder
     static std::shared_ptr<TFigureI> get(const TFigureBuilder *bld)
@@ -42,10 +41,9 @@ public:
 private:
     TFigureI(){}
     TFigureI(const TFigureBuilder *bld);
-    virtual bool _validation() final;
-    virtual const std::shared_ptr<TFigure> _copy() const final;
-    virtual void _rotateLeft() final;
-    virtual void _rotateRight() final;
+    virtual bool _validation() override final;
+    virtual const std::shared_ptr<TFigure> _copy() const override final;
+    virtual void _setFigureType(const TFigureType) override final;
 };
 
 SDL_TETRIS_END

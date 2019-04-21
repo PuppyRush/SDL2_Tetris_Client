@@ -6,7 +6,7 @@
 #include  <ace/OS.h>
 
 #include "SDL2/SDL.h"
-#include "../Event.h"
+#include "GameInterface/include/Event.h"
 #include  "ClientService.h"
 
 #include "PacketQueue.h"

@@ -2,11 +2,12 @@
 
 #include "TFigure.h"
 #include "TFigureBuilder.h"
-#include "GameInterface/src/TypeTraits.h"
+#include "GameInterface/include/TypeTraits.h"
 
 using namespace tetris;
 using namespace game_interface;
 using namespace sdleasygui;
+using namespace std;
 
 TFigure::TFigure()
 {}
@@ -50,6 +51,7 @@ std::shared_ptr<TFigure> TFigure::move(const sdleasygui::t_eventType event)
         case SDLK_UP:
             _rotateLeft();
             break;
+        case SDLK_SPACE:
         case SDLK_DOWN:
             _goDown();
             break;
@@ -60,7 +62,7 @@ std::shared_ptr<TFigure> TFigure::move(const sdleasygui::t_eventType event)
     return copied;
 }
 
-TFigureUnit TFigure::getLeftmost()
+TFigureUnit TFigure::getLeftmost() const noexcept
 {
     TFigureUnit unit = *m_relativeCoord.begin();
     const auto& end = m_relativeCoord.end();
@@ -73,7 +75,7 @@ TFigureUnit TFigure::getLeftmost()
     return unit;
 }
 
-TFigureUnit TFigure::getRightmost()
+TFigureUnit TFigure::getRightmost() const noexcept
 {
     TFigureUnit unit = *m_relativeCoord.begin();
     const auto& end = m_relativeCoord.end();
@@ -86,7 +88,7 @@ TFigureUnit TFigure::getRightmost()
     return unit;
 }
 
-TFigureUnit TFigure::getUpmost()
+TFigureUnit TFigure::getUpmost() const noexcept
 {
     TFigureUnit unit = *m_relativeCoord.begin();
     const auto& end = m_relativeCoord.end();
@@ -99,7 +101,7 @@ TFigureUnit TFigure::getUpmost()
     return unit;
 }
 
-TFigureUnit TFigure::getDownmost()
+TFigureUnit TFigure::getDownmost() const noexcept
 {
     TFigureUnit unit = *m_relativeCoord.begin();
     const auto& end = m_relativeCoord.end();
@@ -120,7 +122,6 @@ const std::shared_ptr<TFigure> TFigure::copy() const
     copied->m_height = this->m_height;
     copied->m_width = this->m_width;
     copied->m_figureType = this->m_figureType;
-    copied->m_figureTypeCount = this->m_figureTypeCount;
     copied->m_relativeCoord = this->m_relativeCoord;
     copied->m_figureClass = this->m_figureClass;
 
@@ -134,9 +135,9 @@ void TFigure::copy(const TFigure& fig)
     this->m_height = fig.m_height;
     this->m_width = fig.m_width;
     this->m_figureType = fig.m_figureType;
-    this->m_figureTypeCount = fig.m_figureTypeCount;
     this->m_relativeCoord = fig.m_relativeCoord;
     this->m_figureClass = fig.m_figureClass;
+    this->_setFigureType(fig.m_figureType);
 }
 
 
@@ -174,7 +175,16 @@ void TFigure::_goDown ()
     m_absoluteCoord.y +=1;
 }
 
-const TFigureType TFigure::getRandomlyFigureType() const {
+void TFigure::_rotateLeft()
+{
+    _setFigureType(m_figureType);
+
+    const auto next = (game_interface::toUType(m_figureType)+1);
+    m_figureType = TFigureType{ static_cast<std::underlying_type_t<TFigureType >>(next % getTypeCount()) };
+}
+
+TFigureType TFigure::getRandomlyFigureType() const noexcept
+{
     return EnumHelper<TFigureType>::getRandomly(getTypeBegin(), getTypeEnd());
 }
 
@@ -185,4 +195,30 @@ void TFigure::_resetRelateivePoint(const TPoint& newPt)
     {
         p.set({p.getPoint().x+ptDis.x, p.getPoint().y+ptDis.y});
     }
+}
+
+void TFigure::fromJson(const Json::Value& json)
+{
+    string in = json[getUniqueName().data()].asString();
+
+    this->m_absoluteCoord.x = static_cast<t_coord>(bitset<10>(in.substr(5,10)).to_ulong());
+    this->m_absoluteCoord.y = static_cast<t_coord>(bitset<20>(in.substr(15,20)).to_ulong());
+
+    this->m_figureClass = static_cast<decltype(m_figureClass)>(bitset<3>(in.substr(0,3)).to_ulong());
+    this->m_figureType = static_cast<decltype(m_figureType)>( bitset<2>(in.substr(3,2)).to_ulong());
+}
+
+Json::Value TFigure::toJson() const
+{
+    Json::Value json;
+
+    bitset<3>tetriminoBit( toUType( getClass()));
+    bitset<2>directionBit( toUType(getType()));
+    bitset<10>xBit(getPoint().x);
+    bitset<20>yBit(getPoint().y);
+
+    string concator = tetriminoBit.to_string() + directionBit.to_string() + xBit.to_string() + yBit.to_string();
+    json[getUniqueName().data()] = bitset<35>(concator).to_string();
+
+    return json;
 }

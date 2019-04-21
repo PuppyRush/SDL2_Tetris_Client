@@ -76,7 +76,7 @@ private:
     sdleasygui::ColorCode m_color;
     sdleasygui::TPoint m_point;
     TFigureType m_figureType;
-    TFigureClass  m_figureClass = TFigureClass::End;
+    TFigureClass  m_figureClass = TFigureClass::L;
     t_age m_age;
     UnitType m_unitType;
     

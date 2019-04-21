@@ -15,6 +15,9 @@ endif ()
 set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_COLOR_MAKEFILE   ON)
 
+set(CMAKE_BUILD_TYPE=Debug /home/chaed/projects/SDL2_Tetris_Client/cmake-build-debug)
+SET(CMAKE_DEBUG_POSTFIX "_d" CACHE STRING "postfix applied to debug build of libraries")
+
 # Remove 'lib' prefix for shared libraries on Windows
 if (WIN32)
     set(CMAKE_SHARED_LIBRARY_PREFIX "")
@@ -25,5 +28,6 @@ include_directories(lib)
 # NOTE: The order matters! The most independent ones should go first.
 add_subdirectory(lib/GameInterface) # C is a shared library (depends on B and external XXX)
 add_subdirectory(lib/SDL2EasyGUI)
+
 
 add_subdirectory(Tetris) # Executable (depends on A and C)

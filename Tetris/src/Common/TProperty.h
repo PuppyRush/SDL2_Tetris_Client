@@ -11,7 +11,7 @@
 #endif
 
 #include "TDefine.h"
-#include "GameInterface/src/Event.h"
+#include "GameInterface/include/Event.h"
 
 SDL_TETRIS_BEGIN
 
@@ -56,7 +56,7 @@ enum class TFigureClass : sdleasygui::t_type
     O,
     T,
     Begin = L,
-    End = T + 1
+    End = T
 };
 
 enum class TFigureType : sdleasygui::t_type

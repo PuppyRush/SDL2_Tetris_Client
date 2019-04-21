@@ -5,17 +5,19 @@
   #pragma once
 #endif
 
-
+#include <bitset>
 #include <cassert>
 #include <memory>
 #include <deque>
 #include <numeric>
 #include <array>
 
+#include "GameInterface/include/Object.h"
 #include "../Common/TDefine.h"
 #include "../Common/TType.h"
-#include "GameInterface/src/TypeTraits.h"
+#include "GameInterface/include/TypeTraits.h"
 #include "TFigureUnit.h"
+#include "GameInterface/include/JsonPackage.h"
 
 SDL_TETRIS_BEGIN
 
@@ -33,47 +35,52 @@ SDL_TETRIS_BEGIN
 ***********************************************/
 
 class TFigureBuilder;
-class TFigure{
+class TFigure : game_interface::JsonPackage
+{
 public:
 
     using FigureCoords = std::array<TFigureUnit, 4>;
     
     virtual ~TFigure();
     
-    inline const TFigureType getType()
+    inline TFigureType getType() const noexcept
     { return m_figureType;}
 
-    inline const TFigureClass getClass()
+    inline TFigureClass getClass() const noexcept
     { return m_figureClass;}
 
-    inline const size_t getWidth()
+    inline size_t getWidth() const noexcept
     { return m_width;}
     
-    inline const size_t getHeight()
+    inline size_t getHeight() const noexcept
     { return m_height;}
 
-    inline const sdleasygui::TColor getColor()
+    inline sdleasygui::TColor getColor() const noexcept
     { return m_color;}
 
-    inline const sdleasygui::TPoint getPoint()
+    inline sdleasygui::TPoint getPoint() const noexcept
     { return m_absoluteCoord;}
 
     inline void setPoint(const sdleasygui::TPoint& point)
     { _resetRelateivePoint(point); m_absoluteCoord = point; }
 
-    inline FigureCoords& getCoords()
+    inline FigureCoords& getCoords() noexcept
     { return m_relativeCoord;}
 
-    std::shared_ptr<TFigure> move(const sdleasygui::t_eventType event);
+    std::underlying_type_t<TFigureType>
+    getTypeCount() const noexcept
+    { return ( game_interface::toUType(getTypeEnd()) - game_interface::toUType(getTypeBegin())) +1 ; }
 
-    TFigureUnit getLeftmost();
-    TFigureUnit getRightmost();
-    TFigureUnit getUpmost();
-    TFigureUnit getDownmost();
+    std::shared_ptr<TFigure> move(const sdleasygui::t_eventType event);
+    TFigureUnit getLeftmost() const noexcept;
+    TFigureUnit getRightmost() const noexcept;
+    TFigureUnit getUpmost() const noexcept;
+    TFigureUnit getDownmost() const noexcept;
 
     void copy(const TFigure& fig);
     const std::shared_ptr<TFigure> copy() const;
-    virtual const TFigureType getRandomlyFigureType() const;
+
+    virtual TFigureType getRandomlyFigureType() const noexcept;
 
     template <class T>
     inline void setAll(const T& type)
@@ -90,14 +97,19 @@ public:
     }
 
     virtual void initialize() = 0;
-    virtual const TFigureType getTypeBegin() const = 0;
-    virtual const TFigureType getTypeEnd() const = 0;
+    virtual TFigureType getTypeBegin() const noexcept = 0;
+    virtual TFigureType getTypeEnd() const noexcept = 0;
+
+    virtual Json::Value toJson() const override;
+    virtual void fromJson(const Json::Value& json);
+    virtual const std::string_view& getUniqueName() const noexcept { return game_interface::NAME_FIGURE; }
 
 protected:
     TFigure(const TFigureBuilder *bld);
     TFigure();
 
-    sdleasygui::t_size m_figureTypeCount;
+    virtual void _rotateLeft();
+
     sdleasygui::t_size m_width;
     sdleasygui::t_size m_height;
     sdleasygui::TColor m_color;
@@ -107,15 +119,17 @@ protected:
     FigureCoords m_relativeCoord;
     
 private:
-
     virtual void _goRight();
     virtual void _goLeft();
     virtual void _goDown();
+    virtual void _rotateRight() final { assert(0); } // not implementation yet
+
+    void _resetRelateivePoint(const sdleasygui::TPoint& exPt);
+
     virtual const std::shared_ptr<TFigure> _copy() const = 0;
     virtual bool _validation() = 0;
-    virtual void _rotateLeft() = 0;
-    virtual void _rotateRight() = 0;
-    void _resetRelateivePoint(const sdleasygui::TPoint& exPt);
+
+    virtual void _setFigureType(const TFigureType) = 0;
 };
 
 SDL_TETRIS_END

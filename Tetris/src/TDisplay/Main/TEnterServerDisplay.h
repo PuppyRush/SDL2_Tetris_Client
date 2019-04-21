@@ -5,8 +5,8 @@
 #ifndef TETRIS_FIGURE_CLASS_TENTERSERVERDISPLAY_H
 #define TETRIS_FIGURE_CLASS_TENTERSERVERDISPLAY_H
 
-#include "SDL2EasyGUI/src/Controller/EditLabel.h"
-#include "SDL2EasyGUI/src/Controller/Button.h"
+#include "SDL2EasyGUI/src/Controller/Label/EditLabel.h"
+#include "SDL2EasyGUI/src/Controller/Button/Button.h"
 
 #include "TDisplay/TDisplayInterface.h"
 #include "../../Common/THeader.h"
@@ -18,7 +18,7 @@ class TEnterServerDisplay : public TDisplayInterface
 
 public:
 
-    TEnterServerDisplay() = default;
+    explicit TEnterServerDisplay(const sdleasygui::t_id displayId);
     virtual ~TEnterServerDisplay() = default;
 
     virtual void registerEvent() override;

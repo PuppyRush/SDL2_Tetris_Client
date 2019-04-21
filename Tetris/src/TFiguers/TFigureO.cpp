@@ -6,7 +6,6 @@ using namespace game_interface;
 TFigureO::TFigureO (const TFigureBuilder *bld)
     : TFigure (bld)
 {
-    _rotateLeft ();
     m_width = 2;
     m_height = 2;
 }
@@ -17,13 +16,12 @@ TFigureO::~TFigureO ()
 
 void TFigureO::initialize ()
 {
-    m_figureTypeCount = toUType (getTypeEnd ()) - toUType (getTypeBegin ());
+    _rotateLeft ();
 }
 
-void TFigureO::_rotateLeft ()
+void TFigureO::_setFigureType(const TFigureType)
 {
-    m_relativeCoord[0].set ( {m_absoluteCoord.x, m_absoluteCoord.y});
-
+    m_relativeCoord[0].set({m_absoluteCoord.x, m_absoluteCoord.y});
     switch (m_figureType)
     {
         case TFigureType::A:
@@ -37,22 +35,18 @@ void TFigureO::_rotateLeft ()
     }
 }
 
-void TFigureO::_rotateRight ()
-{
-
-}
 
 bool TFigureO::_validation()
 {
 
 }
 
-const TFigureType TFigureO::getTypeBegin () const
+TFigureType TFigureO::getTypeBegin () const noexcept
 {
     return TFigureType::A;
 }
 
-const TFigureType TFigureO::getTypeEnd () const
+TFigureType TFigureO::getTypeEnd () const noexcept
 {
     return TFigureType::A;
 }

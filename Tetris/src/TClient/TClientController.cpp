@@ -35,7 +35,7 @@ TClientController::~TClientController()
     }
 }
 
-const bool TClientController::connectServer()
+bool TClientController::connectServer()
 {
     m_connector->connect();
 

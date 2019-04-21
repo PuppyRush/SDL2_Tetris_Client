@@ -6,7 +6,7 @@ using namespace game_interface;
 TFigureZ::TFigureZ (const TFigureBuilder *bld)
     : TFigure (bld)
 {
-    _rotateLeft ();
+
 }
 
 TFigureZ::~TFigureZ ()
@@ -15,13 +15,12 @@ TFigureZ::~TFigureZ ()
 
 void TFigureZ::initialize ()
 {
-    m_figureTypeCount = toUType (getTypeEnd ()) - toUType (getTypeBegin ());
+    _rotateLeft ();
 }
 
-void TFigureZ::_rotateLeft ()
+void TFigureZ::_setFigureType(const TFigureType)
 {
-    m_relativeCoord[0].set ( {m_absoluteCoord.x, m_absoluteCoord.y});
-
+    m_relativeCoord[0].set({m_absoluteCoord.x, m_absoluteCoord.y});
     switch (m_figureType)
     {
         case TFigureType::A:
@@ -30,7 +29,6 @@ void TFigureZ::_rotateLeft ()
             m_relativeCoord[1].set ( {m_absoluteCoord.x, m_absoluteCoord.y-1});
             m_relativeCoord[2].set ( {m_absoluteCoord.x + 1, m_absoluteCoord.y});
             m_relativeCoord[3].set ( {m_absoluteCoord.x + 1, m_absoluteCoord.y+1});
-            m_figureType = TFigureType::B;
             break;
         case TFigureType::B:
             m_width = 3;
@@ -38,16 +36,10 @@ void TFigureZ::_rotateLeft ()
             m_relativeCoord[1].set ( {m_absoluteCoord.x+1, m_absoluteCoord.y});
             m_relativeCoord[2].set ( {m_absoluteCoord.x-1, m_absoluteCoord.y + 1});
             m_relativeCoord[3].set ( {m_absoluteCoord.x, m_absoluteCoord.y + 1});
-            m_figureType = TFigureType::A;
             break;
         default:
             assert(0);
     }
-}
-
-void TFigureZ::_rotateRight ()
-{
-
 }
 
 bool TFigureZ::_validation()
@@ -55,12 +47,12 @@ bool TFigureZ::_validation()
 
 }
 
-const TFigureType TFigureZ::getTypeBegin () const
+TFigureType TFigureZ::getTypeBegin () const noexcept
 {
     return TFigureType::A;
 }
 
-const TFigureType TFigureZ::getTypeEnd () const
+TFigureType TFigureZ::getTypeEnd () const noexcept
 {
     return TFigureType::B;
 }
@@ -69,3 +61,4 @@ const std::shared_ptr<TFigure> TFigureZ::_copy() const
 {
     return std::shared_ptr<TFigureZ>(new TFigureZ());
 }
+

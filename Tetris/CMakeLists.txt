@@ -94,14 +94,19 @@ add_executable(tetris_figure_class
         src/TDisplay/Main/TEnterServerDisplay.h
         src/TOption/TOptionManager.cpp
         src/TOption/TOptionManager.h
-        src/TClient/TClientController.h
+        include/TClientController.h
         src/TClient/TClientController.cpp
-        src/TDisplay/Waiting/TCreateGameroomWindow.cpp
-        src/TDisplay/Waiting/TCreateGameroomWindow.h
-        src/TDisplay/TDisplayInterface.h src/TObject/TWaitingRoom.cpp src/TObject/TWaitingRoom.h src/TObject/TGameRoom.cpp src/TObject/TGameRoom.h)
+        src/TDisplay/Waiting/TCreateGameroomDisplay.cpp
+        src/TDisplay/Waiting/TCreateGameroomDisplay.h
+        src/TDisplay/TDisplayInterface.h
+        src/TObject/TWaitingRoom.cpp
+        src/TObject/TWaitingRoom.h
+        src/TObject/TGameRoom.cpp
+        src/TObject/TGameRoom.h)
 
 
 include_directories(
+        include
         SYSTEM ${Boost_INCLUDE_DIR}
         ${SDL2_INCLUDE_DIR}
         ${SDL2_IMAGE_INCLUDE_DIR}

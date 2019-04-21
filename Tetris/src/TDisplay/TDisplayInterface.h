@@ -6,7 +6,7 @@
 #define PROJECT_TTETRISDISPLAYINTERFACE_H
 
 #include "../Common/THeader.h"
-#include "SDL2EasyGUI/src/Windows/DisplayInterface.h"
+#include "SDL2EasyGUI/include/DisplayInterface.h"
 #include "GameInterface/src/SubScription/Observer.h"
 #include "GameInterface/src/Online/Packet.h"
 #include "GameInterface/src/Online/PacketQueue.h"
@@ -25,7 +25,8 @@ public:
 
 protected:
 
-    TDisplayInterface()
+    TDisplayInterface(const sdleasygui::t_id displayId)
+        :DisplayInterface(displayId)
     {}
 
     virtual void updateObserver(const game_interface::Packet& )

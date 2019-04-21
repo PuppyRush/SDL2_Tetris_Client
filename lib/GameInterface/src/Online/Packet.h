@@ -9,10 +9,10 @@
 #include <string>
 #include <jsoncpp/json/json.h> // or jsoncpp/json.h , or json/json.h etc.
 
-#include "../Constant.h"
-#include "../TypeTraits.h"
-#include "../Type.h"
-#include "../Object/Object.h"
+#include "GameInterface/include/Constant.h"
+#include "GameInterface/include/TypeTraits.h"
+#include "GameInterface/include/Type.h"
+#include "GameInterface/include/Object.h"
 #include "MessageType.h"
 
 namespace game_interface {

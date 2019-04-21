@@ -6,8 +6,8 @@
 #include "TLocalMainDisplay.h"
 #include "../Game/TSingleGameDisplay.h"
 #include "../TOptionDisplay.h"
-#include "SDL2EasyGUI/src/Windows/DisplayController.h"
-#include "SDL2EasyGUI/src/Controller/Button.h"
+#include "SDL2EasyGUI/include/DisplayController.h"
+#include "SDL2EasyGUI/src/Controller/Button/Button.h"
 #include "../..//Common/TResource.h"
 
 SDL_TETRIS
@@ -15,7 +15,8 @@ using namespace std;
 using namespace game_interface;
 using namespace sdleasygui;
 
-TLocalMainDisplay::TLocalMainDisplay()
+TLocalMainDisplay::TLocalMainDisplay(const sdleasygui::t_id displayId)
+    :TMainDisplay(displayId)
 {
     m_mode = TLocalMode::Local;
 }
@@ -66,12 +67,12 @@ void TLocalMainDisplay::onInitialize() {
 
         addControll(bld.build());
     }
-    ::DisplayInterface::onInitialize();
+    TMainDisplay::onInitialize();
 }
 
 void TLocalMainDisplay::onClickedStartLocalGame(const void* click)
 {
-    auto dlg = make_shared<TSingleGameDisplay>();
+    auto dlg = sdleasygui::make_display<TSingleGameDisplay>(resource::SINGLEGAME_DISPLAY);
     dlg->setWindowHeight(WINDOW_HEIGHT);
     dlg->setWindowWidth(WINDOW_WIDTH);
     dlg->modal(dlg);
@@ -79,18 +80,13 @@ void TLocalMainDisplay::onClickedStartLocalGame(const void* click)
 
 void TLocalMainDisplay::onClickedOption(const void* click)
 {
-    auto dlg = make_shared<TOptionDisplay>();
+    auto dlg = sdleasygui::make_display<TOptionDisplay>(resource::OPTION_DISPLAY);
     dlg->setWindowHeight(WINDOW_HEIGHT);
     dlg->setWindowWidth(WINDOW_WIDTH);
     dlg->modal(dlg);
 }
 
-void TLocalMainDisplay::onTimerEvent()
-{
-
-}
-
 void TLocalMainDisplay::onDraw()
 {
-    DisplayInterface::onDraw();
+    TMainDisplay::onDraw();
 }

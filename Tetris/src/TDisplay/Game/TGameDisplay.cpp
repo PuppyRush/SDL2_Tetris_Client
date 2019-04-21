@@ -2,13 +2,21 @@
 // Created by chaed on 18. 12. 18.
 //
 
+#include <string>
+
 #include "TGameDisplay.h"
+#include "SDL2EasyGUI/src/Controller/Button/Button.h"
+#include "../../Common/TResource.h"
+#include "GameInterface/src/Online/JsonHelper.h"
+#include "GameInterface/src/Online/Packet.h"
 
 SDL_TETRIS
+using namespace game_interface;
 using namespace sdleasygui;
-using namespace sdleasygui;
+using namespace std;
 
-TGameDisplay::TGameDisplay()
+TGameDisplay::TGameDisplay(const sdleasygui::t_id displayId)
+    :TDisplayInterface(displayId)
 {}
 
 void TGameDisplay::onKeyboardEvent (const SDL_KeyboardEvent* key)
@@ -23,24 +31,31 @@ void TGameDisplay::onKeyboardEvent (const SDL_KeyboardEvent* key)
         default:;
     }
 
-    DisplayInterface::onKeyboardEvent(key);
+    TDisplayInterface::onKeyboardEvent(key);
+}
+
+void TGameDisplay::onTimerEvent(const SDL_UserEvent *user)
+{
+    switch (user->type) {
+        case TETRIS_EVENT_FIGURETIMER:
+            /* and now we can call the function we wanted to call in the timer but couldn't because of the multithreading problems */
+            if(!m_players.empty()) {
+                refresh();
+                m_players.front()->command(SDLK_DOWN);
+            }
+
+            break;
+        default:;
+    }
+
+    TDisplayInterface::onTimerEvent(user);
 }
 
 
 void TGameDisplay::onUserEvent(const SDL_UserEvent* event) {
 
-    switch (event->type) {
-        case TETRIS_EVENT_FIGURETIMER:
-            /* and now we can call the function we wanted to call in the timer but couldn't because of the multithreading problems */
-            if(!m_players.empty()) {
-                m_players.front()->command(SDLK_DOWN);
-                refresh();
-            }
-            break;
-        default:;
-    }
 
-    DisplayInterface::onUserEvent(event);
+    TDisplayInterface::onUserEvent(event);
 }
 
 void TGameDisplay::onClose()
@@ -48,21 +63,33 @@ void TGameDisplay::onClose()
     m_players.clear();
     SDL_RemoveTimer(m_figureTimer);
 
-    DisplayInterface::onClose();
+    TDisplayInterface::onClose();
 }
 
 void TGameDisplay::onCreate()
 {
 
-    DisplayInterface::onCreate();
+    TDisplayInterface::onCreate();
+}
+
+void TGameDisplay::onClickedStart(const void* click)
+{
+    TimerAdder tAdder(1000, game_interface::toUType(TetrisEvent::TETRIS_EVENT_FIGURETIMER));
+    tAdder.windowsId(this->getWindowID());
+    m_figureTimer = tAdder.addTimer();
+
+    m_gamestart = true;
+
+    auto ctl = getControll<Button>(resource::GAME_START);
+    ctl->setEnabled(false);
 }
 
 void TGameDisplay::onDraw()
 {
     using namespace std;
 
-    if(!m_gamestart)
-        return;
+   // if(!m_gamestart)
+    //    return;
 
     auto renderer = getRenderer();
 
@@ -150,6 +177,8 @@ void TGameDisplay::onDraw()
     }
 
     _drawNextFigure();
+
+    TDisplayInterface::onDraw();
 }
 
 void TGameDisplay::_drawFigure(TFigureController::board_ptr board, TFigureController::figure_ptr figure)
@@ -179,6 +208,9 @@ void TGameDisplay::_drawNextFigure()
 {
     using namespace std;
     auto renderer = getRenderer();
+
+    if(m_players.empty())
+        return;
 
     //next figure
     const auto& ply = m_players.front();

@@ -3,7 +3,7 @@
 //
 
 #include "TWaitingRoomCard.h"
-#include "SDL2EasyGUI/src/Controller/EditLabel.h"
+#include "SDL2EasyGUI/src/Controller/Label/EditLabel.h"
 #include "../../Common/TResource.h"
 
 SDL_TETRIS
@@ -13,7 +13,7 @@ using namespace sdleasygui;
 TWaitingRoomCard::TWaitingRoomCard(TWaitingRoomCardBuilder& bld)
     :Border(bld), m_cardBasic(bld.m_cardBasic)
 {
-    bld.kind(sdleasygui::ControllKind::ListBox);
+    bld.kind(sdleasygui::ControllerKind::ListBox);
 }
 
 void TWaitingRoomCard::onDraw()

@@ -5,8 +5,8 @@
 #include <jsoncpp/json/json.h>
 
 #include "TMultiGameRoomDisplay.h"
-#include "SDL2EasyGUI/src/Controller/Button.h"
-#include "GameInterface/src/Event.h"
+#include "SDL2EasyGUI/src/Controller/Button/Button.h"
+#include "GameInterface/include/Event.h"
 #include "GameInterface/src/Online/JsonHelper.h"
 #include "../../Common/TResource.h"
 #include "../../TFiguers/TFigureBuilder.h"
@@ -17,7 +17,8 @@ using namespace game_interface;
 using namespace sdleasygui;
 using namespace std;
 
-TMultiGameRoomDisplay::TMultiGameRoomDisplay()
+TMultiGameRoomDisplay::TMultiGameRoomDisplay(const sdleasygui::t_id displayId)
+    :TGameDisplay(displayId)
 {
     m_display = game_interface::toUType( TDisplay::Game);
     m_mode = TLocalMode::Online;
@@ -26,11 +27,12 @@ TMultiGameRoomDisplay::TMultiGameRoomDisplay()
 void TMultiGameRoomDisplay::onClickedStart(const void* click)
 {
     {
-        auto ply = std::make_shared<TPlayer>();
+        auto& ply = TPlayer::getInstance();
         ply->startGame();
+
+        //임시 코드. 수정 필요!!!!
         m_players.emplace_back(ply);
 
-        ply->connectServer();
         auto board = ply->getController().getBoard();
 
         board->setStartDisplayPoint(TPoint{GAMEBOARD_BEGIN_X, GAMEBOARD_BEGIN_Y});
@@ -45,9 +47,9 @@ void TMultiGameRoomDisplay::onClickedStart(const void* click)
     //
     {
         auto echoPly = std::make_shared<TPlayer>();
-        echoPly->startGame();
         m_players.emplace_back(echoPly);
 
+        echoPly->getController().setGhostMode(false);
         auto board = echoPly->getController().getBoard();
 
         const auto beginX = GAMEBOARD_BEGIN_X+600;
@@ -60,15 +62,7 @@ void TMultiGameRoomDisplay::onClickedStart(const void* click)
         nextboard->setblockLength(FIGURE_UNIT_LEN);
     }
 
-    TimerAdder tAdder(1000, game_interface::toUType(TetrisEvent::TETRIS_EVENT_FIGURETIMER));
-    tAdder.windowsId(this->getWindowID());
-    m_figureTimer = tAdder.addTimer();
-
-    m_drawLine = TOptionManager::getInstance()->isDrawLine();
-    m_gamestart = true;
-
-    auto ctl = getControll<Button>(resource::GAME_START);
-    ctl->setEnabled(false);
+    TGameDisplay::onClickedStart(click);
 }
 
 void TMultiGameRoomDisplay::onClickedSuspend(const void* click)
@@ -121,17 +115,17 @@ void TMultiGameRoomDisplay::onInitialize()
 
 
 
-    DisplayInterface::onInitialize();
+    TGameDisplay::onInitialize();
 }
 
 void TMultiGameRoomDisplay::onClose()
 {
-    DisplayInterface::onClose();
+    TGameDisplay::onClose();
 }
 
 void TMultiGameRoomDisplay::onCreate()
 {
-    DisplayInterface::onCreate();
+    TGameDisplay::onCreate();
 }
 
 void TMultiGameRoomDisplay::registerEvent()
@@ -139,43 +133,60 @@ void TMultiGameRoomDisplay::registerEvent()
     SEG_LBUTTONCLICK(game_interface::toUType(resource::GAME_START),
                      &TMultiGameRoomDisplay::onClickedStart,
                      this);
-
 }
 
-void TMultiGameRoomDisplay::onUserEvent(const SDL_UserEvent* event)
+void TMultiGameRoomDisplay::updateObserver(const game_interface::Packet& packet)
 {
-    switch (event->type) {
-        case RECV_DATA:
-            if(m_players.size()==2) {
+    switch (packet.getHeader().message) {
+        case messageInfo::GAME_RESPONSE_BOARDINFO:
+            if(m_players.size()==2)
+                m_players.back()->recvBoardInfo(packet);
+            break;
+        default:;
+    }
 
-                Json::Value json;
-                string strbuf((char *)event->data1);
+    TGameDisplay::updateObserver(packet);
+}
 
-                Json::Reader reader;
-                reader.parse(strbuf, json);
+void TMultiGameRoomDisplay::onTimerEvent(const SDL_UserEvent *user)
+{
 
-                t_coord x{0}, y{0};
-                int tclass;
-                int  type;
+    switch (user->type) {
+        case TETRIS_EVENT_FIGURETIMER:
+            /* and now we can call the function we wanted to call in the timer but couldn't because of the multithreading problems */
+            if(!m_players.empty()) {
 
-                string id;
-                string ip;
-                string time;
-                string board;
-                JsonHelper::jsonRef(json,id,ip,time,board);
-                JsonHelper::ref(board, tclass, type, x,y);
+                m_players.front()->sendBoardInfo(m_gameroom->getUnique());
+            }
 
-                TFigureBuilder bld({x,y});
-                bld.figure(TFigureClass(tclass));
-                bld.type(TFigureType(type));
+            break;
+        default:;
+    }
 
-                auto figure = bld.build();
-                m_players.at(1)->getController().forceSet(figure.get());
+    TGameDisplay::onTimerEvent(user);
+}
+
+
+void TMultiGameRoomDisplay::onKeyboardEvent (const SDL_KeyboardEvent* key)
+{
+    switch (key->type) {
+        case SDL_KEYDOWN:
+            if(!m_players.empty()) {
+                auto& me = m_players.front();
+                me->sendBoardInfo(m_gameroom->getUnique());
                 refresh();
             }
             break;
         default:;
     }
+
+    TGameDisplay::onKeyboardEvent(key);
+}
+
+
+void TMultiGameRoomDisplay::onUserEvent(const SDL_UserEvent* event)
+{
+
 
     TGameDisplay::onUserEvent(event);
 }

@@ -8,11 +8,17 @@
 
 #include "../../TObject/TPlayer.h"
 #include "GameInterface/src/Online/PacketQueue.h"
-#include "SDL2EasyGUI/src/Controller/EditLabel.h"
+#include "SDL2EasyGUI/src/Controller/Label/EditLabel.h"
 
 SDL_TETRIS
 using namespace game_interface;
 using namespace sdleasygui;
+
+TEnterServerDisplay::TEnterServerDisplay(const sdleasygui::t_id displayId)
+    :TDisplayInterface(displayId)
+{
+
+}
 
 void TEnterServerDisplay::registerEvent()
 {
@@ -26,6 +32,7 @@ void TEnterServerDisplay::onInitialize() {
     {
         EditLabelBuilder bld(getWindow(), {getWindowWidth() / 2 - 120, begin_y}, "Player");
         bld.id(sdleasygui::toUType(resource::ENTERSERVER_ID))->
+            borderBoundaryType(BorderBoundaryType::roundedAngle)->
             fontColor(ColorCode::black)->
             width(240)->
             height(50)->
@@ -41,6 +48,7 @@ void TEnterServerDisplay::onInitialize() {
     {
         ButtonBuilder bld(getWindow(), {getWindowWidth() / 2 - 120, begin_y}, "ENTER");
         bld.id(sdleasygui::toUType(resource::ENTERSERVER_OK))->
+            borderBoundaryType(BorderBoundaryType::roundedAngle)->
             width(100)->
             height(50)->
             borderColor(ColorCode::white)->
@@ -53,6 +61,7 @@ void TEnterServerDisplay::onInitialize() {
     {
         ButtonBuilder bld(getWindow(), {getWindowWidth() / 2 , begin_y}, "BACK");
         bld.id(sdleasygui::toUType(resource::ENTERSERVER_BACK))->
+            borderBoundaryType(BorderBoundaryType::roundedAngle)->
             width(100)->
             height(50)->
             borderColor(ColorCode::white)->
@@ -62,12 +71,14 @@ void TEnterServerDisplay::onInitialize() {
         addControll(bld.build());
     }
 
+    setBackgroundColor(TColor{ColorCode::lightgray});
+
     ::DisplayInterface::onInitialize();
 }
 
 void TEnterServerDisplay::onClickedEnterServer(const void* click)
 {
-    auto player = TPlayer::getInstance();
+    auto& player = TPlayer::getInstance();
     const  auto btn = getControll<EditLabel>(resource::ENTERSERVER_ID);
 
     assert(btn != nullptr );

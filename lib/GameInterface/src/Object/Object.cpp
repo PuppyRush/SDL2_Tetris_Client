@@ -1,6 +1,6 @@
 #include <ctime>
 
-#include "Object.h"
+#include "GameInterface/include/Object.h"
 
 using namespace game_interface;
 

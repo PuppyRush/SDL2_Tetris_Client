@@ -4,23 +4,32 @@
 
 #include <string>
 
+
+#include "SDL2EasyGUI/src/Controller/Box/ListBox.h"
+#include "SDL2EasyGUI/src/Controller/Button/Button.h"
+#include "SDL2EasyGUI/src/Controller/Label/EditLabel.h"
+#include "SDL2EasyGUI/include/SEG_TypeTraits.h"
+
 #include "TWaitingRoomDisplay.h"
 #include "TWaitingRoomCard.h"
-#include "TCreateGameroomWindow.h"
-#include "../Game/TMultiGameRoomDisplay.h"
+#include "TCreateGameroomDisplay.h"
 
-#include "SDL2EasyGUI/src/Controller/ListBox.h"
-#include "SDL2EasyGUI/src/Controller/Button.h"
-#include "SDL2EasyGUI/src/Controller/EditLabel.h"
-#include "SDL2EasyGUI/src/SEG_TypeTraits.h"
-#include "../../Common/TResource.h"
+#include "../Game/TMultiGameRoomDisplay.h"
 #include "../../TObject/TPlayer.h"
+#include "../../Common/TResource.h"
+
 
 SDL_TETRIS
 
 using namespace std;
 using namespace sdleasygui;
 using namespace game_interface;
+
+TWaitingRoomDisplay::TWaitingRoomDisplay(const sdleasygui::t_id displayId)
+    :TDisplayInterface(displayId)
+{
+
+}
 
 void TWaitingRoomDisplay::registerEvent()
 {
@@ -42,6 +51,7 @@ void TWaitingRoomDisplay::onInitialize() {
     {
         ListBoxBuilder bld(getWindow(), {m_chatBoxBeginPoint.x, m_chatBoxBeginPoint.y}, "");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 11, ColorCode::black})->
+            borderBoundaryType(BorderBoundaryType::roundedAngle)->
             backgroundColor(ColorCode::white)->
             id(sdleasygui::toUType(resource::WAITINGROOM_CHATBOX))->
             width(m_chatBoxWidth)->
@@ -55,6 +65,7 @@ void TWaitingRoomDisplay::onInitialize() {
     {
         EditLabelBuilder bld(getWindow(), {m_chatBoxBeginPoint.x, m_chatBoxBeginPoint.y + m_chatBoxHeight+ 5}, "");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 13, ColorCode::black})->
+            borderBoundaryType(BorderBoundaryType::roundedAngle)->
             backgroundColor(ColorCode::white)->
             id(sdleasygui::toUType(resource::WAITINGROOM_CHAREDIT))->
             width(m_chatBoxWidth)->
@@ -68,6 +79,7 @@ void TWaitingRoomDisplay::onInitialize() {
     {
         ListBoxBuilder bld(getWindow(), {m_userBoxBeginPoint.x, m_userBoxBeginPoint.y}, "");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 11, ColorCode::black})->
+            borderBoundaryType(BorderBoundaryType::roundedAngle)->
             backgroundColor(ColorCode::white)->
             id(sdleasygui::toUType(resource::WAITINGROOM_USERBOX))->
             width(m_userBoxWidth)->
@@ -81,6 +93,7 @@ void TWaitingRoomDisplay::onInitialize() {
     {
         ButtonBuilder bld(getWindow(), {m_createBtnBeginPoint.x, m_createBtnBeginPoint.y}, "CREATE");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 28, ColorCode::white})->
+            borderBoundaryType(BorderBoundaryType::roundedAngle)->
             backgroundColor(ColorCode::dimgray)->
             id(sdleasygui::toUType(resource::WAITINGROOM_CREATE))->
             width(m_btnWidth)->
@@ -95,6 +108,7 @@ void TWaitingRoomDisplay::onInitialize() {
         ButtonBuilder bld(getWindow(), {m_createBtnBeginPoint.x, m_createBtnBeginPoint.y+m_btnHeight + 10}, "EXIT");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 28, ColorCode::white})->
             backgroundColor(ColorCode::dimgray)->
+            borderBoundaryType(BorderBoundaryType::roundedAngle)->
             id(sdleasygui::toUType(resource::WAITINGROOM_DISCONNECT))->
             width(m_btnWidth)->
             height(m_btnHeight)->
@@ -105,19 +119,21 @@ void TWaitingRoomDisplay::onInitialize() {
         addControll(bld.build());
     }
 
-    DisplayInterface::onInitialize();
+    setBackgroundColor(ColorCode::black);
+
+    TDisplayInterface::onInitialize();
 }
 
 void TWaitingRoomDisplay::onDraw() {
-    DisplayInterface::onDraw();
+    TDisplayInterface::onDraw();
 }
 
 void TWaitingRoomDisplay::updateObserver(const Packet& packet)
 {
     switch(packet.getHeader().message)
     {
-        case messageInfo::WAITINGROOMS_INIT_INFO_ROOMS_PLAYERS:
-            recvGameRoomInfo(packet);
+        case messageInfo::WAITINGROOMS_RESPONSE_INIT_INFO:
+            recvWaitingRoomInitInfo(packet);
             break;
         case messageInfo ::WAITINGROOMS_RECV_CHAT:
             recvChat(packet);
@@ -129,7 +145,7 @@ void TWaitingRoomDisplay::updateObserver(const Packet& packet)
     refresh();
 }
 
-void TWaitingRoomDisplay::recvGameRoomInfo(const game_interface::Packet &packet)
+void TWaitingRoomDisplay::recvWaitingRoomInitInfo(const game_interface::Packet &packet)
 {
     t_size begin_x = m_controllBeginPoint.x;
     t_size begin_y = m_controllBeginPoint.y;
@@ -177,38 +193,43 @@ void TWaitingRoomDisplay::recvGameRoomInfo(const game_interface::Packet &packet)
     }
 
     const auto ctl = getControll<ListBox>(tetris::resource::WAITINGROOM_USERBOX);
+    auto dummyPlayer = make_shared<TPlayer>();
 
     const size_t plyCount = root["player_count"].asUInt();
     const Json::Value playerRoot = root[game_interface::NAME_PLAYER.data()];
     for(int i=0 ; i < plyCount ; ++i)
     {
         const Json::Value jsonPlayer = playerRoot[i];
-        auto player = make_shared<TPlayer>();
-        player->fromJson(jsonPlayer);
 
-        ctl->appendItem(make_shared<UserInfo>(player->getUserName(),player->getMaketime(), player->getUnique()));
+        dummyPlayer->fromJson(jsonPlayer);
+
+        ctl->appendItem(make_shared<UserInfo>(dummyPlayer->getUserName(),dummyPlayer->getMaketime(), dummyPlayer->getUnique()));
     }
 }
 
 void TWaitingRoomDisplay::onClickCreateGameRoom(const void* click)
 {
-    auto dlg = std::make_shared<TCreateGameroomWindow>();
-    dlg->setWindowHeight(250);
-    dlg->setWindowWidth(350);
-    if(dlg->modal(dlg) == sdleasygui::resource ::BTN_OK)
+
+    auto createGameroomDisplay = sdleasygui::make_display<TCreateGameroomDisplay>(resource::CREATEROOM_DISPLAY);
+    createGameroomDisplay->setWindowHeight(250);
+    createGameroomDisplay->setWindowWidth(350);
+    createGameroomDisplay->setWindowTitle("Create Room");
+
+    if(createGameroomDisplay->modal(createGameroomDisplay) == sdleasygui::resource ::BTN_OK)
     {
-        const string& roomname = dlg->m_roomname;
+        if(!PacketQueue::getInstance().exist(TGameRoom::getInstance()->getUnique()) )
+            PacketQueue::getInstance().attach(TGameRoom::getInstance());
+
+        const string& roomname = createGameroomDisplay->getRoomName();
 
         Json::Value root;
         root["name"] = roomname;
 
         Packet packet{{ m_waitingRoom.getUnique(), TPlayer::getInstance()->getUnique(), messageInfo::WAITINGROOMS_REQUEST_CREATE}, root};
         TPlayer::getInstance()->sendPacket(packet);
+
     }
-
-    DisplayInterface::onButtonClick(click);
 }
-
 
 void TWaitingRoomDisplay::sendChat(const void *event)
 {
@@ -216,17 +237,13 @@ void TWaitingRoomDisplay::sendChat(const void *event)
     if(keyevent->keysym.sym == SDLK_RETURN)
     {
         const auto ctl = getControll<EditLabel>(tetris::resource::WAITINGROOM_CHAREDIT);
-        const auto chat = ctl->getString();
+        ChatInfo chatinfo{ TPlayer::getInstance()->getUserName(), ctl->getString(), time(0) };
 
-        Json::Value root;
-        root["chat"] = chat;
-
-        Packet packet{{m_waitingRoom.getUnique(), TPlayer::getInstance()->getUnique(), messageInfo::WAITINGROOMS_SEND_CHAT}, root};
+        Packet packet{{m_waitingRoom.getUnique(), TPlayer::getInstance()->getUnique(), messageInfo::WAITINGROOMS_SEND_CHAT}, chatinfo.toJson()};
         TPlayer::getInstance()->sendPacket(packet);
 
         ctl->clearString();
     }
-
 }
 
 void TWaitingRoomDisplay::recvChat(const game_interface::Packet &packet)
@@ -234,14 +251,19 @@ void TWaitingRoomDisplay::recvChat(const game_interface::Packet &packet)
     const string chat = packet.getPayload()["chat"].asString();
     const auto ctl = getControll<ListBox>(tetris::resource::WAITINGROOM_CHATBOX);
 
-    const string name{"Dd"};
-    ctl->appendItem(make_shared<ChatInfo>(name,chat,packet.getHeader().timestamp));
+    ChatInfo chatinfo;
+    auto json = packet.getPayload();
+    chatinfo.fromJson(json);
+    chatinfo.appendUserNameFromChat();
+
+    ctl->appendItem(make_shared<ChatInfo>(chatinfo));
 }
 
 void TWaitingRoomDisplay::createGameroom(const game_interface::Packet &packet){
 
-    auto gameroom = make_shared<TMultiGameRoomDisplay>();
-    gameroom->setWindowTitle("Tetris Game");
-    gameroom->modal(gameroom);
+    auto gameroomDisplay = sdleasygui::make_display<TMultiGameRoomDisplay>(resource::MULTIGAME_DISPLAY);
+    gameroomDisplay->getGameRoom()->fromJson(packet.getPayload());
+    gameroomDisplay->setWindowTitle("Tetris Game");
+    gameroomDisplay->modaless(gameroomDisplay);
 
 }

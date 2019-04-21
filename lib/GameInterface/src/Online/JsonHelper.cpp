@@ -40,7 +40,7 @@ Json::Value JsonHelper::toJson(string id, string ip, string time, string gameBoa
     return json;
 }
 
-void JsonHelper::jsonRef(Json::Value json, string &id, string &ip, string &time, string &gameBoard){
+void JsonHelper::fromJson(Json::Value json, string &id, string &ip, string &time, string &gameBoard){
     id = json["id"].asString();
     ip = json["ip"].asString();
     time = json["time"].asString();

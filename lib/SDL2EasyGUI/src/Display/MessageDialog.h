@@ -7,10 +7,10 @@
 
 #include <string>
 
-#include "../Windows/DisplayInterface.h"
-#include "../Controller/StaticLabel.h"
-#include "../Controller/Button.h"
-#include "../SEG_Property.h"
+#include "SDL2EasyGUI/include/DisplayInterface.h"
+#include "SDL2EasyGUI/src/Controller/Label/StaticLabel.h"
+#include "SDL2EasyGUI/src/Controller/Button/Button.h"
+#include "SDL2EasyGUI/include/SEG_Property.h"
 
 namespace sdleasygui {
 

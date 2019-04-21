@@ -20,7 +20,7 @@ class TSingleGameDisplay final : public TGameDisplay
 
 public:
 
-    TSingleGameDisplay();
+    explicit TSingleGameDisplay(const sdleasygui::t_id displayId);
     virtual ~TSingleGameDisplay() = default;
 
 private:

@@ -30,7 +30,8 @@ class TFigureBoard final{
 
 public:
 
-    using figure_ptr = std::shared_ptr<TFigure>;
+    using figure_type = TFigure;
+    using figure_ptr = std::shared_ptr<figure_type>;
     using board_type = std::array< std::array<TFigureUnit,WIDTH>,HEIGHT >;
 
     TFigureBoard()
@@ -91,7 +92,7 @@ public:
         return true;
     }
 
-    void _eraseCoords(const figure_ptr figure) {
+    void _eraseCoords(const figure_ptr& figure) {
         for (const auto& coord : figure->getCoords()) {
             const auto x = coord.getPoint().x;
             const auto y = coord.getPoint().y;
@@ -100,7 +101,7 @@ public:
         }
     }
 
-    void _setCoords(const figure_ptr figure) {
+    void _setCoords(const figure_ptr& figure) {
         for (const auto& coord : figure->getCoords()) {
             const auto x = coord.getPoint().x;
             const auto y = coord.getPoint().y;

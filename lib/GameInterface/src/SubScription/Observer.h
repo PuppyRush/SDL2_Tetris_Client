@@ -5,9 +5,9 @@
 #ifndef TETRIS_FIGURE_CLASS_SUBJECT_H
 #define TETRIS_FIGURE_CLASS_SUBJECT_H
 
-#include "GameInterface/src/Type.h"
+#include "GameInterface/include/Type.h"
 #include "GameInterface/src/Online/Packet.h"
-#include "GameInterface/src/Object/Object.h"
+#include "GameInterface/include/Object.h"
 
 namespace game_interface {
 

@@ -7,7 +7,7 @@
 #endif
 
 #include "TDisplay/TDisplayInterface.h"
-#include "SDL2EasyGUI/src/SEG_Event.h"
+#include "SDL2EasyGUI/include/SEG_Event.h"
 
 SDL_TETRIS_BEGIN
 
@@ -15,6 +15,7 @@ class TMainDisplay : public TDisplayInterface
 {
 public:
 
+	explicit TMainDisplay(const sdleasygui::t_id displayId);
 	virtual ~TMainDisplay() = default;
 
 	virtual void onClickedEnterServer(const void* click) =0;
@@ -26,9 +27,8 @@ public:
 protected:
     TMainDisplay();
 
-	virtual void onInitialize() = 0;
-	virtual void onTimerEvent() =0;
-    virtual void onDraw();
+	virtual void onInitialize(){ TDisplayInterface::onInitialize();}
+    virtual void onDraw(){ TDisplayInterface::onDraw(); }
 };
 
 SDL_TETRIS_END

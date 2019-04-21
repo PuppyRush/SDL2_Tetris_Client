@@ -107,12 +107,12 @@ void TFigureController::_rotate(const sdleasygui::t_eventType event) {
 
     while(m_board->isHit(m_currentFigure->getLeftmost()))
     {
-        m_currentFigure->move(event);
+        m_currentFigure->move(SDLK_RIGHT);
     }
 
     while(m_board->isHit(m_currentFigure->getRightmost()))
     {
-        m_currentFigure->move(event);
+        m_currentFigure->move(SDLK_LEFT);
     }
 
     if(!m_board->_isValidation(m_currentFigure))
@@ -158,5 +158,10 @@ void TFigureController::_goRight(const sdleasygui::t_eventType event) {
 
 void TFigureController::forceSet(const TFigure* fig)
 {
-    m_currentFigure->copy(*fig);
+    m_board->_eraseCoords(m_currentFigure);
+
+    m_currentFigure.reset();
+    m_currentFigure = fig->copy();
+
+    m_board->_setCoords(m_currentFigure);
 }

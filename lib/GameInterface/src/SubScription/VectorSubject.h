@@ -13,7 +13,7 @@
 #include <algorithm>
 
 #include "Subject.h"
-#include "../Object/Object.h"
+#include "GameInterface/include/Object.h"
 #include "Observer.h"
 
 namespace game_interface {

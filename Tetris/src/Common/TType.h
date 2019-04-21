@@ -12,8 +12,8 @@
 
 #include <SDL2/SDL_stdinc.h>
 
-#include "GameInterface/src/Type.h"
-#include "SDL2EasyGUI/src/SEG_Type.h"
+#include "GameInterface/include/Type.h"
+#include "SDL2EasyGUI/include/SEG_Type.h"
 #include "TDefine.h"
 
 SDL_TETRIS_BEGIN

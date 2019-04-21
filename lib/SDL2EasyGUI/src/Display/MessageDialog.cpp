@@ -7,7 +7,7 @@
 using namespace sdleasygui;
 
 MessageDialog::MessageDialog(const std::string& message, MessageDialogKind kind)
-    :m_message(message), m_kind(kind)
+    :DisplayInterface(toUType(MESSAGEDIALOG_MSG)), m_message(message), m_kind(kind)
 {
     setWindowTitle(message);
     setWindowHeight(300);

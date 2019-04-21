@@ -8,17 +8,18 @@
 #include <functional>
 
 #include "../../Common/TResource.h"
-#include "SDL2EasyGUI/src/SEG_Event.h"
-#include "SDL2EasyGUI/src/Controller/Button.h"
+#include "SDL2EasyGUI/include/SEG_Event.h"
+#include "SDL2EasyGUI/src/Controller/Button/Button.h"
 #include "TSingleGameDisplay.h"
 #include "TOption/TOptionManager.h"
-#include "SDL2EasyGUI/src/Controller/Button.h"
+#include "SDL2EasyGUI/src/Controller/Button/Button.h"
 
 SDL_TETRIS
 using namespace game_interface;
 using namespace sdleasygui;
 
-TSingleGameDisplay::TSingleGameDisplay()
+TSingleGameDisplay::TSingleGameDisplay(const sdleasygui::t_id displayId)
+    :TGameDisplay(displayId)
 {
     m_display = game_interface::toUType(TDisplay::Game);
     m_mode = TLocalMode::Local;
@@ -27,7 +28,7 @@ TSingleGameDisplay::TSingleGameDisplay()
 
 void TSingleGameDisplay::onClickedStart(const void* click)
 {
-    auto ply = TPlayer::getInstance();
+    auto& ply = TPlayer::getInstance();
     ply->startGame();
     m_players.emplace_back(ply);
 
@@ -42,14 +43,9 @@ void TSingleGameDisplay::onClickedStart(const void* click)
     nextboard->setStartDisplayPoint(TPoint{GAMEBOARD_BEGIN_X + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN, GAMEBOARD_BEGIN_Y});
     nextboard->setblockLength(FIGURE_UNIT_LEN);
 
-    TimerAdder tAdder(1000, game_interface::toUType(TetrisEvent::TETRIS_EVENT_FIGURETIMER));
-    tAdder.windowsId(this->getWindowID());
-    m_figureTimer = tAdder.addTimer();
 
-    m_gamestart = true;
 
-    auto ctl = getControll<Button>(resource::GAME_START);
-    ctl->setEnabled(false);
+    TGameDisplay::onClickedStart(click);
 }
 
 void TSingleGameDisplay::onClickedSuspend(const void* click)
@@ -103,7 +99,7 @@ void TSingleGameDisplay::onInitialize()
         addControll(bld.build());
     }
 
-    DisplayInterface::onInitialize();
+    TGameDisplay::onInitialize();
 }
 
 void TSingleGameDisplay::onClose()

@@ -6,21 +6,15 @@
 #define PROJECT_TETRISWAITINGROOM_H
 
 #include <boost/serialization/singleton.hpp>
-#include "GameInterface/src/Object/WaitingRoom.h"
+#include "GameInterface/include/WaitingRoom.h"
 #include "../Common/TDefine.h"
 
 SDL_TETRIS_BEGIN
 
-class TWaitingRoom : public game_interface::WaitingRoom , private boost::serialization::singleton<TWaitingRoom>
+class TWaitingRoom : public game_interface::WaitingRoom
 {
 public:
-    friend class boost::serialization::singleton<TWaitingRoom>;
-
-    static std::shared_ptr<TWaitingRoom> getInstance() {
-        static auto inst = std::shared_ptr<TWaitingRoom>
-            (&boost::serialization::singleton<TWaitingRoom>::get_mutable_instance());
-        return inst;
-    }
+    TWaitingRoom() = default;
 
 protected:
     virtual void postEnter(player_ptr ply) override;
@@ -30,7 +24,7 @@ protected:
 
 private:
     virtual Json::Value toJson() const override {}
-    virtual const std::string_view& getUniqueName() const override {}
+    virtual const std::string_view& getUniqueName() const override { game_interface::NAME_WAITINGROOM; }
     virtual void updateObserver(const game_interface::Packet& ) override;
 
 };

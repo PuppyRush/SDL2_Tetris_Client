@@ -11,10 +11,10 @@
 #include <SDL.h>
 #include <SDL2/SDL.h>
 
-#include "../SEG_Constant.h"
-#include "../SEG_Type.h"
+#include "SDL2EasyGUI/include/SEG_Constant.h"
+#include "SDL2EasyGUI/include/SEG_Type.h"
 
-#include "DisplayController.h"
+#include "SDL2EasyGUI/include/DisplayController.h"
 //#include "GameInterface/Online/PacketQueue.h"
 
 using namespace std;
@@ -52,12 +52,12 @@ void DisplayController::modal_open(display_ptr display)
 
      _open(display);
 
-    if(!m_modalStack.empty())
+    /*if(!m_modalStack.empty())
     {
         auto parent = m_modalStack.front();
         SDL_SetWindowModalFor(display->getWindow()->getSDLWindow(),
                               parent->getWindow()->getSDLWindow());
-    }
+    }*/
 }
 
 void DisplayController::modal_close()
@@ -122,37 +122,33 @@ void DisplayController::_pumpEvent()
 
     while(m_run)
     {
-        SDL_Event event;
-        SDL_WaitEvent(&event);
+        SDL_Event* event = new SDL_Event{};
+        SDL_WaitEvent(event);
 
-        const auto winid = getActivatedWindowID(&event);
+        const auto winid = getActivatedWindowID(event);
         if(winid != NULL_WINDOW_ID)
         {
             if(auto display = findFromId(winid)
                 ; display != nullptr)
             {
-                SDL_Event* e = new SDL_Event{event};
-                display->receiveEvent(winid, e);
+                display->pushEvent(event);
             }
         }
         else
         {
             //broadcasting m_userEvent if not found something targeted id (display, controller)
-            SDL_Event* e = new SDL_Event{event};
-
             if(!m_modalStack.empty())
             {
-                m_modalStack.back()->receiveEvent(NULL_WINDOW_ID, e);
+                m_modalStack.back()->pushEvent(event);
             }
 
             for(const auto modaless : m_modalessAry) {
-                modaless->receiveEvent(NULL_WINDOW_ID, e);
+                modaless->pushEvent(event);
             }
         }
 
         for(auto& display : m_alertAry) {
-            SDL_Event* e = new SDL_Event{event};
-            display->receiveEvent(display->getWindowID(), e);
+            display->pushEvent(event);
         }
     }
 }
@@ -269,7 +265,12 @@ void DisplayController::finish()
 void DisplayController::refreshModal()
 {
     for(const auto display : m_modalStack)
-        display->onDraw();
+        display->refresh();
     for(const auto display : m_modalessAry)
-        display->onDraw();
+        display->refresh();
+}
+
+void DisplayController::getDisplay(const t_id displayId)
+{
+
 }

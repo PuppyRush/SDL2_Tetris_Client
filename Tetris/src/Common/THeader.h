@@ -12,7 +12,7 @@
 #include "TDefine.h"
 #include "TType.h"
 #include "TStruct.h"
-#include "GameInterface/src/TypeTraits.h"
+#include "GameInterface/include/TypeTraits.h"
 #include "TProperty.h"
 
 #endif //TERIS_FIGURE_CLASS_THEADER_H
