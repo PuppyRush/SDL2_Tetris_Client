@@ -9,13 +9,14 @@
 #include "GameInterface/include/Event.h"
 #include "GameInterface/src/Online/JsonHelper.h"
 #include "TResource.h"
-#include "../../TFiguers/TFigureBuilder.h"
+#include "Tetris/include/TFigureBuilder.h"
 #include "../../TOption/TOptionManager.h"
 
 SDL_TETRIS
+using namespace std;
 using namespace game_interface;
 using namespace sdleasygui;
-using namespace std;
+using namespace tetris_module;
 
 TMultiGameRoomDisplay::TMultiGameRoomDisplay(const sdleasygui::t_id displayId)
         : TGameDisplay(displayId)

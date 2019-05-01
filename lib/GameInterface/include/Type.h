@@ -11,6 +11,7 @@
 #include <ctime>
 
 namespace game_interface {
+
 using t_type = uint8_t;
 using t_unique = uint_fast16_t;
 using t_uniqueAtomic = std::atomic<t_unique>;

@@ -12,7 +12,8 @@
 #include <boost/serialization/singleton.hpp>
 #include <memory>
 
-#include "THeader.h"
+#include "TDefine.h"
+#include "Tetris/include/TProperty.h"
 
 SDL_TETRIS_BEGIN
 
@@ -22,13 +23,13 @@ public:
 
     friend class boost::serialization::singleton<TOptionManager>;
 
-    TSpeed getSpeed() const;
+    tetris_module::TSpeed getSpeed() const;
 
-    void setSpeed(TSpeed m_speed);
+    void setSpeed(tetris_module::TSpeed m_speed);
 
-    TMap getMap() const;
+    tetris_module::TMap getMap() const;
 
-    void setMap(TMap m_map);
+    void setMap(tetris_module::TMap m_map);
 
     bool isEnabledGhostMode() const;
 
@@ -50,8 +51,8 @@ public:
     }
 
 private:
-    TSpeed m_speed = TSpeed::_3;
-    TMap m_map = TMap::None;
+    tetris_module::TSpeed m_speed = tetris_module::TSpeed::_3;
+    tetris_module::TMap m_map = tetris_module::TMap::None;
     bool m_enabledGhostMode = false;
     bool m_enabledCombo = false;
 

@@ -14,8 +14,8 @@
 
 #include "GameInterface/src/Online/Packet.h"
 #include "GameInterface/include/Player.h"
+#include "Tetris/include/TFigureController.h"
 #include "../../include/TClientController.h"
-#include "../TFiguers/TFigureController.h"
 #include "../TObject/TScore.h"
 
 SDL_TETRIS_BEGIN
@@ -45,7 +45,7 @@ public:
         return m_clientCtl;
     }
 
-    inline TFigureController& getController() noexcept
+    inline tetris_module::TFigureController& getController() noexcept
     {
         return m_gameCtl;
     }
@@ -99,7 +99,7 @@ private:
     game_interface::TIPString m_ip;
     TScore m_score;
 
-    TFigureController m_gameCtl = TFigureController{};
+    tetris_module::TFigureController m_gameCtl = tetris_module::TFigureController{};
     TClientController& m_clientCtl = TClientController::getInstance();
 };
 

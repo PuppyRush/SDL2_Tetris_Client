@@ -17,7 +17,7 @@
 
 SDL_TETRIS_BEGIN
 
-using t_age = uint16_t;
+
 
 SDL_TETRIS_END
 

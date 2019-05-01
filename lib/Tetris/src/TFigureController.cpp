@@ -2,13 +2,13 @@
 // Created by chaed on 19. 2. 4.
 //
 
-#include "TFigureController.h"
-#include "TFigureBuilder.h"
+#include "Tetris/include/TFigureController.h"
+#include "Tetris/include/TFigureBuilder.h"
 
-SDL_TETRIS
 
 using namespace std;
 using namespace sdleasygui;
+using namespace tetris_module;
 
 TFigureController::TFigureController()
         : m_currentFigure(nullptr),
@@ -76,7 +76,7 @@ void TFigureController::_goStraightDown(const sdleasygui::t_eventType event)
 {
     m_board->_eraseCoords(m_currentFigure);
 
-    shared_ptr<TFigure> copied(nullptr);
+    shared_ptr<TFigureInterface> copied(nullptr);
     while (m_board->_isValidation(m_currentFigure)) {
         copied = m_currentFigure->move(event);
     }
@@ -154,7 +154,7 @@ void TFigureController::_goRight(const sdleasygui::t_eventType event)
     m_board->_setCoords(m_currentFigure);
 }
 
-void TFigureController::forceSet(const TFigure* fig)
+void TFigureController::forceSet(const TFigureInterface* fig)
 {
     m_board->_eraseCoords(m_currentFigure);
 

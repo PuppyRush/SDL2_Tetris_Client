@@ -13,13 +13,14 @@
 #include <array>
 
 #include "GameInterface/include/Object.h"
-#include "TDefine.h"
-#include "TType.h"
+#include "GameInterface/include/Type.h"
 #include "GameInterface/include/TypeTraits.h"
-#include "TFigureUnit.h"
 #include "GameInterface/include/JsonPackage.h"
 
-SDL_TETRIS_BEGIN
+#include "TFigureUnit.h"
+#include "TProperty.h"
+
+namespace tetris_module{
 
 /***********************************************
 *		            □ □ □ □                    *
@@ -35,13 +36,13 @@ SDL_TETRIS_BEGIN
 
 class TFigureBuilder;
 
-class TFigure : game_interface::JsonPackage
+class TFigureInterface : game_interface::JsonPackage
 {
 public:
 
     using FigureCoords = std::array<TFigureUnit, 4>;
 
-    virtual ~TFigure();
+    virtual ~TFigureInterface();
 
     inline TFigureType getType() const noexcept
     { return m_figureType; }
@@ -74,7 +75,7 @@ public:
     getTypeCount() const noexcept
     { return (game_interface::toUType(getTypeEnd()) - game_interface::toUType(getTypeBegin())) + 1; }
 
-    std::shared_ptr<TFigure> move(const sdleasygui::t_eventType event);
+    std::shared_ptr<TFigureInterface> move(const sdleasygui::t_eventType event);
 
     TFigureUnit getLeftmost() const noexcept;
 
@@ -84,9 +85,9 @@ public:
 
     TFigureUnit getDownmost() const noexcept;
 
-    void copy(const TFigure& fig);
+    void copy(const TFigureInterface& fig);
 
-    const std::shared_ptr<TFigure> copy() const;
+    const std::shared_ptr<TFigureInterface> copy() const;
 
     virtual TFigureType getRandomlyFigureType() const noexcept;
 
@@ -120,9 +121,9 @@ public:
     { return game_interface::NAME_FIGURE; }
 
 protected:
-    TFigure(const TFigureBuilder* bld);
+    TFigureInterface(const TFigureBuilder* bld);
 
-    TFigure();
+    TFigureInterface();
 
     virtual void _rotateLeft();
 
@@ -146,13 +147,13 @@ private:
 
     void _resetRelateivePoint(const sdleasygui::TPoint& exPt);
 
-    virtual const std::shared_ptr<TFigure> _copy() const = 0;
+    virtual const std::shared_ptr<TFigureInterface> _copy() const = 0;
 
     virtual bool _validation() = 0;
 
     virtual void _setFigureType(const TFigureType) = 0;
 };
 
-SDL_TETRIS_END
+}
 
 #endif

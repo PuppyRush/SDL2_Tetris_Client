@@ -9,6 +9,8 @@
 #pragma once
 #endif
 
+#include "SEG_Type.h"
+
 namespace sdleasygui {
 
 const t_size WINDOW_HEIGHT = 900;

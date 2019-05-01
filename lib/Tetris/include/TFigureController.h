@@ -7,18 +7,18 @@
 
 #include <boost/serialization/singleton.hpp>
 
-#include "TFigure.h"
+#include "TFigureInterface.h"
 #include "TFigureBoard.h"
 #include "TProperty.h"
 
-SDL_TETRIS_BEGIN
+namespace tetris_module {
 
 class TFigureController
 {
 
 public:
 
-    using figure_ptr = std::shared_ptr<TFigure>;
+    using figure_ptr = std::shared_ptr<TFigureInterface>;
     using board_type = TFigureBoard<GAMEBOARD_WIDTH_COUNT, GAMEBOARD_HEIGHT_COUNT>;
     using board_ptr = std::shared_ptr<board_type>;
     using nextfigure_board_type = TFigureBoard<NEXTFIGURE_BOARD_WIDTH_COUNT, NEXTFIGURE_BOARD_HEIGHT_COUNT>;
@@ -29,12 +29,12 @@ public:
     inline figure_ptr getNextFigure() const noexcept
     { return m_nextFigure; }
 
-    inline std::shared_ptr<TFigure> getGhostFigure() const noexcept
+    inline std::shared_ptr<TFigureInterface> getGhostFigure() const noexcept
     {
         return m_ghostFigure;
     }
 
-    inline std::shared_ptr<TFigure> getCurrentFigure() const noexcept
+    inline std::shared_ptr<TFigureInterface> getCurrentFigure() const noexcept
     {
         return m_currentFigure;
     }
@@ -57,7 +57,7 @@ public:
 
     void command(const sdleasygui::t_eventType event);
 
-    void forceSet(const TFigure* fig);
+    void forceSet(const TFigureInterface* fig);
 
     void eraseLine(const sdleasygui::t_size lineNumber);
 
@@ -91,6 +91,6 @@ private:
     void _set();
 };
 
-SDL_TETRIS_END
+}
 
 #endif //TETRIS_FIGURE_CLASS_TFIGURECONTROLLER_H

@@ -5,15 +5,11 @@
 #pragma once
 #endif
 
-#include "TType.h"
-#include "TFigure.h"
-#include "TFigureL.h"
-#include "TFigureZ.h"
-#include "TFigureI.h"
-#include "TFigureT.h"
-#include "TFigureO.h"
+#include "GameInterface/include/Type.h"
+#include "TFigureInterface.h"
+#include "TFigures.h"
 
-SDL_TETRIS_BEGIN
+namespace tetris_module {
 
 class TFigureBuilder final
 {
@@ -36,7 +32,7 @@ public:
         return this;
     }
 
-    inline TFigureBuilder* age(const t_age& age)
+    inline TFigureBuilder* age(const game_interface::t_age& age)
     {
         this->m_age = age;
         return this;
@@ -63,7 +59,7 @@ public:
     inline const TFigureType getType() const noexcept
     { return m_figureType; }
 
-    inline const t_age getAge() const noexcept
+    inline const game_interface::t_age getAge() const noexcept
     { return m_age; }
 
     inline const sdleasygui::t_size getHeight() const noexcept
@@ -78,7 +74,7 @@ public:
     inline constexpr const TFigureClass getClass() const noexcept
     { return m_figureClass; }
 
-    std::shared_ptr<TFigure> build();
+    std::shared_ptr<TFigureInterface> build();
 
 private:
     inline void width(const sdleasygui::t_size width)
@@ -93,11 +89,11 @@ private:
     sdleasygui::TPoint m_point;
     TFigureType m_figureType;
     TFigureClass m_figureClass = TFigureClass::L;
-    t_age m_age;
+    game_interface::t_age m_age;
     UnitType m_unitType;
 
 };
 
-SDL_TETRIS_END
+}
 
 #endif

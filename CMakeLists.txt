@@ -34,6 +34,7 @@ include_directories(lib)
 # NOTE: The order matters! The most independent ones should go first.
 add_subdirectory(lib/GameInterface) # C is a shared library (depends on B and external XXX)
 add_subdirectory(lib/SDL2EasyGUI)
+add_subdirectory(lib/Tetris)
 add_subdirectory(lib/magic_enum)
 
 

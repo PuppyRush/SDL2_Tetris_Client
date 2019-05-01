@@ -53,7 +53,7 @@ public:
         if (it != _Base::m_objects.end()) {
             return *it;
         } else {
-            nullptr;
+            return nullptr;
         }
     }
 

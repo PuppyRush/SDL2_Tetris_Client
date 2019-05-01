@@ -4,7 +4,7 @@
 #include <ctime>
 
 #include "TPlayer.h"
-#include "../TFiguers/TFigureBuilder.h"
+#include "Tetris/include/TFigureBuilder.h"
 
 #include "GameInterface/src/Online/PacketQueue.h"
 #include "GameInterface/src/Online/JsonHelper.h"
@@ -12,6 +12,7 @@
 SDL_TETRIS
 
 using namespace std;
+using namespace tetris_module;
 using namespace game_interface;
 using namespace sdleasygui;
 

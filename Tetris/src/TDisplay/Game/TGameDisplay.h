@@ -10,7 +10,7 @@
 #include "SDL2EasyGUI/include/SEG_Event.h"
 #include "TDisplayInterface.h"
 #include "../../TObject/TPlayer.h"
-#include "TFiguers/TFigureController.h"
+#include "Tetris/include/TFigureController.h"
 #include "../../TObject/TGameRoom.h"
 
 SDL_TETRIS_BEGIN
@@ -47,7 +47,7 @@ protected:
 
     virtual void onTimerEvent(const SDL_UserEvent* user) override;
 
-    void _drawFigure(TFigureController::board_ptr board, TFigureController::figure_ptr figure);
+    void _drawFigure(tetris_module::TFigureController::board_ptr board, tetris_module::TFigureController::figure_ptr figure);
 
     void _drawNextFigure();
 

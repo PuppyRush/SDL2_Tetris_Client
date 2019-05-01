@@ -5,6 +5,8 @@
 #ifndef GAMEINTERFACE_EVENT_H
 #define GAMEINTERFACE_EVENT_H
 
+#include <SDL2/SDL_events.h>
+
 namespace game_interface {
 
 enum GAMEINTERFACE_EVENT

@@ -31,43 +31,22 @@ endif ()
 #add_definitions(${A_DEFINITIONS})
 find_library(
         SDL2EasyGUI
-        NAMES libSDL2EasyGUI.a
-        HINTS ${PROJECT_SOURCE_DIR}/lib/SDL2EasyGUI/cmake-build-debug
-        REQUIRED)
-
-find_library(
         GameInterface
+        TetrisModule
+        NAMES libSDL2EasyGUI.a
         NAMES libGameInterface.a
+        HINTS ${PROJECT_SOURCE_DIR}/lib/SDL2EasyGUI/cmake-build-debug
         HINTS ${PROJECT_SOURCE_DIR}/lib/GameInterface/src
         REQUIRED)
 
-add_executable(tetris_figure_class
-        src/Main.cpp
+add_executable(tetris
         include/TProperty.h
         include/TDefine.h
         include/THeader.h
         include/TResource.h
-        src/TFiguers/TFigureL.h
-        src/TFiguers/TFigureUnit.h
-        src/TFiguers/TFigureUnit.cpp
-        src/TFiguers/TFigureL.cpp
-        src/TFiguers/TFigureL.h
-        src/TFiguers/TFigureBuilder.h
-        src/TFiguers/TFigure.cpp
-        src/TFiguers/TFigureBoard.h
-        src/TFiguers/TFigureBuilder.cpp
-        src/TFiguers/TFigureBoardBuilder.cpp
-        src/TFiguers/TFigureBoardBuilder.h
-        src/TFiguers/TFigureZ.cpp
-        src/TFiguers/TFigureZ.h
-        src/TFiguers/TFigureI.cpp
-        src/TFiguers/TFigureI.h
-        src/TFiguers/TFigureO.cpp
-        src/TFiguers/TFigureO.h
-        src/TFiguers/TFigureT.cpp
-        src/TFiguers/TFigureT.h
-        src/TFiguers/TFigureController.cpp
-        src/TFiguers/TFigureController.h
+        include/TClientController.h
+        include/TDisplayInterface.h
+        src/Main.cpp
         src/TObject/TScore.cpp
         src/TObject/TScore.h
         src/TObject/TPlayer.h
@@ -94,20 +73,20 @@ add_executable(tetris_figure_class
         src/TDisplay/Main/TEnterServerDisplay.h
         src/TOption/TOptionManager.cpp
         src/TOption/TOptionManager.h
-        include/TClientController.h
         src/TClient/TClientController.cpp
         src/TDisplay/Waiting/TCreateGameroomDisplay.cpp
         src/TDisplay/Waiting/TCreateGameroomDisplay.h
-        include/TDisplayInterface.h
         src/TObject/TWaitingRoom.cpp
         src/TObject/TWaitingRoom.h
         src/TObject/TGameRoom.cpp
-        src/TObject/TGameRoom.h)
+        src/TObject/TGameRoom.h
+        )
 
 
 include_directories(
         include
-        SYSTEM ${Boost_INCLUDE_DIR}
+        SYSTEM
+        ${Boost_INCLUDE_DIR}
         ${SDL2_INCLUDE_DIR}
         ${SDL2_IMAGE_INCLUDE_DIR}
         ${SDL2_TTF_INCLUDE_DIR}
@@ -119,8 +98,9 @@ include_directories(
 
 
 target_link_libraries(
-        tetris_figure_class
+        tetris
         SDL2EasyGUI
+        TetrisModule
         GameInterface
         ${Boost_PROGRAM_OPTIONS_LIBRARY}
         ${Boost_LIBRARIES}

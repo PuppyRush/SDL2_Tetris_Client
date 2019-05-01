@@ -2,11 +2,11 @@
 // Created by chaed on 18. 11. 25.
 //
 
-#include "TFigureBuilder.h"
+#include "Tetris/include/TFigureBuilder.h"
 #include "GameInterface/include/TypeTraits.h"
 
-using namespace tetris;
 using namespace sdleasygui;
+using namespace tetris_module;
 
 TFigureBuilder::TFigureBuilder(const TPoint& point)
         : m_point(point),
@@ -19,7 +19,7 @@ TFigureBuilder::TFigureBuilder(const TPoint& point)
 {
 }
 
-std::shared_ptr<TFigure> TFigureBuilder::build()
+std::shared_ptr<TFigureInterface> TFigureBuilder::build()
 {
     // assert(m_figureClass != TFigureClass::End);
 

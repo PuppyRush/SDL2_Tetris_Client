@@ -21,7 +21,7 @@ class TGameRoom : public game_interface::GameRoom
 public:
 
     using player_ptr = std::shared_ptr<TPlayer>;
-    using board_ptr = std::shared_ptr<TFigureController>;
+    using board_ptr = std::shared_ptr<tetris_module::TFigureController>;
 
     TGameRoom() = default;
 

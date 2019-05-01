@@ -5,6 +5,7 @@
 #include "TOptionManager.h"
 
 SDL_TETRIS
+using namespace tetris_module;
 
 TSpeed TOptionManager::getSpeed() const
 {

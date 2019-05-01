@@ -9,9 +9,7 @@
 #pragma once
 #endif
 
-#include "TDefine.h"
-
-SDL_TETRIS_BEGIN
+namespace tetris_module {
 
 class TFigureBoardBuilder final
 {
@@ -21,6 +19,6 @@ private:
 
 };
 
-SDL_TETRIS_END
+}
 
 #endif //TERIS_FIGURE_CLASS_TFIGUREBOARDBUILDER_H

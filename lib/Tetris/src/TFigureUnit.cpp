@@ -1,7 +1,6 @@
-#include "TFigureUnit.h"
+#include "Tetris/include/TFigureUnit.h"
 
-SDL_TETRIS
-
+using namespace tetris_module;
 using namespace sdleasygui;
 
 TFigureUnit::TFigureUnit()
@@ -13,7 +12,7 @@ TFigureUnit::TFigureUnit()
 
 }
 
-TFigureUnit::TFigureUnit(const TPoint point, const t_age age, const ColorCode color, const UnitType type)
+TFigureUnit::TFigureUnit(const TPoint point, const game_interface::t_age age, const ColorCode color, const UnitType type)
         : m_type(type),
           m_point(point),
           m_color(color),

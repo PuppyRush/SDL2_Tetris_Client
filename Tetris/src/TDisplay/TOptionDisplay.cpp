@@ -10,6 +10,7 @@
 SDL_TETRIS
 using namespace game_interface;
 using namespace sdleasygui;
+using namespace tetris_module;
 
 TOptionDisplay::TOptionDisplay(const sdleasygui::t_id displayId)
         : TDisplayInterface(displayId)

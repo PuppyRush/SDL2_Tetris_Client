@@ -10,6 +10,7 @@
 #endif
 
 #include "TDisplayInterface.h"
+#include "Tetris/include/TProperty.h"
 
 SDL_TETRIS_BEGIN
 

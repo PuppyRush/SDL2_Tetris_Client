@@ -79,25 +79,27 @@ include_directories(
 
 
 ADD_LIBRARY(GameInterface STATIC
+        include/Player.h
+        include/Room.h
+        include/Atomic.h
+        include/Object.h
+        include/GameRoom.h
+        include/WaitingRoom.h
+        include/Event.h
+        include/TStruct.h
+        include/Define.h
+        include/Quit.h include/JsonPackage.h
         src/Online/JsonHelper.cpp
         src/Online/JsonHelper.h
         src/Object/Player.cpp
-        include/Player.h
         src/Object/Room.cpp
-        include/Room.h
-        include/Atomic.h
         src/Object/Object.cpp
-        include/Object.h
         src/Object/GameRoom.cpp
-        include/GameRoom.h
         src/Object/WaitingRoom.cpp
-        include/WaitingRoom.h
         src/Online/ClientConnector.cpp
         src/Online/ClientConnector.h
         src/Online/ClientService.cpp
         src/Online/ClientService.h
-        include/Event.h
-        include/TStruct.h
         src/SubScription/Observer.h
         src/SubScription/VectorSubject.h
         src/SubScription/ManagerController.h
@@ -109,8 +111,7 @@ ADD_LIBRARY(GameInterface STATIC
         src/Online/Packet.h
         src/Online/PacketQueue.h
         src/Online/PacketQueue.cpp
-        include/Define.h
-        include/Quit.h include/JsonPackage.h)
+        )
 
 
 

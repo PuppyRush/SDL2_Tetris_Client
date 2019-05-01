@@ -17,6 +17,7 @@
 SDL_TETRIS
 using namespace game_interface;
 using namespace sdleasygui;
+using namespace tetris_module;
 
 TSingleGameDisplay::TSingleGameDisplay(const sdleasygui::t_id displayId)
         : TGameDisplay(displayId)

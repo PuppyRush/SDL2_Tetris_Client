@@ -5,9 +5,13 @@
 #pragma once
 #endif
 
-#include "THeader.h"
+#include "SDL2EasyGUI/include/SEG_Struct.h"
+#include "SDL2EasyGUI/include/SEG_Property.h"
+#include "GameInterface/include/TypeTraits.h"
+#include "GameInterface/include/Type.h"
+#include "TProperty.h"
 
-SDL_TETRIS_BEGIN
+namespace tetris_module {
 
 class TFigureUnit final
 {
@@ -15,8 +19,8 @@ public:
 
     TFigureUnit();
 
-    TFigureUnit(const sdleasygui::TPoint point, const t_age age, const sdleasygui::ColorCode color,
-                const UnitType type);
+    TFigureUnit(const sdleasygui::TPoint point, const game_interface::t_age age, const sdleasygui::ColorCode color,
+                const tetris_module::UnitType type);
 
     ~TFigureUnit();
 
@@ -27,7 +31,7 @@ public:
         return m_point;
     }
 
-    inline t_age getAge() const noexcept
+    inline game_interface::t_age getAge() const noexcept
     {
         return m_age;
     }
@@ -52,7 +56,7 @@ public:
         this->m_point = m_point;
     }
 
-    inline void set(const t_age age) noexcept
+    inline void set(const game_interface::t_age age) noexcept
     {
         this->m_age = age;
     }
@@ -80,11 +84,11 @@ public:
 
 private:
     sdleasygui::TPoint m_point;
-    t_age m_age;
+    game_interface::t_age m_age;
     sdleasygui::TColor m_color;
     UnitType m_type;
 };
 
-SDL_TETRIS_END
+}
 
 #endif

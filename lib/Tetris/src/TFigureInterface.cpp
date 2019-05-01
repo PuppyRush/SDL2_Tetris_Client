@@ -1,18 +1,18 @@
 #include <cassert>
 
-#include "TFigure.h"
-#include "TFigureBuilder.h"
+#include "../include/TFigureInterface.h"
+#include "../include/TFigureBuilder.h"
 #include "GameInterface/include/TypeTraits.h"
 
-using namespace tetris;
 using namespace game_interface;
 using namespace sdleasygui;
 using namespace std;
+using namespace tetris_module;
 
-TFigure::TFigure()
+TFigureInterface::TFigureInterface()
 {}
 
-TFigure::TFigure(const TFigureBuilder* bld)
+TFigureInterface::TFigureInterface(const TFigureBuilder* bld)
         : m_width(bld->getWidth()),
           m_height(bld->getHeight()),
           m_figureType(bld->getType()),
@@ -29,11 +29,11 @@ TFigure::TFigure(const TFigureBuilder* bld)
     setAll(bld->getColor());
 }
 
-TFigure::~TFigure()
+TFigureInterface::~TFigureInterface()
 {
 }
 
-std::shared_ptr<TFigure> TFigure::move(const sdleasygui::t_eventType event)
+std::shared_ptr<TFigureInterface> TFigureInterface::move(const sdleasygui::t_eventType event)
 {
     auto copied = copy();
 
@@ -58,7 +58,7 @@ std::shared_ptr<TFigure> TFigure::move(const sdleasygui::t_eventType event)
     return copied;
 }
 
-TFigureUnit TFigure::getLeftmost() const noexcept
+TFigureUnit TFigureInterface::getLeftmost() const noexcept
 {
     TFigureUnit unit = *m_relativeCoord.begin();
     const auto& end = m_relativeCoord.end();
@@ -71,7 +71,7 @@ TFigureUnit TFigure::getLeftmost() const noexcept
     return unit;
 }
 
-TFigureUnit TFigure::getRightmost() const noexcept
+TFigureUnit TFigureInterface::getRightmost() const noexcept
 {
     TFigureUnit unit = *m_relativeCoord.begin();
     const auto& end = m_relativeCoord.end();
@@ -84,7 +84,7 @@ TFigureUnit TFigure::getRightmost() const noexcept
     return unit;
 }
 
-TFigureUnit TFigure::getUpmost() const noexcept
+TFigureUnit TFigureInterface::getUpmost() const noexcept
 {
     TFigureUnit unit = *m_relativeCoord.begin();
     const auto& end = m_relativeCoord.end();
@@ -97,7 +97,7 @@ TFigureUnit TFigure::getUpmost() const noexcept
     return unit;
 }
 
-TFigureUnit TFigure::getDownmost() const noexcept
+TFigureUnit TFigureInterface::getDownmost() const noexcept
 {
     TFigureUnit unit = *m_relativeCoord.begin();
     const auto& end = m_relativeCoord.end();
@@ -110,7 +110,7 @@ TFigureUnit TFigure::getDownmost() const noexcept
     return unit;
 }
 
-const std::shared_ptr<TFigure> TFigure::copy() const
+const std::shared_ptr<TFigureInterface> TFigureInterface::copy() const
 {
     auto copied = _copy();
     copied->m_absoluteCoord = this->m_absoluteCoord;
@@ -124,7 +124,7 @@ const std::shared_ptr<TFigure> TFigure::copy() const
     return copied;
 }
 
-void TFigure::copy(const TFigure& fig)
+void TFigureInterface::copy(const TFigureInterface& fig)
 {
     this->m_absoluteCoord = fig.m_absoluteCoord;
     this->m_color = fig.m_color;
@@ -136,7 +136,7 @@ void TFigure::copy(const TFigure& fig)
     this->_setFigureType(fig.m_figureType);
 }
 
-void TFigure::_goRight()
+void TFigureInterface::_goRight()
 {
     for (int i = 0; i < m_relativeCoord.size(); i++) {
         auto y = m_relativeCoord[i].getPoint().y;
@@ -146,7 +146,7 @@ void TFigure::_goRight()
     m_absoluteCoord.x += 1;
 }
 
-void TFigure::_goLeft()
+void TFigureInterface::_goLeft()
 {
     for (int i = 0; i < m_relativeCoord.size(); i++) {
         auto y = m_relativeCoord[i].getPoint().y;
@@ -156,7 +156,7 @@ void TFigure::_goLeft()
     m_absoluteCoord.x -= 1;
 }
 
-void TFigure::_goDown()
+void TFigureInterface::_goDown()
 {
     for (int i = 0; i < m_relativeCoord.size(); i++) {
         auto y = m_relativeCoord[i].getPoint().y;
@@ -166,7 +166,7 @@ void TFigure::_goDown()
     m_absoluteCoord.y += 1;
 }
 
-void TFigure::_rotateLeft()
+void TFigureInterface::_rotateLeft()
 {
     _setFigureType(m_figureType);
 
@@ -174,12 +174,12 @@ void TFigure::_rotateLeft()
     m_figureType = TFigureType{static_cast<std::underlying_type_t<TFigureType >>(next % getTypeCount())};
 }
 
-TFigureType TFigure::getRandomlyFigureType() const noexcept
+TFigureType TFigureInterface::getRandomlyFigureType() const noexcept
 {
     return EnumHelper<TFigureType>::getRandomly(getTypeBegin(), getTypeEnd());
 }
 
-void TFigure::_resetRelateivePoint(const TPoint& newPt)
+void TFigureInterface::_resetRelateivePoint(const TPoint& newPt)
 {
     const auto ptDis = TPoint{newPt.x - getPoint().x, newPt.y - getPoint().y};
     for (auto& p : m_relativeCoord) {
@@ -187,7 +187,7 @@ void TFigure::_resetRelateivePoint(const TPoint& newPt)
     }
 }
 
-void TFigure::fromJson(const Json::Value& json)
+void TFigureInterface::fromJson(const Json::Value& json)
 {
     string in = json[getUniqueName().data()].asString();
 
@@ -198,7 +198,7 @@ void TFigure::fromJson(const Json::Value& json)
     this->m_figureType = static_cast<decltype(m_figureType)>( bitset<2>(in.substr(3, 2)).to_ulong());
 }
 
-Json::Value TFigure::toJson() const
+Json::Value TFigureInterface::toJson() const
 {
     Json::Value json;
 

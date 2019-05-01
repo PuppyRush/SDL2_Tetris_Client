@@ -17,10 +17,10 @@
 #include <algorithm>
 #include <set>
 
-#include "TFigure.h"
+#include "TFigureInterface.h"
 #include "TProperty.h"
 
-SDL_TETRIS_BEGIN
+namespace tetris_module {
 
 template<size_t WIDTH, size_t HEIGHT>
 class TFigureBoard final
@@ -28,7 +28,7 @@ class TFigureBoard final
 
 public:
 
-    using figure_type = TFigure;
+    using figure_type = TFigureInterface;
     using figure_ptr = std::shared_ptr<figure_type>;
     using board_type = std::array<std::array<TFigureUnit, WIDTH>, HEIGHT>;
 
@@ -72,7 +72,7 @@ public:
 
         _eraseCoords(dest);
 
-        std::shared_ptr<TFigure> copied(nullptr);
+        std::shared_ptr<TFigureInterface> copied(nullptr);
         while (_isValidation(dest)) {
             copied = dest->move(SDLK_DOWN);
         }
@@ -213,6 +213,6 @@ public:
     }
 };*/
 
-SDL_TETRIS_END
+}
 
 #endif //TERIS_FIGURE_CLASS_FIGUREBOARD_H
