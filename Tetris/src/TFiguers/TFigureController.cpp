@@ -11,10 +11,10 @@ using namespace std;
 using namespace sdleasygui;
 
 TFigureController::TFigureController()
-:m_currentFigure(nullptr),
-    m_nextFigure(nullptr),
-    m_board(make_shared<board_type>()),
-    m_nextFigureBoard(make_shared<nextfigure_board_type>())
+        : m_currentFigure(nullptr),
+          m_nextFigure(nullptr),
+          m_board(make_shared<board_type>()),
+          m_nextFigureBoard(make_shared<nextfigure_board_type>())
 {
 
     createNextFigureRandomly();
@@ -25,17 +25,15 @@ TFigureController::TFigureController()
 
 void TFigureController::createNextFigureRandomly()
 {
-    if(m_currentFigure.get() == nullptr)
-    {
+    if (m_currentFigure.get() == nullptr) {
         TFigureBuilder bld{TPoint{GAMEBOARD_WIDTH_COUNT / 2 - 1, 2}};
         bld.unitType(UnitType::Moving);
         m_currentFigure = bld.build();
 
-        TFigureBuilder bld2{TPoint{1,2}};
+        TFigureBuilder bld2{TPoint{1, 2}};
         bld2.unitType(UnitType::Moving);
         m_nextFigure = bld2.build();
-    }
-    else{
+    } else {
 
         m_nextFigureBoard->_eraseCoords(m_nextFigure);
 
@@ -43,7 +41,7 @@ void TFigureController::createNextFigureRandomly()
         m_currentFigure->setPoint(TPoint(GAMEBOARD_WIDTH_COUNT / 2 - 1, 2));
         m_nextFigure.reset();
 
-        TFigureBuilder bld{TPoint{1,2}};
+        TFigureBuilder bld{TPoint{1, 2}};
         bld.unitType(UnitType::Moving);
         m_nextFigure = bld.build();
     }
@@ -51,11 +49,9 @@ void TFigureController::createNextFigureRandomly()
     m_nextFigureBoard->_setCoords(m_nextFigure);
 }
 
-
 void TFigureController::command(const t_eventType event)
 {
-    switch (event)
-    {
+    switch (event) {
         case SDLK_LEFT:
             _goLeft(event);
             break;
@@ -76,19 +72,16 @@ void TFigureController::command(const t_eventType event)
     m_board->setGhostFigure(m_currentFigure, m_ghostFigure);
 }
 
-
 void TFigureController::_goStraightDown(const sdleasygui::t_eventType event)
 {
     m_board->_eraseCoords(m_currentFigure);
 
     shared_ptr<TFigure> copied(nullptr);
-    while(m_board->_isValidation(m_currentFigure))
-    {
+    while (m_board->_isValidation(m_currentFigure)) {
         copied = m_currentFigure->move(event);
     }
 
-    if(copied)
-    {
+    if (copied) {
         m_currentFigure = copied;
         m_currentFigure->setAll(UnitType::Fixed);
         m_board->_setCoords(m_currentFigure);
@@ -100,28 +93,29 @@ void TFigureController::_goStraightDown(const sdleasygui::t_eventType event)
     m_board->_setCoords(m_currentFigure);
 }
 
-void TFigureController::_rotate(const sdleasygui::t_eventType event) {
+void TFigureController::_rotate(const sdleasygui::t_eventType event)
+{
     m_board->_eraseCoords(m_currentFigure);
 
     auto copied = m_currentFigure->move(event);
 
-    while(m_board->isHit(m_currentFigure->getLeftmost()))
-    {
+    while (m_board->isHit(m_currentFigure->getLeftmost())) {
         m_currentFigure->move(SDLK_RIGHT);
     }
 
-    while(m_board->isHit(m_currentFigure->getRightmost()))
-    {
+    while (m_board->isHit(m_currentFigure->getRightmost())) {
         m_currentFigure->move(SDLK_LEFT);
     }
 
-    if(!m_board->_isValidation(m_currentFigure))
+    if (!m_board->_isValidation(m_currentFigure)) {
         m_currentFigure = copied;
+    }
 
     m_board->_setCoords(m_currentFigure);
 }
 
-void TFigureController::_goDown(const sdleasygui::t_eventType event) {
+void TFigureController::_goDown(const sdleasygui::t_eventType event)
+{
     m_board->_eraseCoords(m_currentFigure);
 
     auto copied = m_currentFigure->move(event);
@@ -136,22 +130,26 @@ void TFigureController::_goDown(const sdleasygui::t_eventType event) {
     m_board->_setCoords(m_currentFigure);
 }
 
-void TFigureController::_goLeft(const sdleasygui::t_eventType event) {
+void TFigureController::_goLeft(const sdleasygui::t_eventType event)
+{
     m_board->_eraseCoords(m_currentFigure);
 
     auto copied = m_currentFigure->move(event);
-    if (!m_board->_isValidation(m_currentFigure))
+    if (!m_board->_isValidation(m_currentFigure)) {
         m_currentFigure = copied;
+    }
 
     m_board->_setCoords(m_currentFigure);
 }
 
-void TFigureController::_goRight(const sdleasygui::t_eventType event) {
+void TFigureController::_goRight(const sdleasygui::t_eventType event)
+{
     m_board->_eraseCoords(m_currentFigure);
 
     auto copied = m_currentFigure->move(event);
-    if (!m_board->_isValidation(m_currentFigure))
+    if (!m_board->_isValidation(m_currentFigure)) {
         m_currentFigure = copied;
+    }
 
     m_board->_setCoords(m_currentFigure);
 }

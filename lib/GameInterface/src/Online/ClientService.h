@@ -6,7 +6,7 @@
 #define SDLTETRIS_TCLIENT_TCLIENTSERVICE_H
 
 #if _MSC_VER >= 1200
-  #pragma once
+#pragma once
 #endif
 
 #pragma  once
@@ -27,9 +27,11 @@
 
 namespace game_interface {
 
-class ClientService : public ACE_Event_Handler {
+class ClientService : public ACE_Event_Handler
+{
 public:
-    enum CSTATE {
+    enum CSTATE
+    {
         C_INIT,
         C_CONNECTING,
         C_FAIL,
@@ -42,20 +44,27 @@ private:
     ACE_Message_Queue<ACE_MT_SYNCH> send_datas_;
 
 public:
-    ClientService(ACE_Reactor *reactor);
+    ClientService(ACE_Reactor* reactor);
+
     ~ClientService(void);
 
     void state(CSTATE state);
+
     CSTATE state() const;
 
-    ACE_SOCK_Stream &peer();
+    ACE_SOCK_Stream& peer();
+
     virtual ACE_HANDLE get_handle(void) const;
+
     virtual int handle_input(ACE_HANDLE fd = ACE_INVALID_HANDLE);
+
     virtual int handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask);
+
     virtual int handle_output(ACE_HANDLE fd = ACE_INVALID_HANDLE);
 
-    int send(void *data, ssize_t len);
-    int recv(void *data, ssize_t &len);
+    int send(void* data, ssize_t len);
+
+    int recv(void* data, ssize_t& len);
 };
 }
 

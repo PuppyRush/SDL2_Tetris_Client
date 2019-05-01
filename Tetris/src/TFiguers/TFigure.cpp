@@ -13,15 +13,14 @@ TFigure::TFigure()
 {}
 
 TFigure::TFigure(const TFigureBuilder* bld)
-   : m_width(bld->getWidth()),
-    m_height(bld->getHeight()),
-    m_figureType(bld->getType ()),
-    m_absoluteCoord(bld->getPoint ()),
-    m_color(bld->getColor()),
-    m_figureClass(bld->getClass())
+        : m_width(bld->getWidth()),
+          m_height(bld->getHeight()),
+          m_figureType(bld->getType()),
+          m_absoluteCoord(bld->getPoint()),
+          m_color(bld->getColor()),
+          m_figureClass(bld->getClass())
 {
-    if(m_figureType == TFigureType::None)
-    {
+    if (m_figureType == TFigureType::None) {
         m_figureType = TFigureType::A;
         move(SDLK_LEFT);
     }
@@ -30,23 +29,20 @@ TFigure::TFigure(const TFigureBuilder* bld)
     setAll(bld->getColor());
 }
 
-
 TFigure::~TFigure()
 {
 }
-
 
 std::shared_ptr<TFigure> TFigure::move(const sdleasygui::t_eventType event)
 {
     auto copied = copy();
 
-    switch (event)
-    {
+    switch (event) {
         case SDLK_LEFT:
             _goLeft();
             break;
         case SDLK_RIGHT:
-            _goRight ();
+            _goRight();
             break;
         case SDLK_UP:
             _rotateLeft();
@@ -67,10 +63,10 @@ TFigureUnit TFigure::getLeftmost() const noexcept
     TFigureUnit unit = *m_relativeCoord.begin();
     const auto& end = m_relativeCoord.end();
 
-    for(auto it = m_relativeCoord.begin()+1; it != end ; ++it)
-    {
-        if(unit.getPoint().x > it->getPoint().x)
+    for (auto it = m_relativeCoord.begin() + 1; it != end; ++it) {
+        if (unit.getPoint().x > it->getPoint().x) {
             unit = *it;
+        }
     }
     return unit;
 }
@@ -80,10 +76,10 @@ TFigureUnit TFigure::getRightmost() const noexcept
     TFigureUnit unit = *m_relativeCoord.begin();
     const auto& end = m_relativeCoord.end();
 
-    for(auto it = m_relativeCoord.begin()+1; it != end ; ++it)
-    {
-        if(unit.getPoint().x < it->getPoint().x)
+    for (auto it = m_relativeCoord.begin() + 1; it != end; ++it) {
+        if (unit.getPoint().x < it->getPoint().x) {
             unit = *it;
+        }
     }
     return unit;
 }
@@ -93,10 +89,10 @@ TFigureUnit TFigure::getUpmost() const noexcept
     TFigureUnit unit = *m_relativeCoord.begin();
     const auto& end = m_relativeCoord.end();
 
-    for(auto it = m_relativeCoord.begin()+1; it != end ; ++it)
-    {
-        if(unit.getPoint().y < it->getPoint().y)
+    for (auto it = m_relativeCoord.begin() + 1; it != end; ++it) {
+        if (unit.getPoint().y < it->getPoint().y) {
             unit = *it;
+        }
     }
     return unit;
 }
@@ -106,10 +102,10 @@ TFigureUnit TFigure::getDownmost() const noexcept
     TFigureUnit unit = *m_relativeCoord.begin();
     const auto& end = m_relativeCoord.end();
 
-    for(auto it = m_relativeCoord.begin()+1; it != end ; ++it)
-    {
-        if(unit.getPoint().y > it->getPoint().y)
+    for (auto it = m_relativeCoord.begin() + 1; it != end; ++it) {
+        if (unit.getPoint().y > it->getPoint().y) {
             unit = *it;
+        }
     }
     return unit;
 }
@@ -140,47 +136,42 @@ void TFigure::copy(const TFigure& fig)
     this->_setFigureType(fig.m_figureType);
 }
 
-
-
-void TFigure::_goRight ()
+void TFigure::_goRight()
 {
-    for(int i=0 ; i < m_relativeCoord.size() ; i++)
-    {
-        auto y = m_relativeCoord[i].getPoint ().y;
-        auto x = m_relativeCoord[i].getPoint ().x;
-        m_relativeCoord[i].set ({x+1,y});
+    for (int i = 0; i < m_relativeCoord.size(); i++) {
+        auto y = m_relativeCoord[i].getPoint().y;
+        auto x = m_relativeCoord[i].getPoint().x;
+        m_relativeCoord[i].set({x + 1, y});
     }
-    m_absoluteCoord.x +=1;
+    m_absoluteCoord.x += 1;
 }
 
-void TFigure::_goLeft ()
+void TFigure::_goLeft()
 {
-    for(int i=0 ; i < m_relativeCoord.size() ; i++)
-    {
-        auto y = m_relativeCoord[i].getPoint ().y;
-        auto x = m_relativeCoord[i].getPoint ().x;
-        m_relativeCoord[i].set ({x-1,y});
+    for (int i = 0; i < m_relativeCoord.size(); i++) {
+        auto y = m_relativeCoord[i].getPoint().y;
+        auto x = m_relativeCoord[i].getPoint().x;
+        m_relativeCoord[i].set({x - 1, y});
     }
-    m_absoluteCoord.x -=1;
+    m_absoluteCoord.x -= 1;
 }
 
-void TFigure::_goDown ()
+void TFigure::_goDown()
 {
-    for(int i=0 ; i < m_relativeCoord.size() ; i++)
-    {
-        auto y = m_relativeCoord[i].getPoint ().y;
-        auto x = m_relativeCoord[i].getPoint ().x;
-        m_relativeCoord[i].set ({x,y+1});
+    for (int i = 0; i < m_relativeCoord.size(); i++) {
+        auto y = m_relativeCoord[i].getPoint().y;
+        auto x = m_relativeCoord[i].getPoint().x;
+        m_relativeCoord[i].set({x, y + 1});
     }
-    m_absoluteCoord.y +=1;
+    m_absoluteCoord.y += 1;
 }
 
 void TFigure::_rotateLeft()
 {
     _setFigureType(m_figureType);
 
-    const auto next = (game_interface::toUType(m_figureType)+1);
-    m_figureType = TFigureType{ static_cast<std::underlying_type_t<TFigureType >>(next % getTypeCount()) };
+    const auto next = (game_interface::toUType(m_figureType) + 1);
+    m_figureType = TFigureType{static_cast<std::underlying_type_t<TFigureType >>(next % getTypeCount())};
 }
 
 TFigureType TFigure::getRandomlyFigureType() const noexcept
@@ -191,9 +182,8 @@ TFigureType TFigure::getRandomlyFigureType() const noexcept
 void TFigure::_resetRelateivePoint(const TPoint& newPt)
 {
     const auto ptDis = TPoint{newPt.x - getPoint().x, newPt.y - getPoint().y};
-    for(auto& p : m_relativeCoord)
-    {
-        p.set({p.getPoint().x+ptDis.x, p.getPoint().y+ptDis.y});
+    for (auto& p : m_relativeCoord) {
+        p.set({p.getPoint().x + ptDis.x, p.getPoint().y + ptDis.y});
     }
 }
 
@@ -201,21 +191,21 @@ void TFigure::fromJson(const Json::Value& json)
 {
     string in = json[getUniqueName().data()].asString();
 
-    this->m_absoluteCoord.x = static_cast<t_coord>(bitset<10>(in.substr(5,10)).to_ulong());
-    this->m_absoluteCoord.y = static_cast<t_coord>(bitset<20>(in.substr(15,20)).to_ulong());
+    this->m_absoluteCoord.x = static_cast<t_coord>(bitset<10>(in.substr(5, 10)).to_ulong());
+    this->m_absoluteCoord.y = static_cast<t_coord>(bitset<20>(in.substr(15, 20)).to_ulong());
 
-    this->m_figureClass = static_cast<decltype(m_figureClass)>(bitset<3>(in.substr(0,3)).to_ulong());
-    this->m_figureType = static_cast<decltype(m_figureType)>( bitset<2>(in.substr(3,2)).to_ulong());
+    this->m_figureClass = static_cast<decltype(m_figureClass)>(bitset<3>(in.substr(0, 3)).to_ulong());
+    this->m_figureType = static_cast<decltype(m_figureType)>( bitset<2>(in.substr(3, 2)).to_ulong());
 }
 
 Json::Value TFigure::toJson() const
 {
     Json::Value json;
 
-    bitset<3>tetriminoBit( toUType( getClass()));
-    bitset<2>directionBit( toUType(getType()));
-    bitset<10>xBit(getPoint().x);
-    bitset<20>yBit(getPoint().y);
+    bitset<3> tetriminoBit(toUType(getClass()));
+    bitset<2> directionBit(toUType(getType()));
+    bitset<10> xBit(getPoint().x);
+    bitset<20> yBit(getPoint().y);
 
     string concator = tetriminoBit.to_string() + directionBit.to_string() + xBit.to_string() + yBit.to_string();
     json[getUniqueName().data()] = bitset<35>(concator).to_string();

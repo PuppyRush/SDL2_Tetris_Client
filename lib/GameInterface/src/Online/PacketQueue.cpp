@@ -18,7 +18,6 @@ PacketQueue::~PacketQueue()
     m_thread.join();
 }
 
-
 void PacketQueue::run()
 {
     this->m_thread = std::thread(&PacketQueue::notify, this);
@@ -41,10 +40,11 @@ void PacketQueue::pushEvent(const Packet& event)
 Packet PacketQueue::popEvent()
 {
     std::unique_lock<std::mutex> lock(m_mutex);
-    m_cond.wait(lock, [=](){return !m_packetQ.empty() || !m_isContinue;});
+    m_cond.wait(lock, [=]() { return !m_packetQ.empty() || !m_isContinue; });
 
-    if(!m_isContinue)
+    if (!m_isContinue) {
         return Packet::getNullPacket();
+    }
 
     const auto msg = m_packetQ.front();
     m_packetQ.pop();
@@ -55,20 +55,16 @@ void PacketQueue::notify()
 {
     auto& mngCtl = game_interface::ManagerController::getInstance();
 
-    if(m_isServer)
-    {
+    if (m_isServer) {
         while (m_isContinue) {
             auto packet = popEvent();
-
 
             printf("client recv : %d %d %ld\n", packet.getHeader().destId, toUType(packet.getHeader().message),
                    packet.getHeader().timestamp);
 
             mngCtl.updateObserver(packet);
         }
-    }
-    else
-    {
+    } else {
         while (m_isContinue) {
             auto packet = popEvent();
             packet.toPacket();
@@ -76,11 +72,11 @@ void PacketQueue::notify()
             printf("client recv : %d %d %ld\n", packet.getHeader().destId, toUType(packet.getHeader().message),
                    packet.getHeader().timestamp);
 
-            if(packet.getHeader().where == messageDirection::CLIENT)
+            if (packet.getHeader().where == messageDirection::CLIENT) {
                 continue;
+            }
 
-            for(auto& obj : m_objects)
-            {
+            for (auto& obj : m_objects) {
                 obj->updateObserver(packet);
             }
         }

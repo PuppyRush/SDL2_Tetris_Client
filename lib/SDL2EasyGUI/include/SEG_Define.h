@@ -7,10 +7,8 @@
 
 #include <functional>
 
-namespace sdleasygui
-{
+namespace sdleasygui {
 
 }
-
 
 #endif //PROJECT_SEG_DEFINE_H

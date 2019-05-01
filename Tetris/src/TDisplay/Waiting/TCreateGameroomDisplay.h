@@ -7,7 +7,7 @@
 
 #include <string>
 
-#include "TDisplay/TDisplayInterface.h"
+#include "TDisplayInterface.h"
 
 SDL_TETRIS_BEGIN
 
@@ -16,19 +16,26 @@ class TCreateGameroomDisplay : public TDisplayInterface
 public:
 
     explicit TCreateGameroomDisplay(const sdleasygui::t_id displayId);
+
     virtual ~TCreateGameroomDisplay() = default;
 
-    inline const std::string& getRoomName() const noexcept {return m_roomname;}
+    inline const std::string& getRoomName() const noexcept
+    { return m_roomname; }
 
 protected:
     std::string m_roomname;
 
     virtual void registerEvent() override;
+
     virtual void onInitialize() override;
+
     virtual void onDraw() override;
+
     virtual void onClose() override;
-    void onClickOk(const void *);
-    void onClickCancel(const void *);
+
+    void onClickOk(const void*);
+
+    void onClickCancel(const void*);
 
 private:
 

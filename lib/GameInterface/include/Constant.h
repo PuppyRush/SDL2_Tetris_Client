@@ -12,6 +12,7 @@
 
 namespace game_interface {
 
+constexpr const size_t ROOM_FULLCOUNT = 7;
 constexpr const t_id NULL_ID = std::numeric_limits<t_id>::max();
 constexpr const std::uint8_t CLIENT_ATOMIC_BITCOUNT = 3;
 constexpr const t_id SERVER_ATOMIC_START = 1 << 3;

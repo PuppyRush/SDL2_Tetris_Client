@@ -15,33 +15,38 @@
 
 namespace sdleasygui {
 
-struct event_mover {
+struct event_mover
+{
     const event_type event = nullptr;
-    explicit event_mover(const event_type event)
-        : event(event) {};
 
-    ~event_mover() {
-        if(event->type >= 0x8000)
-        {
+    explicit event_mover(const event_type event)
+            : event(event)
+    {};
+
+    ~event_mover()
+    {
+        if (event->type >= 0x8000) {
             /*if(event->user.data1 != nullptr)
                 delete event->user.data1;
             if(event->user.data2 != nullptr)
                 delete event->user.data2;*/
         }
-        if (event)
+        if (event) {
             delete event;
+        }
     }
 };
 
-template <class _Data>
-class EventQueue {
+template<class _Data>
+class EventQueue
+{
 
 public:
 
     using data_type = _Data*;
 
     EventQueue()
-        :m_isContinue(true)
+            : m_isContinue(true)
     {
 
     }
@@ -51,36 +56,37 @@ public:
         m_isContinue = false;
 
         std::lock_guard<std::mutex> lock(m_mutex);
-        while(!m_eventQ.empty())
-        {
+        while (!m_eventQ.empty()) {
             auto e = m_eventQ.front();
             m_eventQ.pop();
             //delete e;
         }
     }
 
-
     void pushEvent(const data_type event)
     {
         std::lock_guard<std::mutex> lock(m_mutex);
         m_eventQ.push(event);
+        printf("push seq : %llu\n", m_seq);
         m_cond.notify_one();
     }
-
 
     const data_type popEvent()
     {
         std::unique_lock<std::mutex> lock(m_mutex);
-        m_cond.wait(lock, [=](){return !m_eventQ.empty() || !m_isContinue;});
+        m_cond.wait(lock, [=]() { return !m_eventQ.empty() || !m_isContinue; });
 
-        if(m_eventQ.empty() || !m_isContinue)
+        if (m_eventQ.empty() || !m_isContinue) {
             return new _Data;
+        }
 
         const auto msg = m_eventQ.front();
         m_eventQ.pop();
+        printf("pop seq : %llu\n", m_seq++);
         return msg;
     }
 
+    static std::uint64_t m_seq;
 
 private:
     std::queue<data_type> m_eventQ;
@@ -88,6 +94,9 @@ private:
     std::mutex m_mutex;
     std::atomic_bool m_isContinue;
 };
+
+template<class _Data>
+std::uint64_t EventQueue<_Data>::m_seq = 0;
 
 }
 

@@ -6,12 +6,14 @@
 
 using namespace sdleasygui;
 
-BoxBasic::BoxBasic(ControllerBuilder &bld)
-    :Border(bld)
+BoxBasic::BoxBasic(ControllerBuilder& bld)
+        : Border(bld)
 {}
 
 BoxBasic::~BoxBasic()
 {}
 
 void BoxBasic::onDraw()
-{}
+{
+    Border::onDraw();
+}

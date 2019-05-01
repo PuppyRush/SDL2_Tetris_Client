@@ -6,30 +6,36 @@
 #define CONTROLLER_BUTTONBASIC_H
 
 #if _MSC_VER >= 1200
-  #pragma once
+#pragma once
 #endif
 
 #include "../Border.h"
 
 namespace sdleasygui {
 
-class ButtonBasic : public Border {
+class ButtonBasic : public Border
+{
 public:
 
     virtual ~ButtonBasic() = default;
 
-    inline const bool isMultiselected() const noexcept {
+    inline const bool isMultiselected() const noexcept
+    {
         Controller::isMultiselected();
     }
-    inline void setMultiselected(bool multiselected) noexcept {
+
+    inline void setMultiselected(bool multiselected) noexcept
+    {
         Controller::setMultiselected(multiselected);
     }
 
     virtual void onDraw() override;
+
     virtual void onDrawBackground() override;
 
 protected:
-    explicit ButtonBasic(ControllerBuilder &bld);
+    explicit ButtonBasic(ControllerBuilder& bld);
+
     virtual void initialize() override;
 
 private:

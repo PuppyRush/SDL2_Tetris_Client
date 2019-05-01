@@ -2,7 +2,7 @@
 #define TETRIS_TFigureT
 
 #if _MSC_VER >= 1200
-  #pragma once
+#pragma once
 #endif
 
 #include "TFigure.h"
@@ -22,29 +22,38 @@ SDL_TETRIS_BEGIN
 
 
 class TFigureBuilder;
-class TFigureT final : public TFigure {
+
+class TFigureT final : public TFigure
+{
 public:
 
     virtual ~TFigureT();
+
     virtual void initialize() final;
+
     virtual TFigureType getTypeBegin() const noexcept final;
+
     virtual TFigureType getTypeEnd() const noexcept final;
 
-
     //hide base ctr, make object from builder
-    static std::shared_ptr<TFigureT> get(const TFigureBuilder *bld) {
-        auto figure =  std::shared_ptr<TFigureT>(new TFigureT(bld));
-        figure->initialize ();
+    static std::shared_ptr<TFigureT> get(const TFigureBuilder* bld)
+    {
+        auto figure = std::shared_ptr<TFigureT>(new TFigureT(bld));
+        figure->initialize();
         return figure;
     }
 
-    TFigureT(){}
+    TFigureT()
+    {}
 
 private:
 
-    TFigureT(const TFigureBuilder *bld);
+    TFigureT(const TFigureBuilder* bld);
+
     virtual bool _validation() override final;
+
     virtual const std::shared_ptr<TFigure> _copy() const override final;
+
     //implement pure virtual funtions.
     virtual void _setFigureType(const TFigureType) override final;
 };

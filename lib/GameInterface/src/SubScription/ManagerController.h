@@ -12,10 +12,9 @@
 #include "Observer.h"
 #include "ManagerInterface.h"
 
-namespace game_interface
-{
+namespace game_interface {
 
-class ManagerController : public Observer ,
+class ManagerController : public Observer,
                           public VectorSubject<ManagerInterface>,
                           public boost::serialization::singleton<ManagerController>
 {
@@ -26,23 +25,34 @@ public:
 
     friend class boost::serialization::singleton<ManagerController>;
 
-    ManagerController(){}
-    virtual ~ManagerController(){}
+    ManagerController()
+    {}
+
+    virtual ~ManagerController()
+    {}
 
     virtual void updateObserver(const game_interface::Packet& packet);
-    virtual void notify() override {}
 
-    static ManagerController& getInstance() {
+    virtual void notify() override
+    {}
+
+    static ManagerController& getInstance()
+    {
         return boost::serialization::singleton<ManagerController>::get_mutable_instance();
     }
 
-    virtual const std::string_view& getUniqueName() const override {}
-    virtual Json::Value toJson() const override {};
+    virtual const std::string_view& getUniqueName() const override
+    {}
+
+    virtual Json::Value toJson() const override
+    {};
 
 protected:
 
     virtual void postDetach(_Base::unique_type) override;
-    virtual void postAttach(object_type ) override {}
+
+    virtual void postAttach(object_type) override
+    {}
 
 };
 }

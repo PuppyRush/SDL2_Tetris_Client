@@ -4,7 +4,6 @@
 
 #include "GameInterface/include/Player.h"
 
-
 using namespace game_interface;
 
 Json::Value Player::toJson() const
@@ -14,7 +13,6 @@ Json::Value Player::toJson() const
 
     return json;
 }
-
 
 void Player::fromJson(const Json::Value& json)
 {

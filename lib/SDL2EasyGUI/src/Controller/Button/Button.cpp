@@ -7,7 +7,7 @@
 using namespace sdleasygui;
 
 Button::Button(ButtonBuilder& bld)
-    :ButtonBasic(bld)
+        : ButtonBasic(bld)
 {
     bld.kind(ControllerKind::Button);
 }

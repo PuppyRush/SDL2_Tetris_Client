@@ -6,7 +6,7 @@
 #define SDLTETRIS_TCLIENT_TCLIENTCONNECTOR_H
 
 #if _MSC_VER >= 1200
-  #pragma once
+#pragma once
 #endif
 
 #include <memory>
@@ -21,20 +21,26 @@
 
 namespace game_interface {
 
-class ClientConnector : public ACE_Event_Handler {
+class ClientConnector : public ACE_Event_Handler
+{
 
 public:
-    ClientConnector(const char *ipstr, ACE_Reactor *reactor, ClientService &stream);
+    ClientConnector(const char* ipstr, ACE_Reactor* reactor, ClientService& stream);
+
     virtual ~ClientConnector(void);
 
     void connect();
 
-    inline const bool isConnection() const noexcept { return m_isConnection;}
+    inline const bool isConnection() const noexcept
+    { return m_isConnection; }
 
     virtual ACE_HANDLE get_handle(void) const;
+
     //접속  이벤트
     virtual int handle_input(ACE_HANDLE fd = ACE_INVALID_HANDLE);
+
     virtual int handle_output(ACE_HANDLE fd = ACE_INVALID_HANDLE);
+
     virtual int handle_exception(ACE_HANDLE fd = ACE_INVALID_HANDLE);
 
     virtual int handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask);
@@ -43,7 +49,7 @@ private:
     std::string m_ipstring;
     int m_isConnection;
     ACE_SOCK_Connector m_connector;
-    ClientService &m_stream;
+    ClientService& m_stream;
 };
 
 }

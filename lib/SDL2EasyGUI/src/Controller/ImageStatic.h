@@ -5,7 +5,8 @@
 #ifndef PROJECT_IMAGESTATIC_H
 #define PROJECT_IMAGESTATIC_H
 
-class ImageStatic {
+class ImageStatic
+{
 
 };
 

@@ -6,9 +6,8 @@
 #define TERIS_FIGURE_CLASS_TGAMELOCALDISPLAY_H
 
 #if _MSC_VER >= 1200
-  #pragma once
+#pragma once
 #endif
-
 
 #include "TGameDisplay.h"
 #include "../../TObject/TPlayer.h"
@@ -21,19 +20,23 @@ class TSingleGameDisplay final : public TGameDisplay
 public:
 
     explicit TSingleGameDisplay(const sdleasygui::t_id displayId);
+
     virtual ~TSingleGameDisplay() = default;
 
 private:
     virtual void onClickedStart(const void* click) override final;
+
     virtual void onClickedSuspend(const void* click) override final;
 
     virtual void onDraw() override final;
+
     virtual void onInitialize() override final;
+
     virtual void onClose() override final;
+
     virtual void onCreate() override final;
+
     virtual void registerEvent() override final;
-
-
 
 };
 

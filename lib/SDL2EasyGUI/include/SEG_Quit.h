@@ -11,7 +11,8 @@
 
 namespace sdleasygui {
 
-void SDLEasyGUI_Quit() {
+void SDLEasyGUI_Quit()
+{
     DisplayController::getInstance().finish();
     SDL_Quit();
 }

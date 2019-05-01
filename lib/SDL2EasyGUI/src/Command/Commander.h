@@ -9,7 +9,8 @@
 
 namespace sdleasygui {
 
-class Commander {
+class Commander
+{
 
     virtual void execute() = 0;
 

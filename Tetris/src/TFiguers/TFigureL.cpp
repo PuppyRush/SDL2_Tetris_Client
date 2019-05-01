@@ -1,20 +1,21 @@
 #include "TFigureL.h"
 
-
 using namespace tetris;
 using namespace game_interface;
 
-TFigureL::TFigureL(const TFigureBuilder *bld)
-    : TFigure(bld)
+TFigureL::TFigureL(const TFigureBuilder* bld)
+        : TFigure(bld)
 {
 
 }
 
-TFigureL::~TFigureL() {
+TFigureL::~TFigureL()
+{
 }
 
-void TFigureL::initialize() {
-    _rotateLeft ();
+void TFigureL::initialize()
+{
+    _rotateLeft();
 }
 
 void TFigureL::_setFigureType(const TFigureType type)
@@ -54,7 +55,8 @@ void TFigureL::_setFigureType(const TFigureType type)
     }
 }
 
-bool TFigureL::_validation() {
+bool TFigureL::_validation()
+{
 
 }
 
@@ -68,6 +70,7 @@ TFigureType TFigureL::getTypeEnd() const noexcept
     return TFigureType::D;
 }
 
-const std::shared_ptr<TFigure> TFigureL::_copy() const {
+const std::shared_ptr<TFigure> TFigureL::_copy() const
+{
     return std::shared_ptr<TFigureL>(new TFigureL());
 }

@@ -5,17 +5,18 @@
 #ifndef SDLEASYGUIDE_TPROPERTY_H
 #define SDLEASYGUIDE_TPROPERTY_H
 
-
 #if _MSC_VER >= 1200
-  #pragma once
+#pragma once
 #endif
 
 namespace sdleasygui {
 
 const t_size WINDOW_HEIGHT = 900;
+
 const t_size WINDOW_WIDTH = 1000;
 
-enum class ControllerKind : t_type {
+enum class ControllerKind : t_type
+{
     ListBox,
     StaticLabel,
     EditLabel,
@@ -25,18 +26,21 @@ enum class ControllerKind : t_type {
     ComboBox
 };
 
-enum class TDisplayMode : t_type {
+enum class TDisplayMode : t_type
+{
     Modal,
     Modaless
 };
 
-enum class TLocalMode : t_type {
+enum class TLocalMode : t_type
+{
     Local,
     Online,
     All
 };
 
-enum class ColorCode : Uint32 {
+enum class ColorCode : Uint32
+{
 
     //basic color
     red = 0xFF0000,
@@ -64,7 +68,8 @@ enum class ColorCode : Uint32 {
     End = green
 };
 
-enum EventType {
+enum EventType
+{
     SEG_EASYGUI_EVENT_START = 0x9001,
     SEG_DRAW_DISPLAY,
     SEG_DRAW_CONTROLLER,
@@ -72,14 +77,16 @@ enum EventType {
     SEG_ENTER_CONTROLLER
 };
 
-enum class BorderBoundaryType : t_type {
+enum class BorderBoundaryType : t_type
+{
     angle,
     ellipse,
     roundedAngle,
     round
 };
 
-enum class BorderBoundaryLineType : t_type {
+enum class BorderBoundaryLineType : t_type
+{
     none,
     straight,
     single_dashed,
@@ -88,7 +95,8 @@ enum class BorderBoundaryLineType : t_type {
     rectagle,
 };
 
-enum SEG_Event {
+enum SEG_Event : t_eventType
+{
 
     SEGEVENT_START = 0x8500,
     ADD_MODAL_DISPLAY,
@@ -98,8 +106,9 @@ enum SEG_Event {
     SDL_TIMER_EVENT,
     DETACH_FOCUS,
     ATTACH_FOCUS,
-    EDITLABEL_CHAR_TEXTCURSOR
+    EDITLABEL_CHAR_TEXTCURSOR,
 
+    SEGEVENT_END = 0x8999
 };
 
 enum class MessageDialogKind

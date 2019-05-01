@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.12)
-project(tetris_figure_class)
+project(tetris)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
@@ -43,10 +43,10 @@ find_library(
 
 add_executable(tetris_figure_class
         src/Main.cpp
-        src/Common/TProperty.h
-        src/Common/TDefine.h
-        src/Common/THeader.h
-        src/Common/TResource.h
+        include/TProperty.h
+        include/TDefine.h
+        include/THeader.h
+        include/TResource.h
         src/TFiguers/TFigureL.h
         src/TFiguers/TFigureUnit.h
         src/TFiguers/TFigureUnit.cpp
@@ -98,7 +98,7 @@ add_executable(tetris_figure_class
         src/TClient/TClientController.cpp
         src/TDisplay/Waiting/TCreateGameroomDisplay.cpp
         src/TDisplay/Waiting/TCreateGameroomDisplay.h
-        src/TDisplay/TDisplayInterface.h
+        include/TDisplayInterface.h
         src/TObject/TWaitingRoom.cpp
         src/TObject/TWaitingRoom.h
         src/TObject/TGameRoom.cpp

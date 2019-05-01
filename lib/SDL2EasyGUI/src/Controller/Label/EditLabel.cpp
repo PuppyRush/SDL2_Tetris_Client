@@ -10,27 +10,28 @@ using namespace std;
 using namespace sdleasygui;
 
 EditLabel::EditLabel(EditLabelBuilder& bld)
-    :LabelBasic(bld), m_labelBasic(bld.m_editBasic)
+        : LabelBasic(bld), m_labelBasic(bld.m_editBasic)
 {
     bld.kind(ControllerKind::EditLabel);
 
-    m_textCursorTimerAdder = make_shared<TimerAdder>(700,toUType(SEG_Event::EDITLABEL_CHAR_TEXTCURSOR));
+    m_textCursorTimerAdder = make_shared<TimerAdder>(700, toUType(SEG_Event::EDITLABEL_CHAR_TEXTCURSOR));
 }
 
 void EditLabel::onDraw()
 {
-    if(m_textWidth>0 && m_textHeight>0) {
+    if (m_textWidth > 0 && m_textHeight > 0) {
         const auto point = getPoint();
         SDL_Point points[]
-            = {{static_cast<t_size>(point.x + m_textWidth + 7), point.y + 5},
-               {static_cast<t_size>(point.x + m_textWidth + 7), point.y + static_cast<t_size>(getHeight()) - 5},
-               {static_cast<t_size>(point.x + m_textWidth + 7), point.y + 5}};
+                = {{static_cast<t_size>(point.x + m_textWidth + 7), point.y + 5},
+                   {static_cast<t_size>(point.x + m_textWidth + 7), point.y + static_cast<t_size>(getHeight()) - 5},
+                   {static_cast<t_size>(point.x + m_textWidth + 7), point.y + 5}};
 
         TColor lineColor;
-        if (m_textCursor)
+        if (m_textCursor) {
             lineColor = ColorCode::black;
-        else
+        } else {
             lineColor = ColorCode::white;
+        }
 
         SDL_SetRenderDrawColor(getWindow()->getSDLRenderer(), lineColor.r, lineColor.g, lineColor.b, 255);
         SDL_RenderDrawLines(getWindow()->getSDLRenderer(), points, SDL_arraysize(points));
@@ -38,28 +39,20 @@ void EditLabel::onDraw()
     LabelBasic::onDraw();
 }
 
-void EditLabel::onTimerEvent(const SDL_UserEvent *user)
+void EditLabel::onTimerEvent(const SDL_UserEvent* user)
 {
     m_textCursor = !m_textCursor;
     onDraw();
 }
 
-void EditLabel::onUserEvent (const SDL_UserEvent* user)
+void EditLabel::onUserEvent(const SDL_UserEvent* user)
 {
-    switch(user->type)
-    {
-        case EDITLABEL_CHAR_TEXTCURSOR:
-            m_textCursor = !m_textCursor;
-            refresh();
-            break;
-    }
     LabelBasic::onUserEvent(user);
 }
 
 void EditLabel::onAttachFocus()
 {
-    if(m_textCursorTimer == NULL_TIMER_ID)
-    {
+    if (m_textCursorTimer == NULL_TIMER_ID) {
         m_textCursorTimer = m_textCursorTimerAdder->addTimer();
         m_textCursor = true;
         setSelected(true);
@@ -74,19 +67,19 @@ void EditLabel::onDetachFocus()
     setSelected(false);
 }
 
-void EditLabel::onKeyboardEvent (const SDL_KeyboardEvent* key)
+void EditLabel::onKeyboardEvent(const SDL_KeyboardEvent* key)
 {
-    if(!isSelected())
+    if (!isSelected()) {
         return;
+    }
 
-    switch(key->type)
-    {
+    switch (key->type) {
         case SDL_KEYDOWN:
-            switch(key->keysym.sym)
-            {
+            switch (key->keysym.sym) {
                 case SDLK_BACKSPACE:
-                    if(!m_labelString.empty())
+                    if (!m_labelString.empty()) {
                         m_labelString.pop_back();
+                    }
                     break;
             }
             break;
@@ -99,15 +92,15 @@ void EditLabel::onKeyboardEvent (const SDL_KeyboardEvent* key)
     LabelBasic::onKeyboardEvent(key);
 }
 
-void EditLabel::onTextInputEvent (const SDL_TextInputEvent* text)
+void EditLabel::onTextInputEvent(const SDL_TextInputEvent* text)
 {
-    if(!isSelected())
+    if (!isSelected()) {
         return;
+    }
 
     m_labelString.append(text->text);
     LabelBasic::onTextInputEvent(text);
 }
-
 
 void EditLabel::onDrawBackground()
 {

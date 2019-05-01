@@ -9,19 +9,23 @@
 
 namespace game_interface {
 
-class GameRoom : public Room{
+class GameRoom : public Room
+{
 public:
-    using unique_type = Room::unique_type ;
-    using room_ptr = Room::room_ptr ;
+    using unique_type = Room::unique_type;
+    using room_ptr = Room::room_ptr;
 
     virtual Json::Value toJson() const override;
+
     virtual void fromJson(const Json::Value& json);
 
-    virtual void updateObserver(const Packet& ) =0;
+    virtual void updateObserver(const Packet&) = 0;
 
 protected:
-    virtual void postEnter(player_ptr ply) =0;
-    virtual void postExit(const unique_type unique) =0;
+
+    virtual void postEnter(const player_ptr&) = 0;
+
+    virtual void postExit(const player_ptr&) = 0;
 
 };
 

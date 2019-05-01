@@ -5,7 +5,7 @@
 #ifndef PROJECT_TTETRISDISPLAYINTERFACE_H
 #define PROJECT_TTETRISDISPLAYINTERFACE_H
 
-#include "../Common/THeader.h"
+#include "THeader.h"
 #include "SDL2EasyGUI/include/DisplayInterface.h"
 #include "GameInterface/src/SubScription/Observer.h"
 #include "GameInterface/src/Online/Packet.h"
@@ -18,29 +18,29 @@ class TDisplayInterface : public sdleasygui::DisplayInterface, public game_inter
 
 public:
 
-    using unique_type = typename sdleasygui::DisplayInterface::unique_type ;
+    using unique_type = typename sdleasygui::DisplayInterface::unique_type;
 
     virtual ~TDisplayInterface()
-    {  }
+    {}
 
 protected:
 
     TDisplayInterface(const sdleasygui::t_id displayId)
-        :DisplayInterface(displayId)
+            : DisplayInterface(displayId)
     {}
 
-    virtual void updateObserver(const game_interface::Packet& )
+    virtual void updateObserver(const game_interface::Packet&)
     {
     }
 
     virtual void postCreate(display_ptr display) override
     {
-        game_interface::PacketQueue::getInstance().attach(std::dynamic_pointer_cast<TDisplayInterface>(display) );
+        game_interface::PacketQueue::getInstance().attach(std::dynamic_pointer_cast<TDisplayInterface>(display));
     }
 
     virtual void postDestroy(const unique_type unique) override
     {
-        game_interface::PacketQueue::getInstance().detach( unique);
+        game_interface::PacketQueue::getInstance().detach(unique);
     }
 
     virtual void onClose() override
@@ -55,9 +55,14 @@ protected:
     }
 
 private:
-    virtual const std::string_view& getUniqueName() const override {}
-    virtual Json::Value toJson() const override{}
-    virtual void fromJson(const Json::Value& json) override {}
+    virtual const std::string_view& getUniqueName() const override
+    {}
+
+    virtual Json::Value toJson() const override
+    {}
+
+    virtual void fromJson(const Json::Value& json) override
+    {}
 
 };
 

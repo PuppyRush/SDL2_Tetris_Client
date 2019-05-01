@@ -22,7 +22,6 @@ enum class messgaeType : t_type
     Response,
 };
 
-
 enum class messageInfo : t_type
 {
     UNKWON,
@@ -44,7 +43,5 @@ enum class messageInfo : t_type
 };
 
 }
-
-
 
 #endif //TETRIS_FIGURE_CLASS_MESSAGETYPE_H

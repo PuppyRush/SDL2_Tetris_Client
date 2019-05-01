@@ -6,7 +6,7 @@
 #define GAMEINTERFACE_TSTRUCT_H
 
 #if _MSC_VER >= 1200
-  #pragma once
+#pragma once
 #endif
 
 #include <cassert>
@@ -20,14 +20,16 @@
 
 namespace game_interface {
 
-typedef struct TIPString {
+typedef struct TIPString
+{
     TIPString()
-        : TIPString({192, 168, 0, 1},12345) {
+            : TIPString({192, 168, 0, 1}, 12345)
+    {
 
     }
 
     TIPString(std::initializer_list<size_t> fields, const t_port port)
-        :port(port)
+            : port(port)
     {
         assert(fields.size() == 4);
         ip.reserve(16);
@@ -38,14 +40,15 @@ typedef struct TIPString {
         ip.pop_back();
     }
 
-    const char *strFromIP() const {
+    const char* strFromIP() const
+    {
         return ip.c_str();
     }
 
-    const char *strFromIpAndPort() const {
+    const char* strFromIpAndPort() const
+    {
         return ip.c_str();
     }
-
 
     std::string ip;
     t_port port;

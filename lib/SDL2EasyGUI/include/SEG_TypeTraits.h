@@ -6,7 +6,7 @@
 #define SDLEASYGUIDE_TYPE_TRAITS_H
 
 #if _MSC_VER >= 1200
-  #pragma once
+#pragma once
 #endif
 
 #include <cstdlib>
@@ -21,13 +21,14 @@
 namespace sdleasygui {
 
 template<class T>
-constexpr const auto toUType(T enuml) noexcept {
+constexpr const auto toUType(T enuml) noexcept
+{
     return static_cast<std::underlying_type_t<T>>(enuml);
 }
 
 template<class _Tp, class _Res, class... _Args>
 inline std::shared_ptr<_Tp>
-make_display(const _Res resId, _Args&&... __args)
+make_display(const _Res resId, _Args&& ... __args)
 {
     typedef typename std::remove_const<_Tp>::type _Tp_nc;
     return std::allocate_shared<_Tp>(std::allocator<_Tp_nc>(), toUType(resId),
@@ -35,41 +36,50 @@ make_display(const _Res resId, _Args&&... __args)
 }
 
 template<class T>
-struct EnumIterator {
+struct EnumIterator
+{
     T value;
 
     EnumIterator()
-        : value(T::Begin) {}
+            : value(T::Begin)
+    {}
 
-    inline const T begin() noexcept {
+    inline const T begin() noexcept
+    {
         value = static_cast<T>( toUType(value) << 1);
         return value;
     }
 
-    inline const bool end() const noexcept {
+    inline const bool end() const noexcept
+    {
         return toUType(value) != toUType(T::End);
     }
 
-    EnumIterator operator++() {
-        value = (T) (toUType(value) << 1);
+    EnumIterator operator++()
+    {
+        value = (T)(toUType(value) << 1);
         return *this;
     }
 
-    bool operator!=(const EnumIterator *other) {
+    bool operator!=(const EnumIterator* other)
+    {
         return toUType(value) != toUType(other->value);
     }
 };
 
 template<class T>
-class EnumHelper {
+class EnumHelper
+{
 public:
 
-    static const T getRandomly() {
+    static const T getRandomly()
+    {
         const auto rnd = rand() % (toUType(T::End) - toUType(T::Begin) + 1);
         return T(rnd);
     }
 
-    static const T getRandomly(const T begin, const T end) {
+    static const T getRandomly(const T begin, const T end)
+    {
         std::default_random_engine generator;
         std::uniform_int_distribution<int> distribution(toUType(begin), toUType(end));
         return T(distribution(generator));
@@ -77,7 +87,8 @@ public:
 
 private:
 
-    EnumHelper() {
+    EnumHelper()
+    {
 
     }
 

@@ -6,24 +6,23 @@
 #define GUI_WINDOW_H
 
 #if _MSC_VER >= 1200
-  #pragma once
+#pragma once
 #endif
 
 #include <memory>
-
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_video.h>
 
-
 #include "SEG_Struct.h"
 #include "SEG_Constant.h"
 
 namespace sdleasygui {
 
-class SEG_Window final {
+class SEG_Window final
+{
 
 public:
 
@@ -32,27 +31,46 @@ public:
     using renderer_type = SDL_Renderer*;
 
     SEG_Window(const t_size width = WINDOW_WIDTH, const t_size height = WINDOW_HEIGHT);
+
     virtual ~SEG_Window();
 
-    inline void setTitle(const std::string& title) { m_title = title;}
-    inline void setWidth(const t_size width) noexcept { m_windowWidth = width;}
-    inline void setHeight(const t_size height) noexcept { m_windowHeight = height;}
-    inline const t_size getWidth() const noexcept { return m_windowWidth ;}
-    inline const t_size getHeight() const noexcept { return m_windowHeight;}
-    inline void setShow(const bool b) noexcept{ m_show = b; }
+    void setTitle(const std::string& title);
+
+    void setWidth(const t_size width) noexcept;
+
+    void setHeight(const t_size height) noexcept;
+
+    inline const t_size getWidth() const noexcept
+    { return m_windowWidth; }
+
+    inline const t_size getHeight() const noexcept
+    { return m_windowHeight; }
+
+    inline void setShow(const bool b) noexcept
+    { m_show = b; }
+
     void show();
+
     void hidden();
+
     void initialize();
 
-    inline const size_t getDisplayWidth() const noexcept { return m_windowWidth; }
-    inline const size_t getDisplayHeight() const noexcept { return m_windowHeight; }
-    inline const t_id getWindowID() const noexcept { return m_windowID; }
+    inline const size_t getDisplayWidth() const noexcept
+    { return m_windowWidth; }
 
-    inline window_type getSDLWindow() const noexcept {
+    inline const size_t getDisplayHeight() const noexcept
+    { return m_windowHeight; }
+
+    inline const t_id getWindowID() const noexcept
+    { return m_windowID; }
+
+    inline window_type getSDLWindow() const noexcept
+    {
         return m_window;
     }
 
-    inline renderer_type getSDLRenderer() const noexcept {
+    inline renderer_type getSDLRenderer() const noexcept
+    {
         return m_renderer;
     }
 

@@ -11,17 +11,22 @@
 
 namespace sdleasygui {
 
-class LabelBasic : public Border {
+class LabelBasic : public Border
+{
 
 public:
     LabelBasic(ControllerBuilder& bld);
-    virtual ~LabelBasic(){}
 
-    std::string getString() { return m_labelString;}
+    virtual ~LabelBasic()
+    {}
+
+    std::string getString()
+    { return m_labelString; }
 
 protected:
 
     void onDraw();
+
     void onDrawBackground();
 
     int m_textWidth = 0;

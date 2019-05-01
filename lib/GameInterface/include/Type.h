@@ -2,9 +2,8 @@
 #ifndef GAMEINTERFACE_TTYPE_H
 #define GAMEINTERFACE_TTYPE_H
 
-
 #if _MSC_VER >= 1200
-  #pragma once
+#pragma once
 #endif
 
 #include <cstddef>

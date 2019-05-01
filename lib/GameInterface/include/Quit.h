@@ -9,7 +9,8 @@
 
 namespace game_interface {
 
-void GameInterface_Quit() {
+void GameInterface_Quit()
+{
 }
 
 }

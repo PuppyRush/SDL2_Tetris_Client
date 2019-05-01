@@ -17,14 +17,17 @@
 
 namespace game_interface {
 
-class Packet final{
+class Packet final
+{
 public:
 
-    typedef struct Header{
+    typedef struct Header
+    {
 
         Header() = default;
-        Header(const t_unique _destId ,const t_unique _senderId, const messageInfo _message )
-            :destId(_destId), senderId(_senderId), message(_message)
+
+        Header(const t_unique _destId, const t_unique _senderId, const messageInfo _message)
+                : destId(_destId), senderId(_senderId), message(_message)
         {}
 
         t_unique destId = NULL_ID;
@@ -38,32 +41,42 @@ public:
     static constexpr const size_t header_size = sizeof(Header);
 
     using buffer_type = unsigned char;
-    using buffer_ptr = buffer_type *;
+    using buffer_ptr = buffer_type*;
     using size_type = ssize_t;
     using packet_type = std::pair<buffer_type[BUF_MAX_SIZE], size_type>;
 
     Packet(const Header& _header);
+
     Packet(const Header& _header, const Json::Value& _payload);
-    Packet(Header &&_header, Json::Value &&_payload);
+
+    Packet(Header&& _header, Json::Value&& _payload);
+
     Packet(buffer_ptr buf, const size_type size);
+
     Packet(const packet_type _packet);
+
     Packet(const char*, const size_type);
 
     std::pair<std::__decay_and_strip<unsigned char (&)[1024]>::__type, long>
     toByte();
 
-    Packet *toPacket();
+    Packet* toPacket();
 
     void appendObject(const game_interface::Object*);
 
-    inline void setTimestamp(const t_time time) { m_header.timestamp = time;}
-    inline void setUnique(const t_unique id){m_header.destId = id;}
+    inline void setTimestamp(const t_time time)
+    { m_header.timestamp = time; }
 
-    inline Header& setHeader() noexcept {
+    inline void setUnique(const t_unique id)
+    { m_header.destId = id; }
+
+    inline Header& setHeader() noexcept
+    {
         return m_header;
     }
 
-    inline const Header& getHeader() const noexcept {
+    inline const Header& getHeader() const noexcept
+    {
         return m_header;
     };
 

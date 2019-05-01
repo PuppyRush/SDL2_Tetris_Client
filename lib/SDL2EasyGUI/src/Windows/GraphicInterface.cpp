@@ -8,8 +8,7 @@ using namespace sdleasygui;
 
 GraphicInterface::~GraphicInterface()
 {
-    if(m_window)
-    {
+    if (m_window) {
         delete m_window;
         m_window = nullptr;
     }

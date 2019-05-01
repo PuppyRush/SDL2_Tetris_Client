@@ -38,7 +38,10 @@ include_directories(src/Subjector)
 include_directories(src/Windows)
 
 include_directories(
+        ../
         include
+        src
+        lib
         SYSTEM ${Boost_INCLUDE_DIR}
         ${SDL2_INCLUDE_DIR}
         ${SDL2_IMAGE_INCLUDE_DIR}
@@ -60,29 +63,29 @@ ADD_LIBRARY( SDL2EasyGUI STATIC
     src/Controller/Border.cpp
     src/Controller/Border.h
         src/Controller/Button/Button.cpp
-        src/Controller/Button/Button.h
+        include/Button.h
         src/Controller/Button/ButtonBasic.cpp
         src/Controller/Button/ButtonBasic.h
         src/Controller/Box/ComboBox.cpp
-        src/Controller/Box/ComboBox.h
+        include/ComboBox.h
     src/Controller/Controller.cpp
         src/Controller/Controller.h
     src/Controller/ControllerBuilder.cpp
         include/ControllerBuilder.h
         src/Controller/Label/EditLabel.cpp
-        src/Controller/Label/EditLabel.h
+        include/EditLabel.h
     src/Controller/GroupControllManager.cpp
         include/GroupControllManager.h
         src/Controller/Box/ListBox.cpp
-        src/Controller/Box/ListBox.h
+        include/ListBox.h
         src/Controller/Button/RadioButton.cpp
-        src/Controller/Button/RadioButton.h
+        include/RadioButton.h
         src/Controller/Label/StaticLabel.cpp
-        src/Controller/Label/StaticLabel.h
+        include/StaticLabel.h
     src/Display/InputDialog.cpp
-    src/Display/InputDialog.h
+        include/InputDialog.h
     src/Display/MessageDialog.cpp
-    src/Display/MessageDialog.h
+        include/MessageDialog.h
     src/Windows/DisplayController.cpp
         include/DisplayController.h
     src/Windows/DisplayInterface.cpp
@@ -108,7 +111,7 @@ ADD_LIBRARY( SDL2EasyGUI STATIC
     src/Controller/ImageStatic.cpp
     src/Controller/ImageStatic.h
         src/Controller/Label/LabelBasic.cpp
-        src/Controller/Label/LabelBasic.h src/Controller/Box/BoxBasic.cpp src/Controller/Box/BoxBasic.h)
+        src/Controller/Label/LabelBasic.h src/Controller/Box/BoxBasic.cpp src/Controller/Box/BoxBasic.h src/Controller/Button/CheckBox.cpp include/CheckBox.h)
 
 target_link_libraries(
         SDL2EasyGUI

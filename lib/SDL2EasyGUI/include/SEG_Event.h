@@ -19,18 +19,17 @@ namespace sdleasygui {
 
 typedef struct SEG_Click
 {
-    TPoint point = {-100,-100};
+    TPoint point = {-100, -100};
     t_res resourceId = toUType(resource::NONE);
 
     SEG_Click(const TPoint& point, const t_res& res)
-    :point(point), resourceId(res)
+            : point(point), resourceId(res)
     {}
 
     SEG_Click(TPoint&& point, t_res&& res)
-        :point(point), resourceId(res)
+            : point(point), resourceId(res)
     {}
-}SEG_Click;
-
+} SEG_Click;
 
 constexpr const int timer_code = 123456789;
 
@@ -40,44 +39,51 @@ typedef struct SDL_TimerEvent
     Uint32 timestamp;   /**< In milliseconds, populated using SDL_GetTicks() */
     Uint32 windowID;    /**< The associated window if any */
     Sint32 code;        /**< User defined event code */
-    void *data1;        /**< User defined data pointer */
-    void *data2;        /**< User defined data pointer */
+    void* data1;        /**< User defined data pointer */
+    void* data2;        /**< User defined data pointer */
 } SDL_TimerEvent;
 
-
-
 //must call by TimerAdder
-Uint32 timerCallback(Uint32 interval, void *param);
+Uint32 timerCallback(Uint32 interval, void* param);
 
-class TimerAdder final {
+class TimerAdder final
+{
 public:
 
     TimerAdder(const Uint32 interval, const t_eventType event)
-        : m_interval(interval), m_eventType(event) {
+            : m_interval(interval), m_eventType(event)
+    {
+        m_userEvent.data1 = nullptr;
+        m_userEvent.data2 = nullptr;
         m_userEvent.type = event;
     }
 
-    inline TimerAdder *windowsId(const t_id id) {
+    inline TimerAdder* windowsId(const t_id id)
+    {
         this->m_userEvent.windowID = id;
         return this;
     }
 
-    inline TimerAdder *timestamp(const Uint32 time) {
+    inline TimerAdder* timestamp(const Uint32 time)
+    {
         this->m_userEvent.timestamp = time;
         return this;
     }
 
-    inline TimerAdder *data1(void *data) {
+    inline TimerAdder* data1(void* data)
+    {
         this->m_userEvent.data1 = data;
         return this;
     }
 
-    inline TimerAdder *data2(void *data) {
+    inline TimerAdder* data2(void* data)
+    {
         this->m_userEvent.data2 = data;
         return this;
     }
 
-    const t_timer addTimer() {
+    const t_timer addTimer()
+    {
         m_userEvent.timestamp = SDL_GetTicks();
         return SDL_AddTimer(m_interval, timerCallback, &m_userEvent);
     }
@@ -89,15 +95,13 @@ private:
     SDL_UserEvent m_userEvent;
 };
 
-
-template <class _Target1, class _Target2 = t_res>
+template<class _Target1, class _Target2 = t_res>
 class EventPusher
 {
 public:
 
-
     EventPusher(const _Target1 winid, const t_eventType event)
-    :EventPusher()
+            : EventPusher()
     {
         m_user.type = SDL_USEREVENT;
         m_user.windowID = winid;
@@ -106,7 +110,7 @@ public:
     }
 
     EventPusher(const _Target1 winid, const _Target2 targetid, const t_eventType event)
-        :EventPusher()
+            : EventPusher()
     {
         m_user.type = SDL_USEREVENT;
         m_user.windowID = winid;
@@ -119,7 +123,7 @@ public:
     {
     }
 
-    template <class T>
+    template<class T>
     void setUserData(T* data)
     {
         auto newdata = new T{*data};

@@ -9,9 +9,11 @@
 
 namespace sdleasygui {
 
-class EventCommand : public Commander {
+class EventCommand : public Commander
+{
 
-    virtual void execute() override final {
+    virtual void execute() override final
+    {
 
     }
 

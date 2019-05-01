@@ -13,16 +13,15 @@ class PacketCommander
 {
 public:
     void requestInfo();
+
     void recvInitInfo(const Packet packet);
 
 protected:
 
-
-
 private:
 
-    messageInfo  m_msgInfo;
-    messageDirection  m_dir;
+    messageInfo m_msgInfo;
+    messageDirection m_dir;
 
 };
 

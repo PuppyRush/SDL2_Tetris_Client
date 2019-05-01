@@ -7,7 +7,7 @@
 using namespace sdleasygui;
 
 LabelBasic::LabelBasic(ControllerBuilder& bld)
-    :Border(bld)
+        : Border(bld)
 {
 
 }
@@ -18,18 +18,16 @@ void LabelBasic::onDraw()
     TextDrawer textDrawer{renderer, getFont(), m_labelString};
     auto textSurface = textDrawer.getTextSurface();
 
-    if(textSurface)
-    {
+    if (textSurface) {
         auto texture = textDrawer.getTexture();
 
         m_textWidth = textDrawer.getTextWidth();
         m_textHeight = textDrawer.getTextHeight();
 
         const auto point = getPoint();
-        SDL_Rect renderQuad = { static_cast<int>(point.x +5)
-            , static_cast<int>(point.y + ( getHeight() - m_textHeight)/2)
-            , static_cast<int>(m_textWidth)
-            , static_cast<int>(m_textHeight) };
+        SDL_Rect renderQuad = {static_cast<int>(point.x + 5),
+                               static_cast<int>(point.y + (getHeight() - m_textHeight) / 2),
+                               static_cast<int>(m_textWidth), static_cast<int>(m_textHeight)};
         SDL_RenderCopy(renderer, texture, nullptr, &renderQuad);
     }
 
@@ -38,7 +36,6 @@ void LabelBasic::onDraw()
 
 void LabelBasic::onDrawBackground()
 {
-
 
     Border::onDrawBackground();
 }

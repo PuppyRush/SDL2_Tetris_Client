@@ -10,7 +10,9 @@
 namespace sdleasygui {
 
 constexpr const t_id NULL_WINDOW_ID = std::numeric_limits<t_id>::max();
+
 constexpr const SDL_Event EMPTY_EVENT = {};
+
 constexpr const t_timer NULL_TIMER_ID = std::numeric_limits<t_timer>::max();
 
 }

@@ -26,7 +26,50 @@ TPlayer::~TPlayer()
     endGame();
 }
 
-void TPlayer::startGame(){
+void TPlayer::initialize()
+{
+    auto board = getController().getBoard();
+
+    TPoint gameboardBeginPoint{0, 0}, gameboardPoint{0, 0};
+    t_size blockLen{0};
+
+    switch (m_order) {
+        case 0: {
+
+            gameboardBeginPoint = {GAMEBOARD_BEGIN_X, GAMEBOARD_BEGIN_Y};
+            blockLen = FIGURE_UNIT_LEN;
+
+            auto nextboard = getController().getNextFigureBoard();
+            nextboard->setStartDisplayPoint(TPoint{GAMEBOARD_BEGIN_X + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN,
+                                                   GAMEBOARD_BEGIN_Y});
+            nextboard->setblockLength(FIGURE_UNIT_LEN);
+            break;
+        }
+        case 1:
+        case 2:
+        case 3:
+            gameboardBeginPoint = {OTHER_GAMEBOARD_BEGIN_X, OTHER_GAMEBOARD_BEGIN_Y};
+            gameboardBeginPoint.x += (m_order - 1) * GAMEBOARD_GAP;
+            blockLen = OTHER_UNIT_LENGTH;
+            break;
+
+        case 4:
+        case 5:
+        case 6:
+            gameboardBeginPoint = {OTHER_GAMEBOARD_BEGIN_X, OTHER_GAMEBOARD_BEGIN_Y};
+            gameboardBeginPoint.x += (m_order - 4) * GAMEBOARD_GAP;
+            gameboardBeginPoint.y += OTHER_GAMEBOARD_DISPLAY_HEIGHT + GAMEBOARD_GAP;
+            blockLen = OTHER_UNIT_LENGTH;
+            break;
+    }
+
+    board->setStartDisplayPoint(gameboardBeginPoint);
+    board->setblockLength(blockLen);
+}
+
+void TPlayer::startGame()
+{
+
 }
 
 void TPlayer::command(const t_eventType event)
@@ -56,7 +99,7 @@ const bool TPlayer::connectServer()
     return result;
 }
 
-void TPlayer::sendPacket(Packet &packet)
+void TPlayer::sendPacket(Packet& packet)
 {
     m_clientCtl.send(packet);
 }
@@ -66,8 +109,7 @@ void TPlayer::updateObserver(const Packet& packet)
     /*if(packet.getHeader().message == messageInfo::PLAYER_INIT_INFO)
         this->setUnique(packet.getHeader().destId);*/
 
-    switch(packet.getHeader().message)
-    {
+    switch (packet.getHeader().message) {
         case messageInfo::PLAYER_INIT_INFO:
             recvInfo(packet);
             requestWaitingRoomInitInfo();
@@ -89,7 +131,6 @@ void TPlayer::sendBoardInfo(const t_id gameRoomUnique)
     Packet packet{{gameRoomUnique, getUnique(), messageInfo::GAME_REQUEST_BOARDINFO}, plyJson};
     this->sendPacket(packet);*/
 }
-
 
 void TPlayer::recvBoardInfo(const game_interface::Packet& packet)
 {

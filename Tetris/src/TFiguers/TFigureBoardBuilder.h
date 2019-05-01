@@ -6,19 +6,16 @@
 #define TERIS_FIGURE_CLASS_TFIGUREBOARDBUILDER_H
 
 #if _MSC_VER >= 1200
-  #pragma once
+#pragma once
 #endif
 
-
-#include "../Common/TDefine.h"
+#include "TDefine.h"
 
 SDL_TETRIS_BEGIN
 
 class TFigureBoardBuilder final
 {
 public:
-
-
 
 private:
 

@@ -21,29 +21,29 @@ void Controller::initialize()
 {
     setSelected(m_data->selected);
 
-    if(m_data->group != GroupControllManager::NONE)
-    {
+    if (m_data->group != GroupControllManager::NONE) {
         GroupControllManager::getInstance().add(m_data->group, m_data->resourceId);
-        if(m_data->multiselected)
+        if (m_data->multiselected) {
             GroupControllManager::getInstance().setMultiselect(m_data->group);
+        }
     }
 }
 
-void Controller::onKeyboardEvent (const SDL_KeyboardEvent* key)
+void Controller::onKeyboardEvent(const SDL_KeyboardEvent* key)
 {
 
-    switch(key->keysym.sym)
-    {
+    switch (key->keysym.sym) {
         case SDLK_RETURN:
-            if(isFoucs())
+            if (isFoucs()) {
                 clickController();
+            }
             break;
     }
 
     refresh();
 }
 
-void Controller::onTextInputEvent (const SDL_TextInputEvent* text)
+void Controller::onTextInputEvent(const SDL_TextInputEvent* text)
 {
     refresh();
 }
@@ -53,14 +53,13 @@ void Controller::onDrawBackground()
     const auto backColor = getBackgroundColor();
     auto renderer = getWindow()->getSDLRenderer();
 
-    SDL_Rect rect = SDL_Rect{ getPoint().x, getPoint().y, getWidth(), getHeight()};
+    SDL_Rect rect = SDL_Rect{getPoint().x, getPoint().y, getWidth(), getHeight()};
     rect.x += getBorderThick();
     rect.y += getBorderThick();
-    rect.h = (rect.h - getBorderThick()*2)+1;
-    rect.w = (rect.w - getBorderThick()*2)+1;
+    rect.h = (rect.h - getBorderThick() * 2) + 1;
+    rect.w = (rect.w - getBorderThick() * 2) + 1;
 
-    switch(getBorderBoundaryType())
-    {
+    switch (getBorderBoundaryType()) {
         case BorderBoundaryType::angle:
             SDL_SetRenderDrawColor(renderer, backColor.r, backColor.g, backColor.b, backColor.a);
             SDL_RenderFillRect(renderer, &rect);
@@ -68,16 +67,17 @@ void Controller::onDrawBackground()
             break;
 
         case BorderBoundaryType::roundedAngle:
-            roundedBoxRGBA(renderer, rect.x, rect.y,  rect.x+rect.w, rect.y + rect.h, 10,
-                            backColor.r, backColor.g, backColor.b, backColor.a);
+            roundedBoxRGBA(renderer, rect.x, rect.y, rect.x + rect.w, rect.y + rect.h, 10,
+                           backColor.r, backColor.g, backColor.b, backColor.a);
             break;
         case BorderBoundaryType::ellipse:
-            filledEllipseRGBA(renderer, rect.x + rect.w/2, rect.y + rect.h/2, m_textWidth /2, m_textHeight/2,
+            filledEllipseRGBA(renderer, rect.x + rect.w / 2, rect.y + rect.h / 2, m_textWidth / 2, m_textHeight / 2,
                               backColor.r, backColor.g, backColor.b, backColor.a);
             break;
 
         case BorderBoundaryType::round: {
-            filledCircleRGBA(renderer, rect.x + rect.w/2, rect.y + rect.h/2, std::max(m_textWidth/2,m_textHeight/2),
+            filledCircleRGBA(renderer, rect.x + rect.w / 2, rect.y + rect.h / 2,
+                             std::max(m_textWidth / 2, m_textHeight / 2),
                              backColor.r, backColor.g, backColor.b, backColor.a);
 
             break;
@@ -92,18 +92,18 @@ void Controller::onVirtualDraw()
     onDraw();
 }
 
-
 void Controller::refresh()
 {
-    EventPusher event{this->getWindow()->getWindowID(), this->getResourceId(), SEG_DRAW_CONTROLLER };
+    EventPusher event{this->getWindow()->getWindowID(), this->getResourceId(), SEG_DRAW_CONTROLLER};
     event.pushEvent();
 }
 
 void Controller::setSelected(bool selected)
 {
     m_data->selected = selected;
-    if(selected)
+    if (selected) {
         GroupControllManager::getInstance().select(m_data->group, m_data->resourceId);
+    }
 }
 
 const bool Controller::isHit(const TPoint& point)
@@ -112,12 +112,10 @@ const bool Controller::isHit(const TPoint& point)
     if (this->isEnabled() && (menu_point.x <= point.x && point.x <= menu_point.x + m_data->width)
         && (menu_point.y <= point.y && point.y <= menu_point.y + m_data->height)) {
         setSelected(!isSelected());
-
         clickController();
 
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
@@ -133,7 +131,7 @@ void Controller::drawBackground(const SDL_Rect rect, const TColor color)
 
 void Controller::clickController(TPoint point)
 {
-    EventPusher event{this->getWindow()->getWindowID(), this->getResourceId(), SEG_CLICKED_CONTROLLER };
-    event.setUserData( new SEG_Click{ point, this->getResourceId() });
+    EventPusher event{this->getWindow()->getWindowID(), this->getResourceId(), SEG_CLICKED_CONTROLLER};
+    event.setUserData(new SEG_Click{point, this->getResourceId()});
     event.pushEvent();
 }

@@ -18,7 +18,8 @@
 
 namespace sdleasygui {
 
-extern void SDLEasyGUI_Init() {
+extern void SDLEasyGUI_Init()
+{
 
     if (TTF_Init() != 0) {
         std::string s("TTF_Init error: ");
@@ -37,6 +38,5 @@ extern void SDLEasyGUI_Init() {
 }
 
 }
-
 
 #endif //TETRIS_FIGURE_CLASS_SDL_INITIATOR_H

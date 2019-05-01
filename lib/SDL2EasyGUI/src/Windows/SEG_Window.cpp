@@ -8,11 +8,11 @@
 
 using namespace sdleasygui;
 
-SEG_Window::SEG_Window(const t_size width,const t_size height)
-    :m_windowHeight(height),
-     m_windowWidth(width),
-     m_window(nullptr),
-     m_renderer(nullptr)
+SEG_Window::SEG_Window(const t_size width, const t_size height)
+        : m_windowHeight(height),
+          m_windowWidth(width),
+          m_window(nullptr),
+          m_renderer(nullptr)
 {
 
 }
@@ -42,27 +42,42 @@ void SEG_Window::initialize()
 {
     using namespace std;
 
-    try
-    {
+    try {
 
         Uint32 show = m_show ? SDL_WINDOW_SHOWN : SDL_WINDOW_HIDDEN;
-        m_window = SDL_CreateWindow(m_title.c_str(),SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,m_windowWidth,
-                                                 m_windowHeight,
-                                                 show);
+        m_window = SDL_CreateWindow(m_title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, m_windowWidth,
+                                    m_windowHeight,
+                                    show);
         m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
         m_windowID = SDL_GetWindowID(m_window);
 
     }
-    catch(runtime_error &e)
-    {
+    catch (runtime_error& e) {
         std::cerr << e.what();
     }
-    catch(...)
-    {
+    catch (...) {
         std::cerr << "fail tetris game init because of unkwon error ";
     }
 }
 
+void SEG_Window::setHeight(const t_size height) noexcept
+{
+    m_windowHeight = height;
+    SDL_SetWindowSize(m_window, m_windowWidth, height);
+
+}
+
+void SEG_Window::setWidth(const t_size width) noexcept
+{
+    m_windowWidth = width;
+    SDL_SetWindowSize(m_window, width, m_windowHeight);
+}
+
+void SEG_Window::setTitle(const std::string& title)
+{
+    m_title = title;
+    SDL_SetWindowTitle(m_window, title.c_str());
+}
 
 void SEG_Window::show()
 {

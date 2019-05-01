@@ -6,7 +6,7 @@
 #define TETRIS_FIGURE_CLASS_TCLIENTCONTROLLER_H
 
 #if _MSC_VER >= 1200
-  #pragma once
+#pragma once
 #endif
 
 #include <boost/serialization/singleton.hpp>
@@ -21,7 +21,7 @@
 
 #include  <ace/OS.h>
 
-#include "Common/THeader.h"
+#include "THeader.h"
 #include "GameInterface/include/Type.h"
 #include "GameInterface/include/TStruct.h"
 #include "GameInterface/src/Online/Packet.h"
@@ -37,16 +37,21 @@ public:
     friend class boost::serialization::singleton<TClientController>;
 
     TClientController();
+
     ~TClientController();
+
     bool connectServer();
+
     void send(game_interface::Packet& pcket);
     //const Packet recv();
 
-    inline bool isConnection() const noexcept {
+    inline bool isConnection() const noexcept
+    {
         return m_connector->isConnection();
     }
 
-    static TClientController& getInstance() {
+    static TClientController& getInstance()
+    {
         return boost::serialization::singleton<TClientController>::get_mutable_instance();;
     }
 

@@ -9,21 +9,22 @@
 
 #include <SDL2/SDL.h>
 #include "EventQueue.h"
-
-//#include "SDLEasyGUI/SEG_Type.h"
+#include "SEG_Property.h"
 
 namespace sdleasygui {
 
-class EventListener {
+class EventListener
+{
 
 public:
 
     using queue_type = EventQueue<SDL_Event>;
-    using data_type = queue_type::data_type ;
+    using data_type = queue_type::data_type;
 
     virtual ~EventListener() = default;
 
-    void onEvent(const data_type event) {
+    void onEvent(const data_type event)
+    {
         switch (event->type) {
             case SDL_WINDOWEVENT   :
                 onWindowEvent(event->window);
@@ -126,57 +127,84 @@ public:
                     case DETACH_FOCUS:
                         onDetachFocus();
                         break;
-                    case SDL_TIMER_EVENT:
-                        onTimerEvent(&event->user);
-                        break;
+
                     default:
                         onUserEvent(&event->user);
                 }
                 break;
-            default:
-                ;
+            case SDL_TIMER_EVENT:
+                onTimerEvent(&event->user);
+                break;
+            default:;
 
         }
     }
 
     //SDL Events
-    virtual void onCommonEvent(const SDL_CommonEvent *common) = 0;
-    virtual void onWindowEvent(const SDL_WindowEvent &window) = 0;
-    virtual void onKeyboardEvent(const SDL_KeyboardEvent *key) = 0;
-    virtual void onTextEditingEvent(const SDL_TextEditingEvent *edit) = 0;
-    virtual void onTextInputEvent(const SDL_TextInputEvent *text) = 0;
-    virtual void onMouseMotionEvent(const SDL_MouseMotionEvent *motion) = 0;
-    virtual void onMouseButtonEvent(const SDL_MouseButtonEvent *button) = 0;
-    virtual void onMouseWheelEvent(const SDL_MouseWheelEvent *wheel) = 0;
-    virtual void onJoyAxisEvent(const SDL_JoyAxisEvent *jaxis) = 0;
-    virtual void onJoyBallEvent(const SDL_JoyBallEvent *jball) = 0;
-    virtual void onJoyHatEvent(const SDL_JoyHatEvent *jhat) = 0;
-    virtual void onJoyButtonEvent(const SDL_JoyButtonEvent *jbutton) = 0;
-    virtual void onJoyDeviceEvent(const SDL_JoyDeviceEvent *jdevice) = 0;
-    virtual void onControllerAxisEvent(const SDL_ControllerAxisEvent *caxis) = 0;
-    virtual void onControllerButtonEvent(const SDL_ControllerButtonEvent *cbutton) = 0;
-    virtual void onControllerDeviceEvent(const SDL_ControllerDeviceEvent *cdevice) = 0;
-    virtual void onAudioDeviceEvent(const SDL_AudioDeviceEvent *adevice) = 0;
-    virtual void onQuitEvent(const SDL_QuitEvent *quit) = 0;
-    virtual void onUserEvent(const SDL_UserEvent *user) = 0;
-    virtual void onSysWMEvent(const SDL_SysWMEvent *syswm) = 0;
-    virtual void onTouchFingerEvent(const SDL_TouchFingerEvent *tfinger) = 0;
-    virtual void onMultiGestureEvent(const SDL_MultiGestureEvent *mgesture) = 0;
-    virtual void onDollarGestureEvent(const SDL_DollarGestureEvent *dgesture) = 0;
-    virtual void onDropEvent(const SDL_DropEvent *drop) = 0;
-    virtual void onTimerEvent(const SDL_UserEvent *user) = 0;
+    virtual void onCommonEvent(const SDL_CommonEvent* common) = 0;
+
+    virtual void onWindowEvent(const SDL_WindowEvent& window) = 0;
+
+    virtual void onKeyboardEvent(const SDL_KeyboardEvent* key) = 0;
+
+    virtual void onTextEditingEvent(const SDL_TextEditingEvent* edit) = 0;
+
+    virtual void onTextInputEvent(const SDL_TextInputEvent* text) = 0;
+
+    virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) = 0;
+
+    virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) = 0;
+
+    virtual void onMouseWheelEvent(const SDL_MouseWheelEvent* wheel) = 0;
+
+    virtual void onJoyAxisEvent(const SDL_JoyAxisEvent* jaxis) = 0;
+
+    virtual void onJoyBallEvent(const SDL_JoyBallEvent* jball) = 0;
+
+    virtual void onJoyHatEvent(const SDL_JoyHatEvent* jhat) = 0;
+
+    virtual void onJoyButtonEvent(const SDL_JoyButtonEvent* jbutton) = 0;
+
+    virtual void onJoyDeviceEvent(const SDL_JoyDeviceEvent* jdevice) = 0;
+
+    virtual void onControllerAxisEvent(const SDL_ControllerAxisEvent* caxis) = 0;
+
+    virtual void onControllerButtonEvent(const SDL_ControllerButtonEvent* cbutton) = 0;
+
+    virtual void onControllerDeviceEvent(const SDL_ControllerDeviceEvent* cdevice) = 0;
+
+    virtual void onAudioDeviceEvent(const SDL_AudioDeviceEvent* adevice) = 0;
+
+    virtual void onQuitEvent(const SDL_QuitEvent* quit) = 0;
+
+    virtual void onUserEvent(const SDL_UserEvent* user) = 0;
+
+    virtual void onSysWMEvent(const SDL_SysWMEvent* syswm) = 0;
+
+    virtual void onTouchFingerEvent(const SDL_TouchFingerEvent* tfinger) = 0;
+
+    virtual void onMultiGestureEvent(const SDL_MultiGestureEvent* mgesture) = 0;
+
+    virtual void onDollarGestureEvent(const SDL_DollarGestureEvent* dgesture) = 0;
+
+    virtual void onDropEvent(const SDL_DropEvent* drop) = 0;
+
+    virtual void onTimerEvent(const SDL_UserEvent* user) = 0;
 
     //SEG Events
     virtual void onAttachFocus() = 0;
+
     virtual void onDetachFocus() = 0;
 
-
     //Event Queue
-    void pushEvent(const data_type event) { m_eventDelivery.pushEvent(event);}
-    const data_type popEvent() { return m_eventDelivery.popEvent();}
+    void pushEvent(const data_type event)
+    { m_eventDelivery.pushEvent(event); }
+
+    const data_type popEvent()
+    { return m_eventDelivery.popEvent(); }
 
 protected:
-    EventQueue<SDL_Event> m_eventDelivery;
+    EventQueue <SDL_Event> m_eventDelivery;
 
     EventListener() = default;
 

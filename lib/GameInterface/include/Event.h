@@ -7,7 +7,8 @@
 
 namespace game_interface {
 
-enum GAMEINTERFACE_EVENT {
+enum GAMEINTERFACE_EVENT
+{
     RECV_DATA = SDL_USEREVENT + 1,
     GAMEINTERFACE_EVENT_END
 };

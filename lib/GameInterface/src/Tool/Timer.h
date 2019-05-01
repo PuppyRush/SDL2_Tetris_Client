@@ -11,11 +11,8 @@ class Timer
 {
 public:
 
-
-
 private:
     std::thread m_timerThread;
 };
-
 
 #endif //SDL2_TETRIS_SERVER_TOOL_H

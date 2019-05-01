@@ -6,7 +6,7 @@
 #define SDLEASYGUIDE_RESOURCE_H
 
 #if _MSC_VER >= 1200
-  #pragma once
+#pragma once
 #endif
 
 #include "SEG_Type.h"
@@ -14,7 +14,8 @@
 namespace sdleasygui {
 
 //dont use resource id as 0x0000 (NULL)
-enum resource : t_res {
+enum resource : t_res
+{
 
     NONE = 0x0010,
     BTN_OK,

@@ -3,15 +3,15 @@
 //
 
 #include "TWaitingRoomCard.h"
-#include "SDL2EasyGUI/src/Controller/Label/EditLabel.h"
-#include "../../Common/TResource.h"
+#include "SDL2EasyGUI/include/EditLabel.h"
+#include "TResource.h"
 
 SDL_TETRIS
 using namespace game_interface;
 using namespace sdleasygui;
 
 TWaitingRoomCard::TWaitingRoomCard(TWaitingRoomCardBuilder& bld)
-    :Border(bld), m_cardBasic(bld.m_cardBasic)
+        : Border(bld), m_cardBasic(bld.m_cardBasic)
 {
     bld.kind(sdleasygui::ControllerKind::ListBox);
 }
@@ -24,17 +24,17 @@ void TWaitingRoomCard::onDraw()
 void TWaitingRoomCard::initialize()
 {
 
-    t_size begin_y = getPoint().y+20;
+    t_size begin_y = getPoint().y + 20;
     {
-        EditLabelBuilder bld(getWindow(), {getPoint().x+20, begin_y}, "Player");
+        EditLabelBuilder bld(getWindow(), {getPoint().x + 20, begin_y}, "Player");
         //bld.id(toUType(resource::ENTERSERVER_ID))->
         bld.fontColor(ColorCode::black)->
-            width(150)->
-            height(30)->
-            backgroundColor(ColorCode::white)->
-            borderColor(ColorCode::white)->
-            borderThick(2)->
-            enabled(true);
+                width(150)->
+                height(30)->
+                backgroundColor(ColorCode::white)->
+                borderColor(ColorCode::white)->
+                borderThick(2)->
+                enabled(true);
 
         //addControll(bld.build());
     }

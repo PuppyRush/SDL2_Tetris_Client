@@ -7,11 +7,10 @@
 using namespace sdleasygui;
 
 RadioButton::RadioButton(ControllerBuilder& bld)
-    :ButtonBasic(bld)
+        : ButtonBasic(bld)
 {
     bld.kind(ControllerKind::StaticLabel);
 }
-
 
 void RadioButton::initialize()
 {
@@ -20,5 +19,6 @@ void RadioButton::initialize()
 
 void RadioButton::onDraw()
 {
-    ButtonBasic:onDraw();
+ButtonBasic:
+    onDraw();
 }

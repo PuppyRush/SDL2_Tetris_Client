@@ -5,20 +5,20 @@
 #ifndef TETRIS_FIGURE_CLASS_RESOURCE_H
 #define TETRIS_FIGURE_CLASS_RESOURCE_H
 
-
 #if _MSC_VER >= 1200
-  #pragma once
+#pragma once
 #endif
 
 #include "SDL2EasyGUI/include/SEG_Resource.h"
-#include "../Common/TDefine.h"
+#include "TDefine.h"
 
 SDL_TETRIS_BEGIN
 
 //dont use resource id as 0x0000 (NULL)
-enum class resource : sdleasygui::t_res {
+enum class resource : sdleasygui::t_res
+{
 
-    RESOURCE_START = sdleasygui::SEG_RESROUCE_END+1,
+    RESOURCE_START = sdleasygui::SEG_RESROUCE_END + 1,
 
     MAIN_MULTI_DISPLAY,
     MAIN_SINGLE_DISPLAY,
@@ -32,6 +32,8 @@ enum class resource : sdleasygui::t_res {
     MAIN_SINGLE_GAME_START_BUTTON,
     MAIN_MULTI_GAME_START_BUTTON,
     MAIN_OPTION_BUTTON,
+    MAIN_EXIT,
+    MAIN_TEXT_COMBO,
     OPTION_SPEED,
     OPTION_SPEED_1,
     OPTION_SPEED_2,
@@ -48,16 +50,16 @@ enum class resource : sdleasygui::t_res {
     OPTION_GRAPHIC,
     OPTION_GRAPHIC_DRAWLINE,
     OPTION_BACK,
-    MAIN_EXIT,
     GAME_START,
     GAME_SUSPEND,
     ENTERSERVER_ID,
     ENTERSERVER_OK,
     ENTERSERVER_BACK,
     WAITINGROOM_GAMEROOM_BEGIN,
-    WAITINGROOM_GAMEROOM_END = WAITINGROOM_GAMEROOM_BEGIN+100,
+    WAITINGROOM_GAMEROOM_END = WAITINGROOM_GAMEROOM_BEGIN + 100,
     WAITINGROOM_USERBOX,
     WAITINGROOM_CHATBOX,
+    WAITINGROOM_GAMEROOMBOX,
     WAITINGROOM_CHAREDIT,
     WAITINGROOM_DISCONNECT,
     WAITINGROOM_CREATE,
@@ -66,7 +68,6 @@ enum class resource : sdleasygui::t_res {
     WAITINGROOM_CREATE_CANCEL,
     GAME_END
 };
-
 
 SDL_TETRIS_END
 

@@ -6,10 +6,10 @@
 #define TETRIS_FIGURE_CLASS_TSCORE_H
 
 #if _MSC_VER >= 1200
-  #pragma once
+#pragma once
 #endif
 
-#include "../Common/TDefine.h"
+#include "TDefine.h"
 #include "SDL2EasyGUI/include/SEG_Struct.h"
 
 SDL_TETRIS_BEGIN
@@ -19,18 +19,17 @@ class TScore final
 public:
     TScore(/*const TPoint& boardBegin, const TColor& backColor, const TFont& font*/);
 
-
     inline const int get()
     { return m_score; }
 
     inline void zero()
-    { m_score =0; }
+    { m_score = 0; }
 
     inline void add(const int score)
-    { m_score+= score; }
+    { m_score += score; }
 
     inline void subtract(const int score)
-    { m_score-= score; }
+    { m_score -= score; }
 
 private:
 

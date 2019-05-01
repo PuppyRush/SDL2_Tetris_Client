@@ -12,15 +12,18 @@
 namespace game_interface {
 
 //pre-declarcation
-class Observer : public Object {
+class Observer : public Object
+{
 public:
 
-    using unique_type = Object::unique_type ;
+    using unique_type = Object::unique_type;
 
     Observer() = default;
+
     virtual ~Observer() = default;
 
-    virtual void updateObserver(const Packet& ) = 0;
+    virtual void updateObserver(const Packet&) = 0;
+
     virtual Json::Value toJson() const = 0;
 };
 

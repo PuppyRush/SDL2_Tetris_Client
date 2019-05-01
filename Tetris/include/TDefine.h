@@ -5,9 +5,8 @@
 #ifndef TERIS_FIGURE_CLASS_TDEFINE_H
 #define TERIS_FIGURE_CLASS_TDEFINE_H
 
-
 #if _MSC_VER >= 1200
-  #pragma once
+#pragma once
 #endif
 
 #define GAMEINTERFACE  tetris
@@ -17,9 +16,9 @@
 
 //#define CONSTEXPR
 #ifdef CONSTEXPR
-  #define CE constexpr
+#define CE constexpr
 #else
-  #define CE
+#define CE
 #endif
 
 #endif //TERIS_FIGURE_CLASS_TDEFINE_H

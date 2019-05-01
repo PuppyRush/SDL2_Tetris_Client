@@ -5,7 +5,7 @@
 using namespace game_interface;
 
 Object::Object()
-    :m_unique(Atomic::newUnique()), m_maketime(std::time(nullptr))
+        : m_unique(Atomic::newUnique()), m_maketime(std::time(nullptr))
 {
 }
 
@@ -17,7 +17,6 @@ Json::Value Object::toJson() const
 
     return json;
 }
-
 
 void Object::fromJson(const Json::Value& json)
 {

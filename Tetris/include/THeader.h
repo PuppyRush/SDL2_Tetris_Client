@@ -6,7 +6,7 @@
 #define TERIS_FIGURE_CLASS_THEADER_H
 
 #if _MSC_VER >= 1200
-  #pragma once
+#pragma once
 #endif
 
 #include "TDefine.h"

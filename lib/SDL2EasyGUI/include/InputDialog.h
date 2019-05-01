@@ -7,7 +7,8 @@
 
 namespace sdleasygui {
 
-class InputDialog {
+class InputDialog
+{
 
 };
 

@@ -5,8 +5,8 @@
 #include <string>
 
 #include "TGameDisplay.h"
-#include "SDL2EasyGUI/src/Controller/Button/Button.h"
-#include "../../Common/TResource.h"
+#include "SDL2EasyGUI/include/Button.h"
+#include "TResource.h"
 #include "GameInterface/src/Online/JsonHelper.h"
 #include "GameInterface/src/Online/Packet.h"
 
@@ -16,14 +16,17 @@ using namespace sdleasygui;
 using namespace std;
 
 TGameDisplay::TGameDisplay(const sdleasygui::t_id displayId)
-    :TDisplayInterface(displayId)
-{}
+        : TDisplayInterface(displayId)
+{
+    m_gameTimer = make_shared<TimerAdder>(1000, game_interface::toUType(TetrisEvent::TETRIS_EVENT_FIGURETIMER));
+    m_gameTimer->windowsId(this->getWindowID());
+}
 
-void TGameDisplay::onKeyboardEvent (const SDL_KeyboardEvent* key)
+void TGameDisplay::onKeyboardEvent(const SDL_KeyboardEvent* key)
 {
     switch (key->type) {
         case SDL_KEYDOWN:
-            if(!m_players.empty()) {
+            if (!m_players.empty()) {
                 m_players.front()->command(key->keysym.sym);
                 refresh();
             }
@@ -34,12 +37,12 @@ void TGameDisplay::onKeyboardEvent (const SDL_KeyboardEvent* key)
     TDisplayInterface::onKeyboardEvent(key);
 }
 
-void TGameDisplay::onTimerEvent(const SDL_UserEvent *user)
+void TGameDisplay::onTimerEvent(const SDL_UserEvent* user)
 {
-    switch (user->type) {
+    switch (user->code) {
         case TETRIS_EVENT_FIGURETIMER:
             /* and now we can call the function we wanted to call in the timer but couldn't because of the multithreading problems */
-            if(!m_players.empty()) {
+            if (!m_players.empty()) {
                 refresh();
                 m_players.front()->command(SDLK_DOWN);
             }
@@ -51,17 +54,29 @@ void TGameDisplay::onTimerEvent(const SDL_UserEvent *user)
     TDisplayInterface::onTimerEvent(user);
 }
 
-
-void TGameDisplay::onUserEvent(const SDL_UserEvent* event) {
-
+void TGameDisplay::onUserEvent(const SDL_UserEvent* event)
+{
 
     TDisplayInterface::onUserEvent(event);
+}
+
+void TGameDisplay::onInitialize()
+{
+    m_gameroom->initialize();
+
+    auto& ply = TPlayer::getInstance();
+    ply->startGame();
+
+    //임시 코드. 수정 필요!!!!
+    m_players.emplace_back(ply);
+
+    TDisplayInterface::onInitialize();
 }
 
 void TGameDisplay::onClose()
 {
     m_players.clear();
-    SDL_RemoveTimer(m_figureTimer);
+    SDL_RemoveTimer(m_timerId);
 
     TDisplayInterface::onClose();
 }
@@ -74,9 +89,7 @@ void TGameDisplay::onCreate()
 
 void TGameDisplay::onClickedStart(const void* click)
 {
-    TimerAdder tAdder(1000, game_interface::toUType(TetrisEvent::TETRIS_EVENT_FIGURETIMER));
-    tAdder.windowsId(this->getWindowID());
-    m_figureTimer = tAdder.addTimer();
+    m_timerId = m_gameTimer->addTimer();
 
     m_gamestart = true;
 
@@ -88,23 +101,21 @@ void TGameDisplay::onDraw()
 {
     using namespace std;
 
-   // if(!m_gamestart)
+    // if(!m_gamestart)
     //    return;
 
     auto renderer = getRenderer();
 
-    for(const auto& playerPtr : m_players)
-    {
+    for (const auto& playerPtr : m_players) {
         auto& ply = *playerPtr.get();
         const auto board = ply.getController().getBoard();
         const auto beginX = board->getStartDisplayPoint().x;
         const auto beginY = board->getStartDisplayPoint().y;
         const auto figureLen = board->getblockLength();
 
-
         SDL_Point line[5];
-        line[0].x = beginX ;
-        line[0].y = beginY ;
+        line[0].x = beginX;
+        line[0].y = beginY;
         line[1].x = beginX + GAMEBOARD_DISPLAY_WIDTH;
         line[1].y = beginY;
         line[2].x = beginX + GAMEBOARD_DISPLAY_WIDTH;
@@ -116,15 +127,14 @@ void TGameDisplay::onDraw()
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
         SDL_RenderDrawLines(renderer, line, 5);
 
-
         const t_coord pred_x = beginX + GAMEBOARD_DISPLAY_WIDTH + figureLen;
         const t_coord pred_y = beginY;
         line[0].x = pred_x;
         line[0].y = pred_y;
-        line[1].x = pred_x + FIGURE_UNIT_LEN*4;
+        line[1].x = pred_x + FIGURE_UNIT_LEN * 4;
         line[1].y = pred_y;
         line[2].x = line[1].x;
-        line[2].y = pred_y + FIGURE_UNIT_LEN*4;
+        line[2].y = pred_y + FIGURE_UNIT_LEN * 4;
         line[3].x = pred_x;
         line[3].y = line[2].y;
         line[4].x = line[0].x;
@@ -135,29 +145,26 @@ void TGameDisplay::onDraw()
         _drawFigure(board, ply.getController().getCurrentFigure());
         _drawFigure(board, ply.getController().getGhostFigure());
 
-
         const auto gameboard = board->getBoard();
         constexpr const auto board_height = gameboard.size();
-        for (int y = 0 ; y < board_height ; y++) {
+        for (int y = 0; y < board_height; y++) {
 
             const auto board_width = gameboard[y].size();
-            for (int x = 0 ; x < board_width ; x++)
-            {
+            for (int x = 0; x < board_width; x++) {
                 auto unit = gameboard[y][x];
-                if(unit.getType() & UnitType::Fixed)
-                {
+                if (unit.getType() & UnitType::Fixed) {
                     SDL_Rect rect{beginX + x * figureLen,
                                   beginY + y * figureLen,
-                                  figureLen ,figureLen};
+                                  figureLen, figureLen};
 
                     const auto color = unit.getColor();
                     auto renderer = getRenderer();
-                    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b , color.a);
+                    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
                     SDL_RenderFillRect(renderer, &rect);
                     SDL_RenderDrawRect(renderer, &rect);
                 }
 
-                if(m_drawLine) {
+                if (m_drawLine) {
                     SDL_Point line[5];
                     line[0].x = beginX + x * figureLen;
                     line[0].y = beginY + y * figureLen;
@@ -187,30 +194,29 @@ void TGameDisplay::_drawFigure(TFigureController::board_ptr board, TFigureContro
     const auto beginY = board->getStartDisplayPoint().y;
     const auto figureLen = board->getblockLength();
 
-    for(const auto coord : figure->getCoords())
-    {
+    for (const auto coord : figure->getCoords()) {
         const int x = coord.getPoint().x;
         const int y = coord.getPoint().y;
         const auto color = coord.getColor();
         SDL_Rect rect{beginX + x * figureLen,
                       beginY + y * figureLen,
-                      figureLen ,figureLen};
+                      figureLen, figureLen};
 
         auto renderer = getRenderer();
-        SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b , color.a);
+        SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
         SDL_RenderFillRect(renderer, &rect);
         SDL_RenderDrawRect(renderer, &rect);
     }
 }
-
 
 void TGameDisplay::_drawNextFigure()
 {
     using namespace std;
     auto renderer = getRenderer();
 
-    if(m_players.empty())
+    if (m_players.empty()) {
         return;
+    }
 
     //next figure
     const auto& ply = m_players.front();
@@ -221,17 +227,16 @@ void TGameDisplay::_drawNextFigure()
     const auto beginY = board->getStartDisplayPoint().y;
     const auto figureLen = board->getblockLength();
 
-    for(const auto coord : nextFigure->getCoords())
-    {
+    for (const auto coord : nextFigure->getCoords()) {
         const int x = coord.getPoint().x;
         const int y = coord.getPoint().y;
         const auto color = coord.getColor();
         SDL_Rect rect{beginX + x * figureLen,
                       beginY + y * figureLen,
-                      figureLen ,figureLen};
+                      figureLen, figureLen};
 
         auto renderer = getRenderer();
-        SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b , color.a);
+        SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
         SDL_RenderFillRect(renderer, &rect);
         SDL_RenderDrawRect(renderer, &rect);
     }

@@ -5,10 +5,10 @@
 #include <jsoncpp/json/json.h>
 
 #include "TMultiGameRoomDisplay.h"
-#include "SDL2EasyGUI/src/Controller/Button/Button.h"
+#include "SDL2EasyGUI/include/Button.h"
 #include "GameInterface/include/Event.h"
 #include "GameInterface/src/Online/JsonHelper.h"
-#include "../../Common/TResource.h"
+#include "TResource.h"
 #include "../../TFiguers/TFigureBuilder.h"
 #include "../../TOption/TOptionManager.h"
 
@@ -18,50 +18,16 @@ using namespace sdleasygui;
 using namespace std;
 
 TMultiGameRoomDisplay::TMultiGameRoomDisplay(const sdleasygui::t_id displayId)
-    :TGameDisplay(displayId)
+        : TGameDisplay(displayId)
 {
-    m_display = game_interface::toUType( TDisplay::Game);
+    m_display = game_interface::toUType(TDisplay::Game);
     m_mode = TLocalMode::Online;
+
+    setBackgroundColor(ColorCode::darkgray);
 }
 
 void TMultiGameRoomDisplay::onClickedStart(const void* click)
 {
-    {
-        auto& ply = TPlayer::getInstance();
-        ply->startGame();
-
-        //임시 코드. 수정 필요!!!!
-        m_players.emplace_back(ply);
-
-        auto board = ply->getController().getBoard();
-
-        board->setStartDisplayPoint(TPoint{GAMEBOARD_BEGIN_X, GAMEBOARD_BEGIN_Y});
-        board->setblockLength(FIGURE_UNIT_LEN);
-
-        auto nextboard = ply->getController().getNextFigureBoard();
-        nextboard->setStartDisplayPoint(TPoint{GAMEBOARD_BEGIN_X + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN,
-                                               GAMEBOARD_BEGIN_Y});
-        nextboard->setblockLength(FIGURE_UNIT_LEN);
-    }
-
-    //
-    {
-        auto echoPly = std::make_shared<TPlayer>();
-        m_players.emplace_back(echoPly);
-
-        echoPly->getController().setGhostMode(false);
-        auto board = echoPly->getController().getBoard();
-
-        const auto beginX = GAMEBOARD_BEGIN_X+600;
-        board->setStartDisplayPoint(TPoint{beginX, GAMEBOARD_BEGIN_Y});
-        board->setblockLength(FIGURE_UNIT_LEN);
-
-        auto nextboard = echoPly->getController().getNextFigureBoard();
-        nextboard->setStartDisplayPoint(TPoint{beginX + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN,
-                                               GAMEBOARD_BEGIN_Y});
-        nextboard->setblockLength(FIGURE_UNIT_LEN);
-    }
-
     TGameDisplay::onClickedStart(click);
 }
 
@@ -75,16 +41,16 @@ void TMultiGameRoomDisplay::onDraw()
 
 void TMultiGameRoomDisplay::onInitialize()
 {
-    t_size begin_y = WINDOW_HEIGHT-300;
-    t_size begin_x = WINDOW_WIDTH- 200;
+    t_size begin_y = WINDOW_HEIGHT - 300;
+    t_size begin_x = WINDOW_WIDTH - 200;
     {
         ButtonBuilder bld(getWindow(), {begin_x, begin_y}, "START");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
-            id(game_interface::toUType(resource::GAME_START))->
-            backgroundColor(ColorCode::white)->
-            width(150)->
-            height(50)->
-            enabled(true);
+                id(game_interface::toUType(resource::GAME_START))->
+                backgroundColor(ColorCode::white)->
+                width(150)->
+                height(50)->
+                enabled(true);
 
         addControll(bld.build());
     }
@@ -92,11 +58,11 @@ void TMultiGameRoomDisplay::onInitialize()
     {
         ButtonBuilder bld(getWindow(), {begin_x, begin_y}, "SUSPEND");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
-            id(game_interface::toUType(resource::GAME_SUSPEND))->
-            backgroundColor(ColorCode::white)->
-            width(150)->
-            height(50)->
-            enabled(true);
+                id(game_interface::toUType(resource::GAME_SUSPEND))->
+                backgroundColor(ColorCode::white)->
+                width(150)->
+                height(50)->
+                enabled(true);
 
         addControll(bld.build());
     }
@@ -104,16 +70,14 @@ void TMultiGameRoomDisplay::onInitialize()
     {
         ButtonBuilder bld(getWindow(), {begin_x, begin_y}, "EXIT");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
-            id(game_interface::toUType(resource::GAME_END))->
-            backgroundColor(ColorCode::white)->
-            width(150)->
-            height(50)->
-            enabled(true);
+                id(game_interface::toUType(resource::GAME_END))->
+                backgroundColor(ColorCode::white)->
+                width(150)->
+                height(50)->
+                enabled(true);
 
         addControll(bld.build());
     }
-
-
 
     TGameDisplay::onInitialize();
 }
@@ -139,8 +103,9 @@ void TMultiGameRoomDisplay::updateObserver(const game_interface::Packet& packet)
 {
     switch (packet.getHeader().message) {
         case messageInfo::GAME_RESPONSE_BOARDINFO:
-            if(m_players.size()==2)
+            if (m_players.size() == 2) {
                 m_players.back()->recvBoardInfo(packet);
+            }
             break;
         default:;
     }
@@ -148,13 +113,13 @@ void TMultiGameRoomDisplay::updateObserver(const game_interface::Packet& packet)
     TGameDisplay::updateObserver(packet);
 }
 
-void TMultiGameRoomDisplay::onTimerEvent(const SDL_UserEvent *user)
+void TMultiGameRoomDisplay::onTimerEvent(const SDL_UserEvent* user)
 {
 
-    switch (user->type) {
+    switch (user->code) {
         case TETRIS_EVENT_FIGURETIMER:
             /* and now we can call the function we wanted to call in the timer but couldn't because of the multithreading problems */
-            if(!m_players.empty()) {
+            if (!m_players.empty()) {
 
                 m_players.front()->sendBoardInfo(m_gameroom->getUnique());
             }
@@ -166,12 +131,11 @@ void TMultiGameRoomDisplay::onTimerEvent(const SDL_UserEvent *user)
     TGameDisplay::onTimerEvent(user);
 }
 
-
-void TMultiGameRoomDisplay::onKeyboardEvent (const SDL_KeyboardEvent* key)
+void TMultiGameRoomDisplay::onKeyboardEvent(const SDL_KeyboardEvent* key)
 {
     switch (key->type) {
         case SDL_KEYDOWN:
-            if(!m_players.empty()) {
+            if (!m_players.empty()) {
                 auto& me = m_players.front();
                 me->sendBoardInfo(m_gameroom->getUnique());
                 refresh();
@@ -183,10 +147,8 @@ void TMultiGameRoomDisplay::onKeyboardEvent (const SDL_KeyboardEvent* key)
     TGameDisplay::onKeyboardEvent(key);
 }
 
-
 void TMultiGameRoomDisplay::onUserEvent(const SDL_UserEvent* event)
 {
-
 
     TGameDisplay::onUserEvent(event);
 }

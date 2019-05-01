@@ -3,14 +3,14 @@
 #include <mutex>
 
 #include "SDL2EasyGUI/include/DisplayController.h"
-#include "SDL2EasyGUI/src/Display/MessageDialog.h"
+#include "SDL2EasyGUI/include/MessageDialog.h"
 #include "SDL2EasyGUI/include/SEG_Initiator.h"
 #include "SDL2EasyGUI/include/SEG_Quit.h"
 
 #include "GameInterface/src/Online/PacketQueue.h"
 #include "GameInterface/include/Quit.h"
 
-#include "Common/TResource.h"
+#include "TResource.h"
 
 #include "TDisplay/Game/TSingleGameDisplay.h"
 #include "TDisplay/Game/TMultiGameRoomDisplay.h"
@@ -31,43 +31,27 @@ void init()
     game_interface::PacketQueue::getInstance().setServer(false);
     game_interface::PacketQueue::getInstance().run();
 
+    TPlayer::getInstance()->setOrder(0);
+    TPlayer::getInstance()->setMaster(true);
 }
 
-int main() {
+int main()
+{
 
     init();
-
     sdleasygui::t_res res;
-    shared_ptr<TDisplayInterface> maindlg;
 
     auto mainDisplay = sdleasygui::make_display<TMultiMainDisplay>(resource::MAIN_MULTI_DISPLAY);
-    mainDisplay->setWindowHeight(900);
-    mainDisplay->setWindowWidth(800);
-    mainDisplay->setWindowTitle("TetrisGame");
-    mainDisplay->setBackgroundImgPath("../resources/images/background.png");
-
     auto optionDisplay = sdleasygui::make_display<TOptionDisplay>(resource::OPTION_DISPLAY);
-    optionDisplay->setWindowHeight(900);
-    optionDisplay->setWindowWidth(800);
-    optionDisplay->setWindowTitle("Option");
-
     auto enterServerDisplay = sdleasygui::make_display<TEnterServerDisplay>(resource::ENTERSERVER_DISPLAY);
-    enterServerDisplay->setWindowHeight(300);
-    enterServerDisplay->setWindowWidth(300);
-    enterServerDisplay->setWindowTitle("Input Your Nickname");
-
     auto waitingRoomDisplay = sdleasygui::make_display<TWaitingRoomDisplay>(resource::WAITINGROOM_DISPLAY);
-    waitingRoomDisplay->setWindowTitle("Hello Tetris World!");
 
     bool go = true;
-    maindlg = mainDisplay;
-    while(go)
-    {
+    shared_ptr<TDisplayInterface> maindlg = mainDisplay;
+    while (go) {
         maindlg->modal(maindlg);
-        if(maindlg->compareDisplay(resource::MAIN_MULTI_DISPLAY))
-        {
-            switch(maindlg->getResult())
-            {
+        if (maindlg->compareDisplay(resource::MAIN_MULTI_DISPLAY)) {
+            switch (maindlg->getResult()) {
                 case toUType(resource::MAIN_EXIT):
                     go = false;
                     break;
@@ -78,45 +62,41 @@ int main() {
                 }
                 case toUType(resource::MAIN_MULTI_GAME_START_BUTTON): {
 
-                    while(true) {
+                    while (true) {
                         enterServerDisplay->modal(enterServerDisplay);
 
-                        if (enterServerDisplay->getResult() == toUType(resource::ENTERSERVER_OK)) {
+                        if (enterServerDisplay->m_valid) {
                             auto& player = TPlayer::getInstance();
 
                             if (player->connectServer()) {
                                 game_interface::PacketQueue::getInstance().attach(player);
+                                maindlg = waitingRoomDisplay;
                                 break;
-                            }
-                            else
-                            {
+                            } else {
                                 sdleasygui::MessageDialog dlg{"Cannot fail to connect server.",
                                                               sdleasygui::MessageDialogKind::error};
                                 dlg.alert();
                             }
-                        }
-                        else
+                        } else if (enterServerDisplay->getResult() == sdleasygui::toUType(sdleasygui::BTN_CANCEL)) {
                             break;
+                        }
                     }
-                    maindlg = waitingRoomDisplay;
+
                     break;
                 }
 
                 default:
                     assert(0);
             }
-        }
-        else if(maindlg->compareDisplay(resource::WAITINGROOM_DISPLAY)) {
+        } else if (maindlg->compareDisplay(resource::WAITINGROOM_DISPLAY)) {
 
-            if(!TPlayer::getInstance()->getClientController().isConnection())
-            {
+            if (!TPlayer::getInstance()->getClientController().isConnection()) {
                 maindlg = mainDisplay;
                 break;
             }
 
-            switch(maindlg->getResult()) {
+            switch (maindlg->getResult()) {
                 case toUType(resource::WAITINGROOM_CREATE):
-
 
                     break;
 
@@ -124,10 +104,7 @@ int main() {
 
         }
 
-
     }
-
-
 
     game_interface::GameInterface_Quit();
     sdleasygui::SDLEasyGUI_Quit();

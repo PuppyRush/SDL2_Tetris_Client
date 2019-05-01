@@ -6,7 +6,7 @@
 #define CONTROLLER_GROUPCONTROLLMANAGER_H
 
 #if _MSC_VER >= 1200
-  #pragma once
+#pragma once
 #endif
 
 #include <boost/serialization/singleton.hpp>
@@ -25,36 +25,46 @@ class GroupControllManager : private boost::serialization::singleton<GroupContro
 private:
     friend class boost::serialization::singleton<GroupControllManager>;
 
-    typedef struct group {
-        public:
+    typedef struct group
+    {
+    public:
 
-        void setMultiSelected() {
+        void setMultiSelected()
+        {
             m_isMultiselection = true;
         }
 
-        void add(const t_id id) {
-            if (m_unselectedIds.count(id) == 0)
+        void add(const t_id id)
+        {
+            if (m_unselectedIds.count(id) == 0) {
                 m_unselectedIds.insert(id);
-            else
+            } else
                 assert(0);
         }
 
-        void erase(const t_id id) {
-            if (count(id))
+        void erase(const t_id id)
+        {
+            if (count(id)) {
                 m_unselectedIds.erase((id));
-            if (count(id))
+            }
+            if (count(id)) {
                 m_selectedIds.erase((id));
+            }
         }
 
-        bool count(const t_id id) {
-            if (m_unselectedIds.count(id))
+        bool count(const t_id id)
+        {
+            if (m_unselectedIds.count(id)) {
                 return true;
-            if (m_selectedIds.count(id))
+            }
+            if (m_selectedIds.count(id)) {
                 return true;
+            }
             return false;
         }
 
-        void toSelected(const t_id id) {
+        void toSelected(const t_id id)
+        {
             if (m_isMultiselection) {
                 m_unselectedIds.erase(id);
                 m_selectedIds.insert(id);
@@ -64,7 +74,8 @@ private:
             }
         }
 
-        void toUnSelected(const t_id id) {
+        void toUnSelected(const t_id id)
+        {
             if (m_isMultiselection) {
                 m_selectedIds.erase(id);
                 m_unselectedIds.insert(id);
@@ -74,7 +85,8 @@ private:
             }
         }
 
-        const bool isSelected(const t_id id) {
+        const bool isSelected(const t_id id)
+        {
             if (m_isMultiselection) {
                 return m_selectedIds.count(id);
             } else {
@@ -96,20 +108,28 @@ public:
 
     static const t_id NONE = -1;
 
-    group &get(const group_id grpId);
+    group& get(const group_id grpId);
+
     const std::vector<t_id> getSelectedId(const group_id grpId);
 
     void select(const group_id grpId, const t_id ctlId);
+
     void unselecte(const group_id grpId, const t_id ctlId);
 
     void add(const group_id grpId, const t_id ctlId);
+
     void remove(const group_id grpId);
+
     void remove(const group_id grpId, const t_id ctlId);
+
     void setMultiselect(const group_id grpId);
+
     bool isGroup(const group_id grpId);
+
     bool isSelected(const group_id grpId, const t_id ctlId);
 
-    static GroupControllManager& getInstance() {
+    static GroupControllManager& getInstance()
+    {
 
         return boost::serialization::singleton<GroupControllManager>::get_mutable_instance();
     }
@@ -117,6 +137,7 @@ public:
 private:
 
     GroupControllManager() = default;
+
     std::unordered_map<int, group> m_group;
 
 };

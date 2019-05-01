@@ -9,10 +9,11 @@
 using namespace game_interface;
 using namespace std;
 
-void GameRoom::updateObserver(const Packet& )
+void GameRoom::updateObserver(const Packet&)
 {}
 
-Json::Value GameRoom::toJson() const {
+Json::Value GameRoom::toJson() const
+{
 
     auto json = Room::toJson();
 
@@ -20,8 +21,7 @@ Json::Value GameRoom::toJson() const {
     Json::Value playerJs{Json::arrayValue};
     json["player_count"] = static_cast<Json::UInt >(container.size());
 
-    for(const auto& player : container)
-    {
+    for (const auto& player : container) {
         playerJs.append(player->toJson());
     }
 

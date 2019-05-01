@@ -6,7 +6,7 @@
 #define TETRIS_FIGURE_CLASS_TPLAYER_H
 
 #if _MSC_VER >= 1200
-  #pragma once
+#pragma once
 #endif
 
 #include <boost/serialization/singleton.hpp>
@@ -14,7 +14,6 @@
 
 #include "GameInterface/src/Online/Packet.h"
 #include "GameInterface/include/Player.h"
-#include "../Common/TDefine.h"
 #include "../../include/TClientController.h"
 #include "../TFiguers/TFigureController.h"
 #include "../TObject/TScore.h"
@@ -26,42 +25,69 @@ class TPlayer : public game_interface::Player
 public:
 
     TPlayer();
+
     virtual ~TPlayer();
 
-    inline const game_interface::TIPString& getIP() const noexcept { return m_ip; }
-    inline const bool isReady() const noexcept { return m_isReady; }
-    inline const int getOrder() const noexcept { return m_order; }
-    inline const bool isSurvive() const noexcept { return m_isSurvive; }
+    inline const game_interface::TIPString& getIP() const noexcept
+    { return m_ip; }
 
-    inline TClientController& getClientController() noexcept {
+    inline const bool isReady() const noexcept
+    { return m_isReady; }
+
+    inline const int getOrder() const noexcept
+    { return m_order; }
+
+    inline const bool isSurvive() const noexcept
+    { return m_isSurvive; }
+
+    inline TClientController& getClientController() noexcept
+    {
         return m_clientCtl;
     }
 
-    inline TFigureController& getController() noexcept {
+    inline TFigureController& getController() noexcept
+    {
         return m_gameCtl;
     }
 
-    inline void setOrder(const int idx) noexcept { m_order = idx; }
-    inline void setReady(const bool rdy) noexcept { m_isReady = rdy; }
+    inline void setOrder(const int idx) noexcept
+    { m_order = idx; }
+
+    inline void setReady(const bool rdy) noexcept
+    { m_isReady = rdy; }
 
     void command(const sdleasygui::t_eventType event);
-    void sendPacket(game_interface::Packet &);
+
+    void sendPacket(game_interface::Packet&);
+
+    void initialize();
+
     void startGame();
+
     void endGame();
+
     const bool connectServer();
 
     virtual void updateObserver(const game_interface::Packet&) override;
+
     void sendBoardInfo(const game_interface::t_id gameRoomUnique);
+
     void recvBoardInfo(const game_interface::Packet& packet);
 
     void recvInfo(const game_interface::Packet&);
+
     void sendDummySignal();
+
     void requestWaitingRoomInitInfo();
 
-    virtual Json::Value toJson() const override { return Player::toJson();}
-    virtual const std::string_view& getUniqueName() const override { return game_interface::NAME_PLAYER; }
+    virtual Json::Value toJson() const override
+    { return Player::toJson(); }
 
-    static auto& getInstance() {
+    virtual const std::string_view& getUniqueName() const override
+    { return game_interface::NAME_PLAYER; }
+
+    static auto& getInstance()
+    {
         static auto inst = std::make_shared<TPlayer>();
         return inst;
     }

@@ -3,9 +3,8 @@
 #define SDLEASYGUIDE_TTYPE_H
 
 #if _MSC_VER >= 1200
-  #pragma once
+#pragma once
 #endif
-
 
 #include <cstddef>
 #include <atomic>
@@ -35,7 +34,7 @@ using t_coord = int;
 using t_size = int;
 using t_color = Uint8;
 using t_time = std::time_t;
-using event_type = SDL_Event *;
+using event_type = SDL_Event*;
 
 }
 

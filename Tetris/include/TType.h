@@ -3,9 +3,8 @@
 #define SDLEASYGUIDE_FIGURE_CLASS_TTYPE_H
 
 #if _MSC_VER >= 1200
-  #pragma once
+#pragma once
 #endif
-
 
 #include <cstddef>
 #include <atomic>

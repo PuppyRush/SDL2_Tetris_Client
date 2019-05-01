@@ -7,7 +7,7 @@
 using namespace sdleasygui;
 
 StaticLabel::StaticLabel(StaticLabelBuilder& bld)
-    :LabelBasic(bld)
+        : LabelBasic(bld)
 {
     bld.kind(ControllerKind::StaticLabel);
     m_labelString = bld.getBasic().name;
@@ -30,12 +30,13 @@ void StaticLabel::initialize()
     TextDrawer textDrawer{renderer, getFont(), m_labelString};
     auto textSurface = textDrawer.getTextSurface();
 
-    if(textSurface) {
+    if (textSurface) {
         auto texture = textDrawer.getTexture();
 
         m_textWidth = static_cast<double>(textSurface->w);
         m_textHeight = static_cast<double>(textSurface->h);
 
+        getBasic()->point.x += 5;
         getBasic()->height = m_textHeight;
         getBasic()->width = m_textWidth;
     }
