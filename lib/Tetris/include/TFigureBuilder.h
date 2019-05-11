@@ -15,7 +15,7 @@ class TFigureBuilder final
 {
 public:
 
-    TFigureBuilder(const sdleasygui::TPoint& point);
+    TFigureBuilder(const sdleasygui::SEG_Point& point);
 
     virtual ~TFigureBuilder()
     {}
@@ -50,7 +50,7 @@ public:
         return this;
     }
 
-    inline const sdleasygui::TPoint getPoint() const noexcept
+    inline const sdleasygui::SEG_Point getPoint() const noexcept
     { return m_point; }
 
     inline const sdleasygui::ColorCode getColor() const noexcept
@@ -86,7 +86,7 @@ private:
     sdleasygui::t_size m_width;
     sdleasygui::t_size m_height;
     sdleasygui::ColorCode m_color;
-    sdleasygui::TPoint m_point;
+    sdleasygui::SEG_Point m_point;
     TFigureType m_figureType;
     TFigureClass m_figureClass = TFigureClass::L;
     game_interface::t_age m_age;

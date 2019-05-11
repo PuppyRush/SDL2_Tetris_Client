@@ -17,7 +17,7 @@ SDL_TETRIS_BEGIN
 class TScore final
 {
 public:
-    TScore(/*const TPoint& boardBegin, const TColor& backColor, const TFont& font*/);
+    TScore(/*const SEG_Point& boardBegin, const SEG_Color& backColor, const SEG_TFont& font*/);
 
     inline const int get()
     { return m_score; }
@@ -34,9 +34,9 @@ public:
 private:
 
     int m_score = 0;
-    sdleasygui::TPoint m_boardBegin;
-    sdleasygui::TColor m_backColor;
-    sdleasygui::TFont m_font;
+    sdleasygui::SEG_Point m_boardBegin;
+    sdleasygui::SEG_Color m_backColor;
+    sdleasygui::SEG_TFont m_font;
 
 };
 

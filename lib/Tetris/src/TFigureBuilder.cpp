@@ -8,7 +8,7 @@
 using namespace sdleasygui;
 using namespace tetris_module;
 
-TFigureBuilder::TFigureBuilder(const TPoint& point)
+TFigureBuilder::TFigureBuilder(const SEG_Point& point)
         : m_point(point),
           m_width(0),
           m_height(0),

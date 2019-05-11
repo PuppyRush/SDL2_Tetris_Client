@@ -6,12 +6,13 @@
 #include "GameInterface/include/WaitingRoom.h"
 
 using namespace game_interface;
+using namespace game_interface::packet;
 using namespace std;
 
 void WaitingRoom::updateObserver(const Packet&)
 {}
 
-void WaitingRoom::addGameRoom(room_ptr room)
+void WaitingRoom::addGameRoom(const room_ptr& room)
 {
     std::unique_lock<std::mutex>(m_roomMutex);
 

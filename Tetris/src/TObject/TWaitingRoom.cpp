@@ -6,6 +6,7 @@
 
 SDL_TETRIS
 using namespace game_interface;
+using namespace game_interface::packet;
 
 void TWaitingRoom::updateObserver(const Packet& packet)
 {
@@ -22,7 +23,7 @@ void TWaitingRoom::postExit(const WaitingRoom::player_ptr&)
 
 }
 
-void TWaitingRoom::postAddedGameRoom(room_ptr room)
+void TWaitingRoom::postAddedGameRoom(const room_ptr& room)
 {
 
 }

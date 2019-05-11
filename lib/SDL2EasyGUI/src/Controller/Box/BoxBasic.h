@@ -47,23 +47,23 @@ struct BoxItem
         BoxItem::idx = idx;
     }
 
-    const TColor& getColor() const
+    const SEG_Color& getColor() const
     {
         return color;
     }
 
-    void setColor(const TColor& color)
+    void setColor(const SEG_Color& color)
     {
         caching = false;
         BoxItem::color = color;
     }
 
-    const TFont& getFont() const
+    const SEG_TFont& getFont() const
     {
         return font;
     }
 
-    void setFont(const TFont& font)
+    void setFont(const SEG_TFont& font)
     {
         caching = false;
         BoxItem::font = font;
@@ -77,8 +77,8 @@ protected:
 private:
     mutable std::string origin{100};
     std::size_t idx;
-    TColor color = {ColorCode::black};
-    TFont font;
+    SEG_Color color = {ColorCode::black};
+    SEG_TFont font;
 
 };
 

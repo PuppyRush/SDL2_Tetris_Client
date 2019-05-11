@@ -2,11 +2,12 @@
 // Created by chaed on 19. 2. 24.
 //
 
-#include "ManagerController.h"
+#include "GameInterface/include/ManagerController.h"
 
 using namespace game_interface;
+using namespace game_interface::packet;
 
-void ManagerController::updateObserver(const game_interface::Packet& packet)
+void ManagerController::updateObserver(const Packet& packet)
 {
     auto container = getContainer();
     for (auto& mng : container) {
@@ -14,7 +15,7 @@ void ManagerController::updateObserver(const game_interface::Packet& packet)
     }
 }
 
-void ManagerController::postDetach(_Base::unique_type unique)
+void ManagerController::postDetach(const unique_type unique)
 {
     auto container = getContainer();
     for (auto& mng : container) {

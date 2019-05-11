@@ -23,7 +23,7 @@ public:
 
     inline const bool isSelected() const noexcept
     {
-        ButtonBasic::isSelected();
+        return ButtonBasic::isSelected();
     }
 
     inline void setSelected(bool clicked) noexcept

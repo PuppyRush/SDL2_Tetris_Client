@@ -9,7 +9,7 @@
 #pragma once
 #endif
 
-#include "GameInterface/src/SubScription/Observer.h"
+#include "Observer.h"
 
 namespace game_interface {
 
@@ -37,9 +37,11 @@ public:
     inline void setMaster(bool b)
     { m_isMaster = b; }
 
-    virtual void updateObserver(const Packet&) = 0;
+    virtual const std::string_view& getUniqueName() const = 0;
 
-    virtual void sendPacket(game_interface::Packet&) = 0;
+    virtual void updateObserver(const packet::Packet&) = 0;
+
+    virtual void sendPacket(const packet::Packet&) const = 0;
 
 private:
     std::string m_name;

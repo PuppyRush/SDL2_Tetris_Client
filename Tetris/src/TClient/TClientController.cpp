@@ -9,6 +9,7 @@ SDL_TETRIS
 
 using namespace std;
 using namespace game_interface;
+using namespace game_interface::packet;
 
 void fn(ACE_Reactor* app){
     app->owner( ACE_OS::thr_self());
@@ -22,8 +23,8 @@ TClientController::TClientController()
 
     m_aceSelectReactor = make_shared<ACE_Select_Reactor>();
     m_reactor = make_shared<ACE_Reactor>(m_aceSelectReactor.get());
-    m_service = make_shared<ClientService>(m_reactor.get());
-    m_connector = make_shared<ClientConnector>("127.0.0.1:12345",m_reactor.get(), *m_service.get());
+    m_service = make_shared<PlayerService>(m_reactor.get());
+    m_connector = make_shared<PlayerConnector>("127.0.0.1:12345",m_reactor.get(), *m_service.get());
 }
 
 TClientController::~TClientController()
@@ -39,22 +40,17 @@ bool TClientController::connectServer()
 {
     m_connector->connect();
 
-    if(m_connector->isConnection())
-    {
-        m_clientThread = thread(fn,m_reactor.get());
-        std::this_thread::sleep_for (std::chrono::milliseconds(500));
-    }
+    m_clientThread = thread(fn,m_reactor.get());
+    std::this_thread::sleep_for (std::chrono::milliseconds(300));
+
     return m_connector->isConnection();
 }
 
-void TClientController::send(Packet& packet)
+void TClientController::send(const Packet& packet) const
 {
-    packet.setHeader().where = messageDirection::CLIENT;
-    packet.setHeader().timestamp = std::time(nullptr);
+    packet.updateLocale();
 
-    printf("clinet send : %d %d %ld\n", packet.getHeader().destId, toUType( packet.getHeader().message),
-        packet.getHeader().timestamp);
-
+    std::cout << packet;
     auto bytes = packet.toByte();
     m_service->send((void *) bytes.first, bytes.second);
 }

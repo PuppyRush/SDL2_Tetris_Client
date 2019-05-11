@@ -39,17 +39,17 @@ public:
     inline const t_size getWindowHeight() const noexcept
     { return m_window->getHeight(); }
 
-    inline TColor getBackgroundColor() const noexcept
+    inline SEG_Color getBackgroundColor() const noexcept
     {
         return m_backgroundColor;
     }
 
-    inline void setBackgroundColor(const TColor& background_color) noexcept
+    inline void setBackgroundColor(const SEG_Color& background_color) noexcept
     {
         m_backgroundColor = background_color;
     }
 
-    inline void setBackgroundColor(TColor&& background_color) noexcept
+    inline void setBackgroundColor(SEG_Color&& background_color) noexcept
     {
         m_backgroundColor = background_color;
     }
@@ -85,7 +85,7 @@ protected:
         SDL_RenderDrawRect(renderer, &rect);
     }
 
-    TColor m_backgroundColor;
+    SEG_Color m_backgroundColor;
 };
 
 class TextDrawer
@@ -94,7 +94,7 @@ class TextDrawer
     SDL_Texture* texture;
 public:
 
-    TextDrawer(SDL_Renderer* renderer, const TFont& fontinfo, const std::string str)
+    TextDrawer(SDL_Renderer* renderer, const SEG_TFont& fontinfo, const std::string str)
             : textSurface(nullptr)
     {
         TTF_Font* font = TTF_OpenFont(fontinfo.font_name.c_str(), fontinfo.size);

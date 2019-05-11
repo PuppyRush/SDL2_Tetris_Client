@@ -5,14 +5,14 @@
 #ifndef SDL2_TETRIS_SERVER_VECTORSUBJECT_H
 #define SDL2_TETRIS_SERVER_VECTORSUBJECT_H
 
-//
-// Created by chaed on 19. 2. 16.
-//
+#if _MSC_VER >= 1200
+#pragma once
+#endif
 
 #include <vector>
 #include <algorithm>
 
-#include "Subject.h"
+#include "GameInterface/include/Subject.h"
 #include "GameInterface/include/Object.h"
 #include "Observer.h"
 
@@ -24,7 +24,7 @@ class VectorSubject : public Subject<_Observer, std::vector<std::shared_ptr<_Obs
 public:
 
     using _Base = Subject<_Observer, std::vector<std::shared_ptr<_Observer>>>;
-    using object_type = typename _Base::object_type;
+    using element_type = typename _Base::element_type;
     using unique_type = typename _Base::unique_type;
 
     VectorSubject()
@@ -37,16 +37,16 @@ public:
 
     virtual bool exist(const unique_type unique) const
     {
-        const auto cnt = std::count_if(begin(_Base::m_objects), end(_Base::m_objects), [unique](object_type element) {
+        const auto cnt = std::count_if(begin(_Base::m_objects), end(_Base::m_objects), [unique](element_type element) {
             return element->compareUnique(unique);
         });
 
         return cnt > 0;
     }
 
-    virtual object_type at(const unique_type unique) override
+    virtual element_type at(const unique_type unique) override
     {
-        const auto it = std::find_if(begin(_Base::m_objects), end(_Base::m_objects), [unique](object_type element) {
+        const auto it = std::find_if(begin(_Base::m_objects), end(_Base::m_objects), [unique](element_type element) {
             return element->compareUnique(unique);
         });
 
@@ -58,14 +58,14 @@ public:
     }
 
 protected:
-    virtual void insert(object_type obs) override
+    virtual void insert(const element_type& obs) override
     {
         _Base::m_objects.emplace_back(obs);
     }
 
     virtual void remove(const unique_type unique) override
     {
-        const auto it = std::remove_if(begin(_Base::m_objects), end(_Base::m_objects), [unique](object_type element) {
+        const auto it = std::remove_if(begin(_Base::m_objects), end(_Base::m_objects), [unique](element_type element) {
             return element->compareUnique(unique);
         });
 
@@ -73,6 +73,10 @@ protected:
             _Base::m_objects.erase(it);
         }
     }
+
+    virtual void postAttach(const element_type&) = 0;
+
+    virtual void postDetach(const unique_type unique) = 0;
 };
 
 }

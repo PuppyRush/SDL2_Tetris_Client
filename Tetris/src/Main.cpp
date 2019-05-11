@@ -7,7 +7,8 @@
 #include "SDL2EasyGUI/include/SEG_Initiator.h"
 #include "SDL2EasyGUI/include/SEG_Quit.h"
 
-#include "GameInterface/src/Online/PacketQueue.h"
+#include "GameInterface/include/Initiator.h"
+#include "GameInterface/include/PacketQueue.h"
 #include "GameInterface/include/Quit.h"
 
 #include "TResource.h"
@@ -26,10 +27,8 @@ using namespace game_interface;
 
 void init()
 {
+    game_interface::GameInterface_Init(false);
     sdleasygui::SDLEasyGUI_Init();
-
-    game_interface::PacketQueue::getInstance().setServer(false);
-    game_interface::PacketQueue::getInstance().run();
 
     TPlayer::getInstance()->setOrder(0);
     TPlayer::getInstance()->setMaster(true);

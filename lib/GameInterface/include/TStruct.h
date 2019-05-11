@@ -54,6 +54,7 @@ typedef struct TIPString
     t_port port;
 } TIPString;
 
+
 }
 
 #endif //TETRIS_FIGURE_CLASS_TSTRUCT_H

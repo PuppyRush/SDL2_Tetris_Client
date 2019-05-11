@@ -10,8 +10,7 @@
 #endif
 
 #include "GameInterface/include/Event.h"
-#include "GameInterface/include/Type.h"
-#include "SDL2EasyGUI/include/SEG_Property.h"
+#include "SDL2EasyGUI/include/SEG_Type.h"
 
 namespace tetris_module{
 

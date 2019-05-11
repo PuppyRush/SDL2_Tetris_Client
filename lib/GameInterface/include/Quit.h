@@ -5,7 +5,11 @@
 #ifndef PROJECT_QUIT_H
 #define PROJECT_QUIT_H
 
-#include "../src/Online/PacketQueue.h"
+#if _MSC_VER >= 1200
+#pragma once
+#endif
+
+#include "PacketQueue.h"
 
 namespace game_interface {
 

@@ -5,6 +5,10 @@
 #ifndef TETRIS_FIGURE_CLASS_PACKETQUEUE_H
 #define TETRIS_FIGURE_CLASS_PACKETQUEUE_H
 
+#if _MSC_VER >= 1200
+#pragma once
+#endif
+
 #include <thread>
 #include <memory>
 #include <queue>
@@ -16,42 +20,54 @@
 #include <boost/serialization/singleton.hpp>
 
 #include "Packet.h"
-#include "../SubScription/VectorSubject.h"
-
+#include "VectorSubject.h"
 
 namespace game_interface {
 
 class PacketQueue : public VectorSubject<game_interface::Observer>,
-                    public boost::serialization::singleton<PacketQueue> {
+                    public boost::serialization::singleton<PacketQueue>
+{
 public:
+
+    using _Base = game_interface::VectorSubject<game_interface::Observer>;
+    using element_type = typename _Base::element_type;
+    using unique_type = typename _Base::unique_type;
 
     friend class boost::serialization::singleton<PacketQueue>;
 
     PacketQueue();
+
     virtual ~PacketQueue();
 
     virtual void notify() override;
 
     void run();
-    void pushEvent(Packet &&event);
-    void pushEvent(const Packet &event);
-    Packet popEvent();
-    inline void end() { m_isContinue.exchange(false);}
-    inline void setServer(bool b){ m_isServer = b;}
 
-    static PacketQueue &getInstance() {
+    void pushEvent(packet::Packet&& event);
 
+    void pushEvent(const packet::Packet& event);
+
+    const packet::Packet popEvent();
+
+    inline void end()
+    { m_isContinue.exchange(false); }
+
+    static PacketQueue& getInstance()
+    {
         return boost::serialization::singleton<PacketQueue>::get_mutable_instance();
     }
 
 protected:
 
-    virtual void postDetach(unique_type ) override {}
-    virtual void postAttach(object_type) override {};
+    virtual void postAttach(const element_type&) override
+    {}
+
+    virtual void postDetach(const unique_type) override
+    {}
 
 private:
 
-    std::queue<Packet> m_packetQ;
+    std::queue<packet::Packet> m_packetQ;
     std::condition_variable m_cond;
     std::mutex m_mutex;
     std::atomic_bool m_isContinue = true;

@@ -7,9 +7,9 @@
 
 #include "THeader.h"
 #include "SDL2EasyGUI/include/DisplayInterface.h"
-#include "GameInterface/src/SubScription/Observer.h"
-#include "GameInterface/src/Online/Packet.h"
-#include "GameInterface/src/Online/PacketQueue.h"
+#include "GameInterface/include/Observer.h"
+#include "GameInterface/include/Packet.h"
+#include "GameInterface/include/PacketQueue.h"
 
 SDL_TETRIS_BEGIN
 
@@ -29,7 +29,7 @@ protected:
             : DisplayInterface(displayId)
     {}
 
-    virtual void updateObserver(const game_interface::Packet&)
+    virtual void updateObserver(const game_interface::packet::Packet&)
     {
     }
 
@@ -56,13 +56,21 @@ protected:
 
 private:
     virtual const std::string_view& getUniqueName() const override
-    {}
+    {
+        assert(0);
+        return game_interface::NAME_NULL;
+    }
 
-    virtual Json::Value toJson() const override
-    {}
+    virtual Json::Value toJson() const override final
+    {
+        assert(0);
+        return Json::Value{};
+    }
 
-    virtual void fromJson(const Json::Value& json) override
-    {}
+    virtual void fromJson(const Json::Value& json) override final
+    {
+        assert(0);
+    }
 
 };
 

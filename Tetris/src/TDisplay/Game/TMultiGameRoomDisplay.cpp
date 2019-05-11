@@ -15,6 +15,7 @@
 SDL_TETRIS
 using namespace std;
 using namespace game_interface;
+using namespace game_interface::packet;
 using namespace sdleasygui;
 using namespace tetris_module;
 
@@ -100,7 +101,7 @@ void TMultiGameRoomDisplay::registerEvent()
                      this);
 }
 
-void TMultiGameRoomDisplay::updateObserver(const game_interface::Packet& packet)
+void TMultiGameRoomDisplay::updateObserver(const Packet& packet)
 {
     switch (packet.getHeader().message) {
         case messageInfo::GAME_RESPONSE_BOARDINFO:

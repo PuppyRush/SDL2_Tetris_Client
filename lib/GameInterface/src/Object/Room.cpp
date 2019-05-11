@@ -8,6 +8,7 @@
 #include "GameInterface/include/Room.h"
 
 using namespace game_interface;
+using namespace game_interface::packet;
 
 Room::Room()
         : m_roomnumber(Atomic::newWaitingRoomNumber())
@@ -28,7 +29,7 @@ void Room::setRoomName(const std::string& name)
     m_roomname = name;
 }
 
-void Room::enter(player_ptr ply)
+void Room::enter(const player_ptr& ply)
 {
     if (!m_players.empty() && (m_players.size() - 1 >= m_fullCount)) {
         assert(0);
@@ -77,6 +78,7 @@ bool Room::exist(const unique_type unique) const noexcept
     });
 
     if (it == m_players.end()) {
+        return false;
     } else {
         return true;
     }
@@ -96,4 +98,22 @@ void Room::fromJson(const Json::Value& json)
     setRoomName(json["name"].asString());
     setRoomNumber(json["number"].asUInt64());
     Object::fromJson(json);
+}
+
+void Room::broadcast(const Packet& packet)
+{
+    for (const auto& ply : m_players) {
+        ply->sendPacket(packet);
+    }
+}
+
+void Room::boradcastExclude(const unique_type unique, const Packet& packet)
+{
+    for (const auto& ply : m_players) {
+        if (ply->compareUnique(unique)) {
+            continue;
+        }
+
+        ply->sendPacket(packet);
+    }
 }

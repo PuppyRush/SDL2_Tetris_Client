@@ -13,7 +13,7 @@ find_package(Boost 1.65.1 REQUIRED COMPONENTS system filesystem serialization)
 find_package(PkgConfig REQUIRED)
 
 file(GLOB CPP_FILES source/*.cpp
-         CPP_HEADERS include/*.h)
+        CPP_HEADERS include/*.h)
 
 #add_library(boost::serialization INTERFACE IMPORTED)
 
@@ -69,50 +69,49 @@ endif ()
 
 
 include_directories(
-        src/
+        src
         SYSTEM ${Boost_INCLUDE_DIR}
-        ${PROJECT_SOURCE_DIR}/src
-        ${PROJECT_SOURCE_DIR}/src/GameInterface
+        ../../src
+        .
         ${PROJECT_SOURCE_DIR}/src/SDLEasyGUI
         ${PROJECT_SOURCE_DIR}/src/Tetris
         ${ACE_INCLUDE_DIR})
 
 
 ADD_LIBRARY(GameInterface STATIC
+        src/Online/JsonHelper.cpp
+        src/Online/JsonHelper.h
+        src/Online/PlayerConnector.cpp
+        src/Online/PlayerService.cpp
+        src/Online/PacketQueue.cpp
+        src/Online/Packet.cpp
+        src/Object/Player.cpp
+        src/Object/Object.cpp
+        src/Object/Room.cpp
+        src/Object/GameRoom.cpp
+        src/Object/WaitingRoom.cpp
+        src/SubScription/ManagerController.cpp
         include/Player.h
+        include/Object.h
         include/Room.h
         include/Atomic.h
-        include/Object.h
         include/GameRoom.h
         include/WaitingRoom.h
         include/Event.h
         include/TStruct.h
-        include/Define.h
-        include/Quit.h include/JsonPackage.h
-        src/Online/JsonHelper.cpp
-        src/Online/JsonHelper.h
-        src/Object/Player.cpp
-        src/Object/Room.cpp
-        src/Object/Object.cpp
-        src/Object/GameRoom.cpp
-        src/Object/WaitingRoom.cpp
-        src/Online/ClientConnector.cpp
-        src/Online/ClientConnector.h
-        src/Online/ClientService.cpp
-        src/Online/ClientService.h
-        src/SubScription/Observer.h
-        src/SubScription/VectorSubject.h
-        src/SubScription/ManagerController.h
-        src/SubScription/ManagerController.cpp
-        src/SubScription/MapSubject.h
-        src/SubScription/Subject.h
-        src/Online/MessageType.h
-        src/Online/Packet.cpp
-        src/Online/Packet.h
-        src/Online/PacketQueue.h
-        src/Online/PacketQueue.cpp
-        )
-
+        include/Quit.h
+        include/JsonPackage.h
+        include/PlayerConnector.h
+        include/PlayerService.h
+        include/Observer.h
+        include/VectorSubject.h
+        include/ManagerController.h
+        include/MapSubject.h
+        include/MessageType.h
+        include/Packet.h
+        include/PacketQueue.h
+        include/Subject.h
+        include/Initiator.h include/Configcpp.h include/Time.h)
 
 
 target_link_libraries(

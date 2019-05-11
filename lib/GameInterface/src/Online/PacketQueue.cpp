@@ -2,10 +2,12 @@
 // Created by chaed on 19. 2. 21.
 //
 
-#include "PacketQueue.h"
-#include "../SubScription/ManagerController.h"
+#include "GameInterface/include/PacketQueue.h"
+#include "GameInterface/include/ManagerController.h"
+#include "include/Constant.h"
 
 using namespace game_interface;
+using namespace game_interface::packet;
 
 PacketQueue::PacketQueue()
 {
@@ -20,6 +22,7 @@ PacketQueue::~PacketQueue()
 
 void PacketQueue::run()
 {
+    m_isServer = g_isServer;
     this->m_thread = std::thread(&PacketQueue::notify, this);
 }
 
@@ -37,7 +40,7 @@ void PacketQueue::pushEvent(const Packet& event)
     m_cond.notify_one();
 }
 
-Packet PacketQueue::popEvent()
+const Packet PacketQueue::popEvent()
 {
     std::unique_lock<std::mutex> lock(m_mutex);
     m_cond.wait(lock, [=]() { return !m_packetQ.empty() || !m_isContinue; });
@@ -57,24 +60,22 @@ void PacketQueue::notify()
 
     if (m_isServer) {
         while (m_isContinue) {
-            auto packet = popEvent();
+            const auto packet = popEvent();
 
-            printf("client recv : %d %d %ld\n", packet.getHeader().destId, toUType(packet.getHeader().message),
-                   packet.getHeader().timestamp);
+            std::cout << packet;
 
             mngCtl.updateObserver(packet);
         }
     } else {
         while (m_isContinue) {
             auto packet = popEvent();
-            packet.toPacket();
 
-            printf("client recv : %d %d %ld\n", packet.getHeader().destId, toUType(packet.getHeader().message),
-                   packet.getHeader().timestamp);
 
             if (packet.getHeader().where == messageDirection::CLIENT) {
                 continue;
             }
+
+            std::cout << packet;
 
             for (auto& obj : m_objects) {
                 obj->updateObserver(packet);

@@ -26,9 +26,9 @@ class ControllerBuilder
 {
 public:
 
-    ControllerBuilder(const GraphicInterface::window_type window, const TPoint& point, const std::string& str);
+    ControllerBuilder(const GraphicInterface::window_type window, const SEG_Point& point, const std::string& str);
 
-    ControllerBuilder(const GraphicInterface::window_type window, TPoint&& point, std::string&& str);
+    ControllerBuilder(const GraphicInterface::window_type window, SEG_Point&& point, std::string&& str);
 
     virtual ~ControllerBuilder() = default;
 
@@ -38,7 +38,7 @@ public:
         return this;
     }
 
-    inline ControllerBuilder* font(const TFont& font) noexcept
+    inline ControllerBuilder* font(const SEG_TFont& font) noexcept
     {
         m_basic.font = font;
         return this;
@@ -50,7 +50,7 @@ public:
         return this;
     }
 
-    inline ControllerBuilder* fontColor(const TColor& color) noexcept
+    inline ControllerBuilder* fontColor(const SEG_Color& color) noexcept
     {
         m_basic.font.color = color;
         return this;
@@ -119,7 +119,7 @@ public:
         return this;
     }
 
-    inline ControllerBuilder* borderColor(const TColor& lineColor)
+    inline ControllerBuilder* borderColor(const SEG_Color& lineColor)
     {
         m_basic.borderColor = lineColor;
         return this;

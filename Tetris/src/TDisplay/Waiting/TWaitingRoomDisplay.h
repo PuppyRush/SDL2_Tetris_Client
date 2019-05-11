@@ -206,7 +206,7 @@ public:
     {
         Json::Value json;
         json["username"] = username;
-        json["chat"] = chat;
+        json["contents"] = chat;
         json["maketime"] = static_cast<Json::UInt64>(maketime);
 
         return json;
@@ -215,7 +215,7 @@ public:
     virtual void fromJson(const Json::Value& json) override
     {
         username = json["username"].asString();
-        chat = json["chat"].asString();
+        chat = json["contents"].asString();
         maketime = json["maketime"].asUInt64();
     }
 
@@ -272,7 +272,7 @@ public:
 
     virtual ~TWaitingRoomDisplay() = default;
 
-    virtual void updateObserver(const game_interface::Packet&) override;
+    virtual void updateObserver(const game_interface::packet::Packet&) override;
 
     virtual void registerEvent() override;
 
@@ -292,32 +292,32 @@ private:
 
     void sendChat(const void*);
 
-    void recvChat(const game_interface::Packet& packet);
+    void recvChat(const game_interface::packet::Packet& packet);
 
-    void createGameroom(const game_interface::Packet& packet);
+    void createGameroom(const game_interface::packet::Packet& packet);
 
-    void recvWaitingRoomInitInfo(const game_interface::Packet& packet);
+    void recvWaitingRoomInitInfo(const game_interface::packet::Packet& packet);
 
-    const sdleasygui::TPoint m_controllBeginPoint = sdleasygui::TPoint{50, 50};
+    const sdleasygui::SEG_Point m_controllBeginPoint = sdleasygui::SEG_Point{50, 50};
 
     const sdleasygui::t_size m_userBoxWidth = sdleasygui::WINDOW_WIDTH / 5;
     const sdleasygui::t_size m_userBoxHeight = sdleasygui::WINDOW_HEIGHT - 350;
-    const sdleasygui::TPoint m_userBoxBeginPoint = sdleasygui::TPoint{sdleasygui::WINDOW_WIDTH - m_userBoxWidth - 20,
+    const sdleasygui::SEG_Point m_userBoxBeginPoint = sdleasygui::SEG_Point{sdleasygui::WINDOW_WIDTH - m_userBoxWidth - 20,
                                                                       50};
 
     const sdleasygui::t_size m_chatBoxWidth = sdleasygui::WINDOW_WIDTH - 100 - m_userBoxWidth;
     const sdleasygui::t_size m_chatBoxHeight = sdleasygui::WINDOW_HEIGHT / 7;
-    const sdleasygui::TPoint m_chatBoxBeginPoint = sdleasygui::TPoint{m_controllBeginPoint.x,
+    const sdleasygui::SEG_Point m_chatBoxBeginPoint = sdleasygui::SEG_Point{m_controllBeginPoint.x,
                                                                       sdleasygui::WINDOW_HEIGHT - m_chatBoxHeight -
-                                                                      200};
+                                                                      300};
 
     const sdleasygui::t_size m_gameroomBoxWidth = m_chatBoxWidth;
-    const sdleasygui::t_size m_gameroomBoxHeight = m_userBoxHeight - 100;
-    const sdleasygui::TPoint m_gameroomBoxBeginPoint = m_controllBeginPoint;
+    const sdleasygui::t_size m_gameroomBoxHeight = m_userBoxHeight - 300;
+    const sdleasygui::SEG_Point m_gameroomBoxBeginPoint = m_controllBeginPoint;
 
     const sdleasygui::t_size m_btnWidth = m_userBoxWidth;
     const sdleasygui::t_size m_btnHeight = 50;
-    const sdleasygui::TPoint m_createBtnBeginPoint = sdleasygui::TPoint{m_userBoxBeginPoint.x,
+    const sdleasygui::SEG_Point m_createBtnBeginPoint = sdleasygui::SEG_Point{m_userBoxBeginPoint.x,
                                                                         m_chatBoxBeginPoint.y + 50};
 
     TWaitingRoom m_waitingRoom;

@@ -63,12 +63,12 @@ public:
 
     virtual ~ComoboBoxBuilder() = default;
 
-    ComoboBoxBuilder(const GraphicInterface::window_type window, const TPoint& point, const std::string& str)
+    ComoboBoxBuilder(const GraphicInterface::window_type window, const SEG_Point& point, const std::string& str)
             : BorderBuilder(window, point, str)
     {
     }
 
-    ComoboBoxBuilder(const GraphicInterface::window_type window, TPoint&& point, std::string&& str)
+    ComoboBoxBuilder(const GraphicInterface::window_type window, SEG_Point&& point, std::string&& str)
             : BorderBuilder(window, point, str)
     {
     }

@@ -44,12 +44,12 @@ public:
         return m_board;
     }
 
-    inline const sdleasygui::TPoint& getStartDisplayPoint() const
+    inline const sdleasygui::SEG_Point& getStartDisplayPoint() const
     {
         return m_startGameDisplayPoint;
     }
 
-    inline void setStartDisplayPoint(const sdleasygui::TPoint& m_StartDisplayPoint)
+    inline void setStartDisplayPoint(const sdleasygui::SEG_Point& m_StartDisplayPoint)
     {
         TFigureBoard::m_startGameDisplayPoint = m_StartDisplayPoint;
     }
@@ -68,7 +68,7 @@ public:
     {
         dest = src->copy();
         dest->setAll(UnitType::Ghost);
-        dest->setAll(sdleasygui::TColor{sdleasygui::ColorCode::silver, 64});
+        dest->setAll(sdleasygui::SEG_Color{sdleasygui::ColorCode::silver, 64});
 
         _eraseCoords(dest);
 
@@ -183,14 +183,14 @@ public:
         for (int i = 0; i < m_board.size(); i++) {
             auto board = m_board[i];
             for (int l = 0; l < board.size(); l++) {
-                board[l] = TFigureUnit{sdleasygui::TPoint(i, l), 0, sdleasygui::ColorCode::none, UnitType::Empty};
+                board[l] = TFigureUnit{sdleasygui::SEG_Point(i, l), 0, sdleasygui::ColorCode::none, UnitType::Empty};
             }
         }
     }
 
 private:
 
-    sdleasygui::TPoint m_startGameDisplayPoint;
+    sdleasygui::SEG_Point m_startGameDisplayPoint;
     sdleasygui::t_size m_gameblockLength;
 
     board_type m_board;

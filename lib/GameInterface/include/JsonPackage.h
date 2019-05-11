@@ -5,6 +5,10 @@
 #ifndef UICLASSEXAMPLE_JSONPACKAGE_H
 #define UICLASSEXAMPLE_JSONPACKAGE_H
 
+#if _MSC_VER >= 1200
+#pragma once
+#endif
+
 namespace game_interface {
 
 class JsonPackage

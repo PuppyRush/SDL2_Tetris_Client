@@ -23,10 +23,10 @@
 
 #include "THeader.h"
 #include "GameInterface/include/Type.h"
+#include "GameInterface/include/Packet.h"
+#include "GameInterface/include/PlayerConnector.h"
+#include "GameInterface/include/PlayerService.h"
 #include "GameInterface/include/TStruct.h"
-#include "GameInterface/src/Online/Packet.h"
-#include "GameInterface/src/Online/ClientConnector.h"
-#include "GameInterface/src/Online/ClientService.h"
 
 SDL_TETRIS_BEGIN
 
@@ -42,7 +42,7 @@ public:
 
     bool connectServer();
 
-    void send(game_interface::Packet& pcket);
+    void send(const game_interface::packet::Packet& pcket) const;
     //const Packet recv();
 
     inline bool isConnection() const noexcept
@@ -57,9 +57,9 @@ public:
 
 private:
     game_interface::TIPString m_ip;
-    std::shared_ptr<game_interface::ClientService> m_service;
+    std::shared_ptr<game_interface::PlayerService> m_service;
     std::shared_ptr<ACE_Reactor> m_reactor;
-    std::shared_ptr<game_interface::ClientConnector> m_connector;
+    std::shared_ptr<game_interface::PlayerConnector> m_connector;
     std::shared_ptr<ACE_Select_Reactor> m_aceSelectReactor;
     std::thread m_clientThread;
 };

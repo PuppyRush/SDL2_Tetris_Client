@@ -21,7 +21,7 @@ public:
 
     inline const bool isMultiselected() const noexcept
     {
-        Controller::isMultiselected();
+        return Controller::isMultiselected();
     }
 
     inline void setMultiselected(bool multiselected) noexcept

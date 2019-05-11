@@ -13,7 +13,7 @@
 #include <vector>
 #include <mutex>
 
-#include "GameInterface/src/SubScription/Observer.h"
+#include "Observer.h"
 #include "Player.h"
 
 namespace game_interface {
@@ -47,7 +47,7 @@ public:
     inline const player_container& getPlayerContainer() const noexcept
     { return m_players; }
 
-    virtual void enter(player_ptr ply);
+    virtual void enter(const player_ptr& ply);
 
     virtual void exit(const unique_type unique);
 
@@ -59,7 +59,7 @@ public:
 
     virtual void initialize();
 
-    virtual void updateObserver(const Packet&) = 0;
+    virtual void updateObserver(const packet::Packet&) = 0;
 
 protected:
     virtual void postEnter(const player_ptr& ply) = 0;
@@ -67,6 +67,10 @@ protected:
     virtual void postExit(const player_ptr& ply) = 0;
 
     virtual void destory();
+
+    void broadcast(const packet::Packet& packet);
+
+    void boradcastExclude(const unique_type, const packet::Packet&);
 
 private:
 

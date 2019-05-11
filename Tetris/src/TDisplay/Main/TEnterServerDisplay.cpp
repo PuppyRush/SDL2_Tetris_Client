@@ -4,7 +4,7 @@
 
 #include "SDL2EasyGUI/include/MessageDialog.h"
 #include "SDL2EasyGUI/include/EditLabel.h"
-#include "GameInterface/src/Online/PacketQueue.h"
+#include "GameInterface/include/PacketQueue.h"
 
 #include "../../TObject/TPlayer.h"
 #include "TEnterServerDisplay.h"
@@ -76,7 +76,7 @@ void TEnterServerDisplay::onInitialize()
         addControll(bld.build());
     }
 
-    setBackgroundColor(TColor{ColorCode::lightgray});
+    setBackgroundColor(SEG_Color{ColorCode::lightgray});
 
     TDisplayInterface::onInitialize();
 }

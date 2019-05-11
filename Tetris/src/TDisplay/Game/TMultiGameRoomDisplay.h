@@ -20,7 +20,7 @@ public:
     { return m_gameroom; }
 
 protected:
-    virtual void updateObserver(const game_interface::Packet&) override;
+    virtual void updateObserver(const game_interface::packet::Packet&) override;
 
     virtual void onTimerEvent(const SDL_UserEvent* user);
 

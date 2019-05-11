@@ -46,13 +46,13 @@ class TWaitingRoomCardBuilder : public sdleasygui::BorderBuilder
 {
 public:
 
-    TWaitingRoomCardBuilder(const sdleasygui::GraphicInterface::window_type window, const sdleasygui::TPoint& point,
+    TWaitingRoomCardBuilder(const sdleasygui::GraphicInterface::window_type window, const sdleasygui::SEG_Point& point,
                             const std::string& str)
             : BorderBuilder(window, point, str)
     {
     }
 
-    TWaitingRoomCardBuilder(const sdleasygui::GraphicInterface::window_type window, sdleasygui::TPoint&& point,
+    TWaitingRoomCardBuilder(const sdleasygui::GraphicInterface::window_type window, sdleasygui::SEG_Point&& point,
                             std::string&& str)
             : BorderBuilder(window, point, str)
     {

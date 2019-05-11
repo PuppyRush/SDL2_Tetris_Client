@@ -5,6 +5,10 @@
 #ifndef GAMEINTERFACE_EVENT_H
 #define GAMEINTERFACE_EVENT_H
 
+#if _MSC_VER >= 1200
+#pragma once
+#endif
+
 #include <SDL2/SDL_events.h>
 
 namespace game_interface {

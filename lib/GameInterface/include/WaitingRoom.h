@@ -5,6 +5,10 @@
 #ifndef TETRIS_FIGURE_CLASS_WAITINGROOM_H
 #define TETRIS_FIGURE_CLASS_WAITINGROOM_H
 
+#if _MSC_VER >= 1200
+#pragma once
+#endif
+
 #include "Room.h"
 
 namespace game_interface {
@@ -21,7 +25,7 @@ public:
 
     virtual void fromJson(const Json::Value& json);
 
-    virtual void addGameRoom(room_ptr room);
+    virtual void addGameRoom(const room_ptr& room);
 
     virtual void removeGameRoom(const unique_type unique);
 
@@ -30,10 +34,10 @@ public:
     inline const room_container& getGameRoomContiner() const noexcept
     { return m_rooms; }
 
-    virtual void updateObserver(const Packet&) = 0;
+    virtual void updateObserver(const packet::Packet&) = 0;
 
 protected:
-    virtual void postAddedGameRoom(room_ptr room) = 0;
+    virtual void postAddedGameRoom(const room_ptr& room) = 0;
 
     virtual void postRemovedGameRoom(const unique_type unique) = 0;
 

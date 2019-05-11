@@ -27,7 +27,7 @@
 
 namespace game_interface {
 
-class ClientService : public ACE_Event_Handler
+class PlayerService : public ACE_Event_Handler
 {
 public:
     enum CSTATE
@@ -44,9 +44,9 @@ private:
     ACE_Message_Queue<ACE_MT_SYNCH> send_datas_;
 
 public:
-    ClientService(ACE_Reactor* reactor);
+    PlayerService(ACE_Reactor* reactor);
 
-    ~ClientService(void);
+    ~PlayerService(void);
 
     void state(CSTATE state);
 

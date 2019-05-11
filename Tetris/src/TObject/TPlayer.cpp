@@ -6,19 +6,20 @@
 #include "TPlayer.h"
 #include "Tetris/include/TFigureBuilder.h"
 
-#include "GameInterface/src/Online/PacketQueue.h"
-#include "GameInterface/src/Online/JsonHelper.h"
+#include "GameInterface/include/PacketQueue.h"
+//#include "GameInterface/include/JsonHelper.h"
 
 SDL_TETRIS
 
 using namespace std;
 using namespace tetris_module;
 using namespace game_interface;
+using namespace game_interface::packet;
 using namespace sdleasygui;
 
 TPlayer::TPlayer()
 {
-    //after set id recvied init data from server
+    //after set id recvied GameInterface_Init data from server
     setUnique(NULL_ID);
 }
 
@@ -31,7 +32,7 @@ void TPlayer::initialize()
 {
     auto board = getController().getBoard();
 
-    TPoint gameboardBeginPoint{0, 0}, gameboardPoint{0, 0};
+    SEG_Point gameboardBeginPoint{0, 0}, gameboardPoint{0, 0};
     t_size blockLen{0};
 
     switch (m_order) {
@@ -41,7 +42,7 @@ void TPlayer::initialize()
             blockLen = FIGURE_UNIT_LEN;
 
             auto nextboard = getController().getNextFigureBoard();
-            nextboard->setStartDisplayPoint(TPoint{GAMEBOARD_BEGIN_X + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN,
+            nextboard->setStartDisplayPoint(SEG_Point{GAMEBOARD_BEGIN_X + GAMEBOARD_DISPLAY_WIDTH + FIGURE_UNIT_LEN,
                                                    GAMEBOARD_BEGIN_Y});
             nextboard->setblockLength(FIGURE_UNIT_LEN);
             break;
@@ -100,7 +101,7 @@ const bool TPlayer::connectServer()
     return result;
 }
 
-void TPlayer::sendPacket(Packet& packet)
+void TPlayer::sendPacket(const Packet& packet) const
 {
     m_clientCtl.send(packet);
 }
@@ -133,7 +134,7 @@ void TPlayer::sendBoardInfo(const t_id gameRoomUnique)
     this->sendPacket(packet);*/
 }
 
-void TPlayer::recvBoardInfo(const game_interface::Packet& packet)
+void TPlayer::recvBoardInfo(const Packet& packet)
 {
     auto json = packet.getPayload();
     command(json["command"].asInt());
@@ -153,7 +154,7 @@ void TPlayer::recvBoardInfo(const game_interface::Packet& packet)
     m_gameCtl.forceSet(figure.get());*/
 }
 
-void TPlayer::recvInfo(const game_interface::Packet& packet)
+void TPlayer::recvInfo(const Packet& packet)
 {
     setUnique(packet.getHeader().senderId);
 
@@ -162,21 +163,21 @@ void TPlayer::recvInfo(const game_interface::Packet& packet)
 
     auto playerJosn = toJson();
 
-    Packet::Header header{this->getUnique(), this->getUnique(), messageInfo::PLAYER_INIT_INFO};
+    Header header{this->getUnique(), this->getUnique(), messageInfo::PLAYER_INIT_INFO};
     Packet p{header, playerJosn};
     sendPacket(p);
 }
 
 void TPlayer::sendDummySignal()
 {
-    Packet::Header header{this->getUnique(), this->getUnique(), messageInfo::DUMMY_SIGNAL};
+    Header header{this->getUnique(), this->getUnique(), messageInfo::DUMMY_SIGNAL};
     Packet p{header};
     sendPacket(p);
 }
 
 void TPlayer::requestWaitingRoomInitInfo()
 {
-    Packet::Header header{this->getUnique(), this->getUnique(), messageInfo::WAITINGROOMS_REQUEST_INIT_INFO};
+    Header header{this->getUnique(), this->getUnique(), messageInfo::WAITINGROOMS_REQUEST_INIT_INFO};
     Packet p{header};
     sendPacket(p);
 }

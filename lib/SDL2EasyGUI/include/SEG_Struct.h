@@ -30,7 +30,7 @@ typedef struct DisplayInfo
 
 } DisplayInfo;
 
-typedef struct TColor
+typedef struct SEG_Color
 {
 public:
 
@@ -42,10 +42,10 @@ public:
     t_color b;
     t_color a;
 
-    TColor()
+    SEG_Color()
     {}
 
-    TColor(const ColorCode code, const t_color alhpa = 255)
+    SEG_Color(const ColorCode code, const t_color alhpa = 255)
             : colorCode(code), a(alhpa)
     {
         const auto c = std::underlying_type_t<coldeType>(code);
@@ -54,7 +54,7 @@ public:
         b = c & 0x0000FF;
     }
 
-    TColor(const t_color r, const t_color g, const t_color b, const t_color alhpa)
+    SEG_Color(const t_color r, const t_color g, const t_color b, const t_color alhpa)
             : r(r), g(g), b(b), a(alhpa)
     {
 
@@ -65,7 +65,7 @@ public:
         colorCode = coldeType{c};
     }
 
-    bool operator==(const TColor& color)
+    bool operator==(const SEG_Color& color)
     {
         return
                 this->r == color.r
@@ -73,52 +73,52 @@ public:
                 and this->b == color.b;
     }
 
-    const bool compare(const TColor& rhs) const
+    const bool compare(const SEG_Color& rhs) const
     {
         return this->colorCode == rhs.colorCode;
     }
 
     static SDL_Color getColor(const ColorCode colorCode)
     {
-        TColor col(colorCode);
+        SEG_Color col(colorCode);
         SDL_Color color{col.r, col.g, col.b, 255};
         return color;
     }
 
     static const SDL_Color getTransparent()
     {
-        TColor col(ColorCode::white);
+        SEG_Color col(ColorCode::white);
         SDL_Color color{col.r, col.g, col.b, 0};
         return color;
     }
-} TColor;
+} SEG_Color;
 
-typedef struct TPoint
+typedef struct SEG_Point
 {
 public:
     t_coord x;
     t_coord y;
     t_coord z;
 
-    TPoint()
+    SEG_Point()
             : x(0), y(0), z(0)
     {}
 
-    TPoint(const t_coord x, const t_coord y, const t_coord z = 0)
+    SEG_Point(const t_coord x, const t_coord y, const t_coord z = 0)
             : x(x), y(y), z(z)
     {}
 
-} TPoint;
+} SEG_Point;
 
-typedef struct TFont
+typedef struct SEG_TFont
 {
     std::string font_name;
     t_size size;
-    TColor color;
+    SEG_Color color;
 
-    TFont() = default;
+    SEG_TFont() = default;
 
-    TFont(const std::string& str, const t_size size, const ColorCode color)
+    SEG_TFont(const std::string& str, const t_size size, const ColorCode color)
             : font_name(str), size(size), color(color)
     {}
 } TFont;
@@ -126,12 +126,12 @@ typedef struct TFont
 typedef struct ControllerBasic
 {
     t_res resourceId;
-    TPoint point = TPoint(-100, -100);
+    SEG_Point point = SEG_Point(-100, -100);
     t_size depth = 0;
     t_size width = 100;
     t_size height = 50;
-    TFont font = {"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::white};
-    TColor backgroundColor = ColorCode::black;
+    SEG_TFont font = {"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::white};
+    SEG_Color backgroundColor = ColorCode::black;
     std::string name = "";
     t_display display = std::numeric_limits<t_display>::max();
     bool enabled = true;
@@ -145,7 +145,7 @@ typedef struct ControllerBasic
     //border types
     BorderBoundaryLineType borderLineType = BorderBoundaryLineType::straight;
     BorderBoundaryType borderType = BorderBoundaryType::roundedAngle;
-    TColor borderColor = ColorCode::white;
+    SEG_Color borderColor = ColorCode::white;
     int borderAngle = 0;
     int borderThick = 1;
 

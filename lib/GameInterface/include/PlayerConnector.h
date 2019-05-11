@@ -16,23 +16,23 @@
 #include  <ace/SOCK_Connector.h>
 #include <ace/Init_ACE.h>
 
-#include  "ClientService.h"
+#include  "PlayerService.h"
 #include "GameInterface/include/TStruct.h"
 
 namespace game_interface {
 
-class ClientConnector : public ACE_Event_Handler
+class PlayerConnector : public ACE_Event_Handler
 {
 
 public:
-    ClientConnector(const char* ipstr, ACE_Reactor* reactor, ClientService& stream);
+    PlayerConnector(const char* ipstr, ACE_Reactor* reactor, PlayerService& stream);
 
-    virtual ~ClientConnector(void);
+    virtual ~PlayerConnector(void);
 
     void connect();
 
     inline const bool isConnection() const noexcept
-    { return m_isConnection; }
+    { return m_isConnection = ((m_stream.state()==PlayerService::C_SUCCESS) ? 1 : 0); }
 
     virtual ACE_HANDLE get_handle(void) const;
 
@@ -47,9 +47,9 @@ public:
 
 private:
     std::string m_ipstring;
-    int m_isConnection;
+    mutable int m_isConnection;
     ACE_SOCK_Connector m_connector;
-    ClientService& m_stream;
+    PlayerService& m_stream;
 };
 
 }

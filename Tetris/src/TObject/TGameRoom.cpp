@@ -8,6 +8,7 @@
 
 SDL_TETRIS
 using namespace std;
+using namespace game_interface::packet;
 
 void TGameRoom::postEnter(const GameRoom::player_ptr& ply)
 {
@@ -32,7 +33,7 @@ void TGameRoom::destory()
     GameRoom::destory();
 }
 
-void TGameRoom::updateObserver(const game_interface::Packet& packet)
+void TGameRoom::updateObserver(const Packet& packet)
 {
     switch (packet.getHeader().message) {
         case game_interface::messageInfo::WAITINGROOMS_RESPONSE_CREATE:

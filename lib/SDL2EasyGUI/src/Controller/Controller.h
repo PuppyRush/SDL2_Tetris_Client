@@ -38,12 +38,12 @@ public:
         return m_data->resourceId;
     }
 
-    inline const TPoint& getPoint() const _GLIBCXX_NOEXCEPT
+    inline const SEG_Point& getPoint() const _GLIBCXX_NOEXCEPT
     {
         return m_data->point;
     }
 
-    inline void setPoint(const TPoint& point) _GLIBCXX_NOEXCEPT
+    inline void setPoint(const SEG_Point& point) _GLIBCXX_NOEXCEPT
     {
         m_data->point = point;
     }
@@ -68,12 +68,12 @@ public:
         m_data->height = height;
     }
 
-    inline const TFont& getFont() const _GLIBCXX_NOEXCEPT
+    inline const SEG_TFont& getFont() const _GLIBCXX_NOEXCEPT
     {
         return m_data->font;
     }
 
-    inline void setFont(const TFont& font) _GLIBCXX_NOEXCEPT
+    inline void setFont(const SEG_TFont& font) _GLIBCXX_NOEXCEPT
     {
         m_data->font = font;
     }
@@ -148,7 +148,7 @@ public:
         return m_data->borderType;
     }
 
-    inline const TColor& getBorderLineColor() const _GLIBCXX_NOEXCEPT
+    inline const SEG_Color& getBorderLineColor() const _GLIBCXX_NOEXCEPT
     {
         return m_data->borderColor;
     }
@@ -183,13 +183,13 @@ public:
         return getWindow()->getSDLRenderer();
     }
 
-    const bool isHit(const TPoint& point);
+    const bool isHit(const SEG_Point& point);
 
     void setSelected(bool selected);
 
     void onVirtualDraw();
 
-    void clickController(TPoint = {30, 30});
+    void clickController(SEG_Point = {30, 30});
 
     virtual void initialize();
 
@@ -199,7 +199,7 @@ protected:
 
     inline const bool isMultiselected() const _GLIBCXX_NOEXCEPT
     {
-        m_data->multiselected;
+        return m_data->multiselected;
     }
 
     inline void setMultiselected(bool multiselected) _GLIBCXX_NOEXCEPT
@@ -212,7 +212,7 @@ protected:
         return m_data;
     }
 
-    void drawBackground(const SDL_Rect rect, const TColor color);
+    void drawBackground(const SDL_Rect rect, const SEG_Color color);
 
     virtual void onDrawBackground();
 

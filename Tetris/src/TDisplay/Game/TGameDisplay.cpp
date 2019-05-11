@@ -7,8 +7,8 @@
 #include "TGameDisplay.h"
 #include "SDL2EasyGUI/include/Button.h"
 #include "TResource.h"
-#include "GameInterface/src/Online/JsonHelper.h"
-#include "GameInterface/src/Online/Packet.h"
+//#include "GameInterface/include/JsonHelper.h"
+#include "GameInterface/include/Packet.h"
 
 SDL_TETRIS
 using namespace game_interface;

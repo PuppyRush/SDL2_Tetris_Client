@@ -4,9 +4,9 @@
 #include "../include/TFigureBuilder.h"
 #include "GameInterface/include/TypeTraits.h"
 
+using namespace std;
 using namespace game_interface;
 using namespace sdleasygui;
-using namespace std;
 using namespace tetris_module;
 
 TFigureInterface::TFigureInterface()
@@ -179,9 +179,9 @@ TFigureType TFigureInterface::getRandomlyFigureType() const noexcept
     return EnumHelper<TFigureType>::getRandomly(getTypeBegin(), getTypeEnd());
 }
 
-void TFigureInterface::_resetRelateivePoint(const TPoint& newPt)
+void TFigureInterface::_resetRelateivePoint(const SEG_Point& newPt)
 {
-    const auto ptDis = TPoint{newPt.x - getPoint().x, newPt.y - getPoint().y};
+    const auto ptDis = SEG_Point{newPt.x - getPoint().x, newPt.y - getPoint().y};
     for (auto& p : m_relativeCoord) {
         p.set({p.getPoint().x + ptDis.x, p.getPoint().y + ptDis.y});
     }

@@ -22,12 +22,14 @@ SDL_TETRIS
 using namespace std;
 using namespace sdleasygui;
 using namespace game_interface;
+using namespace game_interface::packet;
 
 TWaitingRoomDisplay::TWaitingRoomDisplay(const sdleasygui::t_id displayId)
         : TDisplayInterface(displayId)
 {
     setWindowTitle("Hello Tetris World!");
     setBackgroundColor(ColorCode::black);
+    setWindowHeight(800);
 }
 
 void TWaitingRoomDisplay::registerEvent()
@@ -47,8 +49,6 @@ void TWaitingRoomDisplay::postCreate(TDisplayInterface::display_ptr display)
 
 void TWaitingRoomDisplay::onInitialize()
 {
-
-    setWindowHeight(700);
 
     {
         ListBoxBuilder bld(getWindow(), {m_gameroomBoxBeginPoint.x, m_gameroomBoxBeginPoint.y}, "");
@@ -161,7 +161,7 @@ void TWaitingRoomDisplay::updateObserver(const Packet& packet)
     refresh();
 }
 
-void TWaitingRoomDisplay::recvWaitingRoomInitInfo(const game_interface::Packet& packet)
+void TWaitingRoomDisplay::recvWaitingRoomInitInfo(const Packet& packet)
 {
     t_size begin_x = m_controllBeginPoint.x;
     t_size begin_y = m_controllBeginPoint.y;
@@ -234,7 +234,7 @@ void TWaitingRoomDisplay::sendChat(const void* event)
     auto keyevent = static_cast<const SDL_KeyboardEvent*>(event);
     if (keyevent->keysym.sym == SDLK_RETURN) {
         const auto ctl = getControll<EditLabel>(tetris::resource::WAITINGROOM_CHAREDIT);
-        ChatInfo chatinfo{TPlayer::getInstance()->getUserName(), ctl->getString(), time(0)};
+        ChatInfo chatinfo{TPlayer::getInstance()->getUserName(), ctl->getString(), std::time(0)};
 
         Packet packet{
                 {m_waitingRoom.getUnique(), TPlayer::getInstance()->getUnique(), messageInfo::WAITINGROOMS_SEND_CHAT},
@@ -245,7 +245,7 @@ void TWaitingRoomDisplay::sendChat(const void* event)
     }
 }
 
-void TWaitingRoomDisplay::recvChat(const game_interface::Packet& packet)
+void TWaitingRoomDisplay::recvChat(const Packet& packet)
 {
     const string chat = packet.getPayload()["chat"].asString();
     const auto ctl = getControll<ListBox>(tetris::resource::WAITINGROOM_CHATBOX);
@@ -257,7 +257,7 @@ void TWaitingRoomDisplay::recvChat(const game_interface::Packet& packet)
     ctl->appendItem(make_shared<ChatInfo>(chatinfo));
 }
 
-void TWaitingRoomDisplay::createGameroom(const game_interface::Packet& packet)
+void TWaitingRoomDisplay::createGameroom(const Packet& packet)
 {
 
     auto gameroomDisplay = sdleasygui::make_display<TMultiGameRoomDisplay>(resource::MULTIGAME_DISPLAY);

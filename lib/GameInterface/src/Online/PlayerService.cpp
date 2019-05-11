@@ -7,49 +7,50 @@
 
 #include "SDL2/SDL.h"
 #include "GameInterface/include/Event.h"
-#include  "ClientService.h"
+#include  "GameInterface/include/PlayerService.h"
 
-#include "PacketQueue.h"
+#include "GameInterface/include/PacketQueue.h"
 
 using namespace game_interface;
+using namespace game_interface::packet;
 
-ClientService::ClientService(ACE_Reactor* reactor)
+PlayerService::PlayerService(ACE_Reactor* reactor)
         : ACE_Event_Handler(reactor), peer_(ACE_INVALID_HANDLE), state_(C_INIT)
 {
 }
 
-ClientService::~ClientService(void)
+PlayerService::~PlayerService(void)
 {
 }
 
 void
-ClientService::state(CSTATE state)
+PlayerService::state(CSTATE state)
 {
     this->state_ = state;
     if (C_SUCCESS != this->state_) { return; }
     this->reactor()->register_handler(this, ACE_Event_Handler::READ_MASK);
 }
 
-ClientService::CSTATE
-ClientService::state() const
+PlayerService::CSTATE
+PlayerService::state() const
 {
     return this->state_;
 }
 
 ACE_SOCK_Stream&
-ClientService::peer()
+PlayerService::peer()
 {
     return this->peer_;
 }
 
 ACE_HANDLE
-ClientService::get_handle(void) const
+PlayerService::get_handle(void) const
 {
     return this->peer_.get_handle();
 }
 
 int
-ClientService::handle_input(ACE_HANDLE fd/* = ACE_INVALID_HANDLE*/)
+PlayerService::handle_input(ACE_HANDLE fd/* = ACE_INVALID_HANDLE*/)
 {
     const int BUF = 1024;
     unsigned char* in = new unsigned char[BUF];
@@ -61,18 +62,16 @@ ClientService::handle_input(ACE_HANDLE fd/* = ACE_INVALID_HANDLE*/)
         return -1;
     }
 
-    in[len] = NULL;
+    in[len] = 0;
 
     Packet p{in, len};
-    p.toPacket();
-
     PacketQueue::getInstance().pushEvent(p);
 
     return 0;
 }
 
 int
-ClientService::handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask)
+PlayerService::handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask)
 {
     std::cout << "Disconntected" << std::endl;
     ACE_Reactor_Mask m = ACE_Event_Handler::ALL_EVENTS_MASK | ACE_Event_Handler::DONT_CALL;
@@ -86,7 +85,7 @@ ClientService::handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask)
 }
 
 int
-ClientService::send(void* data, ssize_t len)
+PlayerService::sudo gsend(void* data, ssize_t len)
 {
     if (C_SUCCESS != this->state_) { return -1; }
 
@@ -100,7 +99,7 @@ ClientService::send(void* data, ssize_t len)
 }
 
 int
-ClientService::handle_output(ACE_HANDLE fd/* = ACE_INVALID_HANDLE*/)
+PlayerService::handle_output(ACE_HANDLE fd/* = ACE_INVALID_HANDLE*/)
 {
     ACE_Message_Block* mb(NULL);
     ACE_Time_Value rt(0, 0);

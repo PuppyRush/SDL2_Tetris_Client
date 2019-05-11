@@ -56,13 +56,13 @@ public:
     inline size_t getHeight() const noexcept
     { return m_height; }
 
-    inline sdleasygui::TColor getColor() const noexcept
+    inline sdleasygui::SEG_Color getColor() const noexcept
     { return m_color; }
 
-    inline sdleasygui::TPoint getPoint() const noexcept
+    inline sdleasygui::SEG_Point getPoint() const noexcept
     { return m_absoluteCoord; }
 
-    inline void setPoint(const sdleasygui::TPoint& point)
+    inline void setPoint(const sdleasygui::SEG_Point& point)
     {
         _resetRelateivePoint(point);
         m_absoluteCoord = point;
@@ -129,10 +129,10 @@ protected:
 
     sdleasygui::t_size m_width;
     sdleasygui::t_size m_height;
-    sdleasygui::TColor m_color;
+    sdleasygui::SEG_Color m_color;
     TFigureClass m_figureClass;
     TFigureType m_figureType;
-    sdleasygui::TPoint m_absoluteCoord;
+    sdleasygui::SEG_Point m_absoluteCoord;
     FigureCoords m_relativeCoord;
 
 private:
@@ -145,7 +145,7 @@ private:
     virtual void _rotateRight() final
     { assert(0); } // not implementation yet
 
-    void _resetRelateivePoint(const sdleasygui::TPoint& exPt);
+    void _resetRelateivePoint(const sdleasygui::SEG_Point& exPt);
 
     virtual const std::shared_ptr<TFigureInterface> _copy() const = 0;
 

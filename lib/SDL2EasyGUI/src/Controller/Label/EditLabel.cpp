@@ -26,7 +26,7 @@ void EditLabel::onDraw()
                    {static_cast<t_size>(point.x + m_textWidth + 7), point.y + static_cast<t_size>(getHeight()) - 5},
                    {static_cast<t_size>(point.x + m_textWidth + 7), point.y + 5}};
 
-        TColor lineColor;
+        SEG_Color lineColor;
         if (m_textCursor) {
             lineColor = ColorCode::black;
         } else {

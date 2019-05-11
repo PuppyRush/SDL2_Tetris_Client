@@ -12,7 +12,7 @@
 #include <boost/serialization/singleton.hpp>
 #include <cassert>
 
-#include "GameInterface/src/Online/Packet.h"
+#include "GameInterface/include/Packet.h"
 #include "GameInterface/include/Player.h"
 #include "Tetris/include/TFigureController.h"
 #include "../../include/TClientController.h"
@@ -20,7 +20,7 @@
 
 SDL_TETRIS_BEGIN
 
-class TPlayer : public game_interface::Player
+class TPlayer final : public game_interface::Player
 {
 public:
 
@@ -58,7 +58,7 @@ public:
 
     void command(const sdleasygui::t_eventType event);
 
-    void sendPacket(game_interface::Packet&);
+    virtual void sendPacket(const game_interface::packet::Packet&) const override final;
 
     void initialize();
 
@@ -68,13 +68,13 @@ public:
 
     const bool connectServer();
 
-    virtual void updateObserver(const game_interface::Packet&) override;
+    virtual void updateObserver(const game_interface::packet::Packet&) override;
 
     void sendBoardInfo(const game_interface::t_id gameRoomUnique);
 
-    void recvBoardInfo(const game_interface::Packet& packet);
+    void recvBoardInfo(const game_interface::packet::Packet& packet);
 
-    void recvInfo(const game_interface::Packet&);
+    void recvInfo(const game_interface::packet::Packet&);
 
     void sendDummySignal();
 

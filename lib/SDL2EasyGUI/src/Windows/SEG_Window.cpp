@@ -56,7 +56,7 @@ void SEG_Window::initialize()
         std::cerr << e.what();
     }
     catch (...) {
-        std::cerr << "fail tetris game init because of unkwon error ";
+        std::cerr << "fail tetris game GameInterface_Init because of unkwon error ";
     }
 }
 

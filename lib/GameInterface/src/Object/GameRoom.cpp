@@ -7,6 +7,7 @@
 #include "GameInterface/include/GameRoom.h"
 
 using namespace game_interface;
+using namespace game_interface::packet;
 using namespace std;
 
 void GameRoom::updateObserver(const Packet&)

@@ -5,7 +5,11 @@
 #ifndef SDL2_TETRIS_SERVER_PACKETPROCESSOR_H
 #define SDL2_TETRIS_SERVER_PACKETPROCESSOR_H
 
-#include "PacketQueue.h"
+#if _MSC_VER >= 1200
+#pragma once
+#endif
+
+#include "GameInterface/include/PacketQueue.h"
 
 namespace game_interface {
 

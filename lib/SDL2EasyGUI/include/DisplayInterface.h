@@ -47,7 +47,7 @@ public:
 
     void addControll(const controller_ptr newCtl);
 
-    bool menuHitTest(const TPoint& point);
+    bool menuHitTest(const SEG_Point& point);
 
     std::underlying_type_t<resource> alert();
 

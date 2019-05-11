@@ -47,7 +47,7 @@ private:
     virtual const std::string_view& getUniqueName() const override
     { return game_interface::NAME_GAMEROOM; }
 
-    virtual void updateObserver(const game_interface::Packet&) override;
+    virtual void updateObserver(const game_interface::packet::Packet&) override;
 
 };
 

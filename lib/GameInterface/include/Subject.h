@@ -5,34 +5,34 @@
 #ifndef SDL2_TETRIS_SERVER_SUBJECTINTERFACE_H
 #define SDL2_TETRIS_SERVER_SUBJECTINTERFACE_H
 
-//
-// Created by chaed on 19. 2. 16.
-//
+#if _MSC_VER >= 1200
+#pragma once
+#endif
 
 #include <condition_variable>
 #include <mutex>
 #include <memory>
 
 #include "GameInterface/include/Object.h"
-#include "Observer.h"
+#include "GameInterface/include/Observer.h"
 
 namespace game_interface {
 
-class Observer;
+//class Observer;
 
 template<class _Object, class _Container>
 class Subject
 {
 public:
 
-    using object_type = std::shared_ptr<_Object>;
+    using element_type = std::shared_ptr<_Object>;
     using container_type = _Container;
     using unique_type = typename _Object::unique_type;
 
     virtual ~Subject()
     {}
 
-    void attach(object_type obs)
+    void attach(element_type obs)
     {
         assert(!exist(obs->getUnique()));
 
@@ -60,23 +60,23 @@ public:
 
     virtual bool exist(const unique_type unique) const = 0;
 
-    virtual object_type at(const unique_type unique) = 0;
+    virtual element_type at(const unique_type unique) = 0;
 
 protected:
 
     Subject()
     {}
 
-    inline const bool compare(const object_type& lhs, const object_type& rhs)
+    inline const bool compare(const element_type& lhs, const element_type& rhs)
     {
         return lhs->getUnique() == rhs->getUnique();
     }
 
-    virtual void postAttach(object_type) = 0;
+    virtual void postAttach(const element_type&) = 0;
 
-    virtual void postDetach(unique_type) = 0;
+    virtual void postDetach(const unique_type unique) = 0;
 
-    virtual void insert(object_type obs) = 0;
+    virtual void insert(const element_type& obs) = 0;
 
     virtual void remove(const unique_type unique) = 0;
 

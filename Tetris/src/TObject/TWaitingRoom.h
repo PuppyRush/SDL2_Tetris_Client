@@ -25,18 +25,20 @@ protected:
 
     virtual void postExit(const WaitingRoom::player_ptr&) override;
 
-    virtual void postAddedGameRoom(room_ptr room) override;
+    virtual void postAddedGameRoom(const room_ptr& room) override;
 
     virtual void postRemovedGameRoom(const unique_type unique) override;
 
 private:
     virtual Json::Value toJson() const override
-    {}
+    {
+        return Json::Value{};
+    }
 
     virtual const std::string_view& getUniqueName() const override
-    { game_interface::NAME_WAITINGROOM; }
+    { return game_interface::NAME_WAITINGROOM; }
 
-    virtual void updateObserver(const game_interface::Packet&) override;
+    virtual void updateObserver(const game_interface::packet::Packet&) override;
 
 };
 

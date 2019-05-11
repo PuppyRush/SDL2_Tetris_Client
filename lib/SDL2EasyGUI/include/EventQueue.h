@@ -67,7 +67,7 @@ public:
     {
         std::lock_guard<std::mutex> lock(m_mutex);
         m_eventQ.push(event);
-        printf("push seq : %llu\n", m_seq);
+       // printf("push seq : %lu\n", m_seq);
         m_cond.notify_one();
     }
 
@@ -82,7 +82,7 @@ public:
 
         const auto msg = m_eventQ.front();
         m_eventQ.pop();
-        printf("pop seq : %llu\n", m_seq++);
+       // printf("pop seq : %lu\n", m_seq++);
         return msg;
     }
 

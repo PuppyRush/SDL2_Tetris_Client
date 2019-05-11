@@ -16,7 +16,7 @@ void ListBox::onDraw()
 {
     auto renderer = getWindow()->getSDLRenderer();
 
-    TPoint accuPoint = getPoint();
+    SEG_Point accuPoint = getPoint();
     accuPoint.x += 10;
     accuPoint.y += 10;
 

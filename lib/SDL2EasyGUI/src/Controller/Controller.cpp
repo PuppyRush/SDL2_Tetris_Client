@@ -106,7 +106,7 @@ void Controller::setSelected(bool selected)
     }
 }
 
-const bool Controller::isHit(const TPoint& point)
+const bool Controller::isHit(const SEG_Point& point)
 {
     const auto& menu_point = m_data->point;
     if (this->isEnabled() && (menu_point.x <= point.x && point.x <= menu_point.x + m_data->width)
@@ -120,7 +120,7 @@ const bool Controller::isHit(const TPoint& point)
     }
 }
 
-void Controller::drawBackground(const SDL_Rect rect, const TColor color)
+void Controller::drawBackground(const SDL_Rect rect, const SEG_Color color)
 {
     auto renderer = getWindow()->getSDLRenderer();
 
@@ -129,7 +129,7 @@ void Controller::drawBackground(const SDL_Rect rect, const TColor color)
     SDL_RenderDrawRect(renderer, &rect);
 }
 
-void Controller::clickController(TPoint point)
+void Controller::clickController(SEG_Point point)
 {
     EventPusher event{this->getWindow()->getWindowID(), this->getResourceId(), SEG_CLICKED_CONTROLLER};
     event.setUserData(new SEG_Click{point, this->getResourceId()});

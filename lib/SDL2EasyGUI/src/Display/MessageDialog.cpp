@@ -25,7 +25,7 @@ void MessageDialog::registerEvent()
 
 void MessageDialog::onInitialize()
 {
-    TColor borderColor{ColorCode::yellow};
+    SEG_Color borderColor{ColorCode::yellow};
     switch (m_kind) {
         case MessageDialogKind::alert:
             borderColor = ColorCode::green;

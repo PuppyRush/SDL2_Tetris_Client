@@ -5,6 +5,10 @@
 #ifndef TETRIS_FIGURE_CLASS_GAMEROOM_H
 #define TETRIS_FIGURE_CLASS_GAMEROOM_H
 
+#if _MSC_VER >= 1200
+#pragma once
+#endif
+
 #include "Room.h"
 
 namespace game_interface {
@@ -19,7 +23,7 @@ public:
 
     virtual void fromJson(const Json::Value& json);
 
-    virtual void updateObserver(const Packet&) = 0;
+    virtual void updateObserver(const packet::Packet&) = 0;
 
 protected:
 

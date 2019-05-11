@@ -24,7 +24,7 @@ void ComboBox::onDraw()
 {
     auto renderer = getWindow()->getSDLRenderer();
 
-    TPoint accuPoint = getPoint();
+    SEG_Point accuPoint = getPoint();
 
     if (!m_items.empty()) {
         const auto& item = *m_items.begin();

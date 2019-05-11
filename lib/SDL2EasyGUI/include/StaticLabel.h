@@ -39,12 +39,12 @@ class StaticLabelBuilder : public ControllerBuilder
 {
 public:
 
-    StaticLabelBuilder(const GraphicInterface::window_type window, const TPoint& point, const std::string& str)
+    StaticLabelBuilder(const GraphicInterface::window_type window, const SEG_Point& point, const std::string& str)
             : ControllerBuilder(window, point, str)
     {
     }
 
-    StaticLabelBuilder(const GraphicInterface::window_type window, TPoint&& point, std::string&& str)
+    StaticLabelBuilder(const GraphicInterface::window_type window, SEG_Point&& point, std::string&& str)
             : ControllerBuilder(window, point, str)
     {
     }

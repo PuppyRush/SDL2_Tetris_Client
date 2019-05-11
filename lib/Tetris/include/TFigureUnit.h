@@ -5,10 +5,11 @@
 #pragma once
 #endif
 
-#include "SDL2EasyGUI/include/SEG_Struct.h"
-#include "SDL2EasyGUI/include/SEG_Property.h"
 #include "GameInterface/include/TypeTraits.h"
 #include "GameInterface/include/Type.h"
+#include "GameInterface/include/TStruct.h"
+#include "SDL2EasyGUI/include/SEG_Type.h"
+#include "SDL2EasyGUI/include/SEG_Struct.h"
 #include "TProperty.h"
 
 namespace tetris_module {
@@ -19,14 +20,14 @@ public:
 
     TFigureUnit();
 
-    TFigureUnit(const sdleasygui::TPoint point, const game_interface::t_age age, const sdleasygui::ColorCode color,
+    TFigureUnit(const sdleasygui::SEG_Point point, const game_interface::t_age age, const sdleasygui::ColorCode color,
                 const tetris_module::UnitType type);
 
     ~TFigureUnit();
 
     bool operator!=(const TFigureUnit& unit);
 
-    inline const sdleasygui::TPoint& getPoint() const noexcept
+    inline sdleasygui::SEG_Point getPoint() const noexcept
     {
         return m_point;
     }
@@ -36,22 +37,22 @@ public:
         return m_age;
     }
 
-    inline const sdleasygui::TColor& getColor() const noexcept
+    inline sdleasygui::SEG_Color getColor() const noexcept
     {
         return m_color;
     }
 
-    inline const UnitType getType() const noexcept
+    inline UnitType getType() const noexcept
     {
         return m_type;
     }
 
-    inline void set(const sdleasygui::TPoint& m_point)
+    inline void set(const sdleasygui::SEG_Point& m_point)
     {
         this->m_point = m_point;
     }
 
-    inline void set(sdleasygui::TPoint&& m_point)
+    inline void set(sdleasygui::SEG_Point&& m_point)
     {
         this->m_point = m_point;
     }
@@ -61,12 +62,12 @@ public:
         this->m_age = age;
     }
 
-    inline void set(const sdleasygui::TColor& color) noexcept
+    inline void set(const sdleasygui::SEG_Color& color) noexcept
     {
         this->m_color = color;
     }
 
-    inline void set(sdleasygui::TColor&& color) noexcept
+    inline void set(sdleasygui::SEG_Color&& color) noexcept
     {
         this->m_color = color;
     }
@@ -78,14 +79,14 @@ public:
 
     static TFigureUnit& getDefaultUnit()
     {
-        static TFigureUnit unit(sdleasygui::TPoint(0, 0), 0, sdleasygui::ColorCode::none, UnitType::Empty);
+        static TFigureUnit unit(sdleasygui::SEG_Point(0, 0), 0, sdleasygui::ColorCode::none, UnitType::Empty);
         return unit;
     }
 
 private:
-    sdleasygui::TPoint m_point;
+    sdleasygui::SEG_Point m_point;
+    sdleasygui::SEG_Color m_color;
     game_interface::t_age m_age;
-    sdleasygui::TColor m_color;
     UnitType m_type;
 };
 

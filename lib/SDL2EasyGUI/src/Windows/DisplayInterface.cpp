@@ -8,6 +8,7 @@
 #include "magic_enum/include/magic_enum.hpp"
 #include "SDL2EasyGUI/include/DisplayController.h"
 #include "SDL2EasyGUI/include/SEG_Resource.h"
+#include "SDL2EasyGUI/include/SEG_Event.h"
 
 #include "include/DisplayInterface.h"
 
@@ -42,6 +43,7 @@ t_res DisplayInterface::initialize()
     onInitialize();
     show();
 
+    return m_resultResrouce;
 }
 
 std::underlying_type_t<resource> DisplayInterface::alert()
@@ -90,23 +92,23 @@ void DisplayInterface::_run()
             m_currentCtl->onEvent(event);
         }
 
-        if(event->type >= sdleasygui::toUType(SEGEVENT_START) ) {
+        if (event->type >= sdleasygui::toUType(SEGEVENT_START)) {
             /*auto e = SEG_Event{event->type};
             printf("%s \n ", magic_enum::enum_name(e).value().data());*/
-            printf("recv seg event : %d\n", event->type);
-        }
-        else if (event->type == 0x8000) {
-            printf("recv user event : %d / %d \n", event->type, event->user.code);
-        }
-        else if (event->type == sdleasygui::toUType(SDL_TIMER_EVENT)) {
-            printf("recv timer event : %d / %d \n", event->type, event->user.code);
+            //printf("recv seg event : %d\n", event->type);
+        } else if (event->type == 0x8000) {
+           // printf("recv user event : %d / %d \n", event->type, event->user.code);
+        } else if (event->type == sdleasygui::toUType(SDL_TIMER_EVENT)) {
+            //printf("recv timer event : %d / %d \n", event->type, event->user.code);
         } else {
-            printf("recv sdl event : %d\n", event->type);
+            //printf("recv sdl event : %d\n", event->type);
         }
 
         //below event is deleted sdl
-        if (event->type > 0x9999 ||  event->type < 0 || event->type == SDL_TIMER_EVENT) {
+        if (event->type > 0x9999 || event->type < 0 /*|| event->type == SDL_TIMER_EVENT*/) {
             continue;
+        } else if (event->type == SDL_USEREVENT && (event->user.data1 || event->user.data2)) {
+            delete static_cast<sdleasygui::t_eventType*>(event->user.data1);
         } else {
             delete event;
         }
@@ -170,7 +172,7 @@ void DisplayInterface::onKeyboardEvent(const SDL_KeyboardEvent* key)
 
 void DisplayInterface::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 {
-    menuHitTest(TPoint{button->x, button->y});
+    menuHitTest(SEG_Point{button->x, button->y});
     refresh();
 }
 
@@ -300,7 +302,7 @@ void DisplayInterface::addControll(const controller_ptr newCtl)
     m_menus.emplace_back(newCtl);
 }
 
-bool DisplayInterface::menuHitTest(const TPoint& point)
+bool DisplayInterface::menuHitTest(const SEG_Point& point)
 {
     for (const auto& menu : m_menus) {
         if (menu->isHit(point)) {

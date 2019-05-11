@@ -76,7 +76,7 @@ void ButtonBasic::_drawCarot()
         if (GroupControllManager::getInstance().isSelected(getGroup(), getResourceId())) {
             SDL_Rect rect{getPoint().x - 5, getPoint().y - 5, getWidth() + 10, getHeight() + 10};
 
-            const auto& linecolor = TColor::getColor(ColorCode::red);
+            const auto& linecolor = SEG_Color::getColor(ColorCode::red);
             SDL_SetRenderDrawColor(renderer, linecolor.r, linecolor.g, linecolor.b, 255);
             SDL_RenderDrawRect(renderer, &rect);
         }

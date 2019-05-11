@@ -14,7 +14,7 @@ Uint32 timerCallback(Uint32 interval, void* param)
 
     SDL_UserEvent userevent;
     userevent.type = SDL_TIMER_EVENT;
-    userevent.code = myevent->type;
+    userevent.code = myevent->code;
     userevent.data1 = myevent->data1;
     userevent.data2 = myevent->data2;
 
