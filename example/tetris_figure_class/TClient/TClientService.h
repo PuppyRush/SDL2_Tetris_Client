@@ -2,6 +2,9 @@
 // Created by kim on 19. 1. 10.
 //
 
+#ifndef WIN32
+
+
 #ifndef SDLTETRIS_TCLIENT_TCLIENTSERVICE_H
 #define SDLTETRIS_TCLIENT_TCLIENTSERVICE_H
 
@@ -49,3 +52,5 @@ private:
 SDL_TETRIS_END
 
 #endif //SIMPLE_ECHOCLIENT_ECHOSERVICE_H
+
+#endif

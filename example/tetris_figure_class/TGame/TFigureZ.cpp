@@ -49,7 +49,7 @@ void TFigureZ::_rotateRight ()
 
 bool TFigureZ::_validation()
 {
-
+	return false;
 }
 
 const TFigureType TFigureZ::getTypeBegin () const

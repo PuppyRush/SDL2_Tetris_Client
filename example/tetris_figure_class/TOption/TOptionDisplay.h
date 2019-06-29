@@ -18,7 +18,7 @@ public:
         End
     };
 
-    virtual bool clickedBack(const TDisplay disply) override {}
+    virtual bool clickedBack(const TDisplay disply) override { return false; }
 
     static std::shared_ptr<TDisplayInterface> getInstance();
 

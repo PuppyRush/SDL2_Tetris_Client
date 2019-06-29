@@ -30,16 +30,16 @@ void TDisplayInterface::_initializing() {
     {
         auto renderer = getRenderer().get();
 
-        t_size w, h; // texture width & height
-        auto img = IMG_LoadTexture(renderer, m_backgroundImgPath.c_str());
-        SDL_QueryTexture(img, NULL, NULL, &w, &h);
+        //t_size w, h; // texture width & height
+        //auto img = IMG_LoadTexture(renderer, m_backgroundImgPath.c_str());
+        //SDL_QueryTexture(img, NULL, NULL, &w, &h);
 
-        SDL_Rect texr;
-        texr.x = 0;
-        texr.y = 0;
-        texr.w = w;
-        texr.h = h;
-        SDL_RenderCopy(renderer, img, NULL, &texr);
+        //SDL_Rect texr;
+        //texr.x = 0;
+        //texr.y = 0;
+        //texr.w = w;
+        //texr.h = h;
+        //SDL_RenderCopy(renderer, img, NULL, &texr);
     }
 }
 

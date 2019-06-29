@@ -46,17 +46,17 @@ void TGameLocalDisplay::_preInitialize()
 
 bool TGameLocalDisplay::clickedBack(const TDisplay disply)
 {
-
+	return false;
 }
 
 bool TGameLocalDisplay::clickedStart()
 {
-
+	return false;
 }
 
 bool TGameLocalDisplay::clickedSuspend()
 {
-
+	return false;
 }
 
 void TGameLocalDisplay::_event(const SDL_Event* event) {

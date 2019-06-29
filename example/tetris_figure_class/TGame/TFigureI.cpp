@@ -50,6 +50,7 @@ void TFigureI::_rotateRight ()
 bool TFigureI::_validation()
 {
 
+	return false;
 }
 
 const TFigureType TFigureI::getTypeBegin () const

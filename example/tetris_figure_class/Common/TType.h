@@ -3,7 +3,7 @@
 #include <cstddef>
 #include <atomic>
 
-#include <SDL2/SDL_stdinc.h>
+#include <SDL_stdinc.h>
 
 #include "TDefine.h"
 

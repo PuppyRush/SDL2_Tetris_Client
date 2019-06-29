@@ -39,31 +39,27 @@
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 # See the License for more information.
 #=============================================================================
-# (To distribute this file outside of CMake, substitute the full
+# (To distribute this file outside of CMake, s++6++ubstitute the full
 #  License text for the above reference.)
 
-find_path(SDL2_IMAGE_INCLUDE_DIR SDL_image.h
-        HINTS
-        ENV SDL2IMAGEDIR
-        ENV SDL2DIR
-        PATH_SUFFIXES SDL2
-        # path suffixes to search inside ENV{SDLDIR}
-        include/SDL2 include
-        PATHS ${SDL2_IMAGE_PATH}
-        )
+
+find_path(SDL2_IMAGE_INCLUDE_DIR ${SDL2_INCLUDE_DIR})
 
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
     set(VC_LIB_PATH_SUFFIX lib/x64)
+	set(SDL2_IMAGE_LIBRARIES ${PROJECT_SOURCE_DIR}/SDL2/${VC_LIB_PATH_SUFFIX}/SDL2_image.lib)
 else()
-    set(VC_LIB_PATH_SUFFIX lib/x86)
+    set(VC_LIB_PATH_SUFFIX lib/x86 )
+	set(SDL2_IMAGE_LIBRARIES ${PROJECT_SOURCE_DIR}/SDL2/${VC_LIB_PATH_SUFFIX}/SDL2_image.lib)
 endif()
 
-find_library(SDL2_IMAGE_LIBRARY
+FIND_LIBRARY(SDL2_IMAGE_LIBRARY
         NAMES SDL2_image
         HINTS
         ENV SDL2IMAGEDIR
         ENV SDL2DIR
-        PATH_SUFFIXES lib ${VC_LIB_PATH_SUFFIX}
+		${SDL2_IMAGE_LIBRARIES}
+        PATH_SUFFIXES ${VC_LIB_PATH_SUFFIX}
         PATHS ${SDL2_IMAGE_PATH}
         )
 
@@ -83,7 +79,6 @@ if(SDL2_IMAGE_INCLUDE_DIR AND EXISTS "${SDL2_IMAGE_INCLUDE_DIR}/SDL_image.h")
     unset(SDL2_IMAGE_VERSION_PATCH)
 endif()
 
-set(SDL2_IMAGE_LIBRARIES ${SDL2_IMAGE_LIBRARY})
 set(SDL2_IMAGE_INCLUDE_DIRS ${SDL2_IMAGE_INCLUDE_DIR})
 
 include(FindPackageHandleStandardArgs)
@@ -98,3 +93,6 @@ set(SDLIMAGE_INCLUDE_DIR ${SDL2_IMAGE_INCLUDE_DIRS})
 set(SDLIMAGE_FOUND ${SDL2_IMAGE_FOUND})
 
 mark_as_advanced(SDL2_IMAGE_LIBRARY SDL2_IMAGE_INCLUDE_DIR)
+
+MESSAGE ( VC_LIB_PATH_SUFFIX: ${VC_LIB_PATH_SUFFIX} )
+MESSAGE(SDLIMAGE_LIBRARY ${SDL2_IMAGE_LIBRARIES})

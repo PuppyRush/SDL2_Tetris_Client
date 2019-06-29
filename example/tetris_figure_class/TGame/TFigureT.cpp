@@ -56,7 +56,7 @@ void TFigureT::_rotateRight() {
 }
 
 bool TFigureT::_validation() {
-
+	return false;
 }
 
 const TFigureType TFigureT::getTypeBegin() const {

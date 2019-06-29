@@ -60,14 +60,19 @@ void TMainLocalDisplay::_preInitialize() {
 
 
 bool TMainLocalDisplay::clickedEnterServer()
-{}
+{
+	return false;
+}
 
 bool TMainLocalDisplay::clickedStartLocalGame()
-{}
+{
+	return false;
+}
 
 bool TMainLocalDisplay::clickedBack(const TDisplay display)
 {
     setDisplay(display);
+	return true;
 }
 
 void TMainLocalDisplay::_timer()

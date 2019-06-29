@@ -1,13 +1,13 @@
 #pragma once
 
 #include <vector>
-#include <boost/serialization/singleton.hpp>
+//#include <boost/serialization/singleton.hpp>
 
 #include "TMainDisplay.h"
 
 SDL_TETRIS_BEGIN
 
-class TMainLocalDisplay final : public TMainDisplay, public boost::serialization::singleton<TMainLocalDisplay>
+class TMainLocalDisplay final : public TMainDisplay
 {
 public:
   //  friend class boost::serialization::singleton<TMainLocalDisplay>;

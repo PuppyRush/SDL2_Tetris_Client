@@ -2,6 +2,8 @@
 // Created by kim on 19. 1. 10.
 //
 
+#ifndef WIN32
+
 #ifndef SDLTETRIS_TCLIENT_TCLIENTCONNECTOR_H
 #define SDLTETRIS_TCLIENT_TCLIENTCONNECTOR_H
 
@@ -40,3 +42,5 @@ private:
 SDL_TETRIS_END
 
 #endif //SIMPLE_ECHOCLIENT_GCONNECTOR_H
+
+#endif

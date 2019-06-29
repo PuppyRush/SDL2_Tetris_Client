@@ -7,12 +7,6 @@
 #include <atomic>
 #include <unordered_map>
 
-#include <SDL.h>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_video.h>
-
 #include "TWindow.h"
 #include "../Common/THeader.h"
 #include "TControll/TControllBuilder.h"

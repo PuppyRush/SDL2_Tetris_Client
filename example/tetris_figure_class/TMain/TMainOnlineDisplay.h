@@ -20,9 +20,9 @@ public:
         End
     };
 
-    virtual bool clickedEnterServer() final {}
-    virtual bool clickedStartLocalGame() final {}
-    virtual bool clickedBack(const TDisplay disply) final {}
+    virtual bool clickedEnterServer() final { return false; }
+    virtual bool clickedStartLocalGame() final { return false; }
+    virtual bool clickedBack(const TDisplay disply) final { return false; }
     static std::shared_ptr<TMainDisplay> getInstance();
 
 private:

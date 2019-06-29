@@ -15,10 +15,12 @@ void init()
     SDL_RegisterEvents(SDL_DRAWDISPLAY);
 }
 
-int main()
+int main(int argc, char** args)
 {
     init();
 
     TDisplayController::getInstance()->setDisplay(TDisplay::Main);
     TDisplayController::getInstance()->operateGame();
+
+	return 0;
 }

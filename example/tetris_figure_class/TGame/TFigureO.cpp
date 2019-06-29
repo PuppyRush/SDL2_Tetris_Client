@@ -43,7 +43,7 @@ void TFigureO::_rotateRight ()
 
 bool TFigureO::_validation()
 {
-
+	return false;
 }
 
 const TFigureType TFigureO::getTypeBegin () const

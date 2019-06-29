@@ -42,20 +42,15 @@
 # (To distribute this file outside of CMake, substitute the full
 #  License text for the above reference.)
 
-find_path(SDL2_TTF_INCLUDE_DIR SDL_ttf.h
-        HINTS
-        ENV SDL2TTFDIR
-        ENV SDL2DIR
-        PATH_SUFFIXES SDL2
-        # path suffixes to search inside ENV{SDLDIR}
-        include/SDL2 include
-        PATHS ${SDL2_TTF_PATH}
-        )
+
+find_path(SDL2_TTF_INCLUDE_DIR ${SDL2_INCLUDE_DIR})
 
 if (CMAKE_SIZEOF_VOID_P EQUAL 8)
     set(VC_LIB_PATH_SUFFIX lib/x64)
+	set(SDL2_TTF_LIBRARIES ${PROJECT_SOURCE_DIR}/SDL2/${VC_LIB_PATH_SUFFIX}/SDL2_ttf.lib)
 else ()
     set(VC_LIB_PATH_SUFFIX lib/x86)
+	set(SDL2_TTF_LIBRARIES ${PROJECT_SOURCE_DIR}/SDL2/${VC_LIB_PATH_SUFFIX}/SDL2_ttf.lib)
 endif ()
 
 find_library(SDL2_TTF_LIBRARY
@@ -63,7 +58,7 @@ find_library(SDL2_TTF_LIBRARY
         HINTS
         ENV SDL2TTFDIR
         ENV SDL2DIR
-        PATH_SUFFIXES lib ${VC_LIB_PATH_SUFFIX}
+        PATH_SUFFIXES ${VC_LIB_PATH_SUFFIX}
         PATHS ${SDL2_TTF_PATH}
         )
 
@@ -96,3 +91,5 @@ FIND_PACKAGE_HANDLE_STANDARD_ARGS(SDL2_ttf
 set(SDLTTF_LIBRARY ${SDL2_TTF_LIBRARIES})
 set(SDLTTF_INCLUDE_DIR ${SDL2_TTF_INCLUDE_DIRS})
 set(SDLTTF_FOUND ${SDL2_TTF_FOUND})
+
+MESSAGE(SDLTTF_LIBRARY ${SDL2_TTF_LIBRARIES})
