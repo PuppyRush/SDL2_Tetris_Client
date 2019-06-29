@@ -27,6 +27,8 @@ public:
 
 protected:
 
+    explicit GameRoom() = default;
+
     virtual void postEnter(const player_ptr&) = 0;
 
     virtual void postExit(const player_ptr&) = 0;

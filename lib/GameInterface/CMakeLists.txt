@@ -91,6 +91,7 @@ ADD_LIBRARY(GameInterface STATIC
         src/Object/GameRoom.cpp
         src/Object/WaitingRoom.cpp
         src/SubScription/ManagerController.cpp
+        include/Subject.h
         include/Player.h
         include/Object.h
         include/Room.h
@@ -110,8 +111,7 @@ ADD_LIBRARY(GameInterface STATIC
         include/MessageType.h
         include/Packet.h
         include/PacketQueue.h
-        include/Subject.h
-        include/Initiator.h include/Configcpp.h include/Time.h)
+        )
 
 
 target_link_libraries(

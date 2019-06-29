@@ -290,6 +290,8 @@ private:
 
     void onClickCreateGameRoom(const void*);
 
+    void onClickExit(const void*);
+
     void sendChat(const void*);
 
     void recvChat(const game_interface::packet::Packet& packet);
@@ -309,7 +311,7 @@ private:
     const sdleasygui::t_size m_chatBoxHeight = sdleasygui::WINDOW_HEIGHT / 7;
     const sdleasygui::SEG_Point m_chatBoxBeginPoint = sdleasygui::SEG_Point{m_controllBeginPoint.x,
                                                                       sdleasygui::WINDOW_HEIGHT - m_chatBoxHeight -
-                                                                      300};
+                                                                      200};
 
     const sdleasygui::t_size m_gameroomBoxWidth = m_chatBoxWidth;
     const sdleasygui::t_size m_gameroomBoxHeight = m_userBoxHeight - 300;

@@ -15,7 +15,7 @@
 #include "GameInterface/include/Packet.h"
 #include "GameInterface/include/Player.h"
 #include "Tetris/include/TFigureController.h"
-#include "../../include/TClientController.h"
+#include "ClientService.h"
 #include "../TObject/TScore.h"
 
 SDL_TETRIS_BEGIN
@@ -40,9 +40,9 @@ public:
     inline const bool isSurvive() const noexcept
     { return m_isSurvive; }
 
-    inline TClientController& getClientController() noexcept
+    inline std::shared_ptr<ClientService> getClientController() noexcept
     {
-        return m_clientCtl;
+        return m_service;
     }
 
     inline tetris_module::TFigureController& getController() noexcept
@@ -66,7 +66,9 @@ public:
 
     void endGame();
 
-    const bool connectServer();
+    bool connectServer();
+
+    void disconnectServer();
 
     virtual void updateObserver(const game_interface::packet::Packet&) override;
 
@@ -100,7 +102,7 @@ private:
     TScore m_score;
 
     tetris_module::TFigureController m_gameCtl = tetris_module::TFigureController{};
-    TClientController& m_clientCtl = TClientController::getInstance();
+    std::shared_ptr<ClientService> m_service = nullptr;
 };
 
 SDL_TETRIS_END

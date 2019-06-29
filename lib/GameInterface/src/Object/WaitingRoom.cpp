@@ -12,6 +12,14 @@ using namespace std;
 void WaitingRoom::updateObserver(const Packet&)
 {}
 
+void WaitingRoom::exit(const unique_type unique)
+{
+    getGameroom(unique);
+
+
+    Room::exit(unique);
+}
+
 void WaitingRoom::addGameRoom(const room_ptr& room)
 {
     std::unique_lock<std::mutex>(m_roomMutex);
@@ -55,6 +63,18 @@ const bool WaitingRoom::existGameRoom(const unique_type unique) const noexcept
         return true;
     } else {
     }
+}
+
+const WaitingRoom::room_ptr&
+WaitingRoom::getGameroom(const unique_type gameroomUnique) const
+{
+    for(const auto& gameroom : getGameRoomContiner())
+    {
+        if(gameroom->compareUnique(gameroomUnique))
+            return gameroom;
+    }
+
+    throw std::invalid_argument("there is no gameroom in waitingroom");
 }
 
 Json::Value WaitingRoom::toJson() const

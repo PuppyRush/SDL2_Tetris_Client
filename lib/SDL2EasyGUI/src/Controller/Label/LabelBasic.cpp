@@ -14,22 +14,14 @@ LabelBasic::LabelBasic(ControllerBuilder& bld)
 
 void LabelBasic::onDraw()
 {
-    auto renderer = getWindow()->getSDLRenderer();
-    TextDrawer textDrawer{renderer, getFont(), m_labelString};
-    auto textSurface = textDrawer.getTextSurface();
+    auto point = getPoint();
+    TextDrawer textDrawer{getWindow()->getSDLRenderer(), getFont(), getPoint(), m_labelString};
 
-    if (textSurface) {
-        auto texture = textDrawer.getTexture();
+    point.x += 5;
+    point.y = point.y + (getHeight() - textDrawer.getTextHeight()) / 2;
 
-        m_textWidth = textDrawer.getTextWidth();
-        m_textHeight = textDrawer.getTextHeight();
-
-        const auto point = getPoint();
-        SDL_Rect renderQuad = {static_cast<int>(point.x + 5),
-                               static_cast<int>(point.y + (getHeight() - m_textHeight) / 2),
-                               static_cast<int>(m_textWidth), static_cast<int>(m_textHeight)};
-        SDL_RenderCopy(renderer, texture, nullptr, &renderQuad);
-    }
+    textDrawer.setPoint(point);
+    textDrawer.drawText();
 
     Border::onDraw();
 }

@@ -89,7 +89,7 @@ int main()
             }
         } else if (maindlg->compareDisplay(resource::WAITINGROOM_DISPLAY)) {
 
-            if (!TPlayer::getInstance()->getClientController().isConnection()) {
+            if (!TPlayer::getInstance()->getClientController()->isConnection()) {
                 maindlg = mainDisplay;
                 break;
             }
@@ -97,6 +97,9 @@ int main()
             switch (maindlg->getResult()) {
                 case toUType(resource::WAITINGROOM_CREATE):
 
+                    break;
+                case toUType(resource::WAITINGROOM_DISCONNECT):
+                    maindlg = mainDisplay;
                     break;
 
             }

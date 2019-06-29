@@ -13,6 +13,7 @@ using namespace std;
 void GameRoom::updateObserver(const Packet&)
 {}
 
+
 Json::Value GameRoom::toJson() const
 {
 

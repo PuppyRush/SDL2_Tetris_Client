@@ -90,36 +90,65 @@ protected:
 
 class TextDrawer
 {
-    SDL_Surface* textSurface;
-    SDL_Texture* texture;
+
 public:
 
-    TextDrawer(SDL_Renderer* renderer, const SEG_TFont& fontinfo, const std::string str)
-            : textSurface(nullptr)
+    TextDrawer(SDL_Renderer* renderer, const SEG_TFont& fontinfo, const SEG_Point& point, const std::string& str)
+            : m_textSurface(nullptr), m_point(point), m_renderer(renderer)
     {
         TTF_Font* font = TTF_OpenFont(fontinfo.font_name.c_str(), fontinfo.size);
         SDL_Color textColor = {fontinfo.color.r, fontinfo.color.g, fontinfo.color.b, 0};
 
-        textSurface = TTF_RenderText_Solid(font, str.c_str(), textColor);
-        texture = SDL_CreateTextureFromSurface(renderer, textSurface);
+        m_textSurface = TTF_RenderText_Solid(font, str.c_str(), textColor);
+        m_texture = SDL_CreateTextureFromSurface(renderer, m_textSurface);
+
+        if (m_textSurface != nullptr) {
+            m_height = static_cast<double>(m_textSurface->h);
+            m_width = static_cast<double>(m_textSurface->w);
+        }
     }
 
     ~TextDrawer()
     {
-        SDL_FreeSurface(textSurface);
+        SDL_FreeSurface(m_textSurface);
     }
 
-    inline SDL_Texture* getTexture()
-    { return texture; }
+    void drawText()
+    {
+        if (m_texture != nullptr) {
+            SDL_Rect renderQuad =
+                    {static_cast<int>(m_point.x), static_cast<int>(m_point.y), static_cast<int>(m_width),
+                     static_cast<int>(m_height)};
+            SDL_RenderCopy(m_renderer, m_texture, nullptr, &renderQuad);
+        }
 
-    inline SDL_Surface* getTextSurface()
-    { return textSurface; }
+    }
 
-    inline const double getTextWidth()
-    { return static_cast<double>(textSurface->w); }
+    inline const SDL_Texture* getTexture()
+    { return m_texture; }
 
-    inline const double getTextHeight()
-    { return static_cast<double>(textSurface->h); }
+    inline const SDL_Surface* getTextSurface()
+    { return m_textSurface; }
+
+    inline double getTextWidth()
+    { return m_textSurface ?
+        static_cast<double>(m_textSurface->w) : 0;}
+
+    inline double getTextHeight()
+    { return m_textSurface ?
+        static_cast<double>(m_textSurface->h) : 0; }
+
+    inline void setPoint(const SEG_Point& point)
+    { m_point = point; }
+
+private:
+
+    SDL_Surface* m_textSurface;
+    SDL_Texture* m_texture;
+    SDL_Renderer* m_renderer;
+    SEG_Point m_point;
+    double m_height;
+    double m_width;
 
 };
 

@@ -263,6 +263,8 @@ private:
 
     void _onDrawMenus();
 
+    inline void _setResult(const t_res res){ m_resultResrouce = res;}
+
     const t_id m_displayId;
 
     std::vector<controller_ptr> m_menus;

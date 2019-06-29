@@ -5,6 +5,8 @@
 #ifndef SDL2_TETIRS_CLIENT_INITIATOR_H
 #define SDL2_TETIRS_CLIENT_INITIATOR_H
 
+#include <ace/Init_ACE.h>
+
 #include "Constant.h"
 #include "PacketQueue.h"
 
@@ -12,6 +14,8 @@ namespace game_interface {
 
 static void GameInterface_Init(bool isServer)
 {
+    ACE::init();
+
     g_isServer = isServer;
 
     if (isServer) {
@@ -21,6 +25,9 @@ static void GameInterface_Init(bool isServer)
     }
 
     PacketQueue::getInstance().run();
+
+
+
 }
 
 }

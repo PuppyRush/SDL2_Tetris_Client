@@ -183,6 +183,8 @@ public:
         return getWindow()->getSDLRenderer();
     }
 
+    const bool isHit(const t_coord x, const t_coord y, const t_coord z = 0);
+
     const bool isHit(const SEG_Point& point);
 
     void setSelected(bool selected);

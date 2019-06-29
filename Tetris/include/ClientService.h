@@ -22,6 +22,7 @@
 #include  <ace/OS.h>
 
 #include "THeader.h"
+#include "GameInterface/include/PlayerService.h"
 #include "GameInterface/include/Type.h"
 #include "GameInterface/include/Packet.h"
 #include "GameInterface/include/PlayerConnector.h"
@@ -30,37 +31,25 @@
 
 SDL_TETRIS_BEGIN
 
-class TClientController : private boost::serialization::singleton<TClientController>
+class ClientService : public game_interface::PlayerService
 {
 public:
 
-    friend class boost::serialization::singleton<TClientController>;
+    explicit ClientService(std::shared_ptr<ACE_Reactor> );
 
-    TClientController();
-
-    ~TClientController();
+    virtual ~ClientService();
 
     bool connectServer();
-
-    void send(const game_interface::packet::Packet& pcket) const;
-    //const Packet recv();
 
     inline bool isConnection() const noexcept
     {
         return m_connector->isConnection();
     }
 
-    static TClientController& getInstance()
-    {
-        return boost::serialization::singleton<TClientController>::get_mutable_instance();;
-    }
-
 private:
     game_interface::TIPString m_ip;
-    std::shared_ptr<game_interface::PlayerService> m_service;
     std::shared_ptr<ACE_Reactor> m_reactor;
     std::shared_ptr<game_interface::PlayerConnector> m_connector;
-    std::shared_ptr<ACE_Select_Reactor> m_aceSelectReactor;
     std::thread m_clientThread;
 };
 

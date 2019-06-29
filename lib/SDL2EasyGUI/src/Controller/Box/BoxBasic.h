@@ -27,7 +27,7 @@ struct BoxItem
 
     virtual ~BoxItem() = default;
 
-    const std::string& getString()
+    virtual const std::string& getString()
     {
         if (!caching) {
             setOriginString(origin);
@@ -101,19 +101,25 @@ public:
 
 protected:
 
+    const t_size MENU_GAP = 3;
+
     BoxBasic(ControllerBuilder& bld);
 
     virtual ~BoxBasic();
 
+    void onDrawBackground();
 
     virtual void onDraw() override;
 
-    virtual void initialize() override
-    {
-        Border::initialize();
-    }
+    virtual void initialize() override;
+
+    virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) override;
 
     std::vector<item_ptr> m_items;
+    t_size m_menuHeight = 0;
+    size_t m_menuStartIdx = 0;
+    int m_selectedMenuIdx = -1;
+    bool m_folded = true;
 
 };
 

@@ -25,14 +25,14 @@ class PlayerConnector : public ACE_Event_Handler
 {
 
 public:
-    PlayerConnector(const char* ipstr, ACE_Reactor* reactor, PlayerService& stream);
+    PlayerConnector(const char* ipstr, ACE_Reactor* reactor, PlayerService* stream);
 
     virtual ~PlayerConnector(void);
 
     void connect();
 
     inline const bool isConnection() const noexcept
-    { return m_isConnection = ((m_stream.state()==PlayerService::C_SUCCESS) ? 1 : 0); }
+    { return m_isConnection = ((m_service->state()==PlayerService::C_SUCCESS) ? 1 : 0); }
 
     virtual ACE_HANDLE get_handle(void) const;
 
@@ -49,7 +49,7 @@ private:
     std::string m_ipstring;
     mutable int m_isConnection;
     ACE_SOCK_Connector m_connector;
-    PlayerService& m_stream;
+    PlayerService* m_service;
 };
 
 }

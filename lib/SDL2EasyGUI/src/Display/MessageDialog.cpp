@@ -54,7 +54,7 @@ void MessageDialog::onInitialize()
 
         auto ctl = getControll<StaticLabel>(resource::MESSAGEDIALOG_MSG);
         auto renderer = ctl->getSDLRenderer();
-        TextDrawer textDrawer{renderer, ctl->getFont(), ctl->getString()};
+        TextDrawer textDrawer{renderer, ctl->getFont(), SEG_Point{0,0}, ctl->getString()};
 
         if (textDrawer.getTextWidth() > ctl->getHeight()) {
             ctl->setWidth(textDrawer.getTextWidth() + 20);

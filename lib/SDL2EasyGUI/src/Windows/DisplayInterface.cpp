@@ -105,7 +105,7 @@ void DisplayInterface::_run()
         }
 
         //below event is deleted sdl
-        if (event->type > 0x9999 || event->type < 0 /*|| event->type == SDL_TIMER_EVENT*/) {
+        if (event->type > 0x9999 || event->type < 0 || event->type == SDL_TIMER_EVENT) {
             continue;
         } else if (event->type == SDL_USEREVENT && (event->user.data1 || event->user.data2)) {
             delete static_cast<sdleasygui::t_eventType*>(event->user.data1);
@@ -120,8 +120,10 @@ void DisplayInterface::onUserEvent(const SDL_UserEvent* event)
     switch (event->code) {
         case SEG_CLICKED_CONTROLLER: {
             t_res id = *static_cast<t_res*>(event->data1);
+            SEG_Click* click = static_cast<SEG_Click*>(event->data2);
+            _setResult(click->resourceId);
+
             if (m_callback_one_param.count(id) > 0) {
-                SEG_Click* click = static_cast<SEG_Click*>(event->data2);
                 m_callback_one_param.at(id)(click);
             }
             break;
@@ -257,7 +259,7 @@ void DisplayInterface::onDrawBackground()
     if (!m_backgroundImgPath.empty()) {
         auto renderer = getRenderer();
 
-        t_size w, h; // texture width & height
+        t_size w, h; // m_texture width & height
         auto img = IMG_LoadTexture(renderer, m_backgroundImgPath.c_str());
         SDL_QueryTexture(img, NULL, NULL, &w, &h);
 

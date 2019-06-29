@@ -24,8 +24,6 @@ public:
 
     virtual void detach(unique_type obs) = 0;
 
-    virtual unique_type findUser(unique_type)  = 0;
-
     virtual Json::Value toJson() const override final
     {
         assert(0);

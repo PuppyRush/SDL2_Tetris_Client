@@ -12,38 +12,67 @@ ComboBox::ComboBox(ComoboBoxBuilder& bld)
     bld.kind(ControllerKind::ComboBox);
 }
 
+void ComboBox::initialize()
+{
+    m_defaultHeight = m_data->height;
+    BoxBasic::initialize();
+}
+
 void ComboBox::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 {
-    if ((button->button == SDL_BUTTON_LEFT) && !m_items.empty()) {
-        m_folded = false;
-    }
+    if (button->button == SDL_BUTTON_LEFT && isHit(button->x, button->y)) {
 
+        m_folded = !m_folded;
+
+        if (m_folded) {
+
+            int test_idx = (button->y - m_data->point.y) / (m_menuHeight + MENU_GAP);
+            if ((test_idx + m_menuStartIdx) < m_items.size()) {
+                m_selectedMenuIdx = test_idx;
+            }
+
+            m_data->height = m_defaultHeight;
+        } else {
+            size_t menuMax = m_items.size() < MENU_MAX ? MENU_MAX : m_items.size();
+            m_data->height *= menuMax;
+        }
+
+    }
 }
 
 void ComboBox::onDraw()
 {
     auto renderer = getWindow()->getSDLRenderer();
 
-    SEG_Point accuPoint = getPoint();
-
     if (!m_items.empty()) {
-        const auto& item = *m_items.begin();
 
-        TextDrawer textDrawer{renderer, getFont(), item->getString()};
-        auto textSurface = textDrawer.getTextSurface();
+        m_selectedMenuIdx = m_selectedMenuIdx >= m_items.size() ? m_items.size() - 1 : m_selectedMenuIdx;
 
-        if (textSurface != nullptr) {
-            auto texture = textDrawer.getTexture();
-            const double text_width = static_cast<double>(textSurface->w);
-            const double text_height = static_cast<double>(textSurface->h);
+        if (m_folded) {
 
-            const auto point = getPoint();
-            SDL_Rect renderQuad =
-                    {static_cast<int>(accuPoint.x + 5), static_cast<int>(accuPoint.y), static_cast<int>(text_width),
-                     static_cast<int>(text_height)};
-            SDL_RenderCopy(renderer, texture, nullptr, &renderQuad);
+            auto& item = *m_items.at(m_selectedMenuIdx);
+            auto point = getPoint();
+            point.x += 5;
 
-            accuPoint.y += text_height + 3;
+            TextDrawer textDrawer{renderer, getFont(), point, item.getString()};
+            textDrawer.drawText();
+
+        } else {
+            int idx = m_items.size() < m_menuStartIdx ? m_items.size() - 1 : m_menuStartIdx;
+            idx -= MENU_MAX;
+            idx = idx < 0 ? 0 : idx;
+
+            auto point = getPoint();
+            point.x += 5;
+
+            for (; idx < m_items.size(); idx++) {
+                TextDrawer textDrawer{renderer, getFont(), point, m_items.at(idx)->getString()};
+                textDrawer.drawText();
+
+                point.y += textDrawer.getTextHeight() + MENU_GAP;
+
+                m_menuHeight = textDrawer.getTextHeight();
+            }
         }
     }
 

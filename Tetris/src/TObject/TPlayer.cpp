@@ -21,6 +21,9 @@ TPlayer::TPlayer()
 {
     //after set id recvied GameInterface_Init data from server
     setUnique(NULL_ID);
+
+    auto reactor = make_shared<ACE_Reactor>(new ACE_Select_Reactor{});
+    m_service = make_shared<ClientService>(reactor);
 }
 
 TPlayer::~TPlayer()
@@ -32,7 +35,7 @@ void TPlayer::initialize()
 {
     auto board = getController().getBoard();
 
-    SEG_Point gameboardBeginPoint{0, 0}, gameboardPoint{0, 0};
+    SEG_Point gameboardBeginPoint{50, 50}, gameboardPoint{0, 0};
     t_size blockLen{0};
 
     switch (m_order) {
@@ -90,10 +93,10 @@ void TPlayer::endGame()
 
 }
 
-const bool TPlayer::connectServer()
+bool TPlayer::connectServer()
 {
     assert(!getUserName().empty());
-    auto result = m_clientCtl.connectServer();
+    auto result = m_service->connectServer();
 
     //first call faster than server.
     sendDummySignal();
@@ -101,9 +104,16 @@ const bool TPlayer::connectServer()
     return result;
 }
 
+void TPlayer::disconnectServer()
+{
+    Header header{this->getUnique(), this->getUnique(), messageInfo::DISCONNECT};
+    Packet p{header};
+    sendPacket(p);
+}
+
 void TPlayer::sendPacket(const Packet& packet) const
 {
-    m_clientCtl.send(packet);
+    m_service->sendPacket(packet);
 }
 
 void TPlayer::updateObserver(const Packet& packet)

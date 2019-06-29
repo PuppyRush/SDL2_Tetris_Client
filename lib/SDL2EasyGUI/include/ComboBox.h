@@ -23,6 +23,16 @@ public:
 
     virtual ~ComboBoxItem() = default;
 
+    virtual const std::string& getString()
+    {
+        if (!caching) {
+            setOriginString(m_str);
+            caching = true;
+        }
+        return m_str;
+    }
+
+
     virtual void setOriginString(std::string& _origin) override
     {
     }
@@ -48,13 +58,13 @@ public:
 
     virtual void onDrawBackground() override;
 
-    virtual void initialize() override
-    {
-        BoxBasic::initialize();
-    }
+    virtual void initialize() override;
 
 private:
-    bool m_folded = true;
+    const size_t MENU_MAX = 5;
+
+
+    t_size m_defaultHeight;
 };
 
 class ComoboBoxBuilder : public BorderBuilder

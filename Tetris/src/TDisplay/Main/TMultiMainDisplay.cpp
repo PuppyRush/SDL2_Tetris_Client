@@ -84,7 +84,7 @@ void TMultiMainDisplay::onInitialize()
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 id(game_interface::toUType(resource::MAIN_TEXT_COMBO))->
                 backgroundColor(ColorCode::white)->
-                borderBoundaryType(BorderBoundaryType::angle)->
+                borderBoundaryType(BorderBoundaryType::roundedAngle)->
                 width(120)->
                 height(30)->
                 enabled(true);
@@ -94,6 +94,9 @@ void TMultiMainDisplay::onInitialize()
         auto cmb = getControll<ComboBox>(resource::MAIN_TEXT_COMBO);
         cmb->appendItem(std::make_shared<ComboBoxItem>("item1"));
         cmb->appendItem(std::make_shared<ComboBoxItem>("item2"));
+        cmb->appendItem(std::make_shared<ComboBoxItem>("item3"));
+        cmb->appendItem(std::make_shared<ComboBoxItem>("item4"));
+        cmb->appendItem(std::make_shared<ComboBoxItem>("item5"));
     }
 
     setWindowHeight(900);

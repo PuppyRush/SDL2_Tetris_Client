@@ -25,8 +25,6 @@ public:
     using player_ptr = std::shared_ptr<Player>;
     using player_container = std::vector<player_ptr>;
 
-    explicit Room();
-
     inline size_t getFullCount() const noexcept
     { return m_fullCount; }
 
@@ -47,6 +45,8 @@ public:
     inline const player_container& getPlayerContainer() const noexcept
     { return m_players; }
 
+    const player_ptr& get(const unique_type unique) const;
+
     virtual void enter(const player_ptr& ply);
 
     virtual void exit(const unique_type unique);
@@ -61,7 +61,11 @@ public:
 
     virtual void updateObserver(const packet::Packet&) = 0;
 
+    static room_ptr m_dummyRoom;
+
 protected:
+    explicit Room();
+
     virtual void postEnter(const player_ptr& ply) = 0;
 
     virtual void postExit(const player_ptr& ply) = 0;

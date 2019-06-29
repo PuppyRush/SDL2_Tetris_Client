@@ -33,6 +33,7 @@ public:
     using board_type = std::array<std::array<TFigureUnit, WIDTH>, HEIGHT>;
 
     TFigureBoard()
+            : m_backgroundColor(sdleasygui::ColorCode::white)
     {
         clear();
     }
@@ -188,30 +189,17 @@ public:
         }
     }
 
+    inline sdleasygui::SEG_Color getBackgroundColor()
+    { return m_backgroundColor; }
+
 private:
 
     sdleasygui::SEG_Point m_startGameDisplayPoint;
     sdleasygui::t_size m_gameblockLength;
+    sdleasygui::SEG_Color m_backgroundColor;
 
     board_type m_board;
 };
-/*
-class make_redrawer {
-
-public:
-    TFigureBoard& m_board;
-
-    make_redrawer(TFigureBoard& board)
-    :m_board(board)
-    {
-        board._setCoords();
-    }
-
-    ~make_redrawer()
-    {
-        m_board._eraseCoords();
-    }
-};*/
 
 }
 

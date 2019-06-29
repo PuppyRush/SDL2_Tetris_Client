@@ -103,5 +103,5 @@ void TEnterServerDisplay::onClickedEnterServer(const void* click)
 
 void TEnterServerDisplay::onClickedBack(const void* click)
 {
-    TDisplayInterface::onOK();
+    TDisplayInterface::onNO();
 }

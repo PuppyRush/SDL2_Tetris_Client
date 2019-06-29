@@ -44,7 +44,7 @@ add_executable(tetris
         include/TDefine.h
         include/THeader.h
         include/TResource.h
-        include/TClientController.h
+        include/ClientService.h
         include/TDisplayInterface.h
         src/Main.cpp
         src/TObject/TScore.cpp
@@ -73,7 +73,7 @@ add_executable(tetris
         src/TDisplay/Main/TEnterServerDisplay.h
         src/TOption/TOptionManager.cpp
         src/TOption/TOptionManager.h
-        src/TClient/TClientController.cpp
+        src/TClient/ClientService.cpp
         src/TDisplay/Waiting/TCreateGameroomDisplay.cpp
         src/TDisplay/Waiting/TCreateGameroomDisplay.h
         src/TObject/TWaitingRoom.cpp

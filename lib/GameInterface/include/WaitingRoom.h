@@ -17,6 +17,7 @@ class WaitingRoom : public Room
 {
 
 public:
+    using player_ptr = Room::player_ptr;
     using room_ptr = Room::room_ptr;
     using unique_type = Room::unique_type;
     using room_container = std::vector<room_ptr>;
@@ -25,9 +26,13 @@ public:
 
     virtual void fromJson(const Json::Value& json);
 
+    virtual void exit(const unique_type unique) override;
+
     virtual void addGameRoom(const room_ptr& room);
 
     virtual void removeGameRoom(const unique_type unique);
+
+    const room_ptr& getGameroom(const unique_type gameroomUnique) const;
 
     virtual const bool existGameRoom(const unique_type unique) const noexcept;
 
@@ -37,6 +42,8 @@ public:
     virtual void updateObserver(const packet::Packet&) = 0;
 
 protected:
+    WaitingRoom() = default;
+
     virtual void postAddedGameRoom(const room_ptr& room) = 0;
 
     virtual void postRemovedGameRoom(const unique_type unique) = 0;

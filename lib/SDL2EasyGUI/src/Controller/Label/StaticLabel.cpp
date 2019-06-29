@@ -26,19 +26,11 @@ void StaticLabel::onDrawBackground()
 
 void StaticLabel::initialize()
 {
-    auto renderer = getWindow()->getSDLRenderer();
-    TextDrawer textDrawer{renderer, getFont(), m_labelString};
-    auto textSurface = textDrawer.getTextSurface();
+    TextDrawer textDrawer{getWindow()->getSDLRenderer(), getFont(), getPoint(), m_labelString};
 
-    if (textSurface) {
-        auto texture = textDrawer.getTexture();
+    getBasic()->point.x += 5;
+    getBasic()->height = textDrawer.getTextHeight();
+    getBasic()->width = textDrawer.getTextWidth();
 
-        m_textWidth = static_cast<double>(textSurface->w);
-        m_textHeight = static_cast<double>(textSurface->h);
-
-        getBasic()->point.x += 5;
-        getBasic()->height = m_textHeight;
-        getBasic()->width = m_textWidth;
-    }
     LabelBasic::initialize();
 }

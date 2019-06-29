@@ -63,6 +63,9 @@ void TGameDisplay::onUserEvent(const SDL_UserEvent* event)
 
 void TGameDisplay::onInitialize()
 {
+    setBackgroundColor(ColorCode::darkgray);
+
+
     m_gameroom->initialize();
 
     auto& ply = TPlayer::getInstance();
@@ -125,7 +128,10 @@ void TGameDisplay::onDraw()
         line[3].y = beginY + GAMEBOARD_DISPLAY_HEIGHT;
         line[4].x = beginX;
         line[4].y = beginY;
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+
+        SDL_SetRenderDrawColor(renderer,
+                board->getBackgroundColor().r, board->getBackgroundColor().g,
+                board->getBackgroundColor().b, board->getBackgroundColor().a);
         SDL_RenderDrawLines(renderer, line, 5);
 
         const t_coord pred_x = beginX + GAMEBOARD_DISPLAY_WIDTH + figureLen;

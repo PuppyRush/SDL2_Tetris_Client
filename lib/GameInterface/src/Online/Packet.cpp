@@ -62,7 +62,7 @@ Packet::Packet(const char* buf, const size_type len)
     memcpy(m_buf, buf, len);
 }
 
-std::pair<std::__decay_and_strip<unsigned char (&)[1024]>::__type, long>
+const std::pair<std::__decay_and_strip<unsigned char (&)[1024]>::__type, long>
 Packet::toByte() const
 {
     memset(m_buf, 0, BUF_MAX_SIZE);

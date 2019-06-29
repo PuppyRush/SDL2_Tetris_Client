@@ -27,6 +27,8 @@ void Controller::initialize()
             GroupControllManager::getInstance().setMultiselect(m_data->group);
         }
     }
+
+
 }
 
 void Controller::onKeyboardEvent(const SDL_KeyboardEvent* key)
@@ -104,6 +106,11 @@ void Controller::setSelected(bool selected)
     if (selected) {
         GroupControllManager::getInstance().select(m_data->group, m_data->resourceId);
     }
+}
+
+const bool Controller::isHit(const t_coord x, const t_coord y, const t_coord z)
+{
+    return isHit({x,y,z});
 }
 
 const bool Controller::isHit(const SEG_Point& point)

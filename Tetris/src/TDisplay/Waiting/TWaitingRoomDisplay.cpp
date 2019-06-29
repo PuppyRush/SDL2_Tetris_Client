@@ -36,6 +36,8 @@ void TWaitingRoomDisplay::registerEvent()
 {
     SEG_LBUTTONCLICK(sdleasygui::toUType(resource::WAITINGROOM_CREATE),
                      &TWaitingRoomDisplay::onClickCreateGameRoom, this);
+    SEG_LBUTTONCLICK(sdleasygui::toUType(resource::WAITINGROOM_DISCONNECT),
+                     &TWaitingRoomDisplay::onClickExit, this);
     SEG_KEYDOWN(sdleasygui::toUType(resource::WAITINGROOM_CHAREDIT), &TWaitingRoomDisplay::sendChat, this);
 }
 
@@ -202,6 +204,12 @@ void TWaitingRoomDisplay::recvWaitingRoomInitInfo(const Packet& packet)
         ctl->appendItem(make_shared<UserInfo>(dummyPlayer->getUserName(), dummyPlayer->getMaketime(),
                                               dummyPlayer->getUnique()));
     }
+}
+
+void TWaitingRoomDisplay::onClickExit(const void* click)
+{
+    TPlayer::getInstance()->disconnectServer();
+    TDisplayInterface::onClose();
 }
 
 void TWaitingRoomDisplay::onClickCreateGameRoom(const void* click)

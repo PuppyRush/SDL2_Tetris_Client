@@ -18,7 +18,7 @@
 
 namespace game_interface {
 
-#ifdef _CONSTANT_VERSION_V1_
+#ifdef _CONSTANCE_VERSION_V1_
 inline
 #endif
 namespace _V1 {

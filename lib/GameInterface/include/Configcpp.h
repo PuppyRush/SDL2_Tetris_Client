@@ -5,7 +5,7 @@
 #ifndef GI_TETIRS_CLIENT_CONFIGCPP_H
 #define GI_TETIRS_CLIENT_CONFIGCPP_H
 
-#define _CONSTANT_VERSION_V1_ 1
+#define _CONSTANCE_VERSION_V1_ 1
 
 
 #ifndef GI_INLINE
@@ -37,13 +37,13 @@
 #endif
 #endif /* GI_FORCE_INLINE not defined */
 
-#ifndef GI_NORETURN
+#ifndef SDL_NORETURN
 #if defined(__GNUC__)
-#define GI_NORETURN __attribute__((noreturn))
+#define SDL_NORETURN __attribute__((noreturn))
 #elif defined(_MSC_VER)
-#define GI_NORETURN __declspec(noreturn)
+#define SDL_NORETURN __declspec(noreturn)
 #else
-#define GI_NORETURN
+#define SDL_NORETURN
 #endif
 #endif /* SDL_NORETURN not defined */
 

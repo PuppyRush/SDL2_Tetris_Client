@@ -25,7 +25,7 @@ TMultiGameRoomDisplay::TMultiGameRoomDisplay(const sdleasygui::t_id displayId)
     m_display = game_interface::toUType(TDisplay::Game);
     m_mode = TLocalMode::Online;
 
-    setBackgroundColor(ColorCode::darkgray);
+
 }
 
 void TMultiGameRoomDisplay::onClickedStart(const void* click)

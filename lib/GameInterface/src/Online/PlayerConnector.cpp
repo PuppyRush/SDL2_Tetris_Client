@@ -9,8 +9,8 @@
 
 using namespace game_interface;
 
-PlayerConnector::PlayerConnector(const char* ipstr, ACE_Reactor* reactor, PlayerService& stream)
-        : ACE_Event_Handler(reactor), m_stream(stream), m_ipstring(ipstr)
+PlayerConnector::PlayerConnector(const char* ipstr, ACE_Reactor* reactor, PlayerService* stream)
+        : ACE_Event_Handler(reactor), m_service(stream), m_ipstring(ipstr)
 {
 
 }
@@ -24,8 +24,8 @@ void PlayerConnector::connect()
     ACE_INET_Addr addr("127.0.0.1:12345");
     ACE_Time_Value rt(0, 0);
 
-    m_connector.connect(m_stream.peer(), addr, &rt);
-    m_stream.state(PlayerService::C_CONNECTING);
+    m_connector.connect(m_service->peer(), addr, &rt);
+    m_service->state(PlayerService::C_CONNECTING);
     this->reactor()->register_handler(this, ACE_Event_Handler::CONNECT_MASK);
 
 }
@@ -33,7 +33,7 @@ void PlayerConnector::connect()
 ACE_HANDLE
 PlayerConnector::get_handle(void) const
 {
-    return m_stream.peer().get_handle();
+    return m_service->peer().get_handle();
 }
 
 int
@@ -41,7 +41,7 @@ PlayerConnector::handle_input(ACE_HANDLE fd/* = ACE_INVALID_HANDLE*/)
 {
     //접속  실패
     std::cout << std::endl << "Connect fail" << std::endl;
-    m_stream.state(PlayerService::C_FAIL);
+    m_service->state(PlayerService::C_FAIL);
     return -1;
 }
 
@@ -50,8 +50,8 @@ PlayerConnector::handle_output(ACE_HANDLE fd/* = ACE_INVALID_HANDLE*/)
 {
     //접속  성공
     std::cout << std::endl << "Connect success" << std::endl;
-    this->m_connector.complete(m_stream.peer());
-    m_stream.state(PlayerService::C_SUCCESS);
+    this->m_connector.complete(m_service->peer());
+    m_service->state(PlayerService::C_SUCCESS);
 
     return -1;
 }

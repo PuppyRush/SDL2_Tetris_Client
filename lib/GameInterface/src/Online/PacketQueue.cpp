@@ -70,12 +70,11 @@ void PacketQueue::notify()
         while (m_isContinue) {
             auto packet = popEvent();
 
+            std::cout << packet;
 
             if (packet.getHeader().where == messageDirection::CLIENT) {
                 continue;
             }
-
-            std::cout << packet;
 
             for (auto& obj : m_objects) {
                 obj->updateObserver(packet);
