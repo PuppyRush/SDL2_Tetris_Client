@@ -1,0 +1,157 @@
+//
+// Created by chaed on 19. 1. 22.
+//
+
+#ifndef GUI_GRAPHICINTERFACE_H
+#define GUI_GRAPHICINTERFACE_H
+
+#if _MSC_VER >= 1200
+#pragma once
+#endif
+
+#include "SDL2EasyGUI/include/SEG_Window.h"
+//#include "SDL2EasyGUI/include/EventListener.h"
+#include "../../include/EventQueue.h"
+
+namespace sdleasygui {
+
+class GraphicInterface
+{
+
+public:
+    using window_type = SEG_Window*;
+    using unique_type = SEG_Window::unique_type;
+
+    virtual ~GraphicInterface();
+
+    inline void setWindowTitle(const std::string& str)
+    { m_window->setTitle(str); }
+
+    inline void setWindowWidth(const t_size width) noexcept
+    { m_window->setWidth(width); }
+
+    inline void setWindowHeight(const t_size height) noexcept
+    { m_window->setHeight(height); }
+
+    inline const t_size getWindowWidth() const noexcept
+    { return m_window->getWidth(); }
+
+    inline const t_size getWindowHeight() const noexcept
+    { return m_window->getHeight(); }
+
+    inline SEG_Color getBackgroundColor() const noexcept
+    {
+        return m_backgroundColor;
+    }
+
+    inline void setBackgroundColor(const SEG_Color& background_color) noexcept
+    {
+        m_backgroundColor = background_color;
+    }
+
+    inline void setBackgroundColor(SEG_Color&& background_color) noexcept
+    {
+        m_backgroundColor = background_color;
+    }
+
+    void setWindow(window_type window)
+    { m_window = window; }
+
+    window_type getWindow() const noexcept
+    { return m_window; }
+
+protected:
+
+    window_type m_window = nullptr;
+
+    GraphicInterface()
+            : m_window()
+    {}
+
+    virtual void refresh() = 0;
+
+    virtual void onDraw() = 0;
+
+    virtual void onDrawBackground() = 0;
+
+    virtual void _drawBackground(const SDL_Rect rect)
+    {
+        auto renderer = getWindow()->getSDLRenderer();
+
+        const auto& back_color = getBackgroundColor();
+        SDL_SetRenderDrawColor(renderer, back_color.r, back_color.g, back_color.b, 255);
+
+        SDL_RenderFillRect(renderer, &rect);
+        SDL_RenderDrawRect(renderer, &rect);
+    }
+
+    SEG_Color m_backgroundColor;
+};
+
+class TextDrawer
+{
+
+public:
+
+    TextDrawer(SDL_Renderer* renderer, const SEG_TFont& fontinfo, const SEG_Point& point, const std::string& str)
+            : m_textSurface(nullptr), m_point(point), m_renderer(renderer)
+    {
+        TTF_Font* font = TTF_OpenFont(fontinfo.font_name.c_str(), fontinfo.size);
+        SDL_Color textColor = {fontinfo.color.r, fontinfo.color.g, fontinfo.color.b, 0};
+
+        m_textSurface = TTF_RenderText_Solid(font, str.c_str(), textColor);
+        m_texture = SDL_CreateTextureFromSurface(renderer, m_textSurface);
+
+        if (m_textSurface != nullptr) {
+            m_height = static_cast<double>(m_textSurface->h);
+            m_width = static_cast<double>(m_textSurface->w);
+        }
+    }
+
+    ~TextDrawer()
+    {
+        SDL_FreeSurface(m_textSurface);
+    }
+
+    void drawText()
+    {
+        if (m_texture != nullptr) {
+            SDL_Rect renderQuad =
+                    {static_cast<int>(m_point.x), static_cast<int>(m_point.y), static_cast<int>(m_width),
+                     static_cast<int>(m_height)};
+            SDL_RenderCopy(m_renderer, m_texture, nullptr, &renderQuad);
+        }
+
+    }
+
+    inline const SDL_Texture* getTexture()
+    { return m_texture; }
+
+    inline const SDL_Surface* getTextSurface()
+    { return m_textSurface; }
+
+    inline double getTextWidth()
+    { return m_textSurface ?
+        static_cast<double>(m_textSurface->w) : 0;}
+
+    inline double getTextHeight()
+    { return m_textSurface ?
+        static_cast<double>(m_textSurface->h) : 0; }
+
+    inline void setPoint(const SEG_Point& point)
+    { m_point = point; }
+
+private:
+
+    SDL_Surface* m_textSurface;
+    SDL_Texture* m_texture;
+    SDL_Renderer* m_renderer;
+    SEG_Point m_point;
+    double m_height;
+    double m_width;
+
+};
+
+}
+
+#endif //TETRIS_FIGURE_CLASS_TGRAPHICINTERFACE_H
