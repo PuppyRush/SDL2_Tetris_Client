@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="SDL2_draw_example"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\CMakeModules\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="SDL2_draw_3d">
+				<Option output="/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/SDL2_draw_3d" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/SDL2_draw_3d"/>
+					<Add directory="/usr/include/SDL2"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu/libOpenGL.so"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu/libGLX.so"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu/libGLU.so"/>
+					<Add directory="/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/src"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 SDL2_draw_3d"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="SDL2_draw_3d/fast">
+				<Option output="/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/SDL2_draw_3d" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/SDL2_draw_3d"/>
+					<Add directory="/usr/include/SDL2"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu/libOpenGL.so"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu/libGLX.so"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu/libGLU.so"/>
+					<Add directory="/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/src"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 SDL2_draw_3d/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/main.cpp">
+			<Option target="SDL2_draw_3d"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/chaed/projects/SDL2_Tetris_Client/example/SDL2_draw_3d/CMakeModules/FindSDL2.cmake">
+			<Option virtualFolder="CMake Files\CMakeModules\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
