@@ -28,10 +28,16 @@ public:
     { m_window->setTitle(str); }
 
     inline void setWindowWidth(const t_size width) noexcept
-    { m_window->setWidth(width); }
+    {
+        m_window->setWidth(width);
+        m_positionRect.w = width;
+    }
 
     inline void setWindowHeight(const t_size height) noexcept
-    { m_window->setHeight(height); }
+    {
+        m_window->setHeight(height);
+        m_positionRect.h = height;
+    }
 
     inline const t_size getWindowWidth() const noexcept
     { return m_window->getWidth(); }
@@ -54,102 +60,216 @@ public:
         m_backgroundColor = background_color;
     }
 
-    void setWindow(window_type window)
+    inline void setWindow(const window_type window)
     { m_window = window; }
 
-    window_type getWindow() const noexcept
+    inline window_type getWindow() const noexcept
     { return m_window; }
 
-protected:
+    inline t_res getResourceId() const _GLIBCXX_NOEXCEPT
+    {
+        return m_data->resourceId;
+    }
 
-    window_type m_window = nullptr;
+    inline SEG_Point& getPoint() const _GLIBCXX_NOEXCEPT
+    {
+        return m_data->point;
+    }
 
-    GraphicInterface()
-            : m_window()
-    {}
+    inline void setPoint(const SEG_Point& point) _GLIBCXX_NOEXCEPT
+    {
+        m_data->point = point;
+        m_positionRect.x = point.x;
+        m_positionRect.y = point.y;
 
-    virtual void refresh() = 0;
+        m_data->midPoint = SEG_Point{point.x + m_data->width / 2, point.y + m_data->height / 2};
+    }
+
+    inline SEG_Point& getMidPoint() const _GLIBCXX_NOEXCEPT
+    {
+        return m_data->midPoint;
+    }
+
+    inline void setMidPoint(const SEG_Point& point) _GLIBCXX_NOEXCEPT
+    {
+       /* if (m_data->point.x > point.x) {
+            m_data->point.x -= (m_data->point.x - point.x);
+        } else {
+            m_data->point.x += (point.x - m_data->point.x);
+        }
+
+        if (m_data->point.y > point.y) {
+            m_data->point.y -= (m_data->point.y - point.y);
+        } else {
+            m_data->point.y += (point.y - m_data->point.y);
+        }*/
+
+        m_data->midPoint = point;
+    }
+
+    inline t_size getWidth() const _GLIBCXX_NOEXCEPT
+    {
+        return m_data->width;
+    }
+
+    inline void setWidth(const t_size width) _GLIBCXX_NOEXCEPT
+    {
+        m_data->width = width;
+        m_positionRect.w = width;
+        m_data->midPoint = SEG_Point{m_data->point.x + width / 2, m_data->midPoint.y};
+    }
+
+    inline t_size getHeight() const _GLIBCXX_NOEXCEPT
+    {
+        return m_data->height;
+    }
+
+    inline void setHeight(const t_size height) _GLIBCXX_NOEXCEPT
+    {
+        m_data->height = height;
+        m_positionRect.h = height;
+        m_data->midPoint = SEG_Point{m_data->width, m_data->point.y + height / 2};
+    }
+
+    inline SEG_TFont& getFont() const _GLIBCXX_NOEXCEPT
+    {
+        return m_data->font;
+    }
+
+    inline void setFont(const SEG_TFont& font) _GLIBCXX_NOEXCEPT
+    {
+        m_data->font = font;
+    }
+
+    inline std::string getName() const _GLIBCXX_NOEXCEPT
+    {
+        return m_data->name;
+    }
+
+    inline void setName(const std::string& name) _GLIBCXX_NOEXCEPT
+    {
+        m_data->name = name;
+    }
+
+    inline bool isEnabled() const _GLIBCXX_NOEXCEPT
+    {
+        return m_data->enabled;
+    }
+
+    inline void setEnabled(const bool enabled) _GLIBCXX_NOEXCEPT
+    {
+        m_data->enabled = enabled;
+    }
+
+    inline ControlKind getKind() const _GLIBCXX_NOEXCEPT
+    {
+        return m_data->kind;
+    }
+
+    inline int getGroup() const _GLIBCXX_NOEXCEPT
+    {
+        return m_data->group;
+    }
+
+    inline void setGroup(const int group) _GLIBCXX_NOEXCEPT
+    {
+        m_data->group = group;
+    }
+
+    inline bool isCarot() const _GLIBCXX_NOEXCEPT
+    {
+        return m_data->carot;
+    }
+
+    inline void setCarot(const bool carot) _GLIBCXX_NOEXCEPT
+    {
+        m_data->carot = carot;
+    }
+
+    inline t_display getDisplay() const _GLIBCXX_NOEXCEPT
+    {
+        return m_data->display;
+    }
+
+    inline void setDisplay(const t_display display) _GLIBCXX_NOEXCEPT
+    {
+        m_data->display = display;
+    }
+
+    inline bool getAutoSize() const _GLIBCXX_NOEXCEPT
+    {
+        return m_data->autoSize;
+    }
+
+    inline BorderBoundaryLineType getBorderBoundaryLineType() const _GLIBCXX_NOEXCEPT
+    {
+        return m_data->borderLineType;
+    }
+
+    inline BorderBoundaryType getBorderBoundaryType() const _GLIBCXX_NOEXCEPT
+    {
+        return m_data->borderType;
+    }
+
+    inline SEG_Color& getBorderLineColor() const _GLIBCXX_NOEXCEPT
+    {
+        return m_data->borderColor;
+    }
+
+    inline int getBorderAngle() const _GLIBCXX_NOEXCEPT
+    {
+        return m_data->borderAngle;
+    }
+
+    inline int getBorderThick() const _GLIBCXX_NOEXCEPT
+    {
+        return m_data->borderThick;
+    }
+
+    inline bool isSelected() const _GLIBCXX_NOEXCEPT
+    {
+        return m_data->selected;
+    }
+
+    inline const bool isMultiselected() const _GLIBCXX_NOEXCEPT
+    {
+        return m_data->multiselected;
+    }
+
+    inline void setMultiselected(bool multiselected) _GLIBCXX_NOEXCEPT
+    {
+        m_data->multiselected = multiselected;
+    }
+
+    virtual void initialize() = 0;
 
     virtual void onDraw() = 0;
 
     virtual void onDrawBackground() = 0;
 
-    virtual void _drawBackground(const SDL_Rect rect)
+    virtual void resize() = 0;
+
+    virtual void refresh() = 0;
+
+protected:
+
+    window_type m_window = nullptr;
+    SDL_Rect m_positionRect;
+
+    GraphicInterface();
+
+    virtual SDL_Rect getPoisition() const = 0;
+
+    inline std::shared_ptr<ControlBasic> getBasic() const  _GLIBCXX_NOEXCEPT
     {
-        auto renderer = getWindow()->getSDLRenderer();
-
-        const auto& back_color = getBackgroundColor();
-        SDL_SetRenderDrawColor(renderer, back_color.r, back_color.g, back_color.b, 255);
-
-        SDL_RenderFillRect(renderer, &rect);
-        SDL_RenderDrawRect(renderer, &rect);
+        return m_data;
     }
+
+    virtual void _drawBackground(const SDL_Rect rect);
+
+    std::shared_ptr<ControlBasic> m_data;
 
     SEG_Color m_backgroundColor;
-};
-
-class TextDrawer
-{
-
-public:
-
-    TextDrawer(SDL_Renderer* renderer, const SEG_TFont& fontinfo, const SEG_Point& point, const std::string& str)
-            : m_textSurface(nullptr), m_point(point), m_renderer(renderer)
-    {
-        TTF_Font* font = TTF_OpenFont(fontinfo.font_name.c_str(), fontinfo.size);
-        SDL_Color textColor = {fontinfo.color.r, fontinfo.color.g, fontinfo.color.b, 0};
-
-        m_textSurface = TTF_RenderText_Solid(font, str.c_str(), textColor);
-        m_texture = SDL_CreateTextureFromSurface(renderer, m_textSurface);
-
-        if (m_textSurface != nullptr) {
-            m_height = static_cast<double>(m_textSurface->h);
-            m_width = static_cast<double>(m_textSurface->w);
-        }
-    }
-
-    ~TextDrawer()
-    {
-        SDL_FreeSurface(m_textSurface);
-    }
-
-    void drawText()
-    {
-        if (m_texture != nullptr) {
-            SDL_Rect renderQuad =
-                    {static_cast<int>(m_point.x), static_cast<int>(m_point.y), static_cast<int>(m_width),
-                     static_cast<int>(m_height)};
-            SDL_RenderCopy(m_renderer, m_texture, nullptr, &renderQuad);
-        }
-
-    }
-
-    inline const SDL_Texture* getTexture()
-    { return m_texture; }
-
-    inline const SDL_Surface* getTextSurface()
-    { return m_textSurface; }
-
-    inline double getTextWidth()
-    { return m_textSurface ?
-        static_cast<double>(m_textSurface->w) : 0;}
-
-    inline double getTextHeight()
-    { return m_textSurface ?
-        static_cast<double>(m_textSurface->h) : 0; }
-
-    inline void setPoint(const SEG_Point& point)
-    { m_point = point; }
-
-private:
-
-    SDL_Surface* m_textSurface;
-    SDL_Texture* m_texture;
-    SDL_Renderer* m_renderer;
-    SEG_Point m_point;
-    double m_height;
-    double m_width;
-
 };
 
 }

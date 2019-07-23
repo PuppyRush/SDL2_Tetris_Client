@@ -20,10 +20,10 @@
 
 namespace sdleasygui {
 
-class GroupControllManager : private boost::serialization::singleton<GroupControllManager>
+class GroupControlManager : private boost::serialization::singleton<GroupControlManager>
 {
 private:
-    friend class boost::serialization::singleton<GroupControllManager>;
+    friend class boost::serialization::singleton<GroupControlManager>;
 
     typedef struct group
     {
@@ -128,15 +128,15 @@ public:
 
     bool isSelected(const group_id grpId, const t_id ctlId);
 
-    static GroupControllManager& getInstance()
+    static GroupControlManager& getInstance()
     {
 
-        return boost::serialization::singleton<GroupControllManager>::get_mutable_instance();
+        return boost::serialization::singleton<GroupControlManager>::get_mutable_instance();
     }
 
 private:
 
-    GroupControllManager() = default;
+    GroupControlManager() = default;
 
     std::unordered_map<int, group> m_group;
 

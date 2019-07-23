@@ -5,7 +5,13 @@
 #ifndef TETRIS_FIGURE_CLASS_EVENTCOMMAND_H
 #define TETRIS_FIGURE_CLASS_EVENTCOMMAND_H
 
+#if _MSC_VER >= 1200
+#pragma once
+#endif
+
+
 #include "Commander.h"
+
 
 namespace sdleasygui {
 

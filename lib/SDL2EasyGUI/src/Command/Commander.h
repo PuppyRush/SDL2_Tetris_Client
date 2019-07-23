@@ -5,6 +5,11 @@
 #ifndef TETRIS_FIGURE_CLASS_COMMANDER_H
 #define TETRIS_FIGURE_CLASS_COMMANDER_H
 
+#if _MSC_VER >= 1200
+#pragma once
+#endif
+
+
 #include "SDL2EasyGUI/include/SEG_Type.h"
 
 namespace sdleasygui {

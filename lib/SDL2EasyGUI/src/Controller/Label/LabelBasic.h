@@ -15,7 +15,7 @@ class LabelBasic : public Border
 {
 
 public:
-    LabelBasic(ControllerBuilder& bld);
+    LabelBasic(ControlBuilder& bld);
 
     virtual ~LabelBasic()
     {}

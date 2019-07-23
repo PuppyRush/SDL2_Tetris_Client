@@ -21,14 +21,12 @@ typedef struct SEG_Click
 {
     SEG_Point point = {-100, -100};
     t_res resourceId = toUType(resource::NONE);
+    bool selected = false;
 
-    SEG_Click(const SEG_Point& point, const t_res& res)
-            : point(point), resourceId(res)
+    SEG_Click(const SEG_Point& point, const t_res& res, const bool sel)
+            : point(point), resourceId(res), selected(sel)
     {}
 
-    SEG_Click(SEG_Point&& point, t_res&& res)
-            : point(point), resourceId(res)
-    {}
 } SEG_Click;
 
 //must call by TimerAdder

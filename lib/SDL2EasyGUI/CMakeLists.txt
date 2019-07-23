@@ -57,47 +57,61 @@ file(COPY DIRECTORY "src/"
         )
 
 
-ADD_LIBRARY( SDL2EasyGUI STATIC
-    src/Command/Commander.h
-    src/Command/EventCommand.h
-    src/Controller/Border.cpp
-    src/Controller/Border.h
+ADD_LIBRARY(SDL2EasyGUI STATIC
+        src/Command/Commander.h
+        src/Command/EventCommand.h
+        src/Controller/Border.cpp
+        src/Controller/Border.h
         src/Controller/Button/Button.cpp
-        include/Button.h
         src/Controller/Button/ButtonBasic.cpp
         src/Controller/Button/ButtonBasic.h
         src/Controller/Box/ComboBox.cpp
-        include/ComboBox.h
-    src/Controller/Controller.cpp
-        src/Controller/Controller.h
-    src/Controller/ControllerBuilder.cpp
-        include/ControllerBuilder.h
+        src/Controller/Control.cpp
+        src/Controller/Control.h
+        src/Controller/ControlBuilder.cpp
         src/Controller/Label/EditLabel.cpp
-        include/EditLabel.h
-    src/Controller/GroupControllManager.cpp
-        include/GroupControllManager.h
+        src/Controller/GroupControlManager.cpp
         src/Controller/Box/ListBox.cpp
-        include/ListBox.h
         src/Controller/Button/RadioButton.cpp
-        include/RadioButton.h
         src/Controller/Label/StaticLabel.cpp
+        src/Controller/ImageStatic.cpp
+        src/Controller/ImageStatic.h
+        src/Controller/Label/LabelBasic.cpp
+        src/Controller/Label/LabelBasic.h
+        src/Controller/Box/BoxBasic.cpp
+        src/Controller/Box/BoxBasic.h
+        src/Controller/Button/CheckBox.cpp
+        src/Display/InputDialog.cpp
+        src/Display/MessageDialog.cpp
+        src/Windows/DisplayController.cpp
+        src/Windows/DisplayInterface.cpp
+        src/Windows/EventQueue.cpp
+        src/Windows/GraphicInterface.h
+        src/Windows/SEG_Window.cpp
+        src/Windows/SEG_Event.cpp
+        src/Windows/GraphicInterface.cpp
+        src/Decorator/Decorator.h
+        src/Decorator/Decorator.cpp
+        src/Decorator/ScrollableDecorator.cpp
+        src/Decorator/ScrollableDecorator.h
+        src/Decorator/BorderDecorator.h
+        src/Decorator/BorderDecorator.cpp
+        include/Button.h
+        include/ComboBox.h
+        include/ControlBuilder.h
+        include/EditLabel.h
+        include/GroupControlManager.h
+        include/ListBox.h
+        include/RadioButton.h
         include/StaticLabel.h
-    src/Display/InputDialog.cpp
         include/InputDialog.h
-    src/Display/MessageDialog.cpp
         include/MessageDialog.h
-    src/Windows/DisplayController.cpp
         include/DisplayController.h
-    src/Windows/DisplayInterface.cpp
         include/DisplayInterface.h
         include/EventListener.h
-    src/Windows/EventQueue.cpp
         include/EventQueue.h
-    src/Windows/GraphicInterface.h
-    src/Windows/SEG_Window.cpp
         include/SEG_Window.h
         include/SEG_Constant.h
-    src/Windows/SEG_Event.cpp
         include/SEG_Event.h
         include/SEG_Initiator.h
         include/SEG_Property.h
@@ -107,11 +121,9 @@ ADD_LIBRARY( SDL2EasyGUI STATIC
         include/SEG_Type.h
         include/SEG_TypeTraits.h
         include/SEG_Define.h
-    src/Windows/GraphicInterface.cpp
-    src/Controller/ImageStatic.cpp
-    src/Controller/ImageStatic.h
-        src/Controller/Label/LabelBasic.cpp
-        src/Controller/Label/LabelBasic.h src/Controller/Box/BoxBasic.cpp src/Controller/Box/BoxBasic.h src/Controller/Button/CheckBox.cpp include/CheckBox.h)
+        include/CheckBox.h
+        include/SEG_Drawer.h
+        )
 
 target_link_libraries(
         SDL2EasyGUI

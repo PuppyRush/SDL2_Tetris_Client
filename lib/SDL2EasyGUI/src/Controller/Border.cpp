@@ -16,20 +16,20 @@ void SetViewport2(SDL_Renderer* renderer, int x1, int y1, int x2, int y2)
     SDL_RenderSetViewport(renderer, &clip);
 }
 
-Border::Border(ControllerBuilder& basic)
-        : Controller(basic)
+Border::Border(ControlBuilder& basic)
+        : Control(basic)
 {
-    basic.kind(ControllerKind::Border);
+    basic.kind(ControlKind::Border);
 }
 
 void Border::initialize()
 {
-    Controller::initialize();
+    Control::initialize();
 }
 
 void Border::onDrawBackground()
 {
-    Controller::onDrawBackground();
+    Control::onDrawBackground();
 }
 
 void Border::onDraw()
@@ -44,7 +44,7 @@ void Border::onDraw()
 
     switch (getBorderBoundaryType()) {
         case BorderBoundaryType::angle: {
-            const size_t cnt = 5;
+            const size_t cnt{5};
             for (int i = 0; i < getBorderThick(); i++) {
                 SDL_Point points[cnt] =
                         {{x + i,     y + i},
@@ -84,4 +84,5 @@ void Border::onDraw()
             break;
         }
     }
+    Control::onDraw();
 }

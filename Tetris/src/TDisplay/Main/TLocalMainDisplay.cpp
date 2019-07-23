@@ -44,7 +44,7 @@ void TLocalMainDisplay::onInitialize()
                 height(50)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     begin_y += 80;
     {
@@ -56,7 +56,7 @@ void TLocalMainDisplay::onInitialize()
                 height(50)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     begin_y += 80;
     {
@@ -68,7 +68,7 @@ void TLocalMainDisplay::onInitialize()
                 height(50)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     TMainDisplay::onInitialize();
 }

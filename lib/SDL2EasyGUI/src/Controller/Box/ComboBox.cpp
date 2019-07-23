@@ -3,18 +3,20 @@
 //
 
 #include "ComboBox.h"
+#include <include/SEG_Drawer.h>
 
 using namespace sdleasygui;
 
 ComboBox::ComboBox(ComoboBoxBuilder& bld)
         : BoxBasic(bld)
 {
-    bld.kind(ControllerKind::ComboBox);
+    bld.kind(ControlKind::ComboBox);
+    m_menuMaxCnt = 3;
 }
 
 void ComboBox::initialize()
 {
-    m_defaultHeight = m_data->height;
+    m_defaultHeight = getHeight();
     BoxBasic::initialize();
 }
 
@@ -22,19 +24,17 @@ void ComboBox::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 {
     if (button->button == SDL_BUTTON_LEFT && isHit(button->x, button->y)) {
 
-        m_folded = !m_folded;
+        setFolded(!isFolded());
 
-        if (m_folded) {
+        if (isFolded()) {
 
-            int test_idx = (button->y - m_data->point.y) / (m_menuHeight + MENU_GAP);
-            if ((test_idx + m_menuStartIdx) < m_items.size()) {
-                m_selectedMenuIdx = test_idx;
-            }
+            //펼쳐진 상태에서 최 상단 메뉴는 선택된 메뉴만 보여줘야 한다.
+            m_selectedMenuIdx = calcIndexOf(button->y);
 
-            m_data->height = m_defaultHeight;
+            setHeight(m_defaultHeight);
         } else {
-            size_t menuMax = m_items.size() < MENU_MAX ? MENU_MAX : m_items.size();
-            m_data->height *= menuMax;
+            size_t menuMax = m_items.size() < m_menuMaxCnt ? m_menuMaxCnt : m_items.size();
+            setHeight(getHeight() * menuMax);
         }
 
     }
@@ -48,7 +48,7 @@ void ComboBox::onDraw()
 
         m_selectedMenuIdx = m_selectedMenuIdx >= m_items.size() ? m_items.size() - 1 : m_selectedMenuIdx;
 
-        if (m_folded) {
+        if (isFolded()) {
 
             auto& item = *m_items.at(m_selectedMenuIdx);
             auto point = getPoint();
@@ -58,15 +58,19 @@ void ComboBox::onDraw()
             textDrawer.drawText();
 
         } else {
-            int idx = m_items.size() < m_menuStartIdx ? m_items.size() - 1 : m_menuStartIdx;
-            idx -= MENU_MAX;
-            idx = idx < 0 ? 0 : idx;
 
             auto point = getPoint();
             point.x += 5;
 
-            for (; idx < m_items.size(); idx++) {
-                TextDrawer textDrawer{renderer, getFont(), point, m_items.at(idx)->getString()};
+            TextDrawer textDrawer{renderer, getFont(), point, m_items.at(m_selectedMenuIdx)->getString()};
+            textDrawer.drawText();
+
+            point.y += textDrawer.getTextHeight() + MENU_GAP;
+
+            const int endIdx =
+                    (m_menuStartIdx + m_menuMaxCnt) > m_items.size() ? m_items.size() : m_menuStartIdx + m_menuMaxCnt;
+            for (int i = m_menuStartIdx; i < endIdx; i++) {
+                TextDrawer textDrawer{renderer, getFont(), point, m_items.at(i)->getString()};
                 textDrawer.drawText();
 
                 point.y += textDrawer.getTextHeight() + MENU_GAP;
@@ -81,10 +85,5 @@ void ComboBox::onDraw()
 
 void ComboBox::onDrawBackground()
 {
-    if (m_folded) {
-    } else {
-
-    }
-
     BoxBasic::onDrawBackground();
 }

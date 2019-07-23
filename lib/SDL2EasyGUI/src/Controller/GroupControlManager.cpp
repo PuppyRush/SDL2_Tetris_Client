@@ -4,12 +4,12 @@
 
 #include <cassert>
 
-#include "SDL2EasyGUI/include/GroupControllManager.h"
+#include "SDL2EasyGUI/include/GroupControlManager.h"
 
 using namespace std;
 using namespace sdleasygui;
 
-GroupControllManager::group& GroupControllManager::get(const group_id grpId)
+GroupControlManager::group& GroupControlManager::get(const group_id grpId)
 {
     if (isGroup(grpId)) {
         return m_group.at(grpId);
@@ -18,7 +18,7 @@ GroupControllManager::group& GroupControllManager::get(const group_id grpId)
     }
 }
 
-void GroupControllManager::add(const group_id grpId, const t_id ctlId)
+void GroupControlManager::add(const group_id grpId, const t_id ctlId)
 {
     if (!isGroup(grpId)) {
         group grp;
@@ -27,7 +27,7 @@ void GroupControllManager::add(const group_id grpId, const t_id ctlId)
     }
 }
 
-void GroupControllManager::remove(const group_id grpId)
+void GroupControlManager::remove(const group_id grpId)
 {
     if (isGroup(grpId)) {
         m_group.erase(grpId);
@@ -36,7 +36,7 @@ void GroupControllManager::remove(const group_id grpId)
 
 }
 
-void GroupControllManager::remove(const group_id grpId, const t_id ctlId)
+void GroupControlManager::remove(const group_id grpId, const t_id ctlId)
 {
     if (isGroup(grpId) && get(grpId).count(ctlId) > 0) {
 
@@ -44,14 +44,14 @@ void GroupControllManager::remove(const group_id grpId, const t_id ctlId)
         assert(0);
 }
 
-void GroupControllManager::setMultiselect(const group_id grpId)
+void GroupControlManager::setMultiselect(const group_id grpId)
 {
     if (isGroup(grpId)) {
         get(grpId).setMultiSelected();
     }
 }
 
-const std::vector<t_id> GroupControllManager::getSelectedId(const group_id grpId)
+const std::vector<t_id> GroupControlManager::getSelectedId(const group_id grpId)
 {
     if (isGroup(grpId)) {
         const auto& grp = get(grpId);
@@ -71,26 +71,26 @@ const std::vector<t_id> GroupControllManager::getSelectedId(const group_id grpId
 
 }
 
-bool GroupControllManager::isGroup(const group_id grpId)
+bool GroupControlManager::isGroup(const group_id grpId)
 {
     return m_group.count(grpId);
 }
 
-void GroupControllManager::select(const group_id grpId, const t_id ctlId)
+void GroupControlManager::select(const group_id grpId, const t_id ctlId)
 {
     if (isGroup(grpId)) {
         get(grpId).toSelected(ctlId);
     }
 }
 
-void GroupControllManager::unselecte(const group_id grpId, const t_id ctlId)
+void GroupControlManager::unselecte(const group_id grpId, const t_id ctlId)
 {
     if (isGroup(grpId)) {
         get(grpId).toUnSelected(grpId);
     }
 }
 
-bool GroupControllManager::isSelected(const group_id grpId, const t_id ctlId)
+bool GroupControlManager::isSelected(const group_id grpId, const t_id ctlId)
 {
     if (isGroup(grpId)) {
         return get(grpId).isSelected(ctlId);

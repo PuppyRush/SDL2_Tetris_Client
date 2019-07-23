@@ -9,20 +9,20 @@
 #pragma once
 #endif
 
-#include "Controller.h"
-#include "SDL2EasyGUI/include/ControllerBuilder.h"
+#include "Control.h"
+#include "SDL2EasyGUI/include/ControlBuilder.h"
 
 namespace sdleasygui {
 
 class BorderBuilder;
 
-class Border : public Controller
+class Border : public Control
 {
 
 public:
     virtual ~Border() = default;
 
-    explicit Border(ControllerBuilder& basic);
+    explicit Border(ControlBuilder& basic);
 
     virtual void onDraw() override;
 
@@ -36,23 +36,23 @@ private:
 
 };
 
-class BorderBuilder : public ControllerBuilder
+class BorderBuilder : public ControlBuilder
 {
 public:
 
     BorderBuilder(const GraphicInterface::window_type window, const SEG_Point& point, const std::string& str)
-            : ControllerBuilder(window, point, str)
+            : ControlBuilder(window, point, str)
     {
     }
 
     BorderBuilder(const GraphicInterface::window_type window, SEG_Point&& point, std::string&& str)
-            : ControllerBuilder(window, point, str)
+            : ControlBuilder(window, point, str)
     {
     }
 
     virtual ~BorderBuilder() = default;
 
-    virtual Controller::controll_ptr build()
+    virtual Control::control_ptr build()
     {
         return new Border(*this);
     }

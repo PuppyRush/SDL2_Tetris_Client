@@ -5,10 +5,14 @@
 
 #include "SDL2EasyGUI/include/Button.h"
 #include "SDL2EasyGUI/include/ComboBox.h"
+#include "SDL2EasyGUI/include/RadioButton.h"
+#include "SDL2EasyGUI/include/CheckBox.h"
 #include "SDL2EasyGUI/include/DisplayController.h"
 
-#include "TMultiMainDisplay.h"
+#include "SDL2EasyGUI/src/Decorator/ScrollableDecorator.h"
+#include "SDL2EasyGUI/src/Decorator/BorderDecorator.h"
 
+#include "TMultiMainDisplay.h"
 #include "../TOptionDisplay.h"
 #include "TResource.h"
 
@@ -36,9 +40,10 @@ void TMultiMainDisplay::registerEvent()
 void TMultiMainDisplay::onInitialize()
 {
 
+    t_size begin_x = WINDOW_WIDTH / 2 - 220;
     t_size begin_y = WINDOW_HEIGHT / 3;
     {
-        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH / 2 - 220, begin_y}, "PLAY TOGETHER");
+        ButtonBuilder bld(getWindow(), {begin_x, begin_y}, "PLAY TOGETHER");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 backgroundColor(ColorCode::white)->
                 id(game_interface::toUType(resource::MAIN_MULTI_GAME_START_BUTTON))->
@@ -49,7 +54,7 @@ void TMultiMainDisplay::onInitialize()
                 borderThick(4)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     begin_y += 80;
     {
@@ -62,7 +67,7 @@ void TMultiMainDisplay::onInitialize()
                 height(50)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     begin_y += 80;
     {
@@ -75,28 +80,92 @@ void TMultiMainDisplay::onInitialize()
                 height(50)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
 
     begin_y += 80;
     {
-        ComoboBoxBuilder bld(getWindow(), {WINDOW_WIDTH / 2 , begin_y}, "");
+        ComoboBoxBuilder bld(getWindow(), {WINDOW_WIDTH / 2, begin_y}, "");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
-                id(game_interface::toUType(resource::MAIN_TEXT_COMBO))->
+                id(game_interface::toUType(resource::MAIN_TEST_TEXT_COMBO))->
                 backgroundColor(ColorCode::white)->
                 borderBoundaryType(BorderBoundaryType::roundedAngle)->
                 width(120)->
                 height(30)->
                 enabled(true);
 
-        addControll(bld.build());
+        auto ctl = dynamic_cast<ComboBox*>( bld.build());
 
-        auto cmb = getControll<ComboBox>(resource::MAIN_TEXT_COMBO);
-        cmb->appendItem(std::make_shared<ComboBoxItem>("item1"));
-        cmb->appendItem(std::make_shared<ComboBoxItem>("item2"));
-        cmb->appendItem(std::make_shared<ComboBoxItem>("item3"));
-        cmb->appendItem(std::make_shared<ComboBoxItem>("item4"));
-        cmb->appendItem(std::make_shared<ComboBoxItem>("item5"));
+        addControl(new ScrollableDecorator(ctl, 2));
+
+        //auto cmb = getControl<ComboBox>(resource::MAIN_TEST_TEXT_COMBO);
+        ctl->appendItem(std::make_shared<ComboBoxItem>("item1"));
+        ctl->appendItem(std::make_shared<ComboBoxItem>("item2"));
+        ctl->appendItem(std::make_shared<ComboBoxItem>("item3"));
+        ctl->appendItem(std::make_shared<ComboBoxItem>("item4"));
+        ctl->appendItem(std::make_shared<ComboBoxItem>("item5"));
+    }
+
+    begin_y += 80;
+    {
+        CheckBoxBuilder bld(getWindow(), {WINDOW_WIDTH / 2, begin_y}, "");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
+                id(game_interface::toUType(resource::MAIN_TEST_CHECKBOX))->
+                backgroundColor(ColorCode::white)->
+                borderColor(ColorCode::lightgray)->
+                borderBoundaryType(BorderBoundaryType::angle)->
+                borderThick(3)->
+
+                enabled(true);
+
+        addControl(bld.build());
+    }
+
+    begin_y += 30;
+    {
+        RadioButtonBuilder bld(getWindow(), {WINDOW_WIDTH / 2, begin_y}, "");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
+                id(game_interface::toUType(resource::MAIN_TEST_RADIOBUTTON))->
+                backgroundColor(ColorCode::white)->
+                borderColor(ColorCode::lightgray)->
+                borderLineType(BorderBoundaryLineType::round)->
+                borderThick(3)->
+                grouping(1)->
+                enabled(true);
+
+        addControl(bld.build());
+    }
+
+    begin_x += 50;
+    {
+        RadioButtonBuilder bld(getWindow(), {begin_x, begin_y}, "");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
+                id(game_interface::toUType(resource::MAIN_TEST_RADIOBUTTON2))->
+                backgroundColor(ColorCode::white)->
+                borderColor(ColorCode::lightgray)->
+                borderLineType(BorderBoundaryLineType::round)->
+                borderThick(3)->
+                grouping(1)->
+                multiselected(false)->
+                enabled(true);
+
+        addControl(bld.build());
+    }
+
+    begin_x += 50;
+    {
+        RadioButtonBuilder bld(getWindow(), {begin_x, begin_y}, "");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
+                id(game_interface::toUType(resource::MAIN_TEST_RADIOBUTTON3))->
+                backgroundColor(ColorCode::white)->
+                borderColor(ColorCode::lightgray)->
+                borderLineType(BorderBoundaryLineType::round)->
+                borderThick(3)->
+                grouping(1)->
+                enabled(true);
+
+        auto ctl = bld.build();
+        addControl(ctl);
     }
 
     setWindowHeight(900);

@@ -3,14 +3,16 @@
 //
 
 #include "ListBox.h"
+#include <include/SEG_Drawer.h>
 
 using namespace sdleasygui;
 
 ListBox::ListBox(ListBoxBuilder& bld)
         : BoxBasic(bld)
 {
-    bld.kind(ControllerKind::ListBox);
-    m_folded = false;
+    bld.kind(ControlKind::ListBox);
+    setFolded(true);
+    m_menuMaxCnt = 10;
 }
 
 void ListBox::onDraw()

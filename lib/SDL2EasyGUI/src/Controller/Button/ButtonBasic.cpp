@@ -3,10 +3,11 @@
 //
 
 #include "ButtonBasic.h"
+#include <include/SEG_Drawer.h>
 
 using namespace sdleasygui;
 
-ButtonBasic::ButtonBasic(ControllerBuilder& bld)
+ButtonBasic::ButtonBasic(ControlBuilder& bld)
         : Border(bld)
 {
 
@@ -31,10 +32,12 @@ void ButtonBasic::onDraw()
     rect.h = (rect.h - getBorderThick() * 2) + 1;
     rect.w = (rect.w - getBorderThick() * 2) + 1;
 
-    SDL_Rect renderQuad = {static_cast<int>(getPoint().x + (getWidth() - m_textWidth) / 2),
-                           static_cast<int>(getPoint().y + (getHeight() - m_textHeight) / 2),
-                           static_cast<int>(m_textWidth), static_cast<int>(m_textHeight)};
-    SDL_RenderCopy(renderer, m_texture.get(), nullptr, &renderQuad);
+    SEG_Point point{static_cast<int>(getPoint().x + (getWidth() - m_textWidth) / 2),
+                    static_cast<int>(getPoint().y + (getHeight() - m_textHeight) / 2)};
+
+
+    TextDrawer drawer{getSDLRenderer(), getFont(), point, getName()};
+    drawer.drawText();
 
     _drawCarot();
     Border::onDraw();
@@ -47,23 +50,10 @@ void ButtonBasic::onDrawBackground()
 
 void ButtonBasic::initialize()
 {
-    auto renderer = getWindow()->getSDLRenderer();
-    const auto& fontinfo = getFont();
-    TTF_Font* font = TTF_OpenFont(fontinfo.font_name.c_str(), fontinfo.size);
-    std::string score_text = getName();
-    SDL_Color textColor = {fontinfo.color.r, fontinfo.color.g, fontinfo.color.b, 0};
+    TextDrawer drawer{getSDLRenderer(), getFont(), getPoint(), getName()};
 
-    SDL_Surface* textSurface = TTF_RenderText_Solid(font, score_text.c_str(), textColor);
-
-    auto texture_deleter = [](SDL_Texture* texture) {
-        if (texture != nullptr) { delete texture; }
-    };
-
-    m_texture = std::shared_ptr<SDL_Texture>(SDL_CreateTextureFromSurface(renderer, textSurface), texture_deleter);
-    SDL_FreeSurface(textSurface);
-
-    m_textWidth = textSurface->w;
-    m_textHeight = textSurface->h;
+    m_textWidth = drawer.getTextWidth();
+    m_textHeight = drawer.getTextHeight();
 
     Border::initialize();
 }
@@ -73,7 +63,7 @@ void ButtonBasic::_drawCarot()
     auto renderer = getWindow()->getSDLRenderer();
 
     if (isSelected() && isCarot()) {
-        if (GroupControllManager::getInstance().isSelected(getGroup(), getResourceId())) {
+        if (GroupControlManager::getInstance().isSelected(getGroup(), getResourceId())) {
             SDL_Rect rect{getPoint().x - 5, getPoint().y - 5, getWidth() + 10, getHeight() + 10};
 
             const auto& linecolor = SEG_Color::getColor(ColorCode::red);

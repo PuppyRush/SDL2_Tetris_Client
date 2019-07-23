@@ -18,7 +18,7 @@
 
 namespace sdleasygui {
 
-extern void SDLEasyGUI_Init()
+static void SDLEasyGUI_Init()
 {
 
     if (TTF_Init() != 0) {

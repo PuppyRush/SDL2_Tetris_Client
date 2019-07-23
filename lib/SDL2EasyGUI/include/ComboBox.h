@@ -61,8 +61,6 @@ public:
     virtual void initialize() override;
 
 private:
-    const size_t MENU_MAX = 5;
-
 
     t_size m_defaultHeight;
 };
@@ -83,7 +81,7 @@ public:
     {
     }
 
-    virtual Controller::controll_ptr build() final
+    virtual Control::control_ptr build() final
     {
         return new ComboBox(*this);
     }

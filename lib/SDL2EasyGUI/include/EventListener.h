@@ -204,9 +204,13 @@ public:
     { return m_eventDelivery.popEvent(); }
 
 protected:
-    EventQueue <SDL_Event> m_eventDelivery;
+    EventQueue<SDL_Event> m_eventDelivery;
 
     EventListener() = default;
+
+private:
+
+    bool m_isHitting = false;
 
 };
 

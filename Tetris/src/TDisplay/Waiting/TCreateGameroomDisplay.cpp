@@ -42,7 +42,7 @@ void TCreateGameroomDisplay::onInitialize()
                 borderThick(2)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     {
         ButtonBuilder bld(getWindow(), {50, 120}, "OK");
@@ -55,7 +55,7 @@ void TCreateGameroomDisplay::onInitialize()
                 borderThick(2)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     {
         ButtonBuilder bld(getWindow(), {200, 120}, "CANCEL");
@@ -68,7 +68,7 @@ void TCreateGameroomDisplay::onInitialize()
                 borderThick(2)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
 
     TDisplayInterface::onInitialize();
@@ -76,7 +76,7 @@ void TCreateGameroomDisplay::onInitialize()
 
 void TCreateGameroomDisplay::onClose()
 {
-    const auto ctl = getControll<EditLabel>(tetris::resource::WAITINGROOM_CREATE_GAMEROOMNAME);
+    const auto ctl = getControl<EditLabel>(tetris::resource::WAITINGROOM_CREATE_GAMEROOMNAME);
     m_roomname = ctl->getString();
 
     TDisplayInterface::onClose();

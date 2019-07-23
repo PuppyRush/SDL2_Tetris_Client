@@ -3,6 +3,7 @@
 //
 
 #include "MessageDialog.h"
+#include <include/SEG_Drawer.h>
 
 using namespace sdleasygui;
 
@@ -50,9 +51,9 @@ void MessageDialog::onInitialize()
                 borderThick(3)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
 
-        auto ctl = getControll<StaticLabel>(resource::MESSAGEDIALOG_MSG);
+        auto ctl = getControl<StaticLabel>(resource::MESSAGEDIALOG_MSG);
         auto renderer = ctl->getSDLRenderer();
         TextDrawer textDrawer{renderer, ctl->getFont(), SEG_Point{0,0}, ctl->getString()};
 
@@ -76,7 +77,7 @@ void MessageDialog::onInitialize()
                 borderThick(2)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
 
     DisplayInterface::onInitialize();

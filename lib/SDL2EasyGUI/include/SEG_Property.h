@@ -17,15 +17,17 @@ const t_size WINDOW_HEIGHT = 900;
 
 const t_size WINDOW_WIDTH = 1000;
 
-enum class ControllerKind : t_type
+enum class ControlKind : t_type
 {
     ListBox,
+    ComboBox,
     StaticLabel,
+    ImageLabel,
     EditLabel,
     Button,
+    CheckBox,
     RadioButton,
     Border,
-    ComboBox
 };
 
 enum class TDisplayMode : t_type

@@ -3,13 +3,14 @@
 //
 
 #include "StaticLabel.h"
+#include <SEG_Drawer.h>
 
 using namespace sdleasygui;
 
 StaticLabel::StaticLabel(StaticLabelBuilder& bld)
         : LabelBasic(bld)
 {
-    bld.kind(ControllerKind::StaticLabel);
+    bld.kind(ControlKind::StaticLabel);
     m_labelString = bld.getBasic().name;
 }
 

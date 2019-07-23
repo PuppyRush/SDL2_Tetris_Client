@@ -58,7 +58,7 @@ void TSingleGameDisplay::onInitialize()
                 height(50)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     begin_y += 80;
     {
@@ -70,7 +70,7 @@ void TSingleGameDisplay::onInitialize()
                 height(50)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     begin_y += 80;
     {
@@ -82,7 +82,7 @@ void TSingleGameDisplay::onInitialize()
                 height(50)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
 
     TGameDisplay::onInitialize();

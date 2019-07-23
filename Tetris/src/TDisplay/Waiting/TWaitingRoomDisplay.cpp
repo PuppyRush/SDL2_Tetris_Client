@@ -64,7 +64,7 @@ void TWaitingRoomDisplay::onInitialize()
                 borderThick(3)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     {
         ListBoxBuilder bld(getWindow(), {m_chatBoxBeginPoint.x, m_chatBoxBeginPoint.y}, "");
@@ -78,7 +78,7 @@ void TWaitingRoomDisplay::onInitialize()
                 borderThick(2)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     {
         EditLabelBuilder bld(getWindow(), {m_chatBoxBeginPoint.x, m_chatBoxBeginPoint.y + m_chatBoxHeight + 5}, "");
@@ -92,7 +92,7 @@ void TWaitingRoomDisplay::onInitialize()
                 borderThick(2)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     {
         ListBoxBuilder bld(getWindow(), {m_userBoxBeginPoint.x, m_userBoxBeginPoint.y}, "");
@@ -106,7 +106,7 @@ void TWaitingRoomDisplay::onInitialize()
                 borderThick(2)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     {
         ButtonBuilder bld(getWindow(), {m_createBtnBeginPoint.x, m_createBtnBeginPoint.y}, "CREATE");
@@ -120,7 +120,7 @@ void TWaitingRoomDisplay::onInitialize()
                 borderThick(2)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     {
         ButtonBuilder bld(getWindow(), {m_createBtnBeginPoint.x, m_createBtnBeginPoint.y + m_btnHeight + 10}, "EXIT");
@@ -134,7 +134,7 @@ void TWaitingRoomDisplay::onInitialize()
                 borderThick(2)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
 
     m_waitingRoom.initialize();
@@ -184,7 +184,7 @@ void TWaitingRoomDisplay::recvWaitingRoomInitInfo(const Packet& packet)
         TGameRoom gameroom;
         gameroom.fromJson(jsonroom);
 
-        const auto ctl = getControll<ListBox>(tetris::resource::WAITINGROOM_GAMEROOMBOX);
+        const auto ctl = getControl<ListBox>(tetris::resource::WAITINGROOM_GAMEROOMBOX);
 
         RoomInfo roominfo{gameroom.getRoomNumber(), gameroom.getRoomName(), gameroom.getMaketime(),
                           gameroom.getUnique(), gameroom.getPlayerContainer().size(), gameroom.getFullCount()};
@@ -192,7 +192,7 @@ void TWaitingRoomDisplay::recvWaitingRoomInitInfo(const Packet& packet)
 
     }
 
-    const auto ctl = getControll<ListBox>(tetris::resource::WAITINGROOM_USERBOX);
+    const auto ctl = getControl<ListBox>(tetris::resource::WAITINGROOM_USERBOX);
     auto dummyPlayer = make_shared<TPlayer>();
 
     const size_t plyCount = root["player_count"].asUInt();
@@ -241,7 +241,7 @@ void TWaitingRoomDisplay::sendChat(const void* event)
 {
     auto keyevent = static_cast<const SDL_KeyboardEvent*>(event);
     if (keyevent->keysym.sym == SDLK_RETURN) {
-        const auto ctl = getControll<EditLabel>(tetris::resource::WAITINGROOM_CHAREDIT);
+        const auto ctl = getControl<EditLabel>(tetris::resource::WAITINGROOM_CHAREDIT);
         ChatInfo chatinfo{TPlayer::getInstance()->getUserName(), ctl->getString(), std::time(0)};
 
         Packet packet{
@@ -256,7 +256,7 @@ void TWaitingRoomDisplay::sendChat(const void* event)
 void TWaitingRoomDisplay::recvChat(const Packet& packet)
 {
     const string chat = packet.getPayload()["chat"].asString();
-    const auto ctl = getControll<ListBox>(tetris::resource::WAITINGROOM_CHATBOX);
+    const auto ctl = getControl<ListBox>(tetris::resource::WAITINGROOM_CHATBOX);
 
     ChatInfo chatinfo;
     auto json = packet.getPayload();

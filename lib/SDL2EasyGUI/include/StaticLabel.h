@@ -13,7 +13,7 @@
 
 namespace sdleasygui {
 
-typedef struct StaticLabelBasic : public ControllerBasic
+typedef struct StaticLabelBasic : public ControlBasic
 {
 } StaticLabelBasic;
 
@@ -35,23 +35,23 @@ protected:
     virtual void initialize() override final;
 };
 
-class StaticLabelBuilder : public ControllerBuilder
+class StaticLabelBuilder : public ControlBuilder
 {
 public:
 
     StaticLabelBuilder(const GraphicInterface::window_type window, const SEG_Point& point, const std::string& str)
-            : ControllerBuilder(window, point, str)
+            : ControlBuilder(window, point, str)
     {
     }
 
     StaticLabelBuilder(const GraphicInterface::window_type window, SEG_Point&& point, std::string&& str)
-            : ControllerBuilder(window, point, str)
+            : ControlBuilder(window, point, str)
     {
     }
 
     virtual ~StaticLabelBuilder() = default;
 
-    virtual Controller::controll_ptr build() final
+    virtual Control::control_ptr build() final
     {
         return new StaticLabel(*this);
     }

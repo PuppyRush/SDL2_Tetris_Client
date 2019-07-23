@@ -46,7 +46,7 @@ void TEnterServerDisplay::onInitialize()
                 borderThick(2)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
 
     begin_y += 80;
@@ -60,7 +60,7 @@ void TEnterServerDisplay::onInitialize()
                 borderThick(2)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
 
     {
@@ -73,7 +73,7 @@ void TEnterServerDisplay::onInitialize()
                 borderThick(2)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
 
     setBackgroundColor(SEG_Color{ColorCode::lightgray});
@@ -84,7 +84,7 @@ void TEnterServerDisplay::onInitialize()
 void TEnterServerDisplay::onClickedEnterServer(const void* click)
 {
     auto& player = TPlayer::getInstance();
-    const auto& idLabel = getControll<EditLabel>(resource::ENTERSERVER_ID);
+    const auto& idLabel = getControl<EditLabel>(resource::ENTERSERVER_ID);
 
     assert(idLabel != nullptr);
     if (idLabel->getString().empty()) {

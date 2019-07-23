@@ -32,7 +32,7 @@ void DisplayInterface::onInitialize()
 
 }
 
-t_res DisplayInterface::initialize()
+void DisplayInterface::initialize()
 {
     getWindow()->initialize();
 
@@ -43,7 +43,7 @@ t_res DisplayInterface::initialize()
     onInitialize();
     show();
 
-    return m_resultResrouce;
+   // return m_resultResrouce;
 }
 
 std::underlying_type_t<resource> DisplayInterface::alert()
@@ -88,7 +88,7 @@ void DisplayInterface::_run()
         auto event = m_eventDelivery.popEvent();
         onEvent(event);
 
-        if (m_currentCtl) {
+        if (m_currentCtl != nullptr && (m_currentCtl->isBounded(*event) || m_currentCtl->isHitting())) {
             m_currentCtl->onEvent(event);
         }
 
@@ -97,7 +97,7 @@ void DisplayInterface::_run()
             printf("%s \n ", magic_enum::enum_name(e).value().data());*/
             //printf("recv seg event : %d\n", event->type);
         } else if (event->type == 0x8000) {
-           // printf("recv user event : %d / %d \n", event->type, event->user.code);
+            // printf("recv user event : %d / %d \n", event->type, event->user.code);
         } else if (event->type == sdleasygui::toUType(SDL_TIMER_EVENT)) {
             //printf("recv timer event : %d / %d \n", event->type, event->user.code);
         } else {
@@ -158,15 +158,15 @@ void DisplayInterface::onKeyboardEvent(const SDL_KeyboardEvent* key)
 {
     switch (key->keysym.sym) {
         case SDLK_RETURN:
-            if (auto res = getCurrentController();
-                    res.first && res.second->isFoucs()) {
-                res.second->clickController();
+            if (auto res = getCurrentControl();
+                    res.first && res.second->isHitting()) {
+                res.second->onHit(res.second->getMidPoint(), true);
             }
             break;
         case SDLK_ESCAPE:
-            if (auto res = getCurrentController();
-                    res.first && res.second->isFoucs()) {
-                res.second->setFoucs(false);
+            if (auto res = getCurrentControl();
+                    res.first && res.second->isHitting()) {
+                res.second->setHitting(false);
             }
             break;
     }
@@ -288,11 +288,17 @@ void DisplayInterface::_onDrawMenus()
     }
 }
 
-void DisplayInterface::addControll(const controller_ptr newCtl)
+void DisplayInterface::addControl(Control* newCtl)
 {
-    newCtl->initialize();
+    auto maybeCtl = dynamic_cast<Control*>(newCtl);
+    if (maybeCtl == nullptr) {
+        assert(0);
+        return;
+    }
 
-    auto it = std::find_if(begin(m_menus), end(m_menus), [newCtl](controller_ptr exCtl) {
+    maybeCtl->initialize();
+
+    auto it = std::find_if(begin(m_menus), end(m_menus), [newCtl](control_ptr exCtl) {
         return newCtl->getResourceId() == exCtl->getResourceId();
     });
 
@@ -301,8 +307,9 @@ void DisplayInterface::addControll(const controller_ptr newCtl)
         return;
     }
 
-    m_menus.emplace_back(newCtl);
+    m_menus.emplace_back(maybeCtl);
 }
+
 
 bool DisplayInterface::menuHitTest(const SEG_Point& point)
 {

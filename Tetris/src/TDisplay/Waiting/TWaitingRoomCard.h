@@ -5,7 +5,7 @@
 #ifndef TETRIS_FIGURE_CLASS_TWAITINGROOMCARD_H
 #define TETRIS_FIGURE_CLASS_TWAITINGROOMCARD_H
 
-#include "SDL2EasyGUI/src/Controller/Controller.h"
+#include "SDL2EasyGUI/src/Controller/Control.h"
 #include "SDL2EasyGUI/src/Controller/Border.h"
 #include "SDL2EasyGUI/include/StaticLabel.h"
 #include "../Game/TMultiGameRoomDisplay.h"
@@ -82,7 +82,7 @@ public:
         return this;
     }
 
-    virtual sdleasygui::Controller* build() final
+    virtual sdleasygui::Control* build() final
     {
         return new TWaitingRoomCard(*this);
     }

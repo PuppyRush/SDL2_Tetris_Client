@@ -85,7 +85,7 @@ public:
 
     virtual ~EditLabelBuilder() = default;
 
-    virtual Controller::controll_ptr build()
+    virtual Control::control_ptr build()
     {
         return new EditLabel(*this);
     }

@@ -12,7 +12,7 @@ using namespace sdleasygui;
 EditLabel::EditLabel(EditLabelBuilder& bld)
         : LabelBasic(bld), m_labelBasic(bld.m_editBasic)
 {
-    bld.kind(ControllerKind::EditLabel);
+    bld.kind(ControlKind::EditLabel);
 
     m_textCursorTimerAdder = make_shared<TimerAdder>(700, toUType(SEG_Event::EDITLABEL_CHAR_TEXTCURSOR));
 }

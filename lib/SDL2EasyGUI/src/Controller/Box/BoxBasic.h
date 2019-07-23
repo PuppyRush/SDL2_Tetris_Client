@@ -99,11 +99,18 @@ public:
         return m_items.at(index);
     }
 
+    inline size_t getMenuMax()
+    { return m_menuMaxCnt; }
+
+    inline void setMenuMax(const size_t cnt)
+    { m_menuMaxCnt = cnt; }
+
 protected:
 
     const t_size MENU_GAP = 3;
+    size_t m_menuMaxCnt = 3;
 
-    BoxBasic(ControllerBuilder& bld);
+    BoxBasic(ControlBuilder& bld);
 
     virtual ~BoxBasic();
 
@@ -115,10 +122,24 @@ protected:
 
     virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) override;
 
+    void removeAll() _GLIBCXX_NOEXCEPT;
+
+    int calcIndexOf(const t_coord y);
+
+    std::string getSelectedText();
+
+    bool isFolded() const _GLIBCXX_NOEXCEPT
+    { return m_folded; }
+
+    void setFolded(const bool fold) _GLIBCXX_NOEXCEPT
+    { m_folded = fold; }
+
     std::vector<item_ptr> m_items;
     t_size m_menuHeight = 0;
     size_t m_menuStartIdx = 0;
     int m_selectedMenuIdx = -1;
+    int m_boundedMenuIndx = -1;
+private:
     bool m_folded = true;
 
 };

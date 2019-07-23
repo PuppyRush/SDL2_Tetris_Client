@@ -47,7 +47,7 @@ public:
 
     virtual ~ButtonBuilder() = default;
 
-    virtual Controller::controll_ptr build() final
+    virtual Control::control_ptr build() final
     {
         return new Button(*this);
     }

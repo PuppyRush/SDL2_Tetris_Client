@@ -41,7 +41,7 @@ void TOptionDisplay::onInitialize()
                 height(70)->
                 enabled(false);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     {
         ButtonBuilder bld(getWindow(), {begin_x + 60, begin_y}, "1");
@@ -55,7 +55,7 @@ void TOptionDisplay::onInitialize()
                 carot()->
                 grouping(0);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     {
         ButtonBuilder bld(getWindow(), {begin_x + 120, begin_y}, "2");
@@ -69,7 +69,7 @@ void TOptionDisplay::onInitialize()
                 carot()->
                 grouping(0);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     {
         ButtonBuilder bld(getWindow(), {begin_x + 180, begin_y}, "3");
@@ -83,7 +83,7 @@ void TOptionDisplay::onInitialize()
                 carot()->
                 grouping(0);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     {
         ButtonBuilder bld(getWindow(), {begin_x + 240, begin_y}, "4");
@@ -97,7 +97,7 @@ void TOptionDisplay::onInitialize()
                 carot()->
                 grouping(0);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     {
         ButtonBuilder bld(getWindow(), {begin_x + 60, begin_y + 60}, "5");
@@ -111,7 +111,7 @@ void TOptionDisplay::onInitialize()
                 carot()->
                 grouping(0);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     {
         ButtonBuilder bld(getWindow(), {begin_x + 120, begin_y + 60}, "6");
@@ -125,7 +125,7 @@ void TOptionDisplay::onInitialize()
                 carot()->
                 grouping(0);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     {
         ButtonBuilder bld(getWindow(), {begin_x + 180, begin_y + 60}, "7");
@@ -139,7 +139,7 @@ void TOptionDisplay::onInitialize()
                 carot()->
                 grouping(0);
 
-        addControll(bld.build());
+        addControl(bld.build());
 
     }
     {
@@ -154,7 +154,7 @@ void TOptionDisplay::onInitialize()
                 carot()->
                 grouping(0);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
 
     begin_y = WINDOW_HEIGHT / 4 + 200;
@@ -170,7 +170,7 @@ void TOptionDisplay::onInitialize()
                 carot()->
                 grouping(1);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
 
     {
@@ -185,7 +185,7 @@ void TOptionDisplay::onInitialize()
                 carot()->
                 grouping(1);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
 
     {
@@ -200,7 +200,7 @@ void TOptionDisplay::onInitialize()
                 carot()->
                 grouping(1);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     {
         ButtonBuilder bld(getWindow(), {begin_x + 320, begin_y}, "Randomly");
@@ -214,7 +214,7 @@ void TOptionDisplay::onInitialize()
                 carot()->
                 grouping(1);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
 
     begin_y += 100;
@@ -227,7 +227,7 @@ void TOptionDisplay::onInitialize()
                 height(50)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
     {
         ButtonBuilder bld(getWindow(), {begin_x + 60, begin_y}, "DrwaLine");
@@ -240,7 +240,7 @@ void TOptionDisplay::onInitialize()
                 carot()->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
 
     begin_y += 130;
@@ -254,7 +254,7 @@ void TOptionDisplay::onInitialize()
                 height(50)->
                 enabled(true);
 
-        addControll(bld.build());
+        addControl(bld.build());
     }
 
     setWindowHeight(900);

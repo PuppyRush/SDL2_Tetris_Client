@@ -30,8 +30,8 @@
 #include "SEG_Resource.h"
 #include "SEG_Define.h"
 
-#include "ControllerBuilder.h"
-#include "SDL2EasyGUI/src/Controller/Controller.h"
+#include "ControlBuilder.h"
+#include "SDL2EasyGUI/src/Controller/Control.h"
 
 namespace sdleasygui {
 
@@ -39,13 +39,13 @@ class DisplayInterface : public GraphicInterface, public EventListener
 {
 public:
 
-    using controller_ptr = typename Controller::controll_ptr;
+    using control_ptr = typename Control::control_ptr;
     using unique_type = typename GraphicInterface::unique_type;
     using display_ptr = std::shared_ptr<DisplayInterface>;
 
     virtual ~DisplayInterface();
 
-    void addControll(const controller_ptr newCtl);
+    void addControl(Control* newCtl);
 
     bool menuHitTest(const SEG_Point& point);
 
@@ -65,7 +65,7 @@ public:
     void hidden()
     { getWindow()->hidden(); }
 
-    t_res initialize();
+    virtual void initialize() override;
 
     virtual void refresh() override;
 
@@ -97,7 +97,7 @@ public:
     inline unique_type getWindowID() const noexcept
     { return getWindow()->getWindowID(); }
 
-    inline std::pair<bool, Controller*> getCurrentController() const noexcept
+    inline std::pair<bool, Control*> getCurrentControl() const noexcept
     { return m_currentCtl ? std::make_pair(true, m_currentCtl) : std::make_pair(false, nullptr); }
 
     template<class T>
@@ -108,14 +108,16 @@ public:
     }
 
     template<class T, class U>
-    auto getControll(const U resourceId)
+    auto getControl(const U resourceId)
     {
-        auto ctl = *find_if(begin(m_menus), end(m_menus), [resourceId](Controller::controll_ptr ptr) {
+        auto ctl = *find_if(begin(m_menus), end(m_menus), [resourceId](control_ptr ptr) {
             return ptr->getResourceId() == toUType(resourceId);
         });
 
         return dynamic_cast<T*>(ctl);
     }
+
+    virtual void resize() override {};
 
 protected:
     DisplayInterface(const t_id displayId);
@@ -166,9 +168,6 @@ protected:
     virtual void onCancel();
 
     virtual void onDestroy();
-
-    void outOfController()
-    { m_currentCtl = nullptr; }
 
     //events
     virtual void onCommonEvent(const SDL_CommonEvent* common)
@@ -248,6 +247,9 @@ protected:
     virtual void onDetachFocus()
     {};
 
+    virtual SDL_Rect getPoisition() const override final
+    { return m_positionRect;}
+
     t_display m_display;
     TLocalMode m_mode;
 
@@ -267,14 +269,15 @@ private:
 
     const t_id m_displayId;
 
-    std::vector<controller_ptr> m_menus;
-    Controller* m_currentCtl;
+    std::vector<control_ptr> m_menus;
+    Control* m_currentCtl;
 
     std::string m_backgroundImgPath;
     bool m_stopDraw = false;
     std::thread m_thread;
     std::atomic_bool m_run = true;
     t_res m_resultResrouce = NONE;
+
 };
 
 #define SEG_EVENT_NO_PARAM(id, fx, obj) DisplayInterface::_noParamEvent(id,std::bind(fx,obj))

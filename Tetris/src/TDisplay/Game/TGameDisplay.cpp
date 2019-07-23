@@ -97,7 +97,7 @@ void TGameDisplay::onClickedStart(const void* click)
 
     m_gamestart = true;
 
-    auto ctl = getControll<Button>(resource::GAME_START);
+    auto ctl = getControl<Button>(resource::GAME_START);
     ctl->setEnabled(false);
 }
 

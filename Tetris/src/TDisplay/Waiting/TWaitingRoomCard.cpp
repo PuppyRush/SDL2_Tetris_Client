@@ -13,7 +13,7 @@ using namespace sdleasygui;
 TWaitingRoomCard::TWaitingRoomCard(TWaitingRoomCardBuilder& bld)
         : Border(bld), m_cardBasic(bld.m_cardBasic)
 {
-    bld.kind(sdleasygui::ControllerKind::ListBox);
+    bld.kind(sdleasygui::ControlKind::ListBox);
 }
 
 void TWaitingRoomCard::onDraw()
@@ -36,7 +36,7 @@ void TWaitingRoomCard::initialize()
                 borderThick(2)->
                 enabled(true);
 
-        //addControll(bld.build());
+        //addControl(bld.build());
     }
 
     Border::initialize();

@@ -123,10 +123,11 @@ typedef struct SEG_TFont
     {}
 } TFont;
 
-typedef struct ControllerBasic
+typedef struct ControlBasic
 {
     t_res resourceId;
-    SEG_Point point = SEG_Point(-100, -100);
+    SEG_Point point = SEG_Point{-100, -100};
+    SEG_Point midPoint = SEG_Point{0,0};
     t_size depth = 0;
     t_size width = 100;
     t_size height = 50;
@@ -136,7 +137,7 @@ typedef struct ControllerBasic
     t_display display = std::numeric_limits<t_display>::max();
     bool enabled = true;
     bool multiselected = false;
-    ControllerKind kind = ControllerKind::StaticLabel;
+    ControlKind kind = ControlKind::StaticLabel;
     int group = -1;
     bool carot = false;
     bool autoSize = true;
@@ -149,9 +150,9 @@ typedef struct ControllerBasic
     int borderAngle = 0;
     int borderThick = 1;
 
-    ControllerBasic() = default;
+    ControlBasic() = default;
 
-    ControllerBasic(const ControllerBasic& b)
+    ControlBasic(const ControlBasic& b)
             : resourceId(b.resourceId),
               point(b.point),
               width(b.width),
@@ -175,7 +176,7 @@ typedef struct ControllerBasic
               borderColor(b.borderColor)
     {}
 
-} TControllerBasic;
+} TControlBasic;
 
 }
 

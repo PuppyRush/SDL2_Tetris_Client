@@ -21,12 +21,12 @@ public:
 
     inline const bool isMultiselected() const noexcept
     {
-        return Controller::isMultiselected();
+        return Control::isMultiselected();
     }
 
     inline void setMultiselected(bool multiselected) noexcept
     {
-        Controller::setMultiselected(multiselected);
+        Control::setMultiselected(multiselected);
     }
 
     virtual void onDraw() override;
@@ -34,7 +34,7 @@ public:
     virtual void onDrawBackground() override;
 
 protected:
-    explicit ButtonBasic(ControllerBuilder& bld);
+    explicit ButtonBasic(ControlBuilder& bld);
 
     virtual void initialize() override;
 
@@ -42,7 +42,7 @@ private:
 
     void _drawCarot();
 
-    std::shared_ptr<SDL_Texture> m_texture;
+    //std::shared_ptr<SDL_Texture> m_texture;
 };
 
 }

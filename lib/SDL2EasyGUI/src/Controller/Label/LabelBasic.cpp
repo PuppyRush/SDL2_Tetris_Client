@@ -3,10 +3,11 @@
 //
 
 #include "LabelBasic.h"
+#include <SEG_Drawer.h>
 
 using namespace sdleasygui;
 
-LabelBasic::LabelBasic(ControllerBuilder& bld)
+LabelBasic::LabelBasic(ControlBuilder& bld)
         : Border(bld)
 {
 
