@@ -3,7 +3,8 @@
 //
 
 #include "ComboBox.h"
-#include <include/SEG_Drawer.h>
+#include "include/SEG_Drawer.h"
+#include "../../Decorator/ScrollableDecorator.h"
 
 using namespace sdleasygui;
 
@@ -32,9 +33,21 @@ void ComboBox::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
             m_selectedMenuIdx = calcIndexOf(button->y);
 
             setHeight(m_defaultHeight);
+
+            EventPusher event{getWindow()->getWindowID(), getResourceId(), SEG_DECORATOR_DETACH};
+            event.setUserData(this);
+            event.pushEvent();
+
         } else {
             size_t menuMax = m_items.size() < m_menuMaxCnt ? m_menuMaxCnt : m_items.size();
             setHeight(getHeight() * menuMax);
+
+            if (m_menuMaxCnt < m_items.size()) {
+                auto dec = new ScrollableDecorator(this, 2);
+                EventPusher event{getWindow()->getWindowID(), getResourceId(), SEG_DECORATOR_ATTACH};
+                event.setUserData(dec);
+                event.pushEvent();
+            }
         }
 
     }

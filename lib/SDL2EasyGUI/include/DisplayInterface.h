@@ -32,6 +32,7 @@
 
 #include "ControlBuilder.h"
 #include "SDL2EasyGUI/src/Controller/Control.h"
+#include "../src/Decorator/Decorator.h"
 
 namespace sdleasygui {
 
@@ -40,12 +41,16 @@ class DisplayInterface : public GraphicInterface, public EventListener
 public:
 
     using control_ptr = typename Control::control_ptr;
+    using control_ary = std::vector<control_ptr>;
+    using control_ary_it = typename control_ary::iterator;
     using unique_type = typename GraphicInterface::unique_type;
     using display_ptr = std::shared_ptr<DisplayInterface>;
 
     virtual ~DisplayInterface();
 
-    void addControl(Control* newCtl);
+    void addControl(control_ptr newCtl);
+
+    bool removeControl(control_ptr ctl);
 
     bool menuHitTest(const SEG_Point& point);
 
@@ -117,7 +122,12 @@ public:
         return dynamic_cast<T*>(ctl);
     }
 
-    virtual void resize() override {};
+    control_ptr getControl(const t_res resourceId);
+
+    control_ary_it findControl(const t_res resourceId);
+
+    virtual void resize() override
+    {};
 
 protected:
     DisplayInterface(const t_id displayId);
@@ -247,9 +257,6 @@ protected:
     virtual void onDetachFocus()
     {};
 
-    virtual SDL_Rect getPoisition() const override final
-    { return m_positionRect;}
-
     t_display m_display;
     TLocalMode m_mode;
 
@@ -259,17 +266,25 @@ protected:
 
 private:
 
+    inline control_ary& getMenuAry()
+    { return m_menus; }
+
+    void attachDecorator(const control_ptr, Decorator*);
+
+    void detachDecorator(const control_ptr);
+
     void _release();
 
     void _run();
 
     void _onDrawMenus();
 
-    inline void _setResult(const t_res res){ m_resultResrouce = res;}
+    inline void _setResult(const t_res res)
+    { m_resultResrouce = res; }
 
     const t_id m_displayId;
 
-    std::vector<control_ptr> m_menus;
+    control_ary m_menus;
     Control* m_currentCtl;
 
     std::string m_backgroundImgPath;

@@ -52,7 +52,6 @@ void BoxBasic::onDraw()
 
 void BoxBasic::onDrawBackground()
 {
-
     Border::onDrawBackground();
 }
 

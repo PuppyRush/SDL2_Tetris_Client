@@ -157,10 +157,9 @@ protected:
 
     explicit Control(const ControlBuilder& bld);
 
-    void drawBackground(const SDL_Rect rect, const SEG_Color color);
+    void _initializeInCtor();
 
-    virtual SDL_Rect getPoisition() const override final
-    { return m_positionRect; }
+    void drawBackground(const SDL_Rect rect, const SEG_Color color);
 
     int m_textWidth = 0;
     int m_textHeight = 0;

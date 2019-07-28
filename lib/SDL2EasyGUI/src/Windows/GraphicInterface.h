@@ -10,7 +10,6 @@
 #endif
 
 #include "SDL2EasyGUI/include/SEG_Window.h"
-//#include "SDL2EasyGUI/include/EventListener.h"
 #include "../../include/EventQueue.h"
 
 namespace sdleasygui {
@@ -30,13 +29,11 @@ public:
     inline void setWindowWidth(const t_size width) noexcept
     {
         m_window->setWidth(width);
-        m_positionRect.w = width;
     }
 
     inline void setWindowHeight(const t_size height) noexcept
     {
         m_window->setHeight(height);
-        m_positionRect.h = height;
     }
 
     inline const t_size getWindowWidth() const noexcept
@@ -79,8 +76,8 @@ public:
     inline void setPoint(const SEG_Point& point) _GLIBCXX_NOEXCEPT
     {
         m_data->point = point;
-        m_positionRect.x = point.x;
-        m_positionRect.y = point.y;
+        m_data->positionRect.x = point.x;
+        m_data->positionRect.y = point.y;
 
         m_data->midPoint = SEG_Point{point.x + m_data->width / 2, point.y + m_data->height / 2};
     }
@@ -92,17 +89,17 @@ public:
 
     inline void setMidPoint(const SEG_Point& point) _GLIBCXX_NOEXCEPT
     {
-       /* if (m_data->point.x > point.x) {
-            m_data->point.x -= (m_data->point.x - point.x);
-        } else {
-            m_data->point.x += (point.x - m_data->point.x);
-        }
+        /* if (m_data->point.x > point.x) {
+             m_data->point.x -= (m_data->point.x - point.x);
+         } else {
+             m_data->point.x += (point.x - m_data->point.x);
+         }
 
-        if (m_data->point.y > point.y) {
-            m_data->point.y -= (m_data->point.y - point.y);
-        } else {
-            m_data->point.y += (point.y - m_data->point.y);
-        }*/
+         if (m_data->point.y > point.y) {
+             m_data->point.y -= (m_data->point.y - point.y);
+         } else {
+             m_data->point.y += (point.y - m_data->point.y);
+         }*/
 
         m_data->midPoint = point;
     }
@@ -115,7 +112,7 @@ public:
     inline void setWidth(const t_size width) _GLIBCXX_NOEXCEPT
     {
         m_data->width = width;
-        m_positionRect.w = width;
+        m_data->positionRect.w = width;
         m_data->midPoint = SEG_Point{m_data->point.x + width / 2, m_data->midPoint.y};
     }
 
@@ -124,10 +121,10 @@ public:
         return m_data->height;
     }
 
-    inline void setHeight(const t_size height) _GLIBCXX_NOEXCEPT
+    void setHeight(const t_size height) _GLIBCXX_NOEXCEPT
     {
         m_data->height = height;
-        m_positionRect.h = height;
+        m_data->positionRect.h = height;
         m_data->midPoint = SEG_Point{m_data->width, m_data->point.y + height / 2};
     }
 
@@ -241,6 +238,16 @@ public:
         m_data->multiselected = multiselected;
     }
 
+    inline void setPosition(const SDL_Rect rect) _GLIBCXX_NOEXCEPT
+    {
+        m_data->positionRect = rect;
+    }
+
+    inline SDL_Rect getPoisition() const _GLIBCXX_NOEXCEPT
+    {
+        return m_data->positionRect;
+    }
+
     virtual void initialize() = 0;
 
     virtual void onDraw() = 0;
@@ -254,13 +261,12 @@ public:
 protected:
 
     window_type m_window = nullptr;
-    SDL_Rect m_positionRect;
 
-    GraphicInterface();
+    explicit GraphicInterface();
 
-    virtual SDL_Rect getPoisition() const = 0;
+    explicit GraphicInterface(std::shared_ptr<ControlBasic>);
 
-    inline std::shared_ptr<ControlBasic> getBasic() const  _GLIBCXX_NOEXCEPT
+    inline std::shared_ptr<ControlBasic> getBasic() const _GLIBCXX_NOEXCEPT
     {
         return m_data;
     }

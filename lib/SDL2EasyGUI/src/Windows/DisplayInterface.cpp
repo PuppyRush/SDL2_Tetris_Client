@@ -43,7 +43,7 @@ void DisplayInterface::initialize()
     onInitialize();
     show();
 
-   // return m_resultResrouce;
+    // return m_resultResrouce;
 }
 
 std::underlying_type_t<resource> DisplayInterface::alert()
@@ -150,6 +150,27 @@ void DisplayInterface::onUserEvent(const SDL_UserEvent* event)
         case WINDOW_CLOSE:
             onClose();
             break;
+        case SEG_DECORATOR_ATTACH: {
+            t_res id = *static_cast<t_res*>(event->data1);
+            Decorator* decorator = static_cast<Decorator*>(event->data2);
+
+            if (auto ctl = getControl(id); ctl != nullptr) {
+                attachDecorator(ctl, decorator);
+            } else {
+                assert(0);
+            }
+            break;
+        }
+        case SEG_DECORATOR_DETACH: {
+            t_res id = *static_cast<t_res*>(event->data1);
+            auto origin = static_cast<Control*>(event->data2);
+            if (auto deco = getControl(id); deco != nullptr && origin->getResourceId() == deco->getResourceId()) {
+                detachDecorator(origin);
+            } else {
+                assert(0);
+            }
+            break;
+        }
         default:;
     }
 }
@@ -251,7 +272,7 @@ void DisplayInterface::onCancel()
 
 void DisplayInterface::onDestroy()
 {
-    m_menus.clear();
+    getMenuAry().clear();
 }
 
 void DisplayInterface::onDrawBackground()
@@ -283,7 +304,7 @@ void DisplayInterface::onDraw()
 
 void DisplayInterface::_onDrawMenus()
 {
-    for (const auto& menu : m_menus) {
+    for (const auto& menu : getMenuAry()) {
         menu->onVirtualDraw();
     }
 }
@@ -298,22 +319,32 @@ void DisplayInterface::addControl(Control* newCtl)
 
     maybeCtl->initialize();
 
-    auto it = std::find_if(begin(m_menus), end(m_menus), [newCtl](control_ptr exCtl) {
+    auto it = std::find_if(begin(getMenuAry()), end(getMenuAry()), [newCtl](control_ptr exCtl) {
         return newCtl->getResourceId() == exCtl->getResourceId();
     });
 
-    if (it != m_menus.end()) {
+    if (it != getMenuAry().end()) {
         assert(0);
         return;
     }
 
-    m_menus.emplace_back(maybeCtl);
+    getMenuAry().emplace_back(maybeCtl);
 }
 
+bool DisplayInterface::removeControl(control_ptr ctl)
+{
+
+    if (auto dest = findControl(ctl->getResourceId()); dest != getMenuAry().end()) {
+        getMenuAry().erase(dest);
+        return true;
+    }
+
+    return false;
+}
 
 bool DisplayInterface::menuHitTest(const SEG_Point& point)
 {
-    for (const auto& menu : m_menus) {
+    for (const auto& menu : getMenuAry()) {
         if (menu->isHit(point)) {
             m_currentCtl = menu;
 
@@ -334,3 +365,33 @@ void DisplayInterface::refresh()
     event.pushEvent();
 }
 
+void DisplayInterface::attachDecorator(const control_ptr ctl, Decorator* decorator)
+{
+    if (removeControl(ctl)) {
+        addControl(decorator);
+    }
+
+}
+
+void DisplayInterface::detachDecorator(const control_ptr ctl)
+{
+    if (removeControl(ctl)) {
+        addControl(ctl);
+    }
+}
+
+DisplayInterface::control_ptr
+DisplayInterface::getControl(const t_res resourceId)
+{
+    return *find_if(begin(getMenuAry()), end(getMenuAry()), [resourceId](control_ptr ptr) {
+        return ptr->getResourceId() == resourceId;
+    });
+}
+
+DisplayInterface::control_ary_it
+DisplayInterface::findControl(const t_res resourceId)
+{
+    return find_if(begin(getMenuAry()), end(getMenuAry()), [resourceId](control_ptr ptr) {
+        return ptr->getResourceId() == resourceId;
+    });
+}

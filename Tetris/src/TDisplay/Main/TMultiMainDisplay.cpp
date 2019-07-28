@@ -94,11 +94,9 @@ void TMultiMainDisplay::onInitialize()
                 height(30)->
                 enabled(true);
 
-        auto ctl = dynamic_cast<ComboBox*>( bld.build());
+        addControl(bld.build());
 
-        addControl(new ScrollableDecorator(ctl, 2));
-
-        //auto cmb = getControl<ComboBox>(resource::MAIN_TEST_TEXT_COMBO);
+        auto ctl = getControl<ComboBox>(resource::MAIN_TEST_TEXT_COMBO);
         ctl->appendItem(std::make_shared<ComboBoxItem>("item1"));
         ctl->appendItem(std::make_shared<ComboBoxItem>("item2"));
         ctl->appendItem(std::make_shared<ComboBoxItem>("item3"));

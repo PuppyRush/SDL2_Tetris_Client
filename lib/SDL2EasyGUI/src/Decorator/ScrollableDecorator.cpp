@@ -31,9 +31,10 @@ void ScrollableDecorator::drawScroll()
 
     const t_size scrollWidth = 15;
 
-    const SDL_Rect rect{getPoint().x + getWidth() - scrollWidth, getPoint().y,
+    const SDL_Rect rect{getPoint().x + getWidth() - scrollWidth - 1, getPoint().y,
                         scrollWidth, getHeight()};
 
-    SEG_DrawRoundedRactangel(getSDLRenderer(),rect, ColorCode::darkgray, 5);
+    SEG_DrawRoundedRactangel(getSDLRenderer(),rect, ColorCode::darkgray, 10);
+
 
 }

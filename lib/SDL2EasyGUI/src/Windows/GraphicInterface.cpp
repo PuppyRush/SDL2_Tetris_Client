@@ -7,7 +7,11 @@
 using namespace sdleasygui;
 
 GraphicInterface::GraphicInterface()
-        : m_window(), m_positionRect({0, 0, 0, 0})
+{}
+
+
+GraphicInterface::GraphicInterface(std::shared_ptr<ControlBasic> ctl)
+        : m_window(ctl->window), m_data(ctl)
 {}
 
 GraphicInterface::~GraphicInterface()

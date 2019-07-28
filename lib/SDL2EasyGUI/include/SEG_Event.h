@@ -111,8 +111,7 @@ public:
     template<class T>
     void setUserData(T* data)
     {
-        auto newdata = new T{*data};
-        m_user.data2 = newdata;
+        m_user.data2 = static_cast<void*>(data);
     }
 
     void pushEvent()

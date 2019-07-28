@@ -16,6 +16,7 @@
 
 #include <SDL2/SDL_image.h>
 
+//#include "SEG_Window.h"
 #include "SEG_Type.h"
 #include "SEG_Property.h"
 
@@ -123,11 +124,17 @@ typedef struct SEG_TFont
     {}
 } TFont;
 
+
+//pre declearcation
+class SEG_Window;
+
 typedef struct ControlBasic
 {
+    SEG_Window* window;
     t_res resourceId;
     SEG_Point point = SEG_Point{-100, -100};
     SEG_Point midPoint = SEG_Point{0,0};
+    SDL_Rect positionRect = SDL_Rect{0,0};
     t_size depth = 0;
     t_size width = 100;
     t_size height = 50;
@@ -154,6 +161,7 @@ typedef struct ControlBasic
 
     ControlBasic(const ControlBasic& b)
             : resourceId(b.resourceId),
+              window(b.window),
               point(b.point),
               width(b.width),
               height(b.height),

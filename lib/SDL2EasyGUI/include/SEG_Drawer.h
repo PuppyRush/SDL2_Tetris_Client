@@ -16,6 +16,25 @@
 
 namespace sdleasygui {
 
+static void SEG_Triangle(SDL_Renderer* renderer, const SEG_Point p1,const SEG_Point p2,const SEG_Point p3,
+        const SEG_Color& color)
+{
+    trigonRGBA(renderer, p1.x, p1.y , p2.x, p2.y , p3.x, p3.y, color.r, color.g, color.b, color.a);
+}
+
+static void SEG_FilledTriangle(SDL_Renderer* renderer, const SEG_Point p1,const SEG_Point p2,const SEG_Point p3,
+                         const SEG_Color& color)
+{
+    filledTrigonRGBA(renderer, p1.x, p1.y , p2.x, p2.y , p3.x, p3.y, color.r, color.g, color.b, color.a);
+}
+
+
+static void SEG_DrawRoundedRactangel(SDL_Renderer* renderer, const SDL_Rect rect, const SEG_Color& color, int16_t rad)
+{
+    roundedRectangleRGBA(renderer, rect.x, rect.y, rect.x + rect.w, rect.y + rect.h, rad, color.r, color.g, color.b, color.a);
+}
+
+
 static void SEG_DrawRoundedRactangel(SDL_Renderer* renderer, const SDL_Rect rect, const SEG_Color& color, int16_t rad)
 {
     roundedRectangleRGBA(renderer, rect.x, rect.y, rect.x + rect.w, rect.y + rect.h, rad, color.r, color.g, color.b, color.a);

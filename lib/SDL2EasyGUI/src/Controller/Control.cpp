@@ -10,26 +10,25 @@
 using namespace sdleasygui;
 
 Control::Control(const Control* ctl)
-    :m_positionRect(ctl->getPoisition())
+        : GraphicInterface(ctl->getBasic())
 {
-    m_data = ctl->getBasic();
-
-    setMidPoint({m_data->point.x + m_data->width / 2, m_data->point.y + m_data->height / 2});
-    setWindow(ctl->getWindow());
-
+    _initializeInCtor();
     GraphicInterface::m_backgroundColor = m_data->backgroundColor;
 }
 
 Control::Control(const ControlBuilder& bld)
         : m_positionRect({bld.getBasic().point.x, bld.getBasic().point.y,
-                          bld.getBasic().width, bld.getBasic().height})
+                          bld.getBasic().width, bld.getBasic().height}),
+          GraphicInterface(std::make_shared<ControlBasic>(bld.getBasic()))
 {
-    m_data = std::make_shared<ControlBasic>(bld.getBasic());
-
-    setMidPoint({m_data->point.x + m_data->width / 2, m_data->point.y + m_data->height / 2});
-    setWindow(bld.getWindow());
-
+    _initializeInCtor();
     GraphicInterface::m_backgroundColor = m_data->backgroundColor;
+}
+
+void Control::_initializeInCtor()
+{
+    setPosition({getPoint().x, getPoint().y, getWidth(), getHeight()});
+    setMidPoint({getPoint().x + getWidth() / 2, getPoint().y + getHeight() / 2});
 }
 
 void Control::initialize()
@@ -118,7 +117,7 @@ void Control::setSelected(bool selected)
 {
     m_data->selected = selected;
     if (selected) {
-        GroupControlManager::getInstance().select( getGroup() ,getResourceId() );
+        GroupControlManager::getInstance().select(getGroup(), getResourceId());
     }
     refresh();
 }
@@ -186,9 +185,7 @@ void Control::drawBackground(const SDL_Rect rect, const SEG_Color color)
     SDL_RenderFillRect(renderer, &rect);
     SDL_RenderDrawRect(renderer, &rect);
 
-
 }
-
 
 void Control::onDraw()
 {

@@ -139,7 +139,7 @@ public:
 
     const GraphicInterface::window_type getWindow() const
     {
-        return m_window;
+        return m_basic.window;
     }
 
     const TControlBasic& getBasic() const
@@ -156,7 +156,6 @@ public:
 
 private:
 
-    GraphicInterface::window_type m_window;
     TControlBasic m_basic;
 
 };
