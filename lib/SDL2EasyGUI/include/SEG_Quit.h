@@ -9,7 +9,7 @@
 
 #include "DisplayController.h"
 
-namespace sdleasygui {
+namespace seg {
 
 void SDLEasyGUI_Quit()
 {

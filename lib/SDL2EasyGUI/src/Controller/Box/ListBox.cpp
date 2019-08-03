@@ -5,14 +5,14 @@
 #include "ListBox.h"
 #include <include/SEG_Drawer.h>
 
-using namespace sdleasygui;
+using namespace seg;
 
 ListBox::ListBox(ListBoxBuilder& bld)
         : BoxBasic(bld)
 {
     bld.kind(ControlKind::ListBox);
     setFolded(true);
-    m_menuMaxCnt = 10;
+    m_visibleMenuCnt = 10;
 }
 
 void ListBox::onDraw()

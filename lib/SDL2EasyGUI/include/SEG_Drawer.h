@@ -5,77 +5,83 @@
 #ifndef SDL2_TETRIS_CLIENT_SEG_DRAWER_H
 #define SDL2_TETRIS_CLIENT_SEG_DRAWER_H
 
-
 #if _MSC_VER >= 1200
 #pragma once
 #endif
 
-
 #include "SEG_Struct.h"
 #include "sdl2gfx/SDL2_gfxPrimitives.h"
 
-namespace sdleasygui {
+namespace seg {
 
-static void SEG_Triangle(SDL_Renderer* renderer, const SEG_Point p1,const SEG_Point p2,const SEG_Point p3,
-        const SEG_Color& color)
-{
-    trigonRGBA(renderer, p1.x, p1.y , p2.x, p2.y , p3.x, p3.y, color.r, color.g, color.b, color.a);
-}
+    namespace draw_helper {
 
-static void SEG_FilledTriangle(SDL_Renderer* renderer, const SEG_Point p1,const SEG_Point p2,const SEG_Point p3,
-                         const SEG_Color& color)
-{
-    filledTrigonRGBA(renderer, p1.x, p1.y , p2.x, p2.y , p3.x, p3.y, color.r, color.g, color.b, color.a);
-}
+        static void draw_Triangle(SDL_Renderer* renderer, const SEG_Point& p1, const SEG_Point& p2, const SEG_Point& p3,
+                                  const SEG_Color& color)
+        {
+            trigonRGBA(renderer, p1.x, p1.y, p2.x, p2.y, p3.x, p3.y, color.r, color.g, color.b, color.a);
+        }
 
+        static void
+        draw_FilledTriangle(SDL_Renderer* renderer, const SEG_Point& p1, const SEG_Point& p2, const SEG_Point& p3,
+                            const SEG_Color& color)
+        {
+            filledTrigonRGBA(renderer, p1.x, p1.y, p2.x, p2.y, p3.x, p3.y, color.r, color.g, color.b, color.a);
+        }
 
-static void SEG_DrawRoundedRactangel(SDL_Renderer* renderer, const SDL_Rect rect, const SEG_Color& color, int16_t rad)
-{
-    roundedRectangleRGBA(renderer, rect.x, rect.y, rect.x + rect.w, rect.y + rect.h, rad, color.r, color.g, color.b, color.a);
-}
+        static void draw_RoundedRactangel(SDL_Renderer* renderer, const SDL_Rect& rect, const SEG_Color& color, int16_t rad)
+        {
+            roundedRectangleRGBA(renderer, rect.x, rect.y, rect.x + rect.w, rect.y + rect.h, rad, color.r, color.g, color.b,
+                                 color.a);
+        }
 
+        static void
+        draw_FilledRoundedRactangel(SDL_Renderer* renderer, const SDL_Rect& rect, const SEG_Color& color, int16_t rad)
+        {
+            roundedBoxRGBA(renderer, rect.x, rect.y, rect.x + rect.w, rect.y + rect.h, rad, color.r, color.g, color.b,
+                           color.a);
+        }
 
-static void SEG_DrawRoundedRactangel(SDL_Renderer* renderer, const SDL_Rect rect, const SEG_Color& color, int16_t rad)
-{
-    roundedRectangleRGBA(renderer, rect.x, rect.y, rect.x + rect.w, rect.y + rect.h, rad, color.r, color.g, color.b, color.a);
-}
+        static void
+        drawCircle(SDL_Renderer* renderer, const SEG_Point& midPoint, const SEG_Color& color, const size_t thick = 1)
+        {
+            filledCircleRGBA(renderer, midPoint.x, midPoint.y, thick, color.r, color.g, color.b, color.a);
+        }
 
+        static void drawX(SDL_Renderer* renderer, const SDL_Rect& rect, const SEG_Color& color, const size_t thick = 1)
+        {
+            SDL_Point line1[2]{{rect.x,          rect.y},
+                               {rect.x + rect.w, rect.y + rect.h}};
+            SDL_Point line2[2]{{rect.x + rect.w, rect.y},
+                               {rect.x,          rect.y + rect.h}};
 
-static void SEG_DrawCircle(SDL_Renderer* renderer, const SEG_Point midPoint, const SEG_Color& color, const size_t thick = 1)
-{
-    filledCircleRGBA(renderer,midPoint.x, midPoint.y, thick, color.r, color.g, color.b, color.a);
-}
+            SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 
-static void SEG_DrawX(SDL_Renderer* renderer, const SDL_Rect rect, const SEG_Color& color, const size_t thick = 1)
-{
-    SDL_Point line1[2]{{rect.x, rect.y},{rect.x + rect.w, rect.y + rect.h}};
-    SDL_Point line2[2]{{rect.x + rect.w, rect.y},{rect.x , rect.y + rect.h}};
+            thickLineRGBA(renderer, line1[0].x, line1[0].y, line1[1].x, line1[1].y, thick,
+                          color.r, color.g, color.b, color.a);
 
-    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+            thickLineRGBA(renderer, line2[0].x, line2[0].y, line2[1].x, line2[1].y, thick,
+                          color.r, color.g, color.b, color.a);
 
-    thickLineRGBA(renderer, line1[0].x, line1[0].y, line1[1].x, line1[1].y, thick,
-            color.r, color.g, color.b, color.a);
+        }
 
-    thickLineRGBA(renderer, line2[0].x, line2[0].y, line2[1].x, line2[1].y, thick,
-                  color.r, color.g, color.b, color.a);
+        static void drawV(SDL_Renderer* renderer, const SDL_Rect& rect, const SEG_Color& color, const size_t thick = 1)
+        {
+            SDL_Point line1[2]{{rect.x + rect.w / 4,   rect.y + rect.h / 6},
+                               {rect.x + (rect.w / 2), rect.y + rect.h - rect.h / 5}};
+            SDL_Point line2[2]{{rect.x + (rect.w / 2), rect.y + rect.h - rect.h / 5},
+                               {rect.x + rect.w,       rect.y}};
 
-}
+            SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 
-static void SEG_DrawV(SDL_Renderer* renderer, const SDL_Rect rect, const SEG_Color& color, const size_t thick = 1)
-{
-    SDL_Point line1[2]{{rect.x + rect.w/4, rect.y + rect.h/6},{rect.x + (rect.w/2), rect.y + rect.h - rect.h/5}};
-    SDL_Point line2[2]{{rect.x + (rect.w/2), rect.y + rect.h - rect.h/5},{rect.x + rect.w, rect.y }};
+            thickLineRGBA(renderer, line1[0].x, line1[0].y, line1[1].x, line1[1].y, thick,
+                          color.r, color.g, color.b, color.a);
 
-    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+            thickLineRGBA(renderer, line2[0].x, line2[0].y, line2[1].x, line2[1].y, thick,
+                          color.r, color.g, color.b, color.a);
 
-    thickLineRGBA(renderer, line1[0].x, line1[0].y, line1[1].x, line1[1].y, thick,
-                  color.r, color.g, color.b, color.a);
-
-    thickLineRGBA(renderer, line2[0].x, line2[0].y, line2[1].x, line2[1].y, thick,
-                  color.r, color.g, color.b, color.a);
-
-}
-
+        }
+    }
 
 class TextDrawer
 {
@@ -144,7 +150,6 @@ private:
     double m_width;
 
 };
-
 
 }
 #endif //SDL2_TETRIS_CLIENT_SEG_DRAWER_H

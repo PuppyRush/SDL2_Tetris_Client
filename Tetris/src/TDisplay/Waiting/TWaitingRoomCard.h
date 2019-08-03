@@ -22,7 +22,7 @@ typedef struct WaitingroomCardBasic
 
 class TWaitingRoomCardBuilder;
 
-class TWaitingRoomCard final : public sdleasygui::Border
+class TWaitingRoomCard final : public seg::Border
 {
 public:
 
@@ -37,22 +37,22 @@ public:
 private:
     WaitingroomCardBasic m_cardBasic;
     std::unique_ptr<TMultiGameRoomDisplay> m_gameroom;
-    std::unique_ptr<sdleasygui::StaticLabel> m_name;
-    std::unique_ptr<sdleasygui::StaticLabel> m_partyNumber;
-    std::unique_ptr<sdleasygui::StaticLabel> m_state;
+    std::unique_ptr<seg::StaticLabel> m_name;
+    std::unique_ptr<seg::StaticLabel> m_partyNumber;
+    std::unique_ptr<seg::StaticLabel> m_state;
 };
 
-class TWaitingRoomCardBuilder : public sdleasygui::BorderBuilder
+class TWaitingRoomCardBuilder : public seg::BorderBuilder
 {
 public:
 
-    TWaitingRoomCardBuilder(const sdleasygui::GraphicInterface::window_type window, const sdleasygui::SEG_Point& point,
+    TWaitingRoomCardBuilder(const seg::GraphicInterface::window_type window, const seg::SEG_Point& point,
                             const std::string& str)
             : BorderBuilder(window, point, str)
     {
     }
 
-    TWaitingRoomCardBuilder(const sdleasygui::GraphicInterface::window_type window, sdleasygui::SEG_Point&& point,
+    TWaitingRoomCardBuilder(const seg::GraphicInterface::window_type window, seg::SEG_Point&& point,
                             std::string&& str)
             : BorderBuilder(window, point, str)
     {
@@ -82,7 +82,7 @@ public:
         return this;
     }
 
-    virtual sdleasygui::Control* build() final
+    virtual seg::Control* build() final
     {
         return new TWaitingRoomCard(*this);
     }

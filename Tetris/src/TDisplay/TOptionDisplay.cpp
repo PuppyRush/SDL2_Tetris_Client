@@ -9,10 +9,10 @@
 
 SDL_TETRIS
 using namespace game_interface;
-using namespace sdleasygui;
+using namespace seg;
 using namespace tetris_module;
 
-TOptionDisplay::TOptionDisplay(const sdleasygui::t_id displayId)
+TOptionDisplay::TOptionDisplay(const seg::t_id displayId)
         : TDisplayInterface(displayId)
 {
     m_display = game_interface::toUType(TDisplay::Option);
@@ -22,7 +22,7 @@ TOptionDisplay::TOptionDisplay(const sdleasygui::t_id displayId)
 void TOptionDisplay::registerEvent()
 {
 
-    SEG_LBUTTONCLICK(sdleasygui::toUType(resource::OPTION_BACK), &TOptionDisplay::onClickedBack, this);
+    SEG_LBUTTONCLICK(seg::toUType(resource::OPTION_BACK), &TOptionDisplay::onClickedBack, this);
 }
 
 void TOptionDisplay::onInitialize()

@@ -15,7 +15,7 @@ class TCreateGameroomDisplay : public TDisplayInterface
 {
 public:
 
-    explicit TCreateGameroomDisplay(const sdleasygui::t_id displayId);
+    explicit TCreateGameroomDisplay(const seg::t_id displayId);
 
     virtual ~TCreateGameroomDisplay() = default;
 

@@ -7,7 +7,7 @@
 #include "SDL2EasyGUI/include/SEG_TypeTraits.h"
 
 using namespace std;
-using namespace sdleasygui;
+using namespace seg;
 
 EditLabel::EditLabel(EditLabelBuilder& bld)
         : LabelBasic(bld), m_labelBasic(bld.m_editBasic)

@@ -1,12 +1,12 @@
 #include "Tetris/include/TFigureUnit.h"
 
 using namespace tetris_module;
-using namespace sdleasygui;
+using namespace seg;
 
 TFigureUnit::TFigureUnit()
         : m_type(UnitType::Empty),
-          m_point(sdleasygui::SEG_Point(0, 0)),
-          m_color(sdleasygui::ColorCode::none),
+          m_point(seg::SEG_Point(0, 0)),
+          m_color(seg::ColorCode::none),
           m_age(0)
 {
 

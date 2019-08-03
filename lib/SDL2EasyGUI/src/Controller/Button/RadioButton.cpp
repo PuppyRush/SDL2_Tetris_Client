@@ -7,7 +7,7 @@
 #include <include/SEG_Drawer.h>
 
 
-using namespace sdleasygui;
+using namespace seg;
 
 RadioButton::RadioButton(RadioButtonBuilder& bld)
         : ButtonBasic(bld), m_thick(bld.m_thick)
@@ -32,9 +32,9 @@ void RadioButton::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 void RadioButton::_drawCheck(const bool chk)
 {
     if (chk) {
-        SEG_DrawCircle(getSDLRenderer(), getMidPoint() , getBackgroundColor(), m_thick);
+        draw_helper::drawCircle(getSDLRenderer(), getMidPoint(), getBackgroundColor(), m_thick);
     } else {
-        SEG_DrawCircle(getSDLRenderer(), getMidPoint(), m_lineColor , m_thick);
+        draw_helper::drawCircle(getSDLRenderer(), getMidPoint(), m_lineColor, m_thick);
     }
 
 }

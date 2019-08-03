@@ -9,7 +9,7 @@
 
 #include "../Border.h"
 
-namespace sdleasygui {
+namespace seg {
 
 struct BoxItem
 {
@@ -99,28 +99,28 @@ public:
         return m_items.at(index);
     }
 
-    inline size_t getMenuMax()
-    { return m_menuMaxCnt; }
+    inline t_size getMenuCount() const _GLIBCXX_NOEXCEPT
+    { return m_items.size(); }
 
-    inline void setMenuMax(const size_t cnt)
-    { m_menuMaxCnt = cnt; }
+    inline size_t getVisibleMenuMax() const _GLIBCXX_NOEXCEPT
+    { return m_visibleMenuCnt; }
 
-protected:
+    inline void setVisibleMenuMax(const size_t cnt)
+    { m_visibleMenuCnt = cnt; }
 
-    const t_size MENU_GAP = 3;
-    size_t m_menuMaxCnt = 3;
-
-    BoxBasic(ControlBuilder& bld);
-
-    virtual ~BoxBasic();
+    virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) override;
 
     void onDrawBackground();
 
     virtual void onDraw() override;
 
-    virtual void initialize() override;
+protected:
 
-    virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) override;
+    BoxBasic(ControlBuilder& bld);
+
+    virtual ~BoxBasic();
+
+    virtual void initialize() override;
 
     void removeAll() _GLIBCXX_NOEXCEPT;
 
@@ -134,11 +134,15 @@ protected:
     void setFolded(const bool fold) _GLIBCXX_NOEXCEPT
     { m_folded = fold; }
 
+    const t_size MENU_GAP = 3;
+
+    size_t m_visibleMenuCnt = 3;
     std::vector<item_ptr> m_items;
     t_size m_menuHeight = 0;
     size_t m_menuStartIdx = 0;
     int m_selectedMenuIdx = -1;
     int m_boundedMenuIndx = -1;
+
 private:
     bool m_folded = true;
 

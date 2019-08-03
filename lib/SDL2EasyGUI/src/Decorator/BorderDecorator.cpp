@@ -4,29 +4,5 @@
 
 #include "BorderDecorator.h"
 
-using namespace sdleasygui;
+using namespace seg;
 
-BorderDecorator::BorderDecorator(Control* gi, int borderWidth)
-        :Decorator(gi), m_borderWidth(borderWidth)
-{
-
-}
-
-
-void BorderDecorator::onDraw()
-{
-    Decorator::onDraw();
-    drawBorder();
-}
-
-void BorderDecorator::onDrawBackground()
-{
-    Decorator::onDrawBackground();
-}
-
-void BorderDecorator::drawBorder()
-{
-
-
-
-}

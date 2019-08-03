@@ -20,7 +20,7 @@
 #include "SEG_Type.h"
 #include "SEG_Property.h"
 
-namespace sdleasygui {
+namespace seg {
 
 typedef struct DisplayInfo
 {

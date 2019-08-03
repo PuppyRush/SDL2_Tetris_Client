@@ -34,9 +34,9 @@ public:
 private:
 
     int m_score = 0;
-    sdleasygui::SEG_Point m_boardBegin;
-    sdleasygui::SEG_Color m_backColor;
-    sdleasygui::SEG_TFont m_font;
+    seg::SEG_Point m_boardBegin;
+    seg::SEG_Color m_backColor;
+    seg::SEG_TFont m_font;
 
 };
 

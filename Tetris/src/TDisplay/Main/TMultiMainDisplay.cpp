@@ -9,7 +9,7 @@
 #include "SDL2EasyGUI/include/CheckBox.h"
 #include "SDL2EasyGUI/include/DisplayController.h"
 
-#include "SDL2EasyGUI/src/Decorator/ScrollableDecorator.h"
+#include "SDL2EasyGUI/src/Decorator/ScrollbarDecorator.h"
 #include "SDL2EasyGUI/src/Decorator/BorderDecorator.h"
 
 #include "TMultiMainDisplay.h"
@@ -18,9 +18,9 @@
 
 SDL_TETRIS
 using namespace game_interface;
-using namespace sdleasygui;
+using namespace seg;
 
-TMultiMainDisplay::TMultiMainDisplay(const sdleasygui::t_id displayId)
+TMultiMainDisplay::TMultiMainDisplay(const seg::t_id displayId)
         : TMainDisplay(displayId)
 {
     m_mode = TLocalMode::Online;

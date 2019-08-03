@@ -12,7 +12,7 @@ SDL_TETRIS_BEGIN
 class TMultiGameRoomDisplay : public TGameDisplay
 {
 public:
-    explicit TMultiGameRoomDisplay(const sdleasygui::t_id displayId);
+    explicit TMultiGameRoomDisplay(const seg::t_id displayId);
 
     virtual ~TMultiGameRoomDisplay() = default;
 

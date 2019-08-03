@@ -15,7 +15,7 @@
 #include "SEG_TypeTraits.h"
 #include "SEG_Resource.h"
 
-namespace sdleasygui {
+namespace seg {
 
 typedef struct SEG_Click
 {

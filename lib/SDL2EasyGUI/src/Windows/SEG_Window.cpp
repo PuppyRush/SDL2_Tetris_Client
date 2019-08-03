@@ -6,7 +6,7 @@
 
 #include "SDL2EasyGUI/include/SEG_Window.h"
 
-using namespace sdleasygui;
+using namespace seg;
 
 SEG_Window::SEG_Window(const t_size width, const t_size height)
         : m_windowHeight(height),

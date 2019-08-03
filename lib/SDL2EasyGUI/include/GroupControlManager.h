@@ -18,7 +18,7 @@
 
 #include "SEG_Type.h"
 
-namespace sdleasygui {
+namespace seg {
 
 class GroupControlManager : private boost::serialization::singleton<GroupControlManager>
 {

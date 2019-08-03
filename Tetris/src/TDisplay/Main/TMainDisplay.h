@@ -14,7 +14,7 @@ class TMainDisplay : public TDisplayInterface
 {
 public:
 
-    explicit TMainDisplay(const sdleasygui::t_id displayId);
+    explicit TMainDisplay(const seg::t_id displayId);
 
     virtual ~TMainDisplay() = default;
 

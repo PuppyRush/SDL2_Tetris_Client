@@ -15,12 +15,12 @@ class TFigureBuilder final
 {
 public:
 
-    TFigureBuilder(const sdleasygui::SEG_Point& point);
+    TFigureBuilder(const seg::SEG_Point& point);
 
     virtual ~TFigureBuilder()
     {}
 
-    inline TFigureBuilder* color(const sdleasygui::ColorCode& color)
+    inline TFigureBuilder* color(const seg::ColorCode& color)
     {
         this->m_color = color;
         return this;
@@ -50,10 +50,10 @@ public:
         return this;
     }
 
-    inline const sdleasygui::SEG_Point getPoint() const noexcept
+    inline const seg::SEG_Point getPoint() const noexcept
     { return m_point; }
 
-    inline const sdleasygui::ColorCode getColor() const noexcept
+    inline const seg::ColorCode getColor() const noexcept
     { return m_color; }
 
     inline const TFigureType getType() const noexcept
@@ -62,10 +62,10 @@ public:
     inline const game_interface::t_age getAge() const noexcept
     { return m_age; }
 
-    inline const sdleasygui::t_size getHeight() const noexcept
+    inline const seg::t_size getHeight() const noexcept
     { return m_height; }
 
-    inline const sdleasygui::t_size getWidth() const noexcept
+    inline const seg::t_size getWidth() const noexcept
     { return m_width; }
 
     inline const UnitType getUnitType() const noexcept
@@ -77,16 +77,16 @@ public:
     std::shared_ptr<TFigureInterface> build();
 
 private:
-    inline void width(const sdleasygui::t_size width)
+    inline void width(const seg::t_size width)
     { m_width = width; }
 
-    inline void height(const sdleasygui::t_size height)
+    inline void height(const seg::t_size height)
     { m_height = height; }
 
-    sdleasygui::t_size m_width;
-    sdleasygui::t_size m_height;
-    sdleasygui::ColorCode m_color;
-    sdleasygui::SEG_Point m_point;
+    seg::t_size m_width;
+    seg::t_size m_height;
+    seg::ColorCode m_color;
+    seg::SEG_Point m_point;
     TFigureType m_figureType;
     TFigureClass m_figureClass = TFigureClass::L;
     game_interface::t_age m_age;

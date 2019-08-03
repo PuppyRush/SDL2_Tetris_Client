@@ -34,7 +34,7 @@
 #include "SDL2EasyGUI/src/Controller/Control.h"
 #include "../src/Decorator/Decorator.h"
 
-namespace sdleasygui {
+namespace seg {
 
 class DisplayInterface : public GraphicInterface, public EventListener
 {
@@ -269,7 +269,7 @@ private:
     inline control_ary& getMenuAry()
     { return m_menus; }
 
-    void attachDecorator(const control_ptr, Decorator*);
+    void attachDecorator(const control_ptr, control_ptr);
 
     void detachDecorator(const control_ptr);
 

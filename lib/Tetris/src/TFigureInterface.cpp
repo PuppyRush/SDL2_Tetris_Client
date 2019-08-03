@@ -6,7 +6,7 @@
 
 using namespace std;
 using namespace game_interface;
-using namespace sdleasygui;
+using namespace seg;
 using namespace tetris_module;
 
 TFigureInterface::TFigureInterface()
@@ -33,7 +33,7 @@ TFigureInterface::~TFigureInterface()
 {
 }
 
-std::shared_ptr<TFigureInterface> TFigureInterface::move(const sdleasygui::t_eventType event)
+std::shared_ptr<TFigureInterface> TFigureInterface::move(const seg::t_eventType event)
 {
     auto copied = copy();
 

@@ -11,7 +11,7 @@
 #include "EventQueue.h"
 #include "SEG_Property.h"
 
-namespace sdleasygui {
+namespace seg {
 
 class EventListener
 {
@@ -44,6 +44,7 @@ public:
                 onKeyboardEvent(&event->key);
                 break;
             case SDL_KEYUP:
+                onKeyboardEvent(&event->key);
                 break;
             case SDL_TEXTEDITING   :
                 onTextEditingEvent(&event->edit);
@@ -60,6 +61,7 @@ public:
                 onMouseButtonEvent(&event->button);
                 break;
             case SDL_MOUSEBUTTONUP :
+                onMouseButtonEvent(&event->button);
                 break;
             case SDL_MOUSEWHEEL    :
                 onMouseWheelEvent(&event->wheel);

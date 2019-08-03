@@ -5,7 +5,7 @@
 #include "CheckBox.h"
 #include "SEG_Drawer.h"
 
-using namespace sdleasygui;
+using namespace seg;
 
 CheckBox::CheckBox(CheckBoxBuilder& bld)
         : ButtonBasic(bld), m_lineThick(bld.m_lineThick), m_type(bld.m_type)
@@ -38,9 +38,9 @@ void CheckBox::_drawCheck(const bool chk)
     {
     case CheckBoxType::vType:
         if (chk) {
-            SEG_DrawV(getSDLRenderer(), getPoisition(), getBackgroundColor(), m_lineThick);
+            draw_helper::drawV(getSDLRenderer(), getPosition(), getBackgroundColor(), m_lineThick);
         } else {
-            SEG_DrawV(getSDLRenderer(), getPoisition(), m_lineColor ,m_lineThick);
+            draw_helper::drawV(getSDLRenderer(), getPosition(), m_lineColor, m_lineThick);
         }
         break;
     case CheckBoxType::oType:
@@ -48,9 +48,9 @@ void CheckBox::_drawCheck(const bool chk)
         break;
     case CheckBoxType::xType:
         if (chk) {
-            SEG_DrawX(getSDLRenderer(), getPoisition(), getBackgroundColor(),m_lineThick);
+            draw_helper::drawX(getSDLRenderer(), getPosition(), getBackgroundColor(), m_lineThick);
         } else {
-            SEG_DrawX(getSDLRenderer(), getPoisition(), m_lineColor,m_lineThick);
+            draw_helper::drawX(getSDLRenderer(), getPosition(), m_lineColor, m_lineThick);
         }
         break;
     }

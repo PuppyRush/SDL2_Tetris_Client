@@ -19,7 +19,7 @@
 #include "SEG_Struct.h"
 #include "SEG_Constant.h"
 
-namespace sdleasygui {
+namespace seg {
 
 class SEG_Window final
 {

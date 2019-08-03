@@ -5,7 +5,7 @@
 #include "LabelBasic.h"
 #include <SEG_Drawer.h>
 
-using namespace sdleasygui;
+using namespace seg;
 
 LabelBasic::LabelBasic(ControlBuilder& bld)
         : Border(bld)

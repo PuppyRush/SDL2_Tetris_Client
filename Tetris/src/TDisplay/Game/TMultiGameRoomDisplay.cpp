@@ -16,10 +16,10 @@ SDL_TETRIS
 using namespace std;
 using namespace game_interface;
 using namespace game_interface::packet;
-using namespace sdleasygui;
+using namespace seg;
 using namespace tetris_module;
 
-TMultiGameRoomDisplay::TMultiGameRoomDisplay(const sdleasygui::t_id displayId)
+TMultiGameRoomDisplay::TMultiGameRoomDisplay(const seg::t_id displayId)
         : TGameDisplay(displayId)
 {
     m_display = game_interface::toUType(TDisplay::Game);

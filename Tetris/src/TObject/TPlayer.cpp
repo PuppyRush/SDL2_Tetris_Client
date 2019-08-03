@@ -15,7 +15,7 @@ using namespace std;
 using namespace tetris_module;
 using namespace game_interface;
 using namespace game_interface::packet;
-using namespace sdleasygui;
+using namespace seg;
 
 TPlayer::TPlayer()
 {

@@ -12,9 +12,9 @@
 
 SDL_TETRIS
 using namespace game_interface;
-using namespace sdleasygui;
+using namespace seg;
 
-TEnterServerDisplay::TEnterServerDisplay(const sdleasygui::t_id displayId)
+TEnterServerDisplay::TEnterServerDisplay(const seg::t_id displayId)
         : TDisplayInterface(displayId)
 {
 
@@ -22,8 +22,8 @@ TEnterServerDisplay::TEnterServerDisplay(const sdleasygui::t_id displayId)
 
 void TEnterServerDisplay::registerEvent()
 {
-    SEG_LBUTTONCLICK(sdleasygui::toUType(resource::ENTERSERVER_OK), &TEnterServerDisplay::onClickedEnterServer, this);
-    SEG_LBUTTONCLICK(sdleasygui::toUType(resource::ENTERSERVER_BACK), &TEnterServerDisplay::onClickedBack, this);
+    SEG_LBUTTONCLICK(seg::toUType(resource::ENTERSERVER_OK), &TEnterServerDisplay::onClickedEnterServer, this);
+    SEG_LBUTTONCLICK(seg::toUType(resource::ENTERSERVER_BACK), &TEnterServerDisplay::onClickedBack, this);
 }
 
 void TEnterServerDisplay::onInitialize()
@@ -36,7 +36,7 @@ void TEnterServerDisplay::onInitialize()
     t_size begin_y = getWindowHeight() / 3;
     {
         EditLabelBuilder bld(getWindow(), {getWindowWidth() / 2 - 120, begin_y}, "Player");
-        bld.id(sdleasygui::toUType(resource::ENTERSERVER_ID))->
+        bld.id(seg::toUType(resource::ENTERSERVER_ID))->
                 borderBoundaryType(BorderBoundaryType::roundedAngle)->
                 fontColor(ColorCode::black)->
                 width(240)->
@@ -52,7 +52,7 @@ void TEnterServerDisplay::onInitialize()
     begin_y += 80;
     {
         ButtonBuilder bld(getWindow(), {getWindowWidth() / 2 - 120, begin_y}, "ENTER");
-        bld.id(sdleasygui::toUType(resource::ENTERSERVER_OK))->
+        bld.id(seg::toUType(resource::ENTERSERVER_OK))->
                 borderBoundaryType(BorderBoundaryType::roundedAngle)->
                 width(100)->
                 height(50)->
@@ -65,7 +65,7 @@ void TEnterServerDisplay::onInitialize()
 
     {
         ButtonBuilder bld(getWindow(), {getWindowWidth() / 2, begin_y}, "BACK");
-        bld.id(sdleasygui::toUType(resource::ENTERSERVER_BACK))->
+        bld.id(seg::toUType(resource::ENTERSERVER_BACK))->
                 borderBoundaryType(BorderBoundaryType::roundedAngle)->
                 width(100)->
                 height(50)->
@@ -88,8 +88,8 @@ void TEnterServerDisplay::onClickedEnterServer(const void* click)
 
     assert(idLabel != nullptr);
     if (idLabel->getString().empty()) {
-        sdleasygui::MessageDialog dlg{"Enter Your ID at least 5 characters",
-                                      sdleasygui::MessageDialogKind::error};
+        seg::MessageDialog dlg{"Enter Your ID at least 5 characters",
+                               seg::MessageDialogKind::error};
         dlg.alert();
         TDisplayInterface::onCancel();
         m_valid = false;

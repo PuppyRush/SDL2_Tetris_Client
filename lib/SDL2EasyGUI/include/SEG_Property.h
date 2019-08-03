@@ -11,7 +11,7 @@
 
 #include "SEG_Type.h"
 
-namespace sdleasygui {
+namespace seg {
 
 const t_size WINDOW_HEIGHT = 900;
 

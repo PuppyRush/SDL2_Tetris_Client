@@ -13,7 +13,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_stdinc.h>
 
-namespace sdleasygui {
+namespace seg {
 
 using t_color = uint8_t;
 using t_type = uint8_t;

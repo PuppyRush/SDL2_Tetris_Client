@@ -8,12 +8,12 @@
 
 SDL_TETRIS
 using namespace game_interface;
-using namespace sdleasygui;
+using namespace seg;
 
 TWaitingRoomCard::TWaitingRoomCard(TWaitingRoomCardBuilder& bld)
         : Border(bld), m_cardBasic(bld.m_cardBasic)
 {
-    bld.kind(sdleasygui::ControlKind::ListBox);
+    bld.kind(seg::ControlKind::ListBox);
 }
 
 void TWaitingRoomCard::onDraw()

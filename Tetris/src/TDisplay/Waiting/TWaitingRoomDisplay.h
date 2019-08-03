@@ -16,7 +16,7 @@
 
 SDL_TETRIS_BEGIN
 
-typedef struct RoomInfo : sdleasygui::BoxItem
+typedef struct RoomInfo : seg::BoxItem
 {
 public:
 
@@ -42,12 +42,12 @@ public:
         RoomInfo::maketime = maketime;
     }
 
-    sdleasygui::t_unique getUnique() const
+    seg::t_unique getUnique() const
     {
         return unique;
     }
 
-    void setUnique(sdleasygui::t_unique unique)
+    void setUnique(seg::t_unique unique)
     {
         caching = false;
         RoomInfo::unique = unique;
@@ -88,7 +88,7 @@ public:
 
     RoomInfo() = default;
 
-    RoomInfo(size_t _roomnumber, const std::string& name, game_interface::t_time time, sdleasygui::t_unique unique,
+    RoomInfo(size_t _roomnumber, const std::string& name, game_interface::t_time time, seg::t_unique unique,
              size_t _userCount, size_t _fullCount)
             : roomname(name), unique(unique), maketime(time), userCount(_userCount), fullCount(_fullCount),
               roomnumber(_roomnumber)
@@ -109,19 +109,19 @@ private:
 
     std::string roomname;
     game_interface::t_time maketime;
-    sdleasygui::t_unique unique;
+    seg::t_unique unique;
     size_t userCount;
     size_t fullCount;
     size_t roomnumber;
 
 } RoomInfo;
 
-typedef struct UserInfo : sdleasygui::BoxItem
+typedef struct UserInfo : seg::BoxItem
 {
 
     UserInfo() = default;
 
-    UserInfo(const std::string& name, game_interface::t_time time, sdleasygui::t_unique unique)
+    UserInfo(const std::string& name, game_interface::t_time time, seg::t_unique unique)
             : username(name), unique(unique), maketime(time)
     {
     }
@@ -157,12 +157,12 @@ typedef struct UserInfo : sdleasygui::BoxItem
         UserInfo::maketime = maketime;
     }
 
-    sdleasygui::t_unique getUnique() const
+    seg::t_unique getUnique() const
     {
         return unique;
     }
 
-    void setUnique(sdleasygui::t_unique unique)
+    void setUnique(seg::t_unique unique)
     {
         caching = false;
         UserInfo::unique = unique;
@@ -171,11 +171,11 @@ typedef struct UserInfo : sdleasygui::BoxItem
 private:
     std::string username;
     game_interface::t_time maketime;
-    sdleasygui::t_unique unique;
+    seg::t_unique unique;
 
 } UserInfo;
 
-typedef struct ChatInfo : sdleasygui::BoxItem, game_interface::JsonPackage
+typedef struct ChatInfo : seg::BoxItem, game_interface::JsonPackage
 {
 
 public:
@@ -268,7 +268,7 @@ class TWaitingRoomDisplay : public TDisplayInterface
 {
 public:
 
-    explicit TWaitingRoomDisplay(const sdleasygui::t_id displayId);
+    explicit TWaitingRoomDisplay(const seg::t_id displayId);
 
     virtual ~TWaitingRoomDisplay() = default;
 
@@ -300,32 +300,32 @@ private:
 
     void recvWaitingRoomInitInfo(const game_interface::packet::Packet& packet);
 
-    const sdleasygui::SEG_Point m_controllBeginPoint = sdleasygui::SEG_Point{50, 50};
+    const seg::SEG_Point m_controllBeginPoint = seg::SEG_Point{50, 50};
 
-    const sdleasygui::t_size m_userBoxWidth = sdleasygui::WINDOW_WIDTH / 5;
-    const sdleasygui::t_size m_userBoxHeight = sdleasygui::WINDOW_HEIGHT - 350;
-    const sdleasygui::SEG_Point m_userBoxBeginPoint = sdleasygui::SEG_Point{sdleasygui::WINDOW_WIDTH - m_userBoxWidth - 20,
-                                                                      50};
+    const seg::t_size m_userBoxWidth = seg::WINDOW_WIDTH / 5;
+    const seg::t_size m_userBoxHeight = seg::WINDOW_HEIGHT - 350;
+    const seg::SEG_Point m_userBoxBeginPoint = seg::SEG_Point{seg::WINDOW_WIDTH - m_userBoxWidth - 20,
+                                                              50};
 
-    const sdleasygui::t_size m_chatBoxWidth = sdleasygui::WINDOW_WIDTH - 100 - m_userBoxWidth;
-    const sdleasygui::t_size m_chatBoxHeight = sdleasygui::WINDOW_HEIGHT / 7;
-    const sdleasygui::SEG_Point m_chatBoxBeginPoint = sdleasygui::SEG_Point{m_controllBeginPoint.x,
-                                                                      sdleasygui::WINDOW_HEIGHT - m_chatBoxHeight -
-                                                                      200};
+    const seg::t_size m_chatBoxWidth = seg::WINDOW_WIDTH - 100 - m_userBoxWidth;
+    const seg::t_size m_chatBoxHeight = seg::WINDOW_HEIGHT / 7;
+    const seg::SEG_Point m_chatBoxBeginPoint = seg::SEG_Point{m_controllBeginPoint.x,
+                                                              seg::WINDOW_HEIGHT - m_chatBoxHeight -
+                                                              200};
 
-    const sdleasygui::t_size m_gameroomBoxWidth = m_chatBoxWidth;
-    const sdleasygui::t_size m_gameroomBoxHeight = m_userBoxHeight - 300;
-    const sdleasygui::SEG_Point m_gameroomBoxBeginPoint = m_controllBeginPoint;
+    const seg::t_size m_gameroomBoxWidth = m_chatBoxWidth;
+    const seg::t_size m_gameroomBoxHeight = m_userBoxHeight - 300;
+    const seg::SEG_Point m_gameroomBoxBeginPoint = m_controllBeginPoint;
 
-    const sdleasygui::t_size m_btnWidth = m_userBoxWidth;
-    const sdleasygui::t_size m_btnHeight = 50;
-    const sdleasygui::SEG_Point m_createBtnBeginPoint = sdleasygui::SEG_Point{m_userBoxBeginPoint.x,
+    const seg::t_size m_btnWidth = m_userBoxWidth;
+    const seg::t_size m_btnHeight = 50;
+    const seg::SEG_Point m_createBtnBeginPoint = seg::SEG_Point{m_userBoxBeginPoint.x,
                                                                         m_chatBoxBeginPoint.y + 50};
 
     TWaitingRoom m_waitingRoom;
 
     std::vector<TWaitingRoomCard> m_gamerooms;
-    std::unordered_map<sdleasygui::t_unique, std::function<void()>> m_roomClickedFn;
+    std::unordered_map<seg::t_unique, std::function<void()>> m_roomClickedFn;
 };
 
 SDL_TETRIS_END

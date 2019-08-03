@@ -12,7 +12,7 @@
 #include "SDL2EasyGUI/include/SEG_Window.h"
 #include "../../include/EventQueue.h"
 
-namespace sdleasygui {
+namespace seg {
 
 class GraphicInterface
 {
@@ -238,12 +238,12 @@ public:
         m_data->multiselected = multiselected;
     }
 
-    inline void setPosition(const SDL_Rect rect) _GLIBCXX_NOEXCEPT
+    inline virtual void setPosition(const SDL_Rect rect) _GLIBCXX_NOEXCEPT
     {
         m_data->positionRect = rect;
     }
 
-    inline SDL_Rect getPoisition() const _GLIBCXX_NOEXCEPT
+    inline virtual SDL_Rect getPosition() const _GLIBCXX_NOEXCEPT
     {
         return m_data->positionRect;
     }
@@ -272,6 +272,8 @@ protected:
     }
 
     virtual void _drawBackground(const SDL_Rect rect);
+
+    bool _hitTest(const SDL_Rect&, const SEG_Point&) const _GLIBCXX_NOEXCEPT;
 
     std::shared_ptr<ControlBasic> m_data;
 

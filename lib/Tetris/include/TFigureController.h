@@ -55,17 +55,17 @@ public:
         m_ghostmode = mGhostmode;
     }
 
-    void command(const sdleasygui::t_eventType event);
+    void command(const seg::t_eventType event);
 
     void forceSet(const TFigureInterface* fig);
 
-    void eraseLine(const sdleasygui::t_size lineNumber);
+    void eraseLine(const seg::t_size lineNumber);
 
-    void addLine(const sdleasygui::t_size lineNumber);
+    void addLine(const seg::t_size lineNumber);
 
-    void eraseBottomLine(const sdleasygui::t_size = 1);
+    void eraseBottomLine(const seg::t_size = 1);
 
-    void addBottomLine(const sdleasygui::t_size = 1);
+    void addBottomLine(const seg::t_size = 1);
 
     void createNextFigureRandomly();
 
@@ -78,15 +78,15 @@ private:
     nextfigure_board_ptr m_nextFigureBoard;
     bool m_ghostmode = true;
 
-    void _rotate(const sdleasygui::t_eventType event);
+    void _rotate(const seg::t_eventType event);
 
-    void _goDown(const sdleasygui::t_eventType event);
+    void _goDown(const seg::t_eventType event);
 
-    void _goLeft(const sdleasygui::t_eventType event);
+    void _goLeft(const seg::t_eventType event);
 
-    void _goRight(const sdleasygui::t_eventType event);
+    void _goRight(const seg::t_eventType event);
 
-    void _goStraightDown(const sdleasygui::t_eventType event);
+    void _goStraightDown(const seg::t_eventType event);
 
     void _set();
 };

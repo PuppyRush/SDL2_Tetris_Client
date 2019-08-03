@@ -11,20 +11,37 @@
 
 #include "../Controller/Control.h"
 
-namespace sdleasygui {
+namespace seg {
 
+template<class T>
 class Decorator : public Control
 {
 public:
-    explicit Decorator(Control*);
+    Decorator(T* gi)
+            : m_graphic(gi), Control(gi)
+    {
 
-    virtual void onDraw() override;
+    }
 
-    virtual void onDrawBackground() override;
+    void onDraw()
+    {
+        m_graphic->onDraw();
+    }
 
-    virtual void refresh() override;
+    void onDrawBackground()
+    {
+        m_graphic->onDrawBackground();
+    }
 
-    virtual void resize() override;
+    void refresh()
+    {
+        m_graphic->refresh();
+    }
+
+    void resize()
+    {
+        m_graphic->resize();
+    }
 
     virtual void initialize() override
     {}
@@ -34,94 +51,90 @@ public:
 
 protected:
 
-    virtual void onCommonEvent(const SDL_CommonEvent* common) override final
+    virtual void onCommonEvent(const SDL_CommonEvent* common) override
     { m_graphic->onCommonEvent(common); };
 
-    virtual void onWindowEvent(const SDL_WindowEvent& window) override final
+    virtual void onWindowEvent(const SDL_WindowEvent& window) override
     { m_graphic->onWindowEvent(window); };
 
-    virtual void onKeyboardEvent(const SDL_KeyboardEvent* key) override final
+    virtual void onKeyboardEvent(const SDL_KeyboardEvent* key) override
     { m_graphic->onKeyboardEvent(key); }
 
-    virtual void onTextEditingEvent(const SDL_TextEditingEvent* edit) override final
+    virtual void onTextEditingEvent(const SDL_TextEditingEvent* edit) override
     { m_graphic->onTextEditingEvent(edit); };
 
-    virtual void onTextInputEvent(const SDL_TextInputEvent* text) override final
-    {
-        m_graphic->onTextInputEvent(text);
-    }
+    virtual void onTextInputEvent(const SDL_TextInputEvent* text) override
+    { m_graphic->onTextInputEvent(text); }
 
-    virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) override final
-    {
-        m_graphic->onMouseMotionEvent(motion);
-    };
+    virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) override
+    { m_graphic->onMouseMotionEvent(motion); };
 
-    virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) override final
+    virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) override
     { m_graphic->onMouseButtonEvent(button); }
 
-    virtual void onMouseWheelEvent(const SDL_MouseWheelEvent* wheel) override final
+    virtual void onMouseWheelEvent(const SDL_MouseWheelEvent* wheel) override
     { m_graphic->onMouseWheelEvent(wheel); };
 
-    virtual void onJoyAxisEvent(const SDL_JoyAxisEvent* jaxis) override final
+    virtual void onJoyAxisEvent(const SDL_JoyAxisEvent* jaxis) override
     { m_graphic->onJoyAxisEvent(jaxis); };
 
-    virtual void onJoyBallEvent(const SDL_JoyBallEvent* jball) override final
+    virtual void onJoyBallEvent(const SDL_JoyBallEvent* jball) override
     { m_graphic->onJoyBallEvent(jball); };
 
-    virtual void onJoyHatEvent(const SDL_JoyHatEvent* jhat) override final
+    virtual void onJoyHatEvent(const SDL_JoyHatEvent* jhat) override
     { m_graphic->onJoyHatEvent(jhat); };
 
-    virtual void onJoyButtonEvent(const SDL_JoyButtonEvent* jbutton) override final
+    virtual void onJoyButtonEvent(const SDL_JoyButtonEvent* jbutton) override
     { m_graphic->onJoyButtonEvent(jbutton); };
 
-    virtual void onJoyDeviceEvent(const SDL_JoyDeviceEvent* jdevice) override final
+    virtual void onJoyDeviceEvent(const SDL_JoyDeviceEvent* jdevice) override
     { m_graphic->onJoyDeviceEvent(jdevice); };
 
-    virtual void onControllerAxisEvent(const SDL_ControllerAxisEvent* caxis) override final
+    virtual void onControllerAxisEvent(const SDL_ControllerAxisEvent* caxis) override
     { m_graphic->onControllerAxisEvent(caxis); };
 
-    virtual void onControllerButtonEvent(const SDL_ControllerButtonEvent* cbutton) override final
+    virtual void onControllerButtonEvent(const SDL_ControllerButtonEvent* cbutton) override
     { m_graphic->onControllerButtonEvent(cbutton); };
 
-    virtual void onControllerDeviceEvent(const SDL_ControllerDeviceEvent* cdevice) override final
+    virtual void onControllerDeviceEvent(const SDL_ControllerDeviceEvent* cdevice) override
     { m_graphic->onControllerDeviceEvent(cdevice); };
 
-    virtual void onAudioDeviceEvent(const SDL_AudioDeviceEvent* adevice) override final
+    virtual void onAudioDeviceEvent(const SDL_AudioDeviceEvent* adevice) override
     { m_graphic->onAudioDeviceEvent(adevice); };
 
-    virtual void onQuitEvent(const SDL_QuitEvent* quit) override final
+    virtual void onQuitEvent(const SDL_QuitEvent* quit) override
     { m_graphic->onQuitEvent(quit); };
 
-    virtual void onUserEvent(const SDL_UserEvent* user) override final
+    virtual void onUserEvent(const SDL_UserEvent* user) override
     { m_graphic->onUserEvent(user); }
 
-    virtual void onSysWMEvent(const SDL_SysWMEvent* syswm) override final
+    virtual void onSysWMEvent(const SDL_SysWMEvent* syswm) override
     { m_graphic->onSysWMEvent(syswm); };
 
-    virtual void onTouchFingerEvent(const SDL_TouchFingerEvent* tfinger) override final
+    virtual void onTouchFingerEvent(const SDL_TouchFingerEvent* tfinger) override
     { m_graphic->onTouchFingerEvent(tfinger); };
 
-    virtual void onMultiGestureEvent(const SDL_MultiGestureEvent* mgesture) override final
+    virtual void onMultiGestureEvent(const SDL_MultiGestureEvent* mgesture) override
     { m_graphic->onMultiGestureEvent(mgesture); };
 
-    virtual void onDollarGestureEvent(const SDL_DollarGestureEvent* dgesture) override final
+    virtual void onDollarGestureEvent(const SDL_DollarGestureEvent* dgesture) override
     { m_graphic->onDollarGestureEvent(dgesture); };
 
-    virtual void onDropEvent(const SDL_DropEvent* drop) override final
+    virtual void onDropEvent(const SDL_DropEvent* drop) override
     { m_graphic->onDropEvent(drop); };
 
-    virtual void onTimerEvent(const SDL_UserEvent* user) override final
+    virtual void onTimerEvent(const SDL_UserEvent* user) override
     { m_graphic->onTimerEvent(user); }
 
-    virtual void onAttachFocus() override final
+    virtual void onAttachFocus() override
     { m_graphic->onAttachFocus(); };
 
-    virtual void onDetachFocus() override final
+    virtual void onDetachFocus() override
     { m_graphic->onDetachFocus(); };
 
 private:
 
-    Control* m_graphic;
+    T* m_graphic;
 
 };
 

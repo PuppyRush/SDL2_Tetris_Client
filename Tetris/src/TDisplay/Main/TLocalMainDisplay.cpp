@@ -13,9 +13,9 @@
 SDL_TETRIS
 using namespace std;
 using namespace game_interface;
-using namespace sdleasygui;
+using namespace seg;
 
-TLocalMainDisplay::TLocalMainDisplay(const sdleasygui::t_id displayId)
+TLocalMainDisplay::TLocalMainDisplay(const seg::t_id displayId)
         : TMainDisplay(displayId)
 {
     m_mode = TLocalMode::Local;
@@ -75,7 +75,7 @@ void TLocalMainDisplay::onInitialize()
 
 void TLocalMainDisplay::onClickedStartLocalGame(const void* click)
 {
-    auto dlg = sdleasygui::make_display<TSingleGameDisplay>(resource::SINGLEGAME_DISPLAY);
+    auto dlg = seg::make_display<TSingleGameDisplay>(resource::SINGLEGAME_DISPLAY);
     dlg->setWindowHeight(WINDOW_HEIGHT);
     dlg->setWindowWidth(WINDOW_WIDTH);
     dlg->modal(dlg);
@@ -83,7 +83,7 @@ void TLocalMainDisplay::onClickedStartLocalGame(const void* click)
 
 void TLocalMainDisplay::onClickedOption(const void* click)
 {
-    auto dlg = sdleasygui::make_display<TOptionDisplay>(resource::OPTION_DISPLAY);
+    auto dlg = seg::make_display<TOptionDisplay>(resource::OPTION_DISPLAY);
     dlg->setWindowHeight(WINDOW_HEIGHT);
     dlg->setWindowWidth(WINDOW_WIDTH);
     dlg->modal(dlg);

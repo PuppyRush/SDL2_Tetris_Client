@@ -4,30 +4,5 @@
 
 #include "Decorator.h"
 
-using namespace sdleasygui;
+using namespace seg;
 
-Decorator::Decorator(Control* gi)
-    :m_graphic(gi), Control(gi)
-{
-
-}
-
-void Decorator::onDraw()
-{
-    m_graphic->onDraw();
-}
-
-void Decorator::onDrawBackground()
-{
-    m_graphic->onDrawBackground();
-}
-
-void Decorator::refresh()
-{
-    m_graphic->refresh();
-}
-
-void Decorator::resize()
-{
-    m_graphic->resize();
-}

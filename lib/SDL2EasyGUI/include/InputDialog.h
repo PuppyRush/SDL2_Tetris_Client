@@ -5,7 +5,7 @@
 #ifndef TETRIS_FIGURE_CLASS_INPUTDIALOG_H
 #define TETRIS_FIGURE_CLASS_INPUTDIALOG_H
 
-namespace sdleasygui {
+namespace seg {
 
 class InputDialog
 {

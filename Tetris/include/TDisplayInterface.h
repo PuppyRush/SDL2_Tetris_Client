@@ -13,19 +13,19 @@
 
 SDL_TETRIS_BEGIN
 
-class TDisplayInterface : public sdleasygui::DisplayInterface, public game_interface::Observer
+class TDisplayInterface : public seg::DisplayInterface, public game_interface::Observer
 {
 
 public:
 
-    using unique_type = typename sdleasygui::DisplayInterface::unique_type;
+    using unique_type = typename seg::DisplayInterface::unique_type;
 
     virtual ~TDisplayInterface()
     {}
 
 protected:
 
-    TDisplayInterface(const sdleasygui::t_id displayId)
+    TDisplayInterface(const seg::t_id displayId)
             : DisplayInterface(displayId)
     {}
 
@@ -49,7 +49,7 @@ protected:
         DisplayInterface::onClose();
     }
 
-    virtual bool validId(const sdleasygui::t_id id) noexcept
+    virtual bool validId(const seg::t_id id) noexcept
     {
         return getWindowID() == id;
     }

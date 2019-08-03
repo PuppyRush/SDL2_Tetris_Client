@@ -56,7 +56,7 @@ public:
     inline void setReady(const bool rdy) noexcept
     { m_isReady = rdy; }
 
-    void command(const sdleasygui::t_eventType event);
+    void command(const seg::t_eventType event);
 
     virtual void sendPacket(const game_interface::packet::Packet&) const override final;
 

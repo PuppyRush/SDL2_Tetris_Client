@@ -92,8 +92,8 @@ ADD_LIBRARY(SDL2EasyGUI STATIC
         src/Windows/GraphicInterface.cpp
         src/Decorator/Decorator.h
         src/Decorator/Decorator.cpp
-        src/Decorator/ScrollableDecorator.cpp
-        src/Decorator/ScrollableDecorator.h
+        src/Decorator/ScrollbarDecorator.cpp
+        src/Decorator/ScrollbarDecorator.h
         src/Decorator/BorderDecorator.h
         src/Decorator/BorderDecorator.cpp
         include/Button.h
@@ -123,7 +123,7 @@ ADD_LIBRARY(SDL2EasyGUI STATIC
         include/SEG_Define.h
         include/CheckBox.h
         include/SEG_Drawer.h
-        )
+        src/Decorator/ScrollrableDecorator.h)
 
 target_link_libraries(
         SDL2EasyGUI

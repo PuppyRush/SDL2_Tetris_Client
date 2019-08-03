@@ -19,7 +19,7 @@ class TMultiMainDisplay final : public TMainDisplay
 {
 public:
 
-    explicit TMultiMainDisplay(const sdleasygui::t_id displayId);
+    explicit TMultiMainDisplay(const seg::t_id displayId);
 
     virtual ~TMultiMainDisplay() = default;
 

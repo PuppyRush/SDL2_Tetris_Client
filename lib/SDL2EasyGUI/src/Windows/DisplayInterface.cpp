@@ -13,7 +13,7 @@
 #include "include/DisplayInterface.h"
 
 using namespace std;
-using namespace sdleasygui;
+using namespace seg;
 
 DisplayInterface::DisplayInterface(const t_id displayId)
         : m_displayId(displayId)
@@ -92,13 +92,13 @@ void DisplayInterface::_run()
             m_currentCtl->onEvent(event);
         }
 
-        if (event->type >= sdleasygui::toUType(SEGEVENT_START)) {
+        if (event->type >= seg::toUType(SEGEVENT_START)) {
             /*auto e = SEG_Event{event->type};
             printf("%s \n ", magic_enum::enum_name(e).value().data());*/
             //printf("recv seg event : %d\n", event->type);
         } else if (event->type == 0x8000) {
             // printf("recv user event : %d / %d \n", event->type, event->user.code);
-        } else if (event->type == sdleasygui::toUType(SDL_TIMER_EVENT)) {
+        } else if (event->type == seg::toUType(SDL_TIMER_EVENT)) {
             //printf("recv timer event : %d / %d \n", event->type, event->user.code);
         } else {
             //printf("recv sdl event : %d\n", event->type);
@@ -108,7 +108,7 @@ void DisplayInterface::_run()
         if (event->type > 0x9999 || event->type < 0 || event->type == SDL_TIMER_EVENT) {
             continue;
         } else if (event->type == SDL_USEREVENT && (event->user.data1 || event->user.data2)) {
-            delete static_cast<sdleasygui::t_eventType*>(event->user.data1);
+            delete static_cast<seg::t_eventType*>(event->user.data1);
         } else {
             delete event;
         }
@@ -152,7 +152,7 @@ void DisplayInterface::onUserEvent(const SDL_UserEvent* event)
             break;
         case SEG_DECORATOR_ATTACH: {
             t_res id = *static_cast<t_res*>(event->data1);
-            Decorator* decorator = static_cast<Decorator*>(event->data2);
+            control_ptr decorator = static_cast<control_ptr>(event->data2);
 
             if (auto ctl = getControl(id); ctl != nullptr) {
                 attachDecorator(ctl, decorator);
@@ -365,10 +365,11 @@ void DisplayInterface::refresh()
     event.pushEvent();
 }
 
-void DisplayInterface::attachDecorator(const control_ptr ctl, Decorator* decorator)
+void DisplayInterface::attachDecorator(const control_ptr ctl, control_ptr decorator)
 {
     if (removeControl(ctl)) {
         addControl(decorator);
+        m_currentCtl = decorator;
     }
 
 }
@@ -377,6 +378,7 @@ void DisplayInterface::detachDecorator(const control_ptr ctl)
 {
     if (removeControl(ctl)) {
         addControl(ctl);
+        m_currentCtl = ctl;
     }
 }
 

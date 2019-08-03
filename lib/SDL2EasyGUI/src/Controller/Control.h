@@ -18,7 +18,7 @@
 #include "SDL2EasyGUI/include/GroupControlManager.h"
 #include "SDL2EasyGUI/include/EventListener.h"
 
-namespace sdleasygui {
+namespace seg {
 
 class DisplayInterface;
 
@@ -50,15 +50,15 @@ public:
 
     void onHit(const SEG_Point& point, const bool hit);
 
-    bool isHit(const t_coord x, const t_coord y, const t_coord z = 0) const;
-
-    bool isHit(const SEG_Point& point) const;
-
     bool isBounded(const SDL_Event& event);
 
     void setSelected(bool selected);
 
     void onVirtualDraw();
+
+    bool isHit(const t_coord x, const t_coord y, const t_coord z = 0) const;
+
+    virtual bool isHit(const SEG_Point& point) const;
 
     virtual void resize() override
     {};

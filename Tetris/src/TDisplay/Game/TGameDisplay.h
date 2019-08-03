@@ -19,7 +19,7 @@ class TGameDisplay : public TDisplayInterface
 {
 public:
 
-    enum class UIResource : sdleasygui::t_type
+    enum class UIResource : seg::t_type
     {
     };
 
@@ -31,7 +31,7 @@ public:
 
 protected:
 
-    explicit TGameDisplay(const sdleasygui::t_id displayId);
+    explicit TGameDisplay(const seg::t_id displayId);
 
     virtual void onClose() override;
 
@@ -51,7 +51,7 @@ protected:
 
     void _drawNextFigure();
 
-    std::shared_ptr<sdleasygui::TimerAdder> m_gameTimer;
+    std::shared_ptr<seg::TimerAdder> m_gameTimer;
     std::vector<std::shared_ptr<TPlayer>> m_players;
     bool m_gamestart = false;
     bool m_drawLine;

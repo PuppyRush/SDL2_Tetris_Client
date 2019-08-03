@@ -13,7 +13,7 @@
 #include "Commander.h"
 
 
-namespace sdleasygui {
+namespace seg {
 
 class EventCommand : public Commander
 {

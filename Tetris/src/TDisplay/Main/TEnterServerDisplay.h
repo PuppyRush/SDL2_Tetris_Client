@@ -18,7 +18,7 @@ class TEnterServerDisplay : public TDisplayInterface
 
 public:
 
-    explicit TEnterServerDisplay(const sdleasygui::t_id displayId);
+    explicit TEnterServerDisplay(const seg::t_id displayId);
 
     virtual ~TEnterServerDisplay() = default;
 

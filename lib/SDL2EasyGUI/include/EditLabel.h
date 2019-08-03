@@ -12,7 +12,7 @@
 #include "SDL2EasyGUI/src/Controller/Label/LabelBasic.h"
 #include "SDL2EasyGUI/include/SEG_Event.h"
 
-namespace sdleasygui {
+namespace seg {
 
 typedef struct EditLabelBasic
 {

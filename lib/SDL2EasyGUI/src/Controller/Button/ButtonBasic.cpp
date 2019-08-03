@@ -5,7 +5,7 @@
 #include "ButtonBasic.h"
 #include <include/SEG_Drawer.h>
 
-using namespace sdleasygui;
+using namespace seg;
 
 ButtonBasic::ButtonBasic(ControlBuilder& bld)
         : Border(bld)

@@ -5,7 +5,7 @@
 #include "StaticLabel.h"
 #include <SEG_Drawer.h>
 
-using namespace sdleasygui;
+using namespace seg;
 
 StaticLabel::StaticLabel(StaticLabelBuilder& bld)
         : LabelBasic(bld)

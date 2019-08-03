@@ -11,20 +11,40 @@
 
 #include "Decorator.h"
 
-namespace sdleasygui {
+namespace seg {
 
-class BorderDecorator : public Decorator
+template <class T>
+class BorderDecorator : public Decorator<T>
 {
 public:
-    BorderDecorator(Control*, int borderWidth);
+
+    using Base = Decorator<T>;
+
+    BorderDecorator(T* gi, int borderWidth)
+            :Decorator<T>(gi), m_borderWidth(borderWidth)
+    {
+    }
 
 private:
 
-    virtual void onDraw() override;
+    void onDraw()
+    {
+        Base::onDraw();
+        drawBorder();
+    }
 
-    virtual void onDrawBackground() override;
+    void onDrawBackground()
+    {
+        Base::onDrawBackground();
+    }
 
-    void drawBorder();
+    void  drawBorder()
+    {
+
+
+
+    }
+
 
     t_size m_borderWidth;
 };

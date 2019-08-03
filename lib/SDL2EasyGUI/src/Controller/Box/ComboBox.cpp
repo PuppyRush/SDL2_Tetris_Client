@@ -4,15 +4,15 @@
 
 #include "ComboBox.h"
 #include "include/SEG_Drawer.h"
-#include "../../Decorator/ScrollableDecorator.h"
+#include "SDL2EasyGUI/src/Decorator/ScrollrableDecorator.h"
 
-using namespace sdleasygui;
+using namespace seg;
 
 ComboBox::ComboBox(ComoboBoxBuilder& bld)
         : BoxBasic(bld)
 {
     bld.kind(ControlKind::ComboBox);
-    m_menuMaxCnt = 3;
+    m_visibleMenuCnt = 3;
 }
 
 void ComboBox::initialize()
@@ -23,7 +23,7 @@ void ComboBox::initialize()
 
 void ComboBox::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 {
-    if (button->button == SDL_BUTTON_LEFT && isHit(button->x, button->y)) {
+    if (button->state == SDL_PRESSED && button->button == SDL_BUTTON_LEFT && isHit(button->x, button->y)) {
 
         setFolded(!isFolded());
 
@@ -39,11 +39,11 @@ void ComboBox::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
             event.pushEvent();
 
         } else {
-            size_t menuMax = m_items.size() < m_menuMaxCnt ? m_menuMaxCnt : m_items.size();
+            size_t menuMax = m_items.size() < m_visibleMenuCnt ? m_visibleMenuCnt : m_items.size();
             setHeight(getHeight() * menuMax);
 
-            if (m_menuMaxCnt < m_items.size()) {
-                auto dec = new ScrollableDecorator(this, 2);
+            if (m_visibleMenuCnt < m_items.size()) {
+                auto dec = new ScrollrableDecorator(this);
                 EventPusher event{getWindow()->getWindowID(), getResourceId(), SEG_DECORATOR_ATTACH};
                 event.setUserData(dec);
                 event.pushEvent();
@@ -81,7 +81,7 @@ void ComboBox::onDraw()
             point.y += textDrawer.getTextHeight() + MENU_GAP;
 
             const int endIdx =
-                    (m_menuStartIdx + m_menuMaxCnt) > m_items.size() ? m_items.size() : m_menuStartIdx + m_menuMaxCnt;
+                    (m_menuStartIdx + m_visibleMenuCnt) > m_items.size() ? m_items.size() : m_menuStartIdx + m_visibleMenuCnt;
             for (int i = m_menuStartIdx; i < endIdx; i++) {
                 TextDrawer textDrawer{renderer, getFont(), point, m_items.at(i)->getString()};
                 textDrawer.drawText();

@@ -11,7 +11,7 @@
 
 #include "SEG_Type.h"
 
-namespace sdleasygui {
+namespace seg {
 
 //dont use resource id as 0x0000 (NULL)
 enum resource : t_res

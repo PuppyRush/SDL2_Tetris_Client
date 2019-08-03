@@ -11,7 +11,7 @@
 
 #include "SDL2EasyGUI/src/Controller/Label/LabelBasic.h"
 
-namespace sdleasygui {
+namespace seg {
 
 typedef struct StaticLabelBasic : public ControlBasic
 {

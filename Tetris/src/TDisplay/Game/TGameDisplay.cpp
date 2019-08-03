@@ -12,11 +12,11 @@
 
 SDL_TETRIS
 using namespace game_interface;
-using namespace sdleasygui;
+using namespace seg;
 using namespace tetris_module;
 using namespace std;
 
-TGameDisplay::TGameDisplay(const sdleasygui::t_id displayId)
+TGameDisplay::TGameDisplay(const seg::t_id displayId)
         : TDisplayInterface(displayId)
 {
     m_gameTimer = make_shared<TimerAdder>(1000, game_interface::toUType(TetrisEvent::TETRIS_EVENT_FIGURETIMER));

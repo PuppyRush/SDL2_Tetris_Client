@@ -14,31 +14,31 @@
 
 namespace tetris_module{
 
-constexpr const sdleasygui::t_size OTHER_USER_COUNT = 6;
+constexpr const seg::t_size OTHER_USER_COUNT = 6;
 
-constexpr const sdleasygui::t_size UNIT_LENGTH = 30;
-constexpr const sdleasygui::t_size OTHER_UNIT_LENGTH = 10;
-constexpr const sdleasygui::t_size GAMEBOARD_GAP = 50;
-constexpr const sdleasygui::t_size GAMEBOARD_WIDTH_COUNT = 10;
-constexpr const sdleasygui::t_size GAMEBOARD_HEIGHT_COUNT = 20;
+constexpr const seg::t_size UNIT_LENGTH = 30;
+constexpr const seg::t_size OTHER_UNIT_LENGTH = 10;
+constexpr const seg::t_size GAMEBOARD_GAP = 50;
+constexpr const seg::t_size GAMEBOARD_WIDTH_COUNT = 10;
+constexpr const seg::t_size GAMEBOARD_HEIGHT_COUNT = 20;
 
-constexpr const sdleasygui::t_size GAMEBOARD_DISPLAY_HEIGHT = UNIT_LENGTH * GAMEBOARD_HEIGHT_COUNT;
-constexpr const sdleasygui::t_size GAMEBOARD_DISPLAY_WIDTH = UNIT_LENGTH * GAMEBOARD_WIDTH_COUNT;
-constexpr const sdleasygui::t_size OTHER_GAMEBOARD_DISPLAY_HEIGHT = OTHER_UNIT_LENGTH * GAMEBOARD_HEIGHT_COUNT;
-constexpr const sdleasygui::t_size OTHER_GAMEBOARD_DISPLAY_WIDTH = OTHER_UNIT_LENGTH * GAMEBOARD_WIDTH_COUNT;
+constexpr const seg::t_size GAMEBOARD_DISPLAY_HEIGHT = UNIT_LENGTH * GAMEBOARD_HEIGHT_COUNT;
+constexpr const seg::t_size GAMEBOARD_DISPLAY_WIDTH = UNIT_LENGTH * GAMEBOARD_WIDTH_COUNT;
+constexpr const seg::t_size OTHER_GAMEBOARD_DISPLAY_HEIGHT = OTHER_UNIT_LENGTH * GAMEBOARD_HEIGHT_COUNT;
+constexpr const seg::t_size OTHER_GAMEBOARD_DISPLAY_WIDTH = OTHER_UNIT_LENGTH * GAMEBOARD_WIDTH_COUNT;
 
-constexpr const sdleasygui::t_size NEXTFIGURE_BOARD_WIDTH_COUNT = 3;
-constexpr const sdleasygui::t_size NEXTFIGURE_BOARD_HEIGHT_COUNT = 4;
+constexpr const seg::t_size NEXTFIGURE_BOARD_WIDTH_COUNT = 3;
+constexpr const seg::t_size NEXTFIGURE_BOARD_HEIGHT_COUNT = 4;
 
-constexpr const sdleasygui::t_size OTHER_GAMEBOARD_BEGIN_X = 100;
-constexpr const sdleasygui::t_size OTHER_GAMEBOARD_BEGIN_Y = 100;
-constexpr const sdleasygui::t_size GAMEBOARD_BEGIN_X =
+constexpr const seg::t_size OTHER_GAMEBOARD_BEGIN_X = 100;
+constexpr const seg::t_size OTHER_GAMEBOARD_BEGIN_Y = 100;
+constexpr const seg::t_size GAMEBOARD_BEGIN_X =
         OTHER_GAMEBOARD_BEGIN_X + (OTHER_GAMEBOARD_DISPLAY_WIDTH + GAMEBOARD_GAP) * 3;
-constexpr const sdleasygui::t_size GAMEBOARD_BEGIN_Y = OTHER_GAMEBOARD_BEGIN_Y;
+constexpr const seg::t_size GAMEBOARD_BEGIN_Y = OTHER_GAMEBOARD_BEGIN_Y;
 
-constexpr const sdleasygui::t_size FIGURE_UNIT_LEN = 30;
+constexpr const seg::t_size FIGURE_UNIT_LEN = 30;
 
-enum class TSpeed : sdleasygui::t_type
+enum class TSpeed : seg::t_type
 {
     _1,
     _2,
@@ -50,7 +50,7 @@ enum class TSpeed : sdleasygui::t_type
     _8,
 };
 
-enum class TDisplay : sdleasygui::t_type
+enum class TDisplay : seg::t_type
 {
     Main,
     Option,
@@ -60,7 +60,7 @@ enum class TDisplay : sdleasygui::t_type
     None
 };
 
-enum class TFigureClass : sdleasygui::t_type
+enum class TFigureClass : seg::t_type
 {
     L = 0,
     Z,
@@ -71,7 +71,7 @@ enum class TFigureClass : sdleasygui::t_type
     End = T
 };
 
-enum class TFigureType : sdleasygui::t_type
+enum class TFigureType : seg::t_type
 {
     A,
     B,
@@ -82,7 +82,7 @@ enum class TFigureType : sdleasygui::t_type
     End = D
 };
 
-enum class TMap : sdleasygui::t_type
+enum class TMap : seg::t_type
 {
     Rain,
     Praymid,

@@ -4,7 +4,7 @@
 
 #include "Border.h"
 
-using namespace sdleasygui;
+using namespace seg;
 
 void SetViewport2(SDL_Renderer* renderer, int x1, int y1, int x2, int y2)
 {

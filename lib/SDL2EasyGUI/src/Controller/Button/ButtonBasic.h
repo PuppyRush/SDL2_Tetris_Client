@@ -11,7 +11,7 @@
 
 #include "../Border.h"
 
-namespace sdleasygui {
+namespace seg {
 
 class ButtonBasic : public Border
 {

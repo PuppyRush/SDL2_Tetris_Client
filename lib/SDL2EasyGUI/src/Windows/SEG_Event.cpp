@@ -5,7 +5,7 @@
 #include "SEG_Event.h"
 #include "SEG_Property.h"
 
-namespace sdleasygui {
+namespace seg {
 
 Uint32 timerCallback(Uint32 interval, void* param)
 {

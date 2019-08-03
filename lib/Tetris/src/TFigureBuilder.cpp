@@ -5,7 +5,7 @@
 #include "Tetris/include/TFigureBuilder.h"
 #include "GameInterface/include/TypeTraits.h"
 
-using namespace sdleasygui;
+using namespace seg;
 using namespace tetris_module;
 
 TFigureBuilder::TFigureBuilder(const SEG_Point& point)

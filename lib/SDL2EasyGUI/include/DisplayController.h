@@ -21,7 +21,7 @@
 #include "SDL2EasyGUI/include/SEG_Resource.h"
 #include "SDL2EasyGUI/include/DisplayInterface.h"
 
-namespace sdleasygui {
+namespace seg {
 
 using controll_map_key = std::pair<t_id, t_id>;
 
@@ -71,7 +71,7 @@ public:
 
     void modaless_open(display_ptr);
 
-    void modaless_close(sdleasygui::t_id winid);
+    void modaless_close(seg::t_id winid);
 
     void close(const t_id id);
 

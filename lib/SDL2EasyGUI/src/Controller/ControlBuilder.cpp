@@ -5,7 +5,7 @@
 #include "include/ControlBuilder.h"
 #include "SDL2EasyGUI/include/GroupControlManager.h"
 
-using namespace sdleasygui;
+using namespace seg;
 
 ControlBuilder::ControlBuilder(const GraphicInterface::window_type window, const SEG_Point& point,
                                      const std::string& str)

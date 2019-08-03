@@ -18,7 +18,7 @@
 #include "SEG_Type.h"
 #include "SEG_Struct.h"
 
-namespace sdleasygui {
+namespace seg {
 
 template<class T>
 constexpr const auto toUType(T enuml) noexcept

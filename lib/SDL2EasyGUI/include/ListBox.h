@@ -9,7 +9,7 @@
 
 #include "SDL2EasyGUI/src/Controller/Box/BoxBasic.h"
 
-namespace sdleasygui {
+namespace seg {
 
 enum class ListBoxTypes : t_type
 {

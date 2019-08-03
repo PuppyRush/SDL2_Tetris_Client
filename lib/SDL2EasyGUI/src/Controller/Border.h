@@ -12,7 +12,7 @@
 #include "Control.h"
 #include "SDL2EasyGUI/include/ControlBuilder.h"
 
-namespace sdleasygui {
+namespace seg {
 
 class BorderBuilder;
 

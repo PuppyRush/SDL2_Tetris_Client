@@ -4,4 +4,4 @@
 
 #include "InputDialog.h"
 
-using namespace sdleasygui;
+using namespace seg;

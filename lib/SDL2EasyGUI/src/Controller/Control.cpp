@@ -7,7 +7,7 @@
 #include "SDL2EasyGUI/include/SEG_TypeTraits.h"
 #include "SDL2EasyGUI/include/SEG_Event.h"
 
-using namespace sdleasygui;
+using namespace seg;
 
 Control::Control(const Control* ctl)
         : GraphicInterface(ctl->getBasic())
@@ -68,7 +68,7 @@ void Control::onDrawBackground()
     const auto backColor = getBackgroundColor();
     auto renderer = getWindow()->getSDLRenderer();
 
-    SDL_Rect rect{getPoisition()};
+    SDL_Rect rect{getPosition()};
     rect.x += getBorderThick();
     rect.y += getBorderThick();
     rect.h = (rect.h - getBorderThick() * 2) + 1;
@@ -138,9 +138,8 @@ bool Control::isHit(const t_coord x, const t_coord y, const t_coord z) const
 
 bool Control::isHit(const SEG_Point& point) const
 {
-    const auto& menu_point = getPoint();
-    if (this->isEnabled() && (menu_point.x <= point.x && point.x <= menu_point.x + getWidth())
-        && (menu_point.y <= point.y && point.y <= menu_point.y + getHeight())) {
+    const auto& pos = GraphicInterface::getPosition();
+    if ((pos.x <= point.x && point.x <= pos.x + pos.w) && (pos.y <= point.y && point.y <= pos.y + pos.h)) {
         return true;
     } else {
         return false;

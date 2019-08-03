@@ -4,7 +4,7 @@
 
 #include "Button.h"
 
-using namespace sdleasygui;
+using namespace seg;
 
 Button::Button(ButtonBuilder& bld)
         : ButtonBasic(bld)

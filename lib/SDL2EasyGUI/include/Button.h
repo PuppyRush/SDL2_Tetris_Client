@@ -11,7 +11,7 @@
 
 #include "SDL2EasyGUI/src/Controller/Button/ButtonBasic.h"
 
-namespace sdleasygui {
+namespace seg {
 
 class ButtonBuilder;
 

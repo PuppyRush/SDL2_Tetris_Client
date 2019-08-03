@@ -17,13 +17,13 @@ SDL_TETRIS_BEGIN
 enum TetrisEvent
 {
 
-    TETRIS_EVENT_START = game_interface::toUType(sdleasygui::SEG_Event::SEGEVENT_END) + 1,
+    TETRIS_EVENT_START = game_interface::toUType(seg::SEG_Event::SEGEVENT_END) + 1,
     TETRIS_EVENT_FIGURETIMER
 };
 
 typedef struct UserEvent
 {
-    static sdleasygui::t_eventType SDLEASYGUI_EVENT;
+    static seg::t_eventType SDLEASYGUI_EVENT;
 } UserEvent;
 
 SDL_TETRIS_END

@@ -12,7 +12,7 @@
 #include "Button.h"
 #include "SDL2EasyGUI/include/SEG_Property.h"
 
-namespace sdleasygui {
+namespace seg {
 
 class MessageDialog : public DisplayInterface
 {
@@ -39,7 +39,7 @@ public:
         DisplayInterface::onClose();
     }
 
-    virtual bool validId(const sdleasygui::t_id id) noexcept
+    virtual bool validId(const seg::t_id id) noexcept
     {
         return getWindowID() == id;
     }

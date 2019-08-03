@@ -6,9 +6,9 @@
 #include "TMainDisplay.h"
 
 SDL_TETRIS
-using namespace sdleasygui;
+using namespace seg;
 
-TMainDisplay::TMainDisplay(const sdleasygui::t_id displayId)
+TMainDisplay::TMainDisplay(const seg::t_id displayId)
         : TDisplayInterface(displayId)
 {
     m_display = game_interface::toUType( tetris_module::TDisplay::Main);

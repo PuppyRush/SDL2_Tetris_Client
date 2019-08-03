@@ -7,7 +7,7 @@
 
 #include <functional>
 
-namespace sdleasygui {
+namespace seg {
 
 }
 

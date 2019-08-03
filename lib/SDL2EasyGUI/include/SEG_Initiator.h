@@ -16,7 +16,7 @@
 
 #include "DisplayController.h"
 
-namespace sdleasygui {
+namespace seg {
 
 static void SDLEasyGUI_Init()
 {

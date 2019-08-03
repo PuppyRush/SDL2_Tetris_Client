@@ -10,12 +10,12 @@
 #include "TResource.h"
 
 using namespace std;
-using namespace sdleasygui;
+using namespace seg;
 using namespace game_interface;
 
 SDL_TETRIS
 
-TCreateGameroomDisplay::TCreateGameroomDisplay(const sdleasygui::t_id displayId)
+TCreateGameroomDisplay::TCreateGameroomDisplay(const seg::t_id displayId)
         : TDisplayInterface(displayId)
 {
 
@@ -23,9 +23,9 @@ TCreateGameroomDisplay::TCreateGameroomDisplay(const sdleasygui::t_id displayId)
 
 void TCreateGameroomDisplay::registerEvent()
 {
-    SEG_LBUTTONCLICK(sdleasygui::toUType(tetris::resource::WAITINGROOM_CREATE_OK),
+    SEG_LBUTTONCLICK(seg::toUType(tetris::resource::WAITINGROOM_CREATE_OK),
                      &TCreateGameroomDisplay::onClickOk, this);
-    SEG_LBUTTONCLICK(sdleasygui::toUType(tetris::resource::WAITINGROOM_CREATE_CANCEL),
+    SEG_LBUTTONCLICK(seg::toUType(tetris::resource::WAITINGROOM_CREATE_CANCEL),
                      &TCreateGameroomDisplay::onClickCancel, this);
 }
 
@@ -35,7 +35,7 @@ void TCreateGameroomDisplay::onInitialize()
         EditLabelBuilder bld(getWindow(), {100, 50}, "");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 20, ColorCode::black})->
                 backgroundColor(ColorCode::white)->
-                id(sdleasygui::toUType(tetris::resource::WAITINGROOM_CREATE_GAMEROOMNAME))->
+                id(seg::toUType(tetris::resource::WAITINGROOM_CREATE_GAMEROOMNAME))->
                 width(150)->
                 height(50)->
                 borderColor(ColorCode::dimgray)->
@@ -48,7 +48,7 @@ void TCreateGameroomDisplay::onInitialize()
         ButtonBuilder bld(getWindow(), {50, 120}, "OK");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 28, ColorCode::white})->
                 backgroundColor(ColorCode::dimgray)->
-                id(sdleasygui::toUType(tetris::resource::WAITINGROOM_CREATE_OK))->
+                id(seg::toUType(tetris::resource::WAITINGROOM_CREATE_OK))->
                 width(100)->
                 height(50)->
                 borderColor(ColorCode::white)->
@@ -61,7 +61,7 @@ void TCreateGameroomDisplay::onInitialize()
         ButtonBuilder bld(getWindow(), {200, 120}, "CANCEL");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 28, ColorCode::white})->
                 backgroundColor(ColorCode::dimgray)->
-                id(sdleasygui::toUType(tetris::resource::WAITINGROOM_CREATE_CANCEL))->
+                id(seg::toUType(tetris::resource::WAITINGROOM_CREATE_CANCEL))->
                 width(120)->
                 height(50)->
                 borderColor(ColorCode::white)->

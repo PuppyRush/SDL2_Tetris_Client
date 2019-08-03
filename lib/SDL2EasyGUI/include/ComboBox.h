@@ -7,9 +7,9 @@
 
 #include "SDL2EasyGUI/src/Controller/Box/BoxBasic.h"
 
-namespace sdleasygui {
+namespace seg {
 
-typedef struct ComboBoxItem : sdleasygui::BoxItem
+typedef struct ComboBoxItem : seg::BoxItem
 {
 
 public:

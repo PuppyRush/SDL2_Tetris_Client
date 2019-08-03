@@ -15,10 +15,10 @@
 SDL_TETRIS_BEGIN
 
 //dont use resource id as 0x0000 (NULL)
-enum class resource : sdleasygui::t_res
+enum class resource : seg::t_res
 {
 
-    RESOURCE_START = sdleasygui::SEG_RESROUCE_END + 1,
+    RESOURCE_START = seg::SEG_RESROUCE_END + 1,
 
     MAIN_MULTI_DISPLAY,
     MAIN_SINGLE_DISPLAY,

@@ -9,7 +9,7 @@
 
 #include "../Border.h"
 
-namespace sdleasygui {
+namespace seg {
 
 class LabelBasic : public Border
 {

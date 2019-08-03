@@ -17,7 +17,7 @@
 #include "SDL2EasyGUI/src/Windows/GraphicInterface.h"
 #include "SEG_Event.h"
 
-namespace sdleasygui {
+namespace seg {
 
 //predeclaration.
 class Control;

@@ -20,11 +20,11 @@
 SDL_TETRIS
 
 using namespace std;
-using namespace sdleasygui;
+using namespace seg;
 using namespace game_interface;
 using namespace game_interface::packet;
 
-TWaitingRoomDisplay::TWaitingRoomDisplay(const sdleasygui::t_id displayId)
+TWaitingRoomDisplay::TWaitingRoomDisplay(const seg::t_id displayId)
         : TDisplayInterface(displayId)
 {
     setWindowTitle("Hello Tetris World!");
@@ -34,11 +34,11 @@ TWaitingRoomDisplay::TWaitingRoomDisplay(const sdleasygui::t_id displayId)
 
 void TWaitingRoomDisplay::registerEvent()
 {
-    SEG_LBUTTONCLICK(sdleasygui::toUType(resource::WAITINGROOM_CREATE),
+    SEG_LBUTTONCLICK(seg::toUType(resource::WAITINGROOM_CREATE),
                      &TWaitingRoomDisplay::onClickCreateGameRoom, this);
-    SEG_LBUTTONCLICK(sdleasygui::toUType(resource::WAITINGROOM_DISCONNECT),
+    SEG_LBUTTONCLICK(seg::toUType(resource::WAITINGROOM_DISCONNECT),
                      &TWaitingRoomDisplay::onClickExit, this);
-    SEG_KEYDOWN(sdleasygui::toUType(resource::WAITINGROOM_CHAREDIT), &TWaitingRoomDisplay::sendChat, this);
+    SEG_KEYDOWN(seg::toUType(resource::WAITINGROOM_CHAREDIT), &TWaitingRoomDisplay::sendChat, this);
 }
 
 void TWaitingRoomDisplay::postCreate(TDisplayInterface::display_ptr display)
@@ -57,7 +57,7 @@ void TWaitingRoomDisplay::onInitialize()
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 11, ColorCode::black})->
                 borderBoundaryType(BorderBoundaryType::roundedAngle)->
                 backgroundColor(ColorCode::white)->
-                id(sdleasygui::toUType(resource::WAITINGROOM_GAMEROOMBOX))->
+                id(seg::toUType(resource::WAITINGROOM_GAMEROOMBOX))->
                 width(m_gameroomBoxWidth)->
                 height(m_gameroomBoxHeight)->
                 borderColor(ColorCode::cyan)->
@@ -71,7 +71,7 @@ void TWaitingRoomDisplay::onInitialize()
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 11, ColorCode::black})->
                 borderBoundaryType(BorderBoundaryType::roundedAngle)->
                 backgroundColor(ColorCode::white)->
-                id(sdleasygui::toUType(resource::WAITINGROOM_CHATBOX))->
+                id(seg::toUType(resource::WAITINGROOM_CHATBOX))->
                 width(m_chatBoxWidth)->
                 height(m_chatBoxHeight)->
                 borderColor(ColorCode::dimgray)->
@@ -85,7 +85,7 @@ void TWaitingRoomDisplay::onInitialize()
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 13, ColorCode::black})->
                 borderBoundaryType(BorderBoundaryType::roundedAngle)->
                 backgroundColor(ColorCode::white)->
-                id(sdleasygui::toUType(resource::WAITINGROOM_CHAREDIT))->
+                id(seg::toUType(resource::WAITINGROOM_CHAREDIT))->
                 width(m_chatBoxWidth)->
                 height(30)->
                 borderColor(ColorCode::dimgray)->
@@ -99,7 +99,7 @@ void TWaitingRoomDisplay::onInitialize()
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 11, ColorCode::black})->
                 borderBoundaryType(BorderBoundaryType::roundedAngle)->
                 backgroundColor(ColorCode::white)->
-                id(sdleasygui::toUType(resource::WAITINGROOM_USERBOX))->
+                id(seg::toUType(resource::WAITINGROOM_USERBOX))->
                 width(m_userBoxWidth)->
                 height(m_userBoxHeight)->
                 borderColor(ColorCode::dimgray)->
@@ -113,7 +113,7 @@ void TWaitingRoomDisplay::onInitialize()
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 28, ColorCode::white})->
                 borderBoundaryType(BorderBoundaryType::roundedAngle)->
                 backgroundColor(ColorCode::dimgray)->
-                id(sdleasygui::toUType(resource::WAITINGROOM_CREATE))->
+                id(seg::toUType(resource::WAITINGROOM_CREATE))->
                 width(m_btnWidth)->
                 height(m_btnHeight)->
                 borderColor(ColorCode::white)->
@@ -127,7 +127,7 @@ void TWaitingRoomDisplay::onInitialize()
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 28, ColorCode::white})->
                 backgroundColor(ColorCode::dimgray)->
                 borderBoundaryType(BorderBoundaryType::roundedAngle)->
-                id(sdleasygui::toUType(resource::WAITINGROOM_DISCONNECT))->
+                id(seg::toUType(resource::WAITINGROOM_DISCONNECT))->
                 width(m_btnWidth)->
                 height(m_btnHeight)->
                 borderColor(ColorCode::white)->
@@ -215,12 +215,12 @@ void TWaitingRoomDisplay::onClickExit(const void* click)
 void TWaitingRoomDisplay::onClickCreateGameRoom(const void* click)
 {
 
-    auto createGameroomDisplay = sdleasygui::make_display<TCreateGameroomDisplay>(resource::CREATEROOM_DISPLAY);
+    auto createGameroomDisplay = seg::make_display<TCreateGameroomDisplay>(resource::CREATEROOM_DISPLAY);
     createGameroomDisplay->setWindowHeight(250);
     createGameroomDisplay->setWindowWidth(350);
     createGameroomDisplay->setWindowTitle("Create Room");
 
-    if (createGameroomDisplay->modal(createGameroomDisplay) == sdleasygui::resource::BTN_OK) {
+    if (createGameroomDisplay->modal(createGameroomDisplay) == seg::resource::BTN_OK) {
         if (!PacketQueue::getInstance().exist(TGameRoom::getInstance()->getUnique())) {
             PacketQueue::getInstance().attach(TGameRoom::getInstance());
         }
@@ -268,7 +268,7 @@ void TWaitingRoomDisplay::recvChat(const Packet& packet)
 void TWaitingRoomDisplay::createGameroom(const Packet& packet)
 {
 
-    auto gameroomDisplay = sdleasygui::make_display<TMultiGameRoomDisplay>(resource::MULTIGAME_DISPLAY);
+    auto gameroomDisplay = seg::make_display<TMultiGameRoomDisplay>(resource::MULTIGAME_DISPLAY);
     gameroomDisplay->getGameRoom()->fromJson(packet.getPayload());
     gameroomDisplay->setWindowTitle("Tetris Game");
     gameroomDisplay->modaless(gameroomDisplay);

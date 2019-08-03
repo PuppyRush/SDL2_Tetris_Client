@@ -5,7 +5,7 @@
 #include "BoxBasic.h"
 #include <include/SEG_Drawer.h>
 
-using namespace sdleasygui;
+using namespace seg;
 
 BoxBasic::BoxBasic(ControlBuilder& bld)
         : Border(bld)
@@ -35,8 +35,8 @@ void BoxBasic::onDraw()
 
         SEG_Color color{ColorCode::blue};
 
-        SDL_Rect rect{point.x + 2, point.y + 2,
-                      getWidth() - 4, static_cast<int>(textDrawer.getTextHeight() - 4)};
+        SDL_Rect rect{point.x + 2, point.y + static_cast<int>(textDrawer.getTextHeight())/10 ,
+                      getWidth() - 4, static_cast<int>(textDrawer.getTextHeight() )};
 
         SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
         SDL_SetRenderDrawColor(getSDLRenderer(), color.r, color.g, color.b, 128);
@@ -89,4 +89,5 @@ int BoxBasic::calcIndexOf(const t_coord y)
 
     return -1;
 }
+
 

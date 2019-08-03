@@ -16,10 +16,10 @@
 
 SDL_TETRIS
 using namespace game_interface;
-using namespace sdleasygui;
+using namespace seg;
 using namespace tetris_module;
 
-TSingleGameDisplay::TSingleGameDisplay(const sdleasygui::t_id displayId)
+TSingleGameDisplay::TSingleGameDisplay(const seg::t_id displayId)
         : TGameDisplay(displayId)
 {
     m_display = game_interface::toUType(TDisplay::Game);

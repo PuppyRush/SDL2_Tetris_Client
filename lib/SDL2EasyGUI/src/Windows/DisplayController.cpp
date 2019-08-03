@@ -18,7 +18,7 @@
 //#include "GameInterface/Online/PacketQueue.h"
 
 using namespace std;
-using namespace sdleasygui;
+using namespace seg;
 
 DisplayController::DisplayController()
 {
@@ -73,7 +73,7 @@ void DisplayController::modaless_open(display_ptr display)
     _open(display);
 }
 
-void DisplayController::modaless_close(sdleasygui::t_id winid)
+void DisplayController::modaless_close(seg::t_id winid)
 {
     auto it = std::remove_if(begin(m_modalessAry), end(m_modalessAry), [winid](const display_ptr ptr) {
         if (winid == ptr->getWindowID()) {

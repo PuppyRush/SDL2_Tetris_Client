@@ -7,7 +7,7 @@
 
 #include "SEG_Type.h"
 
-namespace sdleasygui {
+namespace seg {
 
 constexpr const t_id NULL_WINDOW_ID = std::numeric_limits<t_id>::max();
 

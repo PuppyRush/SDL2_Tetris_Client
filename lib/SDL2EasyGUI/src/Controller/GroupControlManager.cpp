@@ -7,7 +7,7 @@
 #include "SDL2EasyGUI/include/GroupControlManager.h"
 
 using namespace std;
-using namespace sdleasygui;
+using namespace seg;
 
 GroupControlManager::group& GroupControlManager::get(const group_id grpId)
 {

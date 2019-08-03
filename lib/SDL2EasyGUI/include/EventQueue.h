@@ -13,7 +13,7 @@
 
 #include "SDL2EasyGUI/include/SEG_Type.h"
 
-namespace sdleasygui {
+namespace seg {
 
 struct event_mover
 {

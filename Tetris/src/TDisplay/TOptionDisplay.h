@@ -18,7 +18,7 @@ class TOptionDisplay final : public TDisplayInterface
 {
 public:
 
-    explicit TOptionDisplay(const sdleasygui::t_id displayId);
+    explicit TOptionDisplay(const seg::t_id displayId);
 
     virtual ~TOptionDisplay()
     {}

@@ -16,7 +16,7 @@ class TLocalMainDisplay final : public TMainDisplay
 {
 public:
 
-    explicit TLocalMainDisplay(const sdleasygui::t_id displayId);
+    explicit TLocalMainDisplay(const seg::t_id displayId);
 
     virtual ~TLocalMainDisplay() = default;
 

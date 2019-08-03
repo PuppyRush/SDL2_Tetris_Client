@@ -28,7 +28,7 @@ using namespace game_interface;
 void init()
 {
     game_interface::GameInterface_Init(false);
-    sdleasygui::SDLEasyGUI_Init();
+    seg::SDLEasyGUI_Init();
 
     TPlayer::getInstance()->setOrder(0);
     TPlayer::getInstance()->setMaster(true);
@@ -38,12 +38,12 @@ int main()
 {
 
     init();
-    sdleasygui::t_res res;
+    seg::t_res res;
 
-    auto mainDisplay = sdleasygui::make_display<TMultiMainDisplay>(resource::MAIN_MULTI_DISPLAY);
-    auto optionDisplay = sdleasygui::make_display<TOptionDisplay>(resource::OPTION_DISPLAY);
-    auto enterServerDisplay = sdleasygui::make_display<TEnterServerDisplay>(resource::ENTERSERVER_DISPLAY);
-    auto waitingRoomDisplay = sdleasygui::make_display<TWaitingRoomDisplay>(resource::WAITINGROOM_DISPLAY);
+    auto mainDisplay = seg::make_display<TMultiMainDisplay>(resource::MAIN_MULTI_DISPLAY);
+    auto optionDisplay = seg::make_display<TOptionDisplay>(resource::OPTION_DISPLAY);
+    auto enterServerDisplay = seg::make_display<TEnterServerDisplay>(resource::ENTERSERVER_DISPLAY);
+    auto waitingRoomDisplay = seg::make_display<TWaitingRoomDisplay>(resource::WAITINGROOM_DISPLAY);
 
     bool go = true;
     shared_ptr<TDisplayInterface> maindlg = mainDisplay;
@@ -72,11 +72,11 @@ int main()
                                 maindlg = waitingRoomDisplay;
                                 break;
                             } else {
-                                sdleasygui::MessageDialog dlg{"Cannot fail to connect server.",
-                                                              sdleasygui::MessageDialogKind::error};
+                                seg::MessageDialog dlg{"Cannot fail to connect server.",
+                                                       seg::MessageDialogKind::error};
                                 dlg.alert();
                             }
-                        } else if (enterServerDisplay->getResult() == sdleasygui::toUType(sdleasygui::BTN_CANCEL)) {
+                        } else if (enterServerDisplay->getResult() == seg::toUType(seg::BTN_CANCEL)) {
                             break;
                         }
                     }
@@ -109,5 +109,5 @@ int main()
     }
 
     game_interface::GameInterface_Quit();
-    sdleasygui::SDLEasyGUI_Quit();
+    seg::SDLEasyGUI_Quit();
 }

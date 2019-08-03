@@ -5,7 +5,7 @@
 #include "MessageDialog.h"
 #include <include/SEG_Drawer.h>
 
-using namespace sdleasygui;
+using namespace seg;
 
 MessageDialog::MessageDialog(const std::string& message, MessageDialogKind kind)
         : DisplayInterface(toUType(MESSAGEDIALOG_MSG)), m_message(message), m_kind(kind)
@@ -19,9 +19,9 @@ MessageDialog::MessageDialog(const std::string& message, MessageDialogKind kind)
 
 void MessageDialog::registerEvent()
 {
-    SEG_LBUTTONCLICK(sdleasygui::toUType(resource::BTN_OK), &MessageDialog::onClickOk, this);
-    SEG_LBUTTONCLICK(sdleasygui::toUType(resource::BTN_YES), &MessageDialog::onClickYes, this);
-    SEG_LBUTTONCLICK(sdleasygui::toUType(resource::BTN_NO), &MessageDialog::onClickNo, this);
+    SEG_LBUTTONCLICK(seg::toUType(resource::BTN_OK), &MessageDialog::onClickOk, this);
+    SEG_LBUTTONCLICK(seg::toUType(resource::BTN_YES), &MessageDialog::onClickYes, this);
+    SEG_LBUTTONCLICK(seg::toUType(resource::BTN_NO), &MessageDialog::onClickNo, this);
 }
 
 void MessageDialog::onInitialize()
@@ -42,7 +42,7 @@ void MessageDialog::onInitialize()
     t_size begin_y = getWindowHeight() / 2 - 100;
     {
         StaticLabelBuilder bld(getWindow(), {20, 20}, m_message);
-        bld.id(sdleasygui::toUType(resource::MESSAGEDIALOG_MSG))->
+        bld.id(seg::toUType(resource::MESSAGEDIALOG_MSG))->
                 fontColor(ColorCode::black)->
                 width(240)->
                 height(50)->
@@ -67,7 +67,7 @@ void MessageDialog::onInitialize()
 
     {
         ButtonBuilder bld(getWindow(), {getWindowWidth() - 120, 70}, "OK");
-        bld.id(sdleasygui::toUType(resource::BTN_OK))->
+        bld.id(seg::toUType(resource::BTN_OK))->
                 fontSize(18)->
                 fontColor(ColorCode::black)->
                 width(60)->

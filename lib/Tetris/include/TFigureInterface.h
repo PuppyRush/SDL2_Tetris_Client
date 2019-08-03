@@ -56,13 +56,13 @@ public:
     inline size_t getHeight() const noexcept
     { return m_height; }
 
-    inline sdleasygui::SEG_Color getColor() const noexcept
+    inline seg::SEG_Color getColor() const noexcept
     { return m_color; }
 
-    inline sdleasygui::SEG_Point getPoint() const noexcept
+    inline seg::SEG_Point getPoint() const noexcept
     { return m_absoluteCoord; }
 
-    inline void setPoint(const sdleasygui::SEG_Point& point)
+    inline void setPoint(const seg::SEG_Point& point)
     {
         _resetRelateivePoint(point);
         m_absoluteCoord = point;
@@ -75,7 +75,7 @@ public:
     getTypeCount() const noexcept
     { return (game_interface::toUType(getTypeEnd()) - game_interface::toUType(getTypeBegin())) + 1; }
 
-    std::shared_ptr<TFigureInterface> move(const sdleasygui::t_eventType event);
+    std::shared_ptr<TFigureInterface> move(const seg::t_eventType event);
 
     TFigureUnit getLeftmost() const noexcept;
 
@@ -127,12 +127,12 @@ protected:
 
     virtual void _rotateLeft();
 
-    sdleasygui::t_size m_width;
-    sdleasygui::t_size m_height;
-    sdleasygui::SEG_Color m_color;
+    seg::t_size m_width;
+    seg::t_size m_height;
+    seg::SEG_Color m_color;
     TFigureClass m_figureClass;
     TFigureType m_figureType;
-    sdleasygui::SEG_Point m_absoluteCoord;
+    seg::SEG_Point m_absoluteCoord;
     FigureCoords m_relativeCoord;
 
 private:
@@ -145,7 +145,7 @@ private:
     virtual void _rotateRight() final
     { assert(0); } // not implementation yet
 
-    void _resetRelateivePoint(const sdleasygui::SEG_Point& exPt);
+    void _resetRelateivePoint(const seg::SEG_Point& exPt);
 
     virtual const std::shared_ptr<TFigureInterface> _copy() const = 0;
 
