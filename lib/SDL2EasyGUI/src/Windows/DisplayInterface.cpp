@@ -83,9 +83,13 @@ std::underlying_type_t<resource> DisplayInterface::waitModaless()
 
 void DisplayInterface::_run()
 {
+    static int debug{0};
 
     while (m_run) {
         auto event = m_eventDelivery.popEvent();
+
+        printf("DisplayInterface::_run : %d\n", debug++);
+
         onEvent(event);
 
         if (m_currentCtl != nullptr && (m_currentCtl->isBounded(*event) || m_currentCtl->isHitting())) {
@@ -137,14 +141,11 @@ void DisplayInterface::onUserEvent(const SDL_UserEvent* event)
             }
             break;
         }
+        case SEG_DRAW_CONTROLLER:
         case SEG_DRAW_DISPLAY: {
             //dont call _refresh() in this case.
             onDrawBackground();
             onDraw();
-            break;
-        }
-        case SEG_DRAW_CONTROLLER: {
-            refresh();
             break;
         }
         case WINDOW_CLOSE:

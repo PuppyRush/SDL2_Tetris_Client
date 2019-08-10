@@ -124,7 +124,6 @@ typedef struct SEG_TFont
     {}
 } TFont;
 
-
 //pre declearcation
 class SEG_Window;
 
@@ -133,8 +132,8 @@ typedef struct ControlBasic
     SEG_Window* window;
     t_res resourceId;
     SEG_Point point = SEG_Point{-100, -100};
-    SEG_Point midPoint = SEG_Point{0,0};
-    SDL_Rect positionRect = SDL_Rect{0,0};
+    SEG_Point midPoint = SEG_Point{0, 0};
+    SDL_Rect positionRect = SDL_Rect{0, 0};
     t_size depth = 0;
     t_size width = 100;
     t_size height = 50;

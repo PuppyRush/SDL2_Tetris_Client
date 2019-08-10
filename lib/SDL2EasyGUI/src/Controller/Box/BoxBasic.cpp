@@ -35,14 +35,15 @@ void BoxBasic::onDraw()
 
         SEG_Color color{ColorCode::blue};
 
-        SDL_Rect rect{point.x + 2, point.y + static_cast<int>(textDrawer.getTextHeight())/10 ,
-                      getWidth() - 4, static_cast<int>(textDrawer.getTextHeight() )};
+        SDL_Rect rect{point.x + 2, point.y + static_cast<int>(textDrawer.getTextHeight()) / 10,
+                      getWidth() - 4, static_cast<int>(textDrawer.getTextHeight())};
 
         SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
         SDL_SetRenderDrawColor(getSDLRenderer(), color.r, color.g, color.b, 128);
         SDL_RenderFillRect(renderer, &rect);
         SDL_RenderDrawRect(renderer, &rect);
         SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
+
 
         printf("%d %d\n", m_boundedMenuIndx, point.y);
     }
@@ -57,7 +58,7 @@ void BoxBasic::onDrawBackground()
 
 void BoxBasic::onMouseMotionEvent(const SDL_MouseMotionEvent* motion)
 {
-    if (!isFolded() ) {
+    if (!isFolded()) {
 
         m_boundedMenuIndx = calcIndexOf(motion->y);
         onDraw();

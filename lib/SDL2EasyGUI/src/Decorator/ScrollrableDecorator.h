@@ -19,79 +19,27 @@ public:
 
     using Base = ScrollbarDecorator;
 
-    ScrollrableDecorator(BoxBasic* ctl)
-            : Base(ctl),
-              m_scrollbarFocusWidth(14)
-    {
-        m_scrollbarFocusHeight =
-                (ctl->getHeight() - getUpperArrowPosition().h - getBelowArrowPosition().h) / ctl->getVisibleMenuMax();
-        m_scrollbarFocusPosition = {Base::getPoint().x + Base::getWidth() - m_scrollbarFocusWidth * 1.1,
-                                    Base::getUpperArrowPosition().y + Base::getUpperArrowPosition().h + 2,
-                                    m_scrollbarFocusWidth, m_scrollbarFocusHeight};
-
-    }
+    explicit ScrollrableDecorator(BoxBasic* ctl);
 
 protected:
 
     inline virtual void setPosition(const SDL_Rect rect) _GLIBCXX_NOEXCEPT
-    {
-        m_scrollbarFocusPosition = rect;
-    }
-
-    inline virtual SDL_Rect getPoisition() const _GLIBCXX_NOEXCEPT
-    {
-        return m_scrollbarFocusPosition;
-    }
-
-    virtual void onDraw() override
-    {
-        Base::onDraw();
-        drawScrollbarFocus();
-    }
-
-    virtual void onDrawBackground() override
-    {
-        Base::onDrawBackground();
-    }
-
-    void drawScrollbarFocus()
-    {
-        draw_helper::draw_FilledRoundedRactangel(Base::getSDLRenderer(), this->getPosition(), ColorCode::green, 3);
-    }
-
-    virtual bool isHit(const SEG_Point& point) const
-    {
-        return _hitTest(this->getPosition(), point) || Base::isHit(point);
-    }
-
-    virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) override
-    {
-        if (this->isHit({motion->x, motion->y})) {
-            draw_helper::draw_FilledRoundedRactangel(Base::getSDLRenderer(), this->getPosition(), ColorCode::green, 3);
-            refresh();
-        } else {
-            Base::onMouseMotionEvent(motion);
-        }
-    };
-
-    virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) override
-    {
-        if (this->isHit({button->x, button->y})) {
-
-            if (button->state == SDL_PRESSED && button->button == SDL_BUTTON_LEFT) {
-                Base::setBackgroundColor(ColorCode::darkgray);
-            }
-            if (button->state == SDL_RELEASED) {
-                Base::setBackgroundColor(ColorCode::lightgray);
-            }
-
-        } else {
-            Base::onMouseButtonEvent(button);
-        }
-    }
+    { m_scrollbarFocusPosition = rect; }
 
     inline virtual SDL_Rect getPosition() const _GLIBCXX_NOEXCEPT override
     { return m_scrollbarFocusPosition; }
+
+    virtual void onDraw() override;
+
+    virtual void onDrawBackground() override;
+
+    void drawScrollbarFocus();
+
+    virtual bool isHit(const SEG_Point& point) const _GLIBCXX_NOEXCEPT;
+
+    virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) override;
+
+    virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) override;
 
 private:
 

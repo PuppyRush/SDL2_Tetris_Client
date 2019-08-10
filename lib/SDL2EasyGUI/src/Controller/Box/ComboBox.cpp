@@ -81,7 +81,8 @@ void ComboBox::onDraw()
             point.y += textDrawer.getTextHeight() + MENU_GAP;
 
             const int endIdx =
-                    (m_menuStartIdx + m_visibleMenuCnt) > m_items.size() ? m_items.size() : m_menuStartIdx + m_visibleMenuCnt;
+                    (m_menuStartIdx + m_visibleMenuCnt) > m_items.size() ? m_items.size() : m_menuStartIdx +
+                                                                                            m_visibleMenuCnt;
             for (int i = m_menuStartIdx; i < endIdx; i++) {
                 TextDrawer textDrawer{renderer, getFont(), point, m_items.at(i)->getString()};
                 textDrawer.drawText();
@@ -90,6 +91,11 @@ void ComboBox::onDraw()
 
                 m_menuHeight = textDrawer.getTextHeight();
             }
+
+            //Draw Chosed focus
+            draw_helper::drawThickLine(renderer, {getPoint().x, getPoint().y + m_menuHeight },
+                                       {getPoint().x + getWidth(), getPoint().y + m_menuHeight}, ColorCode::cyan, 4);
+
         }
     }
 

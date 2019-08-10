@@ -141,9 +141,9 @@ protected:
     t_size m_menuHeight = 0;
     size_t m_menuStartIdx = 0;
     int m_selectedMenuIdx = -1;
-    int m_boundedMenuIndx = -1;
 
 private:
+    int m_boundedMenuIndx = -1;
     bool m_folded = true;
 
 };

@@ -32,9 +32,9 @@ void RadioButton::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 void RadioButton::_drawCheck(const bool chk)
 {
     if (chk) {
-        draw_helper::drawCircle(getSDLRenderer(), getMidPoint(), getBackgroundColor(), m_thick);
-    } else {
         draw_helper::drawCircle(getSDLRenderer(), getMidPoint(), m_lineColor, m_thick);
+    } else {
+        draw_helper::drawCircle(getSDLRenderer(), getMidPoint(), getBackgroundColor(), m_thick);
     }
 
 }

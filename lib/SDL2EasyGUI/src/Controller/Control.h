@@ -157,15 +157,45 @@ protected:
 
     explicit Control(const ControlBuilder& bld);
 
+    void drawBackground(const SDL_Rect rect, const SEG_Color color);
+
+    inline int getTextWidth() const _GLIBCXX_NOEXCEPT
+    {
+        return m_textWidth;
+    }
+
+    inline void setTextWidth(int mTextWidth)
+    {
+        m_textWidth = mTextWidth;
+    }
+
+    inline int getTextHeight() const _GLIBCXX_NOEXCEPT
+    {
+        return m_textHeight;
+    }
+
+    inline void setTextHeight(int mTextHeight)
+    {
+        m_textHeight = mTextHeight;
+    }
+
+    inline void stopDrawing(const bool b)
+    { m_stopDraw = b; }
+
+    inline bool isStopedDraw() const _GLIBCXX_NOEXCEPT
+    { return m_stopDraw; }
+
+private:
     void _initializeInCtor();
 
-    void drawBackground(const SDL_Rect rect, const SEG_Color color);
+private:
 
     int m_textWidth = 0;
     int m_textHeight = 0;
-    SDL_Rect m_positionRect;
 
 private:
+    SDL_Rect m_positionRect;
+    bool m_stopDraw = false;
     bool m_isHitting;
 };
 

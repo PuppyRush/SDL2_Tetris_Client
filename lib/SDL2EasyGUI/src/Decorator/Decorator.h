@@ -135,7 +135,6 @@ protected:
 private:
 
     T* m_graphic;
-
 };
 
 }

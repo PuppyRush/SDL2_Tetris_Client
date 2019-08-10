@@ -29,10 +29,18 @@ namespace seg {
             filledTrigonRGBA(renderer, p1.x, p1.y, p2.x, p2.y, p3.x, p3.y, color.r, color.g, color.b, color.a);
         }
 
-        static void draw_RoundedRactangel(SDL_Renderer* renderer, const SDL_Rect& rect, const SEG_Color& color, int16_t rad)
+        static void draw_RoundedRactangel(SDL_Renderer* renderer, const SDL_Rect& rect, const SEG_Color& color, int16_t rad, t_size thick = 1)
         {
-            roundedRectangleRGBA(renderer, rect.x, rect.y, rect.x + rect.w, rect.y + rect.h, rad, color.r, color.g, color.b,
-                                 color.a);
+            auto copied{rect};
+            for(t_size t=0 ; t < thick ; t++)
+            {
+                copied.x += t;
+                copied.y += t;
+                copied.h -= (t+1);
+                copied.w -= (t+1);
+                roundedRectangleRGBA(renderer, copied.x, copied.y, copied.x + copied.w, copied.y + copied.h, rad, color.r, color.g, color.b,
+                                     color.a);
+            }
         }
 
         static void
@@ -40,6 +48,12 @@ namespace seg {
         {
             roundedBoxRGBA(renderer, rect.x, rect.y, rect.x + rect.w, rect.y + rect.h, rad, color.r, color.g, color.b,
                            color.a);
+        }
+
+        static void
+        drawThickLine(SDL_Renderer* renderer, const SEG_Point p1, const SEG_Point p2, const SEG_Color& color, const size_t thick = 1)
+        {
+            thickLineRGBA(renderer, p1.x, p1.y, p2.x, p2.y, thick, color.r, color.g, color.b, color.a);
         }
 
         static void

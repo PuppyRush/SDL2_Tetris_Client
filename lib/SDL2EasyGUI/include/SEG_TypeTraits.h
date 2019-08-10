@@ -95,5 +95,4 @@ private:
 };
 
 }
-
 #endif //TERIS_FIGURE_CLASS_TTYPETRAITS_H

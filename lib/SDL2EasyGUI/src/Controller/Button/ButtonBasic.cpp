@@ -21,8 +21,8 @@ void ButtonBasic::onDraw()
     if (getAutoSize()) {
         rect = SDL_Rect{getPoint().x - 20,
                         getPoint().y,
-                        static_cast<int>(m_textWidth * 1.2),
-                        static_cast<int>(m_textHeight * 1.4)};
+                        static_cast<int>(getTextWidth() * 1.2),
+                        static_cast<int>(getTextHeight() * 1.4)};
     } else {
         rect = SDL_Rect{getPoint().x, getPoint().y, getWidth(), getHeight()};
     }
@@ -32,8 +32,8 @@ void ButtonBasic::onDraw()
     rect.h = (rect.h - getBorderThick() * 2) + 1;
     rect.w = (rect.w - getBorderThick() * 2) + 1;
 
-    SEG_Point point{static_cast<int>(getPoint().x + (getWidth() - m_textWidth) / 2),
-                    static_cast<int>(getPoint().y + (getHeight() - m_textHeight) / 2)};
+    SEG_Point point{static_cast<int>(getPoint().x + (getWidth() - getTextWidth()) / 2),
+                    static_cast<int>(getPoint().y + (getHeight() - getTextHeight()) / 2)};
 
 
     TextDrawer drawer{getSDLRenderer(), getFont(), point, getName()};
@@ -52,8 +52,8 @@ void ButtonBasic::initialize()
 {
     TextDrawer drawer{getSDLRenderer(), getFont(), getPoint(), getName()};
 
-    m_textWidth = drawer.getTextWidth();
-    m_textHeight = drawer.getTextHeight();
+    setTextWidth(drawer.getTextWidth());
+    setTextHeight(drawer.getTextHeight());
 
     Border::initialize();
 }
