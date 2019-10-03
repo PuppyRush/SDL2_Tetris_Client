@@ -15,7 +15,7 @@
 SDL_TETRIS_BEGIN
 
 //dont use resource id as 0x0000 (NULL)
-enum class resource : seg::t_res
+enum class resource : seg::t_id
 {
 
     RESOURCE_START = seg::SEG_RESROUCE_END + 1,

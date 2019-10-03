@@ -14,11 +14,11 @@
 #include <SDL2/SDL.h>
 #include "EventQueue.h"
 #include "SEG_Property.h"
-#include "SEG_Debug.h"
+#include "SEG_Logger.h"
 
 namespace seg {
 
-class EventListener : public debug::SEG_Debug
+class EventListener
 {
 
 public:
@@ -28,6 +28,183 @@ public:
 
     virtual ~EventListener() = default;
 
+    void onEvent(const data_type event)
+    {
+        using namespace logger;
+
+        switch (event->type) {
+            case SDL_WINDOWEVENT   :
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_WINDOWEVENT", Logger::logger_level::Debug);
+
+                onWindowEvent(event->window);
+                switch (event->window.type) {
+                    case SDL_WINDOWEVENT_FOCUS_GAINED:
+                        onDetachFocus();
+                        break;
+                    case SDL_WINDOWEVENT_FOCUS_LOST:
+                        onAttachFocus();
+                        break;
+                }
+                break;
+            case SDL_SYSWMEVENT    :
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_SYSWMEVENT", Logger::logger_level::Debug);
+                onSysWMEvent(&event->syswm);
+                break;
+            case SDL_KEYDOWN       :
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_KEYDOWN", Logger::logger_level::Debug);
+                onKeyboardEvent(&event->key);
+                break;
+            case SDL_KEYUP:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_KEYUP", Logger::logger_level::Debug);
+                onKeyboardEvent(&event->key);
+                break;
+            case SDL_TEXTEDITING   :
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_TEXTEDITING", Logger::logger_level::Debug);
+                onTextEditingEvent(&event->edit);
+                break;
+            case SDL_TEXTINPUT:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_TEXTINPUT", Logger::logger_level::Debug);
+                onTextInputEvent(&event->text);
+                break;
+            case SDL_KEYMAPCHANGED :
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_KEYMAPCHANGED", Logger::logger_level::Debug);
+                break;
+            case SDL_MOUSEMOTION   :
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_MOUSEMOTION", Logger::logger_level::Debug);
+                onMouseMotionEvent(&event->motion);
+                break;
+            case SDL_MOUSEBUTTONDOWN:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_MOUSEBUTTONDOWN", Logger::logger_level::Debug);
+                onMouseButtonEvent(&event->button);
+                break;
+            case SDL_MOUSEBUTTONUP :
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_MOUSEBUTTONUP", Logger::logger_level::Debug);
+                onMouseButtonEvent(&event->button);
+                break;
+            case SDL_MOUSEWHEEL    :
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_MOUSEWHEEL", Logger::logger_level::Debug);
+                onMouseWheelEvent(&event->wheel);
+                break;
+            case SDL_JOYBUTTONDOWN   :
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_JOYBUTTONDOWN", Logger::logger_level::Debug);
+                onJoyButtonEvent(&event->jbutton);
+                break;
+            case SDL_JOYBUTTONUP     :
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_JOYBUTTONUP", Logger::logger_level::Debug);
+                onJoyButtonEvent(&event->jbutton);
+                break;
+            case SDL_JOYBALLMOTION   :
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_JOYBALLMOTION", Logger::logger_level::Debug);
+                onJoyBallEvent(&event->jball);
+                break;
+            case SDL_JOYHATMOTION    :
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_JOYHATMOTION", Logger::logger_level::Debug);
+                onJoyHatEvent(&event->jhat);
+                break;
+            case SDL_JOYAXISMOTION   :
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_JOYAXISMOTION", Logger::logger_level::Debug);
+                onJoyAxisEvent(&event->jaxis);
+                break;
+            case SDL_JOYDEVICEADDED  :
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_JOYDEVICEADDED", Logger::logger_level::Debug);
+                onJoyDeviceEvent(&event->jdevice);
+                break;
+            case SDL_JOYDEVICEREMOVED:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_JOYDEVICEREMOVED", Logger::logger_level::Debug);
+                onJoyDeviceEvent(&event->jdevice);
+                break;
+            case SDL_CONTROLLERAXISMOTION:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_CONTROLLERAXISMOTION", Logger::logger_level::Debug);
+                onControllerAxisEvent(&event->caxis);
+                break;
+            case SDL_CONTROLLERBUTTONDOWN :
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_CONTROLLERBUTTONDOWN", Logger::logger_level::Debug);
+                onControllerButtonEvent(&event->cbutton);
+                break;
+            case SDL_CONTROLLERBUTTONUP   :
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_CONTROLLERBUTTONUP", Logger::logger_level::Debug);
+                onControllerButtonEvent(&event->cbutton);
+                break;
+            case SDL_CONTROLLERDEVICEREMOVED:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_CONTROLLERDEVICEREMOVED", Logger::logger_level::Debug);
+                onControllerDeviceEvent(&event->cdevice);
+                break;
+            case SDL_CONTROLLERDEVICEREMAPPED:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_CONTROLLERDEVICEREMAPPED", Logger::logger_level::Debug);
+                onControllerDeviceEvent(&event->cdevice);
+                break;
+            case SDL_CONTROLLERDEVICEADDED :
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_CONTROLLERDEVICEADDED", Logger::logger_level::Debug);
+                onControllerDeviceEvent(&event->cdevice);
+                break;
+            case SDL_FINGERDOWN:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_FINGERDOWN", Logger::logger_level::Debug);
+                break;
+            case SDL_FINGERUP:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_FINGERUP", Logger::logger_level::Debug);
+                break;
+            case SDL_FINGERMOTION:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_FINGERMOTION", Logger::logger_level::Debug);
+                break;
+            case SDL_DOLLARGESTURE:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_DOLLARGESTURE", Logger::logger_level::Debug);
+                break;
+            case SDL_DOLLARRECORD:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_DOLLARRECORD", Logger::logger_level::Debug);
+                break;
+            case SDL_MULTIGESTURE:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_MULTIGESTURE", Logger::logger_level::Debug);
+                break;
+            case SDL_CLIPBOARDUPDATE:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_CLIPBOARDUPDATE", Logger::logger_level::Debug);
+                break;
+            case SDL_DROPFILE:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_DROPFILE", Logger::logger_level::Debug);
+                break;
+            case SDL_DROPBEGIN:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_DROPBEGIN", Logger::logger_level::Debug);
+                break;
+            case SDL_DROPCOMPLETE:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_DROPCOMPLETE", Logger::logger_level::Debug);
+                break;
+            case SDL_DROPTEXT:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_DROPTEXT", Logger::logger_level::Debug);
+                break;
+            case SDL_AUDIODEVICEADDED:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_AUDIODEVICEADDED", Logger::logger_level::Debug);
+                break;
+            case SDL_AUDIODEVICEREMOVED:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_AUDIODEVICEREMOVED", Logger::logger_level::Debug);
+                break;
+            case SDL_RENDER_TARGETS_RESET:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_RENDER_TARGETS_RESET", Logger::logger_level::Debug);
+                break;
+            case SDL_RENDER_DEVICE_RESET :
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_RENDER_DEVICE_RESET", Logger::logger_level::Debug);
+                break;
+            case SDL_USEREVENT:
+                switch (event->user.code) {
+                    case ATTACH_FOCUS:
+                        Logger::getInstance().printLog("EventListener::onEvent, event_type : ATTACH_FOCUS", Logger::logger_level::Debug);
+                        onAttachFocus();
+                        break;
+                    case DETACH_FOCUS:
+                        Logger::getInstance().printLog("EventListener::onEvent, event_type : DETACH_FOCUS", Logger::logger_level::Debug);
+                        onDetachFocus();
+                        break;
+                    default:
+                        Logger::getInstance().printLog("EventListener::onEvent, event_type : default(SDL_USEREVENT)", Logger::logger_level::Debug);
+                        onUserEvent(&event->user);
+                }
+                break;
+            case SDL_TIMER_EVENT:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_TIMER_EVENT", Logger::logger_level::Debug);
+                onTimerEvent(&event->user);
+                break;
+            default:;
+
+        }
+    }
 
     //SDL Events
     virtual void onCommonEvent(const SDL_CommonEvent* common) = 0;
@@ -92,130 +269,11 @@ public:
     const data_type popEvent()
     { return m_eventDelivery.popEvent(); }
 
+
 protected:
     EventQueue<SDL_Event> m_eventDelivery;
 
     EventListener() = default;
-
-    void onEvent(const data_type event)
-    {
-        switch (event->type) {
-            case SDL_WINDOWEVENT   :
-
-                onWindowEvent(event->window);
-                switch (event->window.type) {
-                    case SDL_WINDOWEVENT_FOCUS_GAINED:
-                        onDetachFocus();
-                        break;
-                    case SDL_WINDOWEVENT_FOCUS_LOST:
-                        onAttachFocus();
-                        break;
-                }
-                break;
-            case SDL_SYSWMEVENT    :
-                onSysWMEvent(&event->syswm);
-                break;
-            case SDL_KEYDOWN       :
-                onKeyboardEvent(&event->key);
-                break;
-            case SDL_KEYUP:
-                onKeyboardEvent(&event->key);
-                break;
-            case SDL_TEXTEDITING   :
-                onTextEditingEvent(&event->edit);
-                break;
-            case SDL_TEXTINPUT:
-                onTextInputEvent(&event->text);
-                break;
-            case SDL_KEYMAPCHANGED :
-                break;
-            case SDL_MOUSEMOTION   :
-                onMouseMotionEvent(&event->motion);
-                break;
-            case SDL_MOUSEBUTTONDOWN:
-                onMouseButtonEvent(&event->button);
-                break;
-            case SDL_MOUSEBUTTONUP :
-                onMouseButtonEvent(&event->button);
-                break;
-            case SDL_MOUSEWHEEL    :
-                onMouseWheelEvent(&event->wheel);
-                break;
-            case SDL_JOYBUTTONDOWN   :
-                onJoyButtonEvent(&event->jbutton);
-                break;
-            case SDL_JOYBUTTONUP     :
-                break;
-            case SDL_JOYBALLMOTION   :
-                onJoyBallEvent(&event->jball);
-                break;
-            case SDL_JOYHATMOTION    :
-                onJoyHatEvent(&event->jhat);
-                break;
-            case SDL_JOYAXISMOTION   :
-                onJoyAxisEvent(&event->jaxis);
-                break;
-            case SDL_JOYDEVICEADDED  :
-            case SDL_JOYDEVICEREMOVED:
-                onJoyDeviceEvent(&event->jdevice);
-                break;
-            case SDL_CONTROLLERAXISMOTION:
-                onControllerAxisEvent(&event->caxis);
-                break;
-            case SDL_CONTROLLERBUTTONDOWN :
-                onControllerButtonEvent(&event->cbutton);
-                break;
-            case SDL_CONTROLLERBUTTONUP   :
-                break;
-            case SDL_CONTROLLERDEVICEREMOVED:
-            case SDL_CONTROLLERDEVICEREMAPPED:
-            case SDL_CONTROLLERDEVICEADDED :
-                onControllerDeviceEvent(&event->cdevice);
-                break;
-
-            case SDL_FINGERDOWN:
-            case SDL_FINGERUP:
-            case SDL_FINGERMOTION:
-
-            case SDL_DOLLARGESTURE:
-            case SDL_DOLLARRECORD:
-            case SDL_MULTIGESTURE:
-
-            case SDL_CLIPBOARDUPDATE:
-
-            case SDL_DROPFILE:
-            case SDL_DROPBEGIN:
-            case SDL_DROPCOMPLETE:
-            case SDL_DROPTEXT:
-
-            case SDL_AUDIODEVICEADDED:
-            case SDL_AUDIODEVICEREMOVED:
-
-            case SDL_RENDER_TARGETS_RESET:
-            case SDL_RENDER_DEVICE_RESET :
-                //not implement yet
-                assert(0);
-                break;
-            case SDL_USEREVENT:
-                switch (event->user.code) {
-                    case ATTACH_FOCUS:
-                        onAttachFocus();
-                        break;
-                    case DETACH_FOCUS:
-                        onDetachFocus();
-                        break;
-
-                    default:
-                        onUserEvent(&event->user);
-                }
-                break;
-            case SDL_TIMER_EVENT:
-                onTimerEvent(&event->user);
-                break;
-            default:;
-
-        }
-    }
 
 private:
 

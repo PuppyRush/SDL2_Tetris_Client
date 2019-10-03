@@ -15,7 +15,7 @@
 #include <string>
 #include <jsoncpp/json/json.h> // or jsoncpp/json.h , or json/json.h etc.
 
-#include "Time.h"
+#include "SDL2EasyGUI/include/SEG_Time.h"
 #include "Constant.h"
 #include "TypeTraits.h"
 #include "Type.h"
@@ -73,7 +73,7 @@ public:
             os << "SEND]";
         os   << " destid :"  << packet.getHeader().destId
              << " / message : " << std::to_string(toUType(packet.getHeader().message))
-             << " / timestamp : " << time::current(packet.getHeader().timestamp) << std::endl;
+             << " / timestamp : " << seg::time::current(packet.getHeader().timestamp) << std::endl;
         return os;
     }
 
@@ -99,7 +99,7 @@ public:
 
     inline void updateLocale() const
     {
-        m_header.timestamp = time::now();
+        m_header.timestamp = seg::time::now_to_time();
         m_header.where = g_isServer ? messageDirection::SERVER : messageDirection::CLIENT;
     }
 

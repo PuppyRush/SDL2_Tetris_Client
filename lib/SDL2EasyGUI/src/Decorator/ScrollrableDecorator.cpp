@@ -14,7 +14,7 @@ ScrollrableDecorator::ScrollrableDecorator(BoxBasic* ctl)
 {
     m_scrollbarFocusHeight =
             (ctl->getHeight() - getUpperArrowPosition().h - getBelowArrowPosition().h) / ctl->getVisibleMenuMax();
-    m_scrollbarFocusPosition = {Base::getPoint().x + Base::getWidth() - m_scrollbarFocusWidth ,
+    m_scrollbarFocusPosition = {Base::getPoint().x + Base::getWidth() - m_scrollbarFocusWidth,
                                 Base::getUpperArrowPosition().y + Base::getUpperArrowPosition().h + 2,
                                 m_scrollbarFocusWidth, m_scrollbarFocusHeight};
 
@@ -33,7 +33,7 @@ void ScrollrableDecorator::onDrawBackground()
 
 void ScrollrableDecorator::drawScrollbarFocus()
 {
-    draw_helper::draw_FilledRoundedRactangel(Base::getSDLRenderer(), this->getPosition(), ColorCode::silver, 3);
+    drawer::draw_FilledRoundedRactangel(Base::getSDLRenderer(), this->getPosition(), ColorCode::silver, 3);
 }
 
 bool ScrollrableDecorator::isHit(const SEG_Point& point) const _GLIBCXX_NOEXCEPT
@@ -44,13 +44,13 @@ bool ScrollrableDecorator::isHit(const SEG_Point& point) const _GLIBCXX_NOEXCEPT
 void ScrollrableDecorator::onMouseMotionEvent(const SDL_MouseMotionEvent* motion)
 {
     if (Base::_hitTest(ScrollrableDecorator::getPosition(), {motion->x, motion->y})) {
-        draw_helper::draw_FilledRoundedRactangel(Base::getSDLRenderer(), ScrollrableDecorator::getPosition(), ColorCode::green, 3);
-        printf("green!\n");
-        //refresh();
+        drawer::draw_FilledRoundedRactangel(Base::getSDLRenderer(), ScrollrableDecorator::getPosition(),
+                                                 ColorCode::green, 3);
+        refresh();
     } else {
-        draw_helper::draw_FilledRoundedRactangel(Base::getSDLRenderer(), ScrollrableDecorator::getPosition(), ColorCode::silver, 3);
+        drawer::draw_FilledRoundedRactangel(Base::getSDLRenderer(), ScrollrableDecorator::getPosition(),
+                                                 ColorCode::silver, 3);
         Base::onMouseMotionEvent(motion);
-        printf("silver!\n");
     }
 };
 
@@ -68,4 +68,18 @@ void ScrollrableDecorator::onMouseButtonEvent(const SDL_MouseButtonEvent* button
     } else {
         Base::onMouseButtonEvent(button);
     }
+}
+
+void ScrollrableDecorator::onMouseWheelEvent(const SDL_MouseWheelEvent* wheel)
+{
+    if (wheel->direction == 0) {
+        if (wheel->y == -1) {
+            getComponent()->setMenuStartIndex(getComponent()->getMenuStartIndex() + 1);
+        } else if (wheel->y == 1) {
+            getComponent()->setMenuStartIndex(getComponent()->getMenuStartIndex() - 1);
+        }
+        refresh();
+    }
+
+    Base::onMouseWheelEvent(wheel);
 }

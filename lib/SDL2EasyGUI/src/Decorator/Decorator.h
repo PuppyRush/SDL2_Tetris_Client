@@ -17,6 +17,9 @@ template<class T>
 class Decorator : public Control
 {
 public:
+
+    using DecoratorBase = T;
+
     Decorator(T* gi)
             : m_graphic(gi), Control(gi)
     {

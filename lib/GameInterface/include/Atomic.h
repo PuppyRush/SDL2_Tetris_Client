@@ -10,7 +10,7 @@
 #include "Type.h"
 #include "Constant.h"
 
-namespace game_interface {
+namespace game_interface::atomic {
 
 class Atomic : public boost::serialization::singleton<Atomic>
 {

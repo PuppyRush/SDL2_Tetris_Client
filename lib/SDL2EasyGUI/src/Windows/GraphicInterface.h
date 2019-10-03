@@ -63,7 +63,7 @@ public:
     inline window_type getWindow() const noexcept
     { return m_window; }
 
-    inline t_res getResourceId() const _GLIBCXX_NOEXCEPT
+    inline t_id getId() const _GLIBCXX_NOEXCEPT
     {
         return m_data->resourceId;
     }
@@ -272,6 +272,8 @@ protected:
     }
 
     virtual void _drawBackground(const SDL_Rect rect);
+
+    bool _hitTest(const SDL_Rect&, const t_coord& , const t_coord& ) const _GLIBCXX_NOEXCEPT;
 
     bool _hitTest(const SDL_Rect&, const SEG_Point&) const _GLIBCXX_NOEXCEPT;
 

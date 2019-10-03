@@ -14,7 +14,7 @@
 namespace seg {
 
 //dont use resource id as 0x0000 (NULL)
-enum resource : t_res
+enum resource : t_id
 {
 
     NONE = 0x0010,

@@ -41,6 +41,8 @@ protected:
 
     virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) override;
 
+    virtual void onMouseWheelEvent(const SDL_MouseWheelEvent* wheel) override;
+
 private:
 
     SDL_Rect m_scrollbarFocusPosition;

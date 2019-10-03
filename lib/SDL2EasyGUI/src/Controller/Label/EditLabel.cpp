@@ -5,6 +5,8 @@
 #include "EditLabel.h"
 #include "SDL2EasyGUI/include/SEG_Event.h"
 #include "SDL2EasyGUI/include/SEG_TypeTraits.h"
+#include <SEG_Drawer.h>
+
 
 using namespace std;
 using namespace seg;
@@ -14,35 +16,47 @@ EditLabel::EditLabel(EditLabelBuilder& bld)
 {
     bld.kind(ControlKind::EditLabel);
 
-    m_textCursorTimerAdder = make_shared<TimerAdder>(700, toUType(SEG_Event::EDITLABEL_CHAR_TEXTCURSOR));
+    m_textCursorTimerAdder = make_shared<event::TimerAdder>(this->getId(), 700);
 }
 
 void EditLabel::onDraw()
 {
-    if (m_textWidth > 0 && m_textHeight > 0) {
-        const auto point = getPoint();
-        SDL_Point points[]
-                = {{static_cast<t_size>(point.x + m_textWidth + 7), point.y + 5},
-                   {static_cast<t_size>(point.x + m_textWidth + 7), point.y + static_cast<t_size>(getHeight()) - 5},
-                   {static_cast<t_size>(point.x + m_textWidth + 7), point.y + 5}};
 
-        SEG_Color lineColor;
-        if (m_textCursor) {
-            lineColor = ColorCode::black;
-        } else {
-            lineColor = ColorCode::white;
-        }
-
-        SDL_SetRenderDrawColor(getWindow()->getSDLRenderer(), lineColor.r, lineColor.g, lineColor.b, 255);
-        SDL_RenderDrawLines(getWindow()->getSDLRenderer(), points, SDL_arraysize(points));
-    }
     LabelBasic::onDraw();
 }
 
 void EditLabel::onTimerEvent(const SDL_UserEvent* user)
 {
-    m_textCursor = !m_textCursor;
-    onDraw();
+    t_timer id = *static_cast<t_timer*>(user->data1);
+    if(id == m_textCursorTimer)
+    {
+        m_textCursor = !m_textCursor;
+        if (!m_labelString.empty()) {
+
+            drawer::TextDrawer drawer{getSDLRenderer(), getFont(), getPoint(), getName()};
+
+            setTextWidth(drawer.getTextWidth());
+            setTextHeight(drawer.getTextHeight());
+
+            const auto point = getPoint();
+            SDL_Point points[]
+                    = {{static_cast<int>(point.x + getTextWidth() + 7), point.y + 5},
+                       {static_cast<int>(point.x + getTextWidth() + 7), point.y + static_cast<int>(getHeight()) - 5},
+                       {static_cast<int>(point.x + getTextWidth() + 7), point.y + 5}};
+
+            SEG_Color lineColor;
+            if (m_textCursor) {
+                lineColor = drawer::getInvertedColor(this->getBackgroundColor());
+            } else {
+                lineColor = this->getBackgroundColor();
+            }
+
+            SDL_SetRenderDrawColor(getWindow()->getSDLRenderer(), lineColor.r, lineColor.g, lineColor.b, 255);
+            SDL_RenderDrawLines(getWindow()->getSDLRenderer(), points, SDL_arraysize(points));
+
+            refresh();
+        }
+    }
 }
 
 void EditLabel::onUserEvent(const SDL_UserEvent* user)
@@ -73,19 +87,13 @@ void EditLabel::onKeyboardEvent(const SDL_KeyboardEvent* key)
         return;
     }
 
-    switch (key->type) {
-        case SDL_KEYDOWN:
-            switch (key->keysym.sym) {
-                case SDLK_BACKSPACE:
-                    if (!m_labelString.empty()) {
-                        m_labelString.pop_back();
-                    }
-                    break;
-            }
-            break;
+    if (key->type == SDL_KEYDOWN) {
+        if (key->keysym.sym == SDLK_BACKSPACE && !m_labelString.empty()) {
+            m_labelString.pop_back();
+        }
     }
 
-    EventPusher event{this->getWindow()->getWindowID(), this->getResourceId(), SEG_ENTER_CONTROLLER};
+    event::EventPusher event{this->getWindow()->getWindowID(), this->getId(), SEG_ENTER_CONTROLLER};
     event.setUserData(const_cast<SDL_KeyboardEvent*>(key));
     event.pushEvent();
 

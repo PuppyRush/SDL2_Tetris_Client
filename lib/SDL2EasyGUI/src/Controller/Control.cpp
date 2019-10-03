@@ -109,7 +109,7 @@ void Control::onVirtualDraw()
 
 void Control::refresh()
 {
-    EventPusher event{this->getWindow()->getWindowID(), this->getResourceId(), SEG_DRAW_CONTROLLER};
+    event::EventPusher event{this->getWindow()->getWindowID(), this->getId(), SEG_DRAW_CONTROLLER};
     event.pushEvent();
 }
 
@@ -117,17 +117,17 @@ void Control::setSelected(bool selected)
 {
     m_data->selected = selected;
     if (selected) {
-        GroupControlManager::getInstance().select(getGroup(), getResourceId());
+        GroupControlManager::getInstance().select(getGroup(), getId());
     }
-    refresh();
+    // refresh();
 }
 
 void Control::onHit(const SEG_Point& point, const bool hit)
 {
     setSelected(hit);
 
-    EventPusher event{this->getWindow()->getWindowID(), this->getResourceId(), SEG_CLICKED_CONTROLLER};
-    event.setUserData(new SEG_Click{point, this->getResourceId(), isSelected()});
+    event::EventPusher event{this->getWindow()->getWindowID(), this->getId(), SEG_CLICKED_CONTROLLER};
+    event.setUserData(new event::SEG_Click{point, this->getId(), isSelected()});
     event.pushEvent();
 }
 
@@ -149,18 +149,37 @@ bool Control::isHit(const SEG_Point& point) const
 //event에 대한 bound 검사만 수행한다.
 bool Control::isBounded(const SDL_Event& event)
 {
-    bool hit = false;
+    bool bounded{false};
     switch (event.type) {
         case SDL_MOUSEMOTION   :
-            hit = isHit(event.motion.x, event.motion.y);
-            if (m_isHitting && hit) {
-                hit = true;
-            } else if (!m_isHitting && hit) {
-                hit = m_isHitting = true;
-            } else {
-                m_isHitting = hit = false;
-            }
+            bounded = isHit(event.motion.x, event.motion.y);
             break;
+        default:
+            return false;
+    }
+
+    if (m_isBounded != bounded) {
+
+        if (bounded) {
+            event::EventPusher event{getWindow()->getWindowID(), getId(), ATTACH_FOCUS};
+            event.pushEvent();
+        } else {
+            event::EventPusher event{getWindow()->getWindowID(), getId(), DETACH_FOCUS};
+            event.pushEvent();
+        }
+    }
+
+    return m_isBounded = bounded;
+}
+
+bool Control::isHitting(const SDL_Event& event) _GLIBCXX_NOEXCEPT
+{
+    if (m_isHitting) {
+        return true;
+    }
+
+    bool hit = false;
+    switch (event.type) {
         case SDL_MOUSEBUTTONDOWN   :
         case SDL_MOUSEBUTTONUP   :
             if (hit = isHit(event.motion.x, event.motion.y)) {
@@ -173,7 +192,7 @@ bool Control::isBounded(const SDL_Event& event)
             break;
         default:;
     }
-    return hit;
+    return m_isHitting = hit;
 }
 
 void Control::drawBackground(const SDL_Rect rect, const SEG_Color color)

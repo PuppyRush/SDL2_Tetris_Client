@@ -79,19 +79,7 @@ public:
         return this->colorCode == rhs.colorCode;
     }
 
-    static SDL_Color getColor(const ColorCode colorCode)
-    {
-        SEG_Color col(colorCode);
-        SDL_Color color{col.r, col.g, col.b, 255};
-        return color;
-    }
 
-    static const SDL_Color getTransparent()
-    {
-        SEG_Color col(ColorCode::white);
-        SDL_Color color{col.r, col.g, col.b, 0};
-        return color;
-    }
 } SEG_Color;
 
 typedef struct SEG_Point
@@ -130,7 +118,7 @@ class SEG_Window;
 typedef struct ControlBasic
 {
     SEG_Window* window;
-    t_res resourceId;
+    t_id resourceId;
     SEG_Point point = SEG_Point{-100, -100};
     SEG_Point midPoint = SEG_Point{0, 0};
     SDL_Rect positionRect = SDL_Rect{0, 0};

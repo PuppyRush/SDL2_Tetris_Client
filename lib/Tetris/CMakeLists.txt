@@ -5,12 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(ACE_LINK_FLAGS "${ACE_LINK_FLAGS}" CACHE INTERNAL "ace link flags")
 
-find_package(PkgConfig REQUIRED)
-
-file(GLOB CPP_FILES source/*.cpp
-        CPP_HEADERS include/*.h)
-
-#add_library(boost::serialization INTERFACE IMPORTED)
 
 pkg_check_modules(JSONCPP jsoncpp)
 link_libraries(${JSONCPP_LIBRARIES})

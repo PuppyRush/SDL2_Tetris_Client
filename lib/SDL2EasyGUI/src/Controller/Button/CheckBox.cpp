@@ -27,7 +27,7 @@ void CheckBox::onDrawBackground()
 
 void CheckBox::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 {
-    if (button->button == SDL_BUTTON_LEFT && isHit(button->x, button->y)) {
+    if (button->button == SDL_BUTTON_LEFT  && button->state == SDL_PRESSED && isHit(button->x, button->y)) {
         setSelected(!isSelected());
     }
 }
@@ -38,9 +38,9 @@ void CheckBox::_drawCheck(const bool chk)
     {
     case CheckBoxType::vType:
         if (chk) {
-            draw_helper::drawV(getSDLRenderer(), getPosition(), m_lineColor, m_lineThick);
+            drawer::drawV(getSDLRenderer(), getPosition(), m_lineColor, m_lineThick);
         } else {
-            draw_helper::drawV(getSDLRenderer(), getPosition(), getBackgroundColor(), 0);
+            drawer::drawV(getSDLRenderer(), getPosition(), getBackgroundColor(), 0);
         }
         break;
     case CheckBoxType::oType:
@@ -48,9 +48,9 @@ void CheckBox::_drawCheck(const bool chk)
         break;
     case CheckBoxType::xType:
         if (chk) {
-            draw_helper::drawX(getSDLRenderer(), getPosition(), m_lineColor, m_lineThick);
+            drawer::drawX(getSDLRenderer(), getPosition(), m_lineColor, m_lineThick);
         } else {
-            draw_helper::drawX(getSDLRenderer(), getPosition(), getBackgroundColor(), m_lineThick);
+            drawer::drawX(getSDLRenderer(), getPosition(), getBackgroundColor(), m_lineThick);
         }
         break;
     }

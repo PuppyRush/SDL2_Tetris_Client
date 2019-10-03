@@ -13,7 +13,7 @@ ScrollbarDecorator::ScrollbarDecorator(BoxBasic* ctl)
           m_scrollHeight(ctl->getHeight() / ctl->getVisibleMenuMax())
 {
 
-    m_scrollbarPosition = {Base::getPoint().x + Base::getWidth() - m_scrollWidth , Base::getPoint().y,
+    m_scrollbarPosition = {Base::getPoint().x + Base::getWidth() - m_scrollWidth, Base::getPoint().y,
                            m_scrollWidth, Base::getHeight()};
 
     m_arrowSize = m_scrollbarPosition.h / 15;
@@ -25,6 +25,9 @@ ScrollbarDecorator::ScrollbarDecorator(BoxBasic* ctl)
                             m_scrollbarPosition.y + m_scrollbarPosition.h - m_arrowSize,
                             m_arrowSize, m_arrowSize};
 
+    /*m_scrollbarPosition.y += m_upperArrowPosition.h;
+    m_scrollbarPosition.h -= m_belowArrowPosition.h;
+*/
 }
 
 bool ScrollbarDecorator::isHit(const SEG_Point& point) const
@@ -46,7 +49,7 @@ void ScrollbarDecorator::onDrawBackground()
 
 void ScrollbarDecorator::drawScroll()
 {
-    using namespace draw_helper;
+    using namespace drawer;
 
     draw_FilledRoundedRactangel(Base::getSDLRenderer(), ScrollbarDecorator::getPosition(), ColorCode::darkgray, 5);
 
@@ -74,14 +77,28 @@ void ScrollbarDecorator::onMouseMotionEvent(const SDL_MouseMotionEvent* motion)
 
 void ScrollbarDecorator::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 {
-    if (Base::_hitTest(ScrollbarDecorator::getPosition(), {button->x, button->y})) {
+    if (button->state == SDL_PRESSED && Base::_hitTest(m_upperArrowPosition, {button->x, button->y})) {
+        getComponent()->setMenuStartIndex(getComponent()->getMenuStartIndex() - 1);
+        Base::onDraw();
+    } else if (button->state == SDL_PRESSED && Base::_hitTest(m_belowArrowPosition, {button->x, button->y})) {
+        getComponent()->setMenuStartIndex(getComponent()->getMenuStartIndex() + 1);
+        Base::onDraw();
+    } else if (Base::_hitTest(ScrollbarDecorator::getPosition(), {button->x, button->y})) {
+
         if (button->state == SDL_PRESSED && button->button == SDL_BUTTON_LEFT) {
             Base::setBackgroundColor(ColorCode::darkgray);
-        }
-        if (button->state == SDL_RELEASED) {
+        } else if (button->state == SDL_RELEASED) {
             Base::setBackgroundColor(ColorCode::lightgray);
         }
+        Base::onDraw();
+
     } else {
         Base::onMouseButtonEvent(button);
     }
+
+}
+
+void ScrollbarDecorator::onMouseWheelEvent(const SDL_MouseWheelEvent* wheel)
+{
+    Base::onMouseWheelEvent(wheel);
 }

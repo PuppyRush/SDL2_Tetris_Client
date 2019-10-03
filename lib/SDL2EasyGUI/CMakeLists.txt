@@ -4,30 +4,20 @@ project(SDL2EasyGUI)
 SET(CMAKE_EXE_LINKER_FLAGS "-static")
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
-
-#set(SDL2_PATH "${PROJECT_SOURCE_DIR}/S9DL")
 
 set(Boost_INCLUDE_DIR /usr/include)
 set(BOOST_SOURCE /usr/include)
 set(Boost_LIBRARIES /usr/lib/x86_64-linux-gnu/)
 set(sdl2gfx /usr/local/lib)
 
+#[[
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 find_package(SDL2_ttf REQUIRED)
+]]
+
 find_package(Boost 1.65.1 REQUIRED COMPONENTS system filesystem serialization)
 find_package(PkgConfig REQUIRED)
-
-set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
-set(THREADS_PREFER_PTHREAD_FLAG TRUE)
-find_package(Threads REQUIRED)
-if (Threads_FOUND)
-    message("-- OK.")
-else ()
-    message(FATAL_ERROR "Threads not found.")
-endif ()
-
 
 include_directories(.)
 include_directories(src)
@@ -47,9 +37,6 @@ include_directories(
         ${SDL2_IMAGE_INCLUDE_DIR}
         ${SDL2_TTF_INCLUDE_DIR}
 )
-
-#configure_file("src/" "../SDL2_Tetris_Client/lib/SDL2EasyGUI" COPYONLY)
-
 
 file(COPY DIRECTORY "src/"
         DESTINATION "include"
@@ -122,7 +109,10 @@ ADD_LIBRARY(SDL2EasyGUI STATIC
         include/SEG_Define.h
         include/CheckBox.h
         include/SEG_Drawer.h
-        src/Decorator/ScrollrableDecorator.h src/Decorator/ScrollrableDecorator.cpp include/SEG_Debug.h)
+        src/Decorator/ScrollrableDecorator.h
+        src/Decorator/ScrollrableDecorator.cpp
+        include/SEG_Logger.h
+        include/SEG_Time.h)
 
 target_link_libraries(
         SDL2EasyGUI

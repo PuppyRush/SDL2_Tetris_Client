@@ -7,8 +7,8 @@
 
 #include <functional>
 
-namespace seg {
-
-}
+#if (_DEBUG)
+    #define SEG_DEBUG
+#endif
 
 #endif //PROJECT_SEG_DEFINE_H

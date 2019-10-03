@@ -12,7 +12,7 @@ ComboBox::ComboBox(ComoboBoxBuilder& bld)
         : BoxBasic(bld)
 {
     bld.kind(ControlKind::ComboBox);
-    m_visibleMenuCnt = 3;
+    setVisibleMenuCount(3);
 }
 
 void ComboBox::initialize()
@@ -30,21 +30,21 @@ void ComboBox::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
         if (isFolded()) {
 
             //펼쳐진 상태에서 최 상단 메뉴는 선택된 메뉴만 보여줘야 한다.
-            m_selectedMenuIdx = calcIndexOf(button->y);
+            setSelectedMenuIndex(calcIndexOf(button->y));
 
             setHeight(m_defaultHeight);
 
-            EventPusher event{getWindow()->getWindowID(), getResourceId(), SEG_DECORATOR_DETACH};
+            event::EventPusher event{getWindow()->getWindowID(), getId(), SEG_DECORATOR_DETACH};
             event.setUserData(this);
             event.pushEvent();
 
         } else {
-            size_t menuMax = m_items.size() < m_visibleMenuCnt ? m_visibleMenuCnt : m_items.size();
+            size_t menuMax = getItems().size() < getVisibleMenuCount() ? getVisibleMenuCount() : getItems().size();
             setHeight(getHeight() * menuMax);
 
-            if (m_visibleMenuCnt < m_items.size()) {
+            if (getVisibleMenuCount() < getItems().size()) {
                 auto dec = new ScrollrableDecorator(this);
-                EventPusher event{getWindow()->getWindowID(), getResourceId(), SEG_DECORATOR_ATTACH};
+                event::EventPusher event{getWindow()->getWindowID(), getId(), SEG_DECORATOR_ATTACH};
                 event.setUserData(dec);
                 event.pushEvent();
             }
@@ -57,17 +57,18 @@ void ComboBox::onDraw()
 {
     auto renderer = getWindow()->getSDLRenderer();
 
-    if (!m_items.empty()) {
+    if (!getItems().empty()) {
 
-        m_selectedMenuIdx = m_selectedMenuIdx >= m_items.size() ? m_items.size() - 1 : m_selectedMenuIdx;
+        const auto idx = getSelectedMenuIndex() >= getItems().size() ? getItems().size() - 1 : getSelectedMenuIndex();
+        setSelectedMenuIndex(idx);
 
         if (isFolded()) {
 
-            auto& item = *m_items.at(m_selectedMenuIdx);
+            auto& item = *getItems().at(getSelectedMenuIndex());
             auto point = getPoint();
             point.x += 5;
 
-            TextDrawer textDrawer{renderer, getFont(), point, item.getString()};
+            drawer::TextDrawer textDrawer{renderer, getFont(), point, item.getString()};
             textDrawer.drawText();
 
         } else {
@@ -75,26 +76,27 @@ void ComboBox::onDraw()
             auto point = getPoint();
             point.x += 5;
 
-            TextDrawer textDrawer{renderer, getFont(), point, m_items.at(m_selectedMenuIdx)->getString()};
+            drawer::TextDrawer textDrawer{renderer, getFont(), point, getItems().at(getSelectedMenuIndex())->getString()};
             textDrawer.drawText();
 
-            point.y += textDrawer.getTextHeight() + MENU_GAP;
+            point.y += textDrawer.getTextHeight() + getMenuGap();
 
             const int endIdx =
-                    (m_menuStartIdx + m_visibleMenuCnt) > m_items.size() ? m_items.size() : m_menuStartIdx +
-                                                                                            m_visibleMenuCnt;
-            for (int i = m_menuStartIdx; i < endIdx; i++) {
-                TextDrawer textDrawer{renderer, getFont(), point, m_items.at(i)->getString()};
+                    (getMenuStartIndex() + getVisibleMenuCount()) > getItems().size() ? getItems().size() :
+                    getMenuStartIndex() +
+                    getVisibleMenuCount();
+            for (int i = getMenuStartIndex(); i < endIdx; i++) {
+                drawer::TextDrawer textDrawer{renderer, getFont(), point, getItems().at(i)->getString()};
                 textDrawer.drawText();
 
-                point.y += textDrawer.getTextHeight() + MENU_GAP;
+                point.y += textDrawer.getTextHeight() + getMenuGap();
 
-                m_menuHeight = textDrawer.getTextHeight();
+                setMenuHeight(textDrawer.getTextHeight());
             }
 
             //Draw Chosed focus
-            draw_helper::drawThickLine(renderer, {getPoint().x, getPoint().y + m_menuHeight },
-                                       {getPoint().x + getWidth(), getPoint().y + m_menuHeight}, ColorCode::cyan, 4);
+            drawer::drawThickLine(renderer, {getPoint().x, getPoint().y + getMenuHeight()},
+                                       {getPoint().x + getWidth(), getPoint().y + getMenuHeight()}, ColorCode::cyan, 4);
 
         }
     }

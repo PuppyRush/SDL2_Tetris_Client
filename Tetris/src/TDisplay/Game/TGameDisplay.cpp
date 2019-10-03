@@ -19,8 +19,7 @@ using namespace std;
 TGameDisplay::TGameDisplay(const seg::t_id displayId)
         : TDisplayInterface(displayId)
 {
-    m_gameTimer = make_shared<TimerAdder>(1000, game_interface::toUType(TetrisEvent::TETRIS_EVENT_FIGURETIMER));
-    m_gameTimer->windowsId(this->getWindowID());
+    m_gameTimer = make_shared<event::TimerAdder>(this->getId(), 1000);
 }
 
 void TGameDisplay::onKeyboardEvent(const SDL_KeyboardEvent* key)

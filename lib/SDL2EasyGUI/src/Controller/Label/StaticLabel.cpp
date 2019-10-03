@@ -27,7 +27,7 @@ void StaticLabel::onDrawBackground()
 
 void StaticLabel::initialize()
 {
-    TextDrawer textDrawer{getWindow()->getSDLRenderer(), getFont(), getPoint(), m_labelString};
+    drawer::TextDrawer textDrawer{getWindow()->getSDLRenderer(), getFont(), getPoint(), m_labelString};
 
     getBasic()->point.x += 5;
     getBasic()->height = textDrawer.getTextHeight();

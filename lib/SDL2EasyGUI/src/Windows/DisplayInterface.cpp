@@ -12,6 +12,8 @@
 
 #include "include/DisplayInterface.h"
 
+#include "SEG_Logger.h"
+
 using namespace std;
 using namespace seg;
 
@@ -88,11 +90,15 @@ void DisplayInterface::_run()
     while (m_run) {
         auto event = m_eventDelivery.popEvent();
 
-        printf("DisplayInterface::_run : %d\n", debug++);
+        //printf("DisplayInterface::_run : %d\n", debug++);
 
         onEvent(event);
 
-        if (m_currentCtl != nullptr && (m_currentCtl->isBounded(*event) || m_currentCtl->isHitting())) {
+        if (m_currentCtl && m_currentCtl->isBounded(*event)) {
+            m_currentCtl->onEvent(event);
+        }
+
+        if (m_currentCtl != nullptr && m_currentCtl->isHitting(*event) ) {
             m_currentCtl->onEvent(event);
         }
 
@@ -123,8 +129,8 @@ void DisplayInterface::onUserEvent(const SDL_UserEvent* event)
 {
     switch (event->code) {
         case SEG_CLICKED_CONTROLLER: {
-            t_res id = *static_cast<t_res*>(event->data1);
-            SEG_Click* click = static_cast<SEG_Click*>(event->data2);
+            t_id id = *static_cast<t_id*>(event->data1);
+            event::SEG_Click* click = static_cast<event::SEG_Click*>(event->data2);
             _setResult(click->resourceId);
 
             if (m_callback_one_param.count(id) > 0) {
@@ -133,7 +139,7 @@ void DisplayInterface::onUserEvent(const SDL_UserEvent* event)
             break;
         }
         case SEG_ENTER_CONTROLLER: {
-            t_res id = *static_cast<t_res*>(event->data1);
+            t_id id = *static_cast<t_id*>(event->data1);
 
             if (m_callback_one_param.count(id) > 0) {
                 SDL_KeyboardEvent* keyevent = static_cast<SDL_KeyboardEvent*>(event->data2);
@@ -152,7 +158,7 @@ void DisplayInterface::onUserEvent(const SDL_UserEvent* event)
             onClose();
             break;
         case SEG_DECORATOR_ATTACH: {
-            t_res id = *static_cast<t_res*>(event->data1);
+            t_id id = *static_cast<t_id*>(event->data1);
             control_ptr decorator = static_cast<control_ptr>(event->data2);
 
             if (auto ctl = getControl(id); ctl != nullptr) {
@@ -163,9 +169,9 @@ void DisplayInterface::onUserEvent(const SDL_UserEvent* event)
             break;
         }
         case SEG_DECORATOR_DETACH: {
-            t_res id = *static_cast<t_res*>(event->data1);
+            t_id id = *static_cast<t_id*>(event->data1);
             auto origin = static_cast<Control*>(event->data2);
-            if (auto deco = getControl(id); deco != nullptr && origin->getResourceId() == deco->getResourceId()) {
+            if (auto deco = getControl(id); deco != nullptr && origin->getId() == deco->getId()) {
                 detachDecorator(origin);
             } else {
                 assert(0);
@@ -247,7 +253,7 @@ void DisplayInterface::onClose()
 
 void DisplayInterface::onButtonClick(const void* event)
 {
-    const SEG_Click* click = static_cast<const SEG_Click*>(event);
+    const event::SEG_Click* click = static_cast<const event::SEG_Click*>(event);
     m_resultResrouce = click->resourceId;
 
     onClose();
@@ -299,6 +305,9 @@ void DisplayInterface::onDrawBackground()
 
 void DisplayInterface::onDraw()
 {
+    logger::Logger::getInstance().printLog("DisplayInterface::onDraw()",
+                                           logger::Logger::logger_level::Debug);
+
     _onDrawMenus();
     _release();
 }
@@ -321,7 +330,7 @@ void DisplayInterface::addControl(Control* newCtl)
     maybeCtl->initialize();
 
     auto it = std::find_if(begin(getMenuAry()), end(getMenuAry()), [newCtl](control_ptr exCtl) {
-        return newCtl->getResourceId() == exCtl->getResourceId();
+        return newCtl->getId() == exCtl->getId();
     });
 
     if (it != getMenuAry().end()) {
@@ -335,7 +344,7 @@ void DisplayInterface::addControl(Control* newCtl)
 bool DisplayInterface::removeControl(control_ptr ctl)
 {
 
-    if (auto dest = findControl(ctl->getResourceId()); dest != getMenuAry().end()) {
+    if (auto dest = findControl(ctl->getId()); dest != getMenuAry().end()) {
         getMenuAry().erase(dest);
         return true;
     }
@@ -343,26 +352,26 @@ bool DisplayInterface::removeControl(control_ptr ctl)
     return false;
 }
 
-bool DisplayInterface::menuHitTest(const SEG_Point& point)
+void DisplayInterface::menuHitTest(const SEG_Point& point)
 {
+    if (m_currentCtl && m_currentCtl->isHit(point)) {
+        return;
+    }
+
     for (const auto& menu : getMenuAry()) {
         if (menu->isHit(point)) {
             m_currentCtl = menu;
 
-            EventPusher event{this->getWindowID(), menu->getResourceId(), ATTACH_FOCUS};
+            event::EventPusher event{this->getWindowID(), menu->getId(), ATTACH_FOCUS};
             event.pushEvent();
-            return true;
-        } else {
-            EventPusher event{this->getWindowID(), menu->getResourceId(), DETACH_FOCUS};
-            event.pushEvent();
+            break;
         }
     }
-    return false;
 }
 
 void DisplayInterface::refresh()
 {
-    EventPusher event{this->getWindowID(), SEG_DRAW_DISPLAY};
+    event::EventPusher event{this->getWindowID(), SEG_DRAW_DISPLAY};
     event.pushEvent();
 }
 
@@ -384,17 +393,17 @@ void DisplayInterface::detachDecorator(const control_ptr ctl)
 }
 
 DisplayInterface::control_ptr
-DisplayInterface::getControl(const t_res resourceId)
+DisplayInterface::getControl(const t_id resourceId)
 {
     return *find_if(begin(getMenuAry()), end(getMenuAry()), [resourceId](control_ptr ptr) {
-        return ptr->getResourceId() == resourceId;
+        return ptr->getId() == resourceId;
     });
 }
 
 DisplayInterface::control_ary_it
-DisplayInterface::findControl(const t_res resourceId)
+DisplayInterface::findControl(const t_id resourceId)
 {
     return find_if(begin(getMenuAry()), end(getMenuAry()), [resourceId](control_ptr ptr) {
-        return ptr->getResourceId() == resourceId;
+        return ptr->getId() == resourceId;
     });
 }

@@ -25,12 +25,12 @@ public:
 
 protected:
 
-    void onDraw();
+    virtual void onDraw() override;
 
-    void onDrawBackground();
+    virtual void onDrawBackground() override;
 
-    int m_textWidth = 0;
-    int m_textHeight = 0;
+    virtual void initialize() override;
+
     std::shared_ptr<SDL_Texture> m_texture;
     std::string m_labelString;
 };

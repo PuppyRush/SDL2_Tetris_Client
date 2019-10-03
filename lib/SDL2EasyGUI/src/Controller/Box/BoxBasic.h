@@ -108,6 +108,91 @@ public:
     inline void setVisibleMenuMax(const size_t cnt)
     { m_visibleMenuCnt = cnt; }
 
+    void removeAll() _GLIBCXX_NOEXCEPT;
+
+    int calcIndexOf(const t_coord y);
+
+    std::string getSelectedText();
+
+    bool isFolded() const _GLIBCXX_NOEXCEPT
+    { return m_folded; }
+
+    void setFolded(const bool fold) _GLIBCXX_NOEXCEPT
+    { m_folded = fold; }
+
+    inline const t_size getMenuGap() const _GLIBCXX_NOEXCEPT
+    {
+        return MENU_GAP;
+    }
+
+    inline size_t getVisibleMenuCount() const _GLIBCXX_NOEXCEPT
+    {
+        return m_visibleMenuCnt;
+    }
+
+    inline void setVisibleMenuCount(size_t mVisibleMenuCnt)
+    {
+        m_visibleMenuCnt = mVisibleMenuCnt;
+    }
+
+    inline std::vector<item_ptr>& getItems()
+    {
+        return m_items;
+    }
+
+    inline void setItems(const std::vector<item_ptr>& mItems)
+    {
+        m_items = mItems;
+    }
+
+    inline t_size getMenuHeight() const _GLIBCXX_NOEXCEPT
+    {
+        return m_menuHeight;
+    }
+
+    inline void setMenuHeight(t_size mMenuHeight)
+    {
+        m_menuHeight = mMenuHeight;
+    }
+
+    inline size_t getMenuStartIndex() const _GLIBCXX_NOEXCEPT
+    {
+        return m_menuStartIdx;
+    }
+
+    inline void setMenuStartIndex(int mMenuStartIdx)
+    {
+        if(mMenuStartIdx < 0)
+        {
+            mMenuStartIdx = 0;
+        }
+        else if(mMenuStartIdx > (m_items.size() - m_visibleMenuCnt) )
+        {
+            mMenuStartIdx = m_items.size() - m_visibleMenuCnt;
+        }
+        m_menuStartIdx = mMenuStartIdx;
+    }
+
+    inline int getSelectedMenuIndex() const _GLIBCXX_NOEXCEPT
+    {
+        return m_selectedMenuIdx;
+    }
+
+    inline void setSelectedMenuIndex(int mSelectedMenuIdx)
+    {
+        m_selectedMenuIdx = mSelectedMenuIdx;
+    }
+
+    inline int getBoundedMenuIndex() const _GLIBCXX_NOEXCEPT
+    {
+        return m_boundedMenuIndx;
+    }
+
+    inline void setBoundedMenuIndex(int mBoundedMenuIndx)
+    {
+        m_boundedMenuIndx = mBoundedMenuIndx;
+    }
+
     virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) override;
 
     void onDrawBackground();
@@ -122,18 +207,8 @@ protected:
 
     virtual void initialize() override;
 
-    void removeAll() _GLIBCXX_NOEXCEPT;
 
-    int calcIndexOf(const t_coord y);
-
-    std::string getSelectedText();
-
-    bool isFolded() const _GLIBCXX_NOEXCEPT
-    { return m_folded; }
-
-    void setFolded(const bool fold) _GLIBCXX_NOEXCEPT
-    { m_folded = fold; }
-
+private:
     const t_size MENU_GAP = 3;
 
     size_t m_visibleMenuCnt = 3;
@@ -141,8 +216,6 @@ protected:
     t_size m_menuHeight = 0;
     size_t m_menuStartIdx = 0;
     int m_selectedMenuIdx = -1;
-
-private:
     int m_boundedMenuIndx = -1;
     bool m_folded = true;
 

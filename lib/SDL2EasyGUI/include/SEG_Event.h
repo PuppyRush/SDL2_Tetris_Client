@@ -16,14 +16,15 @@
 #include "SEG_Resource.h"
 
 namespace seg {
+namespace event {
 
 typedef struct SEG_Click
 {
     SEG_Point point = {-100, -100};
-    t_res resourceId = toUType(resource::NONE);
+    t_id resourceId = toUType(resource::NONE);
     bool selected = false;
 
-    SEG_Click(const SEG_Point& point, const t_res& res, const bool sel)
+    SEG_Click(const SEG_Point& point, const t_id& res, const bool sel)
             : point(point), resourceId(res), selected(sel)
     {}
 
@@ -36,18 +37,11 @@ class TimerAdder final
 {
 public:
 
-    TimerAdder(const Uint32 interval, const t_eventType event)
-            : m_interval(interval), m_eventType(event)
+    TimerAdder(const t_id id, const Uint32 interval)
+            : m_interval(interval), m_id(id)
     {
         m_userEvent.data1 = nullptr;
         m_userEvent.data2 = nullptr;
-        m_userEvent.code = event;
-    }
-
-    inline TimerAdder* windowsId(const t_id id)
-    {
-        this->m_userEvent.windowID = id;
-        return this;
     }
 
     inline TimerAdder* timestamp(const Uint32 time)
@@ -71,14 +65,18 @@ public:
     const t_timer addTimer()
     {
         m_userEvent.timestamp = SDL_GetTicks();
-        return SDL_AddTimer(m_interval, timerCallback, &m_userEvent);
+        m_userEvent.windowID = m_id;
+        m_timerId = SDL_AddTimer(m_interval, timerCallback, &m_userEvent);
+        m_userEvent.data1 = static_cast<void*>(&m_timerId);
+        return m_timerId;
     }
 
 private:
 
-    const t_eventType m_eventType;
     const Uint32 m_interval;
     SDL_UserEvent m_userEvent;
+    t_timer m_timerId;
+    t_id m_id;
 };
 
 class EventPusher
@@ -132,6 +130,8 @@ private:
     SDL_Event m_event;
     SDL_UserEvent m_user;
 };
+
+}
 
 }
 

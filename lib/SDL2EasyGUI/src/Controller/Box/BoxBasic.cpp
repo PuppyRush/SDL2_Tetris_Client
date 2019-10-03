@@ -29,7 +29,7 @@ void BoxBasic::onDraw()
         const auto& item = m_items.at(m_boundedMenuIndx);
         auto point = getPoint();
 
-        TextDrawer textDrawer{renderer, getFont(), point, item->getString()};
+        drawer::TextDrawer textDrawer{renderer, getFont(), point, item->getString()};
 
         point.y += (textDrawer.getTextHeight() * (m_boundedMenuIndx + 1)) + (MENU_GAP * m_boundedMenuIndx);
 
@@ -85,7 +85,7 @@ int BoxBasic::calcIndexOf(const t_coord y)
 
     int test_idx = (y - getPoint().y - menuHeight) / (menuHeight);
     if ((test_idx + m_menuStartIdx) < m_items.size()) {
-        return test_idx;
+        return test_idx + getMenuStartIndex();
     }
 
     return -1;

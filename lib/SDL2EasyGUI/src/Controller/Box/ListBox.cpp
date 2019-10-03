@@ -12,7 +12,7 @@ ListBox::ListBox(ListBoxBuilder& bld)
 {
     bld.kind(ControlKind::ListBox);
     setFolded(true);
-    m_visibleMenuCnt = 10;
+    setVisibleMenuCount(10);
 }
 
 void ListBox::onDraw()
@@ -23,8 +23,8 @@ void ListBox::onDraw()
     accuPoint.x += 15;
     accuPoint.y += 10;
 
-    for (const item_ptr item : m_items) {
-        TextDrawer textDrawer{renderer, getFont(), accuPoint, item->getString()};
+    for (const item_ptr item : getItems()) {
+        drawer::TextDrawer textDrawer{renderer, getFont(), accuPoint, item->getString()};
         textDrawer.drawText();
 
         accuPoint.y += textDrawer.getTextHeight() + 3;

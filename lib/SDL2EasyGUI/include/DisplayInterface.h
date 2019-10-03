@@ -52,7 +52,7 @@ public:
 
     bool removeControl(control_ptr ctl);
 
-    bool menuHitTest(const SEG_Point& point);
+    void menuHitTest(const SEG_Point& point);
 
     std::underlying_type_t<resource> alert();
 
@@ -87,7 +87,7 @@ public:
     inline void setStopDraw(const bool set)
     { m_stopDraw = set; }
 
-    inline t_res getResult() const noexcept
+    inline t_id getResult() const noexcept
     { return m_resultResrouce; }
 
     inline t_display getDisplay() const noexcept
@@ -116,15 +116,15 @@ public:
     auto getControl(const U resourceId)
     {
         auto ctl = *find_if(begin(m_menus), end(m_menus), [resourceId](control_ptr ptr) {
-            return ptr->getResourceId() == toUType(resourceId);
+            return ptr->getId() == toUType(resourceId);
         });
 
         return dynamic_cast<T*>(ctl);
     }
 
-    control_ptr getControl(const t_res resourceId);
+    control_ptr getControl(const t_id resourceId);
 
-    control_ary_it findControl(const t_res resourceId);
+    control_ary_it findControl(const t_id resourceId);
 
     virtual void resize() override
     {};
@@ -142,17 +142,17 @@ protected:
         return getWindow()->getSDLRenderer();
     }
 
-    void _noParamEvent(const t_res id, const std::function<void(void)> callback_fn)
+    void _noParamEvent(const t_id id, const std::function<void(void)> callback_fn)
     {
         m_callback_no_param.insert(make_pair(id, callback_fn));
     }
 
-    void _oneParamEvent(const t_res id, const std::function<void(const void*)> callback_fn)
+    void _oneParamEvent(const t_id id, const std::function<void(const void*)> callback_fn)
     {
         m_callback_one_param.insert(make_pair(id, callback_fn));
     }
 
-    void _twoParamEvent(const t_res id, const std::function<void(const void*, const void*)> callback_fn)
+    void _twoParamEvent(const t_id id, const std::function<void(const void*, const void*)> callback_fn)
     {
         m_callback_two_param.insert(make_pair(id, callback_fn));
     }
@@ -260,9 +260,9 @@ protected:
     t_display m_display;
     TLocalMode m_mode;
 
-    std::unordered_map<t_res, std::function<void(void)>> m_callback_no_param;
-    std::unordered_map<t_res, std::function<void(const void*)>> m_callback_one_param;
-    std::unordered_map<t_res, std::function<void(const void*, const void*)>> m_callback_two_param;
+    std::unordered_map<t_id, std::function<void(void)>> m_callback_no_param;
+    std::unordered_map<t_id, std::function<void(const void*)>> m_callback_one_param;
+    std::unordered_map<t_id, std::function<void(const void*, const void*)>> m_callback_two_param;
 
 private:
 
@@ -279,7 +279,7 @@ private:
 
     void _onDrawMenus();
 
-    inline void _setResult(const t_res res)
+    inline void _setResult(const t_id res)
     { m_resultResrouce = res; }
 
     const t_id m_displayId;
@@ -291,7 +291,7 @@ private:
     bool m_stopDraw = false;
     std::thread m_thread;
     std::atomic_bool m_run = true;
-    t_res m_resultResrouce = NONE;
+    t_id m_resultResrouce = NONE;
 
 };
 

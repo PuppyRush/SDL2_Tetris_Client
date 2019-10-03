@@ -45,8 +45,8 @@ public:
         return getWindow()->getSDLRenderer();
     }
 
-    inline bool isHitting() _GLIBCXX_NOEXCEPT
-    { return m_isHitting; }
+    bool isHitting(const SDL_Event& event) _GLIBCXX_NOEXCEPT;
+    /*{ return m_isHitting; }*/
 
     void onHit(const SEG_Point& point, const bool hit);
 
@@ -164,7 +164,8 @@ protected:
         return m_textWidth;
     }
 
-    inline void setTextWidth(int mTextWidth)
+
+    inline void setTextWidth(int mTextWidth) _GLIBCXX_NOEXCEPT
     {
         m_textWidth = mTextWidth;
     }
@@ -174,12 +175,12 @@ protected:
         return m_textHeight;
     }
 
-    inline void setTextHeight(int mTextHeight)
+    inline void setTextHeight(int mTextHeight) _GLIBCXX_NOEXCEPT
     {
         m_textHeight = mTextHeight;
     }
 
-    inline void stopDrawing(const bool b)
+    inline void stopDrawing(const bool b) _GLIBCXX_NOEXCEPT
     { m_stopDraw = b; }
 
     inline bool isStopedDraw() const _GLIBCXX_NOEXCEPT
@@ -190,13 +191,14 @@ private:
 
 private:
 
-    int m_textWidth = 0;
-    int m_textHeight = 0;
+    int m_textWidth;
+    int m_textHeight;
 
 private:
     SDL_Rect m_positionRect;
     bool m_stopDraw = false;
-    bool m_isHitting;
+    bool m_isHitting = false;
+    bool m_isBounded = false;
 };
 
 }

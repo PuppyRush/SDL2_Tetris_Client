@@ -24,11 +24,7 @@ public:
     explicit RadioButton(RadioButtonBuilder& bld);
 
 
-    void setSelected(const bool chk)
-    {
-        Control::setSelected(chk);
-        _drawCheck(chk);
-    }
+    void setSelected(const bool chk);
 
     virtual void initialize() override;
 

@@ -38,7 +38,7 @@ int main()
 {
 
     init();
-    seg::t_res res;
+    seg::t_id res;
 
     auto mainDisplay = seg::make_display<TMultiMainDisplay>(resource::MAIN_MULTI_DISPLAY);
     auto optionDisplay = seg::make_display<TOptionDisplay>(resource::OPTION_DISPLAY);

@@ -13,10 +13,22 @@ LabelBasic::LabelBasic(ControlBuilder& bld)
 
 }
 
+void LabelBasic::initialize()
+{
+    drawer::TextDrawer drawer{getSDLRenderer(), getFont(), getPoint(), getName()};
+
+    setTextWidth(drawer.getTextWidth());
+    setTextHeight(drawer.getTextHeight());
+
+    Border::initialize();
+}
+
+
+
 void LabelBasic::onDraw()
 {
     auto point = getPoint();
-    TextDrawer textDrawer{getWindow()->getSDLRenderer(), getFont(), getPoint(), m_labelString};
+    drawer::TextDrawer textDrawer{getWindow()->getSDLRenderer(), getFont(), getPoint(), m_labelString};
 
     point.x += 5;
     point.y = point.y + (getHeight() - textDrawer.getTextHeight()) / 2;
@@ -29,6 +41,5 @@ void LabelBasic::onDraw()
 
 void LabelBasic::onDrawBackground()
 {
-
     Border::onDrawBackground();
 }

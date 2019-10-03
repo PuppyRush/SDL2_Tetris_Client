@@ -1,31 +1,15 @@
 cmake_minimum_required(VERSION 3.12)
 project(tetris)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
-
 set(ACE_LINK_FLAGS "${ACE_LINK_FLAGS}" CACHE INTERNAL "ace link flags")
 
-find_package(SDL2 REQUIRED)
-find_package(SDL2_image REQUIRED)
-find_package(SDL2_ttf REQUIRED)
 find_package(PkgConfig REQUIRED)
-
-#add_library(boost::serialization INTERFACE IMPORTED)
+#[[find_package(SDL2 REQUIRED)
+find_package(SDL2_image REQUIRED)
+find_package(SDL2_ttf REQUIRED)]]
 
 pkg_check_modules(JSONCPP jsoncpp)
-
 link_libraries(${JSONCPP_LIBRARIES})
-
-
-set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
-set(THREADS_PREFER_PTHREAD_FLAG TRUE)
-find_package(Threads REQUIRED)
-if (Threads_FOUND)
-    message("-- OK.")
-else ()
-    message(FATAL_ERROR "Threads not found.")
-endif ()
 
 
 #add_definitions(${A_DEFINITIONS})

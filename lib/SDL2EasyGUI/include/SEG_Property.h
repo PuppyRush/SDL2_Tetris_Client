@@ -112,7 +112,6 @@ enum SEG_Event : t_eventType
     SDL_TIMER_EVENT,
     DETACH_FOCUS,
     ATTACH_FOCUS,
-    EDITLABEL_CHAR_TEXTCURSOR,
 
     SEGEVENT_END = 0x8999
 };

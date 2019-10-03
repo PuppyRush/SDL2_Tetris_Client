@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
 project(GameInterface)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 set(CMAKE_CXX_STANDARD 17)
 
 set(Boost_INCLUDE_DIR /usr/include)
@@ -11,11 +12,6 @@ set(ACE_LINK_FLAGS "${ACE_LINK_FLAGS}" CACHE INTERNAL "ace link flags")
 
 find_package(Boost 1.65.1 REQUIRED COMPONENTS system filesystem serialization)
 find_package(PkgConfig REQUIRED)
-
-file(GLOB CPP_FILES source/*.cpp
-        CPP_HEADERS include/*.h)
-
-#add_library(boost::serialization INTERFACE IMPORTED)
 
 pkg_check_modules(JSONCPP jsoncpp)
 
@@ -57,16 +53,6 @@ endif ()
 
 # TSS: backwards compatibility
 set(ACE_LIBRARIES ${ACE_LIBRARY})
-
-set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
-set(THREADS_PREFER_PTHREAD_FLAG TRUE)
-find_package(Threads REQUIRED)
-if (Threads_FOUND)
-    message("-- OK.")
-else ()
-    message(FATAL_ERROR "Threads not found.")
-endif ()
-
 
 include_directories(
         src
@@ -122,9 +108,3 @@ target_link_libraries(
         ${JSONCPP_LIBRARIES}
         Threads::Threads)
 
-
-#[[
-set(${PROJECT_NAME}_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/include
-        ${Boost_INCLUDE_DIRS}
-        CACHE INTERNAL "${PROJECT_NAME}: Include Directories" FORCE)
-]]

@@ -40,3 +40,12 @@ bool GraphicInterface::_hitTest(const SDL_Rect& rect,const SEG_Point& point) con
         return false;
     }
 }
+
+bool GraphicInterface::_hitTest(const SDL_Rect& rect, const t_coord& x , const t_coord& y) const _GLIBCXX_NOEXCEPT
+{
+    if ((rect.x <= x && x <= rect.x + rect.w) && (rect.y <= y && y <= rect.y + rect.h)) {
+        return true;
+    } else {
+        return false;
+    }
+}

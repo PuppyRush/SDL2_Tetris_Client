@@ -66,7 +66,7 @@ private:
     bool m_textCursor;
     t_timer m_textCursorTimer = NULL_TIMER_ID;
     EditLabelBasic m_labelBasic;
-    std::shared_ptr<TimerAdder> m_textCursorTimerAdder;
+    std::shared_ptr<seg::event::TimerAdder> m_textCursorTimerAdder;
 };
 
 class EditLabelBuilder : public BorderBuilder

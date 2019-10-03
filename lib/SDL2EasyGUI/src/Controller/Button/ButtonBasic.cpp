@@ -36,7 +36,7 @@ void ButtonBasic::onDraw()
                     static_cast<int>(getPoint().y + (getHeight() - getTextHeight()) / 2)};
 
 
-    TextDrawer drawer{getSDLRenderer(), getFont(), point, getName()};
+    drawer::TextDrawer drawer{getSDLRenderer(), getFont(), point, getName()};
     drawer.drawText();
 
     _drawCarot();
@@ -50,7 +50,7 @@ void ButtonBasic::onDrawBackground()
 
 void ButtonBasic::initialize()
 {
-    TextDrawer drawer{getSDLRenderer(), getFont(), getPoint(), getName()};
+    drawer::TextDrawer drawer{getSDLRenderer(), getFont(), getPoint(), getName()};
 
     setTextWidth(drawer.getTextWidth());
     setTextHeight(drawer.getTextHeight());
@@ -63,10 +63,10 @@ void ButtonBasic::_drawCarot()
     auto renderer = getWindow()->getSDLRenderer();
 
     if (isSelected() && isCarot()) {
-        if (GroupControlManager::getInstance().isSelected(getGroup(), getResourceId())) {
+        if (GroupControlManager::getInstance().isSelected(getGroup(), getId())) {
             SDL_Rect rect{getPoint().x - 5, getPoint().y - 5, getWidth() + 10, getHeight() + 10};
 
-            const auto& linecolor = SEG_Color::getColor(ColorCode::red);
+            const auto& linecolor = drawer::getColor(ColorCode::red);
             SDL_SetRenderDrawColor(renderer, linecolor.r, linecolor.g, linecolor.b, 255);
             SDL_RenderDrawRect(renderer, &rect);
         }

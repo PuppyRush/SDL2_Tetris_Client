@@ -5,7 +5,7 @@
 using namespace game_interface;
 
 Object::Object()
-        : m_unique(Atomic::newUnique()), m_maketime(std::time(nullptr))
+        : m_unique(atomic::Atomic::newUnique()), m_maketime(std::time(nullptr))
 {
 }
 

@@ -6,6 +6,7 @@
 #include "SEG_Property.h"
 
 namespace seg {
+namespace event {
 
 Uint32 timerCallback(Uint32 interval, void* param)
 {
@@ -24,6 +25,8 @@ Uint32 timerCallback(Uint32 interval, void* param)
 
     SDL_PushEvent(&event);
     return (interval);
+}
+
 }
 
 }

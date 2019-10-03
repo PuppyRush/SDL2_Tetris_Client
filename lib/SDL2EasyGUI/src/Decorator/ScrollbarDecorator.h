@@ -37,6 +37,8 @@ protected:
 
     virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) override;
 
+    virtual void onMouseWheelEvent(const SDL_MouseWheelEvent* wheel) override;
+
     inline virtual SDL_Rect getPosition() const _GLIBCXX_NOEXCEPT override
     { return m_scrollbarPosition; }
 

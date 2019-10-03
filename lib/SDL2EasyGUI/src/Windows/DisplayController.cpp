@@ -113,13 +113,13 @@ void DisplayController::_pumpEvent()
     std::unique_lock<std::mutex> lock(m_modalAryMutex);
     m_modalAryCV.wait(lock, [=]() { return !m_modalStack.empty() || !m_modalessAry.empty(); });
 
-    static int debug{0};
+    //static int debug{0};
 
     while (m_run) {
         SDL_Event* event = new SDL_Event{};
         SDL_WaitEvent(event);
 
-        printf("DisplayController::_pumpEvent : %d\n", debug++);
+       // printf("DisplayController::_pumpEvent : %d\n", debug++);
 
         const auto winid = getActivatedWindowID(event);
         if (winid != NULL_WINDOW_ID) {
@@ -213,12 +213,12 @@ void DisplayController::_release()
 void DisplayController::finish()
 {
     for (const auto display : m_modalStack) {
-        EventPusher event{display->getWindowID(), WINDOW_CLOSE};
+        event::EventPusher event{display->getWindowID(), WINDOW_CLOSE};
         event.pushEvent();
     }
 
     for (const auto display : m_modalessAry) {
-        EventPusher event{display->getWindowID(), WINDOW_CLOSE};
+        event::EventPusher event{display->getWindowID(), WINDOW_CLOSE};
         event.pushEvent();
     }
 
