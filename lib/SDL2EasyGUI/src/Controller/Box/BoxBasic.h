@@ -99,33 +99,33 @@ public:
         return m_items.at(index);
     }
 
-    inline t_size getMenuCount() const _GLIBCXX_NOEXCEPT
+    inline t_size getMenuCount() const noexcept
     { return m_items.size(); }
 
-    inline size_t getVisibleMenuMax() const _GLIBCXX_NOEXCEPT
+    inline size_t getVisibleMenuMax() const noexcept
     { return m_visibleMenuCnt; }
 
     inline void setVisibleMenuMax(const size_t cnt)
     { m_visibleMenuCnt = cnt; }
 
-    void removeAll() _GLIBCXX_NOEXCEPT;
+    void removeAll() noexcept;
 
     int calcIndexOf(const t_coord y);
 
     std::string getSelectedText();
 
-    bool isFolded() const _GLIBCXX_NOEXCEPT
+    bool isFolded() const noexcept
     { return m_folded; }
 
-    void setFolded(const bool fold) _GLIBCXX_NOEXCEPT
+    void setFolded(const bool fold) noexcept
     { m_folded = fold; }
 
-    inline const t_size getMenuGap() const _GLIBCXX_NOEXCEPT
+    inline const t_size getMenuGap() const noexcept
     {
         return MENU_GAP;
     }
 
-    inline size_t getVisibleMenuCount() const _GLIBCXX_NOEXCEPT
+    inline size_t getVisibleMenuCount() const noexcept
     {
         return m_visibleMenuCnt;
     }
@@ -145,7 +145,7 @@ public:
         m_items = mItems;
     }
 
-    inline t_size getMenuHeight() const _GLIBCXX_NOEXCEPT
+    inline t_size getMenuHeight() const noexcept
     {
         return m_menuHeight;
     }
@@ -155,7 +155,7 @@ public:
         m_menuHeight = mMenuHeight;
     }
 
-    inline size_t getMenuStartIndex() const _GLIBCXX_NOEXCEPT
+    inline size_t getMenuStartIndex() const noexcept
     {
         return m_menuStartIdx;
     }
@@ -173,7 +173,7 @@ public:
         m_menuStartIdx = mMenuStartIdx;
     }
 
-    inline int getSelectedMenuIndex() const _GLIBCXX_NOEXCEPT
+    inline int getSelectedMenuIndex() const noexcept
     {
         return m_selectedMenuIdx;
     }
@@ -183,7 +183,7 @@ public:
         m_selectedMenuIdx = mSelectedMenuIdx;
     }
 
-    inline int getBoundedMenuIndex() const _GLIBCXX_NOEXCEPT
+    inline int getBoundedMenuIndex() const noexcept
     {
         return m_boundedMenuIndx;
     }

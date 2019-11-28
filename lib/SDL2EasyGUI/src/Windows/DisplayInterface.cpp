@@ -21,6 +21,7 @@ DisplayInterface::DisplayInterface(const t_id displayId)
         : m_displayId(displayId)
 {
     m_window = new SEG_Window;
+	m_window->initialize();
 }
 
 DisplayInterface::~DisplayInterface()

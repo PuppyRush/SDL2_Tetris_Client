@@ -23,10 +23,10 @@ public:
 
 protected:
 
-    inline virtual void setPosition(const SDL_Rect rect) _GLIBCXX_NOEXCEPT
+	inline virtual void setPosition(const SDL_Rect rect) noexcept
     { m_scrollbarFocusPosition = rect; }
 
-    inline virtual SDL_Rect getPosition() const _GLIBCXX_NOEXCEPT override
+    inline virtual SDL_Rect getPosition() const noexcept override
     { return m_scrollbarFocusPosition; }
 
     virtual void onDraw() override;
@@ -35,7 +35,7 @@ protected:
 
     void drawScrollbarFocus();
 
-    virtual bool isHit(const SEG_Point& point) const _GLIBCXX_NOEXCEPT;
+    virtual bool isHit(const SEG_Point& point) const noexcept;
 
     virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) override;
 

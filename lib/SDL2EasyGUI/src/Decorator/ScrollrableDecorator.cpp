@@ -36,7 +36,7 @@ void ScrollrableDecorator::drawScrollbarFocus()
     drawer::draw_FilledRoundedRactangel(Base::getSDLRenderer(), this->getPosition(), ColorCode::silver, 3);
 }
 
-bool ScrollrableDecorator::isHit(const SEG_Point& point) const _GLIBCXX_NOEXCEPT
+bool ScrollrableDecorator::isHit(const SEG_Point& point) const noexcept
 {
     return _hitTest(ScrollrableDecorator::getPosition(), point) || Base::isHit(point);
 }

@@ -65,7 +65,7 @@ void BoxBasic::onMouseMotionEvent(const SDL_MouseMotionEvent* motion)
     }
 }
 
-void BoxBasic::removeAll() _GLIBCXX_NOEXCEPT
+void BoxBasic::removeAll() noexcept
 {
     m_items.clear();
 }

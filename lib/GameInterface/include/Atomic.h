@@ -38,7 +38,7 @@ public:
         return boost::serialization::singleton<Atomic>::get_mutable_instance();
     }
 
-private:
+public:
     Atomic()
     {}
 

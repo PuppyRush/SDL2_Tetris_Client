@@ -70,8 +70,8 @@ public:
     {
         return
                 this->r == color.r
-                and this->g == color.g
-                and this->b == color.b;
+                && this->g == color.g
+                && this->b == color.b;
     }
 
     const bool compare(const SEG_Color& rhs) const

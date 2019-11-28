@@ -34,13 +34,13 @@ public:
 
     explicit EditLabel(EditLabelBuilder& bld);
 
-    inline void clearString() _GLIBCXX_NOEXCEPT
+    inline void clearString() noexcept
     {
         m_labelString.clear();
         onDraw();
     }
 
-    inline const std::string& getString() const _GLIBCXX_NOEXCEPT
+    inline const std::string& getString() const noexcept
     { return m_labelString; }
 
 protected:

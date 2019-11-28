@@ -172,7 +172,7 @@ bool Control::isBounded(const SDL_Event& event)
     return m_isBounded = bounded;
 }
 
-bool Control::isHitting(const SDL_Event& event) _GLIBCXX_NOEXCEPT
+bool Control::isHitting(const SDL_Event& event) noexcept
 {
     if (m_isHitting) {
         return true;

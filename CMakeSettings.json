@@ -1,0 +1,23 @@
+﻿{
+  "configurations": [
+    {
+      "name": "x64-Debug",
+      "generator": "Ninja",
+      "configurationType": "Debug",
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "-v",
+      "ctestCommandArgs": "",
+      "cmakeToolchain": "C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\scripts\\buildsystems\\vcpkg.cmake",
+      "variables": [
+        {
+          "name": "CMAKE_DEBUG_POSTFIX",
+          "value": "d",
+          "type": "STRING"
+        }
+      ]
+    }
+  ]
+}

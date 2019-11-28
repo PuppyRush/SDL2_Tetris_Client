@@ -14,11 +14,14 @@
 #include <ctime>
 #include <memory>
 #include <cassert>
+#include <type_traits>
 
 #include "Type.h"
 #include "TStruct.h"
 
 namespace game_interface {
+
+
 
 template<class T>
 constexpr const auto toUType(T enuml) noexcept

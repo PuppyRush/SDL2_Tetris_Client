@@ -1,18 +1,28 @@
 cmake_minimum_required(VERSION 3.12)
 project(tetris)
 
-set(ACE_LINK_FLAGS "${ACE_LINK_FLAGS}" CACHE INTERNAL "ace link flags")
-
-find_package(PkgConfig REQUIRED)
-#[[find_package(SDL2 REQUIRED)
-find_package(SDL2_image REQUIRED)
-find_package(SDL2_ttf REQUIRED)]]
-
-pkg_check_modules(JSONCPP jsoncpp)
-link_libraries(${JSONCPP_LIBRARIES})
+message("----------------tetris START----------------")
 
 
-#add_definitions(${A_DEFINITIONS})
+find_package(SDL2 CONFIG REQUIRED)
+find_package(sdl2-image CONFIG REQUIRED)
+find_package(sdl2-ttf CONFIG REQUIRED)
+find_package(jsoncpp CONFIG REQUIRED)
+find_package(Boost 1.17.0)
+
+message("PROJECT_SOURCE_DIR" ${PROJECT_SOURCE_DIR})
+
+find_path(BOOST_INCLUDE_DIR boost)
+
+include_directories(${BOOST_INCLUDE_DIR})
+if (WIN32)
+	set(BOOST_LIBRARIES ${Boost_LIBRARY_DIRS}/boost_system-vc140-mt.lib)
+	if (CMAKE_BUILD_TYPE MATCHES "Debug")
+		set(BOOST_LIBRARIES ${Boost_LIBRARY_DIRS}/../debug/lib/boost_system-vc140-mt-gd.lib)
+	endif()
+endif()
+
+
 find_library(
         SDL2EasyGUI
         GameInterface
@@ -70,30 +80,25 @@ add_executable(tetris
 include_directories(
         include
         SYSTEM
-        ${Boost_INCLUDE_DIR}
-        ${SDL2_INCLUDE_DIR}
-        ${SDL2_IMAGE_INCLUDE_DIR}
-        ${SDL2_TTF_INCLUDE_DIR}
+    
         ${PROJECT_SOURCE_DIR}/src
         ${PROJECT_SOURCE_DIR}/src/GameInterface
         ${PROJECT_SOURCE_DIR}/src/SDLEasyGUI
         ${PROJECT_SOURCE_DIR}/src/Tetris
-        ${ACE_INCLUDE_DIR})
+		)
 
 
 target_link_libraries(
-        tetris
+        tetris PRIVATE
         SDL2EasyGUI
-        TetrisModule
+        TetrisModule 
         GameInterface
-        ${Boost_PROGRAM_OPTIONS_LIBRARY}
-        ${Boost_LIBRARIES}
-        ${SDL2_IMAGE_LIBRARIES}
-        ${SDL2_TTF_LIBRARIES}
-        ${SDL2_LIBRARY}
-        ${ACE_LIBRARIES}
-        ${JSONCPP_LIBRARIES}
+		
+		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\SDL2d.lib"
+		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\SDL2maind.lib"
+		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\SDL2_image.lib"
+		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\SDL2_ttf.lib"
+		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\SDL2_gfx.lib"
+
+		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\ACEd.lib"
         Threads::Threads)
-
-
-

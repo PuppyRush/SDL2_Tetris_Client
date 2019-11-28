@@ -16,6 +16,8 @@
 #include "Configcpp.h"
 #include "Type.h"
 
+#undef max
+
 namespace game_interface {
 
 #ifdef _CONSTANCE_VERSION_V1_

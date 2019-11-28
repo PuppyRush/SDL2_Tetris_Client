@@ -1,34 +1,33 @@
 cmake_minimum_required(VERSION 3.12)
 project(TetrisModule)
 
-set(CMAKE_CXX_STANDARD 17)
+message("----------------TetrisModule START----------------")
 
-set(ACE_LINK_FLAGS "${ACE_LINK_FLAGS}" CACHE INTERNAL "ace link flags")
+set(ACE_DIR "C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\share\\ace")
 
 
-pkg_check_modules(JSONCPP jsoncpp)
-link_libraries(${JSONCPP_LIBRARIES})
+find_package(Boost 1.17.0)
+#find_package(ACE)
 
-########################################################################
-##  general find
+find_path(BOOST_INCLUDE_DIR boost)
 
-find_path(ACE_INCLUDE_DIR ace/ACE.h ${CMAKE_SOURCE_DIR}/../ACE_wrappers/ /usr/include /usr/local/include $ENV{ACE_ROOT} $ENV{ACE_ROOT}/include DOC "directory containing ace/*.h for ACE library")
+include_directories(${BOOST_INCLUDE_DIR})
+if (WIN32)
+	set(BOOST_LIBRARIES ${Boost_LIBRARY_DIRS}/boost_system-vc140-mt.lib)
+	if (CMAKE_BUILD_TYPE MATCHES "Debug")
+		set(BOOST_LIBRARIES ${Boost_LIBRARY_DIRS}/../debug/lib/boost_system-vc140-mt-gd.lib)
+	endif()
+endif()
 
-find_library(ACE_LIBRARY NAMES ACE ace PATHS ${CMAKE_SOURCE_DIR}/../ACE_wrappers/lib/ /usr/lib /usr/local/lib $ENV{ACE_ROOT}/lib $ENV{ACE_ROOT} DOC "ACE library file"
-        GameInterface
-        SDL2EasyGUI)
-
-########################################################################
-## finished - now just set up flags and complain to user if necessary
 
 include_directories(
         src
         GameInterface
         SDL2EasyGUI
-        SYSTEM ${Boost_INCLUDE_DIR}
+        SYSTEM
         ${PROJECT_SOURCE_DIR}/src/SDLEasyGUI
         ${PROJECT_SOURCE_DIR}/src/Tetris
-        ${ACE_INCLUDE_DIR})
+        )
 
 
 ADD_LIBRARY(TetrisModule STATIC
@@ -48,8 +47,15 @@ ADD_LIBRARY(TetrisModule STATIC
         )
 
 
-target_link_libraries(
-        ${PROJECT_NAME}
-        ${JSONCPP_LIBRARIES}
+target_link_libraries(	
+		${PROJECT_NAME} PRIVATE
+
+		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\SDL2d.lib"
+		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\SDL2maind.lib"
+		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\SDL2_image.lib"
+		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\SDL2_ttf.lib"
+
+		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\SDL2_gfx.lib"
+		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\ACEd.lib"		
 )
 

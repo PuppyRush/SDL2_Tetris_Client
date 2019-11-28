@@ -19,12 +19,13 @@
 #include "SEG_Type.h"
 
 namespace seg {
-
-class GroupControlManager : private boost::serialization::singleton<GroupControlManager>
+	
+class GroupControlManager : public boost::serialization::singleton<GroupControlManager>
 {
 private:
     friend class boost::serialization::singleton<GroupControlManager>;
 
+	
     typedef struct group
     {
     public:
@@ -103,6 +104,7 @@ private:
     } group;
 
 public:
+	GroupControlManager() = default;
 
     using group_id = int;
 
@@ -136,7 +138,8 @@ public:
 
 private:
 
-    GroupControlManager() = default;
+	
+  
 
     std::unordered_map<int, group> m_group;
 

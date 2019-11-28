@@ -25,6 +25,9 @@ SDL_TETRIS
 using namespace std;
 using namespace game_interface;
 
+
+#undef main
+
 void init()
 {
     game_interface::GameInterface_Init(false);
@@ -110,4 +113,6 @@ int main()
 
     game_interface::GameInterface_Quit();
     seg::SDLEasyGUI_Quit();
+
+	return 0;
 }

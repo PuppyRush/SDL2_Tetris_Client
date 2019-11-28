@@ -55,6 +55,8 @@ public:
 
     friend class boost::serialization::singleton<DisplayController>;
 
+	DisplayController();
+
     virtual ~DisplayController();
 
     void run();
@@ -88,8 +90,6 @@ public:
     { return !(m_modalessAry.empty() && m_modalStack.empty()); }
 
 private:
-
-    DisplayController();
 
     t_id getActivatedWindowID(const SDL_Event* event);
 

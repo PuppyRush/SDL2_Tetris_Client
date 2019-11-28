@@ -9,7 +9,6 @@
 #pragma once
 #endif
 
-
 #include "SDL2EasyGUI/include/SEG_Type.h"
 
 namespace seg {

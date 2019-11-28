@@ -8,7 +8,6 @@
 #include <functional>
 #include <limits>
 
-#include <SDL.h>
 #include <SDL2/SDL.h>
 
 #include "SDL2EasyGUI/include/SEG_Constant.h"

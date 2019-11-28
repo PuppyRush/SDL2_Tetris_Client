@@ -13,7 +13,8 @@
 #include <chrono>
 #include <type_traits>
 #include <string>
-#include <jsoncpp/json/json.h> // or jsoncpp/json.h , or json/json.h etc.
+
+#include <json/json.h> // or jsoncpp/json.h , or json/json.h etc.
 
 #include "SDL2EasyGUI/include/SEG_Time.h"
 #include "Constant.h"
@@ -77,7 +78,7 @@ public:
         return os;
     }
 
-    const std::pair<std::__decay_and_strip<unsigned char (&)[1024]>::__type,long>
+    const std::pair<buffer_type*,long>
     toByte() const;
 
     void appendObject(const game_interface::Object*);
@@ -123,12 +124,12 @@ private:
 
     inline const bool validObjectLeastOne(const Json::Value& json)
     {
-        return json.isMember("unique") or json.isMember("maketime");
+        return json.isMember("unique") || json.isMember("maketime");
     }
 
     inline const bool validObjectAll(const Json::Value& json)
     {
-        return json.isMember("unique") and json.isMember("maketime");
+        return json.isMember("unique") && json.isMember("maketime");
     }
 
     void toPacket();

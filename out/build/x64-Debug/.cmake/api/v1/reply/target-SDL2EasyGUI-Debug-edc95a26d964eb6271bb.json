@@ -1,0 +1,675 @@
+{
+	"archive" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "/machine:x64",
+				"role" : "flags"
+			}
+		]
+	},
+	"artifacts" : 
+	[
+		{
+			"path" : "lib/SDL2EasyGUI/SDL2EasyGUId.lib"
+		}
+	],
+	"backtrace" : 2,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"_add_library",
+			"ADD_LIBRARY",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"C:/Users/goodd/source/repos/vcpkg-master/vcpkg-master/scripts/buildsystems/vcpkg.cmake",
+			"lib/SDL2EasyGUI/CMakeLists.txt",
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 52,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 195,
+				"parent" : 1
+			},
+			{
+				"file" : 2
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 53,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 19,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 32,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 33,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 34,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 35,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 36,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 37,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 38,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 39,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 42,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc -D_DEBUG /MDd /Zi /Ob0 /Od /RTC1   /std:c++latest -std:c++17"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 4,
+					"path" : "C:/Users/goodd/OneDrive/문서/Visual Studio 2019/SDL2_Tetris_Client/lib"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "C:/Users/goodd/source/repos/vcpkg-master/vcpkg-master/installed/x64-windows/include"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "C:/Users/goodd/OneDrive/문서/Visual Studio 2019/SDL2_Tetris_Client/lib/SDL2EasyGUI/."
+				},
+				{
+					"backtrace" : 7,
+					"path" : "C:/Users/goodd/OneDrive/문서/Visual Studio 2019/SDL2_Tetris_Client/lib/SDL2EasyGUI/lib"
+				},
+				{
+					"backtrace" : 8,
+					"path" : "C:/Users/goodd/OneDrive/문서/Visual Studio 2019/SDL2_Tetris_Client/lib/SDL2EasyGUI/src"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "C:/Users/goodd/OneDrive/문서/Visual Studio 2019/SDL2_Tetris_Client/lib/SDL2EasyGUI/src/Command"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "C:/Users/goodd/OneDrive/문서/Visual Studio 2019/SDL2_Tetris_Client/lib/SDL2EasyGUI/src/Controller"
+				},
+				{
+					"backtrace" : 11,
+					"path" : "C:/Users/goodd/OneDrive/문서/Visual Studio 2019/SDL2_Tetris_Client/lib/SDL2EasyGUI/src/Display"
+				},
+				{
+					"backtrace" : 12,
+					"path" : "C:/Users/goodd/OneDrive/문서/Visual Studio 2019/SDL2_Tetris_Client/lib/SDL2EasyGUI/src/Subjector"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/goodd/OneDrive/문서/Visual Studio 2019/SDL2_Tetris_Client/lib/SDL2EasyGUI/src/Windows"
+				},
+				{
+					"backtrace" : 14,
+					"path" : "C:/Users/goodd/OneDrive/문서/Visual Studio 2019/SDL2_Tetris_Client/lib/SDL2EasyGUI/include"
+				},
+				{
+					"backtrace" : 14,
+					"isSystem" : true,
+					"path" : "C:/Users/goodd/OneDrive/문서/Visual Studio 2019/SDL2_Tetris_Client/lib/SDL2EasyGUI/sdl2gfx"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				2,
+				4,
+				5,
+				7,
+				8,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				18,
+				20,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				29,
+				30,
+				31,
+				33,
+				36,
+				65
+			]
+		}
+	],
+	"id" : "SDL2EasyGUI::@d048a6eb3f080bf549f7",
+	"name" : "SDL2EasyGUI",
+	"nameOnDisk" : "SDL2EasyGUId.lib",
+	"paths" : 
+	{
+		"build" : "lib/SDL2EasyGUI",
+		"source" : "lib/SDL2EasyGUI"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				3,
+				6,
+				9,
+				17,
+				19,
+				21,
+				28,
+				32,
+				34,
+				35,
+				37,
+				38,
+				39,
+				40,
+				41,
+				42,
+				43,
+				44,
+				45,
+				46,
+				47,
+				48,
+				49,
+				50,
+				51,
+				52,
+				53,
+				54,
+				55,
+				56,
+				57,
+				58,
+				59,
+				60,
+				61,
+				62,
+				63,
+				64,
+				66,
+				67
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				2,
+				4,
+				5,
+				7,
+				8,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				18,
+				20,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				29,
+				30,
+				31,
+				33,
+				36,
+				65
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/src/Command/Commander.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/src/Command/EventCommand.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Controller/Border.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/src/Controller/Border.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Controller/Button/Button.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Controller/Button/ButtonBasic.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/src/Controller/Button/ButtonBasic.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Controller/Box/ComboBox.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Controller/Control.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/src/Controller/Control.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Controller/ControlBuilder.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Controller/Label/EditLabel.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Controller/GroupControlManager.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Controller/Box/ListBox.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Controller/Button/RadioButton.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Controller/Label/StaticLabel.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Controller/ImageStatic.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/src/Controller/ImageStatic.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Controller/Label/LabelBasic.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/src/Controller/Label/LabelBasic.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Controller/Box/BoxBasic.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/src/Controller/Box/BoxBasic.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Controller/Button/CheckBox.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Display/InputDialog.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Display/MessageDialog.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Windows/DisplayController.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Windows/DisplayInterface.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Windows/EventQueue.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/src/Windows/GraphicInterface.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Windows/SEG_Window.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Windows/SEG_Event.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Windows/GraphicInterface.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/src/Decorator/Decorator.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Decorator/ScrollbarDecorator.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/src/Decorator/ScrollbarDecorator.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/src/Decorator/BorderDecorator.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Decorator/BorderDecorator.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/Button.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/ComboBox.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/ControlBuilder.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/EditLabel.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/GroupControlManager.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/ListBox.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/RadioButton.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/StaticLabel.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/InputDialog.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/MessageDialog.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/DisplayController.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/DisplayInterface.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/EventListener.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/EventQueue.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/SEG_Window.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/SEG_Constant.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/SEG_Event.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/SEG_Initiator.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/SEG_Property.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/SEG_Quit.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/SEG_Resource.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/SEG_Struct.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/SEG_Type.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/SEG_TypeTraits.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/SEG_Define.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/CheckBox.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/SEG_Drawer.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/src/Decorator/ScrollrableDecorator.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL2EasyGUI/src/Decorator/ScrollrableDecorator.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/SEG_Logger.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "lib/SDL2EasyGUI/include/SEG_Time.h",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

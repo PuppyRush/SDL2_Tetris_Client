@@ -39,13 +39,13 @@ protected:
 
     virtual void onMouseWheelEvent(const SDL_MouseWheelEvent* wheel) override;
 
-    inline virtual SDL_Rect getPosition() const _GLIBCXX_NOEXCEPT override
+    inline virtual SDL_Rect getPosition() const noexcept override
     { return m_scrollbarPosition; }
 
-    inline SDL_Rect getUpperArrowPosition() const _GLIBCXX_NOEXCEPT
+    inline SDL_Rect getUpperArrowPosition() const noexcept
     { return m_upperArrowPosition; }
 
-    inline SDL_Rect getBelowArrowPosition() const _GLIBCXX_NOEXCEPT
+    inline SDL_Rect getBelowArrowPosition() const noexcept
     { return m_belowArrowPosition; }
 
 private:

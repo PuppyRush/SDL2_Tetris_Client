@@ -11,7 +11,7 @@
 
 #include <atomic>
 
-#include "sdl2gfx/SDL2_gfxPrimitives.h"
+#include "../../sdl2gfx/SDL2_gfxPrimitives.h"
 
 #include "SDL2EasyGUI/include/SEG_Struct.h"
 #include "SDL2EasyGUI/include/ControlBuilder.h"
@@ -30,7 +30,7 @@ public:
 
     virtual ~Control() = default;
 
-    inline bool isHitting() const _GLIBCXX_NOEXCEPT
+    inline bool isHitting() const noexcept
     {
         return m_isHitting;
     }
@@ -40,12 +40,12 @@ public:
         Control::m_isHitting = hit;
     }
 
-    inline SEG_Window::renderer_type getSDLRenderer() const _GLIBCXX_NOEXCEPT
+    inline SEG_Window::renderer_type getSDLRenderer() const noexcept
     {
         return getWindow()->getSDLRenderer();
     }
 
-    bool isHitting(const SDL_Event& event) _GLIBCXX_NOEXCEPT;
+    bool isHitting(const SDL_Event& event) noexcept;
     /*{ return m_isHitting; }*/
 
     void onHit(const SEG_Point& point, const bool hit);
@@ -159,31 +159,31 @@ protected:
 
     void drawBackground(const SDL_Rect rect, const SEG_Color color);
 
-    inline int getTextWidth() const _GLIBCXX_NOEXCEPT
+    inline int getTextWidth() const noexcept
     {
         return m_textWidth;
     }
 
 
-    inline void setTextWidth(int mTextWidth) _GLIBCXX_NOEXCEPT
+    inline void setTextWidth(int mTextWidth) noexcept
     {
         m_textWidth = mTextWidth;
     }
 
-    inline int getTextHeight() const _GLIBCXX_NOEXCEPT
+    inline int getTextHeight() const noexcept
     {
         return m_textHeight;
     }
 
-    inline void setTextHeight(int mTextHeight) _GLIBCXX_NOEXCEPT
+    inline void setTextHeight(int mTextHeight) noexcept
     {
         m_textHeight = mTextHeight;
     }
 
-    inline void stopDrawing(const bool b) _GLIBCXX_NOEXCEPT
+    inline void stopDrawing(const bool b) noexcept
     { m_stopDraw = b; }
 
-    inline bool isStopedDraw() const _GLIBCXX_NOEXCEPT
+    inline bool isStopedDraw() const noexcept
     { return m_stopDraw; }
 
 private:

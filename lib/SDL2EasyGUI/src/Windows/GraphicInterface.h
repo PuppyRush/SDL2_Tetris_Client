@@ -63,17 +63,17 @@ public:
     inline window_type getWindow() const noexcept
     { return m_window; }
 
-    inline t_id getId() const _GLIBCXX_NOEXCEPT
+    inline t_id getId() const noexcept
     {
         return m_data->resourceId;
     }
 
-    inline SEG_Point& getPoint() const _GLIBCXX_NOEXCEPT
+    inline SEG_Point& getPoint() const noexcept
     {
         return m_data->point;
     }
 
-    inline void setPoint(const SEG_Point& point) _GLIBCXX_NOEXCEPT
+    inline void setPoint(const SEG_Point& point) noexcept
     {
         m_data->point = point;
         m_data->positionRect.x = point.x;
@@ -82,12 +82,12 @@ public:
         m_data->midPoint = SEG_Point{point.x + m_data->width / 2, point.y + m_data->height / 2};
     }
 
-    inline SEG_Point& getMidPoint() const _GLIBCXX_NOEXCEPT
+    inline SEG_Point& getMidPoint() const noexcept
     {
         return m_data->midPoint;
     }
-
-    inline void setMidPoint(const SEG_Point& point) _GLIBCXX_NOEXCEPT
+	
+    inline void setMidPoint(const SEG_Point& point) noexcept
     {
         /* if (m_data->point.x > point.x) {
              m_data->point.x -= (m_data->point.x - point.x);
@@ -104,146 +104,146 @@ public:
         m_data->midPoint = point;
     }
 
-    inline t_size getWidth() const _GLIBCXX_NOEXCEPT
+    inline t_size getWidth() const noexcept
     {
         return m_data->width;
     }
 
-    inline void setWidth(const t_size width) _GLIBCXX_NOEXCEPT
+    inline void setWidth(const t_size width) noexcept
     {
         m_data->width = width;
         m_data->positionRect.w = width;
         m_data->midPoint = SEG_Point{m_data->point.x + width / 2, m_data->midPoint.y};
     }
 
-    inline t_size getHeight() const _GLIBCXX_NOEXCEPT
+    inline t_size getHeight() const noexcept
     {
         return m_data->height;
     }
 
-    void setHeight(const t_size height) _GLIBCXX_NOEXCEPT
+    void setHeight(const t_size height) noexcept
     {
         m_data->height = height;
         m_data->positionRect.h = height;
         m_data->midPoint = SEG_Point{m_data->width, m_data->point.y + height / 2};
     }
 
-    inline SEG_TFont& getFont() const _GLIBCXX_NOEXCEPT
+    inline SEG_TFont& getFont() const noexcept
     {
         return m_data->font;
     }
 
-    inline void setFont(const SEG_TFont& font) _GLIBCXX_NOEXCEPT
+    inline void setFont(const SEG_TFont& font) noexcept
     {
         m_data->font = font;
     }
 
-    inline std::string getName() const _GLIBCXX_NOEXCEPT
+    inline std::string getName() const noexcept
     {
         return m_data->name;
     }
 
-    inline void setName(const std::string& name) _GLIBCXX_NOEXCEPT
+    inline void setName(const std::string& name) noexcept
     {
         m_data->name = name;
     }
 
-    inline bool isEnabled() const _GLIBCXX_NOEXCEPT
+    inline bool isEnabled() const noexcept
     {
         return m_data->enabled;
     }
 
-    inline void setEnabled(const bool enabled) _GLIBCXX_NOEXCEPT
+    inline void setEnabled(const bool enabled) noexcept
     {
         m_data->enabled = enabled;
     }
 
-    inline ControlKind getKind() const _GLIBCXX_NOEXCEPT
+    inline ControlKind getKind() const noexcept
     {
         return m_data->kind;
     }
 
-    inline int getGroup() const _GLIBCXX_NOEXCEPT
+    inline int getGroup() const noexcept
     {
         return m_data->group;
     }
 
-    inline void setGroup(const int group) _GLIBCXX_NOEXCEPT
+    inline void setGroup(const int group) noexcept
     {
         m_data->group = group;
     }
 
-    inline bool isCarot() const _GLIBCXX_NOEXCEPT
+    inline bool isCarot() const noexcept
     {
         return m_data->carot;
     }
 
-    inline void setCarot(const bool carot) _GLIBCXX_NOEXCEPT
+    inline void setCarot(const bool carot) noexcept
     {
         m_data->carot = carot;
     }
 
-    inline t_display getDisplay() const _GLIBCXX_NOEXCEPT
+    inline t_display getDisplay() const noexcept
     {
         return m_data->display;
     }
 
-    inline void setDisplay(const t_display display) _GLIBCXX_NOEXCEPT
+    inline void setDisplay(const t_display display) noexcept
     {
         m_data->display = display;
     }
 
-    inline bool getAutoSize() const _GLIBCXX_NOEXCEPT
+    inline bool getAutoSize() const noexcept
     {
         return m_data->autoSize;
     }
 
-    inline BorderBoundaryLineType getBorderBoundaryLineType() const _GLIBCXX_NOEXCEPT
+    inline BorderBoundaryLineType getBorderBoundaryLineType() const noexcept
     {
         return m_data->borderLineType;
     }
 
-    inline BorderBoundaryType getBorderBoundaryType() const _GLIBCXX_NOEXCEPT
+    inline BorderBoundaryType getBorderBoundaryType() const noexcept
     {
         return m_data->borderType;
     }
 
-    inline SEG_Color& getBorderLineColor() const _GLIBCXX_NOEXCEPT
+    inline SEG_Color& getBorderLineColor() const noexcept
     {
         return m_data->borderColor;
     }
 
-    inline int getBorderAngle() const _GLIBCXX_NOEXCEPT
+    inline int getBorderAngle() const noexcept
     {
         return m_data->borderAngle;
     }
 
-    inline int getBorderThick() const _GLIBCXX_NOEXCEPT
+    inline int getBorderThick() const noexcept
     {
         return m_data->borderThick;
     }
 
-    inline bool isSelected() const _GLIBCXX_NOEXCEPT
+    inline bool isSelected() const noexcept
     {
         return m_data->selected;
     }
 
-    inline const bool isMultiselected() const _GLIBCXX_NOEXCEPT
+    inline const bool isMultiselected() const noexcept
     {
         return m_data->multiselected;
     }
 
-    inline void setMultiselected(bool multiselected) _GLIBCXX_NOEXCEPT
+    inline void setMultiselected(bool multiselected) noexcept
     {
         m_data->multiselected = multiselected;
     }
 
-    inline virtual void setPosition(const SDL_Rect rect) _GLIBCXX_NOEXCEPT
+    inline virtual void setPosition(const SDL_Rect rect) noexcept
     {
         m_data->positionRect = rect;
     }
 
-    inline virtual SDL_Rect getPosition() const _GLIBCXX_NOEXCEPT
+    inline virtual SDL_Rect getPosition() const noexcept
     {
         return m_data->positionRect;
     }
@@ -266,16 +266,16 @@ protected:
 
     explicit GraphicInterface(std::shared_ptr<ControlBasic>);
 
-    inline std::shared_ptr<ControlBasic> getBasic() const _GLIBCXX_NOEXCEPT
+    inline std::shared_ptr<ControlBasic> getBasic() const noexcept
     {
         return m_data;
     }
 
     virtual void _drawBackground(const SDL_Rect rect);
 
-    bool _hitTest(const SDL_Rect&, const t_coord& , const t_coord& ) const _GLIBCXX_NOEXCEPT;
+    bool _hitTest(const SDL_Rect&, const t_coord& , const t_coord& ) const noexcept;
 
-    bool _hitTest(const SDL_Rect&, const SEG_Point&) const _GLIBCXX_NOEXCEPT;
+    bool _hitTest(const SDL_Rect&, const SEG_Point&) const noexcept;
 
     std::shared_ptr<ControlBasic> m_data;
 

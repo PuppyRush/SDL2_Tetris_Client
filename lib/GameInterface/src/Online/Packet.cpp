@@ -62,16 +62,17 @@ Packet::Packet(const char* buf, const size_type len)
     memcpy(m_buf, buf, len);
 }
 
-const std::pair<std::__decay_and_strip<unsigned char (&)[1024]>::__type, long>
+const std::pair<Packet::buffer_type*, long>
 Packet::toByte() const
 {
     memset(m_buf, 0, BUF_MAX_SIZE);
     m_header.where = g_isServer ? messageDirection::SERVER : messageDirection::CLIENT;
 
-    if (m_header.where == messageDirection::UNKOWN or
-        m_header.message == messageInfo::UNKWON or
+    if (m_header.where == messageDirection::UNKOWN ||
+        m_header.message == messageInfo::UNKWON ||
         m_header.timestamp == 0) {
         m_validPacket = false;
+		
         return std::make_pair(m_buf, 0);
     }
 
@@ -82,6 +83,8 @@ Packet::toByte() const
     memcpy(m_buf + header_size, plyloadbuf.c_str(), plyloadbuf.size());
 
     m_bufSize = header_size + plyloadbuf.size();
+
+	assert(BUF_MAX_SIZE > m_bufSize);
 
     return std::make_pair(m_buf, m_bufSize);
 }

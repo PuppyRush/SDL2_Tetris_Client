@@ -23,6 +23,10 @@ public:
 
     friend class boost::serialization::singleton<TOptionManager>;
 
+	TOptionManager() = default;
+
+	virtual ~TOptionManager() = default;
+
     tetris_module::TSpeed getSpeed() const;
 
     void setSpeed(tetris_module::TSpeed m_speed);
@@ -59,7 +63,7 @@ private:
     //graphic
     bool m_drawline;
 
-    TOptionManager() = default;
+
 };
 
 SDL_TETRIS_END

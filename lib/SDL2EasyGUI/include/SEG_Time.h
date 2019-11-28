@@ -7,10 +7,11 @@
 
 #include <string>
 #include <chrono>
+#include <ctime>
 
 namespace seg::time{
 
-using time_type = std::chrono::high_resolution_clock;
+using time_type = std::chrono::system_clock;
 
 static std::string current(const time_type::time_point& t)
 {
@@ -34,7 +35,7 @@ static std::string current(const time_type::time_point& t)
 
 static std::string current(const time_t t)
 {
-    return current(std::chrono::high_resolution_clock::from_time_t(t));
+	return current(time_type::from_time_t(t));
 }
 
 static std::time_t now_to_time()

@@ -1,25 +1,36 @@
 cmake_minimum_required(VERSION 3.12)
 project(SDL2EasyGUI)
 
+message("----------------SDL2EasyGUI START----------------")
+
+
 SET(CMAKE_EXE_LINKER_FLAGS "-static")
+#set(ACE_DIR "C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\share\\ace")
+
+find_package(SDL2 CONFIG REQUIRED)
+find_package(sdl2-image CONFIG REQUIRED)
+find_package(sdl2-ttf CONFIG REQUIRED)
+find_package(jsoncpp CONFIG REQUIRED)
+find_package(Boost 1.17.0)
+#find_package(ACE)
+
+find_path(BOOST_INCLUDE_DIR boost)
+
+include_directories(${BOOST_INCLUDE_DIR})
+if (WIN32)
+	set(BOOST_LIBRARIES ${Boost_LIBRARY_DIRS}/boost_system-vc140-mt.lib)
+	if (CMAKE_BUILD_TYPE MATCHES "Debug")
+		set(BOOST_LIBRARIES ${Boost_LIBRARY_DIRS}/../debug/lib/boost_system-vc140-mt-gd.lib)
+	endif()
+endif()
+
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(Boost_INCLUDE_DIR /usr/include)
-set(BOOST_SOURCE /usr/include)
-set(Boost_LIBRARIES /usr/lib/x86_64-linux-gnu/)
-set(sdl2gfx /usr/local/lib)
-
-#[[
-find_package(SDL2 REQUIRED)
-find_package(SDL2_image REQUIRED)
-find_package(SDL2_ttf REQUIRED)
-]]
-
-find_package(Boost 1.65.1 REQUIRED COMPONENTS system filesystem serialization)
-find_package(PkgConfig REQUIRED)
+#find_path(SDL2_INCLUDE_DIR SDL2/SDL.h)
 
 include_directories(.)
+include_directories(lib)
 include_directories(src)
 include_directories(src/Command)
 include_directories(src/Controller)
@@ -27,21 +38,15 @@ include_directories(src/Display)
 include_directories(src/Subjector)
 include_directories(src/Windows)
 
-include_directories(
-        ../
-        include
-        src
-        lib
-        SYSTEM ${Boost_INCLUDE_DIR}
-        ${SDL2_INCLUDE_DIR}
-        ${SDL2_IMAGE_INCLUDE_DIR}
-        ${SDL2_TTF_INCLUDE_DIR}
-)
 
-file(COPY DIRECTORY "src/"
-        DESTINATION "include"
-        FILES_MATCHING PATTERN "*.h"
-        )
+include_directories(
+		.
+		src
+        include
+        lib
+        SYSTEM
+		sdl2gfx
+)
 
 
 ADD_LIBRARY(SDL2EasyGUI STATIC
@@ -115,11 +120,19 @@ ADD_LIBRARY(SDL2EasyGUI STATIC
         include/SEG_Time.h)
 
 target_link_libraries(
-        SDL2EasyGUI
-        ${Boost_PROGRAM_OPTIONS_LIBRARY}
-        ${Boost_LIBRARIES}
-        ${SDL2_IMAGE_LIBRARIES}
-        ${SDL2_TTF_LIBRARIES}
-        ${SDL2_LIBRARY}
-        /usr/local/lib/libSDL2_gfx.a
-        Threads::Threads)
+        ${PROJECT_NAME}
+		
+		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\SDL2d.lib"
+		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\SDL2maind.lib"
+		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\SDL2_image.lib"
+		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\SDL2_ttf.lib"
+		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\SDL2_gfx.lib"
+		#PRIVATE SDL2::SDL2 
+		#SDL2::SDL2main
+		#SDL2::SDL2_image
+		#SDL2::SDL2_ttf
+		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\ACEd.lib"
+		${BOOST_LIBRARIES}
+        #/usr/local/lib/libSDL2_gfx.a
+ 
+ Threads::Threads)

@@ -10,7 +10,7 @@
 #endif
 
 #include "SEG_Struct.h"
-#include "sdl2gfx/SDL2_gfxPrimitives.h"
+#include "../sdl2gfx/SDL2_gfxPrimitives.h"
 
 namespace seg::drawer {
 
@@ -144,7 +144,7 @@ public:
 
     ~TextDrawer()
     {
-        SDL_FreeSurface(m_textSurface);
+        //SDL_FreeSurface(m_textSurface);
     }
 
     void drawText()
