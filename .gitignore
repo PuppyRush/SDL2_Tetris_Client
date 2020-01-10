@@ -363,5 +363,7 @@ ASALocalRun/
 .localhistory/
 
 out/*
+CMakeFiles/*
+example/*
 
 # End of https://www.gitignore.io/api/visualstudio
