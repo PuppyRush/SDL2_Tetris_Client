@@ -37,10 +37,9 @@ public:
         None
     };
 
-    static Logger& getInstance()
+    inline static Logger& getInstance()
     {
-        static Logger debug;
-        return debug;
+        return Logger::m_logger;
     }
 
     void printLog(const char* str, const logger_level& lv)
@@ -62,6 +61,9 @@ public:
     }
 
 private:
+
+    static Logger m_logger;
+
     Logger() = default;
 
     ~Logger() = default;

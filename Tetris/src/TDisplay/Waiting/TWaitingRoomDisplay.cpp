@@ -27,9 +27,7 @@ using namespace game_interface::packet;
 TWaitingRoomDisplay::TWaitingRoomDisplay(const seg::t_id displayId)
         : TDisplayInterface(displayId)
 {
-    setWindowTitle("Hello Tetris World!");
-    setBackgroundColor(ColorCode::black);
-    setWindowHeight(800);
+    
 }
 
 void TWaitingRoomDisplay::registerEvent()
@@ -51,6 +49,10 @@ void TWaitingRoomDisplay::postCreate(TDisplayInterface::display_ptr display)
 
 void TWaitingRoomDisplay::onInitialize()
 {
+
+	setWindowTitle("Hello Tetris World!");
+	setBackgroundColor(ColorCode::black);
+	setWindowHeight(800);
 
     {
         ListBoxBuilder bld(getWindow(), {m_gameroomBoxBeginPoint.x, m_gameroomBoxBeginPoint.y}, "");

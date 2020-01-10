@@ -10,10 +10,10 @@ SET(CMAKE_EXE_LINKER_FLAGS "-static")
 find_package(SDL2 CONFIG REQUIRED)
 find_package(sdl2-image CONFIG REQUIRED)
 find_package(sdl2-ttf CONFIG REQUIRED)
+#find_package(sdl2-gfx CONFIG REQUIRED)
 find_package(jsoncpp CONFIG REQUIRED)
 find_package(Boost 1.17.0)
-#find_package(ACE)
-
+find_library(ace ACE_x64-windows-static REQUIRED)
 find_path(BOOST_INCLUDE_DIR boost)
 
 include_directories(${BOOST_INCLUDE_DIR})
@@ -122,17 +122,15 @@ ADD_LIBRARY(SDL2EasyGUI STATIC
 target_link_libraries(
         ${PROJECT_NAME}
 		
-		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\SDL2d.lib"
-		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\SDL2maind.lib"
-		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\SDL2_image.lib"
-		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\SDL2_ttf.lib"
+		SDL2::SDL2-static
+		SDL2::SDL2main
+		SDL2::SDL2_image
+		SDL2::SDL2_ttf
+        #ACEs
+		#SDL2::SDL2_gfx
 		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\SDL2_gfx.lib"
-		#PRIVATE SDL2::SDL2 
-		#SDL2::SDL2main
-		#SDL2::SDL2_image
-		#SDL2::SDL2_ttf
 		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\ACEd.lib"
 		${BOOST_LIBRARIES}
         #/usr/local/lib/libSDL2_gfx.a
  
- Threads::Threads)
+ )

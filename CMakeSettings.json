@@ -11,13 +11,7 @@
       "buildCommandArgs": "-v",
       "ctestCommandArgs": "",
       "cmakeToolchain": "C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\scripts\\buildsystems\\vcpkg.cmake",
-      "variables": [
-        {
-          "name": "CMAKE_DEBUG_POSTFIX",
-          "value": "d",
-          "type": "STRING"
-        }
-      ]
+      "variables": []
     }
   ]
 }

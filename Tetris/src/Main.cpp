@@ -1,6 +1,7 @@
 
 #include <condition_variable>
 #include <mutex>
+#include <thread>
 
 #include "SDL2EasyGUI/include/DisplayController.h"
 #include "SDL2EasyGUI/include/MessageDialog.h"
@@ -30,89 +31,100 @@ using namespace game_interface;
 
 void init()
 {
+
+	SDL_LogSetPriority(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_INFO);
+
     game_interface::GameInterface_Init(false);
     seg::SDLEasyGUI_Init();
 
     TPlayer::getInstance()->setOrder(0);
     TPlayer::getInstance()->setMaster(true);
+
 }
 
-int main()
+int main(int argc, char **argv)
 {
-
     init();
-    seg::t_id res;
+	
+	auto mainDisplay = seg::make_display<TMultiMainDisplay>(resource::MAIN_MULTI_DISPLAY);
+	auto optionDisplay = seg::make_display<TOptionDisplay>(resource::OPTION_DISPLAY);
+	auto enterServerDisplay = seg::make_display<TEnterServerDisplay>(resource::ENTERSERVER_DISPLAY);
+	auto waitingRoomDisplay = seg::make_display<TWaitingRoomDisplay>(resource::WAITINGROOM_DISPLAY);
 
-    auto mainDisplay = seg::make_display<TMultiMainDisplay>(resource::MAIN_MULTI_DISPLAY);
-    auto optionDisplay = seg::make_display<TOptionDisplay>(resource::OPTION_DISPLAY);
-    auto enterServerDisplay = seg::make_display<TEnterServerDisplay>(resource::ENTERSERVER_DISPLAY);
-    auto waitingRoomDisplay = seg::make_display<TWaitingRoomDisplay>(resource::WAITINGROOM_DISPLAY);
+	bool go = true;
+	shared_ptr<TDisplayInterface> maindlg = mainDisplay;
 
-    bool go = true;
-    shared_ptr<TDisplayInterface> maindlg = mainDisplay;
-    while (go) {
-        maindlg->modal(maindlg);
-        if (maindlg->compareDisplay(resource::MAIN_MULTI_DISPLAY)) {
-            switch (maindlg->getResult()) {
-                case toUType(resource::MAIN_EXIT):
-                    go = false;
-                    break;
-                case toUType(resource::MAIN_OPTION_BUTTON): {
+	while (go) {
 
-                    optionDisplay->modal(optionDisplay);
-                    break;
-                }
-                case toUType(resource::MAIN_MULTI_GAME_START_BUTTON): {
+		maindlg->modal(maindlg);
 
-                    while (true) {
-                        enterServerDisplay->modal(enterServerDisplay);
+		if (maindlg->compareDisplay(resource::MAIN_MULTI_DISPLAY)) {
+			switch (maindlg->getResult()) {
+			case toUType(resource::MAIN_EXIT):
+				go = false;
+				break;
+			case toUType(resource::MAIN_OPTION_BUTTON): {
 
-                        if (enterServerDisplay->m_valid) {
-                            auto& player = TPlayer::getInstance();
+				optionDisplay->modal(optionDisplay);
+				break;
+			}
+			case toUType(resource::MAIN_MULTI_GAME_START_BUTTON): {
 
-                            if (player->connectServer()) {
-                                game_interface::PacketQueue::getInstance().attach(player);
-                                maindlg = waitingRoomDisplay;
-                                break;
-                            } else {
-                                seg::MessageDialog dlg{"Cannot fail to connect server.",
-                                                       seg::MessageDialogKind::error};
-                                dlg.alert();
-                            }
-                        } else if (enterServerDisplay->getResult() == seg::toUType(seg::BTN_CANCEL)) {
-                            break;
-                        }
-                    }
+				while (true) {
+					enterServerDisplay->modal(enterServerDisplay);
 
-                    break;
-                }
+					if (enterServerDisplay->m_valid) {
+						auto& player = TPlayer::getInstance();
 
-                default:
-                    assert(0);
-            }
-        } else if (maindlg->compareDisplay(resource::WAITINGROOM_DISPLAY)) {
+						if (player->connectServer()) {
+							game_interface::PacketQueue::getInstance().attach(player);
+							maindlg = waitingRoomDisplay;
+							break;
+						}
+						else {
+							seg::MessageDialog dlg{ "Cannot fail to connect server.",
+												   seg::MessageDialogKind::error };
+							dlg.alert();
+						}
+					}
+					else if (enterServerDisplay->getResult() == seg::toUType(seg::BTN_CANCEL)) {
+						break;
+					}
+				}
 
-            if (!TPlayer::getInstance()->getClientController()->isConnection()) {
-                maindlg = mainDisplay;
-                break;
-            }
+				break;
+			}
 
-            switch (maindlg->getResult()) {
-                case toUType(resource::WAITINGROOM_CREATE):
+			default:
+				assert(0);
+			}
+		}
+		else if (maindlg->compareDisplay(resource::WAITINGROOM_DISPLAY)) {
 
-                    break;
-                case toUType(resource::WAITINGROOM_DISCONNECT):
-                    maindlg = mainDisplay;
-                    break;
+			if (!TPlayer::getInstance()->getClientController()->isConnection()) {
+				maindlg = mainDisplay;
+				break;
+			}
 
-            }
+			switch (maindlg->getResult()) {
+			case toUType(resource::WAITINGROOM_CREATE):
 
-        }
+				break;
+			case toUType(resource::WAITINGROOM_DISCONNECT):
+				maindlg = mainDisplay;
+				break;
 
-    }
+			}
+
+		}
+
+	}
 
     game_interface::GameInterface_Quit();
     seg::SDLEasyGUI_Quit();
 
 	return 0;
 }
+
+
+#define main

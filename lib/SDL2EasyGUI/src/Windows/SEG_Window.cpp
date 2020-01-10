@@ -45,10 +45,14 @@ void SEG_Window::initialize()
     try {
 
         Uint32 show = m_show ? SDL_WINDOW_SHOWN : SDL_WINDOW_HIDDEN;
-        m_window = SDL_CreateWindow(m_title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, m_windowWidth,
+		show |= SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE;
+        m_window = SDL_CreateWindow(m_title.c_str(), 
+									SDL_WINDOWPOS_UNDEFINED, 
+									SDL_WINDOWPOS_UNDEFINED, 
+									m_windowWidth,
                                     m_windowHeight,
                                     show);
-        m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+        m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED);
         m_windowID = SDL_GetWindowID(m_window);
 
     }

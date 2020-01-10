@@ -21,7 +21,6 @@ DisplayInterface::DisplayInterface(const t_id displayId)
         : m_displayId(displayId)
 {
     m_window = new SEG_Window;
-	m_window->initialize();
 }
 
 DisplayInterface::~DisplayInterface()
@@ -45,15 +44,13 @@ void DisplayInterface::initialize()
     onCreate();
     onInitialize();
     show();
-
-    // return m_resultResrouce;
 }
 
 std::underlying_type_t<resource> DisplayInterface::alert()
 {
     DisplayController::getInstance().alert(this);
 
-    m_thread = thread(&DisplayInterface::_run, this);
+    m_thread = thread(&DisplayInterface::_run, this);    
     m_thread.join();
 
     DisplayController::getInstance().alert_close();
@@ -64,7 +61,7 @@ std::underlying_type_t<resource> DisplayInterface::alert()
 
 std::underlying_type_t<resource> DisplayInterface::modal(std::shared_ptr<DisplayInterface> display)
 {
-    modal_opener opener{display};
+	modal_opener opener{ display };
 
     m_thread = thread(&DisplayInterface::_run, this);
     m_thread.join();
@@ -86,43 +83,51 @@ std::underlying_type_t<resource> DisplayInterface::waitModaless()
 
 void DisplayInterface::_run()
 {
-    static int debug{0};
+	initialize();
+
+    //static int debug{0};
 
     while (m_run) {
+
+		SDL_Event sdlEvent;
+		SDL_WaitEvent(&sdlEvent);
+
         auto event = m_eventDelivery.popEvent();
 
-        //printf("DisplayInterface::_run : %d\n", debug++);
+        // printf("DisplayInterface::_run : %d\n", debug++);
 
-        onEvent(event);
+        onEvent(&sdlEvent);
 
-        if (m_currentCtl && m_currentCtl->isBounded(*event)) {
-            m_currentCtl->onEvent(event);
+        if (m_currentCtl && m_currentCtl->isBounded(sdlEvent)) {
+            m_currentCtl->onEvent(&sdlEvent);
         }
 
-        if (m_currentCtl != nullptr && m_currentCtl->isHitting(*event) ) {
-            m_currentCtl->onEvent(event);
+        if (m_currentCtl != nullptr && m_currentCtl->isHitting(sdlEvent) ) {
+            m_currentCtl->onEvent(&sdlEvent);
         }
 
-        if (event->type >= seg::toUType(SEGEVENT_START)) {
+        if (sdlEvent.type >= seg::toUType(SEGEVENT_START)) {
             /*auto e = SEG_Event{event->type};
             printf("%s \n ", magic_enum::enum_name(e).value().data());*/
             //printf("recv seg event : %d\n", event->type);
-        } else if (event->type == 0x8000) {
+        } else if (sdlEvent.type == 0x8000) {
             // printf("recv user event : %d / %d \n", event->type, event->user.code);
-        } else if (event->type == seg::toUType(SDL_TIMER_EVENT)) {
+        } else if (sdlEvent.type == seg::toUType(SDL_TIMER_EVENT)) {
             //printf("recv timer event : %d / %d \n", event->type, event->user.code);
         } else {
             //printf("recv sdl event : %d\n", event->type);
         }
 
         //below event is deleted sdl
-        if (event->type > 0x9999 || event->type < 0 || event->type == SDL_TIMER_EVENT) {
+        if (sdlEvent.type > 0x9999 || sdlEvent.type < 0 || sdlEvent.type == SDL_TIMER_EVENT) {
             continue;
-        } else if (event->type == SDL_USEREVENT && (event->user.data1 || event->user.data2)) {
+        } 
+		/*else if (event->type == SDL_USEREVENT && (event->user.data1 || event->user.data2)) {
             delete static_cast<seg::t_eventType*>(event->user.data1);
         } else {
             delete event;
-        }
+        }*/
+
     }
 }
 
@@ -287,8 +292,8 @@ void DisplayInterface::onDrawBackground()
 {
     if (!m_backgroundImgPath.empty()) {
         auto renderer = getRenderer();
-
         t_size w, h; // m_texture width & height
+
         auto img = IMG_LoadTexture(renderer, m_backgroundImgPath.c_str());
         SDL_QueryTexture(img, NULL, NULL, &w, &h);
 

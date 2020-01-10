@@ -59,7 +59,7 @@ public:
 
     virtual ~DisplayController();
 
-    void run();
+	void run();
 
     void finish();
 

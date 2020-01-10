@@ -23,12 +23,9 @@ class EventListener
 
 public:
 
-    using queue_type = EventQueue<SDL_Event>;
-    using data_type = queue_type::data_type;
-
     virtual ~EventListener() = default;
 
-    void onEvent(const data_type event)
+    void onEvent(SDL_Event* event)
     {
         using namespace logger;
 
@@ -263,11 +260,11 @@ public:
     virtual void onDetachFocus() = 0;
 
     //Event Queue
-    void pushEvent(const data_type event)
+    /*void pushEvent(const data_type event)
     { m_eventDelivery.pushEvent(event); }
 
     const data_type popEvent()
-    { return m_eventDelivery.popEvent(); }
+    { return m_eventDelivery.popEvent(); }*/
 
 
 protected:

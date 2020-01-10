@@ -45,8 +45,10 @@ public:
 
     using data_type = _Data*;
 
+    const data_type const MUTABLE_VALUE= nullptr;
+
     EventQueue()
-            : m_isContinue(true)
+            : m_isContinue(true), MUTABLE_VALUE(new _Data)
     {
 
     }
@@ -59,8 +61,10 @@ public:
         while (!m_eventQ.empty()) {
             auto e = m_eventQ.front();
             m_eventQ.pop();
-            //delete e;
         }
+
+        if (MUTABLE_VALUE != nullptr)
+            delete MUTABLE_VALUE;
     }
 
     void pushEvent(const data_type event)
@@ -73,11 +77,14 @@ public:
 
     const data_type popEvent()
     {
+        if (m_eventQ.empty())
+            return MUTABLE_VALUE;
+
         std::unique_lock<std::mutex> lock(m_mutex);
         m_cond.wait(lock, [=]() { return !m_eventQ.empty() || !m_isContinue; });
 
         if (m_eventQ.empty() || !m_isContinue) {
-            return new _Data;
+            return MUTABLE_VALUE;
         }
 
         const auto msg = m_eventQ.front();
