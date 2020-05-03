@@ -11,7 +11,7 @@
 #include "SDL2EasyGUI/include/SEG_Event.h"
 #include "SDL2EasyGUI/include/Button.h"
 #include "TSingleGameDisplay.h"
-#include "TOption/TOptionManager.h"
+#include "../../TOption/TOptionManager.h"
 #include "SDL2EasyGUI/include/Button.h"
 
 SDL_TETRIS

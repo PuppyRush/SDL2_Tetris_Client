@@ -29,6 +29,20 @@ constexpr const auto toUType(T enuml) noexcept
     return static_cast<std::underlying_type_t<T>>(enuml);
 }
 
+template<typename, typename>
+constexpr bool is_same_template{ false };
+
+template<
+    template<typename...> class T, //typename T in C++17
+    typename... A,
+    typename... B
+>
+constexpr bool is_same_template<
+    T<A...>,
+    T<B...>
+>{true};
+
+
 template<class T>
 struct EnumIterator
 {

@@ -7,7 +7,6 @@
 #include "TMultiGameRoomDisplay.h"
 #include "SDL2EasyGUI/include/Button.h"
 #include "GameInterface/include/Event.h"
-#include "GameInterface/src/Online/JsonHelper.h"
 #include "TResource.h"
 #include "Tetris/include/TFigureBuilder.h"
 #include "../../TOption/TOptionManager.h"

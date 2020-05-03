@@ -9,12 +9,10 @@
 #pragma once
 #endif
 
-#include <cassert>
-
 #include <SDL2/SDL.h>
 #include "EventQueue.h"
 #include "SEG_Property.h"
-#include "SEG_Logger.h"
+//#include "GameInterface/include/GI_Logger.h"
 
 namespace seg {
 
@@ -27,7 +25,7 @@ public:
 
     void onEvent(SDL_Event* event)
     {
-        using namespace logger;
+      /*  using namespace game_interface::logger;
 
         switch (event->type) {
             case SDL_WINDOWEVENT   :
@@ -200,7 +198,7 @@ public:
                 break;
             default:;
 
-        }
+        }*/
     }
 
     //SDL Events
@@ -273,8 +271,6 @@ protected:
     EventListener() = default;
 
 private:
-
-    bool m_isHitting = false;
 
 };
 

@@ -59,7 +59,7 @@ public:
             : r(r), g(g), b(b), a(alhpa)
     {
 
-        std::underlying_type<coldeType>::type c;
+        std::underlying_type<coldeType>::type c{ 0 };
         c += r << 16;
         c += g << 8;
         c += b;

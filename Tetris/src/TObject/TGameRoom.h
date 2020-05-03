@@ -11,7 +11,7 @@
 #include "GameInterface/include/GameRoom.h"
 
 #include "TDefine.h"
-#include "TObject/TPlayer.h"
+#include "TPlayer.h"
 
 SDL_TETRIS_BEGIN
 

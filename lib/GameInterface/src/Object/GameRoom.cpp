@@ -3,7 +3,6 @@
 //
 
 #include <string>
-
 #include "GameInterface/include/GameRoom.h"
 
 using namespace game_interface;

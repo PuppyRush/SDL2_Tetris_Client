@@ -84,7 +84,9 @@ private:
     t_id_atomic m_roomnumber;
     player_container m_players;
 
+    
 };
+
 
 }
 

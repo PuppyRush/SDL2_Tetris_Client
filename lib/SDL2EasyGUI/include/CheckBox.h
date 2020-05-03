@@ -8,7 +8,7 @@
 #include "SDL2EasyGUI/src/Controller/Button/ButtonBasic.h"
 
 namespace seg {
-
+    
 enum class CheckBoxType
 {
     xType,

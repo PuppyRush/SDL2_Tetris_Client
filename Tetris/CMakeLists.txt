@@ -80,7 +80,6 @@ add_executable(tetris
 include_directories(
         include
         SYSTEM
-    
         ${PROJECT_SOURCE_DIR}/src
         ${PROJECT_SOURCE_DIR}/src/GameInterface
         ${PROJECT_SOURCE_DIR}/src/SDLEasyGUI

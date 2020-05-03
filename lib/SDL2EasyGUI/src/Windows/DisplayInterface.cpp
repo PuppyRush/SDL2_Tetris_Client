@@ -12,10 +12,11 @@
 
 #include "include/DisplayInterface.h"
 
-#include "SEG_Logger.h"
+#include "GameInterface/include/Logger.h"
 
 using namespace std;
 using namespace seg;
+using namespace game_interface;
 
 DisplayInterface::DisplayInterface(const t_id displayId)
         : m_displayId(displayId)
@@ -311,7 +312,7 @@ void DisplayInterface::onDrawBackground()
 
 void DisplayInterface::onDraw()
 {
-    logger::Logger::getInstance().printLog("DisplayInterface::onDraw()",
+   logger::Logger::getInstance().printLog("DisplayInterface::onDraw()",
                                            logger::Logger::logger_level::Debug);
 
     _onDrawMenus();

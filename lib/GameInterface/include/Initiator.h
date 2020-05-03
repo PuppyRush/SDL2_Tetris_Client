@@ -9,8 +9,103 @@
 
 #include "Constant.h"
 #include "PacketQueue.h"
+#include "Room.h"
+
+#include "ScopeTimer.h"
+#include "ElapsedTimer.h"
+#include "Stopwatch.h"
+#include "Countdown.h"
+#include "Scheduling.h"
 
 namespace game_interface {
+    
+static void callback(void*)
+{
+    std::cout << "call!" << std::endl;
+}   
+
+static void cal_time()
+{
+    time::TimerSet< std::nano> set;
+    time::ElapsedTimer<std::milli> el;
+    {
+        el.start();
+        time::ScopeTimer<std::nano> t(set);
+        for (int i = 0; i < 500; i++)
+           // std::cout << "a";
+        el.end();
+
+        auto h = el.hour();
+        auto m = el.minute();
+        auto s = el.second();
+        auto mili = el.millisecond();
+    }
+
+    int* b = new int{ 3 };
+    {
+        time::Countdown<std::nano> cd{ &callback, b, { 0,0,3,700 } };
+        cd.start();
+        Sleep(2000);
+        cd.suspend();
+        Sleep(3000);
+        cd.resume();
+        cd.join();
+    }
+    {
+        auto t = time::clock_type::now() + time::seconds{ 6 };
+        time::Countdown<std::nano> cd{ &callback, (void*) b, t };
+        cd.start();
+        //Sleep(2000);
+        //cd.stop();
+        cd.suspend();
+       // Sleep(3000);
+        cd.resume();
+        cd.join();
+    }
+    {
+        #include <boost/date_time/gregorian/greg_date.hpp>
+        #include "boost/date_time/posix_time/posix_time.hpp"
+
+        time::SchedulingBuilder bld{ {2020,boost::gregorian::Mar,4} };
+        bld.hour(2);
+        bld.minute(0);
+        time::Scheduling sch(&callback, b, bld);
+        sch.start();
+        Sleep(5000);
+    }
+    //auto until_time = time::clock_type::now();
+    //until_time += time::seconds{ 1 };
+    //time::Countdown<std::milli> countdown{ &callback, until_time };
+    //countdown.start();
+
+    //time::Stopwatch<std::nano> a;
+    //{
+    //    a.start();
+
+    //    std::cout << time::get_time_string(std::chrono::system_clock::now()) << std::endl;
+    //    std::this_thread::sleep_for(time::milliseconds{ 1800 });
+    //    std::this_thread::sleep_for(time::nanoseconds{ 500 });
+    //    std::this_thread::sleep_for(time::seconds{ 2 });
+    //    a.do_record();
+    //    std::cout << time::get_time_string(std::chrono::system_clock::now());
+
+    //    std::this_thread::sleep_for(time::milliseconds{ 2230 });
+
+    //    a.do_record();
+
+    //    std::this_thread::sleep_for(time::milliseconds{ 1700 });
+
+    //    a.suspend();
+    //    std::this_thread::sleep_for(time::milliseconds{ 500 });
+    //    a.resume();
+
+    //    a.do_record();
+
+    //    Sleep(1300);
+
+    //    a.do_record();
+    //}
+}
 
 static void GameInterface_Init(bool isServer)
 {
@@ -26,8 +121,10 @@ static void GameInterface_Init(bool isServer)
 
     PacketQueue::getInstance().run();
 
+    atomic::Atomic<Room>::getInstance().setFirstUnique(SERVER_ATOMIC_START);
 
-
+    cal_time();
+    
 }
 
 }

@@ -5,12 +5,10 @@ message("----------------SDL2EasyGUI START----------------")
 
 
 SET(CMAKE_EXE_LINKER_FLAGS "-static")
-#set(ACE_DIR "C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\share\\ace")
 
 find_package(SDL2 CONFIG REQUIRED)
 find_package(sdl2-image CONFIG REQUIRED)
 find_package(sdl2-ttf CONFIG REQUIRED)
-#find_package(sdl2-gfx CONFIG REQUIRED)
 find_package(jsoncpp CONFIG REQUIRED)
 find_package(Boost 1.17.0)
 find_library(ace ACE_x64-windows-static REQUIRED)
@@ -25,20 +23,6 @@ if (WIN32)
 endif()
 
 
-set(CMAKE_CXX_STANDARD 17)
-
-#find_path(SDL2_INCLUDE_DIR SDL2/SDL.h)
-
-include_directories(.)
-include_directories(lib)
-include_directories(src)
-include_directories(src/Command)
-include_directories(src/Controller)
-include_directories(src/Display)
-include_directories(src/Subjector)
-include_directories(src/Windows)
-
-
 include_directories(
 		.
 		src
@@ -46,6 +30,11 @@ include_directories(
         lib
         SYSTEM
 		sdl2gfx
+        src/Command 
+        src/Controller
+        src/Display
+        src/Subjector
+        src/Windows
 )
 
 
@@ -87,6 +76,8 @@ ADD_LIBRARY(SDL2EasyGUI STATIC
         src/Decorator/ScrollbarDecorator.h
         src/Decorator/BorderDecorator.h
         src/Decorator/BorderDecorator.cpp
+        src/Decorator/ScrollrableDecorator.h
+        src/Decorator/ScrollrableDecorator.cpp
         include/Button.h
         include/ComboBox.h
         include/ControlBuilder.h
@@ -114,10 +105,7 @@ ADD_LIBRARY(SDL2EasyGUI STATIC
         include/SEG_Define.h
         include/CheckBox.h
         include/SEG_Drawer.h
-        src/Decorator/ScrollrableDecorator.h
-        src/Decorator/ScrollrableDecorator.cpp
-        include/SEG_Logger.h
-        include/SEG_Time.h)
+        )
 
 target_link_libraries(
         ${PROJECT_NAME}
@@ -126,8 +114,6 @@ target_link_libraries(
 		SDL2::SDL2main
 		SDL2::SDL2_image
 		SDL2::SDL2_ttf
-        #ACEs
-		#SDL2::SDL2_gfx
 		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\SDL2_gfx.lib"
 		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\ACEd.lib"
 		${BOOST_LIBRARIES}

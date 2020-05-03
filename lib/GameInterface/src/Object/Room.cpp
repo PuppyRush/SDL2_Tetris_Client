@@ -11,7 +11,7 @@ using namespace game_interface;
 using namespace game_interface::packet;
 
 Room::Room()
-        : m_roomnumber(atomic::Atomic::newWaitingRoomNumber())
+        : m_roomnumber(atomic::Atomic<Room>::getInstance().newUnique())
 {}
 
 void Room::initialize()

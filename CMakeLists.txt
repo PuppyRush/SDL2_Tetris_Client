@@ -5,13 +5,15 @@ message("----------------sdl2_tetris_client START----------------")
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_DEBUG")
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_STANDARD 17)
 
+
+message("MSVC_VERSION : " ${MSVC_VERSION})
 if (MSVC_VERSION GREATER_EQUAL "1900")
     include(CheckCXXCompilerFlag)
     CHECK_CXX_COMPILER_FLAG("/std:c++latest" _cpp_latest_flag_supported)
     if (_cpp_latest_flag_supported)
         add_compile_options("/std:c++latest")
+        message("CMAKE_CXX_COMPILER_VERSION :" ${CMAKE_CXX_COMPILER_VERSION} )
     endif()
 endif()
 
@@ -22,9 +24,7 @@ set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 set(CMAKE_DISABLE_SOURCE_CHANGES  ON)
 
 if ("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
-    message(SEND_
-	
-	"In-source builds are not allowed.")
+    message("In-source builds are not allowed.")
 endif ()
 
 #set(BUILD_SHARED_LIBS ON)
@@ -34,18 +34,9 @@ set(CMAKE_COLOR_MAKEFILE   ON)
 set(CMAKE_BUILD_TYPE=Debug ./cmake-build-debug)
 #set(CMAKE_DEBUG_POSTFIX "d" CACHE STRING "postfix applied to debug build of libraries")
 
-#set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
-#set(THREADS_PREFER_PTHREAD_FLAG TRUE)
-#find_package(Threads REQUIRED)
-#if (Threads_FOUND)
-#    message("-- OK.")
-#else ()
-#    message(FATAL_ERROR "Threads not found.")
-#endif ()
-
 # Remove 'lib' prefix for shared libraries on Windows
 if (WIN32)
-    set(CMAKE_SHARED_LIBRARY_PREFIX "")
+    set(CMAKE_SHARED_LIBRARY_RepEFIX "")
 endif ()
 
 # When done tweaking common stuff, configure the components (subprojects).
