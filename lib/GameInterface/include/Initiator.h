@@ -21,7 +21,7 @@ namespace game_interface {
     
 static void callback(void*)
 {
-    std::cout << "call!" << std::endl;
+    std::cout << "call!" << time::get_time_string(time::now_to_time()) << std::endl;
 }   
 
 static void cal_time()
@@ -29,49 +29,55 @@ static void cal_time()
     time::TimerSet< std::nano> set;
     time::ElapsedTimer<std::milli> el;
     {
-        el.start();
-        time::ScopeTimer<std::nano> t(set);
-        for (int i = 0; i < 500; i++)
-           // std::cout << "a";
-        el.end();
+        //el.start();
+        //time::ScopeTimer<std::nano> t(set);
+        //for (int i = 0; i < 500; i++)
+        //   // std::cout << "a";
+        //el.end();
 
-        auto h = el.hour();
-        auto m = el.minute();
-        auto s = el.second();
-        auto mili = el.millisecond();
+        //auto h = el.hour();
+        //auto m = el.minute();
+        //auto s = el.second();
+        //auto mili = el.millisecond();
     }
 
     int* b = new int{ 3 };
     {
-        time::Countdown<std::nano> cd{ &callback, b, { 0,0,3,700 } };
+        /*time::Countdown<std::nano> cd{ &callback, b, { 0,0,3,700 } };
         cd.start();
         Sleep(2000);
         cd.suspend();
         Sleep(3000);
         cd.resume();
-        cd.join();
+        cd.join();*/
     }
     {
-        auto t = time::clock_type::now() + time::seconds{ 6 };
-        time::Countdown<std::nano> cd{ &callback, (void*) b, t };
-        cd.start();
-        //Sleep(2000);
-        //cd.stop();
-        cd.suspend();
-       // Sleep(3000);
-        cd.resume();
-        cd.join();
+       // auto t = time::clock_type::now() + time::seconds{ 6 };
+       // time::Countdown<std::nano> cd{ &callback, (void*) b, t };
+       // cd.start();
+       // //Sleep(2000);
+       // //cd.stop();
+       // cd.suspend();
+       //// Sleep(3000);
+       // cd.resume();
+       // cd.join();
     }
     {
         #include <boost/date_time/gregorian/greg_date.hpp>
         #include "boost/date_time/posix_time/posix_time.hpp"
 
-        time::SchedulingBuilder bld{ {2020,boost::gregorian::Mar,4} };
-        bld.hour(2);
-        bld.minute(0);
+        /*time::SchedulingBuilder bld{ {2020,boost::gregorian::May,7} };
+        bld.hour(23);
+        bld.minute(02);
         time::Scheduling sch(&callback, b, bld);
         sch.start();
-        Sleep(5000);
+        */
+
+        time::SchedulingBuilderDaily bld{ {2020,boost::gregorian::May,8} ,1, 2};
+        bld.hour(0);
+        bld.minute(50);
+        time::Scheduling sch(&callback, b, bld);
+        sch.start();
     }
     //auto until_time = time::clock_type::now();
     //until_time += time::seconds{ 1 };
