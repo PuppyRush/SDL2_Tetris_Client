@@ -62,10 +62,9 @@ static void cal_time()
        // cd.resume();
        // cd.join();
     }
+    #include <boost/date_time/gregorian/greg_date.hpp>
+    #include "boost/date_time/posix_time/posix_time.hpp"
     {
-        #include <boost/date_time/gregorian/greg_date.hpp>
-        #include "boost/date_time/posix_time/posix_time.hpp"
-
         /*time::SchedulingBuilder bld{ {2020,boost::gregorian::May,7} };
         bld.hour(23);
         bld.minute(02);
@@ -73,9 +72,30 @@ static void cal_time()
         sch.start();
         */
 
-        time::SchedulingBuilderDaily bld{ {2020,boost::gregorian::May,8} ,1, 2};
-        bld.hour(0);
-        bld.minute(50);
+        time::SchedulingBuilderDaily bld{ {2020,boost::gregorian::May,11} ,1, 2};
+        bld.hour(21);
+        bld.minute(30);
+        time::Scheduling sch(&callback, b, bld);
+        sch.start();
+    }
+
+    {
+        time::SchedulingBuilderManually bld{  {{ 2020,boost::gregorian::May,12},12,3,4 } };
+        bld.addTimepoint( {{ 2020,boost::gregorian::May,12 }, 4, 5, 1 });
+        bld.addTimepoint({ { 2020,boost::gregorian::Dec,30 }, 22, 5, 1 });
+        bld.addTimepoint({ { 2020,boost::gregorian::Jan,21 }, 22, 5, 1 });
+        time::Scheduling sch(&callback, b, bld);
+        sch.start();
+    }
+
+    {
+        time::SchedulingBuilderWeekly bld{ {2020,boost::gregorian::May,12} ,1, 2 };
+        bld.hour(21);
+        bld.minute(30);
+        bld.addWeekdays(time::SchedulingBuilderWeekly::weekdays::Monday);
+        bld.addWeekdays(time::SchedulingBuilderWeekly::weekdays::Sunday);
+        bld.addWeekdays(time::SchedulingBuilderWeekly::weekdays::Wednesday);
+        bld.addWeekdays(time::SchedulingBuilderWeekly::weekdays::Saturday);
         time::Scheduling sch(&callback, b, bld);
         sch.start();
     }

@@ -14,7 +14,7 @@
 #include <iomanip>
 #include <deque>
 #include <set>
-
+#include <type_traits>
 
 
 #include "Countdown.h"
@@ -43,20 +43,60 @@ public:
 		just_one,
 		daily,
 		weekly,
-		monthly
+		monthly,
+		manually
 	};
 
-	struct TimeSet
+	struct DateTime
 	{
 	public:
+
 		date::DateInfo dateset;
 		time::hours hours{ 0 };
 		time::minutes minutes{ 0 };
 		time::seconds seconds{ 0 };
 
-		TimeSet(date::DateInfo da, int h, int m, int s)
+		DateTime(date::DateInfo da, int h, int m, int s)
 			:dateset(da),hours(h), minutes(m), seconds(s)
 		{}
+
+		bool operator< (const DateTime& rhs) const
+		{
+			if (this->dateset < rhs.dateset)
+				return true;
+			else if (this->dateset > rhs.dateset)
+				return false;
+			else
+			{
+				if (this->hours < rhs.hours)
+					return true;
+				else if (this->hours > rhs.hours)
+					return false;
+				else
+				{
+					if (this->minutes < rhs.minutes)
+						return true;
+					else if (this->minutes > rhs.minutes)
+						return false;
+					else
+					{
+						if (this->minutes < rhs.minutes)
+							return true;
+						else if (this->minutes > rhs.minutes)
+							return false;
+					}
+				}
+			}
+
+			/*if (this->dateset.day() == d.dateset.day())
+				return this->dateset.day() < d.dateset.day();
+			else if (this->hours == d.hours)
+				return this->hours < d.hours;
+			else if (this->minutes == d.minutes)
+				return this->minutes < d.minutes;
+			else
+				return (this->seconds < d.seconds);*/
+		}
 
 		inline void date(const date::DateInfo d) noexcept
 		{
@@ -86,29 +126,17 @@ public:
 
 		SchedulingBuilderBase() = delete;
 
+		SchedulingBuilderBase(const Scheduling::DateTime date , Scheduling::repeat rep)
+			:m_startTime(date), m_repeated(rep)
+		{}
+
 		SchedulingBuilderBase(const date::DateInfo& date, Scheduling::repeat rep)
-			:m_timeset({ date,0,0,0 }), m_repeated(rep)
+			:m_startTime({ date,0,0,0 }), m_repeated(rep)
 		{}
 
 		SchedulingBuilderBase(date::DateInfo&& date, Scheduling::repeat rep)
-			:m_timeset({ date,0,0,0 }), m_repeated(rep)
+			:m_startTime({ date,0,0,0 }), m_repeated(rep)
 		{}
-
-		time_point _calcTimePoint(const TimeSet timeset)
-		{
-			using namespace boost::posix_time;
-			ptime epoch(boost::gregorian::date(1970, 1, 1));
-			time_duration::sec_type x = (ptime{ timeset.dateset } -epoch).total_seconds();
-			auto tp = std::chrono::system_clock::from_time_t(time_t(x));
-			time_point cv_tp = std::chrono::time_point_cast<Base::duration>(tp);
-			cv_tp -= std::chrono::hours{ 9 };
-
-			cv_tp += timeset.hours;
-			cv_tp += timeset.minutes;
-			cv_tp += timeset.seconds;
-
-			return cv_tp;
-		}
 
 
 	public:
@@ -116,25 +144,40 @@ public:
 
 		inline void hour(const int h) noexcept
 		{
-			m_timeset.hours = time::hours{ h };
+			m_startTime.hours = time::hours{ h };
 		}
 
 		inline void minute(const int m) noexcept
 		{
-			m_timeset.minutes = time::minutes{ m };
+			m_startTime.minutes = time::minutes{ m };
 		}
 
 		inline void second(const int s) noexcept
 		{
-			m_timeset.seconds = time::seconds{ s };
+			m_startTime.seconds = time::seconds{ s };
 		}
 
+		inline void expire(const DateTime expire) noexcept
+		{
+			m_expireTime = expire;
+		}
+
+		DateTime getExpire() const noexcept
+		{
+			return m_expireTime;
+		}
+
+		DateTime getStartTime() const noexcept
+		{
+			return m_startTime;
+		}
 
 		virtual Scheduling::triggerQueue getTimePoints() = 0;
 
 	
 	protected:
-		TimeSet m_timeset;
+		DateTime m_startTime;
+		DateTime m_expireTime{ date::DateInfo{},0,0,0, };
 		Scheduling::repeat m_repeated;
 	};
 
@@ -143,7 +186,7 @@ public:
 	Scheduling() = delete;
 
 	Scheduling(const callback_fn fn, void* arg, SchedulingBuilderBase& schedulingBuilder)
-		: m_callback(fn), m_fnArg(arg)
+		: m_callback(fn), m_fnArg(arg), m_expireTime(Scheduling::_DateTime_to_timepoint( schedulingBuilder.getExpire() ))
 	{
 		m_triggerTimePoint = schedulingBuilder.getTimePoints();
 	}
@@ -152,16 +195,42 @@ public:
 	{
 		for (const auto& tm : m_triggerTimePoint)
 		{
+			if (tm < Base::now())
+			{
+				continue;
+			}
+			else if (tm > m_expireTime)
+			{
+				continue;
+			}
 			Countdown<rep> cd{ m_callback, m_fnArg, tm };
 			cd.start();
 			cd.join();
 		}
 	}
 
+	//date시점을 time_point로 변환
+	static time_point _DateTime_to_timepoint(const DateTime DateTime)
+	{
+		using namespace boost::posix_time;
+		ptime epoch(boost::gregorian::date(1970, 1, 1));
+		time_duration::sec_type x = (ptime{ DateTime.dateset } -epoch).total_seconds();
+		auto tp = std::chrono::system_clock::from_time_t(time_t(x));
+		time_point cv_tp = std::chrono::time_point_cast<Base::duration>(tp);
+		cv_tp -= std::chrono::hours{ 9 };
+
+		cv_tp += DateTime.hours;
+		cv_tp += DateTime.minutes;
+		cv_tp += DateTime.seconds;
+
+		return cv_tp;
+	}
+
 private:
 
 	std::string m_description;
 	triggerQueue m_triggerTimePoint;
+	time_point m_expireTime{ std::numeric_limits<time_point>::max() };
 	callback_fn m_callback;
 	void* m_fnArg;
 };
@@ -174,6 +243,10 @@ public:
 	using Base = SchedulingBuilderBase;
 
 	SchedulingBuilder() = delete;
+
+	SchedulingBuilder(const Scheduling::DateTime date)
+		:Base(date, Scheduling::repeat::just_one)
+	{}
 
 	SchedulingBuilder(const date::DateInfo& date)
 		:Base(date, Scheduling::repeat::just_one)
@@ -188,7 +261,7 @@ protected:
 	virtual Scheduling::triggerQueue getTimePoints() override
 	{
 		Scheduling::triggerQueue q;
-		q.push_back(_calcTimePoint(Base::m_timeset));
+		q.push_back( Scheduling::_DateTime_to_timepoint(Base::m_startTime));
 
 		return q;
 	}
@@ -196,7 +269,51 @@ protected:
 
 };
  
-시작시간이 현재시간보다 늦었지만 매일설정 되었을경우 처리
+struct SchedulingBuilderManually : public SchedulingBuilder
+{
+public:
+	using Base = SchedulingBuilder;
+
+	SchedulingBuilderManually() = delete;
+
+	SchedulingBuilderManually(Scheduling::DateTime& date)
+		:Base(date)
+	{
+		m_repeated = Scheduling::repeat::daily;
+	}
+
+	SchedulingBuilderManually(Scheduling::DateTime&& date)
+		:Base(date)
+	{
+		m_repeated = Scheduling::repeat::daily;
+	}
+	
+	void addTimepoint(const Scheduling::DateTime datetime)
+	{
+		m_dateTimeSet.insert(datetime);
+	}
+
+
+protected:
+
+	virtual Scheduling::triggerQueue getTimePoints() override
+	{
+		Scheduling::triggerQueue q;
+		
+		for(const auto& time : m_dateTimeSet)
+		{ 
+			q.push_back(Scheduling::_DateTime_to_timepoint(time));
+		}
+
+		return q;
+	}
+
+	unsigned m_interval{ 1 };
+	unsigned m_count{ 1 };
+	std::set<Scheduling::DateTime> m_dateTimeSet;
+};
+
+
 struct SchedulingBuilderDaily : public SchedulingBuilder
 {
 public:
@@ -223,7 +340,7 @@ protected:
 	{
 		Scheduling::triggerQueue q;
 
-		auto tp = _calcTimePoint(Base::m_timeset);
+		auto tp = Scheduling::_DateTime_to_timepoint(Base::m_startTime);
 		q.push_back(tp);
 
 		for (unsigned char i = 1; i <= m_count; i++)
@@ -246,6 +363,8 @@ struct SchedulingBuilderWeekly : public SchedulingBuilderDaily
 public:
 	using Base = SchedulingBuilderDaily;
 
+	using weekdays = boost::date_time::weekdays;
+
 	SchedulingBuilderWeekly() = delete;
 
 	explicit SchedulingBuilderWeekly(date::DateInfo& date, const unsigned char interval, const unsigned char count = 1)
@@ -262,18 +381,18 @@ public:
 
 	void addEveryWeekdays()
 	{
-		for (int i = boost::date_time::weekdays::Sunday; i <= boost::date_time::weekdays::Saturday; i++)
+		for (int i = weekdays::Sunday; i <= weekdays::Saturday; i++)
 		{
-			weeks.insert(static_cast<boost::date_time::weekdays>(i));
+			weeks.insert(static_cast<weekdays>(i));
 		}
 	}
 
-	void addWeekdays(const boost::date_time::weekdays _weekday)
+	void addWeekdays(const weekdays _weekday)
 	{
 		weeks.insert(_weekday);
 	}
 
-	void removeWeekdays(const boost::date_time::weekdays _weekday)
+	void removeWeekdays(const weekdays _weekday)
 	{
 		weeks.erase(_weekday);
 	}
@@ -288,16 +407,30 @@ protected:
 
 	virtual Scheduling::triggerQueue getTimePoints() override
 	{
+		using boost::gregorian::date;
+		
 		Scheduling::triggerQueue q;
 
-		auto tp = _calcTimePoint(Base::m_timeset);
-		q.push_back(tp);
-
-		for (unsigned char i = 1; i <= m_count; i++)
+		//week what?
+		auto today = Base::getStartTime().dateset.day_of_week();
+		std::deque<weekdays> nextweek;
+		std::deque<weekdays> thisweek;
+		for (const auto week : weeks)
 		{
-			tp += time::hours{ 24 } *(i * m_interval);
-			q.push_back(tp);
+			if (week < today)
+			{
+				nextweek.push_back(week);
+			}
+			else
+			{
+				thisweek.push_back(week);
+			}
 		}
+		
+
+		auto tp = Scheduling::_DateTime_to_timepoint(Base::m_startTime);
+
+
 
 		return q;
 	}
