@@ -89,11 +89,12 @@ static void cal_time()
     }
 
     {
-        time::SchedulingBuilderWeekly bld{ {2020,boost::gregorian::May,12} ,1, 2 };
-        bld.hour(21);
+        time::SchedulingBuilderWeekly bld{ {2020,boost::gregorian::May,26} , 2 };
+        bld.hour(23);
         bld.minute(30);
-        bld.addWeekdays(time::SchedulingBuilderWeekly::weekdays::Monday);
+        bld.second(55);
         bld.addWeekdays(time::SchedulingBuilderWeekly::weekdays::Sunday);
+        bld.addWeekdays(time::SchedulingBuilderWeekly::weekdays::Monday);
         bld.addWeekdays(time::SchedulingBuilderWeekly::weekdays::Wednesday);
         bld.addWeekdays(time::SchedulingBuilderWeekly::weekdays::Saturday);
         time::Scheduling sch(&callback, b, bld);
