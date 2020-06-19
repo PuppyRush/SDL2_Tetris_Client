@@ -26,6 +26,8 @@ enum resource : t_id
 
     MESSAGEDIALOG_MSG,
 
+    MESSAGE_DIALOG,
+
     SEG_RESROUCE_END = 0x3000
 };
 

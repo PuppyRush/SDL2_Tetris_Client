@@ -45,7 +45,7 @@ void BoxBasic::onDraw()
         SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
 
 
-        printf("%d %d\n", m_boundedMenuIndx, point.y);
+        //printf("%d %d\n", m_boundedMenuIndx, point.y);
     }
 
     Border::onDraw();

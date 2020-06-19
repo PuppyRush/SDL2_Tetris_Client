@@ -73,7 +73,7 @@ int main(int argc, char **argv)
 				while (true) {
 					enterServerDisplay->modal(enterServerDisplay);
 
-					if (enterServerDisplay->m_valid) {
+					if (enterServerDisplay->m_valid && toUType(resource::ENTERSERVER_ENTER)) {
 						auto& player = TPlayer::getInstance();
 
 						if (player->connectServer()) {
@@ -87,7 +87,7 @@ int main(int argc, char **argv)
 							dlg.alert();
 						}
 					}
-					else if (enterServerDisplay->getResult() == seg::toUType(seg::BTN_CANCEL)) {
+					else if (enterServerDisplay->getResult() == toUType(resource::ENTERSERVER_BACK)) {
 						break;
 					}
 				}

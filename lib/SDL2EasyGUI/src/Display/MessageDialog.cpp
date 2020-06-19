@@ -8,13 +8,14 @@
 using namespace seg;
 
 MessageDialog::MessageDialog(const std::string& message, MessageDialogKind kind)
-        : DisplayInterface(toUType(MESSAGEDIALOG_MSG)), m_message(message), m_kind(kind)
+        : DisplayInterface(toUType(resource::MESSAGE_DIALOG)), m_message(message), m_kind(kind)
 {
-    setWindowTitle(message);
-    setWindowHeight(150);
-    setWindowWidth(200);
-
     setBackgroundColor(ColorCode::white);
+}
+
+std::underlying_type_t<resource> MessageDialog::alert() 
+{
+    return DisplayInterface::alert();
 }
 
 void MessageDialog::registerEvent()
@@ -26,6 +27,11 @@ void MessageDialog::registerEvent()
 
 void MessageDialog::onInitialize()
 {
+    setWindowTitle(m_message);
+    setBackgroundColor(seg::ColorCode::black);
+    setWindowHeight(150);
+    setWindowWidth(200);
+
     SEG_Color borderColor{ColorCode::yellow};
     switch (m_kind) {
         case MessageDialogKind::alert:
@@ -85,18 +91,15 @@ void MessageDialog::onInitialize()
 
 void MessageDialog::onClickOk(const void*)
 {
-
-    DisplayInterface::onOK();
+    DisplayInterface::onOk();
 }
 
 void MessageDialog::onClickYes(const void*)
 {
-
-    DisplayInterface::onOK();
+    DisplayInterface::onOk();
 }
 
 void MessageDialog::onClickNo(const void*)
 {
-
-    DisplayInterface::onNO();
+    DisplayInterface::onNo();
 }

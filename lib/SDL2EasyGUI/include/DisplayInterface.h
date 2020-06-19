@@ -54,7 +54,7 @@ namespace seg {
 
 		void menuHitTest(const SEG_Point& point);
 
-		std::underlying_type_t<resource> alert();
+		virtual std::underlying_type_t<resource> alert();
 
 		std::underlying_type_t<resource> modal(std::shared_ptr<DisplayInterface> display);
 
@@ -152,6 +152,7 @@ namespace seg {
 		{};
 
 	protected:
+
 		DisplayInterface(const t_id displayId);
 
 		inline SEG_Window::window_type getSDLWindow() const noexcept
@@ -193,9 +194,9 @@ namespace seg {
 
 		virtual void onClose();
 
-		virtual void onOK();
+		virtual void onOk();
 
-		virtual void onNO();
+		virtual void onNo();
 
 		virtual void onCancel();
 
@@ -318,7 +319,7 @@ namespace seg {
 		std::thread m_thread;
 		std::atomic_bool m_run = true;
 		t_id m_resultResrouce = NONE;
-
+	
 	};
 
 #define SEG_EVENT_NO_PARAM(id, fx, obj) DisplayInterface::_noParamEvent(id,std::bind(fx,obj))

@@ -21,7 +21,7 @@
 #include "Date.h"
 #include "Times.h"
 
-namespace game_interface::time {
+namespace easytimer {
 
 
 struct SchedulingBuilderBase;
@@ -53,9 +53,9 @@ public:
 	public:
 
 		date::DateInfo dateset;
-		time::hours hours{ 0 };
-		time::minutes minutes{ 0 };
-		time::seconds seconds{ 0 };
+		easytimer::hours hours{ 0 };
+		easytimer::minutes minutes{ 0 };
+		easytimer::seconds seconds{ 0 };
 
 		DateTime(date::DateInfo da, int h, int m, int s)
 			:dateset(da),hours(h), minutes(m), seconds(s)
@@ -97,17 +97,17 @@ public:
 
 		inline void hour(const int h) noexcept
 		{
-			hours = time::hours{ h };
+			hours = easytimer::hours{ h };
 		}
 
 		inline void minute(const int m) noexcept
 		{
-			minutes = time::minutes{ m };
+			minutes = easytimer::minutes{ m };
 		}
 
 		inline void second(const int s) noexcept
 		{
-			seconds = time::seconds{ s };
+			seconds = easytimer::seconds{ s };
 		}
 
 		void operator+=(const time_point pt)
@@ -141,17 +141,17 @@ public:
 
 		inline void hour(const int h) noexcept
 		{
-			m_startDatetime.hours = time::hours{ h };
+			m_startDatetime.hours = easytimer::hours{ h };
 		}
 
 		inline void minute(const int m) noexcept
 		{
-			m_startDatetime.minutes = time::minutes{ m };
+			m_startDatetime.minutes = easytimer::minutes{ m };
 		}
 
 		inline void second(const int s) noexcept
 		{
-			m_startDatetime.seconds = time::seconds{ s };
+			m_startDatetime.seconds = easytimer::seconds{ s };
 		}
 
 		inline void expire(const DateTime expire) noexcept
@@ -342,7 +342,7 @@ protected:
 
 		for (unsigned char i = 1; i <= m_count; i++)
 		{
-			tp += time::hours{ 24 } * (i*m_interval);
+			tp += easytimer::hours{ 24 } * (i*m_interval);
 			q.push_back(tp);
 		}
 
@@ -419,7 +419,7 @@ protected:
 		}
 		else if (today == startDate_as_enum)
 		{
-			if (Scheduling::clock_type::to_time_t(start_timepoint) >= time::now_to_time())
+			if (Scheduling::clock_type::to_time_t(start_timepoint) >= easytimer::now_to_time())
 			{
 				thisweek.push_back(startDate_as_enum);
 			}
@@ -439,7 +439,7 @@ protected:
 			else
 			{
 			
-				if (Scheduling::clock_type::to_time_t(start_timepoint) < time::now_to_time())
+				if (Scheduling::clock_type::to_time_t(start_timepoint) < easytimer::now_to_time())
 				{
 					nextweek.push_back(week);
 				}
@@ -458,22 +458,22 @@ protected:
 			{
 				int ch = w - startWeekday;
 
-				auto t = start_timepoint + time::hours{ 24 }*ch; 
-				t += time::hours{ 24 }*((i - 1) * 7);
+				auto t = start_timepoint + easytimer::hours{ 24 }*ch; 
+				t += easytimer::hours{ 24 }*((i - 1) * 7);
 				q.push_back(t);
 
-				std::cout << "week time : " << time::get_time_string(t) << std::endl;
+				std::cout << "week time : " << easytimer::get_time_string(t) << std::endl;
 			}
 
 			for (auto w : nextweek)
 			{
 				int ch = w - startWeekday + 7;
 
-				auto t = start_timepoint + time::hours{ 24 }*ch;
-				t += time::hours{ 24 }*((i - 1) * 7);
+				auto t = start_timepoint + easytimer::hours{ 24 }*ch;
+				t += easytimer::hours{ 24 }*((i - 1) * 7);
 				q.push_back(t);
 
-				std::cout << "week time : " << time::get_time_string(t) << std::endl;
+				std::cout << "week time : " << easytimer::get_time_string(t) << std::endl;
 			}
 		}
 

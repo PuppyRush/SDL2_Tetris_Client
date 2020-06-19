@@ -93,17 +93,31 @@ void DisplayInterface::_run()
 		SDL_Event sdlEvent;
 		SDL_WaitEvent(&sdlEvent);
 
+        //왜 있는거지?
         auto event = m_eventDelivery.popEvent();
 
         // printf("DisplayInterface::_run : %d\n", debug++);
 
         onEvent(&sdlEvent);
 
-        if (m_currentCtl && m_currentCtl->isBounded(sdlEvent)) {
-            m_currentCtl->onEvent(&sdlEvent);
+        if (m_currentCtl){
+            if (m_currentCtl->isBounded(sdlEvent)) {
+                m_currentCtl->onEvent(&sdlEvent);
+            }
+            if (sdlEvent.type == SDL_MOUSEMOTION){
+                m_currentCtl->isHitting(sdlEvent);
+            }
+            if ( (sdlEvent.type == SDL_MOUSEBUTTONUP || sdlEvent.type == SDL_MOUSEBUTTONDOWN )
+                && m_currentCtl->isHit({ sdlEvent.button.x, sdlEvent.button.y})) {
+                m_currentCtl->onHit({ sdlEvent.button.x, sdlEvent.button.y }, !m_currentCtl->isSelected());
+            }
+            if (sdlEvent.type == SDL_KEYDOWN)
+            {
+                m_currentCtl->onHit(getMidPoint(), true);
+            }
         }
 
-        if (m_currentCtl != nullptr && m_currentCtl->isHitting(sdlEvent) ) {
+        if (m_currentCtl != nullptr && m_currentCtl->isHitting(sdlEvent)) {
             m_currentCtl->onEvent(&sdlEvent);
         }
 
@@ -260,19 +274,17 @@ void DisplayInterface::onClose()
 
 void DisplayInterface::onButtonClick(const void* event)
 {
-    const event::SEG_Click* click = static_cast<const event::SEG_Click*>(event);
-    m_resultResrouce = click->resourceId;
-
+    m_resultResrouce = static_cast<const event::SEG_Click*>(event)->resourceId;
     onClose();
 }
 
-void DisplayInterface::onOK()
+void DisplayInterface::onOk()
 {
     m_resultResrouce = BTN_OK;
     onClose();
 }
 
-void DisplayInterface::onNO()
+void DisplayInterface::onNo()
 {
     m_resultResrouce = BTN_NO;
     onClose();
@@ -362,6 +374,8 @@ bool DisplayInterface::removeControl(control_ptr ctl)
 void DisplayInterface::menuHitTest(const SEG_Point& point)
 {
     if (m_currentCtl && m_currentCtl->isHit(point)) {
+        event::EventPusher event {this->getWindowID(), m_currentCtl->getId(), ATTACH_FOCUS};
+        event.pushEvent();
         return;
     }
 

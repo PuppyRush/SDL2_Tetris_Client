@@ -181,7 +181,6 @@ void TMultiMainDisplay::onDraw()
 
 void TMultiMainDisplay::onClickedOption(const void* click)
 {
-
     TMainDisplay::onButtonClick(click);
 }
 
@@ -192,5 +191,5 @@ void TMultiMainDisplay::onClickedEnterServer(const void* click)
 
 void TMultiMainDisplay::onClickedBack(const void* click)
 {
-    TMainDisplay::onOK();
+    TMainDisplay::onOk();
 }

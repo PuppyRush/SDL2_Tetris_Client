@@ -72,6 +72,7 @@ private:
         assert(0);
     }
 
+    
 };
 
 SDL_TETRIS_END

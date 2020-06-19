@@ -18,9 +18,7 @@
 #include <boost/date_time/gregorian/gregorian.hpp>
 #include "boost/date_time/posix_time/conversion.hpp"
 
-#include "Configcpp.h"
-
-namespace game_interface::time {
+namespace easytimer {
 
     using hours = std::chrono::hours;
     using seconds = std::chrono::seconds;
@@ -37,16 +35,16 @@ namespace game_interface::time {
     public:
         using range = _Rn;
 
-        time::hours hours{ 0 };
-        time::minutes minutes{ 0 };
-        time::seconds seconds{ 0 };
-        time::milliseconds milliseconds{ 0 };
-        time::microseconds microseconds{ 0 };
-        time::nanoseconds nanoseconds{ 0 };
+        easytimer::hours hours{ 0 };
+        easytimer::minutes minutes{ 0 };
+        easytimer::seconds seconds{ 0 };
+        easytimer::milliseconds milliseconds{ 0 };
+        easytimer::microseconds microseconds{ 0 };
+        easytimer::nanoseconds nanoseconds{ 0 };
 
         TimeInfo(range h = 0, range m = 0, range s = 0, range milli = 0, range mic = 0, range nano = 0)
-            :hours(time::hours{ h }), minutes(time::minutes{ m }), seconds(time::seconds{ s }),
-            milliseconds(time::milliseconds{ milli }), microseconds(time::microseconds{ mic }), nanoseconds(time::nanoseconds{ nano })
+            :hours(easytimer::hours{ h }), minutes(easytimer::minutes{ m }), seconds(easytimer::seconds{ s }),
+            milliseconds(easytimer::milliseconds{ milli }), microseconds(easytimer::microseconds{ mic }), nanoseconds(easytimer::nanoseconds{ nano })
         {}
 
         inline void hour(const range& h) noexcept
@@ -94,39 +92,39 @@ namespace game_interface::time {
     }
 
     template<typename _From>
-    inline static time::hours _time_rest(_From time, time::hours)
+    inline static easytimer::hours _time_rest(_From time, easytimer::hours)
     {
-        return std::chrono::duration_cast<time::hours>(time) % time::hours{ 12 };
+        return std::chrono::duration_cast<easytimer::hours>(time) % easytimer::hours{ 12 };
     }
 
     template<typename _From>
-    inline static time::minutes _time_rest(_From time, time::minutes)
+    inline static easytimer::minutes _time_rest(_From time, easytimer::minutes)
     {
-        return std::chrono::duration_cast<time::minutes>(time) % time::minutes{ 60 };
+        return std::chrono::duration_cast<easytimer::minutes>(time) % easytimer::minutes{ 60 };
     }
 
     template<typename _From>
-    inline static time::seconds _time_rest(_From time, time::seconds)
+    inline static easytimer::seconds _time_rest(_From time, easytimer::seconds)
     {
-        return std::chrono::duration_cast<time::seconds>(time) % time::seconds{ 60 };
+        return std::chrono::duration_cast<easytimer::seconds>(time) % easytimer::seconds{ 60 };
     }
 
     template<typename _From>
-    inline static time::milliseconds _time_rest(_From time, time::milliseconds)
+    inline static easytimer::milliseconds _time_rest(_From time, easytimer::milliseconds)
     {
-        return std::chrono::duration_cast<time::milliseconds>(time) % time::milliseconds{ 1000 };
+        return std::chrono::duration_cast<easytimer::milliseconds>(time) % easytimer::milliseconds{ 1000 };
     }
 
     template<typename _From>
-    inline static time::microseconds _time_rest(_From time, time::microseconds)
+    inline static easytimer::microseconds _time_rest(_From time, easytimer::microseconds)
     {
-        return std::chrono::duration_cast<time::microseconds>(time) % time::microseconds{ 1000 };
+        return std::chrono::duration_cast<easytimer::microseconds>(time) % easytimer::microseconds{ 1000 };
     }
 
     template<typename _From>
-    inline static time::nanoseconds _time_rest(_From time, time::nanoseconds)
+    inline static easytimer::nanoseconds _time_rest(_From time, easytimer::nanoseconds)
     {
-        return std::chrono::duration_cast<time::nanoseconds>(time) % time::nanoseconds{ 1000 };
+        return std::chrono::duration_cast<easytimer::nanoseconds>(time) % easytimer::nanoseconds{ 1000 };
     }
 
     template<typename _To, typename _From>
@@ -138,12 +136,12 @@ namespace game_interface::time {
     template <class _Dur>
     static std::string get_duration_string(const _Dur dur)
     {
-        auto nano = time::time_rest<time::nanoseconds>(dur);
-        auto micro = time::time_rest<time::microseconds>(dur);
-        auto mili = time::time_rest<time::milliseconds>(dur);
-        auto sec = time::time_rest<seconds>(dur);
-        auto min = time::time_rest<minutes>(dur);
-        auto h = time::time_rest<hours>(dur);
+        auto nano = easytimer::time_rest<easytimer::nanoseconds>(dur);
+        auto micro = easytimer::time_rest<easytimer::microseconds>(dur);
+        auto mili = easytimer::time_rest<easytimer::milliseconds>(dur);
+        auto sec = easytimer::time_rest<seconds>(dur);
+        auto min = easytimer::time_rest<minutes>(dur);
+        auto h = easytimer::time_rest<hours>(dur);
 
         std::stringstream sstream;
         sstream << h.count() << " " << min.count() << " " << sec.count() << " " << mili.count() << " " << micro.count() << " " << nano.count();
@@ -153,14 +151,14 @@ namespace game_interface::time {
     template <class T>
     static std::string get_time_string(const T t)
     {
-        std::time_t tt = T::clock::to_time_t(time::time_point_cast<time::clock_type::duration>(t));
+        std::time_t tt = T::clock::to_time_t(easytimer::time_point_cast<easytimer::clock_type::duration>(t));
 
         std::stringstream sstream;
         sstream << std::put_time(std::localtime(&tt), "%c");
 
-        sstream << " " << time::time_rest<time::milliseconds>(t.time_since_epoch()).count();
-        sstream << " " << time::time_rest<time::microseconds>(t.time_since_epoch()).count();
-        sstream << " " << time::time_rest<time::nanoseconds>(t.time_since_epoch()).count();
+        sstream << " " << easytimer::time_rest<easytimer::milliseconds>(t.time_since_epoch()).count();
+        sstream << " " << easytimer::time_rest<easytimer::microseconds>(t.time_since_epoch()).count();
+        sstream << " " << easytimer::time_rest<easytimer::nanoseconds>(t.time_since_epoch()).count();
 
         return sstream.str();
     }
@@ -168,7 +166,7 @@ namespace game_interface::time {
     static std::string get_time_string(const std::time_t t)
     {
         return get_time_string(
-                time::clock_type::from_time_t(t));
+                easytimer::clock_type::from_time_t(t));
     }
 
 

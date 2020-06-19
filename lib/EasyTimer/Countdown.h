@@ -12,9 +12,9 @@
 #include <thread>
 #include <boost/date_time.hpp>
 
-#include "../src/Tool/Time/TimerBasic.h"
+#include "TimerBasic.h"
 
-namespace game_interface::time {
+namespace easytimer {
 
 template <typename _Rep, typename _Rn = long long>
 class Countdown : protected TimerBasic<_Rep, _Rn>
@@ -102,7 +102,7 @@ public:
 				m_duration = scheduile_time - now;
 			}
 
-			//std::cout << "m_dur : " << time::get_duration_string(m_duration) << std::endl;
+			//std::cout << "m_dur : " << easytimer::get_duration_string(m_duration) << std::endl;
 		}
 	}
 
@@ -172,21 +172,21 @@ private:
 		std::unique_lock<std::mutex> lk(m_mutex);
 		bool result = true;
 
-		std::cout << "countdown start" << time::get_time_string(Base::now()) << std::endl;
+		std::cout << "countdown start" << easytimer::get_time_string(Base::now()) << std::endl;
 
 		while (result)
 		{
 			result = m_cv.wait_until(lk, clock_type::now() + m_duration, [=]() {return m_suspended || m_stop; });
 			
-			//std::cout << "countdown suspended" << time::get_time_string<time::nanoseconds>(Base::now()) << std::endl;
+			//std::cout << "countdown suspended" << easytimer::get_time_string<easytimer::nanoseconds>(Base::now()) << std::endl;
 
 			m_cvSuspend.wait(lk, [=]() {return !m_suspended || !m_stop; });
 
-			//std::cout << "countdown suspended2" << time::get_time_string<time::nanoseconds>(Base::now()) << std::endl;
+			//std::cout << "countdown suspended2" << easytimer::get_time_string<easytimer::nanoseconds>(Base::now()) << std::endl;
 
 		}
 
-		std::cout << "countdown end  " << time::get_time_string(Base::now()) << std::endl;
+		std::cout << "countdown end  " << easytimer::get_time_string(Base::now()) << std::endl;
 		 
 		m_callback(m_callbackArg);
 	}

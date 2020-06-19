@@ -22,7 +22,7 @@ TEnterServerDisplay::TEnterServerDisplay(const seg::t_id displayId)
 
 void TEnterServerDisplay::registerEvent()
 {
-    SEG_LBUTTONCLICK(seg::toUType(resource::ENTERSERVER_OK), &TEnterServerDisplay::onClickedEnterServer, this);
+    SEG_LBUTTONCLICK(seg::toUType(resource::ENTERSERVER_ENTER), &TEnterServerDisplay::onClickedEnterServer, this);
     SEG_LBUTTONCLICK(seg::toUType(resource::ENTERSERVER_BACK), &TEnterServerDisplay::onClickedBack, this);
 }
 
@@ -52,7 +52,7 @@ void TEnterServerDisplay::onInitialize()
     begin_y += 80;
     {
         ButtonBuilder bld(getWindow(), {getWindowWidth() / 2 - 120, begin_y}, "ENTER");
-        bld.id(seg::toUType(resource::ENTERSERVER_OK))->
+        bld.id(seg::toUType(resource::ENTERSERVER_ENTER))->
                 borderBoundaryType(BorderBoundaryType::roundedAngle)->
                 width(100)->
                 height(50)->
@@ -86,22 +86,22 @@ void TEnterServerDisplay::onClickedEnterServer(const void* click)
     auto& player = TPlayer::getInstance();
     const auto& idLabel = getControl<EditLabel>(resource::ENTERSERVER_ID);
 
-    assert(idLabel != nullptr);
     if (idLabel->getString().empty()) {
+    assert(idLabel != nullptr);
         seg::MessageDialog dlg{"Enter Your ID at least 5 characters",
                                seg::MessageDialogKind::error};
         dlg.alert();
-        TDisplayInterface::onCancel();
         m_valid = false;
-        return;
+    }
+    else{
+        player->setUserName(idLabel->getString());
+        m_valid = true;
+        TDisplayInterface::onOk();
     }
 
-    player->setUserName(idLabel->getString());
-    m_valid = true;
-    TDisplayInterface::onButtonClick(click);
 }
 
 void TEnterServerDisplay::onClickedBack(const void* click)
 {
-    TDisplayInterface::onNO();
+    TDisplayInterface::onButtonClick(click);
 }

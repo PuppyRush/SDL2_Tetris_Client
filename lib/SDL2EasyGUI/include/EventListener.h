@@ -12,7 +12,7 @@
 #include <SDL2/SDL.h>
 #include "EventQueue.h"
 #include "SEG_Property.h"
-//#include "GameInterface/include/GI_Logger.h"
+#include "GameInterface/include/Logger.h"
 
 namespace seg {
 
@@ -25,8 +25,8 @@ public:
 
     void onEvent(SDL_Event* event)
     {
-      /*  using namespace game_interface::logger;
-
+        using namespace game_interface::logger;
+        
         switch (event->type) {
             case SDL_WINDOWEVENT   :
                 Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_WINDOWEVENT", Logger::logger_level::Debug);
@@ -198,7 +198,7 @@ public:
                 break;
             default:;
 
-        }*/
+        }
     }
 
     //SDL Events

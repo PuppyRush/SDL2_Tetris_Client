@@ -35,7 +35,6 @@ void DisplayController::alert(display_type* display)
     m_alertAry.emplace_back(display);
     m_modalAryCV.notify_one();
 
-    display->initialize();
 }
 
 void DisplayController::alert_close()

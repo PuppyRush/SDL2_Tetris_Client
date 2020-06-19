@@ -172,27 +172,13 @@ bool Control::isBounded(const SDL_Event& event)
     return m_isBounded = bounded;
 }
 
+//마우스가 컨트롤러를 지나가고 있는지 확인한다.
 bool Control::isHitting(const SDL_Event& event) noexcept
 {
-    if (m_isHitting) {
+    /*if (m_isHitting) {
         return true;
-    }
-
-    bool hit = false;
-    switch (event.type) {
-        case SDL_MOUSEBUTTONDOWN   :
-        case SDL_MOUSEBUTTONUP   :
-            if (hit = isHit(event.motion.x, event.motion.y)) {
-                onHit({event.motion.x, event.motion.y}, !isSelected());
-            }
-            break;
-        case SDL_KEYDOWN:
-            hit = true;
-            onHit(getMidPoint(), hit);
-            break;
-        default:;
-    }
-    return m_isHitting = hit;
+    }*/
+    return (m_isHitting = isHit(event.motion.x, event.motion.y));
 }
 
 void Control::drawBackground(const SDL_Rect rect, const SEG_Color color)

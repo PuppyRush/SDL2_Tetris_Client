@@ -7,9 +7,9 @@
 #pragma once
 #endif
 
-#include "../src/Tool/Time/TimerBasic.h"
+#include "TimerBasic.h"
 
-namespace game_interface::time {
+namespace easytimer {
 
 template <typename _Rep, typename _Rn = long long>
 class ElapsedTimer : public TimerBasic<_Rep, _Rn>

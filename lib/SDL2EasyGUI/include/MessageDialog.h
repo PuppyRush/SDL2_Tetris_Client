@@ -24,6 +24,8 @@ public:
     virtual ~MessageDialog()
     {}
 
+    virtual std::underlying_type_t<resource> alert() override;
+
     virtual void registerEvent() override;
 
     virtual void onInitialize() override;

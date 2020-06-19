@@ -271,7 +271,5 @@ void TOptionDisplay::onDraw()
 
 void TOptionDisplay::onClickedBack(const void* click)
 {
-    DisplayInterface::onOK();
+    DisplayInterface::onOk();
 }
-
-

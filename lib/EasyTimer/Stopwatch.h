@@ -14,10 +14,10 @@
 #include <thread>
 #include <stdexcept>
 
-#include "../src/Tool/Time/TimerBasic.h"
+#include "TimerBasic.h"
 
 
-namespace game_interface::time {
+namespace easytimer {
 
 template <typename _Rep, typename _Rn = long long>
 class Stopwatch : protected TimerBasic<_Rep, _Rn>{
@@ -64,7 +64,7 @@ public:
 	{
 		m_cal_q.emplace(Recordset{ Base::now(), m_suspendedDuration });
 		m_threadStopSignal.notify_one();
-		this->m_suspendedDuration = { 0 };
+		this->m_suspendedDuration = duration{ 0 };
 	}
 	
 	inline const ary_type& get_record() const noexcept
@@ -149,8 +149,8 @@ private:
 
 			if constexpr (std::is_same< std::nano, precision>::value)
 			{
-				auto nano_last = time::time_point_cast<nanoseconds>(m_lastTimepoint);
-				auto nano_now = time::time_point_cast<nanoseconds>(time.timePoint);
+				auto nano_last = easytimer::time_point_cast<nanoseconds>(m_lastTimepoint);
+				auto nano_now = easytimer::time_point_cast<nanoseconds>(time.timePoint);
 				timeset.nanoseconds = (nano_now - nano_last);
 		
 				timeset.nanoseconds -= (time.dur*2);
@@ -177,7 +177,7 @@ private:
 				}
 			}
 			std::cout << timeset.nanoseconds.count() << std::endl;
-			timeset.nanoseconds %= time::nanoseconds{ 1000 };
+			timeset.nanoseconds %= easytimer::nanoseconds{ 1000 };
 			m_record.push_back(timeset);
 
 			m_lastTimepoint = time.timePoint;

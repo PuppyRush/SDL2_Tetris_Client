@@ -89,7 +89,7 @@ void TCreateGameroomDisplay::onDraw()
 
 void TCreateGameroomDisplay::onClickOk(const void*)
 {
-    TDisplayInterface::onOK();
+    TDisplayInterface::onOk();
 }
 
 void TCreateGameroomDisplay::onClickCancel(const void*)
