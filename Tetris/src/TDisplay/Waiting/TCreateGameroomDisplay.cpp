@@ -15,8 +15,7 @@ using namespace game_interface;
 
 SDL_TETRIS
 
-TCreateGameroomDisplay::TCreateGameroomDisplay(const seg::t_id displayId)
-        : TDisplayInterface(displayId)
+TCreateGameroomDisplay::TCreateGameroomDisplay()
 {
 
 }

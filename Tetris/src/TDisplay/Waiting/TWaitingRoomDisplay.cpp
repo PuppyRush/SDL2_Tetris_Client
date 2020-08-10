@@ -24,8 +24,7 @@ using namespace seg;
 using namespace game_interface;
 using namespace game_interface::packet;
 
-TWaitingRoomDisplay::TWaitingRoomDisplay(const seg::t_id displayId)
-        : TDisplayInterface(displayId)
+TWaitingRoomDisplay::TWaitingRoomDisplay()
 {
     
 }
@@ -217,7 +216,7 @@ void TWaitingRoomDisplay::onClickExit(const void* click)
 void TWaitingRoomDisplay::onClickCreateGameRoom(const void* click)
 {
 
-    auto createGameroomDisplay = seg::make_display<TCreateGameroomDisplay>(resource::CREATEROOM_DISPLAY);
+    auto createGameroomDisplay = seg::make_display<TCreateGameroomDisplay>();
     createGameroomDisplay->setWindowHeight(250);
     createGameroomDisplay->setWindowWidth(350);
     createGameroomDisplay->setWindowTitle("Create Room");
@@ -270,7 +269,7 @@ void TWaitingRoomDisplay::recvChat(const Packet& packet)
 void TWaitingRoomDisplay::createGameroom(const Packet& packet)
 {
 
-    auto gameroomDisplay = seg::make_display<TMultiGameRoomDisplay>(resource::MULTIGAME_DISPLAY);
+    auto gameroomDisplay = seg::make_display<TMultiGameRoomDisplay>();
     gameroomDisplay->getGameRoom()->fromJson(packet.getPayload());
     gameroomDisplay->setWindowTitle("Tetris Game");
     gameroomDisplay->modaless(gameroomDisplay);

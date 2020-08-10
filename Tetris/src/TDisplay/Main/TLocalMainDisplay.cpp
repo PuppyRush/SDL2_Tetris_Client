@@ -15,8 +15,7 @@ using namespace std;
 using namespace game_interface;
 using namespace seg;
 
-TLocalMainDisplay::TLocalMainDisplay(const seg::t_id displayId)
-        : TMainDisplay(displayId)
+TLocalMainDisplay::TLocalMainDisplay()
 {
     m_mode = TLocalMode::Local;
 }
@@ -75,7 +74,7 @@ void TLocalMainDisplay::onInitialize()
 
 void TLocalMainDisplay::onClickedStartLocalGame(const void* click)
 {
-    auto dlg = seg::make_display<TSingleGameDisplay>(resource::SINGLEGAME_DISPLAY);
+    auto dlg = seg::make_display<TSingleGameDisplay>();
     dlg->setWindowHeight(WINDOW_HEIGHT);
     dlg->setWindowWidth(WINDOW_WIDTH);
     dlg->modal(dlg);
@@ -83,7 +82,7 @@ void TLocalMainDisplay::onClickedStartLocalGame(const void* click)
 
 void TLocalMainDisplay::onClickedOption(const void* click)
 {
-    auto dlg = seg::make_display<TOptionDisplay>(resource::OPTION_DISPLAY);
+    auto dlg = seg::make_display<TOptionDisplay>();
     dlg->setWindowHeight(WINDOW_HEIGHT);
     dlg->setWindowWidth(WINDOW_WIDTH);
     dlg->modal(dlg);

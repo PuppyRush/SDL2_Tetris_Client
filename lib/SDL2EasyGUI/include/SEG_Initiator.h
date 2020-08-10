@@ -7,6 +7,7 @@
 
 #include <string>
 #include <memory>
+#include <thread>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
@@ -14,9 +15,21 @@
 #include <SDL2/SDL_video.h>
 
 #include "DisplayController.h"
+
 #undef main
 
 namespace seg {
+
+static void Start()
+{
+    DisplayController::getInstance().run();
+    //DisplayController::getInstance().startMainDisplay();
+}
+
+static void SetMaindisplay(const std::shared_ptr<DisplayInterface> dp)
+{
+    DisplayController::getInstance().setMainDisplay(dp);
+}
 
 static void SDLEasyGUI_Init()
 {

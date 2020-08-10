@@ -14,10 +14,8 @@ SDL_TETRIS
 using namespace game_interface;
 using namespace seg;
 
-TEnterServerDisplay::TEnterServerDisplay(const seg::t_id displayId)
-        : TDisplayInterface(displayId)
+TEnterServerDisplay::TEnterServerDisplay()
 {
-
 }
 
 void TEnterServerDisplay::registerEvent()
@@ -32,6 +30,7 @@ void TEnterServerDisplay::onInitialize()
     setWindowHeight(300);
     setWindowWidth(300);
     setWindowTitle("Input Your Nickname");
+    setBackgroundColor(SEG_Color{ ColorCode::lightgray });
 
     t_size begin_y = getWindowHeight() / 3;
     {
@@ -76,8 +75,6 @@ void TEnterServerDisplay::onInitialize()
         addControl(bld.build());
     }
 
-    setBackgroundColor(SEG_Color{ColorCode::lightgray});
-
     TDisplayInterface::onInitialize();
 }
 
@@ -86,8 +83,8 @@ void TEnterServerDisplay::onClickedEnterServer(const void* click)
     auto& player = TPlayer::getInstance();
     const auto& idLabel = getControl<EditLabel>(resource::ENTERSERVER_ID);
 
-    if (idLabel->getString().empty()) {
-    assert(idLabel != nullptr);
+    if (idLabel->getString().size() < 5) {
+        assert(idLabel != nullptr);
         seg::MessageDialog dlg{"Enter Your ID at least 5 characters",
                                seg::MessageDialogKind::error};
         dlg.alert();

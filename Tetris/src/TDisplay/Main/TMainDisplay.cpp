@@ -8,8 +8,7 @@
 SDL_TETRIS
 using namespace seg;
 
-TMainDisplay::TMainDisplay(const seg::t_id displayId)
-        : TDisplayInterface(displayId)
+TMainDisplay::TMainDisplay()
 {
     m_display = game_interface::toUType( tetris_module::TDisplay::Main);
 }

@@ -81,6 +81,10 @@ public:
 
     void getDisplay(const t_id displayId);
 
+    void setMainDisplay(const display_ptr dp);
+
+    void startMainDisplay();
+
     static DisplayController& getInstance()
     {
         return boost::serialization::singleton<DisplayController>::get_mutable_instance();
@@ -112,6 +116,10 @@ private:
     std::atomic_bool m_run = true;
     std::condition_variable m_modalAryCV;
     std::mutex m_modalAryMutex;
+    std::condition_variable m_mainDisplayChangeCv;
+    std::mutex m_mainDisplayChangeMutex;
+
+    display_ptr m_mainDp;
 };
 
 struct modal_opener

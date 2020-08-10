@@ -194,3 +194,8 @@ void Control::drawBackground(const SDL_Rect rect, const SEG_Color color)
 void Control::onDraw()
 {
 }
+
+void Control::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
+{
+    onHit({ button->x, button->y }, !isSelected());
+}

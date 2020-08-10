@@ -88,8 +88,7 @@ public:
     {
     };
 
-    virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button)
-    {}
+    virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) override;
 
     virtual void onMouseWheelEvent(const SDL_MouseWheelEvent* wheel)
     {};

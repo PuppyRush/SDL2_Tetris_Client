@@ -12,9 +12,16 @@ SDL_TETRIS_BEGIN
 class TMultiGameRoomDisplay : public TGameDisplay
 {
 public:
-    explicit TMultiGameRoomDisplay(const seg::t_id displayId);
+
+    TMultiGameRoomDisplay();
 
     virtual ~TMultiGameRoomDisplay() = default;
+
+    virtual const seg::t_id getDisplayId() const noexcept override final
+    {
+        return seg::toUType(resource::MULTIGAME_DISPLAY);
+    }
+
 
     inline auto& getGameRoom() noexcept
     { return m_gameroom; }

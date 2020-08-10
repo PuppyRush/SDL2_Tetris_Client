@@ -15,9 +15,15 @@ class TCreateGameroomDisplay : public TDisplayInterface
 {
 public:
 
-    explicit TCreateGameroomDisplay(const seg::t_id displayId);
+    explicit TCreateGameroomDisplay();
 
     virtual ~TCreateGameroomDisplay() = default;
+
+    virtual const seg::t_id getDisplayId() const noexcept override final
+    {
+        return seg::toUType(resource::CREATEROOM_DISPLAY);
+    }
+
 
     inline const std::string& getRoomName() const noexcept
     { return m_roomname; }

@@ -18,8 +18,7 @@ using namespace std;
 using namespace seg;
 using namespace game_interface;
 
-DisplayInterface::DisplayInterface(const t_id displayId)
-        : m_displayId(displayId)
+DisplayInterface::DisplayInterface()
 {
     m_window = new SEG_Window;
 }
@@ -65,7 +64,7 @@ std::underlying_type_t<resource> DisplayInterface::modal(std::shared_ptr<Display
 	modal_opener opener{ display };
 
     m_thread = thread(&DisplayInterface::_run, this);
-    m_thread.join();
+   // m_thread.join();
 
     return m_resultResrouce;
 }
@@ -90,51 +89,30 @@ void DisplayInterface::_run()
 
     while (m_run) {
 
-		SDL_Event sdlEvent;
-		SDL_WaitEvent(&sdlEvent);
+		//SDL_Event sdlEvent;
+		//SDL_WaitEvent(&sdlEvent);
 
         //왜 있는거지?
         auto event = m_eventDelivery.popEvent();
-
         // printf("DisplayInterface::_run : %d\n", debug++);
 
-        onEvent(&sdlEvent);
+        onEvent(*event);
+        _mouseEventOnMenus(*event);
 
-        if (m_currentCtl){
-            if (m_currentCtl->isBounded(sdlEvent)) {
-                m_currentCtl->onEvent(&sdlEvent);
-            }
-            if (sdlEvent.type == SDL_MOUSEMOTION){
-                m_currentCtl->isHitting(sdlEvent);
-            }
-            if ( (sdlEvent.type == SDL_MOUSEBUTTONUP || sdlEvent.type == SDL_MOUSEBUTTONDOWN )
-                && m_currentCtl->isHit({ sdlEvent.button.x, sdlEvent.button.y})) {
-                m_currentCtl->onHit({ sdlEvent.button.x, sdlEvent.button.y }, !m_currentCtl->isSelected());
-            }
-            if (sdlEvent.type == SDL_KEYDOWN)
-            {
-                m_currentCtl->onHit(getMidPoint(), true);
-            }
-        }
-
-        if (m_currentCtl != nullptr && m_currentCtl->isHitting(sdlEvent)) {
-            m_currentCtl->onEvent(&sdlEvent);
-        }
-
-        if (sdlEvent.type >= seg::toUType(SEGEVENT_START)) {
+        if (event->type >= seg::toUType(SEGEVENT_START)) {
             /*auto e = SEG_Event{event->type};
             printf("%s \n ", magic_enum::enum_name(e).value().data());*/
             //printf("recv seg event : %d\n", event->type);
-        } else if (sdlEvent.type == 0x8000) {
+        } else if (event->type == 0x8000) {
             // printf("recv user event : %d / %d \n", event->type, event->user.code);
-        } else if (sdlEvent.type == seg::toUType(SDL_TIMER_EVENT)) {
+        } else if (event->type == seg::toUType(SDL_TIMER_EVENT)) {
             //printf("recv timer event : %d / %d \n", event->type, event->user.code);
         } else {
             //printf("recv sdl event : %d\n", event->type);
         }
 
         //below event is deleted sdl
-        if (sdlEvent.type > 0x9999 || sdlEvent.type < 0 || sdlEvent.type == SDL_TIMER_EVENT) {
+        if (event->type > 0x9999 || event->type < 0 || event->type == SDL_TIMER_EVENT) {
             continue;
         } 
 		/*else if (event->type == SDL_USEREVENT && (event->user.data1 || event->user.data2)) {
@@ -298,7 +276,7 @@ void DisplayInterface::onCancel()
 
 void DisplayInterface::onDestroy()
 {
-    getMenuAry().clear();
+    _getMenuAry().clear();
 }
 
 void DisplayInterface::onDrawBackground()
@@ -333,8 +311,19 @@ void DisplayInterface::onDraw()
 
 void DisplayInterface::_onDrawMenus()
 {
-    for (const auto& menu : getMenuAry()) {
+    for (const auto& menu : _getMenuAry()) {
         menu->onVirtualDraw();
+    }
+}
+
+void DisplayInterface::_mouseEventOnMenus(const SDL_Event& evt)
+{
+    for (const auto& ctl : _getMenuAry()) {
+        if (ctl->isHit(evt.button.x, evt.button.y))
+        {
+            ctl->onEvent(evt);
+            //ctl->onEvent( const_cast<SDL_Event&>(evt));
+        }
     }
 }
 
@@ -348,23 +337,23 @@ void DisplayInterface::addControl(Control* newCtl)
 
     maybeCtl->initialize();
 
-    auto it = std::find_if(begin(getMenuAry()), end(getMenuAry()), [newCtl](control_ptr exCtl) {
+    auto it = std::find_if(begin(_getMenuAry()), end(_getMenuAry()), [newCtl](control_ptr exCtl) {
         return newCtl->getId() == exCtl->getId();
     });
 
-    if (it != getMenuAry().end()) {
+    if (it != _getMenuAry().end()) {
         assert(0);
         return;
     }
 
-    getMenuAry().emplace_back(maybeCtl);
+    _getMenuAry().emplace_back(maybeCtl);
 }
 
 bool DisplayInterface::removeControl(control_ptr ctl)
 {
 
-    if (auto dest = findControl(ctl->getId()); dest != getMenuAry().end()) {
-        getMenuAry().erase(dest);
+    if (auto dest = findControl(ctl->getId()); dest != _getMenuAry().end()) {
+        _getMenuAry().erase(dest);
         return true;
     }
 
@@ -379,7 +368,7 @@ void DisplayInterface::menuHitTest(const SEG_Point& point)
         return;
     }
 
-    for (const auto& menu : getMenuAry()) {
+    for (const auto& menu : _getMenuAry()) {
         if (menu->isHit(point)) {
             m_currentCtl = menu;
 
@@ -416,7 +405,7 @@ void DisplayInterface::detachDecorator(const control_ptr ctl)
 DisplayInterface::control_ptr
 DisplayInterface::getControl(const t_id resourceId)
 {
-    return *find_if(begin(getMenuAry()), end(getMenuAry()), [resourceId](control_ptr ptr) {
+    return *find_if(begin(_getMenuAry()), end(_getMenuAry()), [resourceId](control_ptr ptr) {
         return ptr->getId() == resourceId;
     });
 }
@@ -424,7 +413,7 @@ DisplayInterface::getControl(const t_id resourceId)
 DisplayInterface::control_ary_it
 DisplayInterface::findControl(const t_id resourceId)
 {
-    return find_if(begin(getMenuAry()), end(getMenuAry()), [resourceId](control_ptr ptr) {
+    return find_if(begin(_getMenuAry()), end(_getMenuAry()), [resourceId](control_ptr ptr) {
         return ptr->getId() == resourceId;
     });
 }

@@ -16,9 +16,14 @@ class TLocalMainDisplay final : public TMainDisplay
 {
 public:
 
-    explicit TLocalMainDisplay(const seg::t_id displayId);
+    explicit TLocalMainDisplay();
 
     virtual ~TLocalMainDisplay() = default;
+
+    virtual const seg::t_id getDisplayId() const noexcept override final
+    {
+        return seg::toUType(resource::MAIN_SINGLE_DISPLAY);
+    }
 
 private:
 

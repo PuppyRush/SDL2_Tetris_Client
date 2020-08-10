@@ -18,10 +18,15 @@ class TOptionDisplay final : public TDisplayInterface
 {
 public:
 
-    explicit TOptionDisplay(const seg::t_id displayId);
+    TOptionDisplay();
 
     virtual ~TOptionDisplay()
     {}
+
+    virtual const seg::t_id getDisplayId() const noexcept override final
+    {
+        return seg::toUType(resource::OPTION_DISPLAY);
+    }
 
 private:
 

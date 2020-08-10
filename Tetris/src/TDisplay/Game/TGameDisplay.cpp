@@ -16,8 +16,8 @@ using namespace seg;
 using namespace tetris_module;
 using namespace std;
 
-TGameDisplay::TGameDisplay(const seg::t_id displayId)
-        : TDisplayInterface(displayId)
+TGameDisplay::TGameDisplay()
+        : TDisplayInterface()
 {
     m_gameTimer = make_shared<event::TimerAdder>(this->getId(), 1000);
 }

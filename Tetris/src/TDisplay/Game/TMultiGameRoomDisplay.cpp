@@ -18,13 +18,11 @@ using namespace game_interface::packet;
 using namespace seg;
 using namespace tetris_module;
 
-TMultiGameRoomDisplay::TMultiGameRoomDisplay(const seg::t_id displayId)
-        : TGameDisplay(displayId)
+TMultiGameRoomDisplay::TMultiGameRoomDisplay()
+        : TGameDisplay()
 {
     m_display = game_interface::toUType(TDisplay::Game);
     m_mode = TLocalMode::Online;
-
-
 }
 
 void TMultiGameRoomDisplay::onClickedStart(const void* click)

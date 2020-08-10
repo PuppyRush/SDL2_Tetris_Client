@@ -78,6 +78,8 @@ namespace seg {
 
 		virtual void refresh() override;
 
+		virtual const t_id getDisplayId() const noexcept = 0;
+
 		virtual void postCreate(display_ptr) = 0;
 
 		virtual void postDestroy(const unique_type unique) = 0;
@@ -130,8 +132,8 @@ namespace seg {
 		template<class T>
 		inline bool compareDisplay(const T displayId)
 		{
-			auto b = static_cast<bool>(std::is_same<std::remove_const_t<T>, std::remove_const_t<decltype(m_displayId)>>::value);
-			return m_displayId == toUType(displayId);
+			auto b = static_cast<bool>(std::is_same<std::remove_const_t<T>, std::remove_const_t<decltype(getDisplayId())>>::value);
+			return getDisplayId() == toUType(displayId);
 		}
 
 		template<class T, class U>
@@ -153,7 +155,7 @@ namespace seg {
 
 	protected:
 
-		DisplayInterface(const t_id displayId);
+		DisplayInterface();
 
 		inline SEG_Window::window_type getSDLWindow() const noexcept
 		{
@@ -289,7 +291,7 @@ namespace seg {
 
 	private:
 
-		inline control_ary& getMenuAry()
+		inline control_ary& _getMenuAry()
 		{
 			return m_menus;
 		}
@@ -304,12 +306,12 @@ namespace seg {
 
 		void _onDrawMenus();
 
+		void _mouseEventOnMenus(const SDL_Event& evt);
+
 		inline void _setResult(const t_id res)
 		{
 			m_resultResrouce = res;
 		}
-
-		const t_id m_displayId;
 
 		control_ary m_menus;
 		Control* m_currentCtl;

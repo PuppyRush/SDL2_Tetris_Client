@@ -43,12 +43,13 @@ class EventQueue
 
 public:
 
-    using data_type = _Data*;
+    using data_ref = _Data&;
+    using data_ptr = _Data*;
 
-    const data_type const MUTABLE_VALUE= nullptr;
+    const data_ptr const MUTABLE_VALUE = nullptr;
 
     EventQueue()
-            : m_isContinue(true), MUTABLE_VALUE(new _Data)
+        : m_isContinue(true), MUTABLE_VALUE(new  _Data)
     {
 
     }
@@ -67,7 +68,7 @@ public:
             delete MUTABLE_VALUE;
     }
 
-    void pushEvent(const data_type event)
+    void pushEvent(const data_ptr event)
     {
         std::lock_guard<std::mutex> lock(m_mutex);
         m_eventQ.push(event);
@@ -75,10 +76,10 @@ public:
         m_cond.notify_one();
     }
 
-    const data_type popEvent()
+    const data_ptr popEvent()
     {
-        if (m_eventQ.empty())
-            return MUTABLE_VALUE;
+        /*if (m_eventQ.empty())
+            return MUTABLE_VALUE;*/
 
         std::unique_lock<std::mutex> lock(m_mutex);
         m_cond.wait(lock, [=]() { return !m_eventQ.empty() || !m_isContinue; });
@@ -96,7 +97,7 @@ public:
     static std::uint64_t m_seq;
 
 private:
-    std::queue<data_type> m_eventQ;
+    std::queue<data_ptr> m_eventQ;
     std::condition_variable m_cond;
     std::mutex m_mutex;
     std::atomic_bool m_isContinue;

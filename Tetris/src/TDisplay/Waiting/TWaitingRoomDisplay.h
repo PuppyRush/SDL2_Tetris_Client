@@ -268,9 +268,14 @@ class TWaitingRoomDisplay : public TDisplayInterface
 {
 public:
 
-    explicit TWaitingRoomDisplay(const seg::t_id displayId);
+    explicit TWaitingRoomDisplay();
 
     virtual ~TWaitingRoomDisplay() = default;
+
+    virtual const seg::t_id getDisplayId() const noexcept override final
+    {
+        return seg::toUType(resource::WAITINGROOM_DISPLAY);
+    }
 
     virtual void updateObserver(const game_interface::packet::Packet&) override;
 

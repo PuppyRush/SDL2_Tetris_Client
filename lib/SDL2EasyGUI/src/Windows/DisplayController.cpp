@@ -20,6 +20,7 @@ using namespace std;
 using namespace seg;
 
 DisplayController::DisplayController()
+    :m_run(true)
 {
 }
 
@@ -103,42 +104,46 @@ void DisplayController::close(const t_id id)
 
 void DisplayController::run()
 {
-	_pumpEvent();
-    //m_thread = std::thread(&DisplayController::_pumpEvent, this);
+	//_pumpEvent();
+    m_thread = std::thread(&DisplayController::_pumpEvent, this);
 }
 
 void DisplayController::_pumpEvent()
 {
-    std::unique_lock<std::mutex> lock(m_modalAryMutex);
-    m_modalAryCV.wait(lock, [=]() { return !m_modalStack.empty() || !m_modalessAry.empty(); });
+    /*std::unique_lock<std::mutex> lock(m_modalAryMutex);
+    m_modalAryCV.wait(lock, [=]() { return !m_modalStack.empty() || !m_modalessAry.empty(); });*/
 
-    //static int debug{0};
+    startMainDisplay();
 
     while (m_run) {
         SDL_Event* event = new SDL_Event{};
         SDL_WaitEvent(event);
 
-       // printf("DisplayController::_pumpEvent : %d\n", debug++);
+
+        // printf("DisplayController::_pumpEvent : %d\n", debug++);
 
         const auto winid = getActivatedWindowID(event);
-        //if (winid != NULL_WINDOW_ID) {
-        //    if (auto display = findFromId(winid); display != nullptr) {
-        //        display->pushEvent(event);
-        //    }
-        //} else {
-        //    //broadcasting m_userEvent if not found something targeted id (display, controller)
-        //    if (!m_modalStack.empty()) {
-        //        m_modalStack.back()->pushEvent(event);
-        //    }
+        if (winid != NULL_WINDOW_ID) {
+            if (auto display = findFromId(winid); display != nullptr) {
+                display->pushEvent(*event);
+            }
+        } else {
+            //broadcasting m_userEvent if not found something targeted id (display, controller)
+            if (!m_modalStack.empty()) {
+                m_modalStack.back()->pushEvent(*event);
+            }
 
-        //    for (const auto modaless : m_modalessAry) {
-        //        modaless->pushEvent(event);
-        //    }
-        //}
+            for (const auto modaless : m_modalessAry) {
+                modaless->pushEvent(*event);
+            }
+        }
 
-        //for (auto& display : m_alertAry) {
-        //    display->pushEvent(event);
-        //}
+        for (auto& display : m_alertAry) {
+            display->pushEvent(*event);
+        }
+
+
+
     }
 }
 
@@ -256,4 +261,20 @@ void DisplayController::refreshModal()
 void DisplayController::getDisplay(const t_id displayId)
 {
 
+}
+
+void DisplayController::setMainDisplay(const display_ptr dp)
+{
+    std::unique_lock<std::mutex> lock(m_mainDisplayChangeMutex);
+
+    m_mainDp = dp;
+}
+
+void DisplayController::startMainDisplay()
+{
+    //while (m_run)
+    {
+        m_mainDp->modal(m_mainDp);
+    }
+    
 }

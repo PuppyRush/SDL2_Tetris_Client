@@ -8,7 +8,7 @@
 using namespace seg;
 
 MessageDialog::MessageDialog(const std::string& message, MessageDialogKind kind)
-        : DisplayInterface(toUType(resource::MESSAGE_DIALOG)), m_message(message), m_kind(kind)
+        : DisplayInterface(), m_message(message), m_kind(kind)
 {
     setBackgroundColor(ColorCode::white);
 }

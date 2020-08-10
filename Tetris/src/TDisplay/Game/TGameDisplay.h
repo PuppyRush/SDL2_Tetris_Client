@@ -31,7 +31,7 @@ public:
 
 protected:
 
-    explicit TGameDisplay(const seg::t_id displayId);
+    TGameDisplay();
 
     virtual void onClose() override;
 
