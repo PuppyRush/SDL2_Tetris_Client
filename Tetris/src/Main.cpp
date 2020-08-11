@@ -21,8 +21,6 @@
 #include "TDisplay/Waiting/TCreateGameroomDisplay.h"
 #include "TDisplay/Waiting/TWaitingRoomDisplay.h"
 
-#include "36_multiple_windows.h"
-
 SDL_TETRIS
 
 using namespace std;

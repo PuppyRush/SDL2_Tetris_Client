@@ -104,8 +104,8 @@ void DisplayController::close(const t_id id)
 
 void DisplayController::run()
 {
-	//_pumpEvent();
-    m_thread = std::thread(&DisplayController::_pumpEvent, this);
+	_pumpEvent();
+    //m_thread = std::thread(&DisplayController::_pumpEvent, this);
 }
 
 void DisplayController::_pumpEvent()
