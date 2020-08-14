@@ -56,9 +56,9 @@ namespace seg {
 
 		virtual std::underlying_type_t<resource> alert();
 
-		std::underlying_type_t<resource> modal(std::shared_ptr<DisplayInterface> display);
+		std::underlying_type_t<resource> modal();
 
-		void modaless(std::shared_ptr<DisplayInterface> display);
+		void modaless();
 
 		std::underlying_type_t<resource> waitModaless();
 

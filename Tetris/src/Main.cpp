@@ -21,8 +21,6 @@
 #include "TDisplay/Waiting/TCreateGameroomDisplay.h"
 #include "TDisplay/Waiting/TWaitingRoomDisplay.h"
 
-#include "36_multiple_windows.h"
-
 SDL_TETRIS
 
 using namespace std;
@@ -37,11 +35,12 @@ void init()
 
     game_interface::GameInterface_Init(false);
     seg::SDLEasyGUI_Init();
+	seg::SetMaindisplay(seg::make_display< TMultiMainDisplay>());
 
     TPlayer::getInstance()->setOrder(0);
     TPlayer::getInstance()->setMaster(true);
 
-	seg::SetMaindisplay(seg::make_display<TMultiMainDisplay>());
+	
 	
 }
 

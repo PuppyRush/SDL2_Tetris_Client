@@ -23,7 +23,6 @@ namespace seg {
 static void Start()
 {
     DisplayController::getInstance().run();
-    //DisplayController::getInstance().startMainDisplay();
 }
 
 static void SetMaindisplay(const std::shared_ptr<DisplayInterface> dp)

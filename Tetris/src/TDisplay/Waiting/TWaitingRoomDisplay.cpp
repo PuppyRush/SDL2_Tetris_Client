@@ -221,7 +221,7 @@ void TWaitingRoomDisplay::onClickCreateGameRoom(const void* click)
     createGameroomDisplay->setWindowWidth(350);
     createGameroomDisplay->setWindowTitle("Create Room");
 
-    if (createGameroomDisplay->modal(createGameroomDisplay) == seg::resource::BTN_OK) {
+    if (createGameroomDisplay->modal() == seg::resource::BTN_OK) {
         if (!PacketQueue::getInstance().exist(TGameRoom::getInstance()->getUnique())) {
             PacketQueue::getInstance().attach(TGameRoom::getInstance());
         }
@@ -272,6 +272,6 @@ void TWaitingRoomDisplay::createGameroom(const Packet& packet)
     auto gameroomDisplay = seg::make_display<TMultiGameRoomDisplay>();
     gameroomDisplay->getGameRoom()->fromJson(packet.getPayload());
     gameroomDisplay->setWindowTitle("Tetris Game");
-    gameroomDisplay->modaless(gameroomDisplay);
+    gameroomDisplay->modaless();
 
 }

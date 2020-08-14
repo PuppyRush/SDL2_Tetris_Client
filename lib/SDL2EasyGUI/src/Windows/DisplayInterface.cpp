@@ -59,19 +59,16 @@ std::underlying_type_t<resource> DisplayInterface::alert()
 
 }
 
-std::underlying_type_t<resource> DisplayInterface::modal(std::shared_ptr<DisplayInterface> display)
+std::underlying_type_t<resource> DisplayInterface::modal()
 {
-	modal_opener opener{ display };
-
     m_thread = thread(&DisplayInterface::_run, this);
-   // m_thread.join();
+    //m_thread.join();
 
     return m_resultResrouce;
 }
 
-void DisplayInterface::modaless(std::shared_ptr<DisplayInterface> display)
+void DisplayInterface::modaless()
 {
-    DisplayController::getInstance().modaless_open(display);
     m_thread = thread(&DisplayInterface::_run, this);
 }
 
@@ -83,7 +80,7 @@ std::underlying_type_t<resource> DisplayInterface::waitModaless()
 
 void DisplayInterface::_run()
 {
-	initialize();
+	//initialize();
 
     //static int debug{0};
 

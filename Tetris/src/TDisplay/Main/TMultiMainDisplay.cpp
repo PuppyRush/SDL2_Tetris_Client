@@ -180,16 +180,18 @@ void TMultiMainDisplay::onDraw()
 
 void TMultiMainDisplay::onClickedOption(const void* click)
 {
-    auto optionDisplay = seg::make_display<TOptionDisplay>();
-    optionDisplay->modal(optionDisplay);
+    DisplayController::modal_open<TOptionDisplay>();
+
+    //auto optionDisplay = seg::make_display<TOptionDisplay>();
+    //optionDisplay->modal(optionDisplay);
 
     TMainDisplay::onButtonClick(click);
 }
 
 void TMultiMainDisplay::onClickedEnterServer(const void* click)
 {
-    auto enterServerDisplay = seg::make_display<TEnterServerDisplay>();
-    enterServerDisplay->modal(enterServerDisplay);
+    /*auto enterServerDisplay = seg::make_display<TEnterServerDisplay>();
+    enterServerDisplay->modal(enterServerDisplay);*/
 
     TMainDisplay::onButtonClick(click);
 }
