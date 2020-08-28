@@ -56,11 +56,9 @@ namespace seg {
 
 		virtual std::underlying_type_t<resource> alert();
 
-		std::underlying_type_t<resource> modal();
+		void modal();
 
 		void modaless();
-
-		std::underlying_type_t<resource> waitModaless();
 
 		void drawBackGroundImage();
 
@@ -73,6 +71,9 @@ namespace seg {
 		{
 			getWindow()->hidden();
 		}
+
+		//부모 클래스의 포인터(this)를 넘긴다.
+		void ready(const DisplayInterface*);
 
 		virtual void initialize() override;
 
@@ -97,11 +98,6 @@ namespace seg {
 		inline void setStopDraw(const bool set)
 		{
 			m_stopDraw = set;
-		}
-
-		inline t_id getResult() const noexcept
-		{
-			return m_resultResrouce;
 		}
 
 		inline t_display getDisplay() const noexcept
@@ -308,11 +304,6 @@ namespace seg {
 
 		void _mouseEventOnMenus(const SDL_Event& evt);
 
-		inline void _setResult(const t_id res)
-		{
-			m_resultResrouce = res;
-		}
-
 		control_ary m_menus;
 		Control* m_currentCtl;
 
@@ -320,8 +311,10 @@ namespace seg {
 		bool m_stopDraw = false;
 		std::thread m_thread;
 		std::atomic_bool m_run = true;
-		t_id m_resultResrouce = NONE;
-	
+		TDisplayMode m_mode = TDisplayMode::None;
+		
+		t_id m_parentId = IVALID_DISPLAY_ID;
+		t_id m_superParentId = IVALID_DISPLAY_ID;
 	};
 
 #define SEG_EVENT_NO_PARAM(id, fx, obj) DisplayInterface::_noParamEvent(id,std::bind(fx,obj))

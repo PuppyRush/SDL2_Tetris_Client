@@ -9,13 +9,16 @@
 #pragma once
 #endif
 
+#include <limits>
+
 #include "SEG_Type.h"
 
 namespace seg {
 
 const t_size WINDOW_HEIGHT = 900;
-
 const t_size WINDOW_WIDTH = 1000;
+const t_id START_DISPLAY_ID = 0;
+const t_id IVALID_DISPLAY_ID = std::numeric_limits<t_id>::max();
 
 enum class ControlKind : t_type
 {
@@ -33,7 +36,8 @@ enum class ControlKind : t_type
 enum class TDisplayMode : t_type
 {
     Modal,
-    Modaless
+    Modaless,
+    None
 };
 
 enum class TLocalMode : t_type

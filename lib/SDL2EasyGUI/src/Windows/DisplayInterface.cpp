@@ -46,7 +46,7 @@ void DisplayInterface::initialize()
     show();
 }
 
-std::underlying_type_t<resource> DisplayInterface::alert()
+void DisplayInterface::alert()
 {
     DisplayController::getInstance().alert(this);
 
@@ -55,27 +55,26 @@ std::underlying_type_t<resource> DisplayInterface::alert()
 
     DisplayController::getInstance().alert_close();
 
-    return m_resultResrouce;
-
 }
 
-std::underlying_type_t<resource> DisplayInterface::modal()
+void DisplayInterface::modal()
 {
-    m_thread = thread(&DisplayInterface::_run, this);
+    m_mode = TDisplayMode::Modal;
+    //m_thread = thread(&DisplayInterface::_run, this);
     //m_thread.join();
 
-    return m_resultResrouce;
 }
 
 void DisplayInterface::modaless()
 {
-    m_thread = thread(&DisplayInterface::_run, this);
+    m_mode = TDisplayMode::Modaless;
+    //m_thread = thread(&DisplayInterface::_run, this);
 }
 
-std::underlying_type_t<resource> DisplayInterface::waitModaless()
+void DisplayInterface::ready(const DisplayInterface* parentDp)
 {
-    m_thread.join();
-    return m_resultResrouce;
+    m_parentId = parentDp->getUniqueId();
+    m_superParentId = parentDp->m_superParentId;
 }
 
 void DisplayInterface::_run()

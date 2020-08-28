@@ -43,11 +43,18 @@ void DisplayController::alert_close()
     m_alertAry.pop_back();
 }
 
+void DisplayController::modal_open(display_ptr dp)
+{
+    /*m_modalStack.emplace_back(display);
+    m_modalAryCV.notify_one();
+    _open();*/
+
+    m_displayMap.pushModal(dp);
+}
 
 
 void DisplayController::modal_close()
 {
-    m_modalStack.pop_back();
 }
 
 
@@ -55,9 +62,8 @@ void DisplayController::modaless_close(seg::t_id winid)
 {
     for (const auto& q : m_modalessAry)
     {
-        for (const auto& dp : q)
-            if (winid == dp->getWindowID())
-                ;//dp->postDestroy()
+        if (winid == q->getWindowID())
+            ;//dp->postDestroy()
     }
 }
 
@@ -90,7 +96,8 @@ void DisplayController::close(const t_id id)
 void DisplayController::run()
 {
     m_mainDp->initialize();
-    m_thread = std::thread(&DisplayController::_pumpEvent, this);
+    _pumpEvent();
+    //m_thread = std::thread(&DisplayController::_pumpEvent, this);
 }
 
 void DisplayController::_pumpEvent()
@@ -152,7 +159,7 @@ DisplayController::display_ptr DisplayController::findFromId(const t_id id)
 }
 
 template<class T>
-DisplayController::display_ptr DisplayController::_find(const T ary, const t_id id)
+DisplayController::display_ptr DisplayController::_find(const T& ary, const t_id id)
 {
     auto it = std::find_if(begin(ary), end(ary), [id](const auto& ptr) {
         return id == ptr->getWindowID();
@@ -265,15 +272,11 @@ void DisplayController::getDisplay(const t_id displayId)
 void DisplayController::setMainDisplay(const display_ptr dp)
 {
     std::unique_lock<std::mutex> lock(m_mainDisplayChangeMutex);
-
+    dp-> d
     m_mainDp = dp;
 }
 
 void DisplayController::startMainDisplay()
 {
-    ////while (m_run)
-    //{
-    //    m_mainDp->modal();
-    //}
-    
+    m_mainDp->modal();
 }

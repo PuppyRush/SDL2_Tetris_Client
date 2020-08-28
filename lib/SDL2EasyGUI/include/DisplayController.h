@@ -11,7 +11,8 @@
 
 #include <memory>
 #include <unordered_map>
-#include <list>
+#include <deque>
+#include <map>
 #include <thread>
 #include <condition_variable>
 
@@ -42,16 +43,57 @@ struct KeyEqual
     }
 };
 
+class DisplayMap : private boost::serialization::singleton<DisplayMap>
+{
+public:
+    using display_type = DisplayInterface;
+    using unique_type = display_type::unique_type;
+    using display_ptr = std::shared_ptr<display_type>;
+    using alert_ary = std::deque<display_type*>;
+    using modal_ary = std::unordered_multimap<t_id, std::deque<display_ptr>>;
+    using modaless_ary = std::unordered_multimap<t_id, display_ptr>;
+    using modaless_ary_iterator = modaless_ary::const_iterator;
+
+    friend class boost::serialization::singleton<DisplayMap>;
+
+
+    void pushModal(display_ptr dp) {
+
+        //modaless에 부모display가 없다면 
+    }
+    display_ptr popModal() {
+
+    }
+
+    void addModaless(display_ptr dp) {
+
+    }
+    display_ptr eraseModaless(t_id uniqueId) {
+
+    }
+
+private:
+
+    DisplayMap()
+    {
+
+    }
+
+    //key는 display_ptr의 unique_id
+    std::map<unique_type, display_ptr> m_modalessMap;
+
+    //key는 부모 display의 uniqueid
+    std::unordered_multimap<unique_type, std::deque<display_ptr>> m_modalmap;
+
+};
+
 class DisplayController : private boost::serialization::singleton<DisplayController>
 {
 
 public:
     using display_type = DisplayInterface;
     using display_ptr = std::shared_ptr<display_type>;
-    using alert_ary = std::list<display_type*>;
-    using modal_ary = std::deque<display_ptr>;
-    using modaless_ary =  std::list< modal_ary>;
-    using modaless_ary_iterator = modaless_ary::const_iterator;
+    using alert_ary = std::deque<display_type*>;
 
     friend class boost::serialization::singleton<DisplayController>;
 
@@ -67,39 +109,11 @@ public:
 
     void alert_close();
 
-    template <typename _Display, typename... _Args>
-    static display_ptr modal_open(_Args&& ... __args)
-    {
-       std::shared_ptr<DisplayInterface> display = std::make_shared<_Display>(std::forward<_Args>(__args)...);
-        
-       DisplayController::getInstance().getModalStack().push_back(display);
-       //m_modalAryCV.notify_one();
-
-        DisplayController::getInstance()._postOpenDisplay(display);
-
-        display->modal();
-        
-        return display;
-    }
+    void modal_open(display_ptr);
 
     void modal_close();
 
-    template <typename _Display>
-    static void modaless_open()
-    {
-        auto display = std::make_shared<_Display>();
-
-        modal_ary s;
-        s.push_back(display);
-        DisplayController::getInstance().getModalessList().push_back(s);
-       // m_modalAryCV.notify_one();
-
-        DisplayController::getInstance()._postOpenDisplay(display);
-
-        display->modaless();
-
-    }
-
+    void modaless_open(display_ptr);
 
     void modaless_close(seg::t_id winid);
 
@@ -121,29 +135,25 @@ public:
     inline bool isRunningDisplay()
     { return !(m_modalessAry.empty() && m_modalStack.empty()); }
 
-    inline modal_ary& getModalStack() noexcept { return m_modalStack; }
-    
-    inline modaless_ary& getModalessList() noexcept { return m_modalessAry; }
-
 private:
 
     t_id getActivatedWindowID(const SDL_Event* event);
 
     display_ptr findFromId(const t_id id);
 
-    void _preModalOpen(display_ptr display);
-
-    void _postOpenDisplay(display_ptr display);
+    void _open(display_ptr display);
 
     void _release();
 
     void _pumpEvent();
 
-    template<class T>
-    display_ptr _find(const T ary, const t_id id);
+    void _modal();
+    void _modaless();
 
-    modaless_ary m_modalessAry;
-    modal_ary m_modalStack;
+    template<class T>
+    display_ptr _find(const T& ary, const t_id id);
+
+    DisplayMap m_displayMap;
     alert_ary m_alertAry;
 
     std::thread m_thread;
@@ -154,6 +164,24 @@ private:
     std::mutex m_mainDisplayChangeMutex;
 
     display_ptr m_mainDp;
+};
+
+struct modal_opener
+{
+
+    DisplayController::display_ptr display;
+
+    explicit modal_opener(DisplayController::display_ptr display)
+            : display(display)
+    {
+        DisplayController::getInstance().modal_open(display);
+    }
+
+    ~modal_opener()
+    {
+        DisplayController::getInstance().modal_close();
+    }
+
 };
 
 }
