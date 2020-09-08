@@ -84,7 +84,6 @@ class EventPusher
 public:
 
     EventPusher(const t_id winid, const t_eventType event)
-            : EventPusher()
     {
         m_user.type = SDL_USEREVENT;
         m_user.windowID = winid;
@@ -93,7 +92,6 @@ public:
     }
 
     EventPusher(const t_id winid, const t_eventType targetid, const t_eventType event)
-            : EventPusher()
     {
         m_user.type = SDL_USEREVENT;
         m_user.windowID = winid;

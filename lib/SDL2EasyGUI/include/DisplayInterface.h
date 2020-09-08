@@ -75,6 +75,8 @@ namespace seg {
 		//부모 클래스의 포인터(this)를 넘긴다.
 		void ready(const DisplayInterface*);
 
+		virtual void onEvent(const SDL_Event& event);
+
 		virtual void initialize() override;
 
 		virtual void refresh() override;
@@ -120,9 +122,29 @@ namespace seg {
 			return getWindow()->getWindowID();
 		}
 
+		inline void setSuperWindowID(unique_type uniqueId) noexcept
+		{
+			m_superParentId = uniqueId;
+		}
+
+		inline unique_type getSuperWindowID() const noexcept
+		{
+			return m_superParentId;
+		}
+
+		inline t_id getResult() const noexcept
+		{
+			return m_resultResrouce;
+
+		}
 		inline std::pair<bool, Control*> getCurrentControl() const noexcept
 		{
 			return m_currentCtl ? std::make_pair(true, m_currentCtl) : std::make_pair(false, nullptr);
+		}
+
+		inline bool compareUnique(const unique_type uniqueId)
+		{
+			return getWindowID() == uniqueId;
 		}
 
 		template<class T>
@@ -179,7 +201,7 @@ namespace seg {
 		}
 
 		void onButtonClick(const void*);
-
+		
 		virtual void onDraw() override;
 
 		virtual void onDrawBackground() override;
@@ -279,7 +301,6 @@ namespace seg {
 		{};
 
 		t_display m_display;
-		TLocalMode m_mode;
 
 		std::unordered_map<t_id, std::function<void(void)>> m_callback_no_param;
 		std::unordered_map<t_id, std::function<void(const void*)>> m_callback_one_param;
@@ -304,15 +325,24 @@ namespace seg {
 
 		void _mouseEventOnMenus(const SDL_Event& evt);
 
+		inline void _setResult(const t_id res)
+		{
+			m_resultResrouce = res;
+		}
+
 		control_ary m_menus;
 		Control* m_currentCtl;
 
 		std::string m_backgroundImgPath;
 		bool m_stopDraw = false;
 		std::thread m_thread;
+		std::thread m_clickthread;
+		std::condition_variable m_runCond;
 		std::atomic_bool m_run = true;
+		std::mutex m_runMtx;
 		TDisplayMode m_mode = TDisplayMode::None;
-		
+		t_id m_resultResrouce = NONE;
+
 		t_id m_parentId = IVALID_DISPLAY_ID;
 		t_id m_superParentId = IVALID_DISPLAY_ID;
 	};

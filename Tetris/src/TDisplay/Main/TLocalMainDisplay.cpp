@@ -17,7 +17,6 @@ using namespace seg;
 
 TLocalMainDisplay::TLocalMainDisplay()
 {
-    m_mode = TLocalMode::Local;
 }
 
 void TLocalMainDisplay::registerEvent()

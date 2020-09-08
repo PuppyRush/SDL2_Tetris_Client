@@ -46,7 +46,7 @@ void DisplayInterface::initialize()
     show();
 }
 
-void DisplayInterface::alert()
+std::underlying_type_t<resource> DisplayInterface::alert()
 {
     DisplayController::getInstance().alert(this);
 
@@ -60,63 +60,42 @@ void DisplayInterface::alert()
 void DisplayInterface::modal()
 {
     m_mode = TDisplayMode::Modal;
-    //m_thread = thread(&DisplayInterface::_run, this);
-    //m_thread.join();
-
+    m_thread = std::thread(&DisplayInterface::_run, this);
+    m_thread.join();
 }
 
 void DisplayInterface::modaless()
 {
     m_mode = TDisplayMode::Modaless;
-    //m_thread = thread(&DisplayInterface::_run, this);
+    m_thread = std::thread(&DisplayInterface::_run, this);
 }
 
 void DisplayInterface::ready(const DisplayInterface* parentDp)
 {
-    m_parentId = parentDp->getUniqueId();
+    m_parentId = parentDp->getWindowID();
     m_superParentId = parentDp->m_superParentId;
 }
 
+void DisplayInterface::onEvent(const SDL_Event& event)
+{
+    EventListener::onEvent(event);
+    _mouseEventOnMenus(event);
+}
+
+
 void DisplayInterface::_run()
 {
-	//initialize();
+    static int debug{0};
+    std::unique_lock<std::mutex> lock(m_runMtx);
 
-    //static int debug{0};
-
-    while (m_run) {
-
-		//SDL_Event sdlEvent;
-		//SDL_WaitEvent(&sdlEvent);
+    while (m_run) 
+    {
+       // m_runCond.wait(lock, [=]() { return !m_run.load(); }); 
 
         //왜 있는거지?
         auto event = m_eventDelivery.popEvent();
-        // printf("DisplayInterface::_run : %d\n", debug++);
-
-        onEvent(*event);
-        _mouseEventOnMenus(*event);
-
-        if (event->type >= seg::toUType(SEGEVENT_START)) {
-            /*auto e = SEG_Event{event->type};
-            printf("%s \n ", magic_enum::enum_name(e).value().data());*/
-            //printf("recv seg event : %d\n", event->type);
-        } else if (event->type == 0x8000) {
-            // printf("recv user event : %d / %d \n", event->type, event->user.code);
-        } else if (event->type == seg::toUType(SDL_TIMER_EVENT)) {
-            //printf("recv timer event : %d / %d \n", event->type, event->user.code);
-        } else {
-            //printf("recv sdl event : %d\n", event->type);
-        }
-
-        //below event is deleted sdl
-        if (event->type > 0x9999 || event->type < 0 || event->type == SDL_TIMER_EVENT) {
-            continue;
-        } 
-		/*else if (event->type == SDL_USEREVENT && (event->user.data1 || event->user.data2)) {
-            delete static_cast<seg::t_eventType*>(event->user.data1);
-        } else {
-            delete event;
-        }*/
-
+        onEvent(event);
+        //printf("DisplayInterface::_run : %d\n", debug++);
     }
 }
 
@@ -129,7 +108,9 @@ void DisplayInterface::onUserEvent(const SDL_UserEvent* event)
             _setResult(click->resourceId);
 
             if (m_callback_one_param.count(id) > 0) {
-                m_callback_one_param.at(id)(click);
+               // m_clickthread = std::thread( [=](){
+                        m_callback_one_param.at(id)(click);
+               //     });
             }
             break;
         }
@@ -143,6 +124,8 @@ void DisplayInterface::onUserEvent(const SDL_UserEvent* event)
             break;
         }
         case SEG_DRAW_CONTROLLER:
+            _onDrawMenus();
+            break;
         case SEG_DRAW_DISPLAY: {
             //dont call _refresh() in this case.
             onDrawBackground();
@@ -249,7 +232,6 @@ void DisplayInterface::onClose()
 void DisplayInterface::onButtonClick(const void* event)
 {
     m_resultResrouce = static_cast<const event::SEG_Click*>(event)->resourceId;
-    onClose();
 }
 
 void DisplayInterface::onOk()

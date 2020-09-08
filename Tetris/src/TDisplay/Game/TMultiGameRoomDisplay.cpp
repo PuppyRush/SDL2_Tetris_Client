@@ -22,7 +22,6 @@ TMultiGameRoomDisplay::TMultiGameRoomDisplay()
         : TGameDisplay()
 {
     m_display = game_interface::toUType(TDisplay::Game);
-    m_mode = TLocalMode::Online;
 }
 
 void TMultiGameRoomDisplay::onClickedStart(const void* click)

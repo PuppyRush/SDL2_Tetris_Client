@@ -22,7 +22,6 @@ using namespace seg;
 
 TMultiMainDisplay::TMultiMainDisplay()     
 {
-    m_mode = TLocalMode::Online;
 }
 
 void TMultiMainDisplay::registerEvent()
@@ -180,10 +179,8 @@ void TMultiMainDisplay::onDraw()
 
 void TMultiMainDisplay::onClickedOption(const void* click)
 {
-    DisplayController::modal_open<TOptionDisplay>();
-
-    //auto optionDisplay = seg::make_display<TOptionDisplay>();
-    //optionDisplay->modal(optionDisplay);
+    auto dp = DisplayController::modal_open<TOptionDisplay>();
+    dp->modal();
 
     TMainDisplay::onButtonClick(click);
 }

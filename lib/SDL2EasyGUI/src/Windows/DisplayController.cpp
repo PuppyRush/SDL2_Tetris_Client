@@ -43,29 +43,25 @@ void DisplayController::alert_close()
     m_alertAry.pop_back();
 }
 
-void DisplayController::modal_open(display_ptr dp)
+void DisplayController::modal_close(const display_ptr& dp)
 {
-    /*m_modalStack.emplace_back(display);
-    m_modalAryCV.notify_one();
-    _open();*/
-
-    m_displayMap.pushModal(dp);
-}
-
-
-void DisplayController::modal_close()
-{
-}
-
-
-void DisplayController::modaless_close(seg::t_id winid)
-{
-    for (const auto& q : m_modalessAry)
+    if (auto _dp = DisplayMap::getInstance().popModal(dp->getSuperWindowID()) ;
+        _dp != nullptr)
     {
-        if (winid == q->getWindowID())
-            ;//dp->postDestroy()
+        //
     }
 }
+
+
+void DisplayController::modaless_close(display_type::unique_type uniqueId)
+{
+    if (auto dp = DisplayMap::getInstance().eraseModaless(uniqueId);
+        dp != nullptr)
+    {
+        //
+    }
+}
+
 
 void DisplayController::_preModalOpen(display_ptr display)
 {
@@ -78,28 +74,24 @@ void DisplayController::_postOpenDisplay(display_ptr display)
     display->postCreate(display);
 }
 
-void DisplayController::close(const t_id id)
-{
-    if (!m_modalStack.empty() && m_modalStack.back()->getWindowID() == id) {
-        auto quitDisplay = m_modalStack.back();
-        m_modalStack.pop_back();
-    } else {
-        for (auto& q : m_modalessAry)
-        {
-            q.erase(std::remove_if(q.begin(), q.end(), [id](const auto& display) {
-                return display->getWindowID() == id;
-                }));
-        }
-    }
-}
+//void DisplayController::close(const display_ptr id)
+//{
+//    if
+//    DisplayMap::getInstance().fi
+//}
 
 void DisplayController::run()
 {
     m_mainDp->initialize();
+    DisplayMap::getInstance().initialize(m_mainDp);
+    m_mainDpThread = std::thread(&DisplayController::startMainDisplay, this);
+
     _pumpEvent();
-    //m_thread = std::thread(&DisplayController::_pumpEvent, this);
+
+    m_mainDpThread.join();
 }
 
+//그리기 이벤트만 이곳에서 처리하고 나머지 이벤트는 모두 각 dp에 push한다.
 void DisplayController::_pumpEvent()
 {
     /*std::unique_lock<std::mutex> lock(m_modalAryMutex);
@@ -109,53 +101,34 @@ void DisplayController::_pumpEvent()
         SDL_Event* event = new SDL_Event{};
         SDL_WaitEvent(event);
 
-        auto dp = findFromId(event->window.windowID);
-        if (dp == nullptr)
+        if (auto winId = getActivatedWindowID(event);
+            winId != NULL_WINDOW_ID)
         {
-            ;
+            auto dp = DisplayMap::getInstance().find(event->window.windowID);
+            if (dp == nullptr)
+            {
+                assert(0);
+                continue;
+            }
+
+            if (event->user.code == SEG_DRAW_DISPLAY ||
+                event->user.code == SEG_DRAW_CONTROLLER){
+                dp->onEvent(*event);
+                delete event;
+            }
+            else {
+                dp->pushEvent(*event);
+            }
+        }
+        else {
+            delete event;
         }
 
-        dp->onEvent(*event);
-
-        // printf("DisplayController::_pumpEvent : %d\n", debug++);
-
-        //const auto winid = getActivatedWindowID(event);
-        //if (winid != NULL_WINDOW_ID) {
-        //    if (auto display = findFromId(winid); display != nullptr) {
-        //        display->pushEvent(*event);
-        //    }
-        //} else {
-        //    //broadcasting m_userEvent if not found something targeted id (display, controller)
-        //    if (!m_modalStack.empty()) {
-        //        m_modalStack.back()->pushEvent(*event);
-        //    }
-
-        //    for (auto& q : m_modalessAry)
-        //    {
-        //        for (const auto& dp : q)
-        //        {
-        //            dp->pushEvent(*event);
-        //        }
-        //    }
-        //}
-
-        //for (auto& display : m_alertAry) {
-        //    display->pushEvent(*event);
-        //}
+        if (m_newDisplayQ.isEmpty() == false){
+            auto dp = m_newDisplayQ.popEvent();
+            _postOpenDisplay(dp);
+        }
     }
-}
-
-DisplayController::display_ptr DisplayController::findFromId(const t_id id)
-{
-    display_ptr dp = nullptr;
-    for (const auto& q : m_modalessAry)
-    {
-        dp = _find(q, id);
-        if (dp != nullptr)
-            return dp;
-    }
-
-    return _find(m_modalStack, id);
 }
 
 template<class T>
@@ -218,7 +191,7 @@ void DisplayController::_release()
 
 void DisplayController::finish()
 {
-    for (const auto display : m_modalStack) {
+    /*for (const auto display : m_modalStack) {
         event::EventPusher event{display->getWindowID(), WINDOW_CLOSE};
         event.pushEvent();
     }
@@ -230,7 +203,7 @@ void DisplayController::finish()
             event::EventPusher event {dp->getWindowID(), WINDOW_CLOSE};
             event.pushEvent();
         }
-    }
+    }*/
 
     /* while(!m_modalStack.empty())
      {
@@ -256,12 +229,12 @@ void DisplayController::finish()
 
 void DisplayController::refreshModal()
 {
-    for (const auto display : m_modalStack) {
-        display->refresh();
-    }
-    for (const auto display : m_modalessAry) {
-        //display->refresh();
-    }
+    //for (const auto display : m_modalStack) {
+    //    display->refresh();
+    //}
+    //for (const auto display : m_modalessAry) {
+    //    //display->refresh();
+    //}
 }
 
 void DisplayController::getDisplay(const t_id displayId)
@@ -272,11 +245,11 @@ void DisplayController::getDisplay(const t_id displayId)
 void DisplayController::setMainDisplay(const display_ptr dp)
 {
     std::unique_lock<std::mutex> lock(m_mainDisplayChangeMutex);
-    dp-> d
+    dp->setSuperWindowID(SUPER_WINDOWS_ID);
     m_mainDp = dp;
 }
 
 void DisplayController::startMainDisplay()
 {
-    m_mainDp->modal();
+    m_mainDp->modaless();
 }

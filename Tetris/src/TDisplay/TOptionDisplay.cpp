@@ -15,7 +15,6 @@ using namespace tetris_module;
 TOptionDisplay::TOptionDisplay()
 {
     m_display = game_interface::toUType(TDisplay::Option);
-    m_mode = TLocalMode::All;
 };
 
 void TOptionDisplay::registerEvent()

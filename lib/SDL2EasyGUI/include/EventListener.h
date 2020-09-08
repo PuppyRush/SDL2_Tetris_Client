@@ -22,11 +22,11 @@ class EventListener
 public:
 
     using queue_type = EventQueue<SDL_Event>;
-    using data_type = queue_type::data_ref;
+    using data_type = queue_type::data_type;
 
     virtual ~EventListener() = default;
 
-    void onEvent(const SDL_Event& event)
+    virtual void onEvent(const SDL_Event& event)
     {
         using namespace game_interface::logger;
         
@@ -77,7 +77,7 @@ public:
                 break;
             case SDL_MOUSEBUTTONUP :
                 Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_MOUSEBUTTONUP", Logger::logger_level::Debug);
-                onMouseButtonEvent(&event.button);
+                //onMouseButtonEvent(&event.button);
                 break;
             case SDL_MOUSEWHEEL    :
                 Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_MOUSEWHEEL", Logger::logger_level::Debug);
@@ -262,10 +262,10 @@ public:
 
     //Event Queue
     void pushEvent(const data_type event)
-    { m_eventDelivery.pushEvent(&event); }
+    { m_eventDelivery.pushEvent(event); }
 
     const data_type popEvent()
-    { return *m_eventDelivery.popEvent(); }
+    { return m_eventDelivery.popEvent(); }
 
 
 protected:
