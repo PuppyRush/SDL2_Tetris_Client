@@ -54,6 +54,12 @@ const Packet PacketQueue::popEvent()
     return msg;
 }
 
+bool PacketQueue::isEmpty()
+{
+    std::lock_guard<std::mutex> lock(m_mutex);
+    return m_packetQ.empty();
+}
+
 void PacketQueue::notify()
 {
     auto& mngCtl = game_interface::ManagerController::getInstance();

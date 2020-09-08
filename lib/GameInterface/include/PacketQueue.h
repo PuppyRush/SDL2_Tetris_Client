@@ -49,6 +49,8 @@ public:
 
     const packet::Packet popEvent();
 
+    bool isEmpty();
+
     inline void end()
     { m_isContinue.exchange(false); }
 

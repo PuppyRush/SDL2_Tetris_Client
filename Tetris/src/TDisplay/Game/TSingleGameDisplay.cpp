@@ -23,7 +23,6 @@ TSingleGameDisplay::TSingleGameDisplay()
         : TGameDisplay()
 {
     m_display = game_interface::toUType(TDisplay::Game);
-    m_mode = TLocalMode::Local;
 }
 
 void TSingleGameDisplay::onClickedStart(const void* click)

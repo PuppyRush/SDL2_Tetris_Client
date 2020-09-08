@@ -14,6 +14,8 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_video.h>
 
+#include "GameInterface/include/Atomic.h"
+
 #include "DisplayController.h"
 
 #undef main
@@ -23,12 +25,13 @@ namespace seg {
 static void Start()
 {
     DisplayController::getInstance().run();
-    //DisplayController::getInstance().startMainDisplay();
 }
 
-static void SetMaindisplay(const std::shared_ptr<DisplayInterface> dp)
+template <typename _Dp>
+static void SetMaindisplay()
 {
-    DisplayController::getInstance().setMainDisplay(dp);
+    
+    DisplayController::getInstance().setMainDisplay(make_display<_Dp>());
 }
 
 static void SDLEasyGUI_Init()
@@ -47,6 +50,7 @@ static void SDLEasyGUI_Init()
     }
     SDL_RegisterEvents(SEG_DRAW_DISPLAY);
 
+    game_interface::atomic::Atomic<ControlBasic>::getInstance().setFirstUnique(START_DISPLAY_ID);
     
 }
 

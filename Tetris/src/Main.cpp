@@ -35,11 +35,10 @@ void init()
 
     game_interface::GameInterface_Init(false);
     seg::SDLEasyGUI_Init();
+	seg::SetMaindisplay<TMultiMainDisplay>();
 
     TPlayer::getInstance()->setOrder(0);
     TPlayer::getInstance()->setMaster(true);
-
-	seg::SetMaindisplay(seg::make_display<TMultiMainDisplay>());
 	
 }
 

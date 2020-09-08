@@ -17,7 +17,6 @@ using namespace seg;
 
 TLocalMainDisplay::TLocalMainDisplay()
 {
-    m_mode = TLocalMode::Local;
 }
 
 void TLocalMainDisplay::registerEvent()
@@ -77,7 +76,7 @@ void TLocalMainDisplay::onClickedStartLocalGame(const void* click)
     auto dlg = seg::make_display<TSingleGameDisplay>();
     dlg->setWindowHeight(WINDOW_HEIGHT);
     dlg->setWindowWidth(WINDOW_WIDTH);
-    dlg->modal(dlg);
+    dlg->modal();
 }
 
 void TLocalMainDisplay::onClickedOption(const void* click)
@@ -85,7 +84,7 @@ void TLocalMainDisplay::onClickedOption(const void* click)
     auto dlg = seg::make_display<TOptionDisplay>();
     dlg->setWindowHeight(WINDOW_HEIGHT);
     dlg->setWindowWidth(WINDOW_WIDTH);
-    dlg->modal(dlg);
+    dlg->modal();
 }
 
 void TLocalMainDisplay::onDraw()
