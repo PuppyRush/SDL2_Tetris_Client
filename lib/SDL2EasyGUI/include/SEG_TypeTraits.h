@@ -15,7 +15,6 @@
 #include <memory>
 #include <cassert>
 
-#include "SEG_Type.h"
 #include "SEG_Struct.h"
 
 namespace seg {

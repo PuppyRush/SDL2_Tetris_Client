@@ -13,6 +13,8 @@ namespace seg {
 
 struct BoxItem
 {
+    using string_type = std::string;
+
     BoxItem() = default;
 
     BoxItem(const BoxItem& item)
@@ -20,6 +22,7 @@ struct BoxItem
         if (this == &item) {
             return;
         }
+        this->string = item.string;
         this->color = item.color;
         this->idx = item.idx;
         this->font = item.font;
@@ -27,13 +30,28 @@ struct BoxItem
 
     virtual ~BoxItem() = default;
 
-    virtual const std::string& getString()
+    /*virtual const std::string& getLabelString()
     {
         if (!caching) {
             setOriginString(origin);
             caching = true;
         }
         return origin;
+    }*/
+
+    void setString(const string_type& str)
+    {
+        string = str;
+    }
+
+    void setString(string_type&& str)
+    {
+        string = str;
+    }
+
+    string_type getString()
+    {
+        return string;
     }
 
     size_t getIdx() const
@@ -43,7 +61,7 @@ struct BoxItem
 
     void setIdx(size_t idx)
     {
-        caching = false;
+        //caching = false;
         BoxItem::idx = idx;
     }
 
@@ -54,8 +72,8 @@ struct BoxItem
 
     void setColor(const SEG_Color& color)
     {
-        caching = false;
-        BoxItem::color = color;
+       // caching = false;
+        this->color = color;
     }
 
     const SEG_TFont& getFont() const
@@ -65,33 +83,47 @@ struct BoxItem
 
     void setFont(const SEG_TFont& font)
     {
-        caching = false;
-        BoxItem::font = font;
+       // caching = false;
+        this->font = font;
     }
 
-    virtual void setOriginString(std::string& _origin) = 0;
+   // virtual void setOriginString(std::string& _origin) = 0;
 
 protected:
-    bool caching = false;
+    //bool caching = false;
 
 private:
-    mutable std::string origin{100};
+    mutable string_type string{50};
     std::size_t idx;
     SEG_Color color = {ColorCode::black};
     SEG_TFont font;
 
 };
 
+class BoxBasicBuilder;
 class BoxBasic : public Border
 {
 public:
     using item_type = BoxItem;
+    using string_type = item_type::string_type;
     using item_ptr = std::shared_ptr<item_type>;
+    using item_ary = std::vector<item_ptr>;
 
-    void appendItem(const item_ptr item)
+    void appendItem(item_ptr item)
     {
-        m_items.push_back(item);
+        m_items.emplace_back(item);
     }
+    
+    void appendItem(string_type&& str)
+    {
+        m_items.emplace_back(std::make_shared<item_type>(str));
+    }
+
+    void appendItem(const string_type& str)
+    {
+        m_items.emplace_back(std::make_shared<item_type>(str));
+    }
+
 
     item_ptr at(const size_t index)
     {
@@ -135,12 +167,12 @@ public:
         m_visibleMenuCnt = mVisibleMenuCnt;
     }
 
-    inline std::vector<item_ptr>& getItems()
+    inline item_ary& getItems()
     {
         return m_items;
     }
 
-    inline void setItems(const std::vector<item_ptr>& mItems)
+    inline void setItems(const item_ary& mItems)
     {
         m_items = mItems;
     }
@@ -201,7 +233,7 @@ public:
 
 protected:
 
-    BoxBasic(ControlBuilder& bld);
+    BoxBasic(BoxBasicBuilder& bld);
 
     virtual ~BoxBasic();
 
@@ -218,6 +250,50 @@ private:
     int m_selectedMenuIdx = -1;
     int m_boundedMenuIndx = -1;
     bool m_folded = true;
+
+};
+
+class BoxBasicBuilder : public BorderBuilder
+{
+public:
+
+    using item_type = BoxBasic::item_type;
+    using string_type = item_type::string_type;
+    using item_ptr = std::shared_ptr<item_type>;
+    using item_ary = std::vector<item_ptr>;
+
+    virtual ~BoxBasicBuilder() = default;
+
+    BoxBasicBuilder(const GraphicInterface::window_type window, const SEG_Point& point, const std::string& str)
+        : BorderBuilder(window, point, str)
+    {
+    }
+
+    BoxBasicBuilder(const GraphicInterface::window_type window, SEG_Point&& point, std::string&& str)
+        : BorderBuilder(window, point, str)
+    {
+    }
+
+    void appendItem(string_type&& str)
+    {
+        m_items.push_back(std::make_shared<item_type>(str));
+    }
+
+    void appendItem(const string_type& str)
+    {
+        m_items.push_back(std::make_shared<item_type>(str));
+    }
+
+    const item_ary& getItems() const noexcept
+    {
+        return m_items;
+    }
+
+    virtual Control::control_ptr build() = 0;
+
+private:
+
+    item_ary m_items;
 
 };
 

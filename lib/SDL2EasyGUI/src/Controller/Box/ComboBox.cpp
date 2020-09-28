@@ -34,7 +34,8 @@ void ComboBox::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 
             setHeight(m_defaultHeight);
 
-            event::EventPusher event{getWindow()->getWindowID(), getId(), SEG_DECORATOR_DETACH};
+            event::EventPusher event{getWindow()->getWindowID(), SEG_CONTROLLER, SEG_DECORATOR_DETACH};
+            event.setTargetId(getId());
             event.setUserData(this);
             event.pushEvent();
 
@@ -44,7 +45,8 @@ void ComboBox::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 
             if (getVisibleMenuCount() < getItems().size()) {
                 auto dec = new ScrollrableDecorator(this);
-                event::EventPusher event{getWindow()->getWindowID(), getId(), SEG_DECORATOR_ATTACH};
+                event::EventPusher event{getWindow()->getWindowID(), SEG_CONTROLLER, SEG_DECORATOR_ATTACH};
+                event.setTargetId(getId());
                 event.setUserData(dec);
                 event.pushEvent();
             }

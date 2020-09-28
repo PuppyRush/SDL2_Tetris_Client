@@ -51,7 +51,7 @@ protected:
 
     void _drawNextFigure();
 
-    std::shared_ptr<seg::event::TimerAdder> m_gameTimer;
+    std::shared_ptr<seg::event::SEG_Timer> m_gameTimer;
     std::vector<std::shared_ptr<TPlayer>> m_players;
     bool m_gamestart = false;
     bool m_drawLine;

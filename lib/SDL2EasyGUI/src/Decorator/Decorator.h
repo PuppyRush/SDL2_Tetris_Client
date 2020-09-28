@@ -129,11 +129,23 @@ protected:
     virtual void onTimerEvent(const SDL_UserEvent* user) override
     { m_graphic->onTimerEvent(user); }
 
-    virtual void onAttachFocus() override
-    { m_graphic->onAttachFocus(); };
+    virtual void onAttachFocus(const SDL_UserEvent* user) override
+    { m_graphic->onAttachFocus(user); };
 
-    virtual void onDetachFocus() override
-    { m_graphic->onDetachFocus(); };
+    virtual void onDetachFocus(const SDL_UserEvent* user) override
+    { m_graphic->onDetachFocus(user); };
+
+    virtual void onBound(const SDL_MouseMotionEvent* user) override
+    { m_graphic->onBound(user); }
+
+    virtual void onUnbound(const SDL_MouseMotionEvent* user) override
+    { m_graphic->onUnbound(user); }
+
+    virtual bool bound(const SDL_Event& event) override
+    { return m_graphic->bound(event); }
+
+    virtual bool focus(const SDL_Event& event) override
+    { return m_graphic->focus(event); }
 
 private:
 

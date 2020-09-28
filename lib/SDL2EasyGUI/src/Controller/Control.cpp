@@ -10,7 +10,7 @@
 using namespace seg;
 
 Control::Control(const Control* ctl)
-        : GraphicInterface(ctl->getBasic())
+        : GraphicInterface(ctl->getBasic()), m_isBounded(false)
 {
     _initializeInCtor();
     GraphicInterface::m_backgroundColor = m_data->backgroundColor;
@@ -49,7 +49,7 @@ void Control::onKeyboardEvent(const SDL_KeyboardEvent* key)
 
     switch (key->keysym.sym) {
         case SDLK_RETURN:
-            if (isHitting()) {
+            if (isActivated()) {
                 onHit(getMidPoint(), true);
             }
             break;
@@ -107,9 +107,11 @@ void Control::onVirtualDraw()
     onDraw();
 }
 
+#include <tuple>
 void Control::refresh()
 {
-    event::EventPusher event{this->getWindow()->getWindowID(), this->getId(), SEG_DRAW_CONTROLLER};
+    event::EventPusher event{this->getWindow()->getWindowID(), SEG_DRAW, SEG_DRAW_CONTROLLER};
+    event.setTargetId(this->getId());
     event.pushEvent();
 }
 
@@ -126,14 +128,26 @@ void Control::onHit(const SEG_Point& point, const bool hit)
 {
     setSelected(hit);
 
-    event::EventPusher event{this->getWindow()->getWindowID(), this->getId(), SEG_CLICKED_CONTROLLER};
+    setActivating(true);
+
+    event::EventPusher event{this->getWindow()->getWindowID(), SEG_CONTROLLER, SEG_CLICKED_CONTROLLER};
+    event.setTargetId(this->getId());
     event.setUserData(new event::SEG_Click{point, this->getId(), isSelected()});
     event.pushEvent();
+
+    event::EventPusher event_ {this->getWindow()->getWindowID(), SEG_CONTROLLER, SEG_ATTACH_FOCUS};
+    event_.setTargetId(this->getId());
+    event_.pushEvent();
 }
 
 bool Control::isHit(const t_coord x, const t_coord y, const t_coord z) const
 {
     return isHit({x, y, z});
+}
+
+bool Control::isHit(SEG_Point&& point) const
+{
+    return isHit(static_cast<const SEG_Point>(std::move(point)));
 }
 
 bool Control::isHit(const SEG_Point& point) const
@@ -146,50 +160,42 @@ bool Control::isHit(const SEG_Point& point) const
     }
 }
 
-//event에 대한 bound 검사만 수행한다.
-bool Control::isBounded(const SDL_Event& event)
+bool Control::bound(const SDL_Event& event)
 {
-    bool bounded{false};
-    switch (event.type) {
-        case SDL_MOUSEMOTION   :
-            bounded = isHit(event.motion.x, event.motion.y);
-            break;
-        default:
-            return false;
+    bool bounded = isHit(event.motion.x, event.motion.y);
+    if (bounded)
+    {
+        event::EventPusher event {getWindow()->getWindowID(), SEG_CONTROLLER, SEG_BOUND};
+        event.setTargetId(getId());
+        event.pushEvent();
     }
-
-    if (m_isBounded != bounded) {
-
-        if (bounded) {
-            event::EventPusher event{getWindow()->getWindowID(), getId(), ATTACH_FOCUS};
-            event.pushEvent();
-        } else {
-            event::EventPusher event{getWindow()->getWindowID(), getId(), DETACH_FOCUS};
-            event.pushEvent();
-        }
+    else
+    {
+        event::EventPusher event {getWindow()->getWindowID(), SEG_CONTROLLER, SEG_UNBOUND};
+        event.setTargetId(getId());
+        event.pushEvent();
     }
-
     return m_isBounded = bounded;
 }
 
-//마우스가 컨트롤러를 지나가고 있는지 확인한다.
-bool Control::isHitting(const SDL_Event& event) noexcept
+bool Control::focus(const SDL_Event& event)
 {
-    /*if (m_isHitting) {
-        return true;
-    }*/
-    return (m_isHitting = isHit(event.motion.x, event.motion.y));
+    bool bounded = isHit(event.motion.x, event.motion.y);
+    if (bounded)
+    {
+        event::EventPusher event {getWindow()->getWindowID(), SEG_CONTROLLER, SEG_ATTACH_FOCUS};
+        event.setTargetId(getId());
+        event.pushEvent();
+    }
+    else
+    {
+        event::EventPusher event {getWindow()->getWindowID(), SEG_CONTROLLER, SEG_DETACH_FOCUS};
+        event.setTargetId(getId());
+        event.pushEvent();
+    }
+    return m_isBounded = bounded;
 }
 
-void Control::drawBackground(const SDL_Rect rect, const SEG_Color color)
-{
-    auto renderer = getWindow()->getSDLRenderer();
-
-    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, 255);
-    SDL_RenderFillRect(renderer, &rect);
-    SDL_RenderDrawRect(renderer, &rect);
-
-}
 
 void Control::onDraw()
 {

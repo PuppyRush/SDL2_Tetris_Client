@@ -16,7 +16,6 @@
 
 #include <SDL2/SDL_image.h>
 
-#include "SEG_Type.h"
 #include "SEG_Property.h"
 
 namespace seg {

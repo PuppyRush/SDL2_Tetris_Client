@@ -83,7 +83,7 @@ void TEnterServerDisplay::onClickedEnterServer(const void* click)
     auto& player = TPlayer::getInstance();
     const auto& idLabel = getControl<EditLabel>(resource::ENTERSERVER_ID);
 
-    if (idLabel->getString().size() < 5) {
+    if (idLabel->getLabelString().size() < 5) {
         assert(idLabel != nullptr);
         seg::MessageDialog dlg{"Enter Your ID at least 5 characters",
                                seg::MessageDialogKind::error};
@@ -91,7 +91,7 @@ void TEnterServerDisplay::onClickedEnterServer(const void* click)
         m_valid = false;
     }
     else{
-        player->setUserName(idLabel->getString());
+        player->setUserName(idLabel->getLabelString());
         m_valid = true;
         TDisplayInterface::onOk();
     }
@@ -101,4 +101,5 @@ void TEnterServerDisplay::onClickedEnterServer(const void* click)
 void TEnterServerDisplay::onClickedBack(const void* click)
 {
     TDisplayInterface::onButtonClick(click);
+    onClose();
 }

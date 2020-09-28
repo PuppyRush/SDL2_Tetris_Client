@@ -76,7 +76,7 @@ void TCreateGameroomDisplay::onInitialize()
 void TCreateGameroomDisplay::onClose()
 {
     const auto ctl = getControl<EditLabel>(tetris::resource::WAITINGROOM_CREATE_GAMEROOMNAME);
-    m_roomname = ctl->getString();
+    m_roomname = ctl->getLabelString();
 
     TDisplayInterface::onClose();
 }

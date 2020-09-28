@@ -38,7 +38,6 @@ void DisplayInterface::initialize()
 {
     getWindow()->initialize();
 
-    m_currentCtl = nullptr;
     setRun(true);
 
     onCreate();
@@ -76,103 +75,237 @@ void DisplayInterface::ready(const DisplayInterface* parentDp)
     m_superParentId = parentDp->m_superParentId;
 }
 
+
+void DisplayInterface::_run()
+{
+    static int debug{0};
+
+    while (m_run) 
+    {
+
+        auto event = m_eventDelivery.popEvent();
+        this->onEvent(event);
+            
+
+        //printf("DisplayInterface::_run : %d\n", debug++);
+    }
+}
+
 void DisplayInterface::onEvent(const SDL_Event& event)
 {
     EventListener::onEvent(event);
     _mouseEventOnMenus(event);
 }
 
-
-void DisplayInterface::_run()
+void DisplayInterface::_mouseEventOnMenus(const SDL_Event& evt)
 {
-    static int debug{0};
-    std::unique_lock<std::mutex> lock(m_runMtx);
-
-    while (m_run) 
+    switch (evt.type)
     {
-       // m_runCond.wait(lock, [=]() { return !m_run.load(); }); 
-
-        //왜 있는거지?
-        auto event = m_eventDelivery.popEvent();
-        onEvent(event);
-        //printf("DisplayInterface::_run : %d\n", debug++);
+    case SDL_MOUSEMOTION:
+    {
+        auto ctl = getHittingMunues({ evt.motion.x, evt.motion.y });
+        if (ctl != nullptr && ctl->isHit({ evt.button.x, evt.button.y }))
+        {
+            ctl->onEvent(evt);
+            ctl->bound(evt);
+        }
+        if (ctl == nullptr && getActivatedControl() != nullptr)
+        {
+            getActivatedControl()->bound(evt);
+        }
+        break;
     }
+    case SDL_MOUSEBUTTONDOWN:
+    {
+        auto ctl = getHittingMunues({ evt.button.x, evt.button.y });
+        if (ctl != nullptr && ctl->isHit({ evt.motion.x, evt.motion.y }))
+        {
+            ctl->onEvent(evt);
+            ctl->focus(evt);
+            setActivatedControl(ctl);
+        }
+        if (ctl == nullptr && getActivatedControl() != nullptr)
+        {
+            getActivatedControl()->focus(evt);
+            clearActivatedControl();
+        }
+        break;
+    }
+    case SEG_CONTROLLER:
+    {
+        if (evt.user.code == SEG_ATTACH_FOCUS || evt.user.code == SEG_DETACH_FOCUS)
+        {
+            auto data = static_cast<event::SEG_UserEventData*>(evt.user.data1);
+            if (data == nullptr)
+            {
+                assert(0);
+                return;
+            }
+            auto ctl = getControl(data->controlId);
+            if (ctl == nullptr)
+            {
+                assert(0);
+                return;
+            }
+            ctl->onEvent(evt);
+        }
+        break;
+    }
+    case SDL_TEXTINPUT:
+    case SDL_KEYDOWN:
+    {
+        if (getActivatedControl() != nullptr)
+        {
+            getActivatedControl()->onEvent(evt);
+        }
+        break;
+    }
+    default:
+
+        break;
+    }
+}
+
+Control* DisplayInterface::getHittingMunues(const SDL_Point& point) const
+{
+    for (const auto& ctl : _getMenuAry()) {
+        if (ctl->isHit(point.x, point.y))
+        {
+            return ctl;
+        }
+    }
+    return nullptr;
 }
 
 void DisplayInterface::onUserEvent(const SDL_UserEvent* event)
 {
-    switch (event->code) {
-        case SEG_CLICKED_CONTROLLER: {
-            t_id id = *static_cast<t_id*>(event->data1);
-            event::SEG_Click* click = static_cast<event::SEG_Click*>(event->data2);
-            _setResult(click->resourceId);
+    using namespace event;
 
-            if (m_callback_one_param.count(id) > 0) {
-               // m_clickthread = std::thread( [=](){
-                        m_callback_one_param.at(id)(click);
-               //     });
-            }
-            break;
-        }
-        case SEG_ENTER_CONTROLLER: {
-            t_id id = *static_cast<t_id*>(event->data1);
-
-            if (m_callback_one_param.count(id) > 0) {
-                SDL_KeyboardEvent* keyevent = static_cast<SDL_KeyboardEvent*>(event->data2);
-                m_callback_one_param.at(id)(keyevent);
-            }
-            break;
-        }
+    switch (event->type) {
+    case SEG_DRAW:
+        switch (event->code) {
         case SEG_DRAW_CONTROLLER:
-            _onDrawMenus();
-            break;
-        case SEG_DRAW_DISPLAY: {
+            //_onDrawMenus();
+            //break;
+        case SEG_DRAW_DISPLAY:
             //dont call _refresh() in this case.
             onDrawBackground();
             onDraw();
             break;
-        }
-        case WINDOW_CLOSE:
-            onClose();
+        case SEG_DRAW_LINES:
+        {
+            auto data = static_cast<std::tuple<SDL_Point*, int>*>(event->data2);
+            SDL_RenderDrawLines(this->getRenderer(), std::get<0>(*data), std::get<1>(*data));
             break;
+        }
+        case SEG_DRAW_COLOR:
+        {
+            auto data = static_cast<std::tuple<Uint8, Uint8, Uint8, Uint8>*>(event->data2);
+            SDL_SetRenderDrawColor(this->getRenderer(), std::get<0>(*data), std::get<1>(*data), std::get<2>(*data), std::get<3>(*data));
+            break;
+        }
+
+        default:
+            break;
+        }
+        break;
+    case SEG_CONTROLLER:
+        switch (event->code)
+        {
+        case SEG_ATTACH_FOCUS:
+            onAttachFocus(event);
+            break;
+        case SEG_DETACH_FOCUS:
+            onDetachFocus(event);
+            break;
+        case SEG_CLICKED_CONTROLLER: {
+            auto userdata = static_cast<SEG_UserEventData*>(event->data1);
+            if (userdata == nullptr)
+                break;
+
+            event::SEG_Click* click = static_cast<event::SEG_Click*>(event->data2);
+            _setResult(click->resourceId);
+
+            if (m_callback_one_param.count(userdata->controlId) > 0) {
+                // m_clickthread = std::thread( [=](){
+                m_callback_one_param.at(userdata->controlId)(click);
+                //     });
+            }
+            break;
+        }
+        case SEG_ENTER_CONTROLLER: {
+            auto userdata = static_cast<SEG_UserEventData*>(event->data1);
+
+            if (m_callback_one_param.count(userdata->controlId) > 0) {
+                SDL_KeyboardEvent* keyevent = static_cast<SDL_KeyboardEvent*>(event->data2);
+                m_callback_one_param.at(userdata->controlId)(keyevent);
+            }
+            break;
+        }
         case SEG_DECORATOR_ATTACH: {
-            t_id id = *static_cast<t_id*>(event->data1);
+            auto userdata = static_cast<SEG_UserEventData*>(event->data1);
             control_ptr decorator = static_cast<control_ptr>(event->data2);
 
-            if (auto ctl = getControl(id); ctl != nullptr) {
+            if (auto ctl = getControl(userdata->controlId); ctl != nullptr) {
                 attachDecorator(ctl, decorator);
-            } else {
+            }
+            else {
                 assert(0);
             }
             break;
         }
         case SEG_DECORATOR_DETACH: {
-            t_id id = *static_cast<t_id*>(event->data1);
+            auto userdata = static_cast<SEG_UserEventData*>(event->data1);
             auto origin = static_cast<Control*>(event->data2);
-            if (auto deco = getControl(id); deco != nullptr && origin->getId() == deco->getId()) {
+            if (auto deco = getControl(userdata->controlId); deco != nullptr && origin->getId() == deco->getId()) {
                 detachDecorator(origin);
-            } else {
+            }
+            else {
                 assert(0);
             }
             break;
         }
+        }//switch
+        break;
+    default:
+        switch (event->code)
+        {
+        case SEG_WINDOW_CLOSE:
+            onClose();
+            break;
         default:;
+        }
     }
+}
+
+void DisplayInterface::onTimerEvent(const SDL_UserEvent* user)
+{
+    using namespace event;
+    if (SEG_UserEventData* userdata = static_cast<SEG_UserEventData*>(user->data1);
+        userdata != nullptr)
+    {
+        if (auto ctl = getControl(userdata->controlId);
+            ctl != nullptr)
+        {
+            ctl->onTimerEvent(user);
+        }
+    }
+    
 }
 
 void DisplayInterface::onKeyboardEvent(const SDL_KeyboardEvent* key)
 {
     switch (key->keysym.sym) {
         case SDLK_RETURN:
-            if (auto res = getCurrentControl();
-                    res.first && res.second->isHitting()) {
-                res.second->onHit(res.second->getMidPoint(), true);
+            if (m_activatedCtl != nullptr && m_activatedCtl->isActivated())
+            {
+                m_activatedCtl->onHit(m_activatedCtl->getMidPoint(), true);
             }
             break;
         case SDLK_ESCAPE:
-            if (auto res = getCurrentControl();
-                    res.first && res.second->isHitting()) {
-                res.second->setHitting(false);
+            if (m_activatedCtl != nullptr && m_activatedCtl->isActivated())
+            {
+                m_activatedCtl->setActivating(false);
             }
             break;
     }
@@ -180,7 +313,6 @@ void DisplayInterface::onKeyboardEvent(const SDL_KeyboardEvent* key)
 
 void DisplayInterface::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 {
-    menuHitTest(SEG_Point{button->x, button->y});
     refresh();
 }
 
@@ -200,7 +332,6 @@ void DisplayInterface::onWindowEvent(const SDL_WindowEvent& window)
             onDestroy();
             break;
     }
-    //DisplayController::getInstance().refreshModal();
 }
 
 void DisplayInterface::onCreate()
@@ -294,16 +425,6 @@ void DisplayInterface::_onDrawMenus()
     }
 }
 
-void DisplayInterface::_mouseEventOnMenus(const SDL_Event& evt)
-{
-    for (const auto& ctl : _getMenuAry()) {
-        if (ctl->isHit(evt.button.x, evt.button.y))
-        {
-            ctl->onEvent(evt);
-            //ctl->onEvent( const_cast<SDL_Event&>(evt));
-        }
-    }
-}
 
 void DisplayInterface::addControl(Control* newCtl)
 {
@@ -338,28 +459,9 @@ bool DisplayInterface::removeControl(control_ptr ctl)
     return false;
 }
 
-void DisplayInterface::menuHitTest(const SEG_Point& point)
-{
-    if (m_currentCtl && m_currentCtl->isHit(point)) {
-        event::EventPusher event {this->getWindowID(), m_currentCtl->getId(), ATTACH_FOCUS};
-        event.pushEvent();
-        return;
-    }
-
-    for (const auto& menu : _getMenuAry()) {
-        if (menu->isHit(point)) {
-            m_currentCtl = menu;
-
-            event::EventPusher event{this->getWindowID(), menu->getId(), ATTACH_FOCUS};
-            event.pushEvent();
-            break;
-        }
-    }
-}
-
 void DisplayInterface::refresh()
 {
-    event::EventPusher event{this->getWindowID(), SEG_DRAW_DISPLAY};
+    event::EventPusher event{this->getWindowID(), SEG_DRAW,  SEG_DRAW_DISPLAY};
     event.pushEvent();
 }
 
@@ -367,7 +469,7 @@ void DisplayInterface::attachDecorator(const control_ptr ctl, control_ptr decora
 {
     if (removeControl(ctl)) {
         addControl(decorator);
-        m_currentCtl = decorator;
+        m_activatedCtl = decorator;
     }
 
 }
@@ -376,16 +478,21 @@ void DisplayInterface::detachDecorator(const control_ptr ctl)
 {
     if (removeControl(ctl)) {
         addControl(ctl);
-        m_currentCtl = ctl;
+        m_activatedCtl = ctl;
     }
 }
 
 DisplayInterface::control_ptr
 DisplayInterface::getControl(const t_id resourceId)
 {
-    return *find_if(begin(_getMenuAry()), end(_getMenuAry()), [resourceId](control_ptr ptr) {
+    if (_getMenuAry().empty())
+        return nullptr;
+
+    auto it = find_if(begin(_getMenuAry()), end(_getMenuAry()), [resourceId](control_ptr ptr) {
         return ptr->getId() == resourceId;
     });
+
+    return it == _getMenuAry().end() ? nullptr : *it;
 }
 
 DisplayInterface::control_ary_it

@@ -86,6 +86,9 @@ enum EventType
     SEG_ENTER_CONTROLLER,
     SEG_DECORATOR_ATTACH,
     SEG_DECORATOR_DETACH,
+
+    SEG_DRAW_LINES,
+    SEG_DRAW_COLOR
 };
 
 enum class BorderBoundaryType : t_type
@@ -110,13 +113,17 @@ enum SEG_Event : t_eventType
 {
 
     SEGEVENT_START = 0x8500,
-    ADD_MODAL_DISPLAY,
-    ADD_MODALESS_DISPLAY,
-    DRAW_DISPLAY,
-    WINDOW_CLOSE,
-    SDL_TIMER_EVENT,
-    DETACH_FOCUS,
-    ATTACH_FOCUS,
+    SEG_WINDOW_CLOSE,
+    SEG_TIMER_EVENT,
+    SEG_DRAW,
+
+    //
+    SEG_CONTROLLER,
+    SEG_DETACH_FOCUS,
+    SEG_ATTACH_FOCUS,
+    SEG_BOUND,
+    SEG_UNBOUND,
+    //
 
     SEGEVENT_END = 0x8999
 };

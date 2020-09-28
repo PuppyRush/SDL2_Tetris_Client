@@ -101,6 +101,7 @@ public:
             return m_modalessMap.at(uniqueId);
         }
 
+        return nullptr;
     }
 
     display_ptr find( const display_ptr& dp)

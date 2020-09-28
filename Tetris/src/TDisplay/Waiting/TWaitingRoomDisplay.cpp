@@ -243,7 +243,7 @@ void TWaitingRoomDisplay::sendChat(const void* event)
     auto keyevent = static_cast<const SDL_KeyboardEvent*>(event);
     if (keyevent->keysym.sym == SDLK_RETURN) {
         const auto ctl = getControl<EditLabel>(tetris::resource::WAITINGROOM_CHAREDIT);
-        ChatInfo chatinfo{TPlayer::getInstance()->getUserName(), ctl->getString(), std::time(0)};
+        ChatInfo chatinfo{TPlayer::getInstance()->getUserName(), ctl->getLabelString(), std::time(0)};
 
         Packet packet{
                 {m_waitingRoom.getUnique(), TPlayer::getInstance()->getUnique(), messageInfo::WAITINGROOMS_SEND_CHAT},

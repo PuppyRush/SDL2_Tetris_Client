@@ -98,30 +98,22 @@ void DisplayController::_pumpEvent()
     m_modalAryCV.wait(lock, [=]() { return !m_modalStack.empty() || !m_modalessAry.empty(); });*/
 
      while (m_run) {
-        SDL_Event* event = new SDL_Event{};
-        SDL_WaitEvent(event);
+        SDL_Event event;
+        SDL_WaitEvent(&event);
 
-        if (auto winId = getActivatedWindowID(event);
-            winId != NULL_WINDOW_ID)
+        auto dp = DisplayMap::getInstance().find(event.window.windowID);
+        if (dp == nullptr)
         {
-            auto dp = DisplayMap::getInstance().find(event->window.windowID);
+            dp = DisplayMap::getInstance().find(event.user.windowID);
             if (dp == nullptr)
-            {
-                assert(0);
                 continue;
-            }
+        }
 
-            if (event->user.code == SEG_DRAW_DISPLAY ||
-                event->user.code == SEG_DRAW_CONTROLLER){
-                dp->onEvent(*event);
-                delete event;
-            }
-            else {
-                dp->pushEvent(*event);
-            }
+        if (event.type == SEG_DRAW ){
+            dp->onEvent(event);
         }
         else {
-            delete event;
+            dp->pushEvent(event);
         }
 
         if (m_newDisplayQ.isEmpty() == false){
@@ -181,6 +173,8 @@ t_id DisplayController::getActivatedWindowID(const SDL_Event* event)
         case SDL_JOYDEVICEADDED  :
         case SDL_JOYDEVICEREMOVED:
             break;
+        default:
+            break;
     }
     return windowId;
 }
@@ -192,7 +186,8 @@ void DisplayController::_release()
 void DisplayController::finish()
 {
     /*for (const auto display : m_modalStack) {
-        event::EventPusher event{display->getWindowID(), WINDOW_CLOSE};
+        event::
+        event{display->getWindowID(), WINDOW_CLOSE};
         event.pushEvent();
     }
 

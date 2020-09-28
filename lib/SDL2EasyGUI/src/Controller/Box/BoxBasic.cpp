@@ -7,9 +7,15 @@
 
 using namespace seg;
 
-BoxBasic::BoxBasic(ControlBuilder& bld)
+BoxBasic::BoxBasic(BoxBasicBuilder& bld)
         : Border(bld)
-{}
+{
+    for (auto item : getItems())
+    {
+        appendItem(item);
+    }
+
+}
 
 BoxBasic::~BoxBasic()
 {}

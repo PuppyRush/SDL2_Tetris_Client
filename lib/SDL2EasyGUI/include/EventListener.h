@@ -33,16 +33,7 @@ public:
         switch (event.type) {
             case SDL_WINDOWEVENT   :
                 Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_WINDOWEVENT", Logger::logger_level::Debug);
-
                 onWindowEvent(event.window);
-                switch (event.window.type) {
-                    case SDL_WINDOWEVENT_FOCUS_GAINED:
-                        onDetachFocus();
-                        break;
-                    case SDL_WINDOWEVENT_FOCUS_LOST:
-                        onAttachFocus();
-                        break;
-                }
                 break;
             case SDL_SYSWMEVENT    :
                 Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_SYSWMEVENT", Logger::logger_level::Debug);
@@ -180,22 +171,39 @@ public:
             case SDL_RENDER_DEVICE_RESET :
                 Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_RENDER_DEVICE_RESET", Logger::logger_level::Debug);
                 break;
+            case SEG_DRAW:
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_DRAW", Logger::logger_level::Debug);
+                onUserEvent(&event.user);
+                break;
             case SDL_USEREVENT:
-                switch (event.user.code) {
-                    case ATTACH_FOCUS:
-                        Logger::getInstance().printLog("EventListener::onEvent, event_type : ATTACH_FOCUS", Logger::logger_level::Debug);
-                        onAttachFocus();
-                        break;
-                    case DETACH_FOCUS:
-                        Logger::getInstance().printLog("EventListener::onEvent, event_type : DETACH_FOCUS", Logger::logger_level::Debug);
-                        onDetachFocus();
-                        break;
-                    default:
-                        Logger::getInstance().printLog("EventListener::onEvent, event_type : default(SDL_USEREVENT)", Logger::logger_level::Debug);
-                        onUserEvent(&event.user);
+                Logger::getInstance().printLog("EventListener::onEvent, event_type : default(SDL_USEREVENT)", Logger::logger_level::Debug);
+                onUserEvent(&event.user);
+                break;
+            case SEG_CONTROLLER:
+                switch (event.user.code)
+                {
+                case SEG_ATTACH_FOCUS:
+                    Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_CONTROLLER, code : SEG_ATTACH_FOCUS", Logger::logger_level::Debug);
+                    onAttachFocus(&event.user);
+                    break;
+                case SEG_DETACH_FOCUS:
+                    Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_CONTROLLER, code : SEG_DETACH_FOCUS", Logger::logger_level::Debug);
+                    onDetachFocus(&event.user);
+                    break;
+                case SEG_BOUND:
+                    Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_CONTROLLER, code : SEG_BOUND", Logger::logger_level::Debug);
+                    onBound(&event.motion);
+                    break;
+                case SEG_UNBOUND:
+                    Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_CONTROLLER, code : SEG_UNBOUND", Logger::logger_level::Debug);
+                    onUnbound(&event.motion);
+                    break;
+                default:
+                    Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_CONTROLLER, default", Logger::logger_level::Debug);
+                    onUserEvent(&event.user);
                 }
                 break;
-            case SDL_TIMER_EVENT:
+            case SEG_TIMER_EVENT:
                 Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_TIMER_EVENT", Logger::logger_level::Debug);
                 onTimerEvent(&event.user);
                 break;
@@ -256,9 +264,13 @@ public:
     virtual void onTimerEvent(const SDL_UserEvent* user) = 0;
 
     //SEG Events
-    virtual void onAttachFocus() = 0;
+    virtual void onAttachFocus(const SDL_UserEvent* user) = 0;
 
-    virtual void onDetachFocus() = 0;
+    virtual void onDetachFocus(const SDL_UserEvent* user) = 0;
+
+    virtual void onBound(const SDL_MouseMotionEvent* user) = 0;
+
+    virtual void onUnbound(const SDL_MouseMotionEvent* user) = 0;
 
     //Event Queue
     void pushEvent(const data_type event)

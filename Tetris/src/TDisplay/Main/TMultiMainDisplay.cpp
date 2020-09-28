@@ -187,8 +187,8 @@ void TMultiMainDisplay::onClickedOption(const void* click)
 
 void TMultiMainDisplay::onClickedEnterServer(const void* click)
 {
-    /*auto enterServerDisplay = seg::make_display<TEnterServerDisplay>();
-    enterServerDisplay->modal(enterServerDisplay);*/
+    auto dp = DisplayController::modal_open<TEnterServerDisplay>();
+    dp->modal();
 
     TMainDisplay::onButtonClick(click);
 }

@@ -26,4 +26,3 @@ void Button::initialize()
 {
     ButtonBasic::initialize();
 }
-

@@ -44,19 +44,19 @@ public:
 
 };
 
-class ListBoxBuilder : public BorderBuilder
+class ListBoxBuilder : public BoxBasicBuilder
 {
 public:
 
     virtual ~ListBoxBuilder() = default;
 
     ListBoxBuilder(const GraphicInterface::window_type window, const SEG_Point& point, const std::string& str)
-            : BorderBuilder(window, point, str)
+            : BoxBasicBuilder(window, point, str)
     {
     }
 
     ListBoxBuilder(const GraphicInterface::window_type window, SEG_Point&& point, std::string&& str)
-            : BorderBuilder(window, point, str)
+            : BoxBasicBuilder(window, point, str)
     {
     }
 
