@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.8)
 project(sdl2_tetris_client)
 
 message("----------------sdl2_tetris_client START----------------")
@@ -66,6 +66,7 @@ endif ()
 # When done tweaking common stuff, configure the components (subprojects).
 # NOTE: The order matters! The most independent ones should go first.
 include_directories(lib)
+add_subdirectory(lib/EasyTimer)
 add_subdirectory(lib/GameInterface) # C is a shared library (depends on B and external XXX)
 add_subdirectory(lib/SDL2EasyGUI)
 add_subdirectory(lib/Tetris)

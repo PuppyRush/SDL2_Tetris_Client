@@ -18,9 +18,14 @@ class TEnterServerDisplay : public TDisplayInterface
 
 public:
 
-    explicit TEnterServerDisplay(const seg::t_id displayId);
+    explicit TEnterServerDisplay();
 
     virtual ~TEnterServerDisplay() = default;
+
+    virtual const seg::t_id getDisplayId() const noexcept override final
+    {
+        return seg::toUType(resource::ENTERSERVER_DISPLAY);
+    }
 
     virtual void registerEvent() override;
 

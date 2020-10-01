@@ -19,9 +19,14 @@ class TMultiMainDisplay final : public TMainDisplay
 {
 public:
 
-    explicit TMultiMainDisplay(const seg::t_id displayId);
+    TMultiMainDisplay();
 
     virtual ~TMultiMainDisplay() = default;
+
+    virtual const seg::t_id getDisplayId() const noexcept override final
+    {
+        return seg::toUType(TETRIS::resource::MAIN_MULTI_DISPLAY);
+    }
 
 private:
     virtual void onClickedBack(const void* click) override final;

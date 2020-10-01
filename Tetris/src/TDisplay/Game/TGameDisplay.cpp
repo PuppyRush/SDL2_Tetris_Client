@@ -16,10 +16,11 @@ using namespace seg;
 using namespace tetris_module;
 using namespace std;
 
-TGameDisplay::TGameDisplay(const seg::t_id displayId)
-        : TDisplayInterface(displayId)
+TGameDisplay::TGameDisplay()
+        : TDisplayInterface()
 {
-    m_gameTimer = make_shared<event::TimerAdder>(this->getId(), 1000);
+    m_gameTimer = make_shared<event::SEG_Timer>(this->getId(), 1000);
+    m_gameTimer->start();
 }
 
 void TGameDisplay::onKeyboardEvent(const SDL_KeyboardEvent* key)
@@ -92,7 +93,7 @@ void TGameDisplay::onCreate()
 
 void TGameDisplay::onClickedStart(const void* click)
 {
-    m_timerId = m_gameTimer->addTimer();
+    m_timerId = m_gameTimer->start();
 
     m_gamestart = true;
 

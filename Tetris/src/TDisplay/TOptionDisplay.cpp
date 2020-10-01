@@ -12,11 +12,9 @@ using namespace game_interface;
 using namespace seg;
 using namespace tetris_module;
 
-TOptionDisplay::TOptionDisplay(const seg::t_id displayId)
-        : TDisplayInterface(displayId)
+TOptionDisplay::TOptionDisplay()
 {
     m_display = game_interface::toUType(TDisplay::Option);
-    m_mode = TLocalMode::All;
 };
 
 void TOptionDisplay::registerEvent()
@@ -271,7 +269,5 @@ void TOptionDisplay::onDraw()
 
 void TOptionDisplay::onClickedBack(const void* click)
 {
-    DisplayInterface::onOK();
+    DisplayInterface::onOk();
 }
-
-

@@ -15,8 +15,7 @@ using namespace game_interface;
 
 SDL_TETRIS
 
-TCreateGameroomDisplay::TCreateGameroomDisplay(const seg::t_id displayId)
-        : TDisplayInterface(displayId)
+TCreateGameroomDisplay::TCreateGameroomDisplay()
 {
 
 }
@@ -77,7 +76,7 @@ void TCreateGameroomDisplay::onInitialize()
 void TCreateGameroomDisplay::onClose()
 {
     const auto ctl = getControl<EditLabel>(tetris::resource::WAITINGROOM_CREATE_GAMEROOMNAME);
-    m_roomname = ctl->getString();
+    m_roomname = ctl->getLabelString();
 
     TDisplayInterface::onClose();
 }
@@ -89,7 +88,7 @@ void TCreateGameroomDisplay::onDraw()
 
 void TCreateGameroomDisplay::onClickOk(const void*)
 {
-    TDisplayInterface::onOK();
+    TDisplayInterface::onOk();
 }
 
 void TCreateGameroomDisplay::onClickCancel(const void*)

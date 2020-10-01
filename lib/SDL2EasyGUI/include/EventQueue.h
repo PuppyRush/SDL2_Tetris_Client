@@ -43,12 +43,10 @@ class EventQueue
 
 public:
 
-    using data_type = _Data*;
-
-    const data_type const MUTABLE_VALUE= nullptr;
+    using data_type = _Data;
 
     EventQueue()
-            : m_isContinue(true), MUTABLE_VALUE(new _Data)
+        : m_isContinue(true)
     {
 
     }
@@ -62,9 +60,6 @@ public:
             auto e = m_eventQ.front();
             m_eventQ.pop();
         }
-
-        if (MUTABLE_VALUE != nullptr)
-            delete MUTABLE_VALUE;
     }
 
     void pushEvent(const data_type event)
@@ -77,20 +72,23 @@ public:
 
     const data_type popEvent()
     {
-        if (m_eventQ.empty())
-            return MUTABLE_VALUE;
-
         std::unique_lock<std::mutex> lock(m_mutex);
         m_cond.wait(lock, [=]() { return !m_eventQ.empty() || !m_isContinue; });
 
         if (m_eventQ.empty() || !m_isContinue) {
-            return MUTABLE_VALUE;
+            return data_type();
         }
 
         const auto msg = m_eventQ.front();
         m_eventQ.pop();
        // printf("pop seq : %lu\n", m_seq++);
         return msg;
+    }
+
+    bool isEmpty()
+    {
+        std::unique_lock<std::mutex> lock(m_mutex);
+        return m_eventQ.empty();
     }
 
     static std::uint64_t m_seq;

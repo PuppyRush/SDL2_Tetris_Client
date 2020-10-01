@@ -24,6 +24,13 @@ public:
     virtual ~MessageDialog()
     {}
 
+    virtual const t_id getDisplayId() const noexcept override final
+    {
+        return resource::MESSAGE_DIALOG;
+    }
+
+    virtual std::underlying_type_t<resource> alert() override;
+
     virtual void registerEvent() override;
 
     virtual void onInitialize() override;

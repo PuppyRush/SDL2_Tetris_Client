@@ -16,8 +16,6 @@
 
 #include <SDL2/SDL_image.h>
 
-//#include "SEG_Window.h"
-#include "SEG_Type.h"
 #include "SEG_Property.h"
 
 namespace seg {
@@ -118,6 +116,8 @@ class SEG_Window;
 typedef struct ControlBasic
 {
     SEG_Window* window;
+
+    //컨트롤의 고유 ID
     t_id resourceId;
     SEG_Point point = SEG_Point{-100, -100};
     SEG_Point midPoint = SEG_Point{0, 0};

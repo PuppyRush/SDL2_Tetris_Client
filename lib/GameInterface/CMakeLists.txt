@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.8)
 project(GameInterface)
 
 
@@ -49,18 +49,6 @@ ADD_LIBRARY(GameInterface STATIC
         src/Object/GameRoom.cpp
         src/Object/WaitingRoom.cpp
         src/SubScription/ManagerController.cpp
-        ${PROJECT_SOURCE_DIR}/src/Tool/Time/TimerBasic.h
-        ${PROJECT_SOURCE_DIR}/src/Tool/Time/TimerBasic.cpp
-        ${PROJECT_SOURCE_DIR}/src/Tool/Time/Countdown.cpp
-        ${PROJECT_SOURCE_DIR}/src/Tool/Time/ElapsedTimer.cpp
-        ${PROJECT_SOURCE_DIR}/src/Tool/Time/Scheduling.cpp
-        ${PROJECT_SOURCE_DIR}/src/Tool/Time/ScopeTimer.cpp
-        ${PROJECT_SOURCE_DIR}/src/Tool/Time/Stopwatch.cpp
-        include/Countdown.h
-        include/ElapsedTimer.h
-        include/Scheduling.h
-        include/ScopeTimer.h
-        include/Stopwatch.h
         include/Logger.h
         include/Subject.h
         include/Player.h
@@ -82,8 +70,6 @@ ADD_LIBRARY(GameInterface STATIC
         include/MessageType.h
         include/Packet.h
         include/PacketQueue.h
-        include/Times.h
-        include/Date.h
         )
 
 

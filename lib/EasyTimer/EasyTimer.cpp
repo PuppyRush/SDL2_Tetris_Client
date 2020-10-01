@@ -1,87 +1,76 @@
+﻿// EasyTimer.cpp : 애플리케이션의 진입점을 정의합니다.
 //
-// Created by chaed on 19. 5. 4.
-//
 
-#ifndef SDL2_TETIRS_CLIENT_INITIATOR_H
-#define SDL2_TETIRS_CLIENT_INITIATOR_H
+#include "ScopeTimer.h"
+#include "ElapsedTimer.h"
+#include "Stopwatch.h"
+#include "Countdown.h"
+#include "Scheduling.h"
 
-#include <ace/Init_ACE.h>
 
-#include "Constant.h"
-#include "PacketQueue.h"
-#include "Room.h"
-
-#include "EasyTimer/ScopeTimer.h"
-#include "EasyTimer/ElapsedTimer.h"
-#include "EasyTimer/Stopwatch.h"
-#include "EasyTimer/Countdown.h"
-#include "EasyTimer/Scheduling.h"
-
-namespace game_interface {
-    
 static void callback(void*)
 {
     std::cout << "call!" << easytimer::get_time_string(easytimer::now_to_time()) << std::endl;
-}   
+}
 
 static void cal_time()
 {
     easytimer::TimerSet< std::nano> set;
     easytimer::ElapsedTimer<std::milli> el;
     {
-        //el.start();
-        //easytimer::ScopeTimer<std::nano> t(set);
-        //for (int i = 0; i < 500; i++)
-        //   // std::cout << "a";
-        //el.end();
+        el.start();
+        easytimer::ScopeTimer<std::nano> t(set);
+        for (int i = 0; i < 500; i++)
+           // std::cout << "a";
+        el.end();
 
-        //auto h = el.hour();
-        //auto m = el.minute();
-        //auto s = el.second();
-        //auto mili = el.millisecond();
+        auto h = el.hour();
+        auto m = el.minute();
+        auto s = el.second();
+        auto mili = el.millisecond();
     }
 
     int* b = new int{ 3 };
     {
-        /*easytimer::Countdown<std::nano> cd{ &callback, b, { 0,0,3,700 } };
+        easytimer::Countdown<std::nano> cd{ &callback, b, { 0,0,3,700 } };
         cd.start();
-        Sleep(2000);
+        //Sleep(2000);
         cd.suspend();
-        Sleep(3000);
+       // Sleep(3000);
         cd.resume();
-        cd.join();*/
+        cd.join();
     }
     {
-       // auto t = easytimer::clock_type::now() + easytimer::seconds{ 6 };
-       // easytimer::Countdown<std::nano> cd{ &callback, (void*) b, t };
-       // cd.start();
-       // //Sleep(2000);
-       // //cd.stop();
-       // cd.suspend();
-       //// Sleep(3000);
-       // cd.resume();
-       // cd.join();
+         auto t = easytimer::clock_type::now() + easytimer::seconds{ 6 };
+         easytimer::Countdown<std::nano> cd{ &callback, (void*) b, t };
+         cd.start();
+         //Sleep(2000);
+         //cd.stop();
+         cd.suspend();
+        // Sleep(3000);
+         cd.resume();
+         cd.join();
     }
-    #include <boost/date_time/gregorian/greg_date.hpp>
-    #include "boost/date_time/posix_time/posix_time.hpp"
+#include <boost/date_time/gregorian/greg_date.hpp>
+#include "boost/date_time/posix_time/posix_time.hpp"
     {
-        /*easytimer::SchedulingBuilder bld{ {2020,boost::gregorian::May,7} };
+        easytimer::SchedulingBuilder bld{ {2020,boost::gregorian::May,7} };
         bld.hour(23);
         bld.minute(02);
         easytimer::Scheduling sch(&callback, b, bld);
         sch.start();
-        */
+        
 
-        easytimer::SchedulingBuilderDaily bld{ {2020,boost::gregorian::May,11} ,1, 2};
-        bld.hour(21);
+       // easytimer::SchedulingBuilderDaily bld{ {2020,boost::gregorian::May,11} ,1, 2 };
+        /*bld.hour(21);
         bld.minute(30);
         easytimer::Scheduling sch(&callback, b, bld);
-        sch.start();
+        sch.start();*/
     }
-
+//
     {
-        easytimer::SchedulingBuilderManually bld{  {{ 2020,boost::gregorian::May,12},12,3,4 } };
-        bld.addTimepoint( {{ 2020,boost::gregorian::May,12 }, 4, 5, 1 });
+        easytimer::SchedulingBuilderManually bld{ {{ 2020,boost::gregorian::May,12},12,3,4 } };
+        bld.addTimepoint({ { 2020,boost::gregorian::May,12 }, 4, 5, 1 });
         bld.addTimepoint({ { 2020,boost::gregorian::Dec,30 }, 22, 5, 1 });
         bld.addTimepoint({ { 2020,boost::gregorian::Jan,21 }, 22, 5, 1 });
         easytimer::Scheduling sch(&callback, b, bld);
@@ -128,32 +117,14 @@ static void cal_time()
 
         a.do_record();
 
-        Sleep(1300);
+        //Sleep(1300);
 
         a.do_record();
     }
 }
 
-static void GameInterface_Init(bool isServer)
+
+int main()
 {
-    ACE::init();
-
-    g_isServer = isServer;
-
-    if (isServer) {
-        g_modulename = NAME_SERVER;
-    } else {
-        g_modulename = NAME_CLIENT;
-    }
-
-    PacketQueue::getInstance().run();
-
-    atomic::Atomic<Room>::getInstance().setFirstUnique(SERVER_ATOMIC_START);
-
-    //cal_time();
-    
+    cal_time();
 }
-
-}
-
-#endif //SDL2_TETIRS_CLIENT_INITIATOR_H

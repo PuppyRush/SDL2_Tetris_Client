@@ -9,39 +9,6 @@
 
 namespace seg {
 
-typedef struct ComboBoxItem : seg::BoxItem
-{
-
-public:
-
-    ComboBoxItem() = default;
-
-    ComboBoxItem(const std::string& name)
-            : m_str(name)
-    {
-    }
-
-    virtual ~ComboBoxItem() = default;
-
-    virtual const std::string& getString()
-    {
-        if (!caching) {
-            setOriginString(m_str);
-            caching = true;
-        }
-        return m_str;
-    }
-
-
-    virtual void setOriginString(std::string& _origin) override
-    {
-    }
-
-private:
-    std::string m_str;
-
-} ComboBoxItem;
-
 class ComoboBoxBuilder;
 
 class ComboBox : public BoxBasic
@@ -65,19 +32,19 @@ private:
     t_size m_defaultHeight;
 };
 
-class ComoboBoxBuilder : public BorderBuilder
+class ComoboBoxBuilder : public BoxBasicBuilder
 {
 public:
 
     virtual ~ComoboBoxBuilder() = default;
 
     ComoboBoxBuilder(const GraphicInterface::window_type window, const SEG_Point& point, const std::string& str)
-            : BorderBuilder(window, point, str)
+            : BoxBasicBuilder(window, point, str)
     {
     }
 
     ComoboBoxBuilder(const GraphicInterface::window_type window, SEG_Point&& point, std::string&& str)
-            : BorderBuilder(window, point, str)
+            : BoxBasicBuilder(window, point, str)
     {
     }
 

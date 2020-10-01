@@ -15,7 +15,6 @@
 #include <memory>
 #include <cassert>
 
-#include "SEG_Type.h"
 #include "SEG_Struct.h"
 
 namespace seg {
@@ -26,14 +25,14 @@ constexpr const auto toUType(T enuml) noexcept
     return static_cast<std::underlying_type_t<T>>(enuml);
 }
 
-template<class _Tp, class _Res, class... _Args>
+template<class _Tp, class... _Args>
 inline std::shared_ptr<_Tp>
-make_display(const _Res resId, _Args&& ... __args)
+make_display(_Args&& ... __args)
 {
     typedef typename std::remove_const<_Tp>::type _Tp_nc;
-    return std::allocate_shared<_Tp>(std::allocator<_Tp_nc>(), toUType(resId),
-                                     std::forward<_Args>(__args)...);
+    return std::allocate_shared<_Tp>(std::allocator<_Tp_nc>(), std::forward<_Args>(__args)...);
 }
+
 
 template<class T>
 struct EnumIterator

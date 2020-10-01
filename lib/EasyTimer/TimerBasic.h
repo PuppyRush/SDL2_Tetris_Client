@@ -20,7 +20,7 @@
 #include <boost/serialization/singleton.hpp>
 
 #include "Times.h"
-#include "TypeTraits.h"
+//#include "TypeTraits.h"
 
 //countdown, schedueling, elaspedtime, stopwatch
 
@@ -32,14 +32,14 @@
 #undef min
 #undef max
 
-namespace game_interface::time {
+namespace easytimer {
 
     
 using t_timer = short;
 const t_timer TIMER_MIN = std::numeric_limits<t_timer>::min();
 const t_timer TIMER_MAX = std::numeric_limits<t_timer>::max();
 
-template<typename _Per, typename _Rep = time::clock_type::rep, typename _Cl = time::clock_type>
+template<typename _Per, typename _Rep = easytimer::clock_type::rep, typename _Cl = easytimer::clock_type>
 struct _Tm {
     using rep = _Rep;
     using clock_type = _Cl;
@@ -89,7 +89,7 @@ public:
 
     constexpr time_point now() noexcept
     {
-        if constexpr (std::is_same< typename time::clock_type::time_point, time_point>::value)
+        if constexpr (std::is_same< typename easytimer::clock_type::time_point, time_point>::value)
         {
             return clock_type::now();
         }
@@ -118,7 +118,7 @@ public:
 
     void resume()
     {
-        m_suspendedDuration += (time_point::duration{ now() - m_suspendPoint });
+        m_suspendedDuration += (duration{ now() - m_suspendPoint });
         m_isSuspeded = false;
         m_suspendCount++;
     }
@@ -206,7 +206,7 @@ protected:
 
     void _cal_duration()
     {
-        m_timeset.duration = time::get_duration<decltype(m_timeset.duration), precision>(m_timeset);
+        m_timeset.duration = easytimer::get_duration<decltype(m_timeset.duration), precision>(m_timeset);
         
         //if (m_isSuspeded)
         //    m_suspendedDuration += (time_point::duration { now() - m_suspendPoint });

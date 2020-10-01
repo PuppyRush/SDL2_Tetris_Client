@@ -9,13 +9,17 @@
 #pragma once
 #endif
 
+#include <limits>
+
 #include "SEG_Type.h"
 
 namespace seg {
 
 const t_size WINDOW_HEIGHT = 900;
-
 const t_size WINDOW_WIDTH = 1000;
+const t_id SUPER_WINDOWS_ID = 0;
+const t_id START_DISPLAY_ID = 1;
+const t_id IVALID_DISPLAY_ID = std::numeric_limits<t_id>::max();
 
 enum class ControlKind : t_type
 {
@@ -33,7 +37,8 @@ enum class ControlKind : t_type
 enum class TDisplayMode : t_type
 {
     Modal,
-    Modaless
+    Modaless,
+    None
 };
 
 enum class TLocalMode : t_type
@@ -81,6 +86,9 @@ enum EventType
     SEG_ENTER_CONTROLLER,
     SEG_DECORATOR_ATTACH,
     SEG_DECORATOR_DETACH,
+
+    SEG_DRAW_LINES,
+    SEG_DRAW_COLOR
 };
 
 enum class BorderBoundaryType : t_type
@@ -105,13 +113,17 @@ enum SEG_Event : t_eventType
 {
 
     SEGEVENT_START = 0x8500,
-    ADD_MODAL_DISPLAY,
-    ADD_MODALESS_DISPLAY,
-    REFRESH_DISPLAY,
-    WINDOW_CLOSE,
-    SDL_TIMER_EVENT,
-    DETACH_FOCUS,
-    ATTACH_FOCUS,
+    SEG_WINDOW_CLOSE,
+    SEG_TIMER_EVENT,
+    SEG_DRAW,
+
+    //
+    SEG_CONTROLLER,
+    SEG_DETACH_FOCUS,
+    SEG_ATTACH_FOCUS,
+    SEG_BOUND,
+    SEG_UNBOUND,
+    //
 
     SEGEVENT_END = 0x8999
 };

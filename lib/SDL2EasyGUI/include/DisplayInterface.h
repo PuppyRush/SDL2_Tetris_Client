@@ -52,15 +52,11 @@ namespace seg {
 
 		bool removeControl(control_ptr ctl);
 
-		void menuHitTest(const SEG_Point& point);
+		virtual std::underlying_type_t<resource> alert();
 
-		std::underlying_type_t<resource> alert();
+		void modal();
 
-		std::underlying_type_t<resource> modal(std::shared_ptr<DisplayInterface> display);
-
-		void modaless(std::shared_ptr<DisplayInterface> display);
-
-		std::underlying_type_t<resource> waitModaless();
+		void modaless();
 
 		void drawBackGroundImage();
 
@@ -74,9 +70,16 @@ namespace seg {
 			getWindow()->hidden();
 		}
 
+		//부모 클래스의 포인터(this)를 넘긴다.
+		void ready(const DisplayInterface*);
+
+		virtual void onEvent(const SDL_Event& event);
+
 		virtual void initialize() override;
 
 		virtual void refresh() override;
+
+		virtual const t_id getDisplayId() const noexcept = 0;
 
 		virtual void postCreate(display_ptr) = 0;
 
@@ -95,11 +98,6 @@ namespace seg {
 		inline void setStopDraw(const bool set)
 		{
 			m_stopDraw = set;
-		}
-
-		inline t_id getResult() const noexcept
-		{
-			return m_resultResrouce;
 		}
 
 		inline t_display getDisplay() const noexcept
@@ -122,16 +120,34 @@ namespace seg {
 			return getWindow()->getWindowID();
 		}
 
-		inline std::pair<bool, Control*> getCurrentControl() const noexcept
+		inline void setSuperWindowID(unique_type uniqueId) noexcept
 		{
-			return m_currentCtl ? std::make_pair(true, m_currentCtl) : std::make_pair(false, nullptr);
+			m_superParentId = uniqueId;
+		}
+
+		inline unique_type getSuperWindowID() const noexcept
+		{
+			return m_superParentId;
+		}
+
+		inline t_id getResult() const noexcept
+		{
+			return m_resultResrouce;
+
+		}
+
+		Control* getHittingMunues(const SDL_Point& point) const;
+
+		inline bool compareUnique(const unique_type uniqueId)
+		{
+			return getWindowID() == uniqueId;
 		}
 
 		template<class T>
 		inline bool compareDisplay(const T displayId)
 		{
-			auto b = static_cast<bool>(std::is_same<std::remove_const_t<T>, std::remove_const_t<decltype(m_displayId)>>::value);
-			return m_displayId == toUType(displayId);
+			auto b = static_cast<bool>(std::is_same<std::remove_const_t<T>, std::remove_const_t<decltype(getDisplayId())>>::value);
+			return getDisplayId() == toUType(displayId);
 		}
 
 		template<class T, class U>
@@ -146,13 +162,29 @@ namespace seg {
 
 		control_ptr getControl(const t_id resourceId);
 
+		control_ptr getActivatedControl() const noexcept
+		{
+			return m_activatedCtl;
+		}
+
+		void setActivatedControl(const control_ptr ctl) const noexcept
+		{
+			m_activatedCtl = ctl;
+		}
+
+		void clearActivatedControl() const noexcept
+		{
+			m_activatedCtl = nullptr;
+		}
+
 		control_ary_it findControl(const t_id resourceId);
 
 		virtual void resize() override
 		{};
 
 	protected:
-		DisplayInterface(const t_id displayId);
+
+		DisplayInterface();
 
 		inline SEG_Window::window_type getSDLWindow() const noexcept
 		{
@@ -193,94 +225,105 @@ namespace seg {
 
 		virtual void onClose();
 
-		virtual void onOK();
+		virtual void onOk();
 
-		virtual void onNO();
+		virtual void onNo();
 
 		virtual void onCancel();
 
 		virtual void onDestroy();
 
 		//events
-		virtual void onCommonEvent(const SDL_CommonEvent* common)
+		virtual void onCommonEvent(const SDL_CommonEvent* common) override
 		{};
 
 		virtual void onWindowEvent(const SDL_WindowEvent& window) override;
 
 		virtual void onKeyboardEvent(const SDL_KeyboardEvent* key) override;
 
-		virtual void onTextEditingEvent(const SDL_TextEditingEvent* edit)
+		virtual void onTextEditingEvent(const SDL_TextEditingEvent* edit) override
 		{};
 
-		virtual void onTextInputEvent(const SDL_TextInputEvent* text)
+		virtual void onTextInputEvent(const SDL_TextInputEvent* text) override
 		{};
 
-		virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion)
+		virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) override
 		{}
 
-		virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button);
+		virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) override;
 
-		virtual void onMouseWheelEvent(const SDL_MouseWheelEvent* wheel)
+		virtual void onMouseWheelEvent(const SDL_MouseWheelEvent* wheel) override
 		{};
 
-		virtual void onJoyAxisEvent(const SDL_JoyAxisEvent* jaxis)
+		virtual void onJoyAxisEvent(const SDL_JoyAxisEvent* jaxis) override
 		{};
 
-		virtual void onJoyBallEvent(const SDL_JoyBallEvent* jball)
+		virtual void onJoyBallEvent(const SDL_JoyBallEvent* jball) override
 		{};
 
-		virtual void onJoyHatEvent(const SDL_JoyHatEvent* jhat)
+		virtual void onJoyHatEvent(const SDL_JoyHatEvent* jhat) override
 		{};
 
-		virtual void onJoyButtonEvent(const SDL_JoyButtonEvent* jbutton)
+		virtual void onJoyButtonEvent(const SDL_JoyButtonEvent* jbutton) override
 		{};
 
-		virtual void onJoyDeviceEvent(const SDL_JoyDeviceEvent* jdevice)
+		virtual void onJoyDeviceEvent(const SDL_JoyDeviceEvent* jdevice) override
 		{};
 
-		virtual void onControllerAxisEvent(const SDL_ControllerAxisEvent* caxis)
+		virtual void onControllerAxisEvent(const SDL_ControllerAxisEvent* caxis) override
 		{};
 
-		virtual void onControllerButtonEvent(const SDL_ControllerButtonEvent* cbutton)
+		virtual void onControllerButtonEvent(const SDL_ControllerButtonEvent* cbutton) override
 		{};
 
-		virtual void onControllerDeviceEvent(const SDL_ControllerDeviceEvent* cdevice)
+		virtual void onControllerDeviceEvent(const SDL_ControllerDeviceEvent* cdevice) override
 		{};
 
-		virtual void onAudioDeviceEvent(const SDL_AudioDeviceEvent* adevice)
+		virtual void onAudioDeviceEvent(const SDL_AudioDeviceEvent* adevice) override
 		{};
 
-		virtual void onQuitEvent(const SDL_QuitEvent* quit)
+		virtual void onQuitEvent(const SDL_QuitEvent* quit) override
 		{};
 
-		virtual void onUserEvent(const SDL_UserEvent* user);
+		virtual void onUserEvent(const SDL_UserEvent* user) override;
 
-		virtual void onSysWMEvent(const SDL_SysWMEvent* syswm)
+		virtual void onSysWMEvent(const SDL_SysWMEvent* syswm) override
 		{};
 
-		virtual void onTouchFingerEvent(const SDL_TouchFingerEvent* tfinger)
+		virtual void onTouchFingerEvent(const SDL_TouchFingerEvent* tfinger) override
 		{};
 
-		virtual void onMultiGestureEvent(const SDL_MultiGestureEvent* mgesture)
+		virtual void onMultiGestureEvent(const SDL_MultiGestureEvent* mgesture) override
 		{};
 
-		virtual void onDollarGestureEvent(const SDL_DollarGestureEvent* dgesture)
+		virtual void onDollarGestureEvent(const SDL_DollarGestureEvent* dgesture) override
 		{};
 
-		virtual void onDropEvent(const SDL_DropEvent* drop)
+		virtual void onDropEvent(const SDL_DropEvent* drop) override
 		{};
 
-		virtual void onTimerEvent(const SDL_UserEvent* user)
+		virtual void onTimerEvent(const SDL_UserEvent* user) override;
+
+		virtual void onAttachFocus(const SDL_UserEvent* user) override
+		{};
+
+		virtual void onDetachFocus(const SDL_UserEvent* user) override
+		{};
+
+		virtual void onBound(const SDL_MouseMotionEvent* user) override
 		{}
 
-		virtual void onAttachFocus()
-		{};
+		virtual void onUnbound(const SDL_MouseMotionEvent* user) override
+		{}
 
-		virtual void onDetachFocus()
-		{};
+		virtual bool bound(const SDL_Event& event) override
+		{}
+
+		virtual bool focus(const SDL_Event& event) override
+		{}
+
 
 		t_display m_display;
-		TLocalMode m_mode;
 
 		std::unordered_map<t_id, std::function<void(void)>> m_callback_no_param;
 		std::unordered_map<t_id, std::function<void(const void*)>> m_callback_one_param;
@@ -288,7 +331,7 @@ namespace seg {
 
 	private:
 
-		inline control_ary& getMenuAry()
+		inline control_ary& _getMenuAry() const 
 		{
 			return m_menus;
 		}
@@ -303,21 +346,26 @@ namespace seg {
 
 		void _onDrawMenus();
 
+		void _mouseEventOnMenus(const SDL_Event& evt);
+
 		inline void _setResult(const t_id res)
 		{
 			m_resultResrouce = res;
 		}
 
-		const t_id m_displayId;
-
-		control_ary m_menus;
-		Control* m_currentCtl;
+		mutable control_ary m_menus;
+		mutable Control* m_activatedCtl = nullptr;
 
 		std::string m_backgroundImgPath;
 		bool m_stopDraw = false;
 		std::thread m_thread;
+		std::thread m_clickthread;
 		std::atomic_bool m_run = true;
+		TDisplayMode m_mode = TDisplayMode::None;
 		t_id m_resultResrouce = NONE;
+
+		t_id m_parentId = IVALID_DISPLAY_ID;
+		t_id m_superParentId = IVALID_DISPLAY_ID;
 
 	};
 

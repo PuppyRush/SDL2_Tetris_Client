@@ -6,6 +6,7 @@
 #define PROJECT_TTETRISDISPLAYINTERFACE_H
 
 #include "THeader.h"
+#include "TResource.h"
 #include "SDL2EasyGUI/include/DisplayInterface.h"
 #include "GameInterface/include/Observer.h"
 #include "GameInterface/include/Packet.h"
@@ -23,11 +24,11 @@ public:
     virtual ~TDisplayInterface()
     {}
 
+    virtual const seg::t_id getDisplayId() const noexcept = 0;
+
 protected:
 
-    TDisplayInterface(const seg::t_id displayId)
-            : DisplayInterface(displayId)
-    {}
+    TDisplayInterface() = default;
 
     virtual void updateObserver(const game_interface::packet::Packet&)
     {
@@ -72,6 +73,7 @@ private:
         assert(0);
     }
 
+    
 };
 
 SDL_TETRIS_END

@@ -16,9 +16,18 @@
 
 SDL_TETRIS_BEGIN
 
-typedef struct RoomInfo : seg::BoxItem
+typedef struct RoomInfo
 {
 public:
+
+    RoomInfo() = default;
+
+    RoomInfo(size_t _roomnumber, const std::string& name, game_interface::t_time time, seg::t_unique unique,
+        size_t _userCount, size_t _fullCount)
+        : roomname(name), unique(unique), maketime(time), userCount(_userCount), fullCount(_fullCount),
+        roomnumber(_roomnumber)
+    {
+    }
 
     const std::string& getRoomname() const
     {
@@ -27,7 +36,7 @@ public:
 
     void setRoomname(const std::string& roomname)
     {
-        caching = false;
+        //caching = false;
         RoomInfo::roomname = roomname;
     }
 
@@ -38,7 +47,7 @@ public:
 
     void setMaketime(game_interface::t_time maketime)
     {
-        caching = false;
+        //caching = false;
         RoomInfo::maketime = maketime;
     }
 
@@ -49,7 +58,7 @@ public:
 
     void setUnique(seg::t_unique unique)
     {
-        caching = false;
+        //caching = false;
         RoomInfo::unique = unique;
     }
 
@@ -60,7 +69,7 @@ public:
 
     void setUserCount(size_t userCount)
     {
-        caching = false;
+        //caching = false;
         RoomInfo::userCount = userCount;
     }
 
@@ -71,7 +80,7 @@ public:
 
     void setFullCount(size_t fullCount)
     {
-        caching = false;
+        //caching = false;
         RoomInfo::fullCount = fullCount;
     }
 
@@ -82,28 +91,19 @@ public:
 
     void setRoomnumber(size_t roomnumber)
     {
-        caching = false;
+        //caching = false;
         RoomInfo::roomnumber = roomnumber;
     }
 
-    RoomInfo() = default;
+    ~RoomInfo() = default;
 
-    RoomInfo(size_t _roomnumber, const std::string& name, game_interface::t_time time, seg::t_unique unique,
-             size_t _userCount, size_t _fullCount)
-            : roomname(name), unique(unique), maketime(time), userCount(_userCount), fullCount(_fullCount),
-              roomnumber(_roomnumber)
-    {
-    }
-
-    virtual ~RoomInfo() = default;
-
-    virtual void setOriginString(std::string& _origin) override
-    {
-        _origin.resize(roomname.size() + 10);
-        _origin.clear();
-        _origin += std::to_string(roomnumber) + " / " + roomname + " / (" + std::to_string(userCount) +
-                   "/" + std::to_string(fullCount) + ")";
-    }
+    //virtual void setOriginString(std::string& _origin) override
+    //{
+    //    _origin.resize(roomname.size() + 10);
+    //    _origin.clear();
+    //    _origin += std::to_string(roomnumber) + " / " + roomname + " / (" + std::to_string(userCount) +
+    //               "/" + std::to_string(fullCount) + ")";
+    //}
 
 private:
 
@@ -116,7 +116,7 @@ private:
 
 } RoomInfo;
 
-typedef struct UserInfo : seg::BoxItem
+typedef struct UserInfo
 {
 
     UserInfo() = default;
@@ -128,12 +128,12 @@ typedef struct UserInfo : seg::BoxItem
 
     virtual ~UserInfo() = default;
 
-    virtual void setOriginString(std::string& _origin) override
-    {
-        _origin.resize(username.size());
-        _origin.clear();
-        _origin += username;
-    }
+    //virtual void setOriginString(std::string& _origin) override
+    //{
+    //    _origin.resize(username.size());
+    //    _origin.clear();
+    //    _origin += username;
+    //}
 
     const std::string& getUsername() const
     {
@@ -142,7 +142,7 @@ typedef struct UserInfo : seg::BoxItem
 
     void setUsername(const std::string& username)
     {
-        caching = false;
+        //caching = false;
         UserInfo::username = username;
     }
 
@@ -153,7 +153,7 @@ typedef struct UserInfo : seg::BoxItem
 
     void setMaketime(game_interface::t_time maketime)
     {
-        caching = false;
+        //caching = false;
         UserInfo::maketime = maketime;
     }
 
@@ -164,7 +164,7 @@ typedef struct UserInfo : seg::BoxItem
 
     void setUnique(seg::t_unique unique)
     {
-        caching = false;
+        //caching = false;
         UserInfo::unique = unique;
     }
 
@@ -175,7 +175,7 @@ private:
 
 } UserInfo;
 
-typedef struct ChatInfo : seg::BoxItem, game_interface::JsonPackage
+typedef struct ChatInfo : game_interface::JsonPackage
 {
 
 public:
@@ -189,18 +189,18 @@ public:
 
     virtual ~ChatInfo() = default;
 
-    virtual void setOriginString(std::string& _origin) override
-    {
-        std::string newchat;
-        newchat.reserve(username.size() + chat.size() + 5);
-        newchat += username;
-        newchat += " : ";
-        newchat += chat;
+    //virtual void setOriginString(std::string& _origin) override
+    //{
+    //    std::string newchat;
+    //    newchat.reserve(username.size() + chat.size() + 5);
+    //    newchat += username;
+    //    newchat += " : ";
+    //    newchat += chat;
 
-        _origin.resize(newchat.size());
-        _origin.clear();
-        _origin += newchat;
-    }
+    //    _origin.resize(newchat.size());
+    //    _origin.clear();
+    //    _origin += newchat;
+    //}
 
     virtual Json::Value toJson() const
     {
@@ -231,7 +231,7 @@ public:
 
     void setUsername(const std::string& username)
     {
-        caching = false;
+        //caching = false;
         ChatInfo::username = username;
     }
 
@@ -242,7 +242,7 @@ public:
 
     void setChat(const std::string& chat)
     {
-        caching = false;
+        //caching = false;
         ChatInfo::chat = chat;
     }
 
@@ -253,7 +253,7 @@ public:
 
     void setMaketime(game_interface::t_time maketime)
     {
-        caching = false;
+        //caching = false;
         ChatInfo::maketime = maketime;
     }
 
@@ -268,9 +268,14 @@ class TWaitingRoomDisplay : public TDisplayInterface
 {
 public:
 
-    explicit TWaitingRoomDisplay(const seg::t_id displayId);
+    explicit TWaitingRoomDisplay();
 
     virtual ~TWaitingRoomDisplay() = default;
+
+    virtual const seg::t_id getDisplayId() const noexcept override final
+    {
+        return seg::toUType(resource::WAITINGROOM_DISPLAY);
+    }
 
     virtual void updateObserver(const game_interface::packet::Packet&) override;
 

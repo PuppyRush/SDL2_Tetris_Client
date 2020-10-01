@@ -24,8 +24,7 @@ using namespace seg;
 using namespace game_interface;
 using namespace game_interface::packet;
 
-TWaitingRoomDisplay::TWaitingRoomDisplay(const seg::t_id displayId)
-        : TDisplayInterface(displayId)
+TWaitingRoomDisplay::TWaitingRoomDisplay()
 {
     
 }
@@ -217,12 +216,12 @@ void TWaitingRoomDisplay::onClickExit(const void* click)
 void TWaitingRoomDisplay::onClickCreateGameRoom(const void* click)
 {
 
-    auto createGameroomDisplay = seg::make_display<TCreateGameroomDisplay>(resource::CREATEROOM_DISPLAY);
+    auto createGameroomDisplay = seg::make_display<TCreateGameroomDisplay>();
     createGameroomDisplay->setWindowHeight(250);
     createGameroomDisplay->setWindowWidth(350);
     createGameroomDisplay->setWindowTitle("Create Room");
 
-    if (createGameroomDisplay->modal(createGameroomDisplay) == seg::resource::BTN_OK) {
+    /*if (createGameroomDisplay->modal() == seg::resource::BTN_OK) {
         if (!PacketQueue::getInstance().exist(TGameRoom::getInstance()->getUnique())) {
             PacketQueue::getInstance().attach(TGameRoom::getInstance());
         }
@@ -236,7 +235,7 @@ void TWaitingRoomDisplay::onClickCreateGameRoom(const void* click)
                        messageInfo::WAITINGROOMS_REQUEST_CREATE}, root};
         TPlayer::getInstance()->sendPacket(packet);
 
-    }
+    }*/
 }
 
 void TWaitingRoomDisplay::sendChat(const void* event)
@@ -244,7 +243,7 @@ void TWaitingRoomDisplay::sendChat(const void* event)
     auto keyevent = static_cast<const SDL_KeyboardEvent*>(event);
     if (keyevent->keysym.sym == SDLK_RETURN) {
         const auto ctl = getControl<EditLabel>(tetris::resource::WAITINGROOM_CHAREDIT);
-        ChatInfo chatinfo{TPlayer::getInstance()->getUserName(), ctl->getString(), std::time(0)};
+        ChatInfo chatinfo{TPlayer::getInstance()->getUserName(), ctl->getLabelString(), std::time(0)};
 
         Packet packet{
                 {m_waitingRoom.getUnique(), TPlayer::getInstance()->getUnique(), messageInfo::WAITINGROOMS_SEND_CHAT},
@@ -270,9 +269,9 @@ void TWaitingRoomDisplay::recvChat(const Packet& packet)
 void TWaitingRoomDisplay::createGameroom(const Packet& packet)
 {
 
-    auto gameroomDisplay = seg::make_display<TMultiGameRoomDisplay>(resource::MULTIGAME_DISPLAY);
+    auto gameroomDisplay = seg::make_display<TMultiGameRoomDisplay>();
     gameroomDisplay->getGameRoom()->fromJson(packet.getPayload());
     gameroomDisplay->setWindowTitle("Tetris Game");
-    gameroomDisplay->modaless(gameroomDisplay);
+    gameroomDisplay->modaless();
 
 }

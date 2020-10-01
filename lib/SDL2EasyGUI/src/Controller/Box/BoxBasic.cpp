@@ -7,9 +7,15 @@
 
 using namespace seg;
 
-BoxBasic::BoxBasic(ControlBuilder& bld)
+BoxBasic::BoxBasic(BoxBasicBuilder& bld)
         : Border(bld)
-{}
+{
+    for (auto item : getItems())
+    {
+        appendItem(item);
+    }
+
+}
 
 BoxBasic::~BoxBasic()
 {}
@@ -45,7 +51,7 @@ void BoxBasic::onDraw()
         SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
 
 
-        printf("%d %d\n", m_boundedMenuIndx, point.y);
+        //printf("%d %d\n", m_boundedMenuIndx, point.y);
     }
 
     Border::onDraw();

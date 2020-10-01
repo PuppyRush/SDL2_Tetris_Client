@@ -14,15 +14,6 @@
 
 namespace seg {
 
-typedef struct EditLabelBasic
-{
-    bool canWritable = true;
-    bool canReadable = true;
-    bool isOnlyNumber = false;
-    bool isOnlyString = false;
-    t_size maxlen = 20;
-    std::string editstring;
-} EditLabelBasic;
 
 class EditLabelBuilder;
 
@@ -30,23 +21,17 @@ class EditLabel : public LabelBasic
 {
 
 public:
+    using Base = LabelBasic;
+
     virtual ~EditLabel() = default;
 
     explicit EditLabel(EditLabelBuilder& bld);
 
-    inline void clearString() noexcept
-    {
-        m_labelString.clear();
-        onDraw();
-    }
-
-    inline const std::string& getString() const noexcept
-    { return m_labelString; }
-
 protected:
-    virtual void onUserEvent(const SDL_UserEvent* user) override;
+    
+    virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) override;
 
-    virtual void onKeyboardEvent(const SDL_KeyboardEvent* key);
+    virtual void onKeyboardEvent(const SDL_KeyboardEvent* key) override;
 
     virtual void onTextInputEvent(const SDL_TextInputEvent* text) override;
 
@@ -59,27 +44,25 @@ protected:
     virtual void onTimerEvent(const SDL_UserEvent* user) override;
 
 private:
-    virtual void onAttachFocus();
+    virtual void onAttachFocus(const SDL_UserEvent* user) override;
 
-    virtual void onDetachFocus();
+    virtual void onDetachFocus(const SDL_UserEvent* user) override;
 
-    bool m_textCursor;
-    t_timer m_textCursorTimer = NULL_TIMER_ID;
-    EditLabelBasic m_labelBasic;
-    std::shared_ptr<seg::event::TimerAdder> m_textCursorTimerAdder;
+    bool m_drawTextCursor = false;
+    std::shared_ptr<seg::event::SEG_Timer> m_cursorTimer;
 };
 
-class EditLabelBuilder : public BorderBuilder
+class EditLabelBuilder : public LabelBasucBuilder
 {
 public:
 
     EditLabelBuilder(const GraphicInterface::window_type window, const SEG_Point& point, const std::string& str)
-            : BorderBuilder(window, point, str)
+            : LabelBasucBuilder(window, point, str)
     {
     }
 
     EditLabelBuilder(const GraphicInterface::window_type window, SEG_Point&& point, std::string&& str)
-            : BorderBuilder(window, point, str)
+            : LabelBasucBuilder(window, point, str)
     {
     }
 
@@ -89,8 +72,6 @@ public:
     {
         return new EditLabel(*this);
     }
-
-    EditLabelBasic m_editBasic;
 
 };
 

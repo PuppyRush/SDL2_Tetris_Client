@@ -16,7 +16,7 @@
 
 #include <json/json.h> // or jsoncpp/json.h , or json/json.h etc.
 
-#include "Times.h"
+#include "EasyTimer/Times.h"
 
 #include "Constant.h"
 #include "TypeTraits.h"
@@ -75,7 +75,7 @@ public:
             os << "SEND]";
         os << " destid :" << packet.getHeader().destId
             << " / message : " << std::to_string(toUType(packet.getHeader().message))
-             << " / timestamp : " << game_interface::time::get_time_string(packet.getHeader().timestamp) << std::endl;
+             << " / timestamp : " << easytimer::get_time_string(packet.getHeader().timestamp) << std::endl;
         return os;
     }
 
@@ -101,7 +101,7 @@ public:
 
     inline void updateLocale() const
     {
-        m_header.timestamp = game_interface::time::now_to_time();
+        m_header.timestamp = easytimer::now_to_time();
         m_header.where = g_isServer ? messageDirection::SERVER : messageDirection::CLIENT;
     }
 

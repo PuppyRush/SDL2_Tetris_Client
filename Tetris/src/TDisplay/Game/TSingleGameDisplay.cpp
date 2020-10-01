@@ -10,8 +10,8 @@
 #include "TResource.h"
 #include "SDL2EasyGUI/include/SEG_Event.h"
 #include "SDL2EasyGUI/include/Button.h"
-#include "TSingleGameDisplay.h"
 #include "../../TOption/TOptionManager.h"
+#include "TSingleGameDisplay.h"
 #include "SDL2EasyGUI/include/Button.h"
 
 SDL_TETRIS
@@ -19,11 +19,10 @@ using namespace game_interface;
 using namespace seg;
 using namespace tetris_module;
 
-TSingleGameDisplay::TSingleGameDisplay(const seg::t_id displayId)
-        : TGameDisplay(displayId)
+TSingleGameDisplay::TSingleGameDisplay()
+        : TGameDisplay()
 {
     m_display = game_interface::toUType(TDisplay::Game);
-    m_mode = TLocalMode::Local;
 }
 
 void TSingleGameDisplay::onClickedStart(const void* click)

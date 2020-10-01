@@ -29,14 +29,14 @@ public:
 
     virtual ~Control() = default;
 
-    inline bool isHitting() const noexcept
+    inline bool isActivated() const noexcept
     {
-        return m_isHitting;
+        return m_activated;
     }
 
-    inline void setHitting(bool hit)
+    inline void setActivating(bool hit)
     {
-        Control::m_isHitting = hit;
+        m_activated = hit;
     }
 
     inline SEG_Window::renderer_type getSDLRenderer() const noexcept
@@ -45,17 +45,17 @@ public:
     }
 
     bool isHitting(const SDL_Event& event) noexcept;
-    /*{ return m_isHitting; }*/
 
     void onHit(const SEG_Point& point, const bool hit);
 
-    bool isBounded(const SDL_Event& event);
 
     void setSelected(bool selected);
 
     void onVirtualDraw();
 
     bool isHit(const t_coord x, const t_coord y, const t_coord z = 0) const;
+
+    virtual bool isHit(SEG_Point&& point) const;
 
     virtual bool isHit(const SEG_Point& point) const;
 
@@ -64,99 +64,106 @@ public:
 
     virtual void initialize() override;
 
-    virtual void onDraw();
+    virtual void onDraw() override;
 
-    virtual void onDrawBackground();
+    virtual void onDrawBackground() override;
 
-    virtual void refresh();
+    virtual void refresh() override;
 
-    virtual void onCommonEvent(const SDL_CommonEvent* common)
+    virtual void onCommonEvent(const SDL_CommonEvent* common) override
     {};
 
-    virtual void onWindowEvent(const SDL_WindowEvent& window)
+    virtual void onWindowEvent(const SDL_WindowEvent& window) override
     {};
 
-    virtual void onKeyboardEvent(const SDL_KeyboardEvent* key);
+    virtual void onKeyboardEvent(const SDL_KeyboardEvent* key) override;
 
-    virtual void onTextEditingEvent(const SDL_TextEditingEvent* edit)
+    virtual void onTextEditingEvent(const SDL_TextEditingEvent* edit) override
     {};
 
-    virtual void onTextInputEvent(const SDL_TextInputEvent* text);
+    virtual void onTextInputEvent(const SDL_TextInputEvent* text) override;
 
-    virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion)
+    virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) override
     {
     };
 
-    virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button)
+    virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) override;
+
+    virtual void onMouseWheelEvent(const SDL_MouseWheelEvent* wheel) override
+    {};
+
+    virtual void onJoyAxisEvent(const SDL_JoyAxisEvent* jaxis) override
+    {};
+
+    virtual void onJoyBallEvent(const SDL_JoyBallEvent* jball) override
+    {};
+
+    virtual void onJoyHatEvent(const SDL_JoyHatEvent* jhat) override
+    {};
+
+    virtual void onJoyButtonEvent(const SDL_JoyButtonEvent* jbutton) override
+    {};
+
+    virtual void onJoyDeviceEvent(const SDL_JoyDeviceEvent* jdevice) override
+    {};
+
+    virtual void onControllerAxisEvent(const SDL_ControllerAxisEvent* caxis) override
+    {};
+
+    virtual void onControllerButtonEvent(const SDL_ControllerButtonEvent* cbutton) override
+    {};
+
+    virtual void onControllerDeviceEvent(const SDL_ControllerDeviceEvent* cdevice) override
+    {};
+
+    virtual void onAudioDeviceEvent(const SDL_AudioDeviceEvent* adevice) override
+    {};
+
+    virtual void onQuitEvent(const SDL_QuitEvent* quit) override
+    {};
+
+    virtual void onUserEvent(const SDL_UserEvent* user) override
     {}
 
-    virtual void onMouseWheelEvent(const SDL_MouseWheelEvent* wheel)
+    virtual void onSysWMEvent(const SDL_SysWMEvent* syswm) override
     {};
 
-    virtual void onJoyAxisEvent(const SDL_JoyAxisEvent* jaxis)
+    virtual void onTouchFingerEvent(const SDL_TouchFingerEvent* tfinger) override
     {};
 
-    virtual void onJoyBallEvent(const SDL_JoyBallEvent* jball)
+    virtual void onMultiGestureEvent(const SDL_MultiGestureEvent* mgesture) override
     {};
 
-    virtual void onJoyHatEvent(const SDL_JoyHatEvent* jhat)
+    virtual void onDollarGestureEvent(const SDL_DollarGestureEvent* dgesture) override
     {};
 
-    virtual void onJoyButtonEvent(const SDL_JoyButtonEvent* jbutton)
+    virtual void onDropEvent(const SDL_DropEvent* drop) override
     {};
 
-    virtual void onJoyDeviceEvent(const SDL_JoyDeviceEvent* jdevice)
-    {};
-
-    virtual void onControllerAxisEvent(const SDL_ControllerAxisEvent* caxis)
-    {};
-
-    virtual void onControllerButtonEvent(const SDL_ControllerButtonEvent* cbutton)
-    {};
-
-    virtual void onControllerDeviceEvent(const SDL_ControllerDeviceEvent* cdevice)
-    {};
-
-    virtual void onAudioDeviceEvent(const SDL_AudioDeviceEvent* adevice)
-    {};
-
-    virtual void onQuitEvent(const SDL_QuitEvent* quit)
-    {};
-
-    virtual void onUserEvent(const SDL_UserEvent* user)
+    virtual void onTimerEvent(const SDL_UserEvent* user) override
     {}
 
-    virtual void onSysWMEvent(const SDL_SysWMEvent* syswm)
+    virtual void onAttachFocus(const SDL_UserEvent* user) override
     {};
 
-    virtual void onTouchFingerEvent(const SDL_TouchFingerEvent* tfinger)
+    virtual void onDetachFocus(const SDL_UserEvent* user) override
     {};
 
-    virtual void onMultiGestureEvent(const SDL_MultiGestureEvent* mgesture)
-    {};
-
-    virtual void onDollarGestureEvent(const SDL_DollarGestureEvent* dgesture)
-    {};
-
-    virtual void onDropEvent(const SDL_DropEvent* drop)
-    {};
-
-    virtual void onTimerEvent(const SDL_UserEvent* user)
+    virtual void onBound(const SDL_MouseMotionEvent* user) override
     {}
 
-    virtual void onAttachFocus()
-    {};
+    virtual void onUnbound(const SDL_MouseMotionEvent* user) override
+    {}
+    
+    virtual bool bound(const SDL_Event& event) override;
 
-    virtual void onDetachFocus()
-    {};
+    virtual bool focus(const SDL_Event& event) override;
 
 protected:
 
     explicit Control(const Control*);
 
     explicit Control(const ControlBuilder& bld);
-
-    void drawBackground(const SDL_Rect rect, const SEG_Color color);
 
     inline int getTextWidth() const noexcept
     {
@@ -196,7 +203,7 @@ private:
 private:
     SDL_Rect m_positionRect;
     bool m_stopDraw = false;
-    bool m_isHitting = false;
+    bool m_activated = false;
     bool m_isBounded = false;
 };
 

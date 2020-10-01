@@ -26,6 +26,10 @@ enum resource : t_id
 
     MESSAGEDIALOG_MSG,
 
+    MAIN_DISPLAY,
+    MESSAGE_DIALOG,
+    INPUT_DIALOG,
+
     SEG_RESROUCE_END = 0x3000
 };
 

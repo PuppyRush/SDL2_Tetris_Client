@@ -20,10 +20,8 @@ SDL_TETRIS
 using namespace game_interface;
 using namespace seg;
 
-TMultiMainDisplay::TMultiMainDisplay(const seg::t_id displayId)
-        : TMainDisplay(displayId)
+TMultiMainDisplay::TMultiMainDisplay()     
 {
-    m_mode = TLocalMode::Online;
 }
 
 void TMultiMainDisplay::registerEvent()
@@ -181,16 +179,21 @@ void TMultiMainDisplay::onDraw()
 
 void TMultiMainDisplay::onClickedOption(const void* click)
 {
+    auto dp = DisplayController::modal_open<TOptionDisplay>();
+    dp->modal();
 
     TMainDisplay::onButtonClick(click);
 }
 
 void TMultiMainDisplay::onClickedEnterServer(const void* click)
 {
+    auto dp = DisplayController::modal_open<TEnterServerDisplay>();
+    dp->modal();
+
     TMainDisplay::onButtonClick(click);
 }
 
 void TMultiMainDisplay::onClickedBack(const void* click)
 {
-    TMainDisplay::onOK();
+    TMainDisplay::onOk();
 }

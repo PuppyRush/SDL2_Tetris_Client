@@ -19,7 +19,7 @@ SEG_Window::SEG_Window(const t_size width, const t_size height)
 
 SEG_Window::~SEG_Window()
 {
-    /*if(m_renderer) {
+    if(m_renderer) {
         SDL_DestroyRenderer(m_renderer);
         m_renderer = nullptr;
     }
@@ -27,15 +27,15 @@ SEG_Window::~SEG_Window()
     if(m_window) {
         SDL_DestroyWindow(m_window);
         m_window = nullptr;
-    }*/
-    /*if(m_window) {
+    }
+    if(m_window) {
         delete m_window;
         m_window = nullptr;
     }
     if(m_renderer) {
         delete m_renderer;
         m_renderer = nullptr;
-    }*/
+    }
 }
 
 void SEG_Window::initialize()
@@ -52,7 +52,7 @@ void SEG_Window::initialize()
 									m_windowWidth,
                                     m_windowHeight,
                                     show);
-        m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED);
+        m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
         m_windowID = SDL_GetWindowID(m_window);
 
     }

@@ -17,32 +17,13 @@ namespace date
 
     using DateInfo = boost::gregorian::date;
 
-  /*  struct DateInfo
+    static boost::date_time::weekdays get_today()
     {
-        years years;
-        months months;
-        days days;
-
-        DateInfo(date::years _y, date::months _m, date::days _d)
-            :years(_y), months(_m), days(_d)
-        {
-        }
-
-        inline void year(const date::years y) noexcept
-        {
-            years = date::years{ y };
-        }
-
-        inline void month(const date::months m) noexcept
-        {
-            months = date::months{ m };
-        }
-
-        inline void day(const date::days d) noexcept
-        {
-            days = date::days{ d };
-        }
-    };*/
+        using namespace boost::gregorian;
+        boost::gregorian::date today{ day_clock::local_day() };
+        greg_weekday wd = today.day_of_week(); 
+        return wd.as_enum();
+    }
 
     template <class _Tp>
     static boost::gregorian::date get_date_from(const _Tp& tp)

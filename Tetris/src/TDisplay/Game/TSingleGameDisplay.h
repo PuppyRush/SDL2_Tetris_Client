@@ -19,7 +19,14 @@ class TSingleGameDisplay final : public TGameDisplay
 
 public:
 
-    explicit TSingleGameDisplay(const seg::t_id displayId);
+    TSingleGameDisplay();
+
+    virtual const seg::t_id getDisplayId() const noexcept override final
+    {
+        return seg::toUType(resource::SINGLEGAME_DISPLAY);
+    }
+
+
 
     virtual ~TSingleGameDisplay() = default;
 

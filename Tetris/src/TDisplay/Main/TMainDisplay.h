@@ -14,8 +14,6 @@ class TMainDisplay : public TDisplayInterface
 {
 public:
 
-    explicit TMainDisplay(const seg::t_id displayId);
-
     virtual ~TMainDisplay() = default;
 
     virtual void onClickedEnterServer(const void* click) = 0;

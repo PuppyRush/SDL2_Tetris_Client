@@ -13,10 +13,11 @@
 
 #include <string>
 #include <string_view>
+
 #include <boost/noncopyable.hpp>
 #include <boost/serialization/singleton.hpp>
 
-//#include "Times.h"
+#include "EasyTimer/Times.h"
 
 namespace game_interface::logger {
 
@@ -43,11 +44,11 @@ public:
 
     void printLog(const char* str, const logger_level& lv)
     {
-        #ifdef SEG_DEBUG
-        //printf("[%s][%s]:%s\n", game_interface::time::now_to_string().c_str(), getLevelString(lv).data(), str);
-        #else
+       // #ifdef SEG_DEBUG
+        printf("[%s][%s]:%s\n", easytimer::get_time_string(easytimer::clock_type::now()).c_str(), getLevelString(lv).data(), str);
+       // #else
         __NOOP
-        #endif
+       // #endif
     }
 
     void printLog(const std::string& str, const logger_level& lv)
