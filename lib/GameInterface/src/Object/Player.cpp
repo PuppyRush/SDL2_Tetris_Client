@@ -2,7 +2,7 @@
 // Created by chaed on 19. 1. 13.
 //
 
-#include "GameInterface/include/Player.h"
+#include "Player.h"
 
 using namespace game_interface;
 

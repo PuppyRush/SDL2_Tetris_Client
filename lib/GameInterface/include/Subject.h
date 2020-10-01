@@ -13,8 +13,8 @@
 #include <mutex>
 #include <memory>
 
-#include "GameInterface/include/Object.h"
-#include "GameInterface/include/Observer.h"
+#include "Object.h"
+#include "Observer.h"
 
 namespace game_interface {
 

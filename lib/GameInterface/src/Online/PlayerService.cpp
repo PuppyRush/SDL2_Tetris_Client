@@ -5,9 +5,9 @@
 #include  <iostream>
 #include  <ace/OS.h>
 
-#include "GameInterface/include/Event.h"
-#include "GameInterface/include/PlayerService.h"
-#include "GameInterface/include/PacketQueue.h"
+#include "Event.h"
+#include "PlayerService.h"
+#include "PacketQueue.h"
 
 using namespace game_interface;
 using namespace game_interface::packet;

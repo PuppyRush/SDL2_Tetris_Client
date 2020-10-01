@@ -3,22 +3,33 @@ project(SDL2EasyGUI)
 
 message("----------------SDL2EasyGUI START----------------")
 
-
 SET(CMAKE_EXE_LINKER_FLAGS "-static")
+SET(SDL2_LIBRARY ${VCPKG_PLATFORM}/lib)
+SET(SDL2_INCLUDE_DIR ${VCPKG_PLATFORM}/include)
+SET(SDL2_IMAGE_LIBRARY ${VCPKG_PLATFORM}/lib)
+SET(SDL2_IMAGE_INCLUDE_DIR ${VCPKG_PLATFORM}/include)
+SET(SDL2_TTF_LIBRARY ${VCPKG_PLATFORM}/lib)
+SET(SDL2_TTF_INCLUDE_DIR ${VCPKG_PLATFORM}/include)
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+set(SDL2_gfx_LIBRARY ${VCPKG_PLATFORM}/lib)
+set(ACE_LIBRARY ${VCPKG_PLATFORM}/lib)
 
-find_package(SDL2 CONFIG REQUIRED)
-find_package(sdl2-image CONFIG REQUIRED)
-find_package(sdl2-ttf CONFIG REQUIRED)
-find_package(jsoncpp CONFIG REQUIRED)
-find_package(Boost 1.17.0)
+message(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH})
+
+find_package(SDL2  REQUIRED)
+find_package(sdl2-image  REQUIRED)
+find_package(sdl2-ttf  REQUIRED)
+find_package(sdl2-gfx CONFIG REQUIRED)
+find_package(jsoncpp REQUIRED)
+find_package(Boost 1.68.0)
 find_library(ace ACE_x64-windows-static REQUIRED)
-find_path(BOOST_INCLUDE_DIR boost)
+#find_path(BOOST_INCLUDE_DIR boost)
 
 include_directories(${BOOST_INCLUDE_DIR})
 if (WIN32)
-	set(BOOST_LIBRARIES ${Boost_LIBRARY_DIRS}/boost_system-vc140-mt.lib)
+	set(BOOST_LIBRARIES ${BOOST_LIBRARY_DIRS}/boost_system-vc140-mt.lib)
 	if (CMAKE_BUILD_TYPE MATCHES "Debug")
-		set(BOOST_LIBRARIES ${Boost_LIBRARY_DIRS}/../debug/lib/boost_system-vc140-mt-gd.lib)
+		set(BOOST_LIBRARIES ${BOOST_LIBRARY_DIRS}/../debug/lib/boost_system-vc140-mt-gd.lib)
 	endif()
 endif()
 
@@ -109,14 +120,12 @@ ADD_LIBRARY(SDL2EasyGUI STATIC
 
 target_link_libraries(
         ${PROJECT_NAME}
-		
-		SDL2::SDL2-static
+		PRIVATE SDL2::SDL2_gfx
+		SDL2::SDL2
 		SDL2::SDL2main
 		SDL2::SDL2_image
 		SDL2::SDL2_ttf
-		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\SDL2_gfx.lib"
-		"C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\ACEd.lib"
+        "D:\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\ACEd.lib"
+		#${SDL2_gfx_LIBRARY}
 		${BOOST_LIBRARIES}
-        #/usr/local/lib/libSDL2_gfx.a
- 
  )

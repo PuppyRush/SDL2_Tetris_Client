@@ -3,7 +3,7 @@
 //
 #include <string>
 
-#include "GameInterface/include/WaitingRoom.h"
+#include "WaitingRoom.h"
 
 using namespace game_interface;
 using namespace game_interface::packet;

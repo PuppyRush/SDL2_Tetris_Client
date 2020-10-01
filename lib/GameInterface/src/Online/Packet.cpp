@@ -4,7 +4,7 @@
 
 #include <algorithm>
 
-#include "GameInterface/include/Packet.h"
+#include "Packet.h"
 #include "include/Initiator.h"
 
 using namespace game_interface;

@@ -4,21 +4,18 @@ project(tetris)
 message("----------------tetris START----------------")
 
 
-find_package(SDL2 CONFIG REQUIRED)
-find_package(sdl2-image CONFIG REQUIRED)
-find_package(sdl2-ttf CONFIG REQUIRED)
-find_package(jsoncpp CONFIG REQUIRED)
-find_package(Boost 1.17.0)
+find_package(SDL2  REQUIRED)
+find_package(sdl2-image  REQUIRED)
+find_package(sdl2-ttf  REQUIRED)
+find_package(sdl2-gfx CONFIG REQUIRED)
+find_package(Boost 1.68.0)
+find_package(jsoncpp REQUIRED)
 
-message("PROJECT_SOURCE_DIR" ${PROJECT_SOURCE_DIR})
-
-find_path(BOOST_INCLUDE_DIR boost)
-
-include_directories(${BOOST_INCLUDE_DIR})
+#include_directories(${BOOST_INCLUDE_DIR})
 if (WIN32)
-	set(BOOST_LIBRARIES ${Boost_LIBRARY_DIRS}/boost_system-vc140-mt.lib)
+	set(BOOST_LIBRARIES ${BOOST_LIBRARY_DIRS}/boost_system-vc140-mt.lib)
 	if (CMAKE_BUILD_TYPE MATCHES "Debug")
-		set(BOOST_LIBRARIES ${Boost_LIBRARY_DIRS}/../debug/lib/boost_system-vc140-mt-gd.lib)
+		set(BOOST_LIBRARIES ${BOOST_LIBRARY_DIRS}/../debug/lib/boost_system-vc140-mt-gd.lib)
 	endif()
 endif()
 
@@ -92,6 +89,13 @@ target_link_libraries(
         SDL2EasyGUI
         TetrisModule 
         GameInterface
-		
-        #Threads::Threads
+		SDL2::SDL2
+		SDL2::SDL2main
+        SDL2::SDL2_gfx
+		SDL2::SDL2_image
+		SDL2::SDL2_ttf
+        #jsoncpp_lib
+		#${SDL2_gfx_LIBRARY}
+		${BOOST_LIBRARIES}
+
 		)

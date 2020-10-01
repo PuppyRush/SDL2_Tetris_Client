@@ -362,6 +362,7 @@ ASALocalRun/
 # Local History for Visual Studio
 .localhistory/
 
+lib/*/out
 out/*
 CMakeFiles/*
 example/*

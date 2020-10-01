@@ -10,8 +10,7 @@
 #endif
 
 #include <atomic>
-
-#include "../../sdl2gfx/SDL2_gfxPrimitives.h"
+#include <SDL2/SDL2_gfxPrimitives.h>
 
 #include "SDL2EasyGUI/include/SEG_Struct.h"
 #include "SDL2EasyGUI/include/ControlBuilder.h"

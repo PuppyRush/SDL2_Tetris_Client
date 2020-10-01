@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <cassert>
 
-#include "GameInterface/include/Room.h"
+#include "Room.h"
 
 using namespace game_interface;
 using namespace game_interface::packet;

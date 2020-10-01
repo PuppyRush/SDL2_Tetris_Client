@@ -12,8 +12,8 @@
 #include <vector>
 #include <algorithm>
 
-#include "GameInterface/include/Subject.h"
-#include "GameInterface/include/Object.h"
+#include "Subject.h"
+#include "Object.h"
 #include "Observer.h"
 
 namespace game_interface {

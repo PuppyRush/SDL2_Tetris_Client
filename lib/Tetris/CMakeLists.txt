@@ -6,8 +6,7 @@ message("----------------TetrisModule START----------------")
 #set(ACE_DIR "C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\share\\ace")
 
 
-find_package(Boost 1.17.0)
-#find_package(ACE)
+find_package(Boost 1.68.0)
 
 find_path(BOOST_INCLUDE_DIR boost)
 

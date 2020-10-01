@@ -2,8 +2,7 @@
 // Created by kim on 19. 1. 10.
 //
 
-#include "GameInterface/include/PlayerConnector.h"
-#include  "GameInterface/include/PlayerConnector.h"
+#include "PlayerConnector.h"
 #include  <ace/INET_Addr.h>
 #include  <iostream>
 

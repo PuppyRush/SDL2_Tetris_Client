@@ -9,7 +9,7 @@
 #pragma once
 #endif
 
-#include "GameInterface/include/PacketQueue.h"
+#include "PacketQueue.h"
 
 namespace game_interface {
 

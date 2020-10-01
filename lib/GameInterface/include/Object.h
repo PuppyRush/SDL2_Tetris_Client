@@ -14,7 +14,7 @@
 #include "Atomic.h"
 #include "Constant.h"
 #include "Type.h"
-#include "GameInterface/include/JsonPackage.h"
+#include "JsonPackage.h"
 
 namespace game_interface {
 

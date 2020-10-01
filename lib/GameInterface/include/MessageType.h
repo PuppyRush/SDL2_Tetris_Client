@@ -9,7 +9,7 @@
 #pragma once
 #endif
 
-#include "GameInterface/include/Type.h"
+#include "Type.h"
 
 namespace game_interface {
 

@@ -15,6 +15,7 @@
 
 #include "Configcpp.h"
 #include "Type.h"
+#include <string_view>
 
 #undef max
 

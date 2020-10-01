@@ -2,7 +2,7 @@
 // Created by chaed on 19. 2. 24.
 //
 
-#include "GameInterface/include/ManagerController.h"
+#include "ManagerController.h"
 
 using namespace game_interface;
 using namespace game_interface::packet;

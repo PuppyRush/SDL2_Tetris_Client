@@ -3,7 +3,7 @@
 //
 
 #include <string>
-#include "GameInterface/include/GameRoom.h"
+#include "GameRoom.h"
 
 using namespace game_interface;
 using namespace game_interface::packet;

@@ -9,9 +9,9 @@
 #pragma once
 #endif
 
-#include "GameInterface/include/Type.h"
-#include "GameInterface/include/Packet.h"
-#include "GameInterface/include/Object.h"
+#include "Type.h"
+#include "Packet.h"
+#include "Object.h"
 
 namespace game_interface {
 

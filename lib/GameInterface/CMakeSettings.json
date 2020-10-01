@@ -2,35 +2,29 @@
   "configurations": [
     {
       "name": "x64-Debug",
-      "generator": "Visual Studio 16 2019",
+      "generator": "Ninja",
       "configurationType": "Debug",
-      "inheritEnvironments": [ "clang_cl_x64" ],
+      "inheritEnvironments": [ "msvc_x64" ],
       "buildRoot": "${projectDir}\\out\\build\\${name}",
       "installRoot": "${projectDir}\\out\\install\\${name}",
       "cmakeCommandArgs": "",
-      "buildCommandArgs": "-v",
+      "buildCommandArgs": "",
       "ctestCommandArgs": "",
       "cmakeToolchain": "D:\\vcpkg-master\\vcpkg-master\\scripts\\buildsystems\\vcpkg.cmake",
-      "variables": [
-        {
-          "name": "CMAKE_TOOLCHAIN_FILE",
-          "value": "D:\\vcpkg-master\\vcpkg-master\\scripts\\buildsystems/vcpkg.cmake",
-          "type": "FILEPATH"
-        }
-      ]
+      "variables": []
     },
     {
       "name": "x64-Clang-Debug",
-      "generator": "Visual Studio 16 2019 Win64",
+      "generator": "Ninja",
       "configurationType": "Debug",
       "buildRoot": "${projectDir}\\out\\build\\${name}",
       "installRoot": "${projectDir}\\out\\install\\${name}",
       "cmakeCommandArgs": "",
-      "buildCommandArgs": "-v",
+      "buildCommandArgs": "",
       "ctestCommandArgs": "",
-      "inheritEnvironments": [ "clang_cl_x64" ],
-      "variables": [],
-      "cmakeToolchain": "D:\\vcpkg-master\\vcpkg-master\\scripts\\buildsystems\\vcpkg.cmake"
+      "cmakeToolchain": "D:\\vcpkg-master\\vcpkg-master\\scripts\\buildsystems\\vcpkg.cmake",
+      "inheritEnvironments": [ "clang_cl_x64_x64" ],
+      "variables": []
     }
   ]
 }

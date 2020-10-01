@@ -2,9 +2,9 @@
 // Created by chaed on 19. 2. 21.
 //
 
-#include "GameInterface/include/PacketQueue.h"
-#include "GameInterface/include/ManagerController.h"
-#include "include/Constant.h"
+#include "PacketQueue.h"
+#include "ManagerController.h"
+#include "Constant.h"
 
 using namespace game_interface;
 using namespace game_interface::packet;

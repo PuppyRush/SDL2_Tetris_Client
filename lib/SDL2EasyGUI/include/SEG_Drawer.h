@@ -9,8 +9,9 @@
 #pragma once
 #endif
 
+#include "SDL2/SDL2_gfxPrimitives.h"
 #include "SEG_Struct.h"
-#include "../sdl2gfx/SDL2_gfxPrimitives.h"
+//#include <sdl
 
 namespace seg::drawer {
 
