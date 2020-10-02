@@ -19,9 +19,11 @@ public:
 
     using Base = ScrollbarDecorator;
 
-    explicit ScrollrableDecorator(BoxBasic* ctl);
+    virtual ~ScrollrableDecorator();
 
 protected:
+
+    explicit ScrollrableDecorator(BoxBasic* ctl);
 
 	inline virtual void setPosition(const SDL_Rect rect) noexcept
     { m_scrollbarFocusPosition = rect; }

@@ -17,6 +17,13 @@ struct BoxItem
 
     BoxItem() = default;
 
+    BoxItem(const string_type& str)
+        :string(str)
+    {
+
+    }
+
+
     BoxItem(const BoxItem& item)
     {
         if (this == &item) {
@@ -114,14 +121,14 @@ public:
         m_items.emplace_back(item);
     }
     
-    void appendItem(string_type&& str)
-    {
-        m_items.emplace_back(std::make_shared<item_type>(str));
-    }
+    //void appendItem(string_type&& str)
+    //{
+    //    m_items.push_back(std::make_shared<item_type>(str));
+    //}
 
     void appendItem(const string_type& str)
     {
-        m_items.emplace_back(std::make_shared<item_type>(str));
+        m_items.push_back(std::make_shared<item_type>(str));
     }
 
 

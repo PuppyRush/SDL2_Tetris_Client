@@ -84,8 +84,7 @@ public:
     virtual void onTextInputEvent(const SDL_TextInputEvent* text) override;
 
     virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) override
-    {
-    };
+    {};
 
     virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) override;
 

@@ -4,6 +4,7 @@
 
 #include "Control.h"
 
+#include "GameInterface/include/Logger.h"
 #include "SDL2EasyGUI/include/SEG_TypeTraits.h"
 #include "SDL2EasyGUI/include/SEG_Event.h"
 

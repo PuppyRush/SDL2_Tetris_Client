@@ -317,10 +317,14 @@ namespace seg {
 		{}
 
 		virtual bool bound(const SDL_Event& event) override
-		{}
+		{
+			return false;
+		}
 
 		virtual bool focus(const SDL_Event& event) override
-		{}
+		{
+			return false;
+		}
 
 
 		t_display m_display;

@@ -189,7 +189,7 @@ void TWaitingRoomDisplay::recvWaitingRoomInitInfo(const Packet& packet)
 
         RoomInfo roominfo{gameroom.getRoomNumber(), gameroom.getRoomName(), gameroom.getMaketime(),
                           gameroom.getUnique(), gameroom.getPlayerContainer().size(), gameroom.getFullCount()};
-        ctl->appendItem(make_shared<RoomInfo>(roominfo));
+        //ctl->appendItem(make_shared<BoxItem>(roominfo));
 
     }
 
@@ -202,8 +202,8 @@ void TWaitingRoomDisplay::recvWaitingRoomInitInfo(const Packet& packet)
         const Json::Value jsonPlayer = playerRoot[i];
 
         dummyPlayer->fromJson(jsonPlayer);
-        ctl->appendItem(make_shared<UserInfo>(dummyPlayer->getUserName(), dummyPlayer->getMaketime(),
-                                              dummyPlayer->getUnique()));
+        //ctl->appendItem(make_shared<BoxItem>(dummyPlayer->getUserName(), dummyPlayer->getMaketime(),
+         //                                     dummyPlayer->getUnique()));
     }
 }
 
@@ -263,7 +263,7 @@ void TWaitingRoomDisplay::recvChat(const Packet& packet)
     auto json = packet.getPayload();
     chatinfo.fromJson(json);
 
-    ctl->appendItem(make_shared<ChatInfo>(chatinfo));
+   // ctl->appendItem(make_shared<ChatInfo>(chatinfo));
 }
 
 void TWaitingRoomDisplay::createGameroom(const Packet& packet)

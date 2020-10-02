@@ -144,6 +144,8 @@ namespace easytimer {
         auto h = easytimer::time_rest<hours>(dur);
 
         std::stringstream sstream;
+        sstream << std::setfill('0') << std::setw(2);
+
         sstream << h.count() << " " << min.count() << " " << sec.count() << " " << mili.count() << " " << micro.count() << " " << nano.count();
         return sstream.str();
     }
@@ -154,6 +156,9 @@ namespace easytimer {
         std::time_t tt = T::clock::to_time_t(easytimer::time_point_cast<easytimer::clock_type::duration>(t));
 
         std::stringstream sstream;
+        sstream << std::setfill('0') << std::setw(2);
+        sstream.width(2);
+
         sstream << std::put_time(std::localtime(&tt), "%c");
 
         sstream << " " << easytimer::time_rest<easytimer::milliseconds>(t.time_since_epoch()).count();

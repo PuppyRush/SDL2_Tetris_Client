@@ -282,28 +282,6 @@ protected:
     bool _hitTest(const SDL_Rect&, const SEG_Point&) const noexcept;
 
 
-    #include <tuple>
-    void SEG_SetRenderDrawColor(SDL_Renderer* renderer,
-        Uint8 r, Uint8 g, Uint8 b,
-        Uint8 a)
-    {
-        event::EventPusher event {this->getWindow()->getWindowID(), SEG_DRAW, SEG_DRAW_COLOR};
-        event.setUserData(new std::tuple(r,g,b,a));
-        event.pushEvent();
-    }
-
-    void SEG_RenderDrawLines(SDL_Renderer* renderer,
-        const SDL_Point* points,
-        int count)
-    {
-        event::EventPusher event {this->getWindow()->getWindowID(), SEG_DRAW, SEG_DRAW_LINES};
-        event.setUserData(new std::tuple(points, count));
-        event.pushEvent();
-    }
-
-    //SEG_SetRenderDrawColor(getWindow()->getSDLRenderer(), lineColor.r, lineColor.g, lineColor.b, 255);
-    //SEG_RenderDrawLines(getWindow()->getSDLRenderer(), points, SDL_arraysize(points));
-
     window_type m_window = nullptr;
 
     std::shared_ptr<ControlBasic> m_data;

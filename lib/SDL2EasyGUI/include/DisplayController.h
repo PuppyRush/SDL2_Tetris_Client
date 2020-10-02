@@ -26,25 +26,6 @@
 
 namespace seg {
 
-using controll_map_key = std::pair<t_id, t_id>;
-
-struct KeyHash
-{
-    std::size_t operator()(const controll_map_key& obj) const
-    {
-        return std::hash<t_id>()(obj.first) * 13 + std::hash<t_id>()(obj.second) * 21;
-    }
-};
-
-struct KeyEqual
-{
-    bool operator()(const controll_map_key& lhs, const controll_map_key& rhs) const
-    {
-        return rhs.first == lhs.first &&
-               rhs.second == rhs.second;
-    }
-};
-
 class DisplayMap : private boost::serialization::singleton<DisplayMap>
 {
 public:

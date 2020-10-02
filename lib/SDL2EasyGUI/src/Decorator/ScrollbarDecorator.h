@@ -21,9 +21,12 @@ public:
 
     using Base = Decorator<BoxBasic>;
 
-    explicit ScrollbarDecorator(BoxBasic* ctl);
+
+    virtual ~ScrollbarDecorator();
 
 protected:
+
+    explicit ScrollbarDecorator(BoxBasic* ctl);
 
     virtual bool isHit(const SEG_Point& point) const;
 

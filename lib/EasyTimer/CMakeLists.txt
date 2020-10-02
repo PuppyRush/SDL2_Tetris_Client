@@ -32,7 +32,6 @@ ${BOOST_INCLUDE_DIR}
 
 ADD_LIBRARY (EasyTimer STATIC
                 EasyTimer.cpp 
-                EasyTimer.h 
                 Countdown.h
                 Date.h
                 ElapsedTimer.h

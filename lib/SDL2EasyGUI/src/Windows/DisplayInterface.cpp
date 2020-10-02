@@ -53,7 +53,8 @@ std::underlying_type_t<resource> DisplayInterface::alert()
     m_thread.join();
 
     DisplayController::getInstance().alert_close();
-
+    
+    return NULL;
 }
 
 void DisplayInterface::modal()
@@ -192,19 +193,6 @@ void DisplayInterface::onUserEvent(const SDL_UserEvent* event)
             onDrawBackground();
             onDraw();
             break;
-        case SEG_DRAW_LINES:
-        {
-            auto data = static_cast<std::tuple<SDL_Point*, int>*>(event->data2);
-            SDL_RenderDrawLines(this->getRenderer(), std::get<0>(*data), std::get<1>(*data));
-            break;
-        }
-        case SEG_DRAW_COLOR:
-        {
-            auto data = static_cast<std::tuple<Uint8, Uint8, Uint8, Uint8>*>(event->data2);
-            SDL_SetRenderDrawColor(this->getRenderer(), std::get<0>(*data), std::get<1>(*data), std::get<2>(*data), std::get<3>(*data));
-            break;
-        }
-
         default:
             break;
         }
@@ -227,9 +215,7 @@ void DisplayInterface::onUserEvent(const SDL_UserEvent* event)
             _setResult(click->resourceId);
 
             if (m_callback_one_param.count(userdata->controlId) > 0) {
-                // m_clickthread = std::thread( [=](){
                 m_callback_one_param.at(userdata->controlId)(click);
-                //     });
             }
             break;
         }
@@ -470,6 +456,7 @@ void DisplayInterface::attachDecorator(const control_ptr ctl, control_ptr decora
     if (removeControl(ctl)) {
         addControl(decorator);
         m_activatedCtl = decorator;
+        m_activatedCtl->refresh();
     }
 
 }
@@ -479,6 +466,7 @@ void DisplayInterface::detachDecorator(const control_ptr ctl)
     if (removeControl(ctl)) {
         addControl(ctl);
         m_activatedCtl = ctl;
+        m_activatedCtl->refresh();
     }
 }
 

@@ -13,8 +13,9 @@ class ComoboBoxBuilder;
 
 class ComboBox : public BoxBasic
 {
-
 public:
+    using Base = BoxBasic;
+    
     ComboBox(ComoboBoxBuilder& bld);
 
     virtual ~ComboBox() = default;

@@ -30,15 +30,26 @@ ScrollbarDecorator::ScrollbarDecorator(BoxBasic* ctl)
 */
 }
 
+ScrollbarDecorator::~ScrollbarDecorator()
+{
+
+}
+
 bool ScrollbarDecorator::isHit(const SEG_Point& point) const
 {
     return _hitTest(this->getPosition(), point) || Base::isHit(point);
 }
 
+#include <EasyTimer/ElapsedTimer.h>
 void ScrollbarDecorator::onDraw()
 {
+    using namespace easytimer;
+    ElapsedTimer<std::nano> et;
+    et.start();
     Base::onDraw();
     drawScroll();
+    et.end();
+    std::cout << get_duration_string(et.time_duration()) << std::endl;
 
 }
 
@@ -79,10 +90,10 @@ void ScrollbarDecorator::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 {
     if (button->state == SDL_PRESSED && Base::_hitTest(m_upperArrowPosition, {button->x, button->y})) {
         getComponent()->setMenuStartIndex(getComponent()->getMenuStartIndex() - 1);
-        Base::onDraw();
+        refresh();
     } else if (button->state == SDL_PRESSED && Base::_hitTest(m_belowArrowPosition, {button->x, button->y})) {
         getComponent()->setMenuStartIndex(getComponent()->getMenuStartIndex() + 1);
-        Base::onDraw();
+        refresh();
     } else if (Base::_hitTest(ScrollbarDecorator::getPosition(), {button->x, button->y})) {
 
         if (button->state == SDL_PRESSED && button->button == SDL_BUTTON_LEFT) {
@@ -90,7 +101,7 @@ void ScrollbarDecorator::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
         } else if (button->state == SDL_RELEASED) {
             Base::setBackgroundColor(ColorCode::lightgray);
         }
-        Base::onDraw();
+        refresh();
 
     } else {
         Base::onMouseButtonEvent(button);

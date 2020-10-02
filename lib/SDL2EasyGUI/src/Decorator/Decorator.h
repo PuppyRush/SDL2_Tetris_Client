@@ -9,6 +9,8 @@
 #pragma once
 #endif
 
+#include <unordered_map>
+
 #include "../Controller/Control.h"
 
 namespace seg {
@@ -19,11 +21,20 @@ class Decorator : public Control
 public:
 
     using DecoratorBase = T;
+    using Class = Decorator<DecoratorBase>;
 
     Decorator(T* gi)
             : m_graphic(gi), Control(gi)
     {
 
+    }
+
+    virtual ~Decorator()
+    {
+        for (auto pair : m_decoratorMap)
+        {
+            delete pair.second;
+        }
     }
 
     void onDraw()
@@ -51,6 +62,17 @@ public:
 
     inline auto getComponent()
     { return m_graphic; }
+
+    static Class* get_decorator(Control* ctl)
+    {
+        if (m_decoratorMap.find(ctl) != m_decoratorMap.end())
+        {
+            auto dec = new Class{ ctl };
+            //m_decoratorMap.insert(std::make_pair(ctl, dec));
+            return dec;
+        }
+        return m_decoratorMap.at(ctl);
+    }
 
 protected:
 
@@ -150,7 +172,12 @@ protected:
 private:
 
     T* m_graphic;
+
+    static std::unordered_map<Control*, Class*> m_decoratorMap;
 };
+
+template <class T>
+std::unordered_map<Control*, Decorator<T>*> Decorator<T>::m_decoratorMap;
 
 }
 

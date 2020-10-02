@@ -20,6 +20,10 @@ ScrollrableDecorator::ScrollrableDecorator(BoxBasic* ctl)
 
 }
 
+ScrollrableDecorator::~ScrollrableDecorator()
+{
+}
+
 void ScrollrableDecorator::onDraw()
 {
     Base::onDraw();

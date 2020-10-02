@@ -95,11 +95,11 @@ void TMultiMainDisplay::onInitialize()
         addControl(bld.build());
 
         auto ctl = getControl<ComboBox>(resource::MAIN_TEST_TEXT_COMBO);
-        ctl->appendItem(std::make_shared<ComboBoxItem>("item1"));
-        ctl->appendItem(std::make_shared<ComboBoxItem>("item2"));
-        ctl->appendItem(std::make_shared<ComboBoxItem>("item3"));
-        ctl->appendItem(std::make_shared<ComboBoxItem>("item4"));
-        ctl->appendItem(std::make_shared<ComboBoxItem>("item5"));
+        ctl->appendItem(std::make_shared<BoxItem>("item1"));
+        ctl->appendItem(std::make_shared<BoxItem>("item2"));
+        ctl->appendItem(std::make_shared<BoxItem>("item3"));
+        ctl->appendItem(std::make_shared<BoxItem>("item4"));
+        ctl->appendItem(std::make_shared<BoxItem>("item5"));
     }
 
     begin_y += 80;

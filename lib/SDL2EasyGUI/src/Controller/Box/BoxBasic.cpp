@@ -67,7 +67,7 @@ void BoxBasic::onMouseMotionEvent(const SDL_MouseMotionEvent* motion)
     if (!isFolded()) {
 
         m_boundedMenuIndx = calcIndexOf(motion->y);
-        onDraw();
+        refresh();
     }
 }
 

@@ -86,9 +86,6 @@ enum EventType
     SEG_ENTER_CONTROLLER,
     SEG_DECORATOR_ATTACH,
     SEG_DECORATOR_DETACH,
-
-    SEG_DRAW_LINES,
-    SEG_DRAW_COLOR
 };
 
 enum class BorderBoundaryType : t_type
