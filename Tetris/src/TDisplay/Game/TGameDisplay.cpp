@@ -134,8 +134,8 @@ void TGameDisplay::onDraw()
                 board->getBackgroundColor().b, board->getBackgroundColor().a);
         SDL_RenderDrawLines(renderer, line, 5);
 
-        const t_coord pred_x = beginX + GAMEBOARD_DISPLAY_WIDTH + figureLen;
-        const t_coord pred_y = beginY;
+        const seg::t_coord pred_x = beginX + GAMEBOARD_DISPLAY_WIDTH + figureLen;
+        const seg::t_coord pred_y = beginY;
         line[0].x = pred_x;
         line[0].y = pred_y;
         line[1].x = pred_x + FIGURE_UNIT_LEN * 4;
@@ -160,9 +160,9 @@ void TGameDisplay::onDraw()
             for (int x = 0; x < board_width; x++) {
                 auto unit = gameboard[y][x];
                 if (unit.getType() & UnitType::Fixed) {
-                    SDL_Rect rect{beginX + x * figureLen,
-                                  beginY + y * figureLen,
-                                  figureLen, figureLen};
+                    SDL_Rect rect{ static_cast<int>(beginX + x * figureLen),
+                                   static_cast<int>(beginY + y * figureLen),
+                                   static_cast<int>(figureLen),static_cast<int>(figureLen) };
 
                     const auto color = unit.getColor();
                     auto renderer = getRenderer();
@@ -205,9 +205,9 @@ void TGameDisplay::_drawFigure(TFigureController::board_ptr board, TFigureContro
         const int x = coord.getPoint().x;
         const int y = coord.getPoint().y;
         const auto color = coord.getColor();
-        SDL_Rect rect{beginX + x * figureLen,
-                      beginY + y * figureLen,
-                      figureLen, figureLen};
+        SDL_Rect rect{ static_cast<int>(beginX + x * figureLen),
+                       static_cast<int>(beginY + y * figureLen),
+                       static_cast<int>(figureLen), static_cast<int>(figureLen)};
 
         auto renderer = getRenderer();
         SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
@@ -238,9 +238,9 @@ void TGameDisplay::_drawNextFigure()
         const int x = coord.getPoint().x;
         const int y = coord.getPoint().y;
         const auto color = coord.getColor();
-        SDL_Rect rect{beginX + x * figureLen,
-                      beginY + y * figureLen,
-                      figureLen, figureLen};
+        SDL_Rect rect{ static_cast<int>(beginX + x * figureLen),
+                      static_cast<int>(beginY + y * figureLen),
+                      static_cast<int>(figureLen), static_cast<int>(figureLen)};
 
         auto renderer = getRenderer();
         SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);

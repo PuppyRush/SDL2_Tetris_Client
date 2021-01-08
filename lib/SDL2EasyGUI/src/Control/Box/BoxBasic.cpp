@@ -3,7 +3,7 @@
 //
 
 #include "BoxBasic.h"
-#include <include/SEG_Drawer.h>
+#include "include/SEG_Drawer.h"
 
 using namespace seg;
 
@@ -14,6 +14,10 @@ BoxBasic::BoxBasic(BoxBasicBuilder& bld)
     {
         appendItem(item);
     }
+
+    auto point = getPoint();
+    drawer::TextDrawer textDrawer{ getSDLRenderer(), getFont(), point, "a" };
+    setMenuHeight(textDrawer.getTextHeight());
 
 }
 
@@ -28,21 +32,22 @@ void BoxBasic::initialize()
 
 void BoxBasic::onDraw()
 {
+    // draw highlight
+    if (!isFolded() && m_boundedMenuIndx != INVALID_VALUE && (getMenuStartIndex() <= m_boundedMenuIndx && m_boundedMenuIndx <= getMenuStartIndex() + getVisibleMenuCount())) {
 
-    if (!isFolded() && m_boundedMenuIndx >= 0) {
-
+        const t_size realBoundedIndex = m_boundedMenuIndx - getMenuStartIndex();
         auto renderer = getSDLRenderer();
-        const auto& item = m_items.at(m_boundedMenuIndx);
+        const auto& item = m_items.at(realBoundedIndex);
         auto point = getPoint();
 
         drawer::TextDrawer textDrawer{renderer, getFont(), point, item->getString()};
 
-        point.y += (textDrawer.getTextHeight() * (m_boundedMenuIndx + 1)) + (MENU_GAP * m_boundedMenuIndx);
+        point.y += (textDrawer.getTextHeight() * (realBoundedIndex + 1)) + (MENU_GAP * realBoundedIndex);
 
         SEG_Color color{ColorCode::blue};
 
-        SDL_Rect rect{point.x + 2, point.y + static_cast<int>(textDrawer.getTextHeight()) / 10,
-                      getWidth() - 4, static_cast<int>(textDrawer.getTextHeight())};
+        SDL_Rect rect{ static_cast<int>(point.x + 2), static_cast<int>(point.y + textDrawer.getTextHeight() / 10),
+                      static_cast<int>(getWidth() - 4), static_cast<int>(textDrawer.getTextHeight())};
 
         SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
         SDL_SetRenderDrawColor(getSDLRenderer(), color.r, color.g, color.b, 128);
@@ -71,6 +76,13 @@ void BoxBasic::onMouseMotionEvent(const SDL_MouseMotionEvent* motion)
     }
 }
 
+void BoxBasic::onDetachFocus(const SDL_UserEvent* user)
+{
+    setFolded(false);
+    refresh();
+    Base::onDetachFocus(user);
+}
+
 void BoxBasic::removeAll() noexcept
 {
     m_items.clear();
@@ -90,6 +102,11 @@ int BoxBasic::calcIndexOf(const t_coord y)
     const size_t menuHeight = m_menuHeight + MENU_GAP;
 
     int test_idx = (y - getPoint().y - menuHeight) / (menuHeight);
+    if (test_idx >= getVisibleMenuCount())
+    {
+        return -1;
+    }
+
     if ((test_idx + m_menuStartIdx) < m_items.size()) {
         return test_idx + getMenuStartIndex();
     }
@@ -98,3 +115,7 @@ int BoxBasic::calcIndexOf(const t_coord y)
 }
 
 
+std::pair<t_size, t_size> BoxBasic::getVisibleRangeIndex() const
+{
+    return std::make_pair(m_menuStartIdx, m_menuStartIdx + getVisibleMenuCount());
+}

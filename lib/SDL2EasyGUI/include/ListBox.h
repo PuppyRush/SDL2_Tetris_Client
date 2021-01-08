@@ -7,7 +7,7 @@
 
 #include <vector>
 
-#include "SDL2EasyGUI/src/Controller/Box/BoxBasic.h"
+#include "SDL2EasyGUI/src/Control/Box/BoxBasic.h"
 
 namespace seg {
 

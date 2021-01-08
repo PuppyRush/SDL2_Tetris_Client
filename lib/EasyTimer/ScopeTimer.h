@@ -14,9 +14,8 @@ namespace easytimer {
 template <typename _Rep, typename _Rn = long long>
 class ScopeTimer : protected TimerBasic<_Rep, _Rn>
 {
-	using Base = TimerBasic<precision>;
-
 	using precision = _Rep;
+	using Base = TimerBasic<precision>;
 	using time_point = typename Base::time_point;
 
 public:
@@ -28,9 +27,9 @@ public:
 
 	virtual ~ScopeTimer()
 	{
-		m_timeset.endPoint = Base::now();
+		this->m_timeset.endPoint = Base::now();
 
-		_cal_duration();
+		this->_cal_duration();
 	}
 
 };

@@ -9,6 +9,8 @@
 #pragma once
 #endif
 
+#include <json/json.h>
+
 namespace game_interface {
 
 class JsonPackage

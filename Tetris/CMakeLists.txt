@@ -3,32 +3,20 @@ project(tetris)
 
 message("----------------tetris START----------------")
 
-
-find_package(SDL2  REQUIRED)
-find_package(sdl2-image  REQUIRED)
-find_package(sdl2-ttf  REQUIRED)
-find_package(sdl2-gfx CONFIG REQUIRED)
 find_package(Boost 1.68.0)
 find_package(jsoncpp REQUIRED)
+find_path(BOOST_INCLUDE_DIR boost)
 
-#include_directories(${BOOST_INCLUDE_DIR})
-if (WIN32)
-	set(BOOST_LIBRARIES ${BOOST_LIBRARY_DIRS}/boost_system-vc140-mt.lib)
-	if (CMAKE_BUILD_TYPE MATCHES "Debug")
-		set(BOOST_LIBRARIES ${BOOST_LIBRARY_DIRS}/../debug/lib/boost_system-vc140-mt-gd.lib)
-	endif()
-endif()
-
-
-find_library(
-        SDL2EasyGUI
-        GameInterface
-        TetrisModule
-        NAMES libSDL2EasyGUI.a
-        NAMES libGameInterface.a
-        HINTS ${PROJECT_SOURCE_DIR}/lib/SDL2EasyGUI/cmake-build-debug
-        HINTS ${PROJECT_SOURCE_DIR}/lib/GameInterface/src
-        REQUIRED)
+#find_library(
+#        #SDL2EasyGUI
+#        #GameInterface
+#        #TetrisModule
+#        #NAMES libSDL2EasyGUI.a
+#        #NAMES libGameInterface.a
+#        #HINTS ${PROJECT_SOURCE_DIR}/lib/SDL2EasyGUI/cmake-build-debug
+#        #HINTS ${PROJECT_SOURCE_DIR}/lib/GameInterface/src
+#        #REQUIRED
+#        )
 
 add_executable(tetris
         include/TProperty.h
@@ -77,6 +65,7 @@ add_executable(tetris
 include_directories(
         include
         SYSTEM
+        ${BOOST_INCLUDE_DIR}
         ${PROJECT_SOURCE_DIR}/src
         ${PROJECT_SOURCE_DIR}/src/GameInterface
         ${PROJECT_SOURCE_DIR}/src/SDLEasyGUI
@@ -89,13 +78,8 @@ target_link_libraries(
         SDL2EasyGUI
         TetrisModule 
         GameInterface
-		SDL2::SDL2
-		SDL2::SDL2main
-        SDL2::SDL2_gfx
-		SDL2::SDL2_image
-		SDL2::SDL2_ttf
-        #jsoncpp_lib
-		#${SDL2_gfx_LIBRARY}
+        jsoncpp_lib
+		${SDL2_gfx_LIBRARY}
 		${BOOST_LIBRARIES}
 
 		)

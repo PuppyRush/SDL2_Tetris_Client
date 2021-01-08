@@ -62,7 +62,7 @@ public:
 
 	void do_record()
 	{
-		m_cal_q.emplace(Recordset{ Base::now(), m_suspendedDuration });
+		this->m_cal_q.emplace(Recordset{ Base::now(), this->m_suspendedDuration });
 		m_threadStopSignal.notify_one();
 		this->m_suspendedDuration = duration{ 0 };
 	}

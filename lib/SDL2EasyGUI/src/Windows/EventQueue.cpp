@@ -2,7 +2,7 @@
 // Created by chaed on 19. 2. 13.
 //
 
-#include "SDL2EasyGUI/include/EventQueue.h"
-#include "SDL2EasyGUI/include/SEG_Constant.h"
+#include "include/EventQueue.h"
+#include "include/SEG_Constant.h"
 
 using namespace seg;

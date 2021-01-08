@@ -11,7 +11,7 @@
 
 #include <unordered_map>
 
-#include "../Controller/Control.h"
+#include "../Control/Control.h"
 
 namespace seg {
 
@@ -21,9 +21,8 @@ class Decorator : public Control
 public:
 
     using DecoratorBase = T;
-    using Class = Decorator<DecoratorBase>;
 
-    Decorator(T* gi)
+    Decorator(DecoratorBase* gi)
             : m_graphic(gi), Control(gi)
     {
 
@@ -31,10 +30,6 @@ public:
 
     virtual ~Decorator()
     {
-        for (auto pair : m_decoratorMap)
-        {
-            delete pair.second;
-        }
     }
 
     void onDraw()
@@ -63,18 +58,6 @@ public:
     inline auto getComponent()
     { return m_graphic; }
 
-    static Class* get_decorator(Control* ctl)
-    {
-        if (m_decoratorMap.find(ctl) != m_decoratorMap.end())
-        {
-            auto dec = new Class{ ctl };
-            //m_decoratorMap.insert(std::make_pair(ctl, dec));
-            return dec;
-        }
-        return m_decoratorMap.at(ctl);
-    }
-
-protected:
 
     virtual void onCommonEvent(const SDL_CommonEvent* common) override
     { m_graphic->onCommonEvent(common); };
@@ -169,15 +152,45 @@ protected:
     virtual bool focus(const SDL_Event& event) override
     { return m_graphic->focus(event); }
 
+
 private:
 
     T* m_graphic;
 
-    static std::unordered_map<Control*, Class*> m_decoratorMap;
+    
 };
 
-template <class T>
-std::unordered_map<Control*, Decorator<T>*> Decorator<T>::m_decoratorMap;
+template <class T, class Ctl>
+class DecoratorMap
+{
+public:
+    static T* get_decorator(Ctl* ctl);
+
+    static std::unordered_map<Ctl*, T*> m_decoratorMap;
+
+    ~DecoratorMap()
+    {
+        for (auto pair : DecoratorMap<T, Ctl>::m_decoratorMap)
+        {
+            delete pair.second;
+        }
+
+    }
+};
+
+template <class T, class Ctl>
+std::unordered_map<Ctl*, T*> DecoratorMap<T,Ctl>::m_decoratorMap;
+
+template <class T, class Ctl>
+T* DecoratorMap<T, Ctl>::get_decorator(Ctl* ctl)
+{
+    if (m_decoratorMap.find(ctl) == m_decoratorMap.end())
+    {
+        auto dec = new T{ctl};
+        m_decoratorMap.insert(std::make_pair(ctl, dec));
+    }
+    return m_decoratorMap.at(ctl);
+}
 
 }
 

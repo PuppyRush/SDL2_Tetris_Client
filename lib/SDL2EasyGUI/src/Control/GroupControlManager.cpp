@@ -4,7 +4,7 @@
 
 #include <cassert>
 
-#include "SDL2EasyGUI/include/GroupControlManager.h"
+#include "include/GroupControlManager.h"
 
 using namespace std;
 using namespace seg;

@@ -38,8 +38,8 @@ void TMultiMainDisplay::registerEvent()
 void TMultiMainDisplay::onInitialize()
 {
 
-    t_size begin_x = WINDOW_WIDTH / 2 - 220;
-    t_size begin_y = WINDOW_HEIGHT / 3;
+    seg::t_size begin_x = WINDOW_WIDTH / 2 - 220;
+    seg::t_size begin_y = WINDOW_HEIGHT / 3;
     {
         ButtonBuilder bld(getWindow(), {begin_x, begin_y}, "PLAY TOGETHER");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->

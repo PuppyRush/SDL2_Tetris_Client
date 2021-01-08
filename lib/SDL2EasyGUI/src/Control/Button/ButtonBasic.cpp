@@ -19,12 +19,12 @@ void ButtonBasic::onDraw()
 
     SDL_Rect rect;
     if (getAutoSize()) {
-        rect = SDL_Rect{getPoint().x - 20,
-                        getPoint().y,
+        rect = SDL_Rect{ static_cast<int>(getPoint().x - 20),
+                        static_cast<int>(getPoint().y),
                         static_cast<int>(getTextWidth() * 1.2),
                         static_cast<int>(getTextHeight() * 1.4)};
     } else {
-        rect = SDL_Rect{getPoint().x, getPoint().y, getWidth(), getHeight()};
+        rect = SDL_Rect{ static_cast<int>(getPoint().x), static_cast<int>(getPoint().y), static_cast<int>(getWidth()), static_cast<int>(getHeight()) };
     }
 
     rect.x += getBorderThick();
@@ -32,8 +32,8 @@ void ButtonBasic::onDraw()
     rect.h = (rect.h - getBorderThick() * 2) + 1;
     rect.w = (rect.w - getBorderThick() * 2) + 1;
 
-    SEG_Point point{static_cast<int>(getPoint().x + (getWidth() - getTextWidth()) / 2),
-                    static_cast<int>(getPoint().y + (getHeight() - getTextHeight()) / 2)};
+    SEG_Point point{static_cast<t_coord>(getPoint().x + (getWidth() - getTextWidth()) / 2),
+                    static_cast<t_coord>(getPoint().y + (getHeight() - getTextHeight()) / 2)};
 
 
     drawer::TextDrawer drawer{getSDLRenderer(), getFont(), point, getName()};
@@ -64,7 +64,7 @@ void ButtonBasic::_drawCarot()
 
     if (isSelected() && isCarot()) {
         if (GroupControlManager::getInstance().isSelected(getGroup(), getId())) {
-            SDL_Rect rect{getPoint().x - 5, getPoint().y - 5, getWidth() + 10, getHeight() + 10};
+            SDL_Rect rect{ static_cast<int>( getPoint().x - 5), static_cast<int>( getPoint().y - 5), static_cast<int>( getWidth() + 10) , static_cast<int>( getHeight() + 10)};
 
             const auto& linecolor = drawer::getColor(ColorCode::red);
             SDL_SetRenderDrawColor(renderer, linecolor.r, linecolor.g, linecolor.b, 255);

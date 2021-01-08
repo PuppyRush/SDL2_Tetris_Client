@@ -10,7 +10,7 @@
       "cmakeCommandArgs": "",
       "buildCommandArgs": "",
       "ctestCommandArgs": "",
-      "cmakeToolchain": "D:\\vcpkg-master\\vcpkg-master\\scripts\\buildsystems\\vcpkg.cmake",
+      "cmakeToolchain": "C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\scripts\\buildsystems\\vcpkg.cmake",
       "variables": []
     },
     {
@@ -22,7 +22,7 @@
       "cmakeCommandArgs": "",
       "buildCommandArgs": "",
       "ctestCommandArgs": "",
-      "cmakeToolchain": "D:\\vcpkg-master\\vcpkg-master\\scripts\\buildsystems\\vcpkg.cmake",
+      "cmakeToolchain": "C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\scripts\\buildsystems\\vcpkg.cmake",
       "inheritEnvironments": [ "clang_cl_x64_x64" ],
       "variables": []
     }

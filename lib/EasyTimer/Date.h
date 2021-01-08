@@ -28,7 +28,7 @@ namespace date
     template <class _Tp>
     static boost::gregorian::date get_date_from(const _Tp& tp)
     {
-        return boost::gregorian::date_from_tm(clock_type::to_time_t(date::time_point<clock_type::duration>(tp)));
+        return boost::gregorian::date_from_tm(easytimer::clock_type::to_time_t( time_point< easytimer::clock_type::duration>(tp)));
     }
 
     static boost::gregorian::date get_date_from(const std::time_t t)

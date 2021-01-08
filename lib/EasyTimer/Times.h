@@ -49,32 +49,32 @@ namespace easytimer {
 
         inline void hour(const range& h) noexcept
         {
-            hours = hours{ h };
+            hours = easytimer::hours{ h };
         }
 
         inline void minuet(const range& m) noexcept
         {
-            minuets = minuets{ m };
+            minutes = easytimer::minutes{ m };
         }
 
         inline void second(const range& s) noexcept 
         {
-            seconds = seconds{ s };
+            seconds = easytimer::seconds{ s };
         }
 
         inline void millisecond(const range& m) noexcept
         {
-            milliseconds = milliseconds{ m };
+            milliseconds = easytimer::milliseconds{ m };
         }
 
         inline void microsecond(const range& m) noexcept
         {
-            microseconds = microseconds{ m };
+            microseconds = easytimer::microseconds{ m };
         }
 
         inline void nanosecond(const range& n) noexcept
         {
-            nanoseconds = nanoseconds{ n };
+            nanoseconds = easytimer::nanoseconds{ n };
         }
 
         template <typename _Rn = long long>
@@ -153,7 +153,7 @@ namespace easytimer {
     template <class T>
     static std::string get_time_string(const T t)
     {
-        std::time_t tt = T::clock::to_time_t(easytimer::time_point_cast<easytimer::clock_type::duration>(t));
+        std::time_t tt = T::clock::to_time_t( time_point_cast<easytimer::clock_type::duration>(t));
 
         std::stringstream sstream;
         sstream << std::setfill('0') << std::setw(2);

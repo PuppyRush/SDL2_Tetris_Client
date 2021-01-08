@@ -111,6 +111,8 @@ class BoxBasicBuilder;
 class BoxBasic : public Border
 {
 public:
+
+    using Base = Border;
     using item_type = BoxItem;
     using string_type = item_type::string_type;
     using item_ptr = std::shared_ptr<item_type>;
@@ -121,11 +123,6 @@ public:
         m_items.emplace_back(item);
     }
     
-    //void appendItem(string_type&& str)
-    //{
-    //    m_items.push_back(std::make_shared<item_type>(str));
-    //}
-
     void appendItem(const string_type& str)
     {
         m_items.push_back(std::make_shared<item_type>(str));
@@ -140,12 +137,6 @@ public:
 
     inline t_size getMenuCount() const noexcept
     { return m_items.size(); }
-
-    inline size_t getVisibleMenuMax() const noexcept
-    { return m_visibleMenuCnt; }
-
-    inline void setVisibleMenuMax(const size_t cnt)
-    { m_visibleMenuCnt = cnt; }
 
     void removeAll() noexcept;
 
@@ -238,6 +229,19 @@ public:
 
     virtual void onDraw() override;
 
+    virtual bool bound(const SDL_Event& event) override
+    {
+        return Base::bound(event);
+    }
+
+    virtual bool focus(const SDL_Event& event) override
+    {
+        return Base::focus(event);
+    }
+
+    virtual void onDetachFocus(const SDL_UserEvent* user) override;
+
+
 protected:
 
     BoxBasic(BoxBasicBuilder& bld);
@@ -246,16 +250,18 @@ protected:
 
     virtual void initialize() override;
 
+    std::pair<t_size, t_size> getVisibleRangeIndex() const;
+
 
 private:
     const t_size MENU_GAP = 3;
 
-    size_t m_visibleMenuCnt = 3;
+    t_size m_visibleMenuCnt = 3;
     std::vector<item_ptr> m_items;
     t_size m_menuHeight = 0;
-    size_t m_menuStartIdx = 0;
-    int m_selectedMenuIdx = -1;
-    int m_boundedMenuIndx = -1;
+    t_size m_menuStartIdx = 0;
+    t_size m_selectedMenuIdx = INVALID_VALUE;
+    t_size m_boundedMenuIndx = INVALID_VALUE;
     bool m_folded = true;
 
 };

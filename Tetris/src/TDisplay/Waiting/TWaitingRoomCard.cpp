@@ -24,7 +24,7 @@ void TWaitingRoomCard::onDraw()
 void TWaitingRoomCard::initialize()
 {
 
-    t_size begin_y = getPoint().y + 20;
+    seg::t_size begin_y = getPoint().y + 20;
     {
         EditLabelBuilder bld(getWindow(), {getPoint().x + 20, begin_y}, "Player");
         //bld.id(toUType(resource::ENTERSERVER_ID))->

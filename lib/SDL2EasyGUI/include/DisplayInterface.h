@@ -6,7 +6,7 @@
 #pragma once
 #endif
 
-#include "SDL2EasyGUI/include/EventListener.h"
+
 #include <future>
 #include <string>
 #include <vector>
@@ -25,14 +25,13 @@
 #include "SEG_Window.h"
 #include "EventListener.h"
 #include "EventQueue.h"
-
 #include "SEG_TypeTraits.h"
 #include "SEG_Resource.h"
 #include "SEG_Define.h"
 
 #include "ControlBuilder.h"
-#include "SDL2EasyGUI/src/Controller/Control.h"
-#include "../src/Decorator/Decorator.h"
+#include "SDL2EasyGUI/src/Control/Control.h"
+#include "SDL2EasyGUI/src/Decorator/Decorator.h"
 
 namespace seg {
 

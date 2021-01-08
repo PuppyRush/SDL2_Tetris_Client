@@ -4,9 +4,11 @@
 
 #include "Control.h"
 
+#include "sdl2gfx/SDL2_gfxPrimitives.h"
+
 #include "GameInterface/include/Logger.h"
-#include "SDL2EasyGUI/include/SEG_TypeTraits.h"
-#include "SDL2EasyGUI/include/SEG_Event.h"
+#include "include/SEG_TypeTraits.h"
+#include "include/SEG_Event.h"
 
 using namespace seg;
 
@@ -18,17 +20,26 @@ Control::Control(const Control* ctl)
 }
 
 Control::Control(const ControlBuilder& bld)
-        : m_positionRect({bld.getBasic().point.x, bld.getBasic().point.y,
-                          bld.getBasic().width, bld.getBasic().height}),
+        : m_positionRect({ static_cast<int>(bld.getBasic().point.x), static_cast<int>(bld.getBasic().point.y),
+                          static_cast<int>(bld.getBasic().width), static_cast<int>(bld.getBasic().height) }),
           GraphicInterface(std::make_shared<ControlBasic>(bld.getBasic()))
 {
     _initializeInCtor();
     GraphicInterface::m_backgroundColor = m_data->backgroundColor;
 }
 
+void Control::release()
+{
+    auto renderer =  getSDLRenderer();
+
+    SDL_RenderPresent(renderer);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderClear(renderer);
+}
+
 void Control::_initializeInCtor()
 {
-    setPosition({getPoint().x, getPoint().y, getWidth(), getHeight()});
+    setPosition({ static_cast<int>(getPoint().x), static_cast<int>(getPoint().y), static_cast<int>(getWidth()), static_cast<int>(getHeight()) });
     setMidPoint({getPoint().x + getWidth() / 2, getPoint().y + getHeight() / 2});
 }
 
@@ -204,5 +215,5 @@ void Control::onDraw()
 
 void Control::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 {
-    onHit({ button->x, button->y }, !isSelected());
+    onHit({ static_cast<t_coord>(button->x), static_cast<t_coord>(button->y) }, !isSelected());
 }

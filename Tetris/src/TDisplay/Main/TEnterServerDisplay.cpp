@@ -32,7 +32,7 @@ void TEnterServerDisplay::onInitialize()
     setWindowTitle("Input Your Nickname");
     setBackgroundColor(SEG_Color{ ColorCode::lightgray });
 
-    t_size begin_y = getWindowHeight() / 3;
+    seg::t_size begin_y = getWindowHeight() / 3;
     {
         EditLabelBuilder bld(getWindow(), {getWindowWidth() / 2 - 120, begin_y}, "Player");
         bld.id(seg::toUType(resource::ENTERSERVER_ID))->

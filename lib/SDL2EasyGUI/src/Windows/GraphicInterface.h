@@ -10,7 +10,7 @@
 #endif
 
 #include "../../include/SEG_Event.h"
-#include "SDL2EasyGUI/include/SEG_Window.h"
+#include "../../include/SEG_Window.h"
 #include "../../include/EventQueue.h"
 
 namespace seg {
@@ -283,9 +283,7 @@ protected:
 
 
     window_type m_window = nullptr;
-
     std::shared_ptr<ControlBasic> m_data;
-
     SEG_Color m_backgroundColor;
 };
 

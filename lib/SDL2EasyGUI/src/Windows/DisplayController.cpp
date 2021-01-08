@@ -10,10 +10,10 @@
 
 #include <SDL2/SDL.h>
 
-#include "SDL2EasyGUI/include/SEG_Constant.h"
-#include "SDL2EasyGUI/include/SEG_Type.h"
-#include "SDL2EasyGUI/include/MessageDialog.h"
-#include "SDL2EasyGUI/include/DisplayController.h"
+#include "include/SEG_Constant.h"
+#include "include/SEG_Type.h"
+#include "include/MessageDialog.h"
+#include "include/DisplayController.h"
 
 using namespace std;
 using namespace seg;

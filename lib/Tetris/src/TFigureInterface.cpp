@@ -191,8 +191,8 @@ void TFigureInterface::fromJson(const Json::Value& json)
 {
     string in = json[getUniqueName().data()].asString();
 
-    this->m_absoluteCoord.x = static_cast<t_coord>(bitset<10>(in.substr(5, 10)).to_ulong());
-    this->m_absoluteCoord.y = static_cast<t_coord>(bitset<20>(in.substr(15, 20)).to_ulong());
+    this->m_absoluteCoord.x = static_cast<seg::t_coord>(bitset<10>(in.substr(5, 10)).to_ulong());
+    this->m_absoluteCoord.y = static_cast<seg::t_coord>(bitset<20>(in.substr(15, 20)).to_ulong());
 
     this->m_figureClass = static_cast<decltype(m_figureClass)>(bitset<3>(in.substr(0, 3)).to_ulong());
     this->m_figureType = static_cast<decltype(m_figureType)>( bitset<2>(in.substr(3, 2)).to_ulong());

@@ -5,7 +5,7 @@
 #ifndef TETRIS_FIGURE_CLASS_COMBOBOX_H
 #define TETRIS_FIGURE_CLASS_COMBOBOX_H
 
-#include "SDL2EasyGUI/src/Controller/Box/BoxBasic.h"
+#include "SDL2EasyGUI/src/Control/Box/BoxBasic.h"
 
 namespace seg {
 

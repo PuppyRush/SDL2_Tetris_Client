@@ -27,8 +27,8 @@ void TOptionDisplay::onInitialize()
 {
     setBackgroundImgPath("../resources/images/background.png");
 
-    t_size begin_y = WINDOW_HEIGHT / 4;
-    t_size begin_x = WINDOW_WIDTH / 4;
+    seg::t_size begin_y = WINDOW_HEIGHT / 4;
+    seg::t_size begin_x = WINDOW_WIDTH / 4;
 
     {
         StaticLabelBuilder bld(getWindow(), {begin_x - 100, begin_y}, "SPEED");

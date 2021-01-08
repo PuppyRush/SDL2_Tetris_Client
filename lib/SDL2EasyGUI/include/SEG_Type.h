@@ -10,8 +10,8 @@
 #include <atomic>
 #include <ctime>
 
+//#include <SDL2/SDL_stdinc.h>
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_stdinc.h>
 
 namespace seg {
 
@@ -30,8 +30,8 @@ using t_id_atomic = std::atomic<t_id>;
 using t_eventType = Uint32;
 
 
-using t_coord = int;
-using t_size = int;
+using t_coord = uint32_t;
+using t_size = uint32_t;
 using t_color = Uint8;
 using t_time = std::time_t;
 using event_type = SDL_Event*;

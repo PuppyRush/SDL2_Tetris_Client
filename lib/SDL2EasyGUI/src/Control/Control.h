@@ -10,12 +10,12 @@
 #endif
 
 #include <atomic>
-#include <SDL2/SDL2_gfxPrimitives.h>
 
-#include "SDL2EasyGUI/include/SEG_Struct.h"
-#include "SDL2EasyGUI/include/ControlBuilder.h"
-#include "SDL2EasyGUI/include/GroupControlManager.h"
-#include "SDL2EasyGUI/include/EventListener.h"
+
+#include "../../include/SEG_Struct.h"
+#include "../../include/ControlBuilder.h"
+#include "../../include/GroupControlManager.h"
+#include "../../include/EventListener.h"
 
 namespace seg {
 
@@ -158,6 +158,8 @@ public:
 
     virtual bool focus(const SDL_Event& event) override;
 
+    void release();
+
 protected:
 
     explicit Control(const Control*);
@@ -192,6 +194,7 @@ protected:
     { return m_stopDraw; }
 
 private:
+    
     void _initializeInCtor();
 
 private:

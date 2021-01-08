@@ -9,7 +9,7 @@
 #pragma once
 #endif
 
-#include "SDL2EasyGUI/src/Controller/Button/ButtonBasic.h"
+#include "SDL2EasyGUI/src/Control/Button/ButtonBasic.h"
 
 namespace seg {
 

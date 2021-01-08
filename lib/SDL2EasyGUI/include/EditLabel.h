@@ -9,8 +9,8 @@
 #pragma once
 #endif
 
-#include "SDL2EasyGUI/src/Controller/Label/LabelBasic.h"
-#include "SDL2EasyGUI/include/SEG_Event.h"
+#include "SDL2EasyGUI/src/Control/Label/LabelBasic.h"
+#include "SEG_Event.h"
 
 namespace seg {
 

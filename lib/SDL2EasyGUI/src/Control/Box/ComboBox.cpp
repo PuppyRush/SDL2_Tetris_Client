@@ -4,7 +4,8 @@
 
 #include "ComboBox.h"
 #include "include/SEG_Drawer.h"
-#include "SDL2EasyGUI/src/Decorator/ScrollrableDecorator.h"
+#include "Decorator/ScrollrableDecorator.h"
+#include "GameInterface/include/Logger.h"
 
 using namespace seg;
 
@@ -44,7 +45,7 @@ void ComboBox::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
             setHeight(getHeight() * menuMax);
             
             if (getVisibleMenuCount() < getItems().size()) {
-                auto dec = ScrollrableDecorator::get_decorator(this); //new ScrollrableDecorator(this);
+                auto dec = DecoratorMap<ScrollrableDecorator, ComboBox>::get_decorator(this);
                 event::EventPusher event{getWindow()->getWindowID(), SEG_CONTROLLER, SEG_DECORATOR_ATTACH};
                 event.setTargetId(getId());
                 event.setUserData(dec);
@@ -93,12 +94,11 @@ void ComboBox::onDraw()
 
                 point.y += textDrawer.getTextHeight() + getMenuGap();
 
-                setMenuHeight(textDrawer.getTextHeight());
             }
 
             //Draw Chosed focus
             drawer::drawThickLine(renderer, {getPoint().x, getPoint().y + getMenuHeight()},
-                                       {getPoint().x + getWidth(), getPoint().y + getMenuHeight()}, ColorCode::cyan, 4);
+                                       {getPoint().x + getWidth(), getPoint().y + getMenuHeight()}, ColorCode::lightgray, 3);
 
         }
     }

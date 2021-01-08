@@ -53,11 +53,11 @@ public:
 
     void printLog(const std::string& str, const logger_level& lv)
     {
-        #ifdef SEG_DEBUG
+        //#ifdef SEG_DEBUG
         printLog(str.c_str(), lv);
-        #else
+        //#else
         __NOOP
-        #endif
+        //#endif
     }
 
 private:

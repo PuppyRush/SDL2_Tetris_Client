@@ -2,32 +2,33 @@
 // Created by chaed on 19. 7. 15.
 //
 
+#include <string>
+
 #include "ScrollbarDecorator.h"
-#include <include/SEG_Drawer.h>
+#include "GameInterface/include/Logger.h"
+#include "include/SEG_Drawer.h"
 
 using namespace seg;
 
 ScrollbarDecorator::ScrollbarDecorator(BoxBasic* ctl)
-        : Base(ctl),
-          m_scrollWidth(14),
-          m_scrollHeight(ctl->getHeight() / ctl->getVisibleMenuMax())
+        : Base(ctl)
 {
+    t_size scrollWidth = 14;
 
-    m_scrollbarPosition = {Base::getPoint().x + Base::getWidth() - m_scrollWidth, Base::getPoint().y,
-                           m_scrollWidth, Base::getHeight()};
+    m_scrollbarPosition = { static_cast<int>(Base::getPoint().x + Base::getWidth() - scrollWidth + 1)
+                           ,static_cast<int>(Base::getPoint().y + getComponent()->getMenuHeight() + 2)
+                           , static_cast<int>(scrollWidth)
+                           , static_cast<int>(Base::getHeight() - getComponent()->getMenuHeight() - 2) };
 
     m_arrowSize = m_scrollbarPosition.h / 15;
 
-    m_upperArrowPosition = {m_scrollbarPosition.x + m_arrowSize / 5, m_scrollbarPosition.y,
-                            m_arrowSize, m_arrowSize};
+    m_upperArrowPosition = { static_cast<int>(m_scrollbarPosition.x + m_arrowSize / 5 + 2),  static_cast<int>(m_scrollbarPosition.y + 4),
+                             static_cast<int>(m_arrowSize),  static_cast<int>(m_arrowSize)};
 
-    m_belowArrowPosition = {m_scrollbarPosition.x + m_arrowSize / 5,
-                            m_scrollbarPosition.y + m_scrollbarPosition.h - m_arrowSize,
-                            m_arrowSize, m_arrowSize};
-
-    /*m_scrollbarPosition.y += m_upperArrowPosition.h;
-    m_scrollbarPosition.h -= m_belowArrowPosition.h;
-*/
+    m_belowArrowPosition = { static_cast<int>(m_scrollbarPosition.x + m_arrowSize / 5 + 2),
+                             static_cast<int>(m_scrollbarPosition.y + m_scrollbarPosition.h - m_arrowSize - 3),
+                             static_cast<int>(m_arrowSize),  static_cast<int>(m_arrowSize)};
+    
 }
 
 ScrollbarDecorator::~ScrollbarDecorator()
@@ -43,14 +44,8 @@ bool ScrollbarDecorator::isHit(const SEG_Point& point) const
 #include <EasyTimer/ElapsedTimer.h>
 void ScrollbarDecorator::onDraw()
 {
-    using namespace easytimer;
-    ElapsedTimer<std::nano> et;
-    et.start();
     Base::onDraw();
     drawScroll();
-    et.end();
-    std::cout << get_duration_string(et.time_duration()) << std::endl;
-
 }
 
 void ScrollbarDecorator::onDrawBackground()
@@ -61,26 +56,25 @@ void ScrollbarDecorator::onDrawBackground()
 void ScrollbarDecorator::drawScroll()
 {
     using namespace drawer;
+    if (getComponent()->isFolded() == false)
+    {
+        draw_FilledRoundedRactangel(Base::getSDLRenderer(), ScrollbarDecorator::getPosition(), ColorCode::darkgray, 6);
 
-    draw_FilledRoundedRactangel(Base::getSDLRenderer(), ScrollbarDecorator::getPosition(), ColorCode::darkgray, 5);
-
-    draw_FilledTriangle(Base::getSDLRenderer(),
-                        {m_upperArrowPosition.x + m_upperArrowPosition.w / 2, m_upperArrowPosition.y},
-                        {m_upperArrowPosition.x, m_upperArrowPosition.y + m_upperArrowPosition.h},
-                        {m_upperArrowPosition.x + m_upperArrowPosition.w,
-                         m_upperArrowPosition.y + m_upperArrowPosition.h}, ColorCode::black);
-    draw_FilledTriangle(Base::getSDLRenderer(),
-                        {m_belowArrowPosition.x + m_belowArrowPosition.w,
-                         m_belowArrowPosition.y},
-                        {m_belowArrowPosition.x, m_belowArrowPosition.y},
-                        {m_belowArrowPosition.x + m_belowArrowPosition.w / 2,
-                         m_belowArrowPosition.y + m_belowArrowPosition.h},
-                        ColorCode::black);
+        draw_FilledTriangle(Base::getSDLRenderer(),
+            { static_cast<t_coord>(m_upperArrowPosition.x + m_upperArrowPosition.w / 2),  static_cast<t_coord>(m_upperArrowPosition.y) },
+            { static_cast<t_coord>(m_upperArrowPosition.x),  static_cast<t_coord>(m_upperArrowPosition.y + m_upperArrowPosition.h) },
+            { static_cast<t_coord>(m_upperArrowPosition.x + m_upperArrowPosition.w),static_cast<t_coord>(m_upperArrowPosition.y + m_upperArrowPosition.h) }, ColorCode::black);
+        draw_FilledTriangle(Base::getSDLRenderer(),
+            { static_cast<t_coord>(m_belowArrowPosition.x + m_belowArrowPosition.w),static_cast<t_coord>(m_belowArrowPosition.y) },
+            { static_cast<t_coord>(m_belowArrowPosition.x),  static_cast<t_coord>(m_belowArrowPosition.y) },
+            { static_cast<t_coord>(m_belowArrowPosition.x + m_belowArrowPosition.w / 2), static_cast<t_coord>(m_belowArrowPosition.y + m_belowArrowPosition.h) },
+            ColorCode::black);
+    }
 }
 
 void ScrollbarDecorator::onMouseMotionEvent(const SDL_MouseMotionEvent* motion)
 {
-    if (Base::_hitTest(ScrollbarDecorator::getPosition(), {motion->x, motion->y})) {
+    if (Base::_hitTest(ScrollbarDecorator::getPosition(), { static_cast<t_size>(motion->x), static_cast<t_size>(motion->y) })) {
     } else {
         Base::onMouseMotionEvent(motion);
     }
@@ -88,25 +82,23 @@ void ScrollbarDecorator::onMouseMotionEvent(const SDL_MouseMotionEvent* motion)
 
 void ScrollbarDecorator::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 {
-    if (button->state == SDL_PRESSED && Base::_hitTest(m_upperArrowPosition, {button->x, button->y})) {
+    if (button->state == SDL_PRESSED && Base::_hitTest(m_upperArrowPosition, { static_cast<t_size>(button->x), static_cast<t_size>( button->y) })) {
         getComponent()->setMenuStartIndex(getComponent()->getMenuStartIndex() - 1);
-        refresh();
-    } else if (button->state == SDL_PRESSED && Base::_hitTest(m_belowArrowPosition, {button->x, button->y})) {
+    } else if (button->state == SDL_PRESSED && Base::_hitTest(m_belowArrowPosition, { static_cast<t_size>(button->x), static_cast<t_size>(button->y) })) {
         getComponent()->setMenuStartIndex(getComponent()->getMenuStartIndex() + 1);
-        refresh();
-    } else if (Base::_hitTest(ScrollbarDecorator::getPosition(), {button->x, button->y})) {
+    } else if (Base::_hitTest(ScrollbarDecorator::getPosition(), { static_cast<t_coord>(button->x), static_cast<t_coord>(button->y) })) {
 
         if (button->state == SDL_PRESSED && button->button == SDL_BUTTON_LEFT) {
             Base::setBackgroundColor(ColorCode::darkgray);
         } else if (button->state == SDL_RELEASED) {
             Base::setBackgroundColor(ColorCode::lightgray);
         }
-        refresh();
 
     } else {
         Base::onMouseButtonEvent(button);
     }
 
+    onDraw();
 }
 
 void ScrollbarDecorator::onMouseWheelEvent(const SDL_MouseWheelEvent* wheel)

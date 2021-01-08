@@ -9,7 +9,6 @@
 #include <string_view>
 #include <memory>
 
-#include <json/json.h>
 
 #include "Atomic.h"
 #include "Constant.h"

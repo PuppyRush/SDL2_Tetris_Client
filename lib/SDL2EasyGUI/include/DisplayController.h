@@ -19,10 +19,10 @@
 
 #include <boost/serialization/singleton.hpp>
 
-#include "SDL2EasyGUI/include/EventQueue.h"
-#include "SDL2EasyGUI/include/SEG_Type.h"
-#include "SDL2EasyGUI/include/SEG_Resource.h"
-#include "SDL2EasyGUI/include/DisplayInterface.h"
+#include "EventQueue.h"
+#include "SEG_Type.h"
+#include "SEG_Resource.h"
+#include "DisplayInterface.h"
 
 namespace seg {
 
@@ -238,7 +238,7 @@ public:
     template <typename _Display, typename... _Args>
     static display_ptr modaless_open(_Args&& ... __args)
     {
-        display_ptr = std::make_shared<_Display>(std::forward<_Args>(__args)...);
+        display_ptr display = std::make_shared<_Display>(std::forward<_Args>(__args)...);
         DisplayMap::getInstance().addModaless(display);
         DisplayController::getInstance().getDisplayEventQueue().pushEvent(display);
 

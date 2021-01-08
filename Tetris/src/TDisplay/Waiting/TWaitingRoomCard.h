@@ -5,8 +5,8 @@
 #ifndef TETRIS_FIGURE_CLASS_TWAITINGROOMCARD_H
 #define TETRIS_FIGURE_CLASS_TWAITINGROOMCARD_H
 
-#include "SDL2EasyGUI/src/Controller/Control.h"
-#include "SDL2EasyGUI/src/Controller/Border.h"
+#include "SDL2EasyGUI/src/Control/Control.h"
+#include "SDL2EasyGUI/src/Control/Border.h"
 #include "SDL2EasyGUI/include/StaticLabel.h"
 #include "../Game/TMultiGameRoomDisplay.h"
 

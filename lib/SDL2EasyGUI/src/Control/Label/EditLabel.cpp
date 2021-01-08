@@ -5,10 +5,10 @@
 #include "EditLabel.h"
 #include "GameInterface/include/Logger.h"
 
-#include <SEG_Drawer.h>
+#include "SEG_Drawer.h"
 
-#include "SDL2EasyGUI/include/SEG_Event.h"
-#include "SDL2EasyGUI/include/SEG_TypeTraits.h"
+#include "include/SEG_Event.h"
+#include "include/SEG_TypeTraits.h"
 
 using namespace std;
 using namespace seg;
@@ -32,9 +32,9 @@ void EditLabel::onDraw()
 
     const auto point = getPoint();
     SDL_Point points[]
-        = { {static_cast<int>(point.x + getTextWidth() + 7), point.y + 5},
-            {static_cast<int>(point.x + getTextWidth() + 7), point.y + static_cast<int>(getHeight()) - 5},
-            {static_cast<int>(point.x + getTextWidth() + 7), point.y + 5} };
+        = { {static_cast<int>(point.x + getTextWidth() + 7), static_cast<int>(point.y + 5)},
+            {static_cast<int>(point.x + getTextWidth() + 7), static_cast<int>(point.y + getHeight() - 5)},
+            {static_cast<int>(point.x + getTextWidth() + 7), static_cast<int>(point.y + 5)} };
 
     SEG_Color lineColor;
     if (m_drawTextCursor) {

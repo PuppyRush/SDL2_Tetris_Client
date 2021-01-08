@@ -10,8 +10,8 @@
 #endif
 
 #include "Decorator.h"
-#include "../Controller/Box/BoxBasic.h"
-#include <SDL2EasyGUI/include/SEG_Drawer.h>
+#include "../Control/Box/BoxBasic.h"
+#include "SDL2EasyGUI/include/SEG_Drawer.h"
 
 namespace seg {
 
@@ -21,12 +21,15 @@ public:
 
     using Base = Decorator<BoxBasic>;
 
+    explicit ScrollbarDecorator(BoxBasic* ctl);
 
     virtual ~ScrollbarDecorator();
 
-protected:
+    virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) override;
 
-    explicit ScrollbarDecorator(BoxBasic* ctl);
+    virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) override;
+
+    virtual void onMouseWheelEvent(const SDL_MouseWheelEvent* wheel) override;
 
     virtual bool isHit(const SEG_Point& point) const;
 
@@ -34,13 +37,10 @@ protected:
 
     virtual void onDrawBackground() override;
 
+
+protected:
+
     void drawScroll();
-
-    virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) override;
-
-    virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) override;
-
-    virtual void onMouseWheelEvent(const SDL_MouseWheelEvent* wheel) override;
 
     inline virtual SDL_Rect getPosition() const noexcept override
     { return m_scrollbarPosition; }
@@ -51,15 +51,21 @@ protected:
     inline SDL_Rect getBelowArrowPosition() const noexcept
     { return m_belowArrowPosition; }
 
+    inline t_size getScrollHeight() const noexcept
+    {
+        return m_scrollbarPosition.h;
+    }
+
+    inline t_size getScrollWidth() const noexcept
+    {
+        return m_scrollbarPosition.w;
+    }
+
 private:
     t_size m_arrowSize;
     SDL_Rect m_scrollbarPosition;
     SDL_Rect m_upperArrowPosition;
     SDL_Rect m_belowArrowPosition;
-
-    t_size m_scrollHeight;
-    t_size m_scrollWidth;
-
 };
 
 }

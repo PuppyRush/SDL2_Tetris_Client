@@ -19,25 +19,9 @@ public:
 
     using Base = ScrollbarDecorator;
 
-    virtual ~ScrollrableDecorator();
-
-protected:
-
     explicit ScrollrableDecorator(BoxBasic* ctl);
 
-	inline virtual void setPosition(const SDL_Rect rect) noexcept
-    { m_scrollbarFocusPosition = rect; }
-
-    inline virtual SDL_Rect getPosition() const noexcept override
-    { return m_scrollbarFocusPosition; }
-
-    virtual void onDraw() override;
-
-    virtual void onDrawBackground() override;
-
-    void drawScrollbarFocus();
-
-    virtual bool isHit(const SEG_Point& point) const noexcept;
+    virtual ~ScrollrableDecorator();
 
     virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) override;
 
@@ -45,14 +29,34 @@ protected:
 
     virtual void onMouseWheelEvent(const SDL_MouseWheelEvent* wheel) override;
 
+    virtual void onDraw() override;
+
+    virtual void onDrawBackground() override;
+
+
+protected:
+
+	inline virtual void setPosition(const SDL_Rect rect) noexcept
+    { m_scrollbarFocusPosition = rect; }
+
+    inline virtual SDL_Rect getPosition() const noexcept override
+    { return m_scrollbarFocusPosition; }
+
+    inline void setPositionY(const t_size value) noexcept
+    {
+        m_scrollbarFocusPosition.y = value;
+    }
+
+    void drawScrollbarFocus();
+
+    virtual bool isHit(const SEG_Point& point) const noexcept;
+    
+
 private:
 
     SDL_Rect m_scrollbarFocusPosition;
-    t_coord m_beginY;
-    t_coord m_endY;
+    const t_coord m_staticScrollbarFocusY;
 
-    t_size m_scrollbarFocusHeight;
-    t_size m_scrollbarFocusWidth;
     t_size m_scrollIndex;
     const t_size m_scrollStartX = 0;
 };

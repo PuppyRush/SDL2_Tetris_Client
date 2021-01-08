@@ -8,6 +8,7 @@
 #include <functional>
 
 #include "TResource.h"
+#include "SDL2EasyGUI/include/SEG_Type.h"
 #include "SDL2EasyGUI/include/SEG_Event.h"
 #include "SDL2EasyGUI/include/Button.h"
 #include "../../TOption/TOptionManager.h"
@@ -47,7 +48,7 @@ void TSingleGameDisplay::registerEvent()
 
 void TSingleGameDisplay::onInitialize()
 {
-    t_size begin_y = WINDOW_HEIGHT / 10 * 3;
+    seg::t_size begin_y = WINDOW_HEIGHT / 10 * 3;
     {
         ButtonBuilder bld(getWindow(), {WINDOW_WIDTH / 5 * 3, begin_y}, "START");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->

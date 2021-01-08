@@ -16,6 +16,7 @@
 
 #include <SDL2/SDL_image.h>
 
+#include "SEG_Constant.h"
 #include "SEG_Property.h"
 
 namespace seg {
@@ -119,7 +120,7 @@ typedef struct ControlBasic
 
     //컨트롤의 고유 ID
     t_id resourceId;
-    SEG_Point point = SEG_Point{-100, -100};
+    SEG_Point point = SEG_Point{ INVALID_COORD, INVALID_COORD };
     SEG_Point midPoint = SEG_Point{0, 0};
     SDL_Rect positionRect = SDL_Rect{0, 0};
     t_size depth = 0;

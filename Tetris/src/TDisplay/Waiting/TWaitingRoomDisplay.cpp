@@ -166,8 +166,8 @@ void TWaitingRoomDisplay::updateObserver(const Packet& packet)
 
 void TWaitingRoomDisplay::recvWaitingRoomInitInfo(const Packet& packet)
 {
-    t_size begin_x = m_controllBeginPoint.x;
-    t_size begin_y = m_controllBeginPoint.y;
+    seg::t_size begin_x = m_controllBeginPoint.x;
+    seg::t_size begin_y = m_controllBeginPoint.y;
 
     const Json::Value root = packet.getPayload();
 

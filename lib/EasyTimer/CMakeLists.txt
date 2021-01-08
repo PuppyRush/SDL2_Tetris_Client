@@ -5,7 +5,8 @@ cmake_minimum_required (VERSION 3.8)
 
 project ("EasyTimer")
 
-message("----------------GameInterface START----------------")
+message("----------------EasyTimer START----------------")
+
 message("Boost_LIBRARY_DIRS" ${Boost_LIBRARY_DIRS} )
 message("CMAKE_CURRENT_SOURCE_DIR:" ${CMAKE_CURRENT_SOURCE_DIR})
 message("CMAKE_BINARY_DIR:" ${CMAKE_BINARY_DIR})
@@ -13,22 +14,16 @@ message("PROJECT_SOURCE_DIR:" ${PROJECT_SOURCE_DIR})
 
 cmake_policy(SET CMP0079 NEW)
 
-find_package(Boost 1.17.0)
-find_path(BOOST_INCLUDE_DIR boost)
-
-
-if (WIN32)
-	set(BOOST_LIBRARIES ${Boost_LIBRARY_DIRS}/boost_system-vc140-mt.lib)
-	if (CMAKE_BUILD_TYPE MATCHES "Debug")
-		set(BOOST_LIBRARIES ${Boost_LIBRARY_DIRS}/../debug/lib/boost_system-vc140-mt-gd.lib)
-        set(BOOST_LIBRARIES ${Boost_LIBRARY_DIRS}/../debug/lib/boost_date_time-vc140-mt-gd.lib)
-	endif()
-endif()
+find_package(Boost 1.17 REQUIRED)
+find_path(BOOST_INCLUDE_DIRS boost)
 
 
 include_directories(
-${BOOST_INCLUDE_DIR}
+${BOOST_INCLUDE_DIRS}
 		)
+
+message("BOOST_INCLUDE_DIRS" ${BOOST_INCLUDE_DIRS} )
+
 
 ADD_LIBRARY (EasyTimer STATIC
                 EasyTimer.cpp 
@@ -47,3 +42,6 @@ target_link_libraries(
         ${PROJECT_NAME}
         ${BOOST_LIBRARIES}
 		)
+
+
+message("----------------EasyTimer END----------------")

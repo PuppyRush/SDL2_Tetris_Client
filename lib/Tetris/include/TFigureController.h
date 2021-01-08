@@ -5,8 +5,6 @@
 #ifndef TETRIS_FIGURE_CLASS_TFIGURECONTROLLER_H
 #define TETRIS_FIGURE_CLASS_TFIGURECONTROLLER_H
 
-#include <boost/serialization/singleton.hpp>
-
 #include "TFigureInterface.h"
 #include "TFigureBoard.h"
 #include "TProperty.h"

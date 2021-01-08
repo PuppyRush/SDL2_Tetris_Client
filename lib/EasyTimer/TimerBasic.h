@@ -144,7 +144,7 @@ public:
 
     duration time_duration() noexcept
     {
-        return time_point::duration(end_point() - start_point());
+        return duration(end_point() - start_point());
     }
 
     constexpr hours hour() noexcept

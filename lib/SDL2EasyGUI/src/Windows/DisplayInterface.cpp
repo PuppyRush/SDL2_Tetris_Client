@@ -6,12 +6,13 @@
 #include <algorithm>
 
 #include "magic_enum/include/magic_enum.hpp"
-#include "SDL2EasyGUI/include/DisplayController.h"
-#include "SDL2EasyGUI/include/SEG_Resource.h"
-#include "SDL2EasyGUI/include/SEG_Event.h"
 
+#include "include/DisplayController.h"
+#include "include/SEG_Resource.h"
+#include "include/SEG_Event.h"
 #include "include/DisplayInterface.h"
 
+#include "EasyTimer/ElapsedTimer.h"
 #include "GameInterface/include/Logger.h"
 
 using namespace std;
@@ -105,7 +106,7 @@ void DisplayInterface::_mouseEventOnMenus(const SDL_Event& evt)
     case SDL_MOUSEMOTION:
     {
         auto ctl = getHittingMunues({ evt.motion.x, evt.motion.y });
-        if (ctl != nullptr && ctl->isHit({ evt.button.x, evt.button.y }))
+        if (ctl != nullptr && ctl->isHit({ static_cast<t_coord>( evt.button.x) ,static_cast<t_coord>(evt.button.y) }))
         {
             ctl->onEvent(evt);
             ctl->bound(evt);
@@ -119,7 +120,7 @@ void DisplayInterface::_mouseEventOnMenus(const SDL_Event& evt)
     case SDL_MOUSEBUTTONDOWN:
     {
         auto ctl = getHittingMunues({ evt.button.x, evt.button.y });
-        if (ctl != nullptr && ctl->isHit({ evt.motion.x, evt.motion.y }))
+        if (ctl != nullptr && ctl->isHit({ static_cast<t_coord>(evt.motion.x), static_cast<t_coord>(evt.motion.y) }))
         {
             ctl->onEvent(evt);
             ctl->focus(evt);
@@ -229,6 +230,7 @@ void DisplayInterface::onUserEvent(const SDL_UserEvent* event)
             break;
         }
         case SEG_DECORATOR_ATTACH: {
+
             auto userdata = static_cast<SEG_UserEventData*>(event->data1);
             control_ptr decorator = static_cast<control_ptr>(event->data2);
 
@@ -238,6 +240,7 @@ void DisplayInterface::onUserEvent(const SDL_UserEvent* event)
             else {
                 assert(0);
             }
+
             break;
         }
         case SEG_DECORATOR_DETACH: {
@@ -249,6 +252,7 @@ void DisplayInterface::onUserEvent(const SDL_UserEvent* event)
             else {
                 assert(0);
             }
+
             break;
         }
         }//switch
@@ -381,7 +385,7 @@ void DisplayInterface::onDrawBackground()
         t_size w, h; // m_texture width & height
 
         auto img = IMG_LoadTexture(renderer, m_backgroundImgPath.c_str());
-        SDL_QueryTexture(img, NULL, NULL, &w, &h);
+        SDL_QueryTexture(img, NULL, NULL, reinterpret_cast<int*>(&w), reinterpret_cast<int*>(&h) );
 
         SDL_Rect texr;
         texr.x = 0;
@@ -390,7 +394,7 @@ void DisplayInterface::onDrawBackground()
         texr.h = h;
         SDL_RenderCopy(renderer, img, NULL, &texr);
     } else {
-        SDL_Rect rect = SDL_Rect{0, 0, getWindowWidth(), getWindowHeight()};
+        SDL_Rect rect = SDL_Rect{0, 0, static_cast<int>( getWindowWidth()), static_cast<int>( getWindowHeight()) };
         GraphicInterface::_drawBackground(rect);
     }
 }

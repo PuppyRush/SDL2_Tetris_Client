@@ -36,7 +36,7 @@ void TPlayer::initialize()
     auto board = getController().getBoard();
 
     SEG_Point gameboardBeginPoint{50, 50}, gameboardPoint{0, 0};
-    t_size blockLen{0};
+    seg::t_size blockLen{0};
 
     switch (m_order) {
         case 0: {

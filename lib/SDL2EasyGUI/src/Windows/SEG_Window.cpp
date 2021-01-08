@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-#include "SDL2EasyGUI/include/SEG_Window.h"
+#include "include/SEG_Window.h"
 
 using namespace seg;
 

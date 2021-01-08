@@ -3,35 +3,15 @@ project(SDL2EasyGUI)
 
 message("----------------SDL2EasyGUI START----------------")
 
-SET(CMAKE_EXE_LINKER_FLAGS "-static")
-SET(SDL2_LIBRARY ${VCPKG_PLATFORM}/lib)
-SET(SDL2_INCLUDE_DIR ${VCPKG_PLATFORM}/include)
-SET(SDL2_IMAGE_LIBRARY ${VCPKG_PLATFORM}/lib)
-SET(SDL2_IMAGE_INCLUDE_DIR ${VCPKG_PLATFORM}/include)
-SET(SDL2_TTF_LIBRARY ${VCPKG_PLATFORM}/lib)
-SET(SDL2_TTF_INCLUDE_DIR ${VCPKG_PLATFORM}/include)
-set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
-set(SDL2_gfx_LIBRARY ${VCPKG_PLATFORM}/lib)
-set(ACE_LIBRARY ${VCPKG_PLATFORM}/lib)
 
-message(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH})
-
-find_package(SDL2  REQUIRED)
-find_package(sdl2-image  REQUIRED)
-find_package(sdl2-ttf  REQUIRED)
-find_package(sdl2-gfx CONFIG REQUIRED)
+find_package(SDL2 CONFIG REQUIRED)
+find_package(sdl2-image CONFIG REQUIRED)
+find_package(sdl2-ttf CONFIG REQUIRED)
 find_package(jsoncpp REQUIRED)
-find_package(Boost 1.68.0)
-find_library(ace ACE_x64-windows-static REQUIRED)
-#find_path(BOOST_INCLUDE_DIR boost)
+find_package(Boost 1.17.0)
+find_path(BOOST_INCLUDE_DIR boost)
 
-include_directories(${BOOST_INCLUDE_DIR})
-if (WIN32)
-	set(BOOST_LIBRARIES ${BOOST_LIBRARY_DIRS}/boost_system-vc140-mt.lib)
-	if (CMAKE_BUILD_TYPE MATCHES "Debug")
-		set(BOOST_LIBRARIES ${BOOST_LIBRARY_DIRS}/../debug/lib/boost_system-vc140-mt-gd.lib)
-	endif()
-endif()
+set(BOOST_INCLUDE_DIR "C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\include")
 
 
 include_directories(
@@ -46,33 +26,34 @@ include_directories(
         src/Display
         src/Subjector
         src/Windows
+        ${BOOST_INCLUDE_DIR}
 )
 
 
 ADD_LIBRARY(SDL2EasyGUI STATIC
         src/Command/Commander.h
         src/Command/EventCommand.h
-        src/Controller/Border.cpp
-        src/Controller/Border.h
-        src/Controller/Button/Button.cpp
-        src/Controller/Button/ButtonBasic.cpp
-        src/Controller/Button/ButtonBasic.h
-        src/Controller/Box/ComboBox.cpp
-        src/Controller/Control.cpp
-        src/Controller/Control.h
-        src/Controller/ControlBuilder.cpp
-        src/Controller/Label/EditLabel.cpp
-        src/Controller/GroupControlManager.cpp
-        src/Controller/Box/ListBox.cpp
-        src/Controller/Button/RadioButton.cpp
-        src/Controller/Label/StaticLabel.cpp
-        src/Controller/ImageStatic.cpp
-        src/Controller/ImageStatic.h
-        src/Controller/Label/LabelBasic.cpp
-        src/Controller/Label/LabelBasic.h
-        src/Controller/Box/BoxBasic.cpp
-        src/Controller/Box/BoxBasic.h
-        src/Controller/Button/CheckBox.cpp
+        src/Control/Border.cpp
+        src/Control/Border.h
+        src/Control/Button/Button.cpp
+        src/Control/Button/ButtonBasic.cpp
+        src/Control/Button/ButtonBasic.h
+        src/Control/Box/ComboBox.cpp
+        src/Control/Control.cpp
+        src/Control/Control.h
+        src/Control/ControlBuilder.cpp
+        src/Control/Label/EditLabel.cpp
+        src/Control/GroupControlManager.cpp
+        src/Control/Box/ListBox.cpp
+        src/Control/Button/RadioButton.cpp
+        src/Control/Label/StaticLabel.cpp
+        src/Control/ImageStatic.cpp
+        src/Control/ImageStatic.h
+        src/Control/Label/LabelBasic.cpp
+        src/Control/Label/LabelBasic.h
+        src/Control/Box/BoxBasic.cpp
+        src/Control/Box/BoxBasic.h
+        src/Control/Button/CheckBox.cpp
         src/Display/InputDialog.cpp
         src/Display/MessageDialog.cpp
         src/Windows/DisplayController.cpp
@@ -118,14 +99,22 @@ ADD_LIBRARY(SDL2EasyGUI STATIC
         include/SEG_Drawer.h
         )
 
+add_subdirectory(sdl2gfx)
+
+
 target_link_libraries(
-        ${PROJECT_NAME}
-		PRIVATE SDL2::SDL2_gfx
+        ${PROJECT_NAME} PRIVATE  
 		SDL2::SDL2
 		SDL2::SDL2main
 		SDL2::SDL2_image
 		SDL2::SDL2_ttf
-        "D:\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\ACEd.lib"
-		#${SDL2_gfx_LIBRARY}
-		${BOOST_LIBRARIES}
+        SDL2_gfx
  )
+
+ 
+get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
+foreach(dir ${dirs})
+  message(STATUS "dir='${dir}'")
+endforeach()
+
+message("----------------SDL2EasyGUI END----------------")

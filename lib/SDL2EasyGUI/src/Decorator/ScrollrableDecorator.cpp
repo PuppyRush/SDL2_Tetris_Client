@@ -4,19 +4,21 @@
 
 
 #include "ScrollrableDecorator.h"
-#include <include/SEG_Drawer.h>
+#include "include/SEG_Drawer.h"
+#include "GameInterface/include/Logger.h"
 
 using namespace seg;
 
 ScrollrableDecorator::ScrollrableDecorator(BoxBasic* ctl)
-        : Base(ctl),
-          m_scrollbarFocusWidth(14)
+    : Base(ctl),
+    m_staticScrollbarFocusY(Base::getUpperArrowPosition().y + Base::getUpperArrowPosition().h + 2)
 {
-    m_scrollbarFocusHeight =
-            (ctl->getHeight() - getUpperArrowPosition().h - getBelowArrowPosition().h) / ctl->getVisibleMenuMax();
-    m_scrollbarFocusPosition = {Base::getPoint().x + Base::getWidth() - m_scrollbarFocusWidth,
-                                Base::getUpperArrowPosition().y + Base::getUpperArrowPosition().h + 2,
-                                m_scrollbarFocusWidth, m_scrollbarFocusHeight};
+    t_size scrollbarFocusWidth = 14;
+    t_size scrollbarFocusHeight = (ctl->getHeight() - getUpperArrowPosition().h - getBelowArrowPosition().h) / ctl->getVisibleMenuCount();
+    
+    m_scrollbarFocusPosition = { static_cast<int>( Base::getPoint().x + Base::getWidth() - scrollbarFocusWidth + 3),
+                                 static_cast<int>( m_staticScrollbarFocusY),
+                                  static_cast<int>(scrollbarFocusWidth -4), static_cast<int>(scrollbarFocusHeight) };
 
 }
 
@@ -24,6 +26,7 @@ ScrollrableDecorator::~ScrollrableDecorator()
 {
 }
 
+#include <EasyTimer/ElapsedTimer.h>
 void ScrollrableDecorator::onDraw()
 {
     Base::onDraw();
@@ -37,7 +40,22 @@ void ScrollrableDecorator::onDrawBackground()
 
 void ScrollrableDecorator::drawScrollbarFocus()
 {
-    drawer::draw_FilledRoundedRactangel(Base::getSDLRenderer(), this->getPosition(), ColorCode::silver, 3);
+    if (getComponent()->isFolded() == false)
+    {
+        int remainHeight = Base::getScrollHeight() - getPosition().h;
+        int remainMenuCount = getComponent()->getMenuCount() - getComponent()->getVisibleMenuCount() + 1;
+        int unitHeight = remainHeight / remainMenuCount;
+        if (getComponent()->getMenuStartIndex() > 0)
+        {
+            setPositionY(m_staticScrollbarFocusY + unitHeight * ( getComponent()->getMenuStartIndex() ));
+        }
+        else
+        {
+            setPositionY(m_staticScrollbarFocusY);
+        }
+
+        drawer::draw_FilledRoundedRactangel(Base::getSDLRenderer(), this->getPosition(), ColorCode::lightgray, 3);
+    }
 }
 
 bool ScrollrableDecorator::isHit(const SEG_Point& point) const noexcept
@@ -47,7 +65,7 @@ bool ScrollrableDecorator::isHit(const SEG_Point& point) const noexcept
 
 void ScrollrableDecorator::onMouseMotionEvent(const SDL_MouseMotionEvent* motion)
 {
-    if (Base::_hitTest(ScrollrableDecorator::getPosition(), {motion->x, motion->y})) {
+    if (Base::_hitTest(ScrollrableDecorator::getPosition(), { static_cast<t_size>(motion->x), static_cast<t_size>(motion->y) })) {
         drawer::draw_FilledRoundedRactangel(Base::getSDLRenderer(), ScrollrableDecorator::getPosition(),
                                                  ColorCode::green, 3);
         refresh();
@@ -60,7 +78,7 @@ void ScrollrableDecorator::onMouseMotionEvent(const SDL_MouseMotionEvent* motion
 
 void ScrollrableDecorator::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 {
-    if (Base::_hitTest(ScrollrableDecorator::getPosition(), {button->x, button->y})) {
+    if (Base::_hitTest(ScrollrableDecorator::getPosition(), { static_cast<t_size>(button->x), static_cast<t_size>(button->y) })) {
 
         if (button->state == SDL_PRESSED && button->button == SDL_BUTTON_LEFT) {
             Base::setBackgroundColor(ColorCode::darkgray);
@@ -72,6 +90,8 @@ void ScrollrableDecorator::onMouseButtonEvent(const SDL_MouseButtonEvent* button
     } else {
         Base::onMouseButtonEvent(button);
     }
+
+    refresh();
 }
 
 void ScrollrableDecorator::onMouseWheelEvent(const SDL_MouseWheelEvent* wheel)

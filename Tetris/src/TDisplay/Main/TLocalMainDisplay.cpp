@@ -31,7 +31,7 @@ void TLocalMainDisplay::onInitialize()
 {
     //setBackgroundImgPath("../resources/images/background.png");
 
-    t_size begin_y = WINDOW_HEIGHT / 3;
+    seg::t_size begin_y = WINDOW_HEIGHT / 3;
 
     {
         ButtonBuilder bld(getWindow(), {WINDOW_WIDTH / 2 - 100, begin_y}, "PLAY ALONE");

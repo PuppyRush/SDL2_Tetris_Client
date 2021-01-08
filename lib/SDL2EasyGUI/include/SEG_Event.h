@@ -20,7 +20,7 @@ namespace event {
 
 typedef struct SEG_Click
 {
-    SEG_Point point = {-100, -100};
+    SEG_Point point = { INVALID_COORD, INVALID_COORD };
     t_id resourceId = toUType(resource::NONE);
     bool selected = false;
 
