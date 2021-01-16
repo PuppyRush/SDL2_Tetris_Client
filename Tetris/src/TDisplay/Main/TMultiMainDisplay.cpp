@@ -5,6 +5,7 @@
 
 #include "SDL2EasyGUI/include/Button.h"
 #include "SDL2EasyGUI/include/ComboBox.h"
+#include "SDL2EasyGUI/include/ListBox.h"
 #include "SDL2EasyGUI/include/RadioButton.h"
 #include "SDL2EasyGUI/include/CheckBox.h"
 #include "SDL2EasyGUI/include/DisplayController.h"
@@ -95,36 +96,37 @@ void TMultiMainDisplay::onInitialize()
         addControl(bld.build());
 
         auto ctl = getControl<ComboBox>(resource::MAIN_TEST_TEXT_COMBO);
-        ctl->appendItem(std::make_shared<BoxItem>("item1"));
+        ctl->appendItem(std::make_shared<BoxItem>("_________item1"));
         ctl->appendItem(std::make_shared<BoxItem>("item2"));
         ctl->appendItem(std::make_shared<BoxItem>("item3"));
         ctl->appendItem(std::make_shared<BoxItem>("item4"));
         ctl->appendItem(std::make_shared<BoxItem>("item5"));
     }
 
-    begin_y += 80;
-    {
-        CheckBoxBuilder bld(getWindow(), {WINDOW_WIDTH / 2, begin_y}, "");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
-                id(game_interface::toUType(resource::MAIN_TEST_CHECKBOX))->
-                backgroundColor(ColorCode::white)->
-                borderColor(ColorCode::lightgray)->
-                borderBoundaryType(BorderBoundaryType::angle)->
-                borderThick(3)->
+    //begin_y += 80;
+    //{
+    //    CheckBoxBuilder bld(getWindow(), {WINDOW_WIDTH / 2, begin_y}, "");
+    //    bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
+    //            id(game_interface::toUType(resource::MAIN_TEST_CHECKBOX))->
+    //            backgroundColor(ColorCode::white)->
+    //            borderColor(ColorCode::lightgray)->
+    //            borderBoundaryType(BorderBoundaryType::angle)->
+    //            borderThick(3)->
 
-                enabled(true);
+    //            enabled(true);
 
-        addControl(bld.build());
-    }
+    //    addControl(bld.build());
+    //}
 
-    begin_y += 30;
+  /*  begin_y += 30;
     {
         RadioButtonBuilder bld(getWindow(), {WINDOW_WIDTH / 2, begin_y}, "");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 id(game_interface::toUType(resource::MAIN_TEST_RADIOBUTTON))->
                 backgroundColor(ColorCode::white)->
                 borderColor(ColorCode::lightgray)->
-                borderLineType(BorderBoundaryLineType::round)->
+                borderBoundaryType(BorderBoundaryType::angle)->
+                borderAngle(5)->
                 borderThick(3)->
                 grouping(1)->
                 enabled(true);
@@ -162,6 +164,25 @@ void TMultiMainDisplay::onInitialize()
 
         auto ctl = bld.build();
         addControl(ctl);
+    }*/
+
+    {
+        ListBoxBuilder bld(getWindow(), { 30, 200 }, "");
+        bld.font({ "../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black })->
+            id(game_interface::toUType(resource::MAIN_TEST_LISTBOX))->
+            backgroundColor(ColorCode::white)->
+            borderColor(ColorCode::lightgray)->
+            borderBoundaryType(BorderBoundaryType::roundedAngle)->
+            borderAngle(3)->
+            borderThick(2)->
+            grouping(1)->
+            enabled(true);
+
+        bld.appendItem("aaabbb")->
+            appendItem("abaabab");
+
+
+        addControl(bld.build());
     }
 
     setWindowHeight(900);

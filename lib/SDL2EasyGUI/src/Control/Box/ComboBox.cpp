@@ -6,6 +6,7 @@
 #include "include/SEG_Drawer.h"
 #include "Decorator/ScrollrableDecorator.h"
 #include "GameInterface/include/Logger.h"
+#include "SEG_Helper.h"
 
 using namespace seg;
 
@@ -19,41 +20,26 @@ ComboBox::ComboBox(ComoboBoxBuilder& bld)
 void ComboBox::initialize()
 {
     m_defaultHeight = getHeight();
-    BoxBasic::initialize();
+    Base::initialize();
 }
 
 void ComboBox::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 {
-    if (button->state == SDL_PRESSED && button->button == SDL_BUTTON_LEFT && isHit(button->x, button->y)) {
+    if (button->state == SDL_PRESSED && button->button == SDL_BUTTON_LEFT && isHit({ static_cast<t_coord>( button->x),static_cast<t_coord>(button->y) })) {
 
-        setFolded(!isFolded());
+        setFolded(isFolded() ? false : true );
 
         if (isFolded()) {
-
             //펼쳐진 상태에서 최 상단 메뉴는 선택된 메뉴만 보여줘야 한다.
             setSelectedMenuIndex(calcIndexOf(button->y));
-
-            setHeight(m_defaultHeight);
-
-            event::EventPusher event{getWindow()->getWindowID(), SEG_CONTROLLER, SEG_DECORATOR_DETACH};
-            event.setTargetId(getId());
-            event.setUserData(this);
-            event.pushEvent();
-
+            foldBox();
         } else {
-            size_t menuMax = getItems().size() < getVisibleMenuCount() ? getVisibleMenuCount() : getItems().size();
-            setHeight(getHeight() * menuMax);
-            
-            if (getVisibleMenuCount() < getItems().size()) {
-                auto dec = DecoratorMap<ScrollrableDecorator, ComboBox>::get_decorator(this);
-                event::EventPusher event{getWindow()->getWindowID(), SEG_CONTROLLER, SEG_DECORATOR_ATTACH};
-                event.setTargetId(getId());
-                event.setUserData(dec);
-                event.pushEvent();
-            }
+            unfoldBox();
         }
 
     }
+
+    Base::onMouseButtonEvent(button);
 }
 
 void ComboBox::onDraw()
@@ -90,6 +76,7 @@ void ComboBox::onDraw()
                     getVisibleMenuCount();
             for (int i = getMenuStartIndex(); i < endIdx; i++) {
                 drawer::TextDrawer textDrawer{renderer, getFont(), point, getItems().at(i)->getString()};
+                textDrawer.setTextWidth(getWidth()-2);
                 textDrawer.drawText();
 
                 point.y += textDrawer.getTextHeight() + getMenuGap();
@@ -103,10 +90,45 @@ void ComboBox::onDraw()
         }
     }
 
-    BoxBasic::onDraw();
+    Base::onDraw();
 }
 
 void ComboBox::onDrawBackground()
 {
-    BoxBasic::onDrawBackground();
+    Base::onDrawBackground();
+}
+
+void ComboBox::onDetachFocus(const SDL_UserEvent* user)
+{
+    setFolded(true);
+    foldBox();
+    Base::onDetachFocus(user);
+}
+
+void ComboBox::foldBox()
+{
+    setHeight(m_defaultHeight);
+
+    event::EventPusher event {getWindow()->getWindowID(), SEG_CONTROLLER, SEG_DECORATOR_DETACH};
+    event.setTargetId(getId());
+    event.setUserData(this);
+    event.pushEvent();
+
+    Base::foldBox();
+}
+
+void ComboBox::unfoldBox()
+{
+    size_t menuMax = getItems().size() < getVisibleMenuCount() ? getVisibleMenuCount() : getItems().size();
+    setHeight(getHeight() * menuMax);
+
+    if (getVisibleMenuCount() < getItems().size()) {
+        auto dec = DecoratorMap<ScrollrableDecorator, ComboBox>::get_decorator(this);
+        event::EventPusher event {getWindow()->getWindowID(), SEG_CONTROLLER, SEG_DECORATOR_ATTACH};
+        event.setTargetId(getId());
+        event.setUserData(dec);
+        event.pushEvent();
+    }
+
+    Base::unfoldBox();
 }

@@ -252,6 +252,11 @@ protected:
 
     std::pair<t_size, t_size> getVisibleRangeIndex() const;
 
+    virtual void foldBox()
+    {}
+    
+    virtual void unfoldBox()
+    {}
 
 private:
     const t_size MENU_GAP = 3;
@@ -263,7 +268,7 @@ private:
     t_size m_selectedMenuIdx = INVALID_VALUE;
     t_size m_boundedMenuIndx = INVALID_VALUE;
     bool m_folded = true;
-
+    
 };
 
 class BoxBasicBuilder : public BorderBuilder
@@ -287,14 +292,16 @@ public:
     {
     }
 
-    void appendItem(string_type&& str)
+    BoxBasicBuilder* appendItem(string_type&& str)
     {
         m_items.push_back(std::make_shared<item_type>(str));
+        return this;
     }
 
-    void appendItem(const string_type& str)
+    BoxBasicBuilder* appendItem(const string_type& str)
     {
         m_items.push_back(std::make_shared<item_type>(str));
+        return this;
     }
 
     const item_ary& getItems() const noexcept

@@ -63,6 +63,7 @@ ADD_LIBRARY(SDL2EasyGUI STATIC
         src/Windows/SEG_Window.cpp
         src/Windows/SEG_Event.cpp
         src/Windows/GraphicInterface.cpp
+        src/Windows/EventListener.h
         src/Decorator/Decorator.h
         src/Decorator/ScrollbarDecorator.cpp
         src/Decorator/ScrollbarDecorator.h
@@ -82,7 +83,7 @@ ADD_LIBRARY(SDL2EasyGUI STATIC
         include/MessageDialog.h
         include/DisplayController.h
         include/DisplayInterface.h
-        include/EventListener.h
+        
         include/EventQueue.h
         include/SEG_Window.h
         include/SEG_Constant.h

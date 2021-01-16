@@ -14,6 +14,7 @@
 
 #include "EasyTimer/ElapsedTimer.h"
 #include "GameInterface/include/Logger.h"
+#include "SEG_Helper.h"
 
 using namespace std;
 using namespace seg;
@@ -120,7 +121,7 @@ void DisplayInterface::_mouseEventOnMenus(const SDL_Event& evt)
     case SDL_MOUSEBUTTONDOWN:
     {
         auto ctl = getHittingMunues({ evt.button.x, evt.button.y });
-        if (ctl != nullptr && ctl->isHit({ static_cast<t_coord>(evt.motion.x), static_cast<t_coord>(evt.motion.y) }))
+        if (ctl != nullptr )
         {
             ctl->onEvent(evt);
             ctl->focus(evt);
@@ -171,7 +172,7 @@ void DisplayInterface::_mouseEventOnMenus(const SDL_Event& evt)
 Control* DisplayInterface::getHittingMunues(const SDL_Point& point) const
 {
     for (const auto& ctl : _getMenuAry()) {
-        if (ctl->isHit(point.x, point.y))
+        if (ctl->isHit({ static_cast<t_coord>( point.x) ,static_cast<t_coord>( point.y ) }))
         {
             return ctl;
         }

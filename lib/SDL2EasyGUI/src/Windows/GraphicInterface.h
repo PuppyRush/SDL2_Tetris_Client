@@ -270,17 +270,12 @@ protected:
 
     explicit GraphicInterface(std::shared_ptr<ControlBasic>);
 
-    inline std::shared_ptr<ControlBasic> getBasic() const noexcept
+    inline std::shared_ptr<ControlBasic> _getBasic() const noexcept
     {
         return m_data;
     }
 
     virtual void _drawBackground(const SDL_Rect rect);
-
-    bool _hitTest(const SDL_Rect&, const t_coord& , const t_coord& ) const noexcept;
-
-    bool _hitTest(const SDL_Rect&, const SEG_Point&) const noexcept;
-
 
     window_type m_window = nullptr;
     std::shared_ptr<ControlBasic> m_data;

@@ -132,14 +132,14 @@ public:
             : m_textSurface(nullptr), m_point(point), m_renderer(renderer)
     {
         TTF_Font* font = TTF_OpenFont(fontinfo.font_name.c_str(), fontinfo.size);
-        SDL_Color textColor = {fontinfo.color.r, fontinfo.color.g, fontinfo.color.b, 0};
+        SDL_Color textColor = {fontinfo.color.r, fontinfo.color.g, fontinfo.color.b, fontinfo.color.a};
 
-        m_textSurface = TTF_RenderText_Solid(font, str.c_str(), textColor);
-        m_texture = SDL_CreateTextureFromSurface(renderer, m_textSurface);
-
-        if (m_textSurface != nullptr) {
-            m_height = static_cast<double>(m_textSurface->h);
-            m_width = static_cast<double>(m_textSurface->w);
+        m_textSurface = TTF_RenderUTF8_Solid(font, str.c_str(), textColor);
+        if(m_textSurface != nullptr)
+        {
+            m_texture = SDL_CreateTextureFromSurface(renderer, m_textSurface);
+            m_width = m_textSurface->w;
+            m_height = m_textSurface->h;
         }
     }
 
@@ -151,30 +151,44 @@ public:
     void drawText()
     {
         if (m_texture != nullptr) {
-            SDL_Rect renderQuad =
-                    {static_cast<int>(m_point.x), static_cast<int>(m_point.y), static_cast<int>(m_width),
-                     static_cast<int>(m_height)};
-            SDL_RenderCopy(m_renderer, m_texture, nullptr, &renderQuad);
+            //SDL_UnlockSurface(m_textSurface);
+            //SDL_Rect clipedQuad =
+            //    { 0,0, m_width, m_height };
+            //SDL_SetClipRect(m_textSurface, &clipedQuad);
+            //SDL_LockSurface(m_textSurface);
+
+            //m_texture = SDL_CreateTextureFromSurface(m_renderer, m_textSurface);
+
+            SDL_Rect renderQuad = { static_cast<int>(m_point.x), static_cast<int>(m_point.y), m_width, m_height };
+            SDL_Rect originRect = { static_cast<int>(m_point.x), static_cast<int>(m_point.y),  m_textSurface->w, m_textSurface->h};
+
+            //SDL_Texture* myTexturePart = GetAreaTextrue(renderQuad, m_renderer, m_texture);
+
+            SDL_RenderCopy(m_renderer, m_texture, NULL, &originRect);
         }
 
     }
 
-    inline const SDL_Texture* getTexture()
-    { return m_texture; }
-
-    inline const SDL_Surface* getTextSurface()
-    { return m_textSurface; }
-
-    inline double getTextWidth()
+    inline int getTextWidth()
     {
         return m_textSurface ?
                static_cast<double>(m_textSurface->w) : 0;
     }
 
-    inline double getTextHeight()
+    inline int getTextHeight()
     {
         return m_textSurface ?
                static_cast<double>(m_textSurface->h) : 0;
+    }
+
+    inline void setTextWidth(const t_size w)
+    {
+        m_width = w;
+    }
+
+    inline void setTextHeight(const t_size h)
+    {
+        m_height = h;
     }
 
     inline void setPoint(const SEG_Point& point)
@@ -182,13 +196,12 @@ public:
 
 private:
 
-    SDL_Surface* m_textSurface;
-    SDL_Texture* m_texture;
-    SDL_Renderer* m_renderer;
-    SEG_Point m_point;
-    double m_height;
-    double m_width;
-
+    SDL_Surface* m_textSurface = nullptr;
+    SDL_Texture* m_texture = nullptr;
+    SDL_Renderer* m_renderer = nullptr;
+    SEG_Point m_point = { INVALID_COORD, INVALID_COORD };
+    int m_height = 0;
+    int m_width = 0;
 };
 
 }

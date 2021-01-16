@@ -10,7 +10,7 @@ using namespace seg;
 BoxBasic::BoxBasic(BoxBasicBuilder& bld)
         : Border(bld)
 {
-    for (auto item : getItems())
+    for (auto item : bld.getItems())
     {
         appendItem(item);
     }
@@ -26,8 +26,7 @@ BoxBasic::~BoxBasic()
 
 void BoxBasic::initialize()
 {
-
-    Border::initialize();
+    Base::initialize();
 }
 
 void BoxBasic::onDraw()
@@ -59,12 +58,12 @@ void BoxBasic::onDraw()
         //printf("%d %d\n", m_boundedMenuIndx, point.y);
     }
 
-    Border::onDraw();
+    Base::onDraw();
 }
 
 void BoxBasic::onDrawBackground()
 {
-    Border::onDrawBackground();
+    Base::onDrawBackground();
 }
 
 void BoxBasic::onMouseMotionEvent(const SDL_MouseMotionEvent* motion)
@@ -74,11 +73,12 @@ void BoxBasic::onMouseMotionEvent(const SDL_MouseMotionEvent* motion)
         m_boundedMenuIndx = calcIndexOf(motion->y);
         refresh();
     }
+    Base::onMouseMotionEvent(motion);
 }
 
 void BoxBasic::onDetachFocus(const SDL_UserEvent* user)
 {
-    setFolded(false);
+    setFolded(true);
     refresh();
     Base::onDetachFocus(user);
 }

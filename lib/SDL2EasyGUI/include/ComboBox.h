@@ -28,6 +28,14 @@ public:
 
     virtual void initialize() override;
 
+    virtual void onDetachFocus(const SDL_UserEvent* user) override;
+
+protected:
+
+    virtual void foldBox() override;
+
+    virtual void unfoldBox() override;
+
 private:
 
     t_size m_defaultHeight;

@@ -7,6 +7,7 @@
 #include "ScrollbarDecorator.h"
 #include "GameInterface/include/Logger.h"
 #include "include/SEG_Drawer.h"
+#include "SEG_Helper.h"
 
 using namespace seg;
 
@@ -38,7 +39,7 @@ ScrollbarDecorator::~ScrollbarDecorator()
 
 bool ScrollbarDecorator::isHit(const SEG_Point& point) const
 {
-    return _hitTest(this->getPosition(), point) || Base::isHit(point);
+    return helper::hitTest(this->getPosition(), point) || Base::isHit(point);
 }
 
 #include <EasyTimer/ElapsedTimer.h>
@@ -74,19 +75,20 @@ void ScrollbarDecorator::drawScroll()
 
 void ScrollbarDecorator::onMouseMotionEvent(const SDL_MouseMotionEvent* motion)
 {
-    if (Base::_hitTest(ScrollbarDecorator::getPosition(), { static_cast<t_size>(motion->x), static_cast<t_size>(motion->y) })) {
-    } else {
+    if (helper::hitTest(ScrollbarDecorator::getPosition(), { static_cast<t_size>(motion->x), static_cast<t_size>(motion->y) })) {
+    } 
+    else {
         Base::onMouseMotionEvent(motion);
     }
 };
 
 void ScrollbarDecorator::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 {
-    if (button->state == SDL_PRESSED && Base::_hitTest(m_upperArrowPosition, { static_cast<t_size>(button->x), static_cast<t_size>( button->y) })) {
-        getComponent()->setMenuStartIndex(getComponent()->getMenuStartIndex() - 1);
-    } else if (button->state == SDL_PRESSED && Base::_hitTest(m_belowArrowPosition, { static_cast<t_size>(button->x), static_cast<t_size>(button->y) })) {
-        getComponent()->setMenuStartIndex(getComponent()->getMenuStartIndex() + 1);
-    } else if (Base::_hitTest(ScrollbarDecorator::getPosition(), { static_cast<t_coord>(button->x), static_cast<t_coord>(button->y) })) {
+    if (button->state == SDL_PRESSED && helper::hitTest(m_upperArrowPosition, { static_cast<t_size>(button->x), static_cast<t_size>( button->y) })) {
+        goUpScrollByUnit();
+    } else if (button->state == SDL_PRESSED && helper::hitTest(m_belowArrowPosition, { static_cast<t_size>(button->x), static_cast<t_size>(button->y) })) {
+        goDownScrollByUnit();
+    } else if (helper::hitTest(ScrollbarDecorator::getPosition(), { static_cast<t_coord>(button->x), static_cast<t_coord>(button->y) })) {
 
         if (button->state == SDL_PRESSED && button->button == SDL_BUTTON_LEFT) {
             Base::setBackgroundColor(ColorCode::darkgray);
@@ -104,4 +106,16 @@ void ScrollbarDecorator::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 void ScrollbarDecorator::onMouseWheelEvent(const SDL_MouseWheelEvent* wheel)
 {
     Base::onMouseWheelEvent(wheel);
+}
+
+void ScrollbarDecorator::goUpScrollByUnit()
+{
+    getComponent()->setMenuStartIndex(getComponent()->getMenuStartIndex() - m_scrollmovingUnitCount);
+
+}
+
+void ScrollbarDecorator::goDownScrollByUnit()
+{
+    getComponent()->setMenuStartIndex(getComponent()->getMenuStartIndex() + m_scrollmovingUnitCount);
+
 }

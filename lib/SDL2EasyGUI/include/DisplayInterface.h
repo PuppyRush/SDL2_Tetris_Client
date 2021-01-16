@@ -23,13 +23,13 @@
 #include <type_traits>
 
 #include "SEG_Window.h"
-#include "EventListener.h"
-#include "EventQueue.h"
 #include "SEG_TypeTraits.h"
 #include "SEG_Resource.h"
 #include "SEG_Define.h"
-
+#include "EventQueue.h"
 #include "ControlBuilder.h"
+
+#include "SDL2EasyGUI/src/Windows/EventListener.h"
 #include "SDL2EasyGUI/src/Control/Control.h"
 #include "SDL2EasyGUI/src/Decorator/Decorator.h"
 
@@ -155,6 +155,8 @@ namespace seg {
 			auto ctl = *find_if(begin(m_menus), end(m_menus), [resourceId](control_ptr ptr) {
 				return ptr->getId() == toUType(resourceId);
 				});
+
+			assert(ctl != nullptr);
 
 			return dynamic_cast<T*>(ctl);
 		}

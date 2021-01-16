@@ -15,7 +15,7 @@
 #include "../../include/SEG_Struct.h"
 #include "../../include/ControlBuilder.h"
 #include "../../include/GroupControlManager.h"
-#include "../../include/EventListener.h"
+#include "../Windows/EventListener.h"
 
 namespace seg {
 
@@ -44,23 +44,26 @@ public:
         return getWindow()->getSDLRenderer();
     }
 
-    bool isHitting(const SDL_Event& event) noexcept;
+    //inline bool isHit(const t_coord x, const t_coord y, const t_coord z = 0) const
+    //{
+    //    return isHit({ x, y, z });
+    //}
+
+    //inline bool isHit(SEG_Point&& point) const
+    //{
+    //    return isHit(static_cast<const SEG_Point>(std::move(point)));
+    //}
 
     void onHit(const SEG_Point& point, const bool hit);
-
 
     void setSelected(bool selected);
 
     void onVirtualDraw();
 
-    bool isHit(const t_coord x, const t_coord y, const t_coord z = 0) const;
-
-    virtual bool isHit(SEG_Point&& point) const;
-
     virtual bool isHit(const SEG_Point& point) const;
 
     virtual void resize() override
-    {};
+    {}
 
     virtual void initialize() override;
 
@@ -71,82 +74,82 @@ public:
     virtual void refresh() override;
 
     virtual void onCommonEvent(const SDL_CommonEvent* common) override
-    {};
+    {}
 
     virtual void onWindowEvent(const SDL_WindowEvent& window) override
-    {};
+    {}
 
     virtual void onKeyboardEvent(const SDL_KeyboardEvent* key) override;
 
     virtual void onTextEditingEvent(const SDL_TextEditingEvent* edit) override
-    {};
+    {}
 
     virtual void onTextInputEvent(const SDL_TextInputEvent* text) override;
 
     virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) override
-    {};
+    {}
 
     virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) override;
 
     virtual void onMouseWheelEvent(const SDL_MouseWheelEvent* wheel) override
-    {};
+    {}
 
     virtual void onJoyAxisEvent(const SDL_JoyAxisEvent* jaxis) override
-    {};
+    {}
 
     virtual void onJoyBallEvent(const SDL_JoyBallEvent* jball) override
-    {};
+    {}
 
     virtual void onJoyHatEvent(const SDL_JoyHatEvent* jhat) override
-    {};
+    {}
 
     virtual void onJoyButtonEvent(const SDL_JoyButtonEvent* jbutton) override
-    {};
+    {}
 
     virtual void onJoyDeviceEvent(const SDL_JoyDeviceEvent* jdevice) override
-    {};
+    {}
 
     virtual void onControllerAxisEvent(const SDL_ControllerAxisEvent* caxis) override
-    {};
+    {}
 
     virtual void onControllerButtonEvent(const SDL_ControllerButtonEvent* cbutton) override
-    {};
+    {}
 
     virtual void onControllerDeviceEvent(const SDL_ControllerDeviceEvent* cdevice) override
-    {};
+    {}
 
     virtual void onAudioDeviceEvent(const SDL_AudioDeviceEvent* adevice) override
-    {};
+    {}
 
     virtual void onQuitEvent(const SDL_QuitEvent* quit) override
-    {};
+    {}
 
     virtual void onUserEvent(const SDL_UserEvent* user) override
     {}
 
     virtual void onSysWMEvent(const SDL_SysWMEvent* syswm) override
-    {};
+    {}
 
     virtual void onTouchFingerEvent(const SDL_TouchFingerEvent* tfinger) override
-    {};
+    {}
 
     virtual void onMultiGestureEvent(const SDL_MultiGestureEvent* mgesture) override
-    {};
+    {}
 
     virtual void onDollarGestureEvent(const SDL_DollarGestureEvent* dgesture) override
-    {};
+    {}
 
     virtual void onDropEvent(const SDL_DropEvent* drop) override
-    {};
+    {}
 
     virtual void onTimerEvent(const SDL_UserEvent* user) override
     {}
 
     virtual void onAttachFocus(const SDL_UserEvent* user) override
-    {};
+    {}
 
     virtual void onDetachFocus(const SDL_UserEvent* user) override
-    {};
+    {}
 
     virtual void onBound(const SDL_MouseMotionEvent* user) override
     {}
@@ -154,8 +157,10 @@ public:
     virtual void onUnbound(const SDL_MouseMotionEvent* user) override
     {}
     
+    //bound test
     virtual bool bound(const SDL_Event& event) override;
 
+    //focus tset
     virtual bool focus(const SDL_Event& event) override;
 
     void release();

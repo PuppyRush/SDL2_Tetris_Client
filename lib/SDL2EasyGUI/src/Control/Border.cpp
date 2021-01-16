@@ -52,7 +52,7 @@ void Border::onDraw()
             break;
         case BorderBoundaryType::roundedAngle:
             for (int i = 0; i < getBorderThick(); i++) {
-                roundedRectangleRGBA(renderer, x + i, y + i, x + w - i, y + h - i, 10,
+                roundedRectangleRGBA(renderer, x + i, y + i, x + w - i, y + h - i, getBorderAngle(),
                                      lineColor.r, lineColor.g, lineColor.b, lineColor.a);
             }
 
@@ -64,15 +64,8 @@ void Border::onDraw()
 
         case BorderBoundaryType::round: {
 
-            //thickLineColor(renderer, 0, 0, 400, 400, 20, 0xFF00FFFF) ;
-            // thickLineColor(renderer, 0, 400, 400, 0, 20, 0xFF00FFFF) ;
-            //circleColor(renderer, 400/2, 400/2, 33, 0xff00ff00);
             circleRGBA(renderer, x + w / 2, y + h / 2, std::max(getTextWidth() / 2, getTextHeight() / 2),
                        lineColor.r, lineColor.g, lineColor.b, lineColor.a);
-
-            //SetViewport2(renderer,0,60,200/2,60+(200-80)/2);
-            //const auto &lineColor = getBorderLineColor();
-            //filledCircleColor(renderer, 100, 100, 30, toUType(lineColor.colorCode));
             break;
         }
     }

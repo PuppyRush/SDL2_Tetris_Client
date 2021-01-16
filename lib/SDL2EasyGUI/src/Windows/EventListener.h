@@ -10,8 +10,8 @@
 #endif
 
 #include <SDL2/SDL.h>
-#include "EventQueue.h"
-#include "SEG_Property.h"
+#include "SDL2EasyGUI/include/EventQueue.h"
+#include "SDL2EasyGUI/include/SEG_Property.h"
 #include "GameInterface/include/Logger.h"
 
 namespace seg {

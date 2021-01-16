@@ -142,7 +142,7 @@ typedef struct ControlBasic
     BorderBoundaryLineType borderLineType = BorderBoundaryLineType::straight;
     BorderBoundaryType borderType = BorderBoundaryType::roundedAngle;
     SEG_Color borderColor = ColorCode::white;
-    int borderAngle = 0;
+    int borderAngle = 10;
     int borderThick = 1;
 
     ControlBasic() = default;

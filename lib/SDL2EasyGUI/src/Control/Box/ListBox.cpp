@@ -19,14 +19,16 @@ void ListBox::onDraw()
 {
     auto renderer = getWindow()->getSDLRenderer();
 
-    SEG_Point accuPoint = getPoint();
-    accuPoint.x += 15;
-    accuPoint.y += 10;
+    SEG_Point ctlPoint = getPoint();
+    ctlPoint.x += 5;
+    ctlPoint.y += 5;
 
     for (const item_ptr item : getItems()) {
-        drawer::TextDrawer textDrawer{renderer, getFont(), accuPoint, item->getString()};
+        drawer::TextDrawer textDrawer{renderer, getFont(), ctlPoint, item->getString()};
         textDrawer.drawText();
 
-        accuPoint.y += textDrawer.getTextHeight() + 3;
+        ctlPoint.y += textDrawer.getTextHeight() + getMenuGap();
     }
+
+    Base::onDraw();
 }

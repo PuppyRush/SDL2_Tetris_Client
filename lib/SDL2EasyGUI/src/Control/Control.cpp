@@ -13,7 +13,7 @@
 using namespace seg;
 
 Control::Control(const Control* ctl)
-        : GraphicInterface(ctl->getBasic()), m_isBounded(false)
+        : GraphicInterface(ctl->_getBasic()), m_isBounded(false)
 {
     _initializeInCtor();
     GraphicInterface::m_backgroundColor = m_data->backgroundColor;
@@ -152,16 +152,6 @@ void Control::onHit(const SEG_Point& point, const bool hit)
     event_.pushEvent();
 }
 
-bool Control::isHit(const t_coord x, const t_coord y, const t_coord z) const
-{
-    return isHit({x, y, z});
-}
-
-bool Control::isHit(SEG_Point&& point) const
-{
-    return isHit(static_cast<const SEG_Point>(std::move(point)));
-}
-
 bool Control::isHit(const SEG_Point& point) const
 {
     const auto& pos = GraphicInterface::getPosition();
@@ -174,7 +164,7 @@ bool Control::isHit(const SEG_Point& point) const
 
 bool Control::bound(const SDL_Event& event)
 {
-    bool bounded = isHit(event.motion.x, event.motion.y);
+    bool bounded = isHit({ static_cast<t_coord>(event.motion.x), static_cast<t_coord>(event.motion.y) });
     if (bounded)
     {
         event::EventPusher event {getWindow()->getWindowID(), SEG_CONTROLLER, SEG_BOUND};
@@ -192,7 +182,7 @@ bool Control::bound(const SDL_Event& event)
 
 bool Control::focus(const SDL_Event& event)
 {
-    bool bounded = isHit(event.motion.x, event.motion.y);
+    bool bounded = isHit({ static_cast<t_coord>(event.motion.x), static_cast<t_coord>(event.motion.y) });
     if (bounded)
     {
         event::EventPusher event {getWindow()->getWindowID(), SEG_CONTROLLER, SEG_ATTACH_FOCUS};
