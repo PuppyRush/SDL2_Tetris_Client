@@ -2,8 +2,8 @@
 // Created by chaed on 19. 3. 8.
 //
 
-#ifndef TETRIS_FIGURE_CLASS_COMBOBOX_H
-#define TETRIS_FIGURE_CLASS_COMBOBOX_H
+#ifndef SDL2EASYGUI_COMBOBOX_H
+#define SDL2EASYGUI_COMBOBOX_H
 
 #include "SDL2EasyGUI/src/Control/Box/BoxBasic.h"
 
@@ -66,4 +66,4 @@ public:
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_COMBOBOX_H
+#endif //SDL2EASYGUI_COMBOBOX_H

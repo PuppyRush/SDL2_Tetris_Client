@@ -2,8 +2,8 @@
 // Created by chaed on 18. 12. 22.
 //
 
-#ifndef SDLEASYGUIDE_TSTRUCT_H
-#define SDLEASYGUIDE_TSTRUCT_H
+#ifndef SDL2EASYGUI_TSTRUCT_H
+#define SDL2EASYGUI_TSTRUCT_H
 
 #if _MSC_VER >= 1200
 #pragma once
@@ -15,6 +15,7 @@
 #include <iostream>
 
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 
 #include "SEG_Constant.h"
 #include "SEG_Property.h"
@@ -81,6 +82,7 @@ public:
 
 } SEG_Color;
 
+
 typedef struct SEG_Point
 {
 public:
@@ -98,28 +100,55 @@ public:
 
 } SEG_Point;
 
+typedef struct SEG_Rect
+{
+public:
+    SEG_Point point{ 0,0 };
+    t_size w;
+    t_size h;
+
+    SEG_Rect()
+        : point({ 0,0 }), w(0), h(0)
+    {}
+
+    SEG_Rect(const SEG_Point p, const t_size w, const t_size h)
+        : point(p), w(w), h(h)
+    {}
+
+    SEG_Rect(const SDL_Rect)
+    {}
+
+} SEG_Rect;
+
+
 typedef struct SEG_TFont
 {
-    std::string font_name;
-    t_size size;
+    std::string fontName = DEFAULT_FONT_NAME;
+    t_size size = 0;
     SEG_Color color;
 
     SEG_TFont() = default;
 
-    SEG_TFont(const std::string& str, const t_size size, const ColorCode color)
-            : font_name(str), size(size), color(color)
+    SEG_TFont(const std::string& fontname, const t_size size, const ColorCode color)
+            : fontName(fontname), size(size), color(color)
     {}
+
+    TTF_Font* getTTF_Font() 
+    {
+        return TTF_OpenFont(fontName.c_str(), size);
+    }
+
 } TFont;
 
 //pre declearcation
 class SEG_Window;
 
-typedef struct ControlBasic
+typedef struct ControlData
 {
-    SEG_Window* window;
+    SEG_Window* window = nullptr;
 
     //컨트롤의 고유 ID
-    t_id resourceId;
+    t_id resourceId = NULL_ID;
     SEG_Point point = SEG_Point{ INVALID_COORD, INVALID_COORD };
     SEG_Point midPoint = SEG_Point{0, 0};
     SDL_Rect positionRect = SDL_Rect{0, 0};
@@ -128,15 +157,16 @@ typedef struct ControlBasic
     t_size height = 50;
     SEG_TFont font = {"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::white};
     SEG_Color backgroundColor = ColorCode::black;
-    std::string name = "";
+    std::string name = "";      //식별이름
+    std::string text = "";      //컨트롤에 출력될 이름
     t_display display = std::numeric_limits<t_display>::max();
     bool enabled = true;
     bool multiselected = false;
-    ControlKind kind = ControlKind::StaticLabel;
-    int group = -1;
     bool carot = false;
     bool autoSize = true;
     bool selected = false;
+    ControlKind kind = ControlKind::StaticLabel;
+    int group = -1;
 
     //border types
     BorderBoundaryLineType borderLineType = BorderBoundaryLineType::straight;
@@ -145,9 +175,9 @@ typedef struct ControlBasic
     int borderAngle = 10;
     int borderThick = 1;
 
-    ControlBasic() = default;
+    ControlData() = default;
 
-    ControlBasic(const ControlBasic& b)
+    ControlData(const ControlData& b)
             : resourceId(b.resourceId),
               window(b.window),
               point(b.point),
@@ -156,6 +186,7 @@ typedef struct ControlBasic
               font(b.font),
               backgroundColor(b.backgroundColor),
               name(b.name),
+              text(b.text),
               display(b.display),
               enabled(b.enabled),
               multiselected(b.multiselected),
@@ -172,8 +203,8 @@ typedef struct ControlBasic
               borderColor(b.borderColor)
     {}
 
-} TControlBasic;
+} TControlData;
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_TSTRUCT_H
+#endif //SDL2EASYGUI_TSTRUCT_H

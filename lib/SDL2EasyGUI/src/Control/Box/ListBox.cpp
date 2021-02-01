@@ -17,17 +17,17 @@ ListBox::ListBox(ListBoxBuilder& bld)
 
 void ListBox::onDraw()
 {
-    auto renderer = getWindow()->getSDLRenderer();
+    auto renderer = getRenderer();
 
     SEG_Point ctlPoint = getPoint();
     ctlPoint.x += 5;
     ctlPoint.y += 5;
 
     for (const item_ptr item : getItems()) {
-        drawer::TextDrawer textDrawer{renderer, getFont(), ctlPoint, item->getString()};
+        drawer::TextDrawer textDrawer{renderer, getFont(), ctlPoint, item->getBoxString()};
         textDrawer.drawText();
 
-        ctlPoint.y += textDrawer.getTextHeight() + getMenuGap();
+        ctlPoint.y += getControlTextHeight() + getMenuGap();
     }
 
     Base::onDraw();

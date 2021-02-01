@@ -20,7 +20,7 @@ using namespace seg;
 TPlayer::TPlayer()
 {
     //after set id recvied GameInterface_Init data from server
-    setUnique(NULL_ID);
+    setUnique(game_interface::NULL_ID);
 
     auto reactor = make_shared<ACE_Reactor>(new ACE_Select_Reactor{});
     m_service = make_shared<ClientService>(reactor);

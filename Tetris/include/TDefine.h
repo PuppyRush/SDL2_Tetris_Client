@@ -1,8 +1,8 @@
 // Created by chaed on 18. 12. 2.
 //
 
-#ifndef TERIS_FIGURE_CLASS_TDEFINE_H
-#define TERIS_FIGURE_CLASS_TDEFINE_H
+#ifndef TETRIS_CLIENT_TDEFINE_H
+#define TETRIS_CLIENT_TDEFINE_H
 
 #if _MSC_VER >= 1200
 #pragma once

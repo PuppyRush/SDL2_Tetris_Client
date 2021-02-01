@@ -2,8 +2,8 @@
 // Created by chaed on 19. 2. 14.
 //
 
-#ifndef TETRIS_FIGURE_CLASS_COMMANDER_H
-#define TETRIS_FIGURE_CLASS_COMMANDER_H
+#ifndef SDL2EASYGUI_COMMANDER_H
+#define SDL2EASYGUI_COMMANDER_H
 
 #if _MSC_VER >= 1200
 #pragma once
@@ -21,4 +21,4 @@ class Commander
 };
 
 }
-#endif //TETRIS_FIGURE_CLASS_COMMANDER_H
+#endif //SDL2EASYGUI_COMMANDER_H

@@ -31,7 +31,13 @@ void ComboBox::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 
         if (isFolded()) {
             //펼쳐진 상태에서 최 상단 메뉴는 선택된 메뉴만 보여줘야 한다.
-            setSelectedMenuIndex(calcIndexOf(button->y));
+            if (auto idx = calcIndexOf(button->y) ;
+                idx != INVALID_SIZE)
+            {
+                setSelectedMenuIndex(idx);
+            }
+            setControlText(getSelectedText());
+            setControlTextWidth(getFittedTextSize(getSelectedMenuIndex()));
             foldBox();
         } else {
             unfoldBox();
@@ -44,49 +50,23 @@ void ComboBox::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 
 void ComboBox::onDraw()
 {
-    auto renderer = getWindow()->getSDLRenderer();
+    auto renderer = getRenderer();
 
     if (!getItems().empty()) {
 
-        const auto idx = getSelectedMenuIndex() >= getItems().size() ? getItems().size() - 1 : getSelectedMenuIndex();
-        setSelectedMenuIndex(idx);
+        //const auto idx = getSelectedMenuIndex() >= getItems().size() ? getItems().size() - 1 : getSelectedMenuIndex();
+        //setSelectedMenuIndex(idx);
 
-        if (isFolded()) {
-
-            auto& item = *getItems().at(getSelectedMenuIndex());
-            auto point = getPoint();
-            point.x += 5;
-
-            drawer::TextDrawer textDrawer{renderer, getFont(), point, item.getString()};
-            textDrawer.drawText();
-
-        } else {
-
-            auto point = getPoint();
-            point.x += 5;
-
-            drawer::TextDrawer textDrawer{renderer, getFont(), point, getItems().at(getSelectedMenuIndex())->getString()};
-            textDrawer.drawText();
-
-            point.y += textDrawer.getTextHeight() + getMenuGap();
-
-            const int endIdx =
-                    (getMenuStartIndex() + getVisibleMenuCount()) > getItems().size() ? getItems().size() :
-                    getMenuStartIndex() +
-                    getVisibleMenuCount();
-            for (int i = getMenuStartIndex(); i < endIdx; i++) {
-                drawer::TextDrawer textDrawer{renderer, getFont(), point, getItems().at(i)->getString()};
-                textDrawer.setTextWidth(getWidth()-2);
-                textDrawer.drawText();
-
-                point.y += textDrawer.getTextHeight() + getMenuGap();
-
+        if (isFolded() == false) {
+            auto idxfair = getvisibleMenuIndexRange();
+            for (t_size i = idxfair.first; i < idxfair.second ; i++) 
+            {
+                getItem(i)->getTextDrawer()->drawText();
             }
 
             //Draw Chosed focus
             drawer::drawThickLine(renderer, {getPoint().x, getPoint().y + getMenuHeight()},
                                        {getPoint().x + getWidth(), getPoint().y + getMenuHeight()}, ColorCode::lightgray, 3);
-
         }
     }
 
@@ -100,8 +80,11 @@ void ComboBox::onDrawBackground()
 
 void ComboBox::onDetachFocus(const SDL_UserEvent* user)
 {
-    setFolded(true);
-    foldBox();
+    if (isFolded() == false)
+    {
+        setFolded(true);
+        foldBox();
+    }
     Base::onDetachFocus(user);
 }
 
@@ -109,7 +92,7 @@ void ComboBox::foldBox()
 {
     setHeight(m_defaultHeight);
 
-    event::EventPusher event {getWindow()->getWindowID(), SEG_CONTROLLER, SEG_DECORATOR_DETACH};
+    event::EventPusher event {getSEGWindow()->getWindowID(), SEG_CONTROLLER, SEG_DECORATOR_DETACH};
     event.setTargetId(getId());
     event.setUserData(this);
     event.pushEvent();
@@ -124,7 +107,7 @@ void ComboBox::unfoldBox()
 
     if (getVisibleMenuCount() < getItems().size()) {
         auto dec = DecoratorMap<ScrollrableDecorator, ComboBox>::get_decorator(this);
-        event::EventPusher event {getWindow()->getWindowID(), SEG_CONTROLLER, SEG_DECORATOR_ATTACH};
+        event::EventPusher event {getSEGWindow()->getWindowID(), SEG_CONTROLLER, SEG_DECORATOR_ATTACH};
         event.setTargetId(getId());
         event.setUserData(dec);
         event.pushEvent();
@@ -132,3 +115,4 @@ void ComboBox::unfoldBox()
 
     Base::unfoldBox();
 }
+

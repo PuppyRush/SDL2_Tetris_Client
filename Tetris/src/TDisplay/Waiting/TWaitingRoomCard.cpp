@@ -26,7 +26,7 @@ void TWaitingRoomCard::initialize()
 
     seg::t_size begin_y = getPoint().y + 20;
     {
-        EditLabelBuilder bld(getWindow(), {getPoint().x + 20, begin_y}, "Player");
+        EditLabelBuilder bld(getSEGWindow(), {getPoint().x + 20, begin_y}, "Player");
         //bld.id(toUType(resource::ENTERSERVER_ID))->
         bld.fontColor(ColorCode::black)->
                 width(150)->

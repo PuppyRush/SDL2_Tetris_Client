@@ -2,8 +2,8 @@
 // Created by chaed on 19. 4. 27.
 //
 
-#ifndef SDL2_TETIRS_CLIENT_CHECKBOX_H
-#define SDL2_TETIRS_CLIENT_CHECKBOX_H
+#ifndef SDL2EASYGUI_CHECK_H
+#define SDL2EASYGUI_CHECK_H
 
 #include "SDL2EasyGUI/src/Control/Button/ButtonBasic.h"
 

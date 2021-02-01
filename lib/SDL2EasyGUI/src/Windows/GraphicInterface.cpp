@@ -9,7 +9,7 @@ using namespace seg;
 GraphicInterface::GraphicInterface()
 {}
 
-GraphicInterface::GraphicInterface(std::shared_ptr<ControlBasic> ctl)
+GraphicInterface::GraphicInterface(const std::shared_ptr<ControlData>& ctl)
         : m_window(ctl->window), m_data(ctl)
 {}
 
@@ -23,7 +23,7 @@ GraphicInterface::~GraphicInterface()
 
 void GraphicInterface::_drawBackground(const SDL_Rect rect)
 {
-    auto renderer = getWindow()->getSDLRenderer();
+    auto renderer = getRenderer();
 
     const auto& back_color = getBackgroundColor();
     SDL_SetRenderDrawColor(renderer, back_color.r, back_color.g, back_color.b, 255);

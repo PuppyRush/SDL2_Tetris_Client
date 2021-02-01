@@ -1,6 +1,6 @@
 
-#ifndef OBJECT_OBJECT_H
-#define OBJECT_OBJECT_H
+#ifndef GAMEINTERFACE_OBJECT_H
+#define GAMEINTERFACE_OBJECT_H
 
 #if _MSC_VER >= 1200
 #pragma once

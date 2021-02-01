@@ -2,8 +2,8 @@
 // Created by chaed on 18. 12. 28.
 //
 
-#ifndef CONTROLLER_EDITLABEL_H
-#define CONTROLLER_EDITLABEL_H
+#ifndef SDL2EASYGUI_EDITLABEL_H
+#define SDL2EASYGUI_EDITLABEL_H
 
 #if _MSC_VER >= 1200
 #pragma once
@@ -23,7 +23,7 @@ class EditLabel : public LabelBasic
 public:
     using Base = LabelBasic;
 
-    virtual ~EditLabel() = default;
+    virtual ~EditLabel();
 
     explicit EditLabel(EditLabelBuilder& bld);
 
@@ -48,21 +48,23 @@ private:
 
     virtual void onDetachFocus(const SDL_UserEvent* user) override;
 
+    int* m_textWidth = nullptr;
+    int* m_textHeight = nullptr;
     bool m_drawTextCursor = false;
     std::shared_ptr<seg::event::SEG_Timer> m_cursorTimer;
 };
 
-class EditLabelBuilder : public LabelBasucBuilder
+class EditLabelBuilder : public LabelBasicBuilder
 {
 public:
 
     EditLabelBuilder(const GraphicInterface::window_type window, const SEG_Point& point, const std::string& str)
-            : LabelBasucBuilder(window, point, str)
+            : LabelBasicBuilder(window, point, str)
     {
     }
 
     EditLabelBuilder(const GraphicInterface::window_type window, SEG_Point&& point, std::string&& str)
-            : LabelBasucBuilder(window, point, str)
+            : LabelBasicBuilder(window, point, str)
     {
     }
 
@@ -77,4 +79,4 @@ public:
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_TEDIT_H
+#endif //SDL2EASYGUI_TEDIT_H

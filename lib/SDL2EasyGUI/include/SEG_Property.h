@@ -2,8 +2,8 @@
 // Created by chaed on 18. 11. 24.
 //
 
-#ifndef SDLEASYGUIDE_TPROPERTY_H
-#define SDLEASYGUIDE_TPROPERTY_H
+#ifndef SDL2EASYGUI_TPROPERTY_H
+#define SDL2EASYGUI_TPROPERTY_H
 
 #if _MSC_VER >= 1200
 #pragma once
@@ -14,12 +14,6 @@
 #include "SEG_Type.h"
 
 namespace seg {
-
-const t_size WINDOW_HEIGHT = 900;
-const t_size WINDOW_WIDTH = 1000;
-const t_id SUPER_WINDOWS_ID = 0;
-const t_id START_DISPLAY_ID = 1;
-const t_id IVALID_DISPLAY_ID = std::numeric_limits<t_id>::max();
 
 enum class ControlKind : t_type
 {

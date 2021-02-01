@@ -2,27 +2,32 @@
 // Created by chaed on 19. 2. 8.
 //
 
-#ifndef TETRIS_FIGURE_CLASS_EVENTLISTENER_H
-#define TETRIS_FIGURE_CLASS_EVENTLISTENER_H
+#ifndef SDL2EASYGUI_EVENTLISTENER_H
+#define SDL2EASYGUI_EVENTLISTENER_H
 
 #if _MSC_VER >= 1200
 #pragma once
 #endif
 
+#include <boost/serialization/singleton.hpp>
+
 #include <SDL2/SDL.h>
+
 #include "SDL2EasyGUI/include/EventQueue.h"
 #include "SDL2EasyGUI/include/SEG_Property.h"
 #include "GameInterface/include/Logger.h"
 
 namespace seg {
 
-class EventListener
+class EventListener : private boost::serialization::singleton<EventListener>
 {
 
 public:
 
     using queue_type = EventQueue<SDL_Event>;
     using data_type = queue_type::data_type;
+
+    friend class boost::serialization::singleton<EventListener>;
 
     virtual ~EventListener() = default;
 
@@ -291,4 +296,4 @@ private:
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_EVENTLISTENER_H
+#endif //SDL2EASYGUI_EVENTLISTENER_H

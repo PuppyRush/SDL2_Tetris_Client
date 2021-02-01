@@ -2,8 +2,8 @@
 // Created by chaed on 19. 2. 8.
 //
 
-#ifndef TETRIS_FIGURE_CLASS_GAMEROOM_H
-#define TETRIS_FIGURE_CLASS_GAMEROOM_H
+#ifndef GAMEINTERFACE_GAMEROOM_H
+#define GAMEINTERFACE_GAMEROOM_H
 
 #if _MSC_VER >= 1200
 #pragma once
@@ -36,4 +36,4 @@ protected:
 };
 
 }
-#endif //TETRIS_FIGURE_CLASS_GAMEROOM_H
+#endif //SDL2EASYGUI_GAMEROOM_H

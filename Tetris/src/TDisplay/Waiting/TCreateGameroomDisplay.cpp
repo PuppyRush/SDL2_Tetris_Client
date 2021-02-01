@@ -31,7 +31,7 @@ void TCreateGameroomDisplay::registerEvent()
 void TCreateGameroomDisplay::onInitialize()
 {
     {
-        EditLabelBuilder bld(getWindow(), {100, 50}, "");
+        EditLabelBuilder bld(getSEGWindow(), {100, 50}, "");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 20, ColorCode::black})->
                 backgroundColor(ColorCode::white)->
                 id(seg::toUType(tetris::resource::WAITINGROOM_CREATE_GAMEROOMNAME))->
@@ -44,7 +44,7 @@ void TCreateGameroomDisplay::onInitialize()
         addControl(bld.build());
     }
     {
-        ButtonBuilder bld(getWindow(), {50, 120}, "OK");
+        ButtonBuilder bld(getSEGWindow(), {50, 120}, "OK");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 28, ColorCode::white})->
                 backgroundColor(ColorCode::dimgray)->
                 id(seg::toUType(tetris::resource::WAITINGROOM_CREATE_OK))->
@@ -57,7 +57,7 @@ void TCreateGameroomDisplay::onInitialize()
         addControl(bld.build());
     }
     {
-        ButtonBuilder bld(getWindow(), {200, 120}, "CANCEL");
+        ButtonBuilder bld(getSEGWindow(), {200, 120}, "CANCEL");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 28, ColorCode::white})->
                 backgroundColor(ColorCode::dimgray)->
                 id(seg::toUType(tetris::resource::WAITINGROOM_CREATE_CANCEL))->
@@ -76,7 +76,7 @@ void TCreateGameroomDisplay::onInitialize()
 void TCreateGameroomDisplay::onClose()
 {
     const auto ctl = getControl<EditLabel>(tetris::resource::WAITINGROOM_CREATE_GAMEROOMNAME);
-    m_roomname = ctl->getLabelString();
+    m_roomname = ctl->getControlText();
 
     TDisplayInterface::onClose();
 }

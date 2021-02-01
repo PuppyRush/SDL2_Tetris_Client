@@ -2,8 +2,8 @@
 // Created by chaed on 18. 12. 27.
 //
 
-#ifndef CONTROLLER_BUTTONBASIC_H
-#define CONTROLLER_BUTTONBASIC_H
+#ifndef SDL2EASYGUI_BUTTONBASIC_H
+#define SDL2EASYGUI_BUTTONBASIC_H
 
 #if _MSC_VER >= 1200
 #pragma once
@@ -47,4 +47,4 @@ private:
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_TBUTTONBASIC_H
+#endif //SDL2EASYGUI_TBUTTONBASIC_H

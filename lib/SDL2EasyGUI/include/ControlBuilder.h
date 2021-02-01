@@ -2,8 +2,8 @@
 // Created by chaed on 18. 12. 22.
 //
 
-#ifndef CONTROLLER_MENUBUILDER_H
-#define CONTROLLER_MENUBUILDER_H
+#ifndef SDL2EASYGUI_CONTROLBUILDER_H
+#define SDL2EASYGUI_CONTROLBUILDER_H
 
 #if _MSC_VER >= 1200
 #pragma once
@@ -142,7 +142,7 @@ public:
         return m_basic.window;
     }
 
-    const TControlBasic& getBasic() const
+    const ControlData& getBasic() const
     {
         return m_basic;
     }
@@ -156,10 +156,10 @@ public:
 
 private:
 
-    TControlBasic m_basic;
+    ControlData m_basic;
 
 };
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_TMENUBUILDER_H
+#endif //SDL2EASYGUI_TMENUBUILDER_H

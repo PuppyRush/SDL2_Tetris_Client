@@ -2,8 +2,8 @@
 // Created by chaed on 19. 7. 15.
 //
 
-#ifndef SDL2_TETRIS_CLIENT_DECORATOR_H
-#define SDL2_TETRIS_CLIENT_DECORATOR_H
+#ifndef SDL2EASYGUI_DECORATOR_H
+#define SDL2EASYGUI_DECORATOR_H
 
 #if _MSC_VER >= 1200
 #pragma once
@@ -11,19 +11,20 @@
 
 #include <unordered_map>
 
-#include "../Control/Control.h"
+#include "DecoratorInterface.h"
 
 namespace seg {
 
 template<class T>
-class Decorator : public Control
+class Decorator : public DecoratorInterface
 {
 public:
 
+    using Base = DecoratorInterface;
     using DecoratorBase = T;
 
     Decorator(DecoratorBase* gi)
-            : m_graphic(gi), Control(gi)
+            : m_graphic(gi), DecoratorInterface(gi)
     {
 
     }
@@ -32,28 +33,30 @@ public:
     {
     }
 
-    void onDraw()
+    virtual void onDraw() override
     {
         m_graphic->onDraw();
     }
 
-    void onDrawBackground()
+    virtual void onDrawBackground() override
     {
         m_graphic->onDrawBackground();
     }
 
-    void refresh()
+    virtual void refresh() override
     {
         m_graphic->refresh();
     }
 
-    void resize()
+    virtual void resize() override
     {
         m_graphic->resize();
     }
 
     virtual void initialize() override
-    {}
+    {
+        m_graphic->initialize();
+    }
 
     inline auto getComponent()
     { return m_graphic; }
@@ -151,6 +154,13 @@ public:
 
     virtual bool focus(const SDL_Event& event) override
     { return m_graphic->focus(event); }
+
+    virtual void attach() override
+    {}
+
+    virtual void detach() override
+    {}
+
 
 
 private:

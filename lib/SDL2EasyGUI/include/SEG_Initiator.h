@@ -2,8 +2,8 @@
 // Created by chaed on 19. 2. 8.
 //
 
-#ifndef SDLEASYGUIDE_INITIATOR_H
-#define SDLEASYGUIDE_INITIATOR_H
+#ifndef SDL2EASYGUI_INITIATOR_H
+#define SDL2EASYGUI_INITIATOR_H
 
 #include <string>
 #include <memory>
@@ -50,10 +50,8 @@ static void SDLEasyGUI_Init()
     }
     SDL_RegisterEvents(SEG_DRAW_DISPLAY);
 
-    game_interface::atomic::Atomic<ControlBasic>::getInstance().setFirstUnique(START_DISPLAY_ID);
-    
 }
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_SDL_INITIATOR_H
+#endif //SDL2EASYGUI_SDL_INITIATOR_H

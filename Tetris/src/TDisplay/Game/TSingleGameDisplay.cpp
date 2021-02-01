@@ -9,6 +9,7 @@
 
 #include "TResource.h"
 #include "SDL2EasyGUI/include/SEG_Type.h"
+#include "SDL2EasyGUI/include/SEG_Constant.h"
 #include "SDL2EasyGUI/include/SEG_Event.h"
 #include "SDL2EasyGUI/include/Button.h"
 #include "../../TOption/TOptionManager.h"
@@ -50,7 +51,7 @@ void TSingleGameDisplay::onInitialize()
 {
     seg::t_size begin_y = WINDOW_HEIGHT / 10 * 3;
     {
-        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH / 5 * 3, begin_y}, "START");
+        ButtonBuilder bld(getSEGWindow(), {WINDOW_WIDTH / 5 * 3, begin_y}, "START");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 id(game_interface::toUType(resource::GAME_START))->
                 backgroundColor(ColorCode::white)->
@@ -62,7 +63,7 @@ void TSingleGameDisplay::onInitialize()
     }
     begin_y += 80;
     {
-        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH / 5 * 3, begin_y}, "SUSPEND");
+        ButtonBuilder bld(getSEGWindow(), {WINDOW_WIDTH / 5 * 3, begin_y}, "SUSPEND");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 id(game_interface::toUType(resource::GAME_SUSPEND))->
                 backgroundColor(ColorCode::white)->
@@ -74,7 +75,7 @@ void TSingleGameDisplay::onInitialize()
     }
     begin_y += 80;
     {
-        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH / 5 * 3, begin_y}, "EXIT");
+        ButtonBuilder bld(getSEGWindow(), {WINDOW_WIDTH / 5 * 3, begin_y}, "EXIT");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 id(game_interface::toUType(resource::GAME_END))->
                 backgroundColor(ColorCode::white)->

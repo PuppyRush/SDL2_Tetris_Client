@@ -54,7 +54,7 @@ void TWaitingRoomDisplay::onInitialize()
 	setWindowHeight(800);
 
     {
-        ListBoxBuilder bld(getWindow(), {m_gameroomBoxBeginPoint.x, m_gameroomBoxBeginPoint.y}, "");
+        ListBoxBuilder bld(getSEGWindow(), {m_gameroomBoxBeginPoint.x, m_gameroomBoxBeginPoint.y}, "");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 11, ColorCode::black})->
                 borderBoundaryType(BorderBoundaryType::roundedAngle)->
                 backgroundColor(ColorCode::white)->
@@ -68,7 +68,7 @@ void TWaitingRoomDisplay::onInitialize()
         addControl(bld.build());
     }
     {
-        ListBoxBuilder bld(getWindow(), {m_chatBoxBeginPoint.x, m_chatBoxBeginPoint.y}, "");
+        ListBoxBuilder bld(getSEGWindow(), {m_chatBoxBeginPoint.x, m_chatBoxBeginPoint.y}, "");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 11, ColorCode::black})->
                 borderBoundaryType(BorderBoundaryType::roundedAngle)->
                 backgroundColor(ColorCode::white)->
@@ -82,7 +82,7 @@ void TWaitingRoomDisplay::onInitialize()
         addControl(bld.build());
     }
     {
-        EditLabelBuilder bld(getWindow(), {m_chatBoxBeginPoint.x, m_chatBoxBeginPoint.y + m_chatBoxHeight + 5}, "");
+        EditLabelBuilder bld(getSEGWindow(), {m_chatBoxBeginPoint.x, m_chatBoxBeginPoint.y + m_chatBoxHeight + 5}, "");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 13, ColorCode::black})->
                 borderBoundaryType(BorderBoundaryType::roundedAngle)->
                 backgroundColor(ColorCode::white)->
@@ -96,7 +96,7 @@ void TWaitingRoomDisplay::onInitialize()
         addControl(bld.build());
     }
     {
-        ListBoxBuilder bld(getWindow(), {m_userBoxBeginPoint.x, m_userBoxBeginPoint.y}, "");
+        ListBoxBuilder bld(getSEGWindow(), {m_userBoxBeginPoint.x, m_userBoxBeginPoint.y}, "");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 11, ColorCode::black})->
                 borderBoundaryType(BorderBoundaryType::roundedAngle)->
                 backgroundColor(ColorCode::white)->
@@ -110,7 +110,7 @@ void TWaitingRoomDisplay::onInitialize()
         addControl(bld.build());
     }
     {
-        ButtonBuilder bld(getWindow(), {m_createBtnBeginPoint.x, m_createBtnBeginPoint.y}, "CREATE");
+        ButtonBuilder bld(getSEGWindow(), {m_createBtnBeginPoint.x, m_createBtnBeginPoint.y}, "CREATE");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 28, ColorCode::white})->
                 borderBoundaryType(BorderBoundaryType::roundedAngle)->
                 backgroundColor(ColorCode::dimgray)->
@@ -124,7 +124,7 @@ void TWaitingRoomDisplay::onInitialize()
         addControl(bld.build());
     }
     {
-        ButtonBuilder bld(getWindow(), {m_createBtnBeginPoint.x, m_createBtnBeginPoint.y + m_btnHeight + 10}, "EXIT");
+        ButtonBuilder bld(getSEGWindow(), {m_createBtnBeginPoint.x, m_createBtnBeginPoint.y + m_btnHeight + 10}, "EXIT");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 28, ColorCode::white})->
                 backgroundColor(ColorCode::dimgray)->
                 borderBoundaryType(BorderBoundaryType::roundedAngle)->
@@ -243,14 +243,14 @@ void TWaitingRoomDisplay::sendChat(const void* event)
     auto keyevent = static_cast<const SDL_KeyboardEvent*>(event);
     if (keyevent->keysym.sym == SDLK_RETURN) {
         const auto ctl = getControl<EditLabel>(tetris::resource::WAITINGROOM_CHAREDIT);
-        ChatInfo chatinfo{TPlayer::getInstance()->getUserName(), ctl->getLabelString(), std::time(0)};
+        ChatInfo chatinfo{TPlayer::getInstance()->getUserName(), ctl->getControlText(), std::time(0)};
 
         Packet packet{
                 {m_waitingRoom.getUnique(), TPlayer::getInstance()->getUnique(), messageInfo::WAITINGROOMS_SEND_CHAT},
                 chatinfo.toJson()};
         TPlayer::getInstance()->sendPacket(packet);
 
-        ctl->clearString();
+        ctl->getControlText().clear();
     }
 }
 

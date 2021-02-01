@@ -2,8 +2,8 @@
 // Created by chaed on 19. 2. 28.
 //
 
-#ifndef SDL2_TETRIS_SERVER_TOOL_TIMER_H
-#define SDL2_TETRIS_SERVER_TOOL_TIMER_H
+#ifndef EASYTIMER_TIMER_H
+#define EASYTIMER_TIMER_H
 
 #if _MSC_VER >= 1200
 #pragma once
@@ -221,4 +221,4 @@ protected:
 
 }
 
-#endif //SDL2_TETRIS_SERVER_TOOL_TIMER_H
+#endif //EASYTIMER__TIMER_H

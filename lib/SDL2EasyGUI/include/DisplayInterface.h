@@ -22,6 +22,7 @@
 #include <cassert>
 #include <type_traits>
 
+#include "SEG_Constant.h"
 #include "SEG_Window.h"
 #include "SEG_TypeTraits.h"
 #include "SEG_Resource.h"
@@ -61,12 +62,12 @@ namespace seg {
 
 		void show()
 		{
-			getWindow()->show();
+			getSEGWindow()->show();
 		}
 
 		void hidden()
 		{
-			getWindow()->hidden();
+			getSEGWindow()->hidden();
 		}
 
 		//부모 클래스의 포인터(this)를 넘긴다.
@@ -116,7 +117,7 @@ namespace seg {
 
 		inline unique_type getWindowID() const noexcept
 		{
-			return getWindow()->getWindowID();
+			return getSEGWindow()->getWindowID();
 		}
 
 		inline void setSuperWindowID(unique_type uniqueId) noexcept
@@ -189,12 +190,12 @@ namespace seg {
 
 		inline SEG_Window::window_type getSDLWindow() const noexcept
 		{
-			return getWindow()->getSDLWindow();
+			return getSEGWindow()->getWindow();
 		}
 
 		inline SEG_Window::renderer_type getRenderer() const noexcept
 		{
-			return getWindow()->getSDLRenderer();
+			return getSEGWindow()->getRenderer();
 		}
 
 		void _noParamEvent(const t_id id, const std::function<void(void)> callback_fn)
@@ -369,8 +370,8 @@ namespace seg {
 		TDisplayMode m_mode = TDisplayMode::None;
 		t_id m_resultResrouce = NONE;
 
-		t_id m_parentId = IVALID_DISPLAY_ID;
-		t_id m_superParentId = IVALID_DISPLAY_ID;
+		t_id m_parentId = NULL_WINDOW_ID;
+		t_id m_superParentId = NULL_WINDOW_ID;
 
 	};
 

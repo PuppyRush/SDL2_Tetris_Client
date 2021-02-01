@@ -2,8 +2,8 @@
 // Created by chaed on 19. 3. 31.
 //
 
-#ifndef PROJECT_LABELBASIC_H
-#define PROJECT_LABELBASIC_H
+#ifndef SDL2EASYGUI_LABELBASIC_H
+#define SDL2EASYGUI_LABELBASIC_H
 
 #include <string>
 
@@ -21,31 +21,21 @@ typedef struct EditLabelBasic
     std::string editstring;
 } EditLabelBasic;
 
-class LabelBasucBuilder;
+class LabelBasicBuilder;
 
 class LabelBasic : public Border
 {
 
 public:
-    LabelBasic(LabelBasucBuilder& bld);
+    LabelBasic(LabelBasicBuilder& bld);
 
     virtual ~LabelBasic()
     {}
 
-    bool isEmpty() const noexcept
+    bool isEmpty() noexcept
     {
-        return m_labelBasic.editstring.empty();
+        return getControlText().empty();
     }
-
-    std::string& getLabelString() noexcept
-    { return m_labelBasic.editstring; }
-
-    inline void clearString() noexcept
-    {
-        m_labelBasic.editstring.clear();
-        onDraw();
-    }
-
 
 protected:
 
@@ -55,26 +45,25 @@ protected:
 
     virtual void initialize() override;
 
-    std::shared_ptr<SDL_Texture> m_texture;
     EditLabelBasic m_labelBasic;
 
 };
 
-class LabelBasucBuilder : public BorderBuilder
+class LabelBasicBuilder : public BorderBuilder
 {
 public:
 
-    LabelBasucBuilder(const GraphicInterface::window_type window, const SEG_Point& point, const std::string& str)
+    LabelBasicBuilder(const GraphicInterface::window_type window, const SEG_Point& point, const std::string& str)
         : BorderBuilder(window, point, str)
     {
     }
 
-    LabelBasucBuilder(const GraphicInterface::window_type window, SEG_Point&& point, std::string&& str)
+    LabelBasicBuilder(const GraphicInterface::window_type window, SEG_Point&& point, std::string&& str)
         : BorderBuilder(window, point, str)
     {
     }
 
-    virtual ~LabelBasucBuilder() = default;
+    virtual ~LabelBasicBuilder() = default;
 
     virtual Control::control_ptr build() = 0;
 

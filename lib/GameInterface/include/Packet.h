@@ -2,8 +2,8 @@
 // Created by chaed on 19. 2. 19.
 //
 
-#ifndef TETRIS_FIGURE_CLASS_PACKET_H
-#define TETRIS_FIGURE_CLASS_PACKET_H
+#ifndef GAMEINTERFACE_PACKET_H
+#define GAMEINTERFACE_PACKET_H
 
 #if _MSC_VER >= 1200
 #pragma once
@@ -146,4 +146,4 @@ private:
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_PACKET_H
+#endif //SDL2EASYGUI_PACKET_H

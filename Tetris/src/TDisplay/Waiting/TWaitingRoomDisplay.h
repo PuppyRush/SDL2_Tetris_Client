@@ -2,13 +2,14 @@
 // Created by chaed on 19. 2. 8.
 //
 
-#ifndef TETRIS_FIGURE_CLASS_TWAITINGROOMDISPLAY_H
-#define TETRIS_FIGURE_CLASS_TWAITINGROOMDISPLAY_H
+#ifndef TETRIS_CLIENT_TWAITINGROOMDISPLAY_H
+#define TETRIS_CLIENT_TWAITINGROOMDISPLAY_H
 
 #include <array>
 #include <list>
 
 #include "SDL2EasyGUI/include/ListBox.h"
+#include "SDL2EasyGUI/include/SEG_Constant.h"
 #include "TDisplayInterface.h"
 #include "TWaitingRoomCard.h"
 #include "../../TObject/TWaitingRoom.h"
@@ -335,4 +336,4 @@ private:
 
 SDL_TETRIS_END
 
-#endif //TETRIS_FIGURE_CLASS_TWAITINGROOMDISPLAY_H
+#endif //TETRIS_CLIENT_TWAITINGROOMDISPLAY_H

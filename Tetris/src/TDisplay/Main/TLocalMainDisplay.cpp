@@ -8,6 +8,7 @@
 #include "../TOptionDisplay.h"
 #include "SDL2EasyGUI/include/DisplayController.h"
 #include "SDL2EasyGUI/include/Button.h"
+#include "SDL2EasyGUI/include/SEG_Constant.h"
 #include "TResource.h"
 
 SDL_TETRIS
@@ -34,7 +35,7 @@ void TLocalMainDisplay::onInitialize()
     seg::t_size begin_y = WINDOW_HEIGHT / 3;
 
     {
-        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH / 2 - 100, begin_y}, "PLAY ALONE");
+        ButtonBuilder bld(getSEGWindow(), {WINDOW_WIDTH / 2 - 100, begin_y}, "PLAY ALONE");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 backgroundColor(ColorCode::white)->
                 id(game_interface::toUType(resource::MAIN_SINGLE_GAME_START_BUTTON))->
@@ -46,7 +47,7 @@ void TLocalMainDisplay::onInitialize()
     }
     begin_y += 80;
     {
-        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH / 2 - 50, begin_y}, "OPTION");
+        ButtonBuilder bld(getSEGWindow(), {WINDOW_WIDTH / 2 - 50, begin_y}, "OPTION");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 id(game_interface::toUType(resource::MAIN_OPTION_BUTTON))->
                 backgroundColor(ColorCode::white)->
@@ -58,7 +59,7 @@ void TLocalMainDisplay::onInitialize()
     }
     begin_y += 80;
     {
-        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH / 2 - 50, begin_y}, "EXIT");
+        ButtonBuilder bld(getSEGWindow(), {WINDOW_WIDTH / 2 - 50, begin_y}, "EXIT");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 id(game_interface::toUType(resource::MAIN_EXIT))->
                 backgroundColor(ColorCode::white)->

@@ -2,8 +2,8 @@
 // Created by chaed on 19. 3. 5.
 //
 
-#ifndef TETRIS_FIGURE_CLASS_INPUTDIALOG_H
-#define TETRIS_FIGURE_CLASS_INPUTDIALOG_H
+#ifndef SDL2EASYGUI_INPUTDIALOG_H
+#define SDL2EASYGUI_INPUTDIALOG_H
 
 #include "include/DisplayInterface.h"
 
@@ -58,4 +58,4 @@ private:
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_INPUTDIALOG_H
+#endif //SDL2EASYGUI_INPUTDIALOG_H

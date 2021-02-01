@@ -2,8 +2,8 @@
 // Created by chaed on 19. 1. 22.
 //
 
-#ifndef GUI_GRAPHICINTERFACE_H
-#define GUI_GRAPHICINTERFACE_H
+#ifndef SDL2EASYGUI_GRAPHICINTERFACE_H
+#define SDL2EASYGUI_GRAPHICINTERFACE_H
 
 #if _MSC_VER >= 1200
 #pragma once
@@ -61,8 +61,18 @@ public:
     inline void setWindow(const window_type window)
     { m_window = window; }
 
-    inline window_type getWindow() const noexcept
+    inline window_type getSEGWindow() const noexcept
     { return m_window; }
+
+    inline SEG_Window::window_type getWindow() const noexcept
+    {
+        return getSEGWindow()->getWindow();
+    }
+
+    inline SEG_Window::renderer_type getRenderer() const noexcept
+    {
+        return getSEGWindow()->getRenderer();
+    }
 
     inline t_id getId() const noexcept
     {
@@ -88,20 +98,13 @@ public:
         return m_data->midPoint;
     }
 	
+    inline void setMidPoint(SEG_Point&& point) noexcept
+    {
+        m_data->midPoint = point;
+    }
+
     inline void setMidPoint(const SEG_Point& point) noexcept
     {
-        /* if (m_data->point.x > point.x) {
-             m_data->point.x -= (m_data->point.x - point.x);
-         } else {
-             m_data->point.x += (point.x - m_data->point.x);
-         }
-
-         if (m_data->point.y > point.y) {
-             m_data->point.y -= (m_data->point.y - point.y);
-         } else {
-             m_data->point.y += (point.y - m_data->point.y);
-         }*/
-
         m_data->midPoint = point;
     }
 
@@ -144,7 +147,7 @@ public:
         return m_data->name;
     }
 
-    inline void setName(const std::string& name) noexcept
+    inline void setName(const std::string& name)
     {
         m_data->name = name;
     }
@@ -268,9 +271,9 @@ protected:
 
     explicit GraphicInterface();
 
-    explicit GraphicInterface(std::shared_ptr<ControlBasic>);
+    explicit GraphicInterface(const std::shared_ptr<ControlData>& ctl);
 
-    inline std::shared_ptr<ControlBasic> _getBasic() const noexcept
+    inline std::shared_ptr<ControlData> _getData() const noexcept
     {
         return m_data;
     }
@@ -278,10 +281,10 @@ protected:
     virtual void _drawBackground(const SDL_Rect rect);
 
     window_type m_window = nullptr;
-    std::shared_ptr<ControlBasic> m_data;
+    std::shared_ptr<ControlData> m_data;
     SEG_Color m_backgroundColor;
 };
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_TGRAPHICINTERFACE_H
+#endif //SDL2EASYGUI_TGRAPHICINTERFACE_H

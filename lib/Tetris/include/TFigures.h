@@ -2,8 +2,8 @@
 // Created by chaed on 19. 5. 1.
 //
 
-#ifndef SDL2_TETIRS_CLIENT_TFIGURES_H
-#define SDL2_TETIRS_CLIENT_TFIGURES_H
+#ifndef TETRISMODULE_TFIGURES_H
+#define TETRISMODULE_TFIGURES_H
 
 #if _MSC_VER >= 1200
 #pragma once

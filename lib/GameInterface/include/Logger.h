@@ -2,8 +2,8 @@
 // Created by chaed on 19. 8. 8..
 //
 
-#ifndef SDL2_TETRIS_CLIENT_SEG_LOGGER_H
-#define SDL2_TETRIS_CLIENT_SEG_LOGGER_H
+#ifndef GAMEINTERFACE_LOGGER_H
+#define GAMEINTERFACE_LOGGER_H
 
 #if _MSC_VER >= 1200
 #pragma once

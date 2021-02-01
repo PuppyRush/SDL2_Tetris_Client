@@ -2,8 +2,8 @@
 // Created by chaed on 19. 2. 16.
 //
 
-#ifndef TETRIS_FIGURE_CLASS_SUBJECT_H
-#define TETRIS_FIGURE_CLASS_SUBJECT_H
+#ifndef GAMEINTERFACE_OBSERVER_H
+#define GAMEINTERFACE_OBSERVER_H
 
 #if _MSC_VER >= 1200
 #pragma once
@@ -36,4 +36,4 @@ public:
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_SUBJECT_H
+#endif //SDL2EASYGUI_SUBJECT_H

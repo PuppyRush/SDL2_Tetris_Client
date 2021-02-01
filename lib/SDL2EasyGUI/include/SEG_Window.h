@@ -2,8 +2,8 @@
 // Created by chaed on 18. 12. 24.
 //
 
-#ifndef GUI_WINDOW_H
-#define GUI_WINDOW_H
+#ifndef SDL2EASYGUI_WINDOW_H
+#define SDL2EASYGUI_WINDOW_H
 
 #if _MSC_VER >= 1200
 #pragma once
@@ -64,12 +64,12 @@ public:
     inline const t_id getWindowID() const noexcept
     { return m_windowID; }
 
-    inline window_type getSDLWindow() const noexcept
+    inline window_type getWindow() const noexcept
     {
         return m_window;
     }
 
-    inline renderer_type getSDLRenderer() const noexcept
+    inline renderer_type getRenderer() const noexcept
     {
         return m_renderer;
     }
@@ -88,4 +88,4 @@ private:
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_TWINDOW_H
+#endif //SDL2EASYGUI_TWINDOW_H

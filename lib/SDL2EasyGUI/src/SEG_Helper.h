@@ -1,6 +1,14 @@
 
-#include "../../include/SEG_Type.h"
 
+#ifndef SDL2EASYGUI_HELPER_H
+#define SDL2EASYGUI_HELPER_H
+
+#if _MSC_VER >= 1200
+#pragma once
+#endif
+
+
+#include "../../include/SEG_Struct.h"
 
 namespace seg::helper {
 
@@ -27,3 +35,4 @@ namespace seg::helper {
 
 }
 
+#endif

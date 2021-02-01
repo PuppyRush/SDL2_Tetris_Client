@@ -1,6 +1,6 @@
 
-#ifndef SDLEASYGUIDE_TTYPE_H
-#define SDLEASYGUIDE_TTYPE_H
+#ifndef SDL2EASYGUI_TTYPE_H
+#define SDL2EASYGUI_TTYPE_H
 
 #if _MSC_VER >= 1200
 #pragma once

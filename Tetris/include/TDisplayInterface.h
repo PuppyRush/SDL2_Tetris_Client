@@ -2,8 +2,8 @@
 // Created by chaed on 19. 3. 10.
 //
 
-#ifndef PROJECT_TTETRISDISPLAYINTERFACE_H
-#define PROJECT_TTETRISDISPLAYINTERFACE_H
+#ifndef TETRIS_CLIENT_TDISPLAYINTERFACE_H
+#define TETRIS_CLIENT_TDISPLAYINTERFACE_H
 
 #include "THeader.h"
 #include "TResource.h"

@@ -8,16 +8,17 @@
 #include "magic_enum/include/magic_enum.hpp"
 
 #include "include/DisplayController.h"
+#include "include/DisplayInterface.h"
 #include "include/SEG_Resource.h"
 #include "include/SEG_Event.h"
-#include "include/DisplayInterface.h"
+#include "SEG_Helper.h"
 
 #include "EasyTimer/ElapsedTimer.h"
 #include "GameInterface/include/Logger.h"
-#include "SEG_Helper.h"
 
 using namespace std;
 using namespace seg;
+using namespace seg::helper;
 using namespace game_interface;
 
 DisplayInterface::DisplayInterface()
@@ -38,7 +39,7 @@ void DisplayInterface::onInitialize()
 
 void DisplayInterface::initialize()
 {
-    getWindow()->initialize();
+    getSEGWindow()->initialize();
 
     setRun(true);
 
@@ -107,7 +108,7 @@ void DisplayInterface::_mouseEventOnMenus(const SDL_Event& evt)
     case SDL_MOUSEMOTION:
     {
         auto ctl = getHittingMunues({ evt.motion.x, evt.motion.y });
-        if (ctl != nullptr && ctl->isHit({ static_cast<t_coord>( evt.button.x) ,static_cast<t_coord>(evt.button.y) }))
+        if (ctl != nullptr && ctl->isHit( make_segpoint(evt.button.x ,evt.button.y) ))
         {
             ctl->onEvent(evt);
             ctl->bound(evt);
@@ -172,7 +173,7 @@ void DisplayInterface::_mouseEventOnMenus(const SDL_Event& evt)
 Control* DisplayInterface::getHittingMunues(const SDL_Point& point) const
 {
     for (const auto& ctl : _getMenuAry()) {
-        if (ctl->isHit({ static_cast<t_coord>( point.x) ,static_cast<t_coord>( point.y ) }))
+        if (ctl->isHit( make_segpoint(point.x ,point.y ) ))
         {
             return ctl;
         }
@@ -395,7 +396,7 @@ void DisplayInterface::onDrawBackground()
         texr.h = h;
         SDL_RenderCopy(renderer, img, NULL, &texr);
     } else {
-        SDL_Rect rect = SDL_Rect{0, 0, static_cast<int>( getWindowWidth()), static_cast<int>( getWindowHeight()) };
+        SDL_Rect rect = make_sdlrect(0, 0, getWindowWidth(), getWindowHeight());
         GraphicInterface::_drawBackground(rect);
     }
 }
@@ -425,7 +426,8 @@ void DisplayInterface::addControl(Control* newCtl)
         return;
     }
 
-    maybeCtl->initialize();
+    if(maybeCtl->wasInitailized() == false)
+        maybeCtl->initialize();
 
     auto it = std::find_if(begin(_getMenuAry()), end(_getMenuAry()), [newCtl](control_ptr exCtl) {
         return newCtl->getId() == exCtl->getId();
@@ -459,6 +461,8 @@ void DisplayInterface::refresh()
 void DisplayInterface::attachDecorator(const control_ptr ctl, control_ptr decorator)
 {
     if (removeControl(ctl)) {
+        decorator->initialize();
+        dynamic_cast<DecoratorInterface*>(decorator)->attach();
         addControl(decorator);
         m_activatedCtl = decorator;
         m_activatedCtl->refresh();
@@ -468,7 +472,16 @@ void DisplayInterface::attachDecorator(const control_ptr ctl, control_ptr decora
 
 void DisplayInterface::detachDecorator(const control_ptr ctl)
 {
-    if (removeControl(ctl)) {
+    if (auto deco = getControl(ctl->getId()) ; 
+        deco != nullptr)
+    {
+        if(auto decoInterface = dynamic_cast<DecoratorInterface*>(deco);
+            decoInterface != nullptr)
+        {
+            decoInterface->detach();
+        }
+
+        removeControl(deco);
         addControl(ctl);
         m_activatedCtl = ctl;
         m_activatedCtl->refresh();

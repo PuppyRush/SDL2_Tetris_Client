@@ -2,8 +2,8 @@
 // Created by chaed on 19. 3. 23.
 //
 
-#ifndef PROJECT_TGAMEROOM_H
-#define PROJECT_TGAMEROOM_H
+#ifndef TETRIS_CLIENT_TGAMEROOM_H
+#define TETRIS_CLIENT_TGAMEROOM_H
 
 #include <array>
 #include <boost/serialization/singleton.hpp>

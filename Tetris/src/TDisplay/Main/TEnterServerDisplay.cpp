@@ -34,7 +34,7 @@ void TEnterServerDisplay::onInitialize()
 
     seg::t_size begin_y = getWindowHeight() / 3;
     {
-        EditLabelBuilder bld(getWindow(), {getWindowWidth() / 2 - 120, begin_y}, "Player");
+        EditLabelBuilder bld(getSEGWindow(), {getWindowWidth() / 2 - 120, begin_y}, "Player");
         bld.id(seg::toUType(resource::ENTERSERVER_ID))->
                 borderBoundaryType(BorderBoundaryType::roundedAngle)->
                 fontColor(ColorCode::black)->
@@ -50,7 +50,7 @@ void TEnterServerDisplay::onInitialize()
 
     begin_y += 80;
     {
-        ButtonBuilder bld(getWindow(), {getWindowWidth() / 2 - 120, begin_y}, "ENTER");
+        ButtonBuilder bld(getSEGWindow(), {getWindowWidth() / 2 - 120, begin_y}, "ENTER");
         bld.id(seg::toUType(resource::ENTERSERVER_ENTER))->
                 borderBoundaryType(BorderBoundaryType::roundedAngle)->
                 width(100)->
@@ -63,7 +63,7 @@ void TEnterServerDisplay::onInitialize()
     }
 
     {
-        ButtonBuilder bld(getWindow(), {getWindowWidth() / 2, begin_y}, "BACK");
+        ButtonBuilder bld(getSEGWindow(), {getWindowWidth() / 2, begin_y}, "BACK");
         bld.id(seg::toUType(resource::ENTERSERVER_BACK))->
                 borderBoundaryType(BorderBoundaryType::roundedAngle)->
                 width(100)->
@@ -83,7 +83,7 @@ void TEnterServerDisplay::onClickedEnterServer(const void* click)
     auto& player = TPlayer::getInstance();
     const auto& idLabel = getControl<EditLabel>(resource::ENTERSERVER_ID);
 
-    if (idLabel->getLabelString().size() < 5) {
+    if (idLabel->getControlText().size() < 5) {
         assert(idLabel != nullptr);
         seg::MessageDialog dlg{"Enter Your ID at least 5 characters",
                                seg::MessageDialogKind::error};
@@ -91,7 +91,7 @@ void TEnterServerDisplay::onClickedEnterServer(const void* click)
         m_valid = false;
     }
     else{
-        player->setUserName(idLabel->getLabelString());
+        player->setUserName(idLabel->getControlText());
         m_valid = true;
         TDisplayInterface::onOk();
     }

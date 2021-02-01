@@ -2,8 +2,8 @@
 // Created by chaed on 19. 1. 22.
 //
 
-#ifndef CONTROLLER_BORDER_H
-#define CONTROLLER_BORDER_H
+#ifndef SDL2EASYGUI_BORDER_H
+#define SDL2EASYGUI_BORDER_H
 
 #if _MSC_VER >= 1200
 #pragma once
@@ -61,4 +61,4 @@ public:
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_TBORDER_H
+#endif //SDL2EASYGUI_TBORDER_H

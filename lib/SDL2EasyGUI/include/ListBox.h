@@ -2,8 +2,8 @@
 // Created by chaed on 19. 2. 16.
 //
 
-#ifndef TETRIS_FIGURE_CLASS_LIST_H
-#define TETRIS_FIGURE_CLASS_LIST_H
+#ifndef SDL2EASYGUI_LIST_H
+#define SDL2EASYGUI_LIST_H
 
 #include <vector>
 
@@ -37,11 +37,6 @@ public:
 
     virtual void onDraw() override;
 
-    virtual void initialize() override
-    {
-        BoxBasic::initialize();
-    }
-
 };
 
 class ListBoxBuilder : public BoxBasicBuilder
@@ -69,4 +64,4 @@ public:
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_LIST_H
+#endif //SDL2EASYGUI_LIST_H

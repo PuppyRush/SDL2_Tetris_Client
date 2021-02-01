@@ -2,14 +2,15 @@
 // Created by chaed on 19. 7. 15.
 //
 
-#ifndef SDL2_TETRIS_CLIENT_SCROLLBARDECORATOR_H
-#define SDL2_TETRIS_CLIENT_SCROLLBARDECORATOR_H
+#ifndef SDL2EASYGUI_SCROLLBARDECORATOR_H
+#define SDL2EASYGUI_SCROLLBARDECORATOR_H
 
 #if _MSC_VER >= 1200
 #pragma once
 #endif
 
 #include "Decorator.h"
+#include "../SEG_Helper.h"
 #include "../Control/Box/BoxBasic.h"
 #include "SDL2EasyGUI/include/SEG_Drawer.h"
 
@@ -37,6 +38,10 @@ public:
 
     virtual void onDrawBackground() override;
 
+    virtual void attach() override;
+
+    virtual void detach() override;
+
     void goUpScrollByUnit();
 
     void goDownScrollByUnit();
@@ -61,9 +66,21 @@ public:
         m_scrollmovingUnitSize = size;
     }
 
+    bool isHitUpperArrow(const t_coord x, const t_coord y) const noexcept
+    {
+        return helper::hitTest(getUpperArrowPosition(), x, y );
+    }
+
+    bool isHitBelowArrow(const t_coord x, const t_coord y) const noexcept
+    {
+        return helper::hitTest(getBelowArrowPosition(), x, y );
+    }
+
 protected:
 
     void drawScroll();
+
+    virtual void initialize() override;
 
     inline virtual SDL_Rect getPosition() const noexcept override
     { return m_scrollbarPosition; }

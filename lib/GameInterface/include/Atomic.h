@@ -1,5 +1,5 @@
-#ifndef OBJECT_ATOMIC_H
-#define OBJECT_ATOMIC_H
+#ifndef GAMEINTERFACE_ATOMIC_H
+#define GAMEINTERFACE_ATOMIC_H
 
 #if _MSC_VER >= 1200
 #pragma once

@@ -2,8 +2,8 @@
 // Created by chaed on 19. 2. 13.
 //
 
-#ifndef TETRIS_FIGURE_CLASS_EVENTQUEUE_H
-#define TETRIS_FIGURE_CLASS_EVENTQUEUE_H
+#ifndef SDL2EASYGUI_EVENTQUEUE_H
+#define SDL2EASYGUI_EVENTQUEUE_H
 
 #include <queue>
 #include <condition_variable>
@@ -105,4 +105,4 @@ std::uint64_t EventQueue<_Data>::m_seq = 0;
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_EVENTQUEUE_H
+#endif //SDL2EASYGUI_EVENTQUEUE_H

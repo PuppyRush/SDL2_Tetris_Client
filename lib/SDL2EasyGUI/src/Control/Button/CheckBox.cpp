@@ -38,9 +38,9 @@ void CheckBox::_drawCheck(const bool chk)
     {
     case CheckBoxType::vType:
         if (chk) {
-            drawer::drawV(getSDLRenderer(), getPosition(), m_lineColor, m_lineThick);
+            drawer::drawV(getRenderer(), getPosition(), m_lineColor, m_lineThick);
         } else {
-            drawer::drawV(getSDLRenderer(), getPosition(), getBackgroundColor(), 0);
+            drawer::drawV(getRenderer(), getPosition(), getBackgroundColor(), 0);
         }
         break;
     case CheckBoxType::oType:
@@ -48,9 +48,9 @@ void CheckBox::_drawCheck(const bool chk)
         break;
     case CheckBoxType::xType:
         if (chk) {
-            drawer::drawX(getSDLRenderer(), getPosition(), m_lineColor, m_lineThick);
+            drawer::drawX(getRenderer(), getPosition(), m_lineColor, m_lineThick);
         } else {
-            drawer::drawX(getSDLRenderer(), getPosition(), getBackgroundColor(), m_lineThick);
+            drawer::drawX(getRenderer(), getPosition(), getBackgroundColor(), m_lineThick);
         }
         break;
     }

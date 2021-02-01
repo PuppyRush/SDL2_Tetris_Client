@@ -2,8 +2,8 @@
 // Created by chaed on 18. 12. 27.
 //
 
-#ifndef CONTROLLER_RADIOBUTTON_H
-#define CONTROLLER_RADIOBUTTON_H
+#ifndef SDL2EASYGUI_RADIOBUTTON_H
+#define SDL2EASYGUI_RADIOBUTTON_H
 
 #if _MSC_VER >= 1200
 #pragma once
@@ -86,4 +86,4 @@ private:
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_TRADIOBUTTON_H
+#endif //SDL2EASYGUI_TRADIOBUTTON_H

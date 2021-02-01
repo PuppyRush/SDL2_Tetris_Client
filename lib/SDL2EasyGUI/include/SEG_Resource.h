@@ -2,8 +2,8 @@
 // Created by chaed on 19. 2. 5.
 //
 
-#ifndef SDLEASYGUIDE_RESOURCE_H
-#define SDLEASYGUIDE_RESOURCE_H
+#ifndef SDL2EASYGUI_RESOURCE_H
+#define SDL2EASYGUI_RESOURCE_H
 
 #if _MSC_VER >= 1200
 #pragma once
@@ -35,4 +35,4 @@ enum resource : t_id
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_RESOURCE_H
+#endif //SDL2EASYGUI_RESOURCE_H

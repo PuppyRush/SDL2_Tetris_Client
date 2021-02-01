@@ -2,8 +2,8 @@
 // Created by chaed on 18. 11. 24.
 //
 
-#ifndef TERIS_FIGURE_CLASS_FIGUREBOARD_H
-#define TERIS_FIGURE_CLASS_FIGUREBOARD_H
+#ifndef TETRISMODULE_FIGUREBOARD_H
+#define TETRISMODULE_FIGUREBOARD_H
 
 #if _MSC_VER >= 1200
 #pragma once

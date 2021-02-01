@@ -2,8 +2,8 @@
 // Created by chaed on 19. 1. 13.
 //
 
-#ifndef OBJECT_PLAYER_H
-#define OBJECT_PLAYER_H
+#ifndef GAMEINTERFACE_PLAYER_H
+#define GAMEINTERFACE_PLAYER_H
 
 #if _MSC_VER >= 1200
 #pragma once
@@ -51,4 +51,4 @@ public:
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_TPLAYER_H
+#endif //SDL2EASYGUI_TPLAYER_H

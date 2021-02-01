@@ -2,11 +2,12 @@
 // Created by chaed on 19. 4. 21.
 //
 
-#ifndef UICLASSEXAMPLE_BOXBASIC_H
-#define UICLASSEXAMPLE_BOXBASIC_H
+#ifndef SDL2EASYGUI_BOXBASIC_H
+#define SDL2EASYGUI_BOXBASIC_H
 
 #include <vector>
 
+#include "SDL2EasyGUI/include/SEG_Drawer.h"
 #include "../Border.h"
 
 namespace seg {
@@ -14,25 +15,23 @@ namespace seg {
 struct BoxItem
 {
     using string_type = std::string;
+    using textDrawer_type = std::shared_ptr<drawer::TextDrawer>;
 
-    BoxItem() = default;
+    //BoxItem() = default;
 
     BoxItem(const string_type& str)
-        :string(str)
-    {
-
+    {   
+        setBoxString(str);
     }
-
 
     BoxItem(const BoxItem& item)
     {
         if (this == &item) {
             return;
         }
-        this->string = item.string;
-        this->color = item.color;
-        this->idx = item.idx;
-        this->font = item.font;
+        this->setBoxString(item.getBoxString());
+        this->setFont(item.getFont());
+        this->setIndex(item.getIndex());
     }
 
     virtual ~BoxItem() = default;
@@ -46,52 +45,92 @@ struct BoxItem
         return origin;
     }*/
 
-    void setString(const string_type& str)
+    void setBoxString(const string_type& str)
     {
-        string = str;
+        m_textDrawer->setText(str);
     }
 
-    void setString(string_type&& str)
+    void setBoxString(string_type&& str)
     {
-        string = str;
+        m_textDrawer->setText(str);
     }
 
-    string_type getString()
+    string_type getBoxString() const noexcept
     {
-        return string;
+        return m_textDrawer->getText();
     }
 
-    size_t getIdx() const
+    size_t getIndex() const noexcept
     {
-        return idx;
+        return m_idx;
     }
 
-    void setIdx(size_t idx)
+    void setIndex(size_t i)
     {
         //caching = false;
-        BoxItem::idx = idx;
+        this->m_idx = i;
     }
 
-    const SEG_Color& getColor() const
+    const SEG_Color& getColor() const noexcept
     {
-        return color;
+        return m_textDrawer->getColor();
     }
 
     void setColor(const SEG_Color& color)
     {
        // caching = false;
-        this->color = color;
+        m_textDrawer->setColor(color);
     }
 
-    const SEG_TFont& getFont() const
+    const std::string getFontName() const noexcept
     {
-        return font;
+        return m_textDrawer->getFontName();
     }
 
-    void setFont(const SEG_TFont& font)
+    void setFontName(const std::string& str)
+    {
+        m_textDrawer->setFontName(str);
+    }
+
+    SEG_TFont getFont() const noexcept
+    {
+        m_textDrawer->getFont();
+    }
+
+    void setFont(SEG_TFont font)
     {
        // caching = false;
-        this->font = font;
+        m_textDrawer->setFont(font);
+    }
+
+    void setTextPosition(const SDL_Rect rect)
+    {
+        m_textDrawer->setPosition(rect);
+    }
+
+    inline SDL_Rect getTextPosition() const noexcept
+    {
+        return m_textDrawer->getPosition();
+    }
+
+    void setPosition(const SDL_Rect rect)
+    {
+        m_position = rect;
+    }
+
+    inline SDL_Rect getPosition() const noexcept
+    {
+        return m_position;
+    }
+
+    void setTextDrawer(textDrawer_type drawerPtr)
+    {
+        m_textDrawer = drawerPtr;
+    }
+
+    auto getTextDrawer()
+    {
+        return m_textDrawer;
     }
 
    // virtual void setOriginString(std::string& _origin) = 0;
@@ -100,11 +139,10 @@ protected:
     //bool caching = false;
 
 private:
-    mutable string_type string{50};
-    std::size_t idx;
-    SEG_Color color = {ColorCode::black};
-    SEG_TFont font;
-
+    //mutable string_type string{50};
+    std::size_t m_idx;
+    SDL_Rect m_position;
+    textDrawer_type m_textDrawer;
 };
 
 class BoxBasicBuilder;
@@ -118,15 +156,9 @@ public:
     using item_ptr = std::shared_ptr<item_type>;
     using item_ary = std::vector<item_ptr>;
 
-    void appendItem(item_ptr item)
-    {
-        m_items.emplace_back(item);
-    }
+    virtual void appendItem(item_ptr item);
     
-    void appendItem(const string_type& str)
-    {
-        m_items.push_back(std::make_shared<item_type>(str));
-    }
+    virtual void appendItem(const string_type& str);
 
 
     item_ptr at(const size_t index)
@@ -140,7 +172,7 @@ public:
 
     void removeAll() noexcept;
 
-    int calcIndexOf(const t_coord y);
+    t_size calcIndexOf(const t_coord y);
 
     std::string getSelectedText();
 
@@ -155,6 +187,16 @@ public:
         return MENU_GAP;
     }
 
+    inline t_size getVisibleMenuWidth() const noexcept
+    {
+        return m_visibleMenuWidth;
+    }
+
+    inline void setVisibleMenuWidth(t_size w)
+    {
+        m_visibleMenuWidth = w;
+
+    }
     inline size_t getVisibleMenuCount() const noexcept
     {
         return m_visibleMenuCnt;
@@ -173,6 +215,11 @@ public:
     inline void setItems(const item_ary& mItems)
     {
         m_items = mItems;
+    }
+
+    item_ptr getItem(const size_t idx)
+    {
+        return m_items.at(idx);
     }
 
     inline t_size getMenuHeight() const noexcept
@@ -203,12 +250,12 @@ public:
         m_menuStartIdx = mMenuStartIdx;
     }
 
-    inline int getSelectedMenuIndex() const noexcept
+    inline t_size getSelectedMenuIndex() const noexcept
     {
         return m_selectedMenuIdx;
     }
 
-    inline void setSelectedMenuIndex(int mSelectedMenuIdx)
+    inline void setSelectedMenuIndex(t_size mSelectedMenuIdx)
     {
         m_selectedMenuIdx = mSelectedMenuIdx;
     }
@@ -241,6 +288,9 @@ public:
 
     virtual void onDetachFocus(const SDL_UserEvent* user) override;
 
+    virtual void initialize() override;
+
+    t_size getFittedTextSize(const size_t idx);
 
 protected:
 
@@ -248,15 +298,20 @@ protected:
 
     virtual ~BoxBasic();
 
-    virtual void initialize() override;
-
-    std::pair<t_size, t_size> getVisibleRangeIndex() const;
 
     virtual void foldBox()
     {}
     
     virtual void unfoldBox()
     {}
+
+    void autoFitBox(const size_t idx);
+
+    std::pair<t_size, t_size> getvisibleMenuIndexRange();
+
+private:
+
+    void recalculateBoxesPosition();
 
 private:
     const t_size MENU_GAP = 3;
@@ -265,8 +320,9 @@ private:
     std::vector<item_ptr> m_items;
     t_size m_menuHeight = 0;
     t_size m_menuStartIdx = 0;
-    t_size m_selectedMenuIdx = INVALID_VALUE;
-    t_size m_boundedMenuIndx = INVALID_VALUE;
+    t_size m_selectedMenuIdx = 0;
+    t_size m_boundedMenuIndx = INVALID_SIZE;
+    t_size m_visibleMenuWidth = 0;
     bool m_folded = true;
     
 };

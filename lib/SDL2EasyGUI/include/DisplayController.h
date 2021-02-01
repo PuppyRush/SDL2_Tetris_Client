@@ -2,8 +2,8 @@
 // Created by chaed on 18. 12. 15.
 //
 
-#ifndef GUI_GAMECONTROLLER_H
-#define GUI_GAMECONTROLLER_H
+#ifndef SDL2EASYGUI_DISPLAYCONTROLLER_H
+#define SDL2EASYGUI_DISPLAYCONTROLLER_H
 
 #if _MSC_VER >= 1200
 #pragma once
@@ -21,6 +21,7 @@
 
 #include "EventQueue.h"
 #include "SEG_Type.h"
+#include "SEG_Constant.h"
 #include "SEG_Resource.h"
 #include "DisplayInterface.h"
 

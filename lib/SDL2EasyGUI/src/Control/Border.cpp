@@ -26,7 +26,7 @@ void Border::onDrawBackground()
 
 void Border::onDraw()
 {
-    auto renderer = getWindow()->getSDLRenderer();
+    auto renderer = getRenderer();
 
     const int x = getPoint().x;
     const int y = getPoint().y;
@@ -58,13 +58,13 @@ void Border::onDraw()
 
             break;
         case BorderBoundaryType::ellipse:
-            ellipseRGBA(renderer, x + w / 2, y + h / 2, getTextWidth() / 2, getTextHeight() / 2,
+            ellipseRGBA(renderer, x + w / 2, y + h / 2, getControlTextWidth() / 2, getControlTextHeight() / 2,
                         lineColor.r, lineColor.g, lineColor.b, lineColor.a);
             break;
 
         case BorderBoundaryType::round: {
 
-            circleRGBA(renderer, x + w / 2, y + h / 2, std::max(getTextWidth() / 2, getTextHeight() / 2),
+            circleRGBA(renderer, x + w / 2, y + h / 2, std::max(getControlTextWidth() / 2, getControlTextHeight() / 2),
                        lineColor.r, lineColor.g, lineColor.b, lineColor.a);
             break;
         }

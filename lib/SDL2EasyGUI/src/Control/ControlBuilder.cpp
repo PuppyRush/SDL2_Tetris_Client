@@ -12,12 +12,12 @@ ControlBuilder::ControlBuilder(const GraphicInterface::window_type window, const
 {
     m_basic.window = window;
     m_basic.point = point;
-    m_basic.name = str;
+    m_basic.text = str;
 }
 
 ControlBuilder::ControlBuilder(const GraphicInterface::window_type window, SEG_Point&& point, std::string&& str)
 {
     m_basic.window = window;
     m_basic.point = point;
-    m_basic.name = str;
+    m_basic.text = str;
 }

@@ -2,8 +2,8 @@
 // Created by chaed on 19. 5. 4.
 //
 
-#ifndef SDL2_TETIRS_CLIENT_INITIATOR_H
-#define SDL2_TETIRS_CLIENT_INITIATOR_H
+#ifndef GAMEINTERFACE_INITIATOR_H
+#define GAMEINTERFACE_INITIATOR_H
 
 #include <ace/Init_ACE.h>
 

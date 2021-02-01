@@ -17,7 +17,7 @@ class StaticLabel : public LabelBasic
 {
 
 public:
-    explicit StaticLabel(LabelBasucBuilder& bld);
+    explicit StaticLabel(LabelBasicBuilder& bld);
     
     virtual ~StaticLabel() = default;
 
@@ -29,17 +29,17 @@ protected:
     virtual void initialize() override final;
 };
 
-class StaticLabelBuilder : public LabelBasucBuilder
+class StaticLabelBuilder : public LabelBasicBuilder
 {
 public:
 
     StaticLabelBuilder(const GraphicInterface::window_type window, const SEG_Point& point, const std::string& str)
-            : LabelBasucBuilder(window, point, str)
+            : LabelBasicBuilder(window, point, str)
     {
     }
 
     StaticLabelBuilder(const GraphicInterface::window_type window, SEG_Point&& point, std::string&& str)
-            : LabelBasucBuilder(window, point, str)
+            : LabelBasicBuilder(window, point, str)
     {
     }
 
@@ -54,4 +54,4 @@ public:
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_TSTATICLABEL_H
+#endif //SDL2EASYGUI_TSTATICLABEL_H

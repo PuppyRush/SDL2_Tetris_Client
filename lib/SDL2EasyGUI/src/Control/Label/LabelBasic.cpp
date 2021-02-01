@@ -7,7 +7,7 @@
 
 using namespace seg;
 
-LabelBasic::LabelBasic(LabelBasucBuilder& bld)
+LabelBasic::LabelBasic(LabelBasicBuilder& bld)
         : Border(bld), m_labelBasic(bld.m_editBasic)
 {
 
@@ -15,23 +15,18 @@ LabelBasic::LabelBasic(LabelBasucBuilder& bld)
 
 void LabelBasic::initialize()
 {
-    drawer::TextDrawer drawer{getSDLRenderer(), getFont(), getPoint(), getName()};
-
-    setTextWidth(drawer.getTextWidth());
-    setTextHeight(drawer.getTextHeight());
-
     Border::initialize();
+
+    setControlText(m_labelBasic.editstring);
 }
-
-
 
 void LabelBasic::onDraw()
 {
     auto point = getPoint();
-    drawer::TextDrawer textDrawer{getWindow()->getSDLRenderer(), getFont(), getPoint(), getLabelString()};
+    drawer::TextDrawer textDrawer{ getRenderer(), getFont(), getPoint(), getControlText()};
 
     point.x += 5;
-    point.y = point.y + (getHeight() - textDrawer.getTextHeight()) / 2;
+    point.y = point.y + (getHeight() - getControlTextHeight()) / 2;
 
     textDrawer.setPoint(point);
     textDrawer.drawText();

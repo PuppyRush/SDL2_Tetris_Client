@@ -7,7 +7,7 @@
 
 using namespace seg;
 
-StaticLabel::StaticLabel(LabelBasucBuilder& bld)
+StaticLabel::StaticLabel(LabelBasicBuilder& bld)
         : LabelBasic(bld)
 {
     bld.kind(ControlKind::StaticLabel);
@@ -26,11 +26,11 @@ void StaticLabel::onDrawBackground()
 
 void StaticLabel::initialize()
 {
-    drawer::TextDrawer textDrawer{ getWindow()->getSDLRenderer(), getFont(), getPoint(), getLabelString() };
-
-    _getBasic()->point.x += 5;
-    _getBasic()->height = textDrawer.getTextHeight();
-    _getBasic()->width = textDrawer.getTextWidth();
-
     LabelBasic::initialize();
+
+    drawer::TextDrawer textDrawer{ getRenderer(), getFont(), getPoint(), getControlText() };
+
+    _getData()->point.x += 5;
+    _getData()->height = getControlTextHeight();
+    _getData()->width = getControlTextWidth();
 }

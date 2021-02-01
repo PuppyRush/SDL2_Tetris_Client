@@ -2,8 +2,8 @@
 // Created by chaed on 18. 11. 24.
 //
 
-#ifndef TERIS_TPROPERTY_H
-#define TERIS_TPROPERTY_H
+#ifndef TETRISMODULE_TPROPERTY_H
+#define TETRISMODULE_TPROPERTY_H
 
 #if _MSC_VER >= 1200
 #pragma once

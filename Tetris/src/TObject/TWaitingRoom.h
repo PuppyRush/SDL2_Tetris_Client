@@ -2,8 +2,8 @@
 // Created by chaed on 19. 3. 13.
 //
 
-#ifndef PROJECT_TETRISWAITINGROOM_H
-#define PROJECT_TETRISWAITINGROOM_H
+#ifndef TETRIS_CLIENT_TETRISWAITINGROOM_H
+#define TETRIS_CLIENT_TETRISWAITINGROOM_H
 
 #include <boost/serialization/singleton.hpp>
 #include "GameInterface/include/WaitingRoom.h"

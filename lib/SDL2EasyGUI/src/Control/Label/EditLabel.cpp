@@ -14,27 +14,29 @@ using namespace std;
 using namespace seg;
 
 EditLabel::EditLabel(EditLabelBuilder& bld)
-        : LabelBasic(bld), m_drawTextCursor(false)
+    : LabelBasic(bld), m_drawTextCursor(false), m_textWidth(new int), m_textHeight(new int)
 {
     bld.kind(ControlKind::EditLabel);
 
-    m_cursorTimer = make_shared<event::SEG_Timer>(this->getWindow()->getWindowID(), 800);
+    m_cursorTimer = make_shared<event::SEG_Timer>(this->getSEGWindow()->getWindowID(), 800);
     m_cursorTimer->userEventData({false,this->getId() });
+}
+
+EditLabel::~EditLabel()
+{
+    if (m_textWidth)
+        delete m_textWidth;
+    if (m_textHeight)
+        delete m_textHeight;
 }
 
 void EditLabel::onDraw()
 {
-    auto rdr = getSDLRenderer();
-    drawer::TextDrawer drawer{ rdr, getFont(), getPoint(), getLabelString() };
-
-    setTextWidth(drawer.getTextWidth());
-    setTextHeight(drawer.getTextHeight());
-
     const auto point = getPoint();
     SDL_Point points[]
-        = { {static_cast<int>(point.x + getTextWidth() + 7), static_cast<int>(point.y + 5)},
-            {static_cast<int>(point.x + getTextWidth() + 7), static_cast<int>(point.y + getHeight() - 5)},
-            {static_cast<int>(point.x + getTextWidth() + 7), static_cast<int>(point.y + 5)} };
+        = { make_sdlpoint(point.x + getControlTextWidth() + 7, point.y + 5),
+            make_sdlpoint(point.x + getControlTextWidth() + 7, point.y + getHeight() - 5),
+            make_sdlpoint(point.x + getControlTextWidth() + 7, point.y + 5) };
 
     SEG_Color lineColor;
     if (m_drawTextCursor) {
@@ -44,12 +46,8 @@ void EditLabel::onDraw()
         lineColor = this->getBackgroundColor();
     }
 
-    SDL_SetRenderDrawColor(rdr, lineColor.r, lineColor.g, lineColor.b, 255);
-    SDL_RenderDrawLines(rdr, points, SDL_arraysize(points));
-
-    using namespace game_interface::logger;
-    Logger::getInstance().printLog("EditLabel::onTimerEvent", Logger::logger_level::Debug);
-
+    SDL_SetRenderDrawColor(getRenderer(), lineColor.r, lineColor.g, lineColor.b, 255);
+    SDL_RenderDrawLines(getRenderer(), points, SDL_arraysize(points));
 
     Base::onDraw();
 }
@@ -109,11 +107,11 @@ void EditLabel::onKeyboardEvent(const SDL_KeyboardEvent* key)
 
     if (key->type == SDL_KEYDOWN) {
         if (key->keysym.sym == SDLK_BACKSPACE && !isEmpty()) {
-            getLabelString().pop_back();
+           getControlText().pop_back();
         }
     }
 
-    event::EventPusher event{this->getWindow()->getWindowID(), SEG_CONTROLLER, SEG_ENTER_CONTROLLER};
+    event::EventPusher event{getSEGWindow()->getWindowID(), SEG_CONTROLLER, SEG_ENTER_CONTROLLER};
     event.setTargetId(this->getId());
     event.setUserData(const_cast<SDL_KeyboardEvent*>(key));
     event.pushEvent();
@@ -127,7 +125,14 @@ void EditLabel::onTextInputEvent(const SDL_TextInputEvent* text)
         return;
     }
 
-    getLabelString() += (text->text);
+    getControlText() += (text->text);
+
+
+    TTF_Font* font = TTF_OpenFont(getFont().fontName.c_str(), getFont().size);
+    TTF_SizeText(font, getControlText().c_str(), m_textWidth, m_textHeight);
+    setControlTextWidth(*m_textWidth);
+    setControlTextHeight(*m_textHeight);
+
     Base::onTextInputEvent(text);
 }
 

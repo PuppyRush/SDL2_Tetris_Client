@@ -2,8 +2,8 @@
 // Created by chaed on 19. 5. 5.
 //
 
-#ifndef SEG_CONFIGCPP_H
-#define SEG_CONFIGCPP_H
+#ifndef SDL2EASYGUI_CONFIGCPP_H
+#define SDL2EASYGUI_CONFIGCPP_H
 
 #define _CONSTANCE_VERSION_V1_ 1
 

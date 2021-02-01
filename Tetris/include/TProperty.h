@@ -2,8 +2,8 @@
 // Created by chaed on 18. 11. 24.
 //
 
-#ifndef TERIS_FIGURE_CLASS_TPROPERTY_H
-#define TERIS_FIGURE_CLASS_TPROPERTY_H
+#ifndef TETRIS_CLIENT_TPROPERTY_H
+#define TETRIS_CLIENT_TPROPERTY_H
 
 #if _MSC_VER >= 1200
 #pragma once

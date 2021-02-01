@@ -2,8 +2,8 @@
 // Created by chaed on 19. 2. 6.
 //
 
-#ifndef TETRIS_FIGURE_CLASS_EVENT_H
-#define TETRIS_FIGURE_CLASS_EVENT_H
+#ifndef SDL2EASYGUI_EVENT_H
+#define SDL2EASYGUI_EVENT_H
 
 #include <cassert>
 #include <type_traits>
@@ -188,4 +188,4 @@ private:
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_EVENT_H
+#endif //SDL2EASYGUI_EVENT_H

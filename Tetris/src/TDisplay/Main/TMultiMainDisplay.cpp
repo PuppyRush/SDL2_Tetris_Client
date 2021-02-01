@@ -9,6 +9,7 @@
 #include "SDL2EasyGUI/include/RadioButton.h"
 #include "SDL2EasyGUI/include/CheckBox.h"
 #include "SDL2EasyGUI/include/DisplayController.h"
+#include "SDL2EasyGUI/include/SEG_Constant.h"
 
 #include "SDL2EasyGUI/src/Decorator/ScrollbarDecorator.h"
 #include "SDL2EasyGUI/src/Decorator/BorderDecorator.h"
@@ -42,7 +43,7 @@ void TMultiMainDisplay::onInitialize()
     seg::t_size begin_x = WINDOW_WIDTH / 2 - 220;
     seg::t_size begin_y = WINDOW_HEIGHT / 3;
     {
-        ButtonBuilder bld(getWindow(), {begin_x, begin_y}, "PLAY TOGETHER");
+        ButtonBuilder bld(getSEGWindow(), {begin_x, begin_y}, "PLAY TOGETHER");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 backgroundColor(ColorCode::white)->
                 id(game_interface::toUType(resource::MAIN_MULTI_GAME_START_BUTTON))->
@@ -57,7 +58,7 @@ void TMultiMainDisplay::onInitialize()
     }
     begin_y += 80;
     {
-        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH / 2 - 150, begin_y}, "OPTION");
+        ButtonBuilder bld(getSEGWindow(), {WINDOW_WIDTH / 2 - 150, begin_y}, "OPTION");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 id(game_interface::toUType(resource::MAIN_OPTION_BUTTON))->
                 backgroundColor(ColorCode::white)->
@@ -70,7 +71,7 @@ void TMultiMainDisplay::onInitialize()
     }
     begin_y += 80;
     {
-        ButtonBuilder bld(getWindow(), {WINDOW_WIDTH / 2 - 150, begin_y}, "EXIT");
+        ButtonBuilder bld(getSEGWindow(), {WINDOW_WIDTH / 2 - 150, begin_y}, "EXIT");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 id(game_interface::toUType(resource::MAIN_EXIT))->
                 backgroundColor(ColorCode::white)->
@@ -84,7 +85,7 @@ void TMultiMainDisplay::onInitialize()
 
     begin_y += 80;
     {
-        ComoboBoxBuilder bld(getWindow(), {WINDOW_WIDTH / 2, begin_y}, "");
+        ComoboBoxBuilder bld(getSEGWindow(), {WINDOW_WIDTH / 2, begin_y}, "DoitNow");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 id(game_interface::toUType(resource::MAIN_TEST_TEXT_COMBO))->
                 backgroundColor(ColorCode::white)->
@@ -96,7 +97,7 @@ void TMultiMainDisplay::onInitialize()
         addControl(bld.build());
 
         auto ctl = getControl<ComboBox>(resource::MAIN_TEST_TEXT_COMBO);
-        ctl->appendItem(std::make_shared<BoxItem>("_________item1"));
+        ctl->appendItem(std::make_shared<BoxItem>("1234567890abcd"));
         ctl->appendItem(std::make_shared<BoxItem>("item2"));
         ctl->appendItem(std::make_shared<BoxItem>("item3"));
         ctl->appendItem(std::make_shared<BoxItem>("item4"));
@@ -105,7 +106,7 @@ void TMultiMainDisplay::onInitialize()
 
     //begin_y += 80;
     //{
-    //    CheckBoxBuilder bld(getWindow(), {WINDOW_WIDTH / 2, begin_y}, "");
+    //    CheckBoxBuilder bld(getSEGWindow(), {WINDOW_WIDTH / 2, begin_y}, "");
     //    bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
     //            id(game_interface::toUType(resource::MAIN_TEST_CHECKBOX))->
     //            backgroundColor(ColorCode::white)->
@@ -120,7 +121,7 @@ void TMultiMainDisplay::onInitialize()
 
   /*  begin_y += 30;
     {
-        RadioButtonBuilder bld(getWindow(), {WINDOW_WIDTH / 2, begin_y}, "");
+        RadioButtonBuilder bld(getSEGWindow(), {WINDOW_WIDTH / 2, begin_y}, "");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 id(game_interface::toUType(resource::MAIN_TEST_RADIOBUTTON))->
                 backgroundColor(ColorCode::white)->
@@ -136,7 +137,7 @@ void TMultiMainDisplay::onInitialize()
 
     begin_x += 50;
     {
-        RadioButtonBuilder bld(getWindow(), {begin_x, begin_y}, "");
+        RadioButtonBuilder bld(getSEGWindow(), {begin_x, begin_y}, "");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 id(game_interface::toUType(resource::MAIN_TEST_RADIOBUTTON2))->
                 backgroundColor(ColorCode::white)->
@@ -152,7 +153,7 @@ void TMultiMainDisplay::onInitialize()
 
     begin_x += 50;
     {
-        RadioButtonBuilder bld(getWindow(), {begin_x, begin_y}, "");
+        RadioButtonBuilder bld(getSEGWindow(), {begin_x, begin_y}, "");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 id(game_interface::toUType(resource::MAIN_TEST_RADIOBUTTON3))->
                 backgroundColor(ColorCode::white)->
@@ -167,7 +168,7 @@ void TMultiMainDisplay::onInitialize()
     }*/
 
     {
-        ListBoxBuilder bld(getWindow(), { 30, 200 }, "");
+        ListBoxBuilder bld(getSEGWindow(), { 30, 200 }, "");
         bld.font({ "../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black })->
             id(game_interface::toUType(resource::MAIN_TEST_LISTBOX))->
             backgroundColor(ColorCode::white)->

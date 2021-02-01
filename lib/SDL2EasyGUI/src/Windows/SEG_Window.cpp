@@ -56,7 +56,7 @@ void SEG_Window::initialize()
         m_windowID = SDL_GetWindowID(m_window);
 
     }
-    catch (runtime_error& e) {
+    catch (std::runtime_error& e) {
         std::cerr << e.what();
     }
     catch (...) {

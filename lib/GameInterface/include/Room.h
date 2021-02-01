@@ -2,8 +2,8 @@
 // Created by chaed on 19. 1. 16.
 //
 
-#ifndef OBJECT_ROOM_H
-#define OBJECT_ROOM_H
+#ifndef GAMEINTERFACE_ROOM_H
+#define GAMEINTERFACE_ROOM_H
 
 #if _MSC_VER >= 1200
 #pragma once
@@ -90,4 +90,4 @@ private:
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_TROOM_H
+#endif //SDL2EASYGUI_TROOM_H

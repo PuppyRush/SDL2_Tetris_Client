@@ -5,6 +5,7 @@
 //#include <jsoncpp/json/json.h>
 
 #include "TMultiGameRoomDisplay.h"
+#include "SDL2EasyGUI/include/SEG_Constant.h"
 #include "SDL2EasyGUI/include/Button.h"
 #include "GameInterface/include/Event.h"
 #include "TResource.h"
@@ -42,7 +43,7 @@ void TMultiGameRoomDisplay::onInitialize()
     seg::t_size begin_y = WINDOW_HEIGHT - 300;
     seg::t_size begin_x = WINDOW_WIDTH - 200;
     {
-        ButtonBuilder bld(getWindow(), {begin_x, begin_y}, "START");
+        ButtonBuilder bld(getSEGWindow(), {begin_x, begin_y}, "START");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 id(game_interface::toUType(resource::GAME_START))->
                 backgroundColor(ColorCode::white)->
@@ -54,7 +55,7 @@ void TMultiGameRoomDisplay::onInitialize()
     }
     begin_y += 80;
     {
-        ButtonBuilder bld(getWindow(), {begin_x, begin_y}, "SUSPEND");
+        ButtonBuilder bld(getSEGWindow(), {begin_x, begin_y}, "SUSPEND");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 id(game_interface::toUType(resource::GAME_SUSPEND))->
                 backgroundColor(ColorCode::white)->
@@ -66,7 +67,7 @@ void TMultiGameRoomDisplay::onInitialize()
     }
     begin_y += 80;
     {
-        ButtonBuilder bld(getWindow(), {begin_x, begin_y}, "EXIT");
+        ButtonBuilder bld(getSEGWindow(), {begin_x, begin_y}, "EXIT");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 id(game_interface::toUType(resource::GAME_END))->
                 backgroundColor(ColorCode::white)->

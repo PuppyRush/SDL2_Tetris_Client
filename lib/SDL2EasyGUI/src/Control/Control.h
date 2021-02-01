@@ -2,8 +2,8 @@
 // Created by chaed on 18. 12. 26.
 //
 
-#ifndef CONTROLLER_CONTROLL_H
-#define CONTROLLER_CONTROLL_H
+#ifndef SDL2EASYGUI_CONTROLL_H
+#define SDL2EASYGUI_CONTROLL_H
 
 #if _MSC_VER >= 1200
 #pragma once
@@ -11,7 +11,7 @@
 
 #include <atomic>
 
-
+#include "../../include/SEG_Drawer.h"
 #include "../../include/SEG_Struct.h"
 #include "../../include/ControlBuilder.h"
 #include "../../include/GroupControlManager.h"
@@ -25,6 +25,7 @@ class Control : public GraphicInterface, public EventListener
 {
 public:
 
+    using renderer_type = SEG_Window::renderer_type;
     using control_ptr = Control*;
 
     virtual ~Control() = default;
@@ -39,20 +40,17 @@ public:
         m_activated = hit;
     }
 
-    inline SEG_Window::renderer_type getSDLRenderer() const noexcept
+    inline bool wasInitailized() const noexcept
     {
-        return getWindow()->getSDLRenderer();
+        return m_isInitailize;
     }
 
-    //inline bool isHit(const t_coord x, const t_coord y, const t_coord z = 0) const
-    //{
-    //    return isHit({ x, y, z });
-    //}
+    inline void setInitailize(bool init)
+    {
+        m_isInitailize = init;
+    }
 
-    //inline bool isHit(SEG_Point&& point) const
-    //{
-    //    return isHit(static_cast<const SEG_Point>(std::move(point)));
-    //}
+    
 
     void onHit(const SEG_Point& point, const bool hit);
 
@@ -165,32 +163,54 @@ public:
 
     void release();
 
+    //control text
+
+    void setControlText(const char* ch);
+
+    void setControlText(std::string&& str);
+
+    void setControlText(const std::string& str);
+
+    std::string& getControlText() noexcept;
+    
+    inline int getControlTextWidth() const noexcept
+    {
+        return m_textDrawer.getTextWidth();
+    }
+
+    inline void setControlTextWidth(int width) noexcept
+    {
+        m_textDrawer.setTextWidth(width);
+    }
+
+    inline int getControlTextHeight() const noexcept
+    {
+        return m_textDrawer.getTextHeight();
+    }
+
+    inline void setControlTextHeight(int height) noexcept
+    {
+        m_textDrawer.setTextHeight(height);
+    }
+
+
+    void setControlTextPostion(const SDL_Rect rect);
+
+    inline SDL_Rect getControlTextPostion(const SDL_Rect rect) const noexcept;
+
+    void setControlTextPositionX(const t_coord coord);
+
+    inline t_coord getControlTextPositionX() const noexcept;
+
+    void setControlTextPositionY(const t_coord coord);
+
+    inline t_coord getControlTextPositionY() const noexcept;
+        
 protected:
 
-    explicit Control(const Control*);
+    explicit Control(Control*);
 
     explicit Control(const ControlBuilder& bld);
-
-    inline int getTextWidth() const noexcept
-    {
-        return m_textWidth;
-    }
-
-
-    inline void setTextWidth(int mTextWidth) noexcept
-    {
-        m_textWidth = mTextWidth;
-    }
-
-    inline int getTextHeight() const noexcept
-    {
-        return m_textHeight;
-    }
-
-    inline void setTextHeight(int mTextHeight) noexcept
-    {
-        m_textHeight = mTextHeight;
-    }
 
     inline void stopDrawing(const bool b) noexcept
     { m_stopDraw = b; }
@@ -204,16 +224,15 @@ private:
 
 private:
 
-    int m_textWidth;
-    int m_textHeight;
-
-private:
     SDL_Rect m_positionRect;
     bool m_stopDraw = false;
     bool m_activated = false;
     bool m_isBounded = false;
+    bool m_isInitailize = false;
+
+    drawer::TextDrawer m_textDrawer;
 };
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_TCONTROLL_H
+#endif //SDL2EASYGUI_TCONTROLL_H

@@ -17,9 +17,8 @@ ScrollrableDecorator::ScrollrableDecorator(BoxBasic* ctl)
     t_size scrollbarFocusWidth = 14;
     t_size scrollbarFocusHeight = (ctl->getHeight() - getUpperArrowPosition().h - getBelowArrowPosition().h) / ctl->getVisibleMenuCount();
     
-    m_scrollbarFocusPosition = { static_cast<int>( Base::getPoint().x + Base::getWidth() - scrollbarFocusWidth + 3),
-                                 static_cast<int>( m_staticScrollbarFocusY),
-                                  static_cast<int>(scrollbarFocusWidth -4), static_cast<int>(scrollbarFocusHeight) };
+    m_scrollbarFocusPosition = make_sdlrect( Base::getPoint().x + Base::getWidth() - scrollbarFocusWidth + 2,
+                                 m_staticScrollbarFocusY,scrollbarFocusWidth -4, scrollbarFocusHeight);
 
 }
 
@@ -55,7 +54,7 @@ void ScrollrableDecorator::drawScrollbarFocus()
             setPositionY(m_staticScrollbarFocusY);
         }
 
-        drawer::draw_FilledRoundedRactangel(Base::getSDLRenderer(), this->getPosition(), ColorCode::lightgray, 3);
+        drawer::draw_FilledRoundedRactangel(getRenderer(), this->getPosition(), ColorCode::lightgray, 3);
     }
 }
 
@@ -72,7 +71,7 @@ void ScrollrableDecorator::onMouseMotionEvent(const SDL_MouseMotionEvent* motion
         Base::onMouseMotionEvent(motion);
     }
     else {
-        drawer::draw_FilledRoundedRactangel(Base::getSDLRenderer(), ScrollrableDecorator::getPosition(),
+        drawer::draw_FilledRoundedRactangel(getRenderer(), ScrollrableDecorator::getPosition(),
                                                  ColorCode::green, 3);
         Base::onMouseMotionEvent(motion);
     }
@@ -80,7 +79,7 @@ void ScrollrableDecorator::onMouseMotionEvent(const SDL_MouseMotionEvent* motion
 
 void ScrollrableDecorator::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 {
-    if (helper::hitTest(ScrollrableDecorator::getPosition(), { static_cast<t_size>(button->x), static_cast<t_size>(button->y) })) {
+    if (helper::hitTest(ScrollrableDecorator::getPosition(), make_segpoint( button->x, button->y ))) {
 
         if (button->state == SDL_PRESSED && button->button == SDL_BUTTON_LEFT) {
             Base::setBackgroundColor(ColorCode::darkgray);

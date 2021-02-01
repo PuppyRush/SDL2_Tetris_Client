@@ -2,8 +2,8 @@
 // Created by chaed on 19. 2. 5.
 //
 
-#ifndef TETRIS_FIGURE_CLASS_RESOURCE_H
-#define TETRIS_FIGURE_CLASS_RESOURCE_H
+#ifndef TETRIS_CLIENT_RESOURCE_H
+#define TETRIS_CLIENT_RESOURCE_H
 
 #if _MSC_VER >= 1200
 #pragma once
@@ -84,4 +84,4 @@ enum class resource : seg::t_id
 
 SDL_TETRIS_END
 
-#endif //TETRIS_FIGURE_CLASS_RESOURCE_H
+#endif //TETRIS_CLIENT_RESOURCE_H

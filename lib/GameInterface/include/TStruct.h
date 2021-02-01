@@ -55,4 +55,4 @@ typedef struct TIPString
 
 }
 
-#endif //TETRIS_FIGURE_CLASS_TSTRUCT_H
+#endif //SDL2EASYGUI_TSTRUCT_H

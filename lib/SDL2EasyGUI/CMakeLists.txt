@@ -98,7 +98,7 @@ ADD_LIBRARY(SDL2EasyGUI STATIC
         include/SEG_Define.h
         include/CheckBox.h
         include/SEG_Drawer.h
-        )
+         "src/Decorator/DecoratorInterface.h")
 
 add_subdirectory(sdl2gfx)
 

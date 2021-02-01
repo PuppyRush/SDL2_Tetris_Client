@@ -2,8 +2,8 @@
 // Created by chaed on 19. 1. 13.
 //
 
-#ifndef TETRIS_FIGURE_CLASS_TPLAYER_H
-#define TETRIS_FIGURE_CLASS_TPLAYER_H
+#ifndef TETRIS_CLIENT_TPLAYER_H
+#define TETRIS_CLIENT_TPLAYER_H
 
 #if _MSC_VER >= 1200
 #pragma once
@@ -107,4 +107,4 @@ private:
 
 SDL_TETRIS_END
 
-#endif //TETRIS_FIGURE_CLASS_TPLAYER_H
+#endif //TETRIS_CLIENT_TPLAYER_H

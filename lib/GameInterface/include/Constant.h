@@ -49,6 +49,6 @@ constexpr const std::string_view NAME_NULL = std::string_view("");
 }
 }
 
-#endif //TETRIS_FIGURE_CLASS_SEG_CONSTANT_H
+#endif //SDL2EASYGUI_SEG_CONSTANT_H
 
 
