@@ -78,7 +78,7 @@ public:
 
 private:
 
-    inline ControlBuilder* borderBoundaryType(const BorderBoundaryType type)
+    inline ControlBuilder* borderBoundaryType(const BorderBoundaryType type) noexcept
     {
         return this;
     }

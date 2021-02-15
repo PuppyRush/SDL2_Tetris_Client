@@ -149,14 +149,13 @@ typedef struct ControlData
 
     //컨트롤의 고유 ID
     t_id resourceId = NULL_ID;
-    SEG_Point point = SEG_Point{ INVALID_COORD, INVALID_COORD };
     SEG_Point midPoint = SEG_Point{0, 0};
-    SDL_Rect positionRect = SDL_Rect{0, 0};
+    SDL_Rect position = SDL_Rect{0, 0};
     t_size depth = 0;
     t_size width = 100;
     t_size height = 50;
-    SEG_TFont font = {"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::white};
-    SEG_Color backgroundColor = ColorCode::black;
+    SEG_TFont font = {"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black};
+    SEG_Color backgroundColor = ColorCode::white;
     std::string name = "";      //식별이름
     std::string text = "";      //컨트롤에 출력될 이름
     t_display display = std::numeric_limits<t_display>::max();
@@ -180,7 +179,6 @@ typedef struct ControlData
     ControlData(const ControlData& b)
             : resourceId(b.resourceId),
               window(b.window),
-              point(b.point),
               width(b.width),
               height(b.height),
               font(b.font),

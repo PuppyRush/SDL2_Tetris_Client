@@ -148,7 +148,7 @@ static void GameInterface_Init(bool isServer)
 
     PacketQueue::getInstance().run();
 
-    atomic::Atomic<Room>::getInstance().setFirstUnique(SERVER_ATOMIC_START);
+    //game_interface::atomic::Atomic<Room>::getInstance().setFirstUnique(SERVER_ATOMIC_START);
 
     //cal_time();
     

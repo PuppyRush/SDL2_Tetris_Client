@@ -16,9 +16,9 @@
 #include <cassert>
 
 #include "SEG_Struct.h"
+#include "SEG_Atomic.h"
 
 namespace seg {
-
 
 template<class T>
 inline const constexpr auto toUType(T enuml) noexcept

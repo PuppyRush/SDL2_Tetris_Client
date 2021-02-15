@@ -10,7 +10,6 @@
 #endif
 
 #include "Control.h"
-#include "SDL2EasyGUI/include/ControlBuilder.h"
 
 namespace seg {
 
@@ -25,8 +24,6 @@ public:
     explicit Border(ControlBuilder& basic);
 
     virtual void onDraw() override;
-
-    virtual void onDrawBackground() override;
 
 protected:
 

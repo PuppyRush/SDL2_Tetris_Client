@@ -85,7 +85,9 @@ void TMultiMainDisplay::onInitialize()
 
     begin_y += 80;
     {
-        ComoboBoxBuilder bld(getSEGWindow(), {WINDOW_WIDTH / 2, begin_y}, "DoitNow");
+
+
+        ComboBoxBuilder bld(getSEGWindow(), {WINDOW_WIDTH / 2, begin_y}, "DoitNow");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 id(game_interface::toUType(resource::MAIN_TEST_TEXT_COMBO))->
                 backgroundColor(ColorCode::white)->
@@ -94,14 +96,22 @@ void TMultiMainDisplay::onInitialize()
                 height(30)->
                 enabled(true);
 
+        BoxItemBuilder bibld1(getSEGWindow(), "one");
+        bibld1.font({ "../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black })->
+            backgroundColor(ColorCode::white);
+        bld.appendItem(bibld1);
+        bld.appendItem({getSEGWindow(), "two"});
+        bld.appendItem({ getSEGWindow(), "three" });
+        bld.appendItem({ getSEGWindow(), "four4" });
+        bld.appendItem({ getSEGWindow(), "five" });
         addControl(bld.build());
 
         auto ctl = getControl<ComboBox>(resource::MAIN_TEST_TEXT_COMBO);
-        ctl->appendItem(std::make_shared<BoxItem>("1234567890abcd"));
-        ctl->appendItem(std::make_shared<BoxItem>("item2"));
-        ctl->appendItem(std::make_shared<BoxItem>("item3"));
-        ctl->appendItem(std::make_shared<BoxItem>("item4"));
-        ctl->appendItem(std::make_shared<BoxItem>("item5"));
+        //ctl->appendItem(std::make_shared<BoxItem>("1234567890abcd"));
+        //ctl->appendItem(std::make_shared<BoxItem>("item2"));
+        //ctl->appendItem(std::make_shared<BoxItem>("item3"));
+        //ctl->appendItem(std::make_shared<BoxItem>("item4"));
+        //ctl->appendItem(std::make_shared<BoxItem>("item5"));
     }
 
     //begin_y += 80;
@@ -179,8 +189,8 @@ void TMultiMainDisplay::onInitialize()
             grouping(1)->
             enabled(true);
 
-        bld.appendItem("aaabbb")->
-            appendItem("abaabab");
+        //bld.appendItem("aaabbb")->
+        //    appendItem("abaabab");
 
 
         addControl(bld.build());

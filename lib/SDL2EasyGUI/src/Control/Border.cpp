@@ -19,11 +19,6 @@ void Border::initialize()
     Control::initialize();
 }
 
-void Border::onDrawBackground()
-{
-    Control::onDrawBackground();
-}
-
 void Border::onDraw()
 {
     auto renderer = getRenderer();

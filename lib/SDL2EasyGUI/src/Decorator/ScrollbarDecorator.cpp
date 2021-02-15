@@ -73,19 +73,17 @@ void ScrollbarDecorator::onDrawBackground()
 void ScrollbarDecorator::drawScroll()
 {
     using namespace drawer;
-    if (getComponent()->isFolded() == false)
-    {
-        draw_FilledRoundedRactangel(getRenderer(), ScrollbarDecorator::getPosition(), ColorCode::darkgray, 6);
 
-        draw_FilledTriangle(getRenderer(),
-            make_segpoint(m_upperArrowPosition.x + m_upperArrowPosition.w / 2, m_upperArrowPosition.y),
-            make_segpoint(m_upperArrowPosition.x,  m_upperArrowPosition.y + m_upperArrowPosition.h),
-            make_segpoint(m_upperArrowPosition.x + m_upperArrowPosition.w, m_upperArrowPosition.y + m_upperArrowPosition.h) , ColorCode::black);
-        draw_FilledTriangle(getRenderer(),
-            make_segpoint(m_belowArrowPosition.x + m_belowArrowPosition.w,  m_belowArrowPosition.y),
-            make_segpoint(m_belowArrowPosition.x,  m_belowArrowPosition.y) ,
-            make_segpoint(m_belowArrowPosition.x + m_belowArrowPosition.w / 2, m_belowArrowPosition.y + m_belowArrowPosition.h), ColorCode::black);
-    }
+    draw_FilledRoundedRactangel(getRenderer(), ScrollbarDecorator::getPosition(), ColorCode::darkgray, 6);
+
+    draw_FilledTriangle(getRenderer(),
+        make_segpoint(m_upperArrowPosition.x + m_upperArrowPosition.w / 2, m_upperArrowPosition.y),
+        make_segpoint(m_upperArrowPosition.x,  m_upperArrowPosition.y + m_upperArrowPosition.h),
+        make_segpoint(m_upperArrowPosition.x + m_upperArrowPosition.w, m_upperArrowPosition.y + m_upperArrowPosition.h) , ColorCode::black);
+    draw_FilledTriangle(getRenderer(),
+        make_segpoint(m_belowArrowPosition.x + m_belowArrowPosition.w,  m_belowArrowPosition.y),
+        make_segpoint(m_belowArrowPosition.x,  m_belowArrowPosition.y) ,
+        make_segpoint(m_belowArrowPosition.x + m_belowArrowPosition.w / 2, m_belowArrowPosition.y + m_belowArrowPosition.h), ColorCode::black);
 }
 
 void ScrollbarDecorator::onMouseMotionEvent(const SDL_MouseMotionEvent* motion)
@@ -101,8 +99,10 @@ void ScrollbarDecorator::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 {
     if (button->state == SDL_PRESSED && isHitUpperArrow(button->x, button->y)) {
         goUpScrollByUnit();
+        getComponent()->recalculateBoxesPosition();
     } else if (button->state == SDL_PRESSED && isHitBelowArrow(button->x, button->y)) {
         goDownScrollByUnit();
+        getComponent()->recalculateBoxesPosition();
     } else if (helper::hitTest(ScrollbarDecorator::getPosition(), make_segpoint(button->x, button->y) )) {
 
         if (button->state == SDL_PRESSED && button->button == SDL_BUTTON_LEFT) {
@@ -125,12 +125,12 @@ void ScrollbarDecorator::onMouseWheelEvent(const SDL_MouseWheelEvent* wheel)
 
 void ScrollbarDecorator::goUpScrollByUnit()
 {
-    getComponent()->setMenuStartIndex(getComponent()->getMenuStartIndex() - m_scrollmovingUnitCount);
+    getComponent()->setBoxStartIndex(getComponent()->getBoxStartIndex() - m_scrollmovingUnitCount);
 
 }
 
 void ScrollbarDecorator::goDownScrollByUnit()
 {
-    getComponent()->setMenuStartIndex(getComponent()->getMenuStartIndex() + m_scrollmovingUnitCount);
+    getComponent()->setBoxStartIndex(getComponent()->getBoxStartIndex() + m_scrollmovingUnitCount);
 
 }

@@ -41,7 +41,7 @@ ADD_LIBRARY(SDL2EasyGUI STATIC
         src/Control/Box/ComboBox.cpp
         src/Control/Control.cpp
         src/Control/Control.h
-        src/Control/ControlBuilder.cpp
+        "src/Control/ControlBuilderBase.cpp"
         src/Control/Label/EditLabel.cpp
         src/Control/GroupControlManager.cpp
         src/Control/Box/ListBox.cpp
@@ -73,7 +73,7 @@ ADD_LIBRARY(SDL2EasyGUI STATIC
         src/Decorator/ScrollrableDecorator.cpp
         include/Button.h
         include/ComboBox.h
-        include/ControlBuilder.h
+        "include/ControlBuilderBase.h"
         include/EditLabel.h
         include/GroupControlManager.h
         include/ListBox.h
@@ -98,7 +98,7 @@ ADD_LIBRARY(SDL2EasyGUI STATIC
         include/SEG_Define.h
         include/CheckBox.h
         include/SEG_Drawer.h
-         "src/Decorator/DecoratorInterface.h")
+         "src/Decorator/DecoratorInterface.h" "include/SEG_Atomic.h")
 
 add_subdirectory(sdl2gfx)
 

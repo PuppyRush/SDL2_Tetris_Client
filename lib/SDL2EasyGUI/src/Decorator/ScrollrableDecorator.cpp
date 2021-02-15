@@ -40,22 +40,19 @@ void ScrollrableDecorator::onDrawBackground()
 
 void ScrollrableDecorator::drawScrollbarFocus()
 {
-    if (getComponent()->isFolded() == false)
+    int remainHeight = Base::getScrollHeight() - getPosition().h;
+    int remainMenuCount = getComponent()->getBoxCount() - getComponent()->getVisibleMenuCount() + 1;
+    int unitHeight = remainHeight / remainMenuCount;
+    if (getComponent()->getBoxStartIndex() > 0)
     {
-        int remainHeight = Base::getScrollHeight() - getPosition().h;
-        int remainMenuCount = getComponent()->getMenuCount() - getComponent()->getVisibleMenuCount() + 1;
-        int unitHeight = remainHeight / remainMenuCount;
-        if (getComponent()->getMenuStartIndex() > 0)
-        {
-            setPositionY(m_staticScrollbarFocusY + unitHeight * ( getComponent()->getMenuStartIndex() ));
-        }
-        else
-        {
-            setPositionY(m_staticScrollbarFocusY);
-        }
-
-        drawer::draw_FilledRoundedRactangel(getRenderer(), this->getPosition(), ColorCode::lightgray, 3);
+        setPositionY(m_staticScrollbarFocusY + unitHeight * ( getComponent()->getBoxStartIndex() ));
     }
+    else
+    {
+        setPositionY(m_staticScrollbarFocusY);
+    }
+
+    drawer::draw_FilledRoundedRactangel(getRenderer(), this->getPosition(), ColorCode::lightgray, 3);
 }
 
 bool ScrollrableDecorator::isHit(const SEG_Point& point) const noexcept
@@ -99,9 +96,9 @@ void ScrollrableDecorator::onMouseWheelEvent(const SDL_MouseWheelEvent* wheel)
 {
     if (wheel->direction == 0) {
         if (wheel->y == -1) {
-            getComponent()->setMenuStartIndex(getComponent()->getMenuStartIndex() + 1);
+            getComponent()->setBoxStartIndex(getComponent()->getBoxStartIndex() + 1);
         } else if (wheel->y == 1) {
-            getComponent()->setMenuStartIndex(getComponent()->getMenuStartIndex() - 1);
+            getComponent()->setBoxStartIndex(getComponent()->getBoxStartIndex() - 1);
         }
         refresh();
     }

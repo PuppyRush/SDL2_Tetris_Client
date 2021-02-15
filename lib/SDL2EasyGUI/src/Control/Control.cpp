@@ -14,6 +14,24 @@
 
 using namespace seg;
 
+
+ControlBuilder::ControlBuilder(const GraphicInterface::window_type window, const SEG_Point& point, const std::string& str)
+    :ControlBuilderBase(window)
+{
+    m_basic.position.x = point.x;
+    m_basic.position.y = point.y;
+    m_basic.text = str;
+}
+
+ControlBuilder::ControlBuilder(const GraphicInterface::window_type window, SEG_Point&& point, std::string&& str)
+    : ControlBuilderBase(window)
+{
+    m_basic.position.x = point.x;
+    m_basic.position.y = point.y;
+    m_basic.text = str;
+}
+
+
 Control::Control(Control* ctl)
         : GraphicInterface(ctl->_getData()), m_isBounded(false), m_textDrawer(getRenderer(), ctl->getFont(), ctl->getPoint(), ctl->getControlText())
 {
@@ -22,13 +40,21 @@ Control::Control(Control* ctl)
 }
 
 Control::Control(const ControlBuilder& bld)
-        : m_positionRect( make_sdlrect(bld.getBasic().point.x, bld.getBasic().point.y,
-                          bld.getBasic().width, bld.getBasic().height) ),
-    m_textDrawer(getRenderer(), bld.getBasic().font, bld.getBasic().point, bld.getBasic().text),
+        : m_textDrawer(getRenderer(), bld.getBasic().font, make_segpoint(bld.getBasic().position.x, bld.getBasic().position.y), bld.getBasic().text),
           GraphicInterface(std::make_shared<ControlData>(bld.getBasic()))
 {
+    setPosition(make_sdlrect(bld.getBasic().position.x, bld.getBasic().position.y, bld.getBasic().width, bld.getBasic().height));
+
     _initializeInCtor();
     GraphicInterface::m_backgroundColor = m_data->backgroundColor;
+}
+
+Control::Control(const ControlBuilderBase& bld)
+    : m_textDrawer(getRenderer(), bld.getBasic().font, make_segpoint(bld.getBasic().position.x, bld.getBasic().position.y), bld.getBasic().text),
+    GraphicInterface(std::make_shared<ControlData>(bld.getBasic()))
+
+{
+    _initializeInCtor();
 }
 
 void Control::release()

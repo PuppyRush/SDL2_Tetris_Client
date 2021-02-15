@@ -79,21 +79,19 @@ public:
         return m_data->resourceId;
     }
 
-    inline SEG_Point& getPoint() const noexcept
+    inline SEG_Point getPoint() const noexcept
     {
-        return m_data->point;
+        return make_segpoint(m_data->position.x, m_data->position.y);
     }
 
     inline void setPoint(const SEG_Point& point) noexcept
     {
-        m_data->point = point;
-        m_data->positionRect.x = point.x;
-        m_data->positionRect.y = point.y;
-
+        m_data->position.x = point.x;
+        m_data->position.y = point.y;
         m_data->midPoint = SEG_Point{point.x + m_data->width / 2, point.y + m_data->height / 2};
     }
 
-    inline SEG_Point& getMidPoint() const noexcept
+    inline SEG_Point getMidPoint() const noexcept
     {
         return m_data->midPoint;
     }
@@ -116,8 +114,8 @@ public:
     inline void setWidth(const t_size width) noexcept
     {
         m_data->width = width;
-        m_data->positionRect.w = width;
-        m_data->midPoint = SEG_Point{m_data->point.x + width / 2, m_data->midPoint.y};
+        m_data->position.w = width;
+        m_data->midPoint = SEG_Point{m_data->position.x + width / 2, m_data->midPoint.y};
     }
 
     inline t_size getHeight() const noexcept
@@ -128,13 +126,18 @@ public:
     void setHeight(const t_size height) noexcept
     {
         m_data->height = height;
-        m_data->positionRect.h = height;
-        m_data->midPoint = SEG_Point{m_data->width, m_data->point.y + height / 2};
+        m_data->position.h = height;
+        m_data->midPoint = SEG_Point{m_data->width, m_data->position.y + height / 2};
     }
 
-    inline SEG_TFont& getFont() const noexcept
+    inline SEG_TFont getFont() const noexcept
     {
         return m_data->font;
+    }
+
+    inline void setFont(SEG_TFont&& font) noexcept
+    {
+        m_data->font = font;
     }
 
     inline void setFont(const SEG_TFont& font) noexcept
@@ -145,6 +148,11 @@ public:
     inline std::string getName() const noexcept
     {
         return m_data->name;
+    }
+
+    inline void setName(std::string&& name)
+    {
+        m_data->name = name;
     }
 
     inline void setName(const std::string& name)
@@ -212,7 +220,7 @@ public:
         return m_data->borderType;
     }
 
-    inline SEG_Color& getBorderLineColor() const noexcept
+    inline SEG_Color getBorderLineColor() const noexcept
     {
         return m_data->borderColor;
     }
@@ -244,12 +252,12 @@ public:
 
     inline virtual void setPosition(const SDL_Rect rect) noexcept
     {
-        m_data->positionRect = rect;
+        m_data->position = rect;
     }
 
     inline virtual SDL_Rect getPosition() const noexcept
     {
-        return m_data->positionRect;
+        return m_data->position;
     }
 
     virtual void initialize() = 0;
@@ -276,6 +284,11 @@ protected:
     inline std::shared_ptr<ControlData> _getData() const noexcept
     {
         return m_data;
+    }
+
+    inline void setId(const t_id id) const noexcept
+    {
+        m_data->resourceId = id;
     }
 
     virtual void _drawBackground(const SDL_Rect rect);

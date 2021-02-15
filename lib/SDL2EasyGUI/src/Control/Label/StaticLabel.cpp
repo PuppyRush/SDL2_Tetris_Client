@@ -30,7 +30,7 @@ void StaticLabel::initialize()
 
     drawer::TextDrawer textDrawer{ getRenderer(), getFont(), getPoint(), getControlText() };
 
-    _getData()->point.x += 5;
+    _getData()->position.x += 5;
     _getData()->height = getControlTextHeight();
     _getData()->width = getControlTextWidth();
 }

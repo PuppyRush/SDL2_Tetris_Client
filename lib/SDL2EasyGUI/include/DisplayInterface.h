@@ -28,7 +28,7 @@
 #include "SEG_Resource.h"
 #include "SEG_Define.h"
 #include "EventQueue.h"
-#include "ControlBuilder.h"
+#include "ControlBuilderBase.h"
 
 #include "SDL2EasyGUI/src/Windows/EventListener.h"
 #include "SDL2EasyGUI/src/Control/Control.h"

@@ -13,11 +13,155 @@
 
 #include "../../include/SEG_Drawer.h"
 #include "../../include/SEG_Struct.h"
-#include "../../include/ControlBuilder.h"
+#include "../../include/ControlBuilderBase.h"
 #include "../../include/GroupControlManager.h"
 #include "../Windows/EventListener.h"
 
 namespace seg {
+
+
+class ControlBuilder : public ControlBuilderBase
+{
+public:
+
+    ControlBuilder(const GraphicInterface::window_type window, const SEG_Point& point, const std::string& str);
+
+    ControlBuilder(const GraphicInterface::window_type window, SEG_Point&& point, std::string&& str);
+
+    virtual ~ControlBuilder() = default;
+
+
+    inline ControlBuilder* font(const SEG_TFont& font) noexcept override
+    {
+        m_basic.font = font;
+        return this;
+    }
+
+    inline ControlBuilder* font(SEG_TFont&& font) noexcept override
+    {
+        m_basic.font = font;
+        return this;
+
+    }
+
+    inline ControlBuilder* fontSize(t_size size) noexcept override
+    {
+        m_basic.font.size = size;
+        return this;
+    }
+
+    inline ControlBuilder* fontColor(SEG_Color color) noexcept override
+    {
+        m_basic.font.color = color;
+        return this;
+    }
+
+    inline ControlBuilder* backgroundColor(ColorCode color) noexcept override
+    {
+        m_basic.backgroundColor = color;
+        return this;
+    }
+
+    inline ControlBuilder* enabled(bool enable) noexcept override
+    {
+        m_basic.enabled = enable;
+        return this;
+    }
+
+    inline ControlBuilder* multiselected(bool selected) noexcept override
+    {
+        m_basic.multiselected = selected;
+        return this;
+    }
+
+    inline ControlBuilder* carot() noexcept override
+    {
+        m_basic.carot = true;
+        return this;
+    }
+
+    /// 
+
+    inline ControlBuilder* id(t_id id) noexcept override
+    {
+        m_basic.resourceId = id;
+        return this;
+    }
+
+    inline ControlBuilder* point(SDL_Point pt) noexcept override
+    {
+        m_basic.position.x = pt.x;
+        m_basic.position.y = pt.y;
+        return this;
+    }
+
+    inline ControlBuilder* position(SDL_Rect rect) noexcept override
+    {
+        m_basic.position = rect;
+        return this;
+    }
+
+    inline ControlBuilder* width(t_size size) noexcept override
+    {
+        m_basic.autoSize = false;
+        m_basic.width = size;
+        return this;
+
+    }
+
+    inline ControlBuilder* height(t_size size) noexcept override
+    {
+        m_basic.autoSize = false;
+        m_basic.height = size;
+        return this;
+    }
+
+    inline ControlBuilder* grouping(size_t idx) noexcept override
+    {
+        m_basic.group = idx;
+        return this;
+    }
+
+    inline ControlBuilder* selected() noexcept override
+    {
+        m_basic.selected = true;
+        return this;
+    }
+
+    inline ControlBuilder* borderLineType(BorderBoundaryLineType lineType) noexcept override
+    {
+        m_basic.borderLineType = lineType;
+        return this;
+    }
+
+    inline ControlBuilder* borderBoundaryType(BorderBoundaryType type) noexcept override
+    {
+        m_basic.borderType = type;
+        return this;
+    }
+
+    inline ControlBuilder* borderColor(SEG_Color lineColor) noexcept override
+    {
+        m_basic.borderColor = lineColor;
+        return this;
+    }
+
+    inline ControlBuilder* borderAngle(int borderAngle) noexcept override
+    {
+        m_basic.borderAngle = borderAngle;
+        return this;
+    }
+
+    inline ControlBuilder* borderThick(int borderThick) noexcept override
+    {
+        m_basic.borderThick = borderThick;
+        return this;
+    }
+
+    virtual Control* build() = 0;
+
+};
+
 
 class DisplayInterface;
 
@@ -50,7 +194,17 @@ public:
         m_isInitailize = init;
     }
 
-    
+    inline virtual void setPosition(const SDL_Rect rect) noexcept override
+    {
+        setControlTextPositionX(rect.x);
+        setControlTextPositionY(rect.y);
+        if (getControlTextHeight() > rect.h)
+            setControlTextHeight(rect.h);
+        if (getControlTextWidth() > rect.w)
+            setControlTextWidth(rect.w);
+        GraphicInterface::setPosition(rect);
+    }
+
 
     void onHit(const SEG_Point& point, const bool hit);
 
@@ -212,6 +366,8 @@ protected:
 
     explicit Control(const ControlBuilder& bld);
 
+    explicit Control(const ControlBuilderBase& bld);
+
     inline void stopDrawing(const bool b) noexcept
     { m_stopDraw = b; }
 
@@ -224,7 +380,6 @@ private:
 
 private:
 
-    SDL_Rect m_positionRect;
     bool m_stopDraw = false;
     bool m_activated = false;
     bool m_isBounded = false;
