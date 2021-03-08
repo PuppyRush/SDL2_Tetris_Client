@@ -260,9 +260,14 @@ public:
         return m_data->position;
     }
 
+    inline virtual const SDL_Rect& getConstPosition() const noexcept
+    {
+        return m_data->position;
+    }
+
     virtual void initialize() = 0;
 
-    virtual void onDraw() = 0;
+    virtual void onDraw();
 
     virtual void onDrawBackground() = 0;
 
@@ -277,11 +282,11 @@ public:
 protected:
 
 
-    explicit GraphicInterface();
+    explicit GraphicInterface(window_type window);
 
     explicit GraphicInterface(const std::shared_ptr<ControlData>& ctl);
 
-    inline std::shared_ptr<ControlData> _getData() const noexcept
+    inline std::shared_ptr<ControlData> getData() const noexcept
     {
         return m_data;
     }
@@ -292,6 +297,12 @@ protected:
     }
 
     virtual void _drawBackground(const SDL_Rect rect);
+
+private:
+
+    void _release();
+
+private:
 
     window_type m_window = nullptr;
     std::shared_ptr<ControlData> m_data;

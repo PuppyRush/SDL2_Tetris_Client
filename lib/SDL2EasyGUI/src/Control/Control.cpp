@@ -4,10 +4,9 @@
 
 #include <stdexcept>
 
-#include "Control.h"
-
 #include "sdl2gfx/SDL2_gfxPrimitives.h"
 
+#include "Control.h"
 #include "GameInterface/include/Logger.h"
 #include "include/SEG_TypeTraits.h"
 #include "include/SEG_Event.h"
@@ -33,10 +32,9 @@ ControlBuilder::ControlBuilder(const GraphicInterface::window_type window, SEG_P
 
 
 Control::Control(Control* ctl)
-        : GraphicInterface(ctl->_getData()), m_isBounded(false), m_textDrawer(getRenderer(), ctl->getFont(), ctl->getPoint(), ctl->getControlText())
+        : GraphicInterface(ctl->getData()), m_isBounded(false), m_textDrawer(getRenderer(), ctl->getFont(), ctl->getPoint(), ctl->getControlText())
 {
     _initializeInCtor();
-    GraphicInterface::m_backgroundColor = m_data->backgroundColor;
 }
 
 Control::Control(const ControlBuilder& bld)
@@ -46,7 +44,6 @@ Control::Control(const ControlBuilder& bld)
     setPosition(make_sdlrect(bld.getBasic().position.x, bld.getBasic().position.y, bld.getBasic().width, bld.getBasic().height));
 
     _initializeInCtor();
-    GraphicInterface::m_backgroundColor = m_data->backgroundColor;
 }
 
 Control::Control(const ControlBuilderBase& bld)
@@ -68,10 +65,11 @@ void Control::release()
 
 void Control::_initializeInCtor()
 {
+    setBackgroundColor(getData()->backgroundColor);
     setPosition( make_sdlrect( getPoint().x, getPoint().y, getWidth(), getHeight()));
     setMidPoint({ getPoint().x + getWidth() / 2, getPoint().y + getHeight() / 2 });
 
-    setControlText(_getData()->text);
+    setControlText(getData()->text);
 
     auto wh = drawer::getTextSize(getFont().getTTF_Font(), getControlText());
     auto width = wh.first > getWidth() ? getWidth() : wh.first;
@@ -85,6 +83,14 @@ void Control::_initializeInCtor()
 
     setControlTextPositionX(point.x);
     setControlTextPositionY(point.y);
+
+
+#ifdef SEG_DEBUG
+    m_positionDrawer.setPoint(getPoint());
+    m_positionDrawer.setRenderer(getRenderer());
+    m_positionDrawer.setSize(14);
+    m_positionDrawer.setColor(ColorCode::green);
+#endif
 }
 
 void Control::initialize()
@@ -93,9 +99,9 @@ void Control::initialize()
     setSelected(isSelected());
 
     if (getGroup() != GroupControlManager::NONE) {
-        GroupControlManager::getInstance().add(m_data->group, m_data->resourceId);
+        GroupControlManager::getInstance().add( getData()->group, getData()->resourceId);
         if (isMultiselected()) {
-            GroupControlManager::getInstance().setMultiselect(m_data->group);
+            GroupControlManager::getInstance().setMultiselect(getData()->group);
         }
     }
 
@@ -163,7 +169,6 @@ void Control::onVirtualDraw()
     onDraw();
 }
 
-#include <tuple>
 void Control::refresh()
 {
     event::EventPusher event{this->getSEGWindow()->getWindowID(), SEG_DRAW, SEG_DRAW_CONTROLLER};
@@ -173,11 +178,10 @@ void Control::refresh()
 
 void Control::setSelected(bool selected)
 {
-    m_data->selected = selected;
+    getData()->selected = selected;
     if (selected) {
         GroupControlManager::getInstance().select(getGroup(), getId());
     }
-    // refresh();
 }
 
 void Control::onHit(const SEG_Point& point, const bool hit)
@@ -246,9 +250,10 @@ bool Control::focus(const SDL_Event& event)
 void Control::onDraw()
 {
     m_textDrawer.drawText();
+    //GraphicInterface::onDraw();
 }
 
-void Control::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
+void Control::onMouseButtonDownEvent(const SDL_MouseButtonEvent* button)
 {
     onHit( make_segpoint(button->x, button->y), !isSelected());
 }

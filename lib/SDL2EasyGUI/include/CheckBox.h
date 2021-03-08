@@ -27,7 +27,7 @@ public:
 
     virtual void onDrawBackground() override;
 
-    virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) override;
+    virtual void onMouseButtonDownEvent(const SDL_MouseButtonEvent* button) override;
 
     void setSelected(const bool chk)
     {

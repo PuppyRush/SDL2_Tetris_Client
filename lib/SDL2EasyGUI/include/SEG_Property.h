@@ -126,6 +126,14 @@ enum class MessageDialogKind
     alert
 };
 
+enum class PropertyChange : t_eventType
+{
+    BoxItemAdd,
+    BoxItemRemove,
+    BoxScrollUp,
+    BoxScrollDown,
+};
+
 }
 
 #endif //TERIS_FIGURE_CLASS_TPROPERTY_H

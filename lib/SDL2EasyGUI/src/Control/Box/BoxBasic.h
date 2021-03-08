@@ -20,9 +20,12 @@ class BoxItem : public Control
 {
 public:
 
+    using Base = Control;
     using string_type = std::string;
 
-    BoxItem(BoxBasicItemBuilder& bld);
+    BoxItem(const BoxBasicItemBuilder& bld);
+
+    BoxItem(BoxBasicItemBuilder&& bld);
 
     virtual ~BoxItem() = default;
 
@@ -37,12 +40,17 @@ public:
         this->m_idx = i;
     }
 
+    virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) override;
+
     // virtual void setOriginString(std::string& _origin) = 0;
 
 protected:
     //bool caching = false;
 
 private:
+
+    BoxItem() = delete;
+
     std::size_t m_idx;
 };
 
@@ -220,9 +228,18 @@ public:
             mMenuStartIdx = m_items.size() - m_visibleMenuCnt;
         }
         m_boxStartIndex = mMenuStartIdx;
+        recalculateBoxesPosition();
     }
 
-    virtual void appendItem(const item_ptr& item);
+    void addItem(const item_ptr item);
+
+    virtual void addItem(const item_type::string_type& str);
+
+    virtual void addItem(const item_type::string_type&& str);
+
+    virtual item_ptr popItem();
+
+    virtual item_ptr removeItem(t_size idx);
 
     inline item_ary& getItems()
     {
@@ -258,7 +275,6 @@ public:
     inline void setVisibleMenuWidth(t_size w)
     {
         m_visibleMenuWidth = w;
-
     }
    
     inline t_size getMenuHeight() const noexcept
@@ -270,30 +286,35 @@ public:
     {
         m_menuHeight = mMenuHeight;
     }
+    
+    inline int getBoundedMenuIndex() const noexcept
+    {
+        return m_boundedMenuIndex;
+    }
+
+    inline void setBoundedMenuIndex(int mBoundedMenuIndx)
+    {
+        m_boundedMenuIndex = mBoundedMenuIndx;
+    }
+
+    virtual void onEvent(const SDL_Event& event);
 
     virtual void onDraw() override;
-
-    virtual bool bound(const SDL_Event& event) override
-    {
-        return Base::bound(event);
-    }
-
-    virtual bool focus(const SDL_Event& event) override
-    {
-        return Base::focus(event);
-    }
 
     virtual void initialize() override;
 
 protected:
 
-    std::vector<item_ptr> m_items;
-    
+    item_ary m_items;
+    t_size m_boundedMenuIndex = INVALID_SIZE;
+
     BoxBasic(BoxBasicBuilder& bld);
 
     virtual ~BoxBasic() = default;
 
     void autoFitBox(const size_t idx);
+
+    bool _isBoundInMenues();
 
 private:
     t_size m_visibleMenuCnt = 3;
@@ -323,18 +344,29 @@ public:
 
     virtual ~BoxBasicBuilder() = default;
 
-    BoxBasicBuilder* appendItem(const BoxBasicItemBuilder& item)
+    BoxBasicBuilder* addItem(const std::string& str)
     {
-        m_items.push_back(std::make_shared<item_type>(const_cast<BoxBasicItemBuilder&>(item)));
+        m_items.emplace_back(std::make_shared<item_type>(BoxBasicItemBuilder{ m_basic.window, str }));
         return this;
     }
 
-    BoxBasicBuilder* appendItem(BoxBasicItemBuilder&& item)
+    BoxBasicBuilder* addItem(std::string&& str)
     {
-        m_items.push_back(std::make_shared<item_type>(item));
+        m_items.emplace_back(std::make_shared<item_type>(BoxBasicItemBuilder{ m_basic.window, str }));
         return this;
     }
 
+    BoxBasicBuilder* addItem(const BoxBasicItemBuilder& item)
+    {
+        m_items.emplace_back(std::make_shared<item_type>(const_cast<BoxBasicItemBuilder&>(item)));
+        return this;
+    }
+
+    BoxBasicBuilder* addItem(BoxBasicItemBuilder&& item)
+    {
+        m_items.emplace_back(std::make_shared<item_type>(item));
+        return this;
+    }
 
     const item_ary& getItems() const noexcept
     {

@@ -6,12 +6,15 @@
 
 using namespace seg;
 
-GraphicInterface::GraphicInterface()
+GraphicInterface::GraphicInterface(window_type window)
+    :m_window(window)
 {}
 
 GraphicInterface::GraphicInterface(const std::shared_ptr<ControlData>& ctl)
-        : m_window(ctl->window), m_data(ctl)
-{}
+        : GraphicInterface(ctl->window)
+{
+    m_data = ctl;
+}
 
 GraphicInterface::~GraphicInterface()
 {
@@ -19,6 +22,11 @@ GraphicInterface::~GraphicInterface()
         delete m_window;
         m_window = nullptr;
     }
+}
+
+void GraphicInterface::onDraw()
+{
+    _release();
 }
 
 void GraphicInterface::_drawBackground(const SDL_Rect rect)
@@ -32,3 +40,11 @@ void GraphicInterface::_drawBackground(const SDL_Rect rect)
     SDL_RenderDrawRect(renderer, &rect);
 }
 
+void GraphicInterface::_release()
+{
+    auto renderer = getRenderer();
+
+    SDL_RenderPresent(renderer);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderClear(renderer);
+}

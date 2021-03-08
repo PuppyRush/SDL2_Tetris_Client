@@ -22,8 +22,8 @@ using namespace seg::helper;
 using namespace game_interface;
 
 DisplayInterface::DisplayInterface()
+    :GraphicInterface(new SEG_Window)
 {
-    m_window = new SEG_Window;
 }
 
 DisplayInterface::~DisplayInterface()
@@ -46,6 +46,12 @@ void DisplayInterface::initialize()
     onCreate();
     onInitialize();
     show();
+
+#ifdef SEG_DEBUG
+    dbg_motionDrawer.setSize(14);
+    dbg_motionDrawer.setRenderer(getRenderer());
+    dbg_motionDrawer.setColor(ColorCode::red);
+#endif 
 }
 
 std::underlying_type_t<resource> DisplayInterface::alert()
@@ -90,7 +96,6 @@ void DisplayInterface::_run()
         auto event = m_eventDelivery.popEvent();
         this->onEvent(event);
             
-
         //printf("DisplayInterface::_run : %d\n", debug++);
     }
 }
@@ -119,6 +124,7 @@ void DisplayInterface::_mouseEventOnMenus(const SDL_Event& evt)
         }
         break;
     }
+    case SDL_MOUSEBUTTONUP:
     case SDL_MOUSEBUTTONDOWN:
     {
         auto ctl = getHittingMunues({ evt.button.x, evt.button.y });
@@ -132,6 +138,19 @@ void DisplayInterface::_mouseEventOnMenus(const SDL_Event& evt)
         {
             getActivatedControl()->focus(evt);
             clearActivatedControl();
+        }
+        break;
+    }
+    case SDL_MOUSEWHEEL:
+    {
+        auto ctl = getHittingMunues({ evt.button.x, evt.button.y });
+        if (ctl != nullptr)
+        {
+            ctl->onEvent(evt);
+        }
+        if (ctl == nullptr && getActivatedControl() != nullptr)
+        {
+            getActivatedControl()->onEvent(evt);
         }
         break;
     }
@@ -189,8 +208,15 @@ void DisplayInterface::onUserEvent(const SDL_UserEvent* event)
     case SEG_DRAW:
         switch (event->code) {
         case SEG_DRAW_CONTROLLER:
+        {
             //_onDrawMenus();
-            //break;
+            auto userdata = static_cast<SEG_UserEventData*>(event->data1);
+            if (auto ctl = getControl(userdata->controlId);
+                ctl != nullptr)
+            {
+                //ctl->onDraw();
+            }
+        }
         case SEG_DRAW_DISPLAY:
             //dont call _refresh() in this case.
             onDrawBackground();
@@ -303,9 +329,22 @@ void DisplayInterface::onKeyboardEvent(const SDL_KeyboardEvent* key)
     }
 }
 
-void DisplayInterface::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
+#include <boost/format.hpp>
+void DisplayInterface::onMouseMotionEvent(const SDL_MouseMotionEvent* motion)
 {
+   
+#ifdef SEG_DEBUG
+    dbg_motionDrawer.setPoint(make_segpoint(motion->x, motion->y));
+    char c[10];
+    ::sprintf(c, "%d,%d", motion->x, motion->y);
+    dbg_motionDrawer.setText(std::string{ c });
     refresh();
+#endif
+
+}
+
+void DisplayInterface::onMouseButtonDownEvent(const SDL_MouseButtonEvent* button)
+{
 }
 
 void DisplayInterface::onWindowEvent(const SDL_WindowEvent& window)
@@ -329,15 +368,6 @@ void DisplayInterface::onWindowEvent(const SDL_WindowEvent& window)
 void DisplayInterface::onCreate()
 {
     refresh();
-}
-
-void DisplayInterface::_release()
-{
-    auto renderer = getRenderer();
-
-    SDL_RenderPresent(renderer);
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    SDL_RenderClear(renderer);
 }
 
 void DisplayInterface::onClose()
@@ -383,10 +413,9 @@ void DisplayInterface::onDestroy()
 void DisplayInterface::onDrawBackground()
 {
     if (!m_backgroundImgPath.empty()) {
-        auto renderer = getRenderer();
         t_size w, h; // m_texture width & height
 
-        auto img = IMG_LoadTexture(renderer, m_backgroundImgPath.c_str());
+        auto img = IMG_LoadTexture(getRenderer(), m_backgroundImgPath.c_str());
         SDL_QueryTexture(img, NULL, NULL, reinterpret_cast<int*>(&w), reinterpret_cast<int*>(&h) );
 
         SDL_Rect texr;
@@ -394,7 +423,7 @@ void DisplayInterface::onDrawBackground()
         texr.y = 0;
         texr.w = w;
         texr.h = h;
-        SDL_RenderCopy(renderer, img, NULL, &texr);
+        SDL_RenderCopy(getRenderer(), img, NULL, &texr);
     } else {
         SDL_Rect rect = make_sdlrect(0, 0, getWindowWidth(), getWindowHeight());
         GraphicInterface::_drawBackground(rect);
@@ -405,9 +434,13 @@ void DisplayInterface::onDraw()
 {
    logger::Logger::getInstance().printLog("DisplayInterface::onDraw()",
                                            logger::Logger::logger_level::Debug);
-
     _onDrawMenus();
-    _release();
+
+#ifdef SEG_DEBUG
+    dbg_motionDrawer.drawText();
+#endif
+
+    GraphicInterface::onDraw();
 }
 
 void DisplayInterface::_onDrawMenus()

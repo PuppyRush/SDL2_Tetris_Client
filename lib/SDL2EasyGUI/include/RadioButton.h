@@ -38,7 +38,7 @@ private:
 
     void _drawCheck(const bool chk);
 
-    virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) override;
+    virtual void onMouseButtonDownEvent(const SDL_MouseButtonEvent* button) override;
 };
 
 class RadioButtonBuilder : public BorderBuilder

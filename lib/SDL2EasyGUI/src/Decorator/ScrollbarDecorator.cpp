@@ -93,16 +93,16 @@ void ScrollbarDecorator::onMouseMotionEvent(const SDL_MouseMotionEvent* motion)
     else {
         Base::onMouseMotionEvent(motion);
     }
+
+    refresh();
 };
 
-void ScrollbarDecorator::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
+void ScrollbarDecorator::onMouseButtonDownEvent(const SDL_MouseButtonEvent* button)
 {
     if (button->state == SDL_PRESSED && isHitUpperArrow(button->x, button->y)) {
         goUpScrollByUnit();
-        getComponent()->recalculateBoxesPosition();
     } else if (button->state == SDL_PRESSED && isHitBelowArrow(button->x, button->y)) {
         goDownScrollByUnit();
-        getComponent()->recalculateBoxesPosition();
     } else if (helper::hitTest(ScrollbarDecorator::getPosition(), make_segpoint(button->x, button->y) )) {
 
         if (button->state == SDL_PRESSED && button->button == SDL_BUTTON_LEFT) {
@@ -112,10 +112,19 @@ void ScrollbarDecorator::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
         }
 
     } else {
-        Base::onMouseButtonEvent(button);
+        Base::onMouseButtonDownEvent(button);
     }
 
     onDraw();
+}
+
+void ScrollbarDecorator::onMouseButtonUpEvent(const SDL_MouseButtonEvent* button)
+{
+    if (helper::hitTest(ScrollbarDecorator::getPosition(), make_segpoint(button->x, button->y))) {
+    
+    }
+
+    Base::onMouseButtonUpEvent(button);
 }
 
 void ScrollbarDecorator::onMouseWheelEvent(const SDL_MouseWheelEvent* wheel)
@@ -126,11 +135,15 @@ void ScrollbarDecorator::onMouseWheelEvent(const SDL_MouseWheelEvent* wheel)
 void ScrollbarDecorator::goUpScrollByUnit()
 {
     getComponent()->setBoxStartIndex(getComponent()->getBoxStartIndex() - m_scrollmovingUnitCount);
-
+    SEG_Property prp{ PropertyChange::BoxScrollUp, nullptr };
+    onChangeProperty(&prp);
+    refresh();
 }
 
 void ScrollbarDecorator::goDownScrollByUnit()
 {
     getComponent()->setBoxStartIndex(getComponent()->getBoxStartIndex() + m_scrollmovingUnitCount);
-
+    SEG_Property prp{ PropertyChange::BoxScrollDown, nullptr };
+    onChangeProperty(&prp);
+    refresh();
 }

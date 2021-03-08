@@ -242,6 +242,7 @@ namespace seg::drawer {
         void setText(std::string&& str)
         {
             m_text = str;
+            _setTextTexture(str);
         }
 
         void setText(const std::string& str)
@@ -272,15 +273,35 @@ namespace seg::drawer {
             m_dstrect.h = h;
         }
 
-        inline SEG_Point getPoint()
+        inline t_size getSize() const noexcept
+        {
+            return m_font.size;
+        }
+
+        inline void setSize(t_size size)
+        {
+            m_font.size = size;
+        }
+
+        inline SEG_Point getPoint() const noexcept
         {
             return make_segpoint(m_dstrect.x, m_dstrect.y);
         }
 
-        inline void setPoint(const SEG_Point& point)
+        inline void setPoint(const SEG_Point point)
         {
             m_dstrect.x = point.x;
             m_dstrect.y = point.y;
+        }
+
+        inline SEG_Color getBackgroundColor() const noexcept
+        {
+            return m_backgroundColor;
+        }
+
+        inline void setBackgroundColor(SEG_Color color)
+        {
+            m_backgroundColor = color;
         }
 
     private:
@@ -303,7 +324,6 @@ namespace seg::drawer {
                 m_dstrect.w = m_textSurface->w;
                 m_dstrect.h = m_textSurface->h;
             }
-
         }
 
     private:
@@ -311,6 +331,7 @@ namespace seg::drawer {
         SDL_Surface* m_textSurface = nullptr;
         SDL_Texture* m_srcTexture = nullptr;
         SDL_Renderer* m_renderer = nullptr;
+        SEG_Color m_backgroundColor{ ColorCode::white };
         SEG_TFont m_font;
         SDL_Rect m_dstrect;
         SDL_Rect m_srcrect;

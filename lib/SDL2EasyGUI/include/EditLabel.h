@@ -29,7 +29,7 @@ public:
 
 protected:
     
-    virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) override;
+    virtual void onMouseButtonDownEvent(const SDL_MouseButtonEvent* button) override;
 
     virtual void onKeyboardEvent(const SDL_KeyboardEvent* key) override;
 

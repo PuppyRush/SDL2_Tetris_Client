@@ -11,6 +11,7 @@
 
 #include <atomic>
 
+#include "../../include/SEG_Define.h"
 #include "../../include/SEG_Drawer.h"
 #include "../../include/SEG_Struct.h"
 #include "../../include/ControlBuilderBase.h"
@@ -241,7 +242,10 @@ public:
     virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) override
     {}
 
-    virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) override;
+    virtual void onMouseButtonDownEvent(const SDL_MouseButtonEvent* button) override;
+
+    virtual void onMouseButtonUpEvent(const SDL_MouseButtonEvent* button) override
+    {}
 
     virtual void onMouseWheelEvent(const SDL_MouseWheelEvent* wheel) override
     {}
@@ -315,6 +319,9 @@ public:
     //focus tset
     virtual bool focus(const SDL_Event& event) override;
 
+    virtual void onChangeProperty(const SEG_Property* property) override
+    {}
+
     void release();
 
     //control text
@@ -386,6 +393,10 @@ private:
     bool m_isInitailize = false;
 
     drawer::TextDrawer m_textDrawer;
+    
+#ifdef SEG_DEBUG
+    drawer::TextDrawer m_positionDrawer;
+#endif
 };
 
 }

@@ -69,11 +69,11 @@ public:
                 break;
             case SDL_MOUSEBUTTONDOWN:
                 Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_MOUSEBUTTONDOWN", Logger::logger_level::Debug);
-                onMouseButtonEvent(&event.button);
+                onMouseButtonDownEvent(&event.button);
                 break;
             case SDL_MOUSEBUTTONUP :
                 Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_MOUSEBUTTONUP", Logger::logger_level::Debug);
-                //onMouseButtonEvent(&event.button);
+                onMouseButtonUpEvent(&event.button);
                 break;
             case SDL_MOUSEWHEEL    :
                 Logger::getInstance().printLog("EventListener::onEvent, event_type : SDL_MOUSEWHEEL", Logger::logger_level::Debug);
@@ -230,7 +230,9 @@ public:
 
     virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) = 0;
 
-    virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) = 0;
+    virtual void onMouseButtonDownEvent(const SDL_MouseButtonEvent* button) = 0;
+
+    virtual void onMouseButtonUpEvent(const SDL_MouseButtonEvent* button) = 0;
 
     virtual void onMouseWheelEvent(const SDL_MouseWheelEvent* wheel) = 0;
 
@@ -276,6 +278,8 @@ public:
     virtual void onBound(const SDL_MouseMotionEvent* user) = 0;
 
     virtual void onUnbound(const SDL_MouseMotionEvent* user) = 0;
+
+    virtual void onChangeProperty(const SEG_Property* property) = 0;
 
     //Event Queue
     void pushEvent(const data_type event)

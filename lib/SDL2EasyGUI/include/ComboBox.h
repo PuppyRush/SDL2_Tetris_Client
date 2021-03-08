@@ -66,7 +66,7 @@ public:
 
     virtual ~ComboBox() = default;
 
-    virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) override;
+    virtual void onMouseButtonDownEvent(const SDL_MouseButtonEvent* button) override;
 
     virtual void onDraw() override;
 
@@ -87,16 +87,6 @@ public:
     inline void setSelectedMenuIndex(t_size mSelectedMenuIdx)
     {
         m_selectedMenuIndex = mSelectedMenuIdx;
-    }
-
-    inline int getBoundedMenuIndex() const noexcept
-    {
-        return m_boundedMenuIndex;
-    }
-
-    inline void setBoundedMenuIndex(int mBoundedMenuIndx)
-    {
-        m_boundedMenuIndex = mBoundedMenuIndx;
     }
 
 
@@ -132,16 +122,10 @@ protected:
     virtual void unfoldBox();
 
 
-
-private:
-
-    
-
-    bool isBoundInMenues();
+       
 
 private:
     t_size m_selectedMenuIndex = 0;
-    t_size m_boundedMenuIndex = INVALID_SIZE;
     t_size m_defaultHeight;
 
     bool m_folded = true;

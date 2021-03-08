@@ -73,7 +73,7 @@ void EditLabel::onTimerEvent(const SDL_UserEvent* user)
     Base::onTimerEvent(user);
 }
 
-void EditLabel::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
+void EditLabel::onMouseButtonDownEvent(const SDL_MouseButtonEvent* button)
 {
 
 }

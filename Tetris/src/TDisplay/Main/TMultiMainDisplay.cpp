@@ -99,19 +99,17 @@ void TMultiMainDisplay::onInitialize()
         BoxItemBuilder bibld1(getSEGWindow(), "one");
         bibld1.font({ "../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black })->
             backgroundColor(ColorCode::white);
-        bld.appendItem(bibld1);
-        bld.appendItem({getSEGWindow(), "two"});
-        bld.appendItem({ getSEGWindow(), "three" });
-        bld.appendItem({ getSEGWindow(), "four4" });
-        bld.appendItem({ getSEGWindow(), "five" });
+        bld.addItem(bibld1);
+        bld.addItem("two");
+        bld.addItem("three" );
+        bld.addItem("four4" );
+        bld.addItem("four4aaaaaaaa" );
         addControl(bld.build());
 
         auto ctl = getControl<ComboBox>(resource::MAIN_TEST_TEXT_COMBO);
-        //ctl->appendItem(std::make_shared<BoxItem>("1234567890abcd"));
-        //ctl->appendItem(std::make_shared<BoxItem>("item2"));
-        //ctl->appendItem(std::make_shared<BoxItem>("item3"));
-        //ctl->appendItem(std::make_shared<BoxItem>("item4"));
-        //ctl->appendItem(std::make_shared<BoxItem>("item5"));
+        ctl->addItem("five");
+        ctl->addItem("six");
+        ctl->addItem("seven");
     }
 
     //begin_y += 80;
@@ -189,8 +187,8 @@ void TMultiMainDisplay::onInitialize()
             grouping(1)->
             enabled(true);
 
-        //bld.appendItem("aaabbb")->
-        //    appendItem("abaabab");
+        bld.addItem("aaabbb")->
+            addItem("abaabab");
 
 
         addControl(bld.build());

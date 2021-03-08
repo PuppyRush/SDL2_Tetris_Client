@@ -40,12 +40,11 @@ void ComboBox::onMouseMotionEvent(const SDL_MouseMotionEvent* motion)
     if (!isFolded()) {
 
         m_boundedMenuIndex = calcIndexOf(motion->y);
-        refresh();
     }
     Base::onMouseMotionEvent(motion);
 }
 
-void ComboBox::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
+void ComboBox::onMouseButtonDownEvent(const SDL_MouseButtonEvent* button)
 {
     if (button->state == SDL_PRESSED && button->button == SDL_BUTTON_LEFT && isHit({ static_cast<t_coord>( button->x),static_cast<t_coord>(button->y) })) {
 
@@ -67,14 +66,9 @@ void ComboBox::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
 
     }
 
-    Base::onMouseButtonEvent(button);
+    Base::onMouseButtonDownEvent(button);
 }
 
-bool ComboBox::isBoundInMenues()
-{
-    bool isBoundInMenues = (getBoxStartIndex() <= m_boundedMenuIndex && m_boundedMenuIndex <= getBoxStartIndex() + getVisibleMenuCount());
-    return !isFolded() && m_boundedMenuIndex != INVALID_SIZE && isBoundInMenues;
-}
 
 void ComboBox::onDraw()
 {
@@ -94,30 +88,6 @@ void ComboBox::onDraw()
                                        {getPoint().x + getWidth(), getPoint().y + getMenuHeight()}, ColorCode::lightgray, 3);
         }
     }
-
-    // draw highlight
-    if (isBoundInMenues()) {
-
-        const t_size realBoundedIndex = m_boundedMenuIndex - getBoxStartIndex();
-        auto renderer = getRenderer();
-        const auto& item = m_items.at(realBoundedIndex);
-        auto point = getPoint();
-
-        point.y += (getMenuHeight() * (realBoundedIndex + 1));
-
-        SEG_Color color{ ColorCode::blue };
-
-        SDL_Rect rect = make_sdlrect(point.x + 2, point.y + getMenuHeight() / 10,
-            getWidth() - 4, getMenuHeight());
-
-        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-        SDL_SetRenderDrawColor(getRenderer(), color.r, color.g, color.b, 128);
-        SDL_RenderFillRect(renderer, &rect);
-        SDL_RenderDrawRect(renderer, &rect);
-        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
-
-    }
-
 
     Base::onDraw();
 }

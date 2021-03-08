@@ -21,7 +21,7 @@ void RadioButton::initialize()
     Control::initialize();
 }
 
-void RadioButton::onMouseButtonEvent(const SDL_MouseButtonEvent* button)
+void RadioButton::onMouseButtonDownEvent(const SDL_MouseButtonEvent* button)
 {
     if (button->button == SDL_BUTTON_LEFT && button->state == SDL_PRESSED && isHit({ static_cast<t_coord>( button->x), static_cast<t_coord>(button->y) })) {
         setSelected(!isSelected());

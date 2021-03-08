@@ -91,7 +91,6 @@ void DisplayController::run()
     m_mainDpThread.join();
 }
 
-//�׸��� �̺�Ʈ�� �̰����� ó���ϰ� ������ �̺�Ʈ�� ��� �� dp�� push�Ѵ�.
 void DisplayController::_pumpEvent()
 {
     /*std::unique_lock<std::mutex> lock(m_modalAryMutex);

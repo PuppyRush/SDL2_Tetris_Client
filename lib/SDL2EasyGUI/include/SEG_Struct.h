@@ -22,6 +22,12 @@
 
 namespace seg {
 
+typedef struct SEG_Property
+{
+    PropertyChange property;
+    void* param;
+}SEGProperty;
+
 typedef struct DisplayInfo
 {
     t_display display;
@@ -124,7 +130,7 @@ public:
 typedef struct SEG_TFont
 {
     std::string fontName = DEFAULT_FONT_NAME;
-    t_size size = 0;
+    t_size size = 9;
     SEG_Color color;
 
     SEG_TFont() = default;

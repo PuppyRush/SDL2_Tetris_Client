@@ -80,8 +80,11 @@ public:
     virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) override
     { m_graphic->onMouseMotionEvent(motion); };
 
-    virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) override
-    { m_graphic->onMouseButtonEvent(button); }
+    virtual void onMouseButtonDownEvent(const SDL_MouseButtonEvent* button) override
+    { m_graphic->onMouseButtonDownEvent(button); }
+
+    virtual void onMouseButtonUpEvent(const SDL_MouseButtonEvent* button) override
+    { m_graphic->onMouseButtonUpEvent(button); }
 
     virtual void onMouseWheelEvent(const SDL_MouseWheelEvent* wheel) override
     { m_graphic->onMouseWheelEvent(wheel); };
@@ -156,11 +159,13 @@ public:
     { return m_graphic->focus(event); }
 
     virtual void attach() override
-    {}
+    { }
 
     virtual void detach() override
-    {}
+    { }
 
+    virtual void onChangeProperty(const SEG_Property* property) override
+    { m_graphic->onChangeProperty(property); }
 
 
 private:

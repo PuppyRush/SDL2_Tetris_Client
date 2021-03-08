@@ -7,8 +7,8 @@
 
 #include <functional>
 
-//#if (1)
+#if (0)
     #define SEG_DEBUG
-//#endif
+#endif
 
 #endif //PROJECT_SEG_DEFINE_H

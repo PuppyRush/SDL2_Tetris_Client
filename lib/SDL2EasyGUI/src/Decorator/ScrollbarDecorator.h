@@ -28,7 +28,9 @@ public:
 
     virtual void onMouseMotionEvent(const SDL_MouseMotionEvent* motion) override;
 
-    virtual void onMouseButtonEvent(const SDL_MouseButtonEvent* button) override;
+    virtual void onMouseButtonDownEvent(const SDL_MouseButtonEvent* button) override;
+
+    virtual void onMouseButtonUpEvent(const SDL_MouseButtonEvent* button) override;
 
     virtual void onMouseWheelEvent(const SDL_MouseWheelEvent* wheel) override;
 
@@ -42,9 +44,9 @@ public:
 
     virtual void detach() override;
 
-    void goUpScrollByUnit();
+    virtual void goUpScrollByUnit();
 
-    void goDownScrollByUnit();
+    virtual void goDownScrollByUnit();
 
     inline t_size getScrollMoveUnit() const noexcept
     {
@@ -99,6 +101,16 @@ protected:
     inline t_size getScrollWidth() const noexcept
     {
         return m_scrollbarPosition.w;
+    }
+
+    inline t_size getScrollStartY() const noexcept
+    {
+        return m_upperArrowPosition.y + m_upperArrowPosition.h;
+    }
+
+    inline t_size getScrollEndY() const noexcept
+    {
+        return m_belowArrowPosition.y;
     }
 
 private:
