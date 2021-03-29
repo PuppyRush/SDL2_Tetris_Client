@@ -106,7 +106,7 @@ void TMultiMainDisplay::onInitialize()
         bld.addItem("four4aaaaaaaa" );
         addControl(bld.build());
 
-        auto ctl = getControl<ComboBox>(resource::MAIN_TEST_TEXT_COMBO);
+        ComboBox* ctl = getControl<ComboBox>(resource::MAIN_TEST_TEXT_COMBO);
         ctl->addItem("five");
         ctl->addItem("six");
         ctl->addItem("seven");

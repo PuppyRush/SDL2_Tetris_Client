@@ -33,21 +33,24 @@
 #include "EventQueue.h"
 #include "ControlBuilderBase.h"
 
-#include "SDL2EasyGUI/src/Windows/EventListener.h"
 #include "SDL2EasyGUI/src/Control/Control.h"
 #include "SDL2EasyGUI/src/Decorator/Decorator.h"
 
 namespace seg {
 
-class DisplayInterface : public GraphicInterface, public EventListener
+class DisplayInterface : public GraphicInterface, public GraphicComponent<DisplayInterface>
 {
 public:
 
-	using control_ptr = typename Control::control_ptr;
-	using control_ary = std::vector<control_ptr>;
-	using control_ary_it = typename control_ary::iterator;
-	using unique_type = typename GraphicInterface::unique_type;
+	using control_ptr = Control*;
+	using control_ary = GraphicComponent<Control>;
+	using control_interator = control_ary::iterator;
+	using unique_type = GraphicInterface::unique_type;
 	using display_ptr = std::shared_ptr<DisplayInterface>;
+
+	using tree_type = tree::SEG_Tree<control_ptr>;
+	using node_type = tree_type::node_type;
+	using nodeset_type = tree_type::nodeset_type;
 
 	virtual ~DisplayInterface();
 
@@ -139,7 +142,7 @@ public:
 
 	}
 
-	Control* getHittingMunues(const SDL_Point& point) const;
+	Control* getHittingMunues(const SDL_Point& point);
 
 	inline bool compareUnique(const unique_type uniqueId)
 	{
@@ -153,19 +156,51 @@ public:
 		return getDisplayId() == toUType(displayId);
 	}
 
-	template<class T, class U>
-	auto getControl(const U resourceId)
+	//template<class T, class U>
+	//auto getControl(const U resourceId)
+	//{
+	//	auto ctl = *find_if(_getControlAry().beginComponent(), _getControlAry().endComponent(), [resourceId](control_ptr ptr) {
+	//		return ptr->getId() == toUType(resourceId);
+	//		});
+
+	//	assert(ctl != nullptr);
+
+	//	return dynamic_cast<T*>(ctl);
+	//}
+
+	template<class T = Control>
+	T* getControl(unique_type resourceId)
 	{
-		auto ctl = *find_if(begin(m_menus), end(m_menus), [resourceId](control_ptr ptr) {
-			return ptr->getId() == toUType(resourceId);
+		if (_getControlAry().emptyComponent())
+			return nullptr;
+
+		auto it = find_if(_getControlAry().beginComponent(), _getControlAry().endComponent(), [resourceId](control_ptr ptr) {
+			return ptr->getId() == resourceId;
 			});
 
-		assert(ctl != nullptr);
+		if (it == _getControlAry().endComponent())
+		{
+			const auto end = _getControlAry().endComponent();
+			for (auto _it = _getControlAry().beginComponent(); _it != end; _it++)
+			{
 
-		return dynamic_cast<T*>(ctl);
+				if (Control* _ctl = (*_it)->getComponent<T>(resourceId);
+					_ctl != nullptr)
+				{
+					return dynamic_cast<T*>(_ctl);
+				}
+			}
+			
+		}
+		else
+			return dynamic_cast<T*>(*it);
 	}
 
-	control_ptr getControl(const t_id resourceId);
+	template<class T = Control, class U>
+	T* getControl(U resourceId)
+	{
+		return getControl<T>(toUType(resourceId));
+	}
 
 	control_ptr getActivatedControl() const noexcept
 	{
@@ -182,7 +217,7 @@ public:
 		m_activatedCtl = nullptr;
 	}
 
-	control_ary_it findControl(const t_id resourceId);
+	control_interator findControl(const t_id resourceId);
 
 	virtual void resize() override
 	{};
@@ -345,9 +380,9 @@ protected:
 
 private:
 
-	inline control_ary& _getMenuAry() const 
+	inline control_ary& _getControlAry() const
 	{
-		return m_menus;
+		return m_controlAry ;
 	}
 
 	void attachDecorator(const control_ptr, control_ptr);
@@ -365,10 +400,8 @@ private:
 		m_resultResrouce = res;
 	}
 
-	tree::SEG_Tree<Control> m_ctlTree;
-
-	mutable control_ary m_menus;
-	mutable Control* m_activatedCtl = nullptr;
+	mutable control_ary m_controlAry;
+	mutable control_ptr m_activatedCtl = nullptr;
 
 	std::string m_backgroundImgPath;
 	bool m_stopDraw = false;

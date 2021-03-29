@@ -195,7 +195,7 @@ public:
     using Base = Border;
     using item_type = BoxItem;
     using string_type = std::string;
-    using item_ptr = std::shared_ptr<item_type>;
+    using item_ptr = item_type*;
     using item_ary = std::vector<item_ptr>;
 
     void recalculateBoxesPosition();
@@ -223,9 +223,9 @@ public:
         {
             mMenuStartIdx = 0;
         }
-        else if (mMenuStartIdx > (m_items.size() - m_visibleMenuCnt))
+        else if (mMenuStartIdx > ( sizeComponent()- m_visibleMenuCnt))
         {
-            mMenuStartIdx = m_items.size() - m_visibleMenuCnt;
+            mMenuStartIdx = sizeComponent() - m_visibleMenuCnt;
         }
         m_boxStartIndex = mMenuStartIdx;
         recalculateBoxesPosition();
@@ -240,32 +240,6 @@ public:
     virtual item_ptr popItem();
 
     virtual item_ptr removeItem(t_size idx);
-
-    inline item_ary& getItems()
-    {
-        return m_items;
-    }
-
-    inline void setItems(const item_ary& mItems)
-    {
-        m_items = mItems;
-    }
-
-    item_ptr getItem(const size_t idx)
-    {
-        return m_items.at(idx);
-    }
-
-    item_ptr at(const size_t index)
-    {
-        assert(m_items.size() > index);
-        return m_items.at(index);
-    }
-
-    inline t_size getBoxCount() const noexcept
-    {
-        return m_items.size();
-    }
 
     inline t_size getVisibleMenuWidth() const noexcept
     {
@@ -305,7 +279,6 @@ public:
 
 protected:
 
-    item_ary m_items;
     t_size m_boundedMenuIndex = INVALID_SIZE;
 
     BoxBasic(BoxBasicBuilder& bld);
@@ -327,8 +300,8 @@ class BoxBasicBuilder : public BorderBuilder
 {
 public:
 
-    using item_type = BoxItem;
-    using item_ptr = std::shared_ptr<item_type>;
+    using item_type = Control;
+    using item_ptr = item_type*;
     using item_ary = std::vector<item_ptr>;
 
 
@@ -346,25 +319,27 @@ public:
 
     BoxBasicBuilder* addItem(const std::string& str)
     {
-        m_items.emplace_back(std::make_shared<item_type>(BoxBasicItemBuilder{ m_basic.window, str }));
+        m_items.emplace_back( );
         return this;
     }
 
     BoxBasicBuilder* addItem(std::string&& str)
     {
-        m_items.emplace_back(std::make_shared<item_type>(BoxBasicItemBuilder{ m_basic.window, str }));
+        auto bld = BoxBasicItemBuilder{ m_basic.window, str }.build();
+        m_items.emplace_back(bld);
         return this;
     }
 
     BoxBasicBuilder* addItem(const BoxBasicItemBuilder& item)
     {
-        m_items.emplace_back(std::make_shared<item_type>(const_cast<BoxBasicItemBuilder&>(item)));
+        auto bld = const_cast<BoxBasicItemBuilder&>(item).build();
+        m_items.emplace_back(bld);
         return this;
     }
 
     BoxBasicBuilder* addItem(BoxBasicItemBuilder&& item)
     {
-        m_items.emplace_back(std::make_shared<item_type>(item));
+        m_items.emplace_back(item.build());
         return this;
     }
 

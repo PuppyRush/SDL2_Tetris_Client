@@ -10,10 +10,6 @@
 
 using namespace seg;
 
-
-
-
-
 ComboBox::ComboBox(ComboBoxBuilder& bld)
         : BoxBasic(bld)
 {
@@ -24,7 +20,7 @@ ComboBox::ComboBox(ComboBoxBuilder& bld)
 
 void ComboBox::initialize()
 {
-    if (getItems().empty())
+    if (emptyComponent() == true)
     {
         setControlTextHeight(getMenuHeight());
         setControlTextWidth(getWidth());
@@ -37,7 +33,7 @@ void ComboBox::initialize()
 
 void ComboBox::onMouseMotionEvent(const SDL_MouseMotionEvent* motion)
 {
-    if (!isFolded()) {
+    if (isFolded() == false) {
 
         m_boundedMenuIndex = calcIndexOf(motion->y);
     }
@@ -74,13 +70,13 @@ void ComboBox::onDraw()
 {
     auto renderer = getRenderer();
 
-    if (!getItems().empty()) {
+    if (emptyComponent() == false) {
 
         if (isFolded() == false) {
             auto idxfair = getvisibleMenuIndexRange();
             for (t_size i = idxfair.first; i < idxfair.second ; i++) 
             {
-                getItem(i)->onDraw();
+                atComponent(i)->onDraw();
             }
 
             //Draw Chosed focus
@@ -119,10 +115,10 @@ void ComboBox::foldBox()
 
 void ComboBox::unfoldBox()
 {
-    size_t menuMax = getItems().size() > getVisibleMenuCount() ? getVisibleMenuCount() : getItems().size();
+    size_t menuMax = emptyComponent() == false > getVisibleMenuCount() ? getVisibleMenuCount() : sizeComponent();
     setHeight( getHeight() + (getMenuHeight()* menuMax) + 5 );
 
-    if (getVisibleMenuCount() < getItems().size()) {
+    if (getVisibleMenuCount() < sizeComponent()) {
         auto dec = DecoratorMap<ScrollrableDecorator, ComboBox>::get_decorator(this);
         event::EventPusher event {getSEGWindow()->getWindowID(), SEG_CONTROLLER, SEG_DECORATOR_ATTACH};
         event.setTargetId(getId());
@@ -131,19 +127,13 @@ void ComboBox::unfoldBox()
     }
 }
 
-
-void ComboBox::removeAll() noexcept
-{
-    m_items.clear();
-}
-
 std::string ComboBox::getSelectedText()
 {
-    if (m_items.size() <= m_selectedMenuIndex) {
+    if (sizeComponent() <= m_selectedMenuIndex) {
         throw std::out_of_range{ "" };
     }
 
-    return m_items.at(m_selectedMenuIndex)->getControlText();
+    return atComponent(m_selectedMenuIndex)->getControlText();
 }
 
 t_size ComboBox::calcIndexOf(const t_coord y)
@@ -156,7 +146,7 @@ t_size ComboBox::calcIndexOf(const t_coord y)
         return INVALID_SIZE;
     }
 
-    if ((test_idx + getBoxStartIndex()) < m_items.size()) {
+    if ((test_idx + getBoxStartIndex()) < sizeComponent()) {
         return test_idx + getBoxStartIndex();
     }
 
@@ -167,7 +157,7 @@ t_size ComboBox::calcIndexOf(const t_coord y)
 //박스에 표시될 글씨의 적절한 크기를 반환한다.
 t_size ComboBox::getFittedTextSize(const size_t idx)
 {
-    if (getBoxCount() <= idx)
+    if (sizeComponent() <= idx)
     {
         throw std::out_of_range{ "" };
         return 0;

@@ -15,7 +15,7 @@ ScrollrableDecorator::ScrollrableDecorator(BoxBasic* ctl)
     m_staticScrollbarFocusY(Base::getUpperArrowPosition().y + Base::getUpperArrowPosition().h + 2)
 {
     t_size scrollbarFocusWidth = 14;
-    t_size scrollbarFocusHeight = (ctl->getHeight() - getUpperArrowPosition().h - getBelowArrowPosition().h) / (getComponent()->getBoxCount() - ctl->getVisibleMenuCount());
+    t_size scrollbarFocusHeight = (ctl->getHeight() - getUpperArrowPosition().h - getBelowArrowPosition().h) / (getControl()->sizeComponent() - ctl->getVisibleMenuCount());
     
     m_scrollbarFocusPosition = make_sdlrect( Base::getPoint().x + Base::getWidth() - scrollbarFocusWidth + 2,
                                  m_staticScrollbarFocusY,scrollbarFocusWidth -4, scrollbarFocusHeight);
@@ -66,7 +66,7 @@ void ScrollrableDecorator::onMouseMotionEvent(const SDL_MouseMotionEvent* motion
             setPositionY(getPosition().y + (motion->y - m_lastY));
         }
 
-        getComponent()->setBoxStartIndex(getBoxIndexByCurrentBarPostion());
+        getControl()->setBoxStartIndex(getBoxIndexByCurrentBarPostion());
 
         m_lastY = motion->y;
         
@@ -188,9 +188,9 @@ void ScrollrableDecorator::onChangeProperty(const SEG_Property* property)
     }
     else if (property->property == PropertyChange::BoxScrollDown || property->property == PropertyChange::BoxScrollUp)
     {
-        if (getComponent()->getBoxStartIndex() > 0)
+        if (getControl()->getBoxStartIndex() > 0)
         {
-            setPositionY(m_staticScrollbarFocusY + m_unitHeight * (getComponent()->getBoxStartIndex()));
+            setPositionY(m_staticScrollbarFocusY + m_unitHeight * (getControl()->getBoxStartIndex()));
         }
         else
         {
@@ -224,7 +224,7 @@ t_size ScrollrableDecorator::getBoxIndexByCurrentBarPostion() const noexcept
 void ScrollrableDecorator::_setUnitHeight()
 {
     t_size remainHeight = Base::getScrollHeight() - getPosition().h - getUpperArrowPosition().h - getBelowArrowPosition().h;
-    t_size remainMenuCount = getComponent()->getBoxCount() - getComponent()->getVisibleMenuCount() + 1;
+    t_size remainMenuCount = getControl()->sizeComponent() - getControl()->getVisibleMenuCount() + 1;
     m_unitHeight = remainHeight / remainMenuCount;
 
 }

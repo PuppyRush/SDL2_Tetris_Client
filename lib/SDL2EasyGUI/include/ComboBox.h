@@ -91,8 +91,6 @@ public:
 
 
 
-    void removeAll() noexcept;
-
     t_size calcIndexOf(const t_coord y);
 
     std::string getSelectedText();

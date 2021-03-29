@@ -20,6 +20,9 @@ class Decorator : public DecoratorInterface
 {
 public:
 
+    //template <class Ctl>
+    //friend class DecoratorMap<T, Ctl>;
+
     using Base = DecoratorInterface;
     using DecoratorBase = T;
 
@@ -58,7 +61,7 @@ public:
         m_graphic->initialize();
     }
 
-    inline auto getComponent()
+    inline auto getControl()
     { return m_graphic; }
 
 

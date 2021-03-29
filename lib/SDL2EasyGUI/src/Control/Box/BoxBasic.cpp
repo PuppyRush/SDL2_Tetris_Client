@@ -39,10 +39,9 @@ void BoxItem::onMouseMotionEvent(const SDL_MouseMotionEvent* motion)
 BoxBasic::BoxBasic(BoxBasicBuilder& bld)
         : Border(bld)
 {
-   
     for (const auto& item : bld.getItems())
     {
-        addItem(item);
+        addComponent(item);
     }
 
 
@@ -62,7 +61,7 @@ void BoxBasic::initialize()
 std::pair<t_size, t_size> BoxBasic::getvisibleMenuIndexRange()
 {
     const t_size endIdx =
-        (getBoxStartIndex() + getVisibleMenuCount()) > getBoxCount() ? getBoxCount() :
+        (getBoxStartIndex() + getVisibleMenuCount()) > sizeComponent() ? sizeComponent() :
         getBoxStartIndex() + getVisibleMenuCount();
 
     return std::make_pair(getBoxStartIndex(), endIdx);
@@ -72,10 +71,6 @@ void BoxBasic::onEvent(const SDL_Event& event)
 {
     Base::onEvent(event);
 
-    for (auto item : getItems())
-    {
-        item->onEvent(event);
-    }
 }
 
 void BoxBasic::onDraw()
@@ -83,7 +78,23 @@ void BoxBasic::onDraw()
     // draw highlight
     if (_isBoundInMenues()) {
 
-        
+        const t_size realBoundedIndex = m_boundedMenuIndex - getBoxStartIndex();
+        auto renderer = getRenderer();
+        const auto& item = atComponent(realBoundedIndex);
+        auto point = getPoint();
+
+        point.y += (getMenuHeight() * (realBoundedIndex + 1));
+
+        SEG_Color color{ ColorCode::blue };
+
+        SDL_Rect rect = make_sdlrect(point.x + 2, point.y + getMenuHeight() / 10,
+            getWidth() - 4, getMenuHeight());
+
+        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+        SDL_SetRenderDrawColor(getRenderer(), color.r, color.g, color.b, 128);
+        SDL_RenderFillRect(renderer, &rect);
+        SDL_RenderDrawRect(renderer, &rect);
+        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
 
     }
 
@@ -92,42 +103,42 @@ void BoxBasic::onDraw()
 
 void BoxBasic::addItem(const item_ptr item)
 {
-    m_items.emplace_back(item);
+    addComponent(item);
 
     SEG_Property prop{PropertyChange::BoxItemAdd, nullptr};
     onChangeProperty(&prop);
 
-    autoFitBox(getBoxCount() - 1);
+    autoFitBox(sizeComponent() - 1);
 }
 
 void BoxBasic::addItem(const item_type::string_type& str)
 {
     BoxBasicItemBuilder item(getSEGWindow(), str);
     item.font({ "../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black });
-    m_items.emplace_back(std::make_shared<item_type>(item));
+    addComponent(item.build());
 
     SEG_Property prop{ PropertyChange::BoxItemAdd, nullptr };
     onChangeProperty(&prop);
 
-    autoFitBox(getBoxCount() - 1);
+    autoFitBox(sizeComponent() - 1);
 }
 
 void BoxBasic::addItem(const item_type::string_type&& str)
 {
     BoxBasicItemBuilder item(getSEGWindow(), str);
     item.font({ "../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black });
-    m_items.emplace_back( std::make_shared<item_type>(item));
+    addComponent(item.build());
 
     SEG_Property prop{ PropertyChange::BoxItemAdd, nullptr };
     onChangeProperty(&prop);
 
-    autoFitBox(getBoxCount() - 1);
+    autoFitBox(sizeComponent() - 1);
 }
 
 BoxBasic::item_ptr BoxBasic::popItem()
 {
-    auto item = m_items.emplace_back();
-    m_items.pop_back();
+    auto item = backComponent<BoxItem>();
+    popComponent();
     
     SEG_Property prop{ PropertyChange::BoxItemRemove, nullptr };
     onChangeProperty(&prop);
@@ -137,10 +148,10 @@ BoxBasic::item_ptr BoxBasic::popItem()
 
 BoxBasic::item_ptr BoxBasic::removeItem(t_size idx)
 {
-    auto item = m_items.at(idx);
-    auto it = m_items.cbegin();
+    auto item = atComponent<BoxItem>(idx);
+    auto it = beginComponent();
     std::advance(it, 2);
-    m_items.erase(it);
+    removeComponent(it);
 
     SEG_Property prop{ PropertyChange::BoxItemRemove, nullptr };
     onChangeProperty(&prop);
@@ -150,14 +161,14 @@ BoxBasic::item_ptr BoxBasic::removeItem(t_size idx)
 
 void BoxBasic::autoFitBox(const size_t idx)
 {
-    if (getBoxCount() <= idx)
+    if (sizeComponent() <= idx)
     {
         throw std::out_of_range{ "" };
         return;
     }
-    if (getItem(idx)->getControlTextWidth() > getWidth())
+    if (atComponent(idx)->getControlTextWidth() > getWidth())
     {
-        getItem(idx)->setControlTextWidth(getWidth());
+        atComponent(idx)->setControlTextWidth(getWidth());
     }
 }
 
@@ -169,7 +180,7 @@ void BoxBasic::recalculateBoxesPosition()
     const auto idxpair = getvisibleMenuIndexRange();
     for (t_size i = idxpair.first; i < idxpair.second; i++) {
 
-        auto item = getItem(i);
+        auto item = atComponent(i);
         item->setPosition(make_sdlrect(point.x, point.y, getWidth(), getMenuHeight()));
         //item->setTextPosition(make_sdlrect(point.x + 5, point.y, getFittedTextSize(i), getMenuHeight()));
         point.y += getMenuHeight();

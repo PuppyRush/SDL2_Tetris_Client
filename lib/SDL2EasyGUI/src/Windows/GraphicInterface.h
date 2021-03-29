@@ -13,9 +13,13 @@
 #include "../../include/SEG_Window.h"
 #include "../../include/EventQueue.h"
 
+
+
+#include "SDL2EasyGUI/src/Windows/EventListener.h"
+
 namespace seg {
 
-class GraphicInterface
+class GraphicInterface : public EventListener
 {
 
 public:
@@ -74,7 +78,7 @@ public:
         return getSEGWindow()->getRenderer();
     }
 
-    inline t_id getId() const noexcept
+    inline unique_type getId() const noexcept
     {
         return m_data->resourceId;
     }

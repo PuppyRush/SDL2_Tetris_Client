@@ -17,8 +17,8 @@ ScrollbarDecorator::ScrollbarDecorator(BoxBasic* ctl)
 {
     t_size scrollWidth = 14;
 
-    m_scrollbarPosition = make_sdlrect(Base::getPoint().x + Base::getWidth() - scrollWidth, Base::getPoint().y + getComponent()->getMenuHeight()
-                                    , scrollWidth, Base::getHeight() - getComponent()->getMenuHeight() - 2);
+    m_scrollbarPosition = make_sdlrect(Base::getPoint().x + Base::getWidth() - scrollWidth, Base::getPoint().y + getControl()->getMenuHeight()
+                                    , scrollWidth, Base::getHeight() - getControl()->getMenuHeight() - 2);
 
     m_arrowSize = m_scrollbarPosition.h / 15;
 
@@ -42,13 +42,13 @@ void ScrollbarDecorator::initialize()
 
 void ScrollbarDecorator::attach()
 {
-    getComponent()->setVisibleMenuWidth(getComponent()->getWidth() - getPosition().w - 5);
+    getControl()->setVisibleMenuWidth(getControl()->getWidth() - getPosition().w - 5);
     Base::attach();
 }
 
 void ScrollbarDecorator::detach()
 {
-    getComponent()->setVisibleMenuWidth(getComponent()->getWidth() - getPosition().w + 5);
+    getControl()->setVisibleMenuWidth(getControl()->getWidth() - getPosition().w + 5);
     Base::detach();
 }
 
@@ -134,7 +134,7 @@ void ScrollbarDecorator::onMouseWheelEvent(const SDL_MouseWheelEvent* wheel)
 
 void ScrollbarDecorator::goUpScrollByUnit()
 {
-    getComponent()->setBoxStartIndex(getComponent()->getBoxStartIndex() - m_scrollmovingUnitCount);
+    getControl()->setBoxStartIndex(getControl()->getBoxStartIndex() - m_scrollmovingUnitCount);
     SEG_Property prp{ PropertyChange::BoxScrollUp, nullptr };
     onChangeProperty(&prp);
     refresh();
@@ -142,7 +142,7 @@ void ScrollbarDecorator::goUpScrollByUnit()
 
 void ScrollbarDecorator::goDownScrollByUnit()
 {
-    getComponent()->setBoxStartIndex(getComponent()->getBoxStartIndex() + m_scrollmovingUnitCount);
+    getControl()->setBoxStartIndex(getControl()->getBoxStartIndex() + m_scrollmovingUnitCount);
     SEG_Property prp{ PropertyChange::BoxScrollDown, nullptr };
     onChangeProperty(&prp);
     refresh();

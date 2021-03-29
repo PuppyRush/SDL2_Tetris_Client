@@ -16,7 +16,7 @@
 #include "../../include/SEG_Struct.h"
 #include "../../include/ControlBuilderBase.h"
 #include "../../include/GroupControlManager.h"
-#include "../Windows/EventListener.h"
+#include "../GraphicComponent.h"
 
 namespace seg {
 
@@ -163,10 +163,24 @@ public:
 
 };
 
+class Control;
+
+typedef struct ControlNodeSet
+{
+    Control* parent = nullptr;
+    std::vector<Control*> siblings;
+};
+
+typedef struct ControlNode
+{
+    Control* left = nullptr;
+    Control* right = nullptr;
+    ControlNodeSet* child = nullptr;
+};
 
 class DisplayInterface;
 
-class Control : public GraphicInterface, public EventListener
+class Control : public GraphicInterface, public GraphicComponent<Control>
 {
 public:
 
@@ -225,6 +239,8 @@ public:
     virtual void onDrawBackground() override;
 
     virtual void refresh() override;
+
+    virtual void onEvent(const SDL_Event& event) override;
 
     virtual void onCommonEvent(const SDL_CommonEvent* common) override
     {}
@@ -393,7 +409,7 @@ private:
     bool m_isInitailize = false;
 
     drawer::TextDrawer m_textDrawer;
-    
+
 #ifdef SEG_DEBUG
     drawer::TextDrawer m_positionDrawer;
 #endif

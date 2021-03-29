@@ -18,6 +18,7 @@
 
 using namespace std;
 using namespace seg;
+//using namespace component;
 using namespace seg::helper;
 using namespace game_interface;
 
@@ -189,16 +190,34 @@ void DisplayInterface::_mouseEventOnMenus(const SDL_Event& evt)
     }
 }
 
-Control* DisplayInterface::getHittingMunues(const SDL_Point& point) const
+Control* DisplayInterface::getHittingMunues(const SDL_Point& point)
 {
-    for (const auto& ctl : _getMenuAry()) {
-        if (ctl->isHit( make_segpoint(point.x ,point.y ) ))
+    auto it = _getControlAry().beginComponent();
+    const auto& end = _getControlAry().endComponent();
+    for (; it != end; it++)
+    {
+        if ((*it)->isHit(make_segpoint(point.x, point.y)))
         {
-            return ctl;
+            return (*it);
         }
     }
+
     return nullptr;
 }
+
+//DisplayInterface::node_type 
+//DisplayInterface::_getHittingMunues(const node_type ctl, const SDL_Point& point) const
+//{
+//    for (node_type node : _getTreeRoot().child->nodes)
+//    {
+//        if (node.key->isHit(make_segpoint(point.x, point.y)))
+//        {
+//            return _getHittingMunues(node, point);
+//        }
+//    }
+//
+//    return nullptr;
+//}
 
 void DisplayInterface::onUserEvent(const SDL_UserEvent* event)
 {
@@ -407,7 +426,7 @@ void DisplayInterface::onCancel()
 
 void DisplayInterface::onDestroy()
 {
-    _getMenuAry().clear();
+   //_getControlAry().clear();
 }
 
 void DisplayInterface::onDrawBackground()
@@ -445,8 +464,10 @@ void DisplayInterface::onDraw()
 
 void DisplayInterface::_onDrawMenus()
 {
-    for (const auto& menu : _getMenuAry()) {
-        menu->onVirtualDraw();
+    const auto end = _getControlAry().endComponent();
+    for (auto it = _getControlAry().beginComponent(); it != end; it++)
+    {
+        (*it)->onVirtualDraw();
     }
 }
 
@@ -459,26 +480,27 @@ void DisplayInterface::addControl(Control* newCtl)
         return;
     }
 
-    if(maybeCtl->wasInitailized() == false)
+    if (maybeCtl->wasInitailized() == false)
         maybeCtl->initialize();
 
-    auto it = std::find_if(begin(_getMenuAry()), end(_getMenuAry()), [newCtl](control_ptr exCtl) {
+    auto it = std::find_if(_getControlAry().beginComponent(), _getControlAry().endComponent(), [newCtl](control_ptr exCtl) {
         return newCtl->getId() == exCtl->getId();
-    });
+        });
 
-    if (it != _getMenuAry().end()) {
+    if (it != _getControlAry().endComponent()) {
         assert(0);
         return;
     }
 
-    _getMenuAry().emplace_back(maybeCtl);
+    //디스플레이의 제일 표면에 추가한다
+    _getControlAry().addComponent(newCtl);
 }
 
 bool DisplayInterface::removeControl(control_ptr ctl)
 {
 
-    if (auto dest = findControl(ctl->getId()); dest != _getMenuAry().end()) {
-        _getMenuAry().erase(dest);
+    if (auto dest = findControl(ctl->getId()); dest != _getControlAry().endComponent()) {
+        _getControlAry().removeComponent(dest);
         return true;
     }
 
@@ -487,7 +509,7 @@ bool DisplayInterface::removeControl(control_ptr ctl)
 
 void DisplayInterface::refresh()
 {
-    event::EventPusher event{this->getWindowID(), SEG_DRAW,  SEG_DRAW_DISPLAY};
+    event::EventPusher event {this->getWindowID(), SEG_DRAW, SEG_DRAW_DISPLAY};
     event.pushEvent();
 }
 
@@ -505,10 +527,10 @@ void DisplayInterface::attachDecorator(const control_ptr ctl, control_ptr decora
 
 void DisplayInterface::detachDecorator(const control_ptr ctl)
 {
-    if (auto deco = getControl(ctl->getId()) ; 
+    if (auto deco = getControl(ctl->getId());
         deco != nullptr)
     {
-        if(auto decoInterface = dynamic_cast<DecoratorInterface*>(deco);
+        if (auto decoInterface = dynamic_cast<DecoratorInterface*>(deco);
             decoInterface != nullptr)
         {
             decoInterface->detach();
@@ -521,23 +543,12 @@ void DisplayInterface::detachDecorator(const control_ptr ctl)
     }
 }
 
-DisplayInterface::control_ptr
-DisplayInterface::getControl(const t_id resourceId)
-{
-    if (_getMenuAry().empty())
-        return nullptr;
 
-    auto it = find_if(begin(_getMenuAry()), end(_getMenuAry()), [resourceId](control_ptr ptr) {
-        return ptr->getId() == resourceId;
-    });
 
-    return it == _getMenuAry().end() ? nullptr : *it;
-}
-
-DisplayInterface::control_ary_it
+DisplayInterface::control_interator
 DisplayInterface::findControl(const t_id resourceId)
 {
-    return find_if(begin(_getMenuAry()), end(_getMenuAry()), [resourceId](control_ptr ptr) {
+    return find_if( _getControlAry().beginComponent(), _getControlAry().endComponent(), [resourceId](control_ptr ptr) {
         return ptr->getId() == resourceId;
     });
 }

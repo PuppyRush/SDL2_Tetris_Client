@@ -32,14 +32,16 @@ ControlBuilder::ControlBuilder(const GraphicInterface::window_type window, SEG_P
 
 
 Control::Control(Control* ctl)
-        : GraphicInterface(ctl->getData()), m_isBounded(false), m_textDrawer(getRenderer(), ctl->getFont(), ctl->getPoint(), ctl->getControlText())
+        : GraphicInterface(ctl->getData()), m_isBounded(false), m_textDrawer(getRenderer(), ctl->getFont(), ctl->getPoint(), ctl->getControlText()),
+          GraphicComponent(ctl)
 {
     _initializeInCtor();
 }
 
 Control::Control(const ControlBuilder& bld)
         : m_textDrawer(getRenderer(), bld.getBasic().font, make_segpoint(bld.getBasic().position.x, bld.getBasic().position.y), bld.getBasic().text),
-          GraphicInterface(std::make_shared<ControlData>(bld.getBasic()))
+          GraphicInterface(std::make_shared<ControlData>(bld.getBasic())),
+          GraphicComponent(this)
 {
     setPosition(make_sdlrect(bld.getBasic().position.x, bld.getBasic().position.y, bld.getBasic().width, bld.getBasic().height));
 
@@ -48,7 +50,8 @@ Control::Control(const ControlBuilder& bld)
 
 Control::Control(const ControlBuilderBase& bld)
     : m_textDrawer(getRenderer(), bld.getBasic().font, make_segpoint(bld.getBasic().position.x, bld.getBasic().position.y), bld.getBasic().text),
-    GraphicInterface(std::make_shared<ControlData>(bld.getBasic()))
+    GraphicInterface(std::make_shared<ControlData>(bld.getBasic())), 
+    GraphicComponent(this)
 
 {
     _initializeInCtor();
@@ -244,6 +247,18 @@ bool Control::focus(const SDL_Event& event)
         event.pushEvent();
     }
     return m_isBounded = bounded;
+}
+
+void Control::onEvent(const SDL_Event& event)
+{
+    GraphicInterface::onEvent(event);
+
+    const auto end = endComponent();
+    for (auto it = beginComponent(); it != end; it++)
+    {
+        (*it)->onEvent(event);
+    }
+
 }
 
 
