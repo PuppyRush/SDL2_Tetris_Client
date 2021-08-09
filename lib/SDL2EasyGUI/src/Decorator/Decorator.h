@@ -171,6 +171,17 @@ public:
     { m_graphic->onChangeProperty(property); }
 
 
+    virtual  size_t countComponent() noexcept
+    {
+        return m_graphic->countComponent();
+    }
+
+    virtual bool emptyComponent() noexcept
+    {
+        return m_graphic->emptyComponent();
+    }
+
+
 private:
 
     T* m_graphic;

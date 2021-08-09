@@ -32,50 +32,50 @@ public:
     virtual ~ControlBuilder() = default;
 
 
-    inline ControlBuilder* font(const SEG_TFont& font) noexcept override
+    virtual inline ControlBuilder* font(const SEG_TFont& font) noexcept override
     {
         m_basic.font = font;
         return this;
     }
 
-    inline ControlBuilder* font(SEG_TFont&& font) noexcept override
+    virtual inline ControlBuilder* font(SEG_TFont&& font) noexcept override
     {
         m_basic.font = font;
         return this;
 
     }
 
-    inline ControlBuilder* fontSize(t_size size) noexcept override
+    virtual inline ControlBuilder* fontSize(t_size size) noexcept override
     {
         m_basic.font.size = size;
         return this;
     }
 
-    inline ControlBuilder* fontColor(SEG_Color color) noexcept override
+    virtual inline ControlBuilder* fontColor(SEG_Color color) noexcept override
     {
         m_basic.font.color = color;
         return this;
     }
 
-    inline ControlBuilder* backgroundColor(ColorCode color) noexcept override
+    virtual inline ControlBuilder* backgroundColor(ColorCode color) noexcept override
     {
         m_basic.backgroundColor = color;
         return this;
     }
 
-    inline ControlBuilder* enabled(bool enable) noexcept override
+    virtual inline ControlBuilder* enabled(bool enable) noexcept override
     {
         m_basic.enabled = enable;
         return this;
     }
 
-    inline ControlBuilder* multiselected(bool selected) noexcept override
+    virtual inline ControlBuilder* multiselected(bool selected) noexcept override
     {
         m_basic.multiselected = selected;
         return this;
     }
 
-    inline ControlBuilder* carot() noexcept override
+    virtual inline ControlBuilder* carot() noexcept override
     {
         m_basic.carot = true;
         return this;
@@ -83,26 +83,26 @@ public:
 
     /// 
 
-    inline ControlBuilder* id(t_id id) noexcept override
+    virtual inline ControlBuilder* id(t_id id) noexcept override
     {
         m_basic.resourceId = id;
         return this;
     }
 
-    inline ControlBuilder* point(SDL_Point pt) noexcept override
+    virtual inline ControlBuilder* point(SDL_Point pt) noexcept override
     {
         m_basic.position.x = pt.x;
         m_basic.position.y = pt.y;
         return this;
     }
 
-    inline ControlBuilder* position(SDL_Rect rect) noexcept override
+    virtual inline ControlBuilder* position(SDL_Rect rect) noexcept override
     {
         m_basic.position = rect;
         return this;
     }
 
-    inline ControlBuilder* width(t_size size) noexcept override
+    virtual inline ControlBuilder* width(t_size size) noexcept override
     {
         m_basic.autoSize = false;
         m_basic.width = size;
@@ -110,50 +110,50 @@ public:
 
     }
 
-    inline ControlBuilder* height(t_size size) noexcept override
+    virtual inline ControlBuilder* height(t_size size) noexcept override
     {
         m_basic.autoSize = false;
         m_basic.height = size;
         return this;
     }
 
-    inline ControlBuilder* grouping(size_t idx) noexcept override
+    virtual inline ControlBuilder* grouping(t_size idx) noexcept override
     {
         m_basic.group = idx;
         return this;
     }
 
-    inline ControlBuilder* selected() noexcept override
+    virtual inline ControlBuilder* selected() noexcept override
     {
         m_basic.selected = true;
         return this;
     }
 
-    inline ControlBuilder* borderLineType(BorderBoundaryLineType lineType) noexcept override
+    virtual inline ControlBuilder* borderLineType(BorderBoundaryLineType lineType) noexcept override
     {
         m_basic.borderLineType = lineType;
         return this;
     }
 
-    inline ControlBuilder* borderBoundaryType(BorderBoundaryType type) noexcept override
+    virtual inline ControlBuilder* borderBoundaryType(BorderBoundaryType type) noexcept override
     {
         m_basic.borderType = type;
         return this;
     }
 
-    inline ControlBuilder* borderColor(SEG_Color lineColor) noexcept override
+    virtual inline ControlBuilder* borderColor(SEG_Color lineColor) noexcept override
     {
         m_basic.borderColor = lineColor;
         return this;
     }
 
-    inline ControlBuilder* borderAngle(int borderAngle) noexcept override
+    virtual inline ControlBuilder* borderAngle(int borderAngle) noexcept override
     {
         m_basic.borderAngle = borderAngle;
         return this;
     }
 
-    inline ControlBuilder* borderThick(int borderThick) noexcept override
+    virtual inline ControlBuilder* borderThick(int borderThick) noexcept override
     {
         m_basic.borderThick = borderThick;
         return this;
@@ -169,14 +169,14 @@ typedef struct ControlNodeSet
 {
     Control* parent = nullptr;
     std::vector<Control*> siblings;
-};
+}ControlNodeSet;
 
 typedef struct ControlNode
 {
     Control* left = nullptr;
     Control* right = nullptr;
     ControlNodeSet* child = nullptr;
-};
+}ControlNode;
 
 class DisplayInterface;
 
@@ -186,6 +186,7 @@ public:
 
     using renderer_type = SEG_Window::renderer_type;
     using control_ptr = Control*;
+    using component_type = GraphicComponent<Control>;
 
     virtual ~Control() = default;
 
@@ -207,6 +208,24 @@ public:
     inline void setInitailize(bool init)
     {
         m_isInitailize = init;
+    }
+
+    inline virtual inline void setWidth(t_size width) noexcept
+    {
+        auto wh = drawer::getTextSize(getFont().getTTF_Font(), getControlText());
+        auto textWidth = wh.first > width ? width - 8 : wh.first;
+        setControlTextWidth(textWidth);
+
+        GraphicInterface::setWidth(width);
+    }
+
+    inline virtual inline void setHeight(t_size height) noexcept
+    {
+        auto wh = drawer::getTextSize(getFont().getTTF_Font(), getControlText());
+        auto textHeight = wh.second > height ? height : wh.second;
+        setControlTextHeight(textHeight);
+
+        GraphicInterface::setHeight(height);
     }
 
     inline virtual void setPosition(const SDL_Rect rect) noexcept override
@@ -336,17 +355,19 @@ public:
     virtual bool focus(const SDL_Event& event) override;
 
     virtual void onChangeProperty(const SEG_Property* property) override
-    {}
+    {
+        refresh();
+    }
 
     void release();
 
     //control text
 
-    void setControlText(const char* ch);
+    virtual void setControlText(const char* ch);
 
-    void setControlText(std::string&& str);
+    virtual void setControlText(std::string&& str);
 
-    void setControlText(const std::string& str);
+    virtual void setControlText(const std::string& str);
 
     std::string& getControlText() noexcept;
     
@@ -391,11 +412,6 @@ protected:
 
     explicit Control(const ControlBuilderBase& bld);
 
-    inline void stopDrawing(const bool b) noexcept
-    { m_stopDraw = b; }
-
-    inline bool isStopedDraw() const noexcept
-    { return m_stopDraw; }
 
 private:
     
@@ -403,7 +419,6 @@ private:
 
 private:
 
-    bool m_stopDraw = false;
     bool m_activated = false;
     bool m_isBounded = false;
     bool m_isInitailize = false;

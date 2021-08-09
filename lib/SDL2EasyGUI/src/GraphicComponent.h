@@ -8,7 +8,7 @@
 
 #include <vector>
 #include <memory>
-
+#include <mutex>
 #include "SDL2EasyGUI/include/SEG_Type.h"
 
 namespace seg
@@ -33,33 +33,57 @@ public:
 		:m_componentAry(comp->m_componentAry)
 	{}
 
-	~GraphicComponent() = default;
+	virtual ~GraphicComponent() = default;
 
-	void addComponent(const component_ptr& component)
+	virtual void addComponent(const component_ptr& component)
 	{
+		std::lock_guard<std::mutex> lock(m_mutex);
 		m_componentAry.emplace_back(component);
 	}
 
-	void removeComponent(unique_type resId)
+	virtual iterator removeComponent(unique_type resId)
 	{
-		for (const auto& it : m_componentAry)
+		std::lock_guard<std::mutex> lock(m_mutex);
+
+		auto it = std::remove_if(begin(m_componentAry), end(m_componentAry), [resId](auto comp) {
+			if (comp->getId() == resId)
+				return true;
+			});
+
+		if (it != end(m_componentAry))
 		{
-			if ((*it)->getId() == resId)
-			{
-				m_componentAry.erase(it);
-				return;
-			}
+			return m_componentAry.erase(it);
+		}
+		else
+		{
+			return it;
 		}
 	}
 
-	void removeComponent(iterator& it)
+	virtual iterator removeComponent(iterator& it)
 	{
-		m_componentAry.erase(it);
+		std::lock_guard<std::mutex> lock(m_mutex);
+		return m_componentAry.erase(it);
 	}
+
+	virtual iterator removeComponentFromIndex(t_size idx)
+	{
+		std::lock_guard<std::mutex> lock(m_mutex);
+		auto it = m_componentAry.begin() + idx;
+		return m_componentAry.erase(it);
+	}
+
+	virtual void popComponent() noexcept
+	{
+		std::lock_guard<std::mutex> lock(m_mutex);
+		getComponentAry().pop_back();
+	}
+
 
 	template <class T = component_dest_type>
 	T* getComponent(unique_type resourceId) const noexcept
 	{
+		std::lock_guard<std::mutex> lock(m_mutex);
 		for (const auto& it : m_componentAry)
 		{
 			if (it->getId() == resourceId)
@@ -81,12 +105,14 @@ public:
 	template <class T = component_dest_type, class U>
 	auto getComponent(U resourceId) const noexcept
 	{
+		std::lock_guard<std::mutex> lock(m_mutex);
 		return getComponent<T>(toUType(resourceId));
 	}
 
 	template <class T = component_dest_type>
 	auto atComponent(t_size idx)
 	{
+		std::lock_guard<std::mutex> lock(m_mutex);
 		if constexpr (std::is_same<component_type, T>::value)
 		{
 			return static_cast<component_ptr>(getComponentAry().at(idx));
@@ -101,6 +127,7 @@ public:
 	template <class T = component_dest_type>
 	auto getComponent(iterator& it)
 	{
+		std::lock_guard<std::mutex> lock(m_mutex);
 		if constexpr (std::is_same<component_type, T>::value)
 		{
 			return static_cast<component_ptr>(m_componentAry.get(it));
@@ -113,17 +140,20 @@ public:
 
 	iterator beginComponent() noexcept
 	{
+		std::lock_guard<std::mutex> lock(m_mutex);
 		return  m_componentAry.begin();
 	}
 
 	iterator endComponent() noexcept
 	{
+		std::lock_guard<std::mutex> lock(m_mutex);
 		return  getComponentAry().end();
 	}
 
 	template <class T = component_dest_type>
 	T* backComponent() noexcept
 	{
+		std::lock_guard<std::mutex> lock(m_mutex);
 		if constexpr (std::is_same<component_type, T>::value)
 		{
 			return static_cast<component_ptr>(m_componentAry.back());
@@ -134,30 +164,43 @@ public:
 		}
 	}
 
-	void popComponent() noexcept
+	template <class T = component_dest_type>
+	T* frontComponent() noexcept
 	{
-		getComponentAry().pop_back();
+		std::lock_guard<std::mutex> lock(m_mutex);
+		if constexpr (std::is_same<component_type, T>::value)
+		{
+			return static_cast<component_ptr>(m_componentAry.front());
+		}
+		else
+		{
+			return dynamic_cast<T*>(m_componentAry.front());
+		}
 	}
 
-	size_t sizeComponent() noexcept
+	virtual  size_t countComponent() noexcept
 	{
+		std::lock_guard<std::mutex> lock(m_mutex);
 		return getComponentAry().size();
 	}
 
-	bool emptyComponent() noexcept
+	virtual bool emptyComponent() noexcept
 	{
+		std::lock_guard<std::mutex> lock(m_mutex);
 		return getComponentAry().empty();
 	}
 
-private:
-
+protected:
 	inline component_ary& getComponentAry() noexcept
 	{
 		return m_componentAry;
 	}
 
+protected:
+	 mutable std::mutex m_mutex;
+	 
+private:
 	component_ary m_componentAry;
-
 };
 
 }

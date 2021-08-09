@@ -58,6 +58,7 @@ void ButtonBasic::_drawCarot()
             const auto& linecolor = drawer::getColor(ColorCode::red);
             SDL_SetRenderDrawColor(renderer, linecolor.r, linecolor.g, linecolor.b, 255);
             SDL_RenderDrawRect(renderer, &rect);
+            refresh();
         }
     }
 }

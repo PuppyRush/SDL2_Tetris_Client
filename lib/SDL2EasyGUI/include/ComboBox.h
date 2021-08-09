@@ -9,33 +9,33 @@
 
 namespace seg {
 
-class BoxItemBuilder : public BoxBasicItemBuilder
+class ComboBoxItemBuilder : public BoxItemBuilder
 {
 public:
 
-    virtual ~BoxItemBuilder() = default;
+    virtual ~ComboBoxItemBuilder() = default;
 
-    BoxItemBuilder(const GraphicInterface::window_type window, const std::string& str)
-        : BoxBasicItemBuilder(window, str)
+    ComboBoxItemBuilder(const GraphicInterface::window_type window, const std::string& str)
+        : BoxItemBuilder(window, str)
     {
         text(str);
         id(atomic::getUniqueId());
     }
 
-    BoxItemBuilder(const GraphicInterface::window_type window, std::string&& str)
-        : BoxBasicItemBuilder(window, str)
+    ComboBoxItemBuilder(const GraphicInterface::window_type window, std::string&& str)
+        : BoxItemBuilder(window, str)
     {
         text(str);
         id(atomic::getUniqueId());
     }
 
-    virtual inline BoxItemBuilder* backgroundColor(ColorCode color) noexcept
+    virtual inline ComboBoxItemBuilder* backgroundColor(ColorCode color) noexcept
     {
         m_basic.backgroundColor = color;
         return this;
     }
 
-    virtual inline BoxItemBuilder* enabled(bool enable) noexcept
+    virtual inline ComboBoxItemBuilder* enabled(bool enable) noexcept
     {
         m_basic.enabled = enable;
         return this;
@@ -87,11 +87,7 @@ public:
     inline void setSelectedMenuIndex(t_size mSelectedMenuIdx)
     {
         m_selectedMenuIndex = mSelectedMenuIdx;
-    }
-
-
-
-    t_size calcIndexOf(const t_coord y);
+    }    
 
     std::string getSelectedText();
 
@@ -119,15 +115,13 @@ protected:
 
     virtual void unfoldBox();
 
-
-       
-
 private:
     t_size m_selectedMenuIndex = 0;
     t_size m_defaultHeight;
 
+    std::vector<BoxItem*> m_boxItemContainer;
+
     bool m_folded = true;
-    const t_size MENU_GAP = 3;
 
 };
 

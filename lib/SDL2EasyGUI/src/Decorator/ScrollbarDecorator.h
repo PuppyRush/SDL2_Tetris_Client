@@ -48,26 +48,6 @@ public:
 
     virtual void goDownScrollByUnit();
 
-    inline t_size getScrollMoveUnit() const noexcept
-    {
-        return m_scrollmovingUnitCount;
-    }
-
-    inline void setScrollMoveUnit(const t_size unit) noexcept
-    {
-        m_scrollmovingUnitCount = unit;
-    }
-
-    inline t_size getScrollMoveUnitSize() const noexcept
-    {
-        return m_scrollmovingUnitSize;
-    }
-
-    inline void setScrollMoveUnitSize(const t_size size) noexcept
-    {
-        m_scrollmovingUnitSize = size;
-    }
-
     bool isHitUpperArrow(const t_coord x, const t_coord y) const noexcept
     {
         return helper::hitTest(getUpperArrowPosition(), x, y );
@@ -115,8 +95,6 @@ protected:
 
 private:
     t_size m_arrowSize = 0;
-    t_size m_scrollmovingUnitCount = 1;
-    t_size m_scrollmovingUnitSize = 10;
     SDL_Rect m_scrollbarPosition;
     SDL_Rect m_upperArrowPosition;
     SDL_Rect m_belowArrowPosition;

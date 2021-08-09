@@ -64,8 +64,6 @@ public:
 
 	void modaless();
 
-	void drawBackGroundImage();
-
 	void show()
 	{
 		getSEGWindow()->show();
@@ -75,9 +73,6 @@ public:
 	{
 		getSEGWindow()->hidden();
 	}
-
-	//부모 클래스의 포인터(this)를 넘긴다.
-	void ready(const DisplayInterface*);
 
 	virtual void onEvent(const SDL_Event& event);
 
@@ -101,11 +96,6 @@ public:
 		m_run = run;
 	}
 
-	inline void setStopDraw(const bool set)
-	{
-		m_stopDraw = set;
-	}
-
 	inline t_display getDisplay() const noexcept
 	{
 		return m_display;
@@ -116,9 +106,24 @@ public:
 		return m_run;
 	}
 
-	inline bool getSetDraw() const noexcept
+	inline bool getWindowResizable() const noexcept
 	{
-		return m_stopDraw;
+		return getSEGWindow()->getResizable();
+	}
+
+	inline void setWindowResizable(bool b) noexcept
+	{
+		return getSEGWindow()->setResizable(b);
+	}
+
+	inline bool getWindowBorder() const noexcept
+	{
+		return getSEGWindow()->getBorder();
+	}
+
+	inline void setWindowBorder(bool b) noexcept
+	{
+		return getSEGWindow()->setBorder(b);
 	}
 
 	inline unique_type getWindowID() const noexcept
@@ -156,31 +161,21 @@ public:
 		return getDisplayId() == toUType(displayId);
 	}
 
-	//template<class T, class U>
-	//auto getControl(const U resourceId)
-	//{
-	//	auto ctl = *find_if(_getControlAry().beginComponent(), _getControlAry().endComponent(), [resourceId](control_ptr ptr) {
-	//		return ptr->getId() == toUType(resourceId);
-	//		});
-
-	//	assert(ctl != nullptr);
-
-	//	return dynamic_cast<T*>(ctl);
-	//}
-
 	template<class T = Control>
 	T* getControl(unique_type resourceId)
 	{
+		std::lock_guard<std::mutex> lock(m_mutex);
+
 		if (_getControlAry().emptyComponent())
 			return nullptr;
 
-		auto it = find_if(_getControlAry().beginComponent(), _getControlAry().endComponent(), [resourceId](control_ptr ptr) {
+		const auto end = _getControlAry().endComponent();
+		auto it = find_if(_getControlAry().beginComponent(), end, [resourceId](control_ptr ptr) {
 			return ptr->getId() == resourceId;
 			});
 
-		if (it == _getControlAry().endComponent())
+		if (it == end)
 		{
-			const auto end = _getControlAry().endComponent();
 			for (auto _it = _getControlAry().beginComponent(); _it != end; _it++)
 			{
 
@@ -404,7 +399,6 @@ private:
 	mutable control_ptr m_activatedCtl = nullptr;
 
 	std::string m_backgroundImgPath;
-	bool m_stopDraw = false;
 	std::thread m_thread;
 	std::thread m_clickthread;
 	std::atomic_bool m_run = true;

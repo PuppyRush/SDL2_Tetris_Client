@@ -166,6 +166,7 @@ typedef struct ControlData
     std::string text = "";      //컨트롤에 출력될 이름
     t_display display = std::numeric_limits<t_display>::max();
     bool enabled = true;
+    bool visible = true;
     bool multiselected = false;
     bool carot = false;
     bool autoSize = true;
@@ -193,6 +194,7 @@ typedef struct ControlData
               text(b.text),
               display(b.display),
               enabled(b.enabled),
+              visible(b.visible),
               multiselected(b.multiselected),
               kind(b.kind),
               group(b.group),

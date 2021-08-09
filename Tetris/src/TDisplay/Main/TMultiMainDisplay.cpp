@@ -28,13 +28,21 @@ TMultiMainDisplay::TMultiMainDisplay()
 
 void TMultiMainDisplay::registerEvent()
 {
-    SEG_LBUTTONCLICK(game_interface::toUType(resource::MAIN_MULTI_GAME_START_BUTTON),
+    SEG_LBUTTONCLICK(seg::toUType(resource::MAIN_MULTI_GAME_START_BUTTON),
                      &TMultiMainDisplay::onClickedEnterServer,
                      this);
-    SEG_LBUTTONCLICK(game_interface::toUType(resource::MAIN_OPTION_BUTTON),
+    SEG_LBUTTONCLICK(seg::toUType(resource::MAIN_OPTION_BUTTON),
                      &TMultiMainDisplay::onClickedOption,
                      this);
-    SEG_LBUTTONCLICK(game_interface::toUType(resource::MAIN_EXIT), &TMultiMainDisplay::onClickedBack, this);
+
+    SEG_LBUTTONCLICK(seg::toUType(resource::MAIN_LIST_ADD),
+        &TMultiMainDisplay::onClickedAddList,
+        this);
+    SEG_LBUTTONCLICK(seg::toUType(resource::MAIN_LIST_REMOVE),
+        &TMultiMainDisplay::onClickedRemoveList,
+        this);
+
+    SEG_LBUTTONCLICK(seg::toUType(resource::MAIN_EXIT), &TMultiMainDisplay::onClickedBack, this);
 }
 
 void TMultiMainDisplay::onInitialize()
@@ -82,52 +90,77 @@ void TMultiMainDisplay::onInitialize()
 
         addControl(bld.build());
     }
-
-    begin_y += 80;
+    begin_y + 50;
+    begin_x -= 100;
     {
+        ButtonBuilder bld(getSEGWindow(), { begin_x , begin_y }, "Add");
+        bld.font({ "../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black })->
+            id(game_interface::toUType(resource::MAIN_LIST_ADD))->
+            backgroundColor(ColorCode::white)->
+            borderBoundaryType(BorderBoundaryType::roundedAngle)->
+            width(100)->
+            height(50)->
+            enabled(true);
 
-
-        ComboBoxBuilder bld(getSEGWindow(), {WINDOW_WIDTH / 2, begin_y}, "DoitNow");
-        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
-                id(game_interface::toUType(resource::MAIN_TEST_TEXT_COMBO))->
-                backgroundColor(ColorCode::white)->
-                borderBoundaryType(BorderBoundaryType::roundedAngle)->
-                width(120)->
-                height(30)->
-                enabled(true);
-
-        BoxItemBuilder bibld1(getSEGWindow(), "one");
-        bibld1.font({ "../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black })->
-            backgroundColor(ColorCode::white);
-        bld.addItem(bibld1);
-        bld.addItem("two");
-        bld.addItem("three" );
-        bld.addItem("four4" );
-        bld.addItem("four4aaaaaaaa" );
         addControl(bld.build());
+    }
 
-        ComboBox* ctl = getControl<ComboBox>(resource::MAIN_TEST_TEXT_COMBO);
-        ctl->addItem("five");
-        ctl->addItem("six");
-        ctl->addItem("seven");
+    begin_y += 50;
+    {
+        ButtonBuilder bld(getSEGWindow(), { begin_x , begin_y }, "Remove");
+        bld.font({ "../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black })->
+            id(game_interface::toUType(resource::MAIN_LIST_REMOVE))->
+            backgroundColor(ColorCode::white)->
+            borderBoundaryType(BorderBoundaryType::roundedAngle)->
+            width(100)->
+            height(50)->
+            enabled(true);
+
+        addControl(bld.build());
     }
 
     //begin_y += 80;
     //{
-    //    CheckBoxBuilder bld(getSEGWindow(), {WINDOW_WIDTH / 2, begin_y}, "");
+    //    ComboBoxBuilder bld(getSEGWindow(), {WINDOW_WIDTH / 2, begin_y}, "DoitNow");
     //    bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
-    //            id(game_interface::toUType(resource::MAIN_TEST_CHECKBOX))->
+    //            id(game_interface::toUType(resource::MAIN_TEST_TEXT_COMBO))->
     //            backgroundColor(ColorCode::white)->
-    //            borderColor(ColorCode::lightgray)->
-    //            borderBoundaryType(BorderBoundaryType::angle)->
-    //            borderThick(3)->
-
+    //            borderBoundaryType(BorderBoundaryType::roundedAngle)->
+    //            width(120)->
+    //            height(30)->
     //            enabled(true);
 
+    //    BoxItemBuilder bibld1(getSEGWindow(), "one");
+    //    bibld1.font({ "../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black })->
+    //        backgroundColor(ColorCode::white);
+    //    bld.addItem(bibld1);
+    //    bld.addItem("two");
+    //    bld.addItem("three" );
+    //    bld.addItem("four4" );
     //    addControl(bld.build());
+
+    //    ComboBox* ctl = getControl<ComboBox>(resource::MAIN_TEST_TEXT_COMBO);
+    //    ctl->addItem("five");
+    //    ctl->addItem("six");
+    //    ctl->addItem("seven");
     //}
 
-  /*  begin_y += 30;
+    begin_y += 80;
+    {
+        CheckBoxBuilder bld(getSEGWindow(), {WINDOW_WIDTH / 2, begin_y}, "");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
+                id(game_interface::toUType(resource::MAIN_TEST_CHECKBOX))->
+                backgroundColor(ColorCode::white)->
+                borderColor(ColorCode::lightgray)->
+                borderBoundaryType(BorderBoundaryType::angle)->
+                borderThick(3)->
+
+                enabled(true);
+
+        addControl(bld.build());
+    }
+
+    begin_y += 30;
     {
         RadioButtonBuilder bld(getSEGWindow(), {WINDOW_WIDTH / 2, begin_y}, "");
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
@@ -173,22 +206,25 @@ void TMultiMainDisplay::onInitialize()
 
         auto ctl = bld.build();
         addControl(ctl);
-    }*/
+    }
 
     {
-        ListBoxBuilder bld(getSEGWindow(), { 30, 200 }, "");
+        ListBoxBuilder bld(getSEGWindow(), { 30, 300 }, "first");
         bld.font({ "../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black })->
             id(game_interface::toUType(resource::MAIN_TEST_LISTBOX))->
+            height(500)->width(100)->
             backgroundColor(ColorCode::white)->
             borderColor(ColorCode::lightgray)->
-            borderBoundaryType(BorderBoundaryType::roundedAngle)->
+            borderBoundaryType(BorderBoundaryType::angle)->
             borderAngle(3)->
             borderThick(2)->
             grouping(1)->
             enabled(true);
 
         bld.addItem("aaabbb")->
-            addItem("abaabab");
+        addItem("aaabb1111b")->
+        addItem("aaabbb22222")->
+        addItem("abaabab333");
 
 
         addControl(bld.build());
@@ -207,6 +243,25 @@ void TMultiMainDisplay::onDraw()
     TMainDisplay::onDraw();
 }
 
+void TMultiMainDisplay::onClickedAddList(const void* click)
+{
+    static int i = 0;
+    auto list = getControl<ListBox>(resource::MAIN_TEST_LISTBOX);
+    std::string str;
+    str += "add";
+    char c[10];
+    itoa(i++, c, 10);
+    str.append(c);
+    list->addItem(str);
+}
+
+void TMultiMainDisplay::onClickedRemoveList(const void* click)
+{
+    auto list = getControl<ListBox>(resource::MAIN_TEST_LISTBOX);
+    list->removeItem(0);
+
+}
+
 void TMultiMainDisplay::onClickedOption(const void* click)
 {
     auto dp = DisplayController::modal_open<TOptionDisplay>();
@@ -215,10 +270,25 @@ void TMultiMainDisplay::onClickedOption(const void* click)
     TMainDisplay::onButtonClick(click);
 }
 
+#include "../../TObject/TPlayer.h"
+#include "GameInterface/include/PacketQueue.h"
+#include "SDL2EasyGUI/include/MessageDialog.h"
+
 void TMultiMainDisplay::onClickedEnterServer(const void* click)
 {
     auto dp = DisplayController::modal_open<TEnterServerDisplay>();
     dp->modal();
+
+  	auto& player = TPlayer::getInstance();
+
+	if (player->connectServer()) {
+		game_interface::PacketQueue::getInstance().attach(player);
+	}
+	else {
+		seg::MessageDialog dlg{ "Cannot fail to connect server.",
+								seg::MessageDialogKind::error };
+		dlg.alert();
+	}
 
     TMainDisplay::onButtonClick(click);
 }

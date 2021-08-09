@@ -309,7 +309,10 @@ namespace seg::drawer {
         void _setTextTexture(const std::string& str)
         {
             if (str.empty())
+            {
+                m_isTextEmpty = true;
                 return;
+            }
 
             TTF_Font* font = TTF_OpenFont(m_font.fontName.c_str(), m_font.size);
             SDL_Color textColor = { m_font.color.r, m_font.color.g, m_font.color.b, m_font.color.a };

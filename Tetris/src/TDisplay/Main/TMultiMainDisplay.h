@@ -33,6 +33,10 @@ private:
 
     virtual void onClickedOption(const void* click) override final;
 
+    virtual void onClickedAddList(const void* click);
+
+    virtual void onClickedRemoveList(const void* click);
+
     virtual void onClickedEnterServer(const void* click) override final;
 
     virtual void registerEvent() override final;

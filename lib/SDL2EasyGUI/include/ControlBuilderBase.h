@@ -77,6 +77,12 @@ public:
         return this;
     }
 
+    virtual inline ControlBuilderBase* visible(bool visible) noexcept
+    {
+        m_basic.visible = visible;
+        return this;
+    }
+
     virtual Control* build() = 0;
 
 protected:
@@ -124,7 +130,7 @@ protected:
 
     virtual inline ControlBuilderBase* height(t_size size) noexcept = 0;
 
-    virtual inline ControlBuilderBase* grouping(size_t idx) noexcept = 0;
+    virtual inline ControlBuilderBase* grouping(t_size idx) noexcept = 0;
 
     virtual inline ControlBuilderBase* selected() noexcept = 0;
 

@@ -75,7 +75,7 @@ protected:
     virtual int handle_output(ACE_HANDLE fd = ACE_INVALID_HANDLE);
 
 private:
-    int send(void* data, ssize_t len) const;
+    int send(void* data, t_ssize len) const;
 
     ACE_SOCK_Acceptor m_acceptor;
 };

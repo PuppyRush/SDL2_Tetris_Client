@@ -77,7 +77,7 @@ PlayerService::handle_input(ACE_HANDLE fd/* = ACE_INVALID_HANDLE*/)
 
     ACE_Time_Value rt(0, 0);
 
-    ssize_t len = this->m_peer.recv(in, BUF - 1, &rt);
+    t_ssize len = this->m_peer.recv(in, BUF - 1, &rt);
     if (len <= 0) {// 서버  종료  또는  통신  에러
         return -1;
     }
@@ -113,7 +113,7 @@ PlayerService::handle_output(ACE_HANDLE fd/* = ACE_INVALID_HANDLE*/)
     do {
         this->m_sendDatas.dequeue_head(mb, &rt);
 
-        ssize_t len = this->m_peer.send(mb->rd_ptr(), mb->length(), &rt);
+        t_ssize len = this->m_peer.send(mb->rd_ptr(), mb->length(), &rt);
         if (len < 0) {//통신  에러  발생
             mb->release();
             return handle_input(fd);

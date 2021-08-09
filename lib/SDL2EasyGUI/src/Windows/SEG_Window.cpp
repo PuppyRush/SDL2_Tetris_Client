@@ -46,6 +46,16 @@ void SEG_Window::initialize()
 
         Uint32 show = m_show ? SDL_WINDOW_SHOWN : SDL_WINDOW_HIDDEN;
 		show |= SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE;
+
+        if (m_resizable)
+        {
+            show |= SDL_WINDOW_RESIZABLE;
+        }
+        if (m_isBorder)
+        {
+            show |= SDL_WINDOW_BORDERLESS;
+        }
+
         m_window = SDL_CreateWindow(m_title.c_str(), 
 									SDL_WINDOWPOS_UNDEFINED, 
 									SDL_WINDOWPOS_UNDEFINED, 
@@ -93,3 +103,12 @@ void SEG_Window::hidden()
     SDL_HideWindow(m_window);
 }
 
+void SEG_Window::maximize()
+{
+    SDL_MaximizeWindow(m_window);
+}
+
+void SEG_Window::minimized()
+{
+    SDL_MinimizeWindow(m_window);
+}

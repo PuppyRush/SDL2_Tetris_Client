@@ -51,7 +51,7 @@ public:
 
     using buffer_type   = unsigned char;
     using buffer_ptr    = buffer_type*;
-    using size_type     = ssize_t;
+    using size_type     = t_ssize;
     using packet_type   = std::pair<buffer_type[BUF_MAX_SIZE], size_type>;
 
     Packet(const Header& _header);

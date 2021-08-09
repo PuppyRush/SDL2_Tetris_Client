@@ -31,12 +31,12 @@ public:
     inline void setWindowTitle(const std::string& str)
     { m_window->setTitle(str); }
 
-    inline void setWindowWidth(const t_size width) noexcept
+    inline void setWindowWidth(t_size width) noexcept
     {
         m_window->setWidth(width);
     }
 
-    inline void setWindowHeight(const t_size height) noexcept
+    inline void setWindowHeight(t_size height) noexcept
     {
         m_window->setHeight(height);
     }
@@ -62,7 +62,7 @@ public:
         m_backgroundColor = background_color;
     }
 
-    inline void setWindow(const window_type window)
+    inline void setWindow(window_type window)
     { m_window = window; }
 
     inline window_type getSEGWindow() const noexcept
@@ -88,7 +88,7 @@ public:
         return make_segpoint(m_data->position.x, m_data->position.y);
     }
 
-    inline void setPoint(const SEG_Point& point) noexcept
+    inline void setPoint(SEG_Point& point) noexcept
     {
         m_data->position.x = point.x;
         m_data->position.y = point.y;
@@ -115,7 +115,7 @@ public:
         return m_data->width;
     }
 
-    inline void setWidth(const t_size width) noexcept
+    virtual inline void setWidth(t_size width) noexcept
     {
         m_data->width = width;
         m_data->position.w = width;
@@ -127,7 +127,7 @@ public:
         return m_data->height;
     }
 
-    void setHeight(const t_size height) noexcept
+    virtual void setHeight(t_size height) noexcept
     {
         m_data->height = height;
         m_data->position.h = height;
@@ -169,7 +169,7 @@ public:
         return m_data->enabled;
     }
 
-    inline void setEnabled(const bool enabled) noexcept
+    inline void setEnabled(bool enabled) noexcept
     {
         m_data->enabled = enabled;
     }
@@ -184,7 +184,7 @@ public:
         return m_data->group;
     }
 
-    inline void setGroup(const int group) noexcept
+    inline void setGroup(int group) noexcept
     {
         m_data->group = group;
     }
@@ -194,7 +194,7 @@ public:
         return m_data->carot;
     }
 
-    inline void setCarot(const bool carot) noexcept
+    inline void setCarot(bool carot) noexcept
     {
         m_data->carot = carot;
     }
@@ -204,7 +204,7 @@ public:
         return m_data->display;
     }
 
-    inline void setDisplay(const t_display display) noexcept
+    inline void setDisplay(t_display display) noexcept
     {
         m_data->display = display;
     }
@@ -254,7 +254,7 @@ public:
         m_data->multiselected = multiselected;
     }
 
-    inline virtual void setPosition(const SDL_Rect rect) noexcept
+    inline virtual void setPosition(SDL_Rect rect) noexcept
     {
         m_data->position = rect;
     }
@@ -264,10 +264,21 @@ public:
         return m_data->position;
     }
 
+    inline virtual void setVisible(bool b) noexcept
+    {
+        m_data->visible = b;
+    }
+
+    inline virtual bool isVisible() const noexcept
+    {
+        return m_data->visible;
+    }
+
     inline virtual const SDL_Rect& getConstPosition() const noexcept
     {
         return m_data->position;
     }
+
 
     virtual void initialize() = 0;
 
@@ -290,7 +301,7 @@ protected:
 
     explicit GraphicInterface(const std::shared_ptr<ControlData>& ctl);
 
-    inline std::shared_ptr<ControlData> getData() const noexcept
+    inline const std::shared_ptr<ControlData> getData() const noexcept
     {
         return m_data;
     }

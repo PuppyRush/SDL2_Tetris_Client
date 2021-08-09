@@ -80,12 +80,6 @@ void DisplayInterface::modaless()
     m_thread = std::thread(&DisplayInterface::_run, this);
 }
 
-void DisplayInterface::ready(const DisplayInterface* parentDp)
-{
-    m_parentId = parentDp->getWindowID();
-    m_superParentId = parentDp->m_superParentId;
-}
-
 
 void DisplayInterface::_run()
 {
@@ -204,20 +198,6 @@ Control* DisplayInterface::getHittingMunues(const SDL_Point& point)
 
     return nullptr;
 }
-
-//DisplayInterface::node_type 
-//DisplayInterface::_getHittingMunues(const node_type ctl, const SDL_Point& point) const
-//{
-//    for (node_type node : _getTreeRoot().child->nodes)
-//    {
-//        if (node.key->isHit(make_segpoint(point.x, point.y)))
-//        {
-//            return _getHittingMunues(node, point);
-//        }
-//    }
-//
-//    return nullptr;
-//}
 
 void DisplayInterface::onUserEvent(const SDL_UserEvent* event)
 {

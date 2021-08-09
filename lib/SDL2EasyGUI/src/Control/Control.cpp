@@ -265,7 +265,12 @@ void Control::onEvent(const SDL_Event& event)
 void Control::onDraw()
 {
     m_textDrawer.drawText();
-    //GraphicInterface::onDraw();
+
+    const auto end = endComponent();
+    for (auto it = beginComponent(); it != end; it++)
+    {
+        (*it)->onDraw();
+    }
 }
 
 void Control::onMouseButtonDownEvent(const SDL_MouseButtonEvent* button)

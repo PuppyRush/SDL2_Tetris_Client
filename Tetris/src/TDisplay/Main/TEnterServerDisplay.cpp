@@ -74,7 +74,8 @@ void TEnterServerDisplay::onInitialize()
 
         addControl(bld.build());
     }
-
+    
+    setWindowResizable(false);
     TDisplayInterface::onInitialize();
 }
 

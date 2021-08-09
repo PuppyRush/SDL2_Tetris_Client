@@ -12,12 +12,11 @@
 
 namespace game_interface {
 
-
 #ifndef _SSIZE_T_DEFINED
 #ifdef  _WIN64
-	typedef unsigned __int64    ssize_t;
+	typedef unsigned __int64    t_ssize;
 #else
-	typedef _W64 unsigned int   ssize_t;
+	typedef _W64 unsigned int   t_ssize;
 #endif
 #define _SSIZE_T_DEFINED
 #endif

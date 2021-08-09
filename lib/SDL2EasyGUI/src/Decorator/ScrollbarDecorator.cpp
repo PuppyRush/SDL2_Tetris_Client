@@ -92,9 +92,9 @@ void ScrollbarDecorator::onMouseMotionEvent(const SDL_MouseMotionEvent* motion)
     } 
     else {
         Base::onMouseMotionEvent(motion);
+        refresh();
     }
 
-    refresh();
 };
 
 void ScrollbarDecorator::onMouseButtonDownEvent(const SDL_MouseButtonEvent* button)
@@ -134,7 +134,8 @@ void ScrollbarDecorator::onMouseWheelEvent(const SDL_MouseWheelEvent* wheel)
 
 void ScrollbarDecorator::goUpScrollByUnit()
 {
-    getControl()->setBoxStartIndex(getControl()->getBoxStartIndex() - m_scrollmovingUnitCount);
+    getControl()->goUpScrollByUnit();
+
     SEG_Property prp{ PropertyChange::BoxScrollUp, nullptr };
     onChangeProperty(&prp);
     refresh();
@@ -142,7 +143,8 @@ void ScrollbarDecorator::goUpScrollByUnit()
 
 void ScrollbarDecorator::goDownScrollByUnit()
 {
-    getControl()->setBoxStartIndex(getControl()->getBoxStartIndex() + m_scrollmovingUnitCount);
+    getControl()->goDownScrollByUnit();
+    
     SEG_Property prp{ PropertyChange::BoxScrollDown, nullptr };
     onChangeProperty(&prp);
     refresh();

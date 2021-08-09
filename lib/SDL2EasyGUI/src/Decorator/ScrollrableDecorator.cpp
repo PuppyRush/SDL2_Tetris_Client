@@ -15,7 +15,7 @@ ScrollrableDecorator::ScrollrableDecorator(BoxBasic* ctl)
     m_staticScrollbarFocusY(Base::getUpperArrowPosition().y + Base::getUpperArrowPosition().h + 2)
 {
     t_size scrollbarFocusWidth = 14;
-    t_size scrollbarFocusHeight = (ctl->getHeight() - getUpperArrowPosition().h - getBelowArrowPosition().h) / (getControl()->sizeComponent() - ctl->getVisibleMenuCount());
+    t_size scrollbarFocusHeight = (ctl->getHeight() - getUpperArrowPosition().h - getBelowArrowPosition().h) / (getControl()->countComponent() - ctl->getVisibleMenuCount());
     
     m_scrollbarFocusPosition = make_sdlrect( Base::getPoint().x + Base::getWidth() - scrollbarFocusWidth + 2,
                                  m_staticScrollbarFocusY,scrollbarFocusWidth -4, scrollbarFocusHeight);
@@ -101,8 +101,6 @@ void ScrollrableDecorator::onMouseButtonDownEvent(const SDL_MouseButtonEvent* bu
             goDownScrollByUnit();
         }
 
-  
-
         Base::onMouseButtonDownEvent(button);
     }
 
@@ -170,13 +168,11 @@ void ScrollrableDecorator::refresh()
 
 void ScrollrableDecorator::goUpScrollByUnit()
 {
-
     Base::goUpScrollByUnit();
 }
 
 void ScrollrableDecorator::goDownScrollByUnit()
 {
-
     Base::goDownScrollByUnit();
 }
 
@@ -216,15 +212,16 @@ ScrollrableDecorator::Direction ScrollrableDecorator::getDirection(t_coord x, t_
 
 t_size ScrollrableDecorator::getBoxIndexByCurrentBarPostion() const noexcept
 {
-    return (getPosition().y - m_staticScrollbarFocusY + getPosition().h/1.7 ) / (getPosition().h/1.5);
+    return (getPosition().y - m_staticScrollbarFocusY + getPosition().h/1.7 ) / (getPosition().h/1.45);
 }
-
-
 
 void ScrollrableDecorator::_setUnitHeight()
 {
-    t_size remainHeight = Base::getScrollHeight() - getPosition().h - getUpperArrowPosition().h - getBelowArrowPosition().h;
-    t_size remainMenuCount = getControl()->sizeComponent() - getControl()->getVisibleMenuCount() + 1;
+    //전체 스크롤 길이에서 스크롤 바와 화살표 위아래 두개를 뺀 길이.
+    t_size remainHeight = Base::getScrollHeight() - this->getPosition().h - getUpperArrowPosition().h - getBelowArrowPosition().h;
+
+    //전체 아이템 크기에서 현재 보이고 있는 갯수를 뺀 갯수.
+    t_size remainMenuCount = countComponent() - getControl()->getVisibleMenuCount()+1;
     m_unitHeight = remainHeight / remainMenuCount;
 
 }
