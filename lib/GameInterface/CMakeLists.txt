@@ -9,13 +9,14 @@ message("CMAKE_CURRENT_SOURCE_DIR:" ${CMAKE_CURRENT_SOURCE_DIR})
 message("CMAKE_BINARY_DIR:" ${CMAKE_BINARY_DIR})
 message("PROJECT_SOURCE_DIR:" ${PROJECT_SOURCE_DIR})
 
-set(BOOST_INCLUDE_DIR "C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\include")
 message("BOOST_INCLUDE_DIR:" ${BOOST_INCLUDE_DIR})
 
 
 SET(CMAKE_EXE_LINKER_FLAGS "-static")
-SET(ACE_LIBRARY ${VCPKG_PLATFORM}/lib)
+SET(ACE_LIBRARY  $ENV{VCPKG_ROOT}\\installed\\${PLATFORM}\\${CMAKE_BUILD_TYPE}\\lib\\ACEd.lib)
 SET(ACE_INCLUDE_DIR ${VCPKG_PLATFORM}/include)
+
+message("ACE_LIBRARY : " ${ACE_LIBRARY})
 
 find_package(jsoncpp CONFIG REQUIRED)
 find_package(Boost 1.17.0 REQUIRED)
@@ -71,7 +72,7 @@ target_link_libraries(
         ${PROJECT_NAME}
 		PRIVATE jsoncpp_lib
         ${BOOST_LIBRARIES}
-        "C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\debug\\lib\\ACEd.lib"
+        ${ACE_LIBRARY}
 		)
 
 
