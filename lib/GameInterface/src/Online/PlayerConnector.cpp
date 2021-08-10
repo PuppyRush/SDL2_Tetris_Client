@@ -20,7 +20,7 @@ PlayerConnector::~PlayerConnector(void)
 
 void PlayerConnector::connect()
 {
-    ACE_INET_Addr addr("127.0.0.1:12345");
+    ACE_INET_Addr addr("192.168.0.2:12345");
     ACE_Time_Value rt(0, 0);
 
     m_connector.connect(m_service->peer(), addr, &rt);

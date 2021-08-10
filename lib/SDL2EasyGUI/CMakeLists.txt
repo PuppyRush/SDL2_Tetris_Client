@@ -9,9 +9,10 @@ find_package(sdl2-image CONFIG REQUIRED)
 find_package(sdl2-ttf CONFIG REQUIRED)
 find_package(jsoncpp REQUIRED)
 find_package(Boost 1.17.0)
+find_package(sdl2-gfx CONFIG REQUIRED)
 find_path(BOOST_INCLUDE_DIR boost)
 
-set(BOOST_INCLUDE_DIR "C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\installed\\x64-windows\\include")
+set(BOOST_INCLUDE_DIR {VCPKG_ROOT}\\installed\\{PLATFORM}\\include)
 
 
 include_directories(
@@ -41,7 +42,7 @@ ADD_LIBRARY(SDL2EasyGUI STATIC
         src/Control/Box/ComboBox.cpp
         src/Control/Control.cpp
         src/Control/Control.h
-        "src/Control/ControlBuilderBase.cpp"
+        src/Control/ControlBuilderBase.cpp
         src/Control/Label/EditLabel.cpp
         src/Control/GroupControlManager.cpp
         src/Control/Box/ListBox.cpp
@@ -71,9 +72,13 @@ ADD_LIBRARY(SDL2EasyGUI STATIC
         src/Decorator/BorderDecorator.cpp
         src/Decorator/ScrollrableDecorator.h
         src/Decorator/ScrollrableDecorator.cpp
+        src/Decorator/DecoratorInterface.h
+        src/SEG_Tree.cpp
+        src/GraphicComponent.h
+        src/GraphicComponent.cpp
         include/Button.h
         include/ComboBox.h
-        "include/ControlBuilderBase.h"
+        include/ControlBuilderBase.h
         include/EditLabel.h
         include/GroupControlManager.h
         include/ListBox.h
@@ -83,7 +88,6 @@ ADD_LIBRARY(SDL2EasyGUI STATIC
         include/MessageDialog.h
         include/DisplayController.h
         include/DisplayInterface.h
-        
         include/EventQueue.h
         include/SEG_Window.h
         include/SEG_Constant.h
@@ -98,10 +102,9 @@ ADD_LIBRARY(SDL2EasyGUI STATIC
         include/SEG_Define.h
         include/CheckBox.h
         include/SEG_Drawer.h
-         "src/Decorator/DecoratorInterface.h" "include/SEG_Atomic.h" "include/SEG_Tree.h" "src/SEG_Tree.cpp" "src/GraphicComponent.h" "src/GraphicComponent.cpp")
-
-add_subdirectory(sdl2gfx)
-
+        include/SEG_Atomic.h
+        include/SEG_Tree.h
+        )
 
 target_link_libraries(
         ${PROJECT_NAME} PRIVATE  
@@ -109,7 +112,7 @@ target_link_libraries(
 		SDL2::SDL2main
 		SDL2::SDL2_image
 		SDL2::SDL2_ttf
-        SDL2_gfx
+        SDL2::SDL2_gfx
  )
 
  

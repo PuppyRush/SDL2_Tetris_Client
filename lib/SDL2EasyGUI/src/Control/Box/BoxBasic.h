@@ -199,11 +199,10 @@ public:
 
     using Base = Border;
     using item_type = BoxItem;
-    using string_type = std::string;
     using item_ptr = item_type*;
     using item_ary = std::vector<item_ptr>;
+    using string_type = std::string;
 
-    void calculateVisibleMenuIndexRange();
 
     inline void setVisibleMenuCount(t_size mVisibleMenuCnt)
     {
@@ -215,15 +214,6 @@ public:
         return m_visibleMenuCnt;
     }
 
-    virtual void addItem(const item_ptr item);
-
-    virtual void addItem(const item_type::string_type& str);
-
-    virtual void addItem(item_type::string_type&& str);
-
-    virtual item_ptr popItem();
-
-    virtual item_ptr removeItem(t_size idx);
 
     inline t_size getVisibleMenuWidth() const noexcept
     {
@@ -300,14 +290,23 @@ public:
         m_hasTitleBox = hasTitleBox;
     }
 
-    
+    void calculateVisibleMenuIndexRange();
+
+    virtual void addItem(const item_ptr item);
+
+    virtual void addItem(const item_type::string_type& str);
+
+    virtual void addItem(item_type::string_type&& str);
+
+    virtual item_ptr popItem();
+
+    virtual item_ptr removeItem(t_size idx);
 
     virtual void onEvent(const SDL_Event& event) override;
 
     virtual void onDraw() override;
 
     virtual void initialize() override;
-
 
     virtual iterator removeComponent(component_type::unique_type resId) override;
 

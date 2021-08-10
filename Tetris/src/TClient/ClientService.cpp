@@ -21,7 +21,7 @@ ClientService::ClientService(std::shared_ptr<ACE_Reactor> reactor)
         : PlayerService(reactor.get()),
           m_ip({127, 0, 0, 1}, 12345),
           m_reactor(reactor),
-          m_connector(make_shared<PlayerConnector>("127.0.0.1:12345", reactor.get(), this))
+          m_connector(make_shared<PlayerConnector>("192.168.0.2:12345", reactor.get(), this))
 {
 }
 

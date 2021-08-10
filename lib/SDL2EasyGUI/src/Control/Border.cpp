@@ -2,7 +2,7 @@
 // Created by chaed on 19. 1. 22.
 //
 
-#include <sdl2gfx/SDL2_gfxPrimitives.h>
+#include <SDL2/SDL2_gfxPrimitives.h>
 
 #include "Border.h"
 

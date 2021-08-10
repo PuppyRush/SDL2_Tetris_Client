@@ -189,7 +189,8 @@ void TWaitingRoomDisplay::recvWaitingRoomInitInfo(const Packet& packet)
 
         RoomInfo roominfo{gameroom.getRoomNumber(), gameroom.getRoomName(), gameroom.getMaketime(),
                           gameroom.getUnique(), gameroom.getPlayerContainer().size(), gameroom.getFullCount()};
-        //ctl->appendItem(make_shared<BoxItem>(roominfo));
+
+        //ctl->addItem(roominfo);
 
     }
 

@@ -4,7 +4,7 @@
 
 #include <stdexcept>
 
-#include "sdl2gfx/SDL2_gfxPrimitives.h"
+#include <SDL2/SDL2_gfxPrimitives.h>
 
 #include "Control.h"
 #include "GameInterface/include/Logger.h"

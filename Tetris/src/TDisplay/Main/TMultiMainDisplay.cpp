@@ -14,6 +14,7 @@
 #include "SDL2EasyGUI/src/Decorator/ScrollbarDecorator.h"
 #include "SDL2EasyGUI/src/Decorator/BorderDecorator.h"
 
+#include "../Waiting/TWaitingRoomDisplay.h"
 #include "TMultiMainDisplay.h"
 #include "../TOptionDisplay.h"
 #include "TResource.h"
@@ -283,6 +284,9 @@ void TMultiMainDisplay::onClickedEnterServer(const void* click)
 
 	if (player->connectServer()) {
 		game_interface::PacketQueue::getInstance().attach(player);
+
+        auto waitingRoomDisplay = DisplayController::modal_open<TWaitingRoomDisplay>();
+        waitingRoomDisplay->modal();
 	}
 	else {
 		seg::MessageDialog dlg{ "Cannot fail to connect server.",
