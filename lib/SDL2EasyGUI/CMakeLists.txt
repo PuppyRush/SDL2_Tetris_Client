@@ -7,9 +7,9 @@ message("----------------SDL2EasyGUI START----------------")
 find_package(SDL2 CONFIG REQUIRED)
 find_package(sdl2-image CONFIG REQUIRED)
 find_package(sdl2-ttf CONFIG REQUIRED)
+find_package(sdl2-gfx CONFIG REQUIRED)
 find_package(jsoncpp REQUIRED)
 find_package(Boost 1.17.0)
-find_package(sdl2-gfx CONFIG REQUIRED)
 find_path(BOOST_INCLUDE_DIR boost)
 
 set(BOOST_INCLUDE_DIR {VCPKG_ROOT}\\installed\\{PLATFORM}\\include)
@@ -36,25 +36,26 @@ ADD_LIBRARY(SDL2EasyGUI STATIC
         src/Command/EventCommand.h
         src/Control/Border.cpp
         src/Control/Border.h
+        src/Control/Control.cpp
+        src/Control/Control.h
         src/Control/Button/Button.cpp
         src/Control/Button/ButtonBasic.cpp
         src/Control/Button/ButtonBasic.h
-        src/Control/Box/ComboBox.cpp
-        src/Control/Control.cpp
-        src/Control/Control.h
-        src/Control/ControlBuilderBase.cpp
-        src/Control/Label/EditLabel.cpp
-        src/Control/GroupControlManager.cpp
-        src/Control/Box/ListBox.cpp
         src/Control/Button/RadioButton.cpp
-        src/Control/Label/StaticLabel.cpp
+        src/Control/Button/CheckBox.cpp
+        src/Control/ControlBuilderBase.cpp
+        src/Control/GroupControlManager.cpp
         src/Control/ImageStatic.cpp
         src/Control/ImageStatic.h
+        src/Control/Label/EditLabel.cpp
+        src/Control/Label/StaticLabel.cpp
         src/Control/Label/LabelBasic.cpp
         src/Control/Label/LabelBasic.h
+        src/Control/Box/ComboBox.cpp
+        src/Control/Box/ListBox.cpp
+        src/Control/Box/BoxItem.cpp
         src/Control/Box/BoxBasic.cpp
         src/Control/Box/BoxBasic.h
-        src/Control/Button/CheckBox.cpp
         src/Display/InputDialog.cpp
         src/Display/MessageDialog.cpp
         src/Windows/DisplayController.cpp
@@ -104,6 +105,7 @@ ADD_LIBRARY(SDL2EasyGUI STATIC
         include/SEG_Drawer.h
         include/SEG_Atomic.h
         include/SEG_Tree.h
+        include/BoxItem.h
         )
 
 target_link_libraries(

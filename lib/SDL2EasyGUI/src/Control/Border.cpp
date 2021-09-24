@@ -8,10 +8,10 @@
 
 using namespace seg;
 
-Border::Border(ControlBuilder& basic)
+Border::Border(const ControlBuilder& basic)
         : Control(basic)
 {
-    basic.kind(ControlKind::Border);
+    //basic.kind(ControlKind::Border);
 }
 
 void Border::initialize()

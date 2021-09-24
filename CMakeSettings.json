@@ -10,7 +10,7 @@
       "cmakeCommandArgs": "",
       "buildCommandArgs": "",
       "ctestCommandArgs": "",
-      "cmakeToolchain": "C:/Users/chaed_notebook/source/vcpkg/scripts/buildsystems/vcpkg.cmake",
+      "cmakeToolchain": "C:\\Users\\goodd\\source\\repos\\vcpkg-master\\vcpkg-master\\scripts\\buildsystems\\vcpkg.cmake",
       "intelliSenseMode": "windows-msvc-x64"
     },
     {

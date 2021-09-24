@@ -169,13 +169,13 @@ public:
 		if (_getControlAry().emptyComponent())
 			return nullptr;
 
-		const auto end = _getControlAry().endComponent();
-		auto it = find_if(_getControlAry().beginComponent(), end, [resourceId](control_ptr ptr) {
+		const auto it = find_if(_getControlAry().beginComponent(), _getControlAry().endComponent(), [resourceId](control_ptr ptr) {
 			return ptr->getId() == resourceId;
 			});
 
-		if (it == end)
+		if (it == _getControlAry().endComponent())
 		{
+			auto end = _getControlAry().endComponent();
 			for (auto _it = _getControlAry().beginComponent(); _it != end; _it++)
 			{
 

@@ -31,6 +31,17 @@ TPlayer::~TPlayer()
     endGame();
 }
 
+TPlayer::TPlayer(const TPlayer& player)
+{
+    if (this == &player)
+    {
+        return;
+    }
+
+    this->setUnique(player.getUnique());
+
+}
+
 void TPlayer::initialize()
 {
     auto board = getController().getBoard();

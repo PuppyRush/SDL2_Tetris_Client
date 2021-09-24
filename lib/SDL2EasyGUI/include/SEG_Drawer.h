@@ -234,7 +234,7 @@ namespace seg::drawer {
             return m_dstrect;
         }
 
-        std::string& getText() noexcept
+        const std::string& getText() const noexcept
         {
             return m_text;
         }

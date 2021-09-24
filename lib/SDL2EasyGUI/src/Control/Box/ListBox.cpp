@@ -10,8 +10,8 @@ using namespace seg;
 ListBox::ListBox(ListBoxBuilder& bld)
         : BoxBasic(bld)
 {
-    setScrollHorizenActivating(bld.m_scrollHorizen);
-    setScrollVerticalActivating(bld.m_scrollVertical);
+    setScrollHorizenActivating(bld.getScrollHorizen());
+    setScrollVerticalActivating(bld.getScrollVertical());
     
     bld.kind(ControlKind::ListBox);
 
@@ -33,15 +33,18 @@ void ListBox::setControlText(const char* ch)
     //nothing to do, dont call base fn
 }
 
+
 void ListBox::setControlText(std::string&& str)
 {
     //nothing to do, dont call base fn
 }
 
+
 void ListBox::setControlText(const std::string& str)
 {
     //nothing to do, dont call base fn
 }
+
 
 void ListBox::initialize()
 {
@@ -63,11 +66,13 @@ void ListBox::onDraw()
     Base::onDraw();
 }
 
+
 void ListBox::onMouseMotionEvent(const SDL_MouseMotionEvent* motion)
 {
     setBoundedMenuIndex( _calcIndexOf(motion->y));
     Base::onMouseMotionEvent(motion);
 }
+
 
 t_size ListBox::_calcIndexOf(const t_coord y)
 {

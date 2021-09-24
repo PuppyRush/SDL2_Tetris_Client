@@ -14,7 +14,7 @@
 #include "TCreateGameroomDisplay.h"
 
 #include "../Game/TMultiGameRoomDisplay.h"
-#include "../../TObject/TPlayer.h"
+#include "../../../include/TPlayerBox.h"
 #include "TResource.h"
 
 SDL_TETRIS
@@ -195,16 +195,21 @@ void TWaitingRoomDisplay::recvWaitingRoomInitInfo(const Packet& packet)
     }
 
     const auto ctl = getControl<ListBox>(tetris::resource::WAITINGROOM_USERBOX);
-    auto dummyPlayer = make_shared<TPlayer>();
 
     const size_t plyCount = root["player_count"].asUInt();
     const Json::Value playerRoot = root[game_interface::NAME_PLAYER.data()];
     for (int i = 0; i < plyCount; ++i) {
         const Json::Value jsonPlayer = playerRoot[i];
+        
+        TPlayer player{};
+        player.fromJson(jsonPlayer);
 
-        dummyPlayer->fromJson(jsonPlayer);
-        //ctl->appendItem(make_shared<BoxItem>(dummyPlayer->getUserName(), dummyPlayer->getMaketime(),
-         //                                     dummyPlayer->getUnique()));
+        BoxItemBuilder bibld(getSEGWindow(), "");
+        bibld.font({ "../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black })->
+        backgroundColor(ColorCode::white);
+        TPlayerBox* playerBox = new TPlayerBox{ bibld, player };
+        
+        ctl->addItem(playerBox);
     }
 }
 
@@ -251,7 +256,7 @@ void TWaitingRoomDisplay::sendChat(const void* event)
                 chatinfo.toJson()};
         TPlayer::getInstance()->sendPacket(packet);
 
-        ctl->getControlText().clear();
+        ctl->setControlText("");
     }
 }
 

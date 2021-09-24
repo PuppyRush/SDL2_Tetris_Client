@@ -210,7 +210,7 @@ public:
         m_isInitailize = init;
     }
 
-    inline virtual inline void setWidth(t_size width) noexcept
+    inline virtual void setWidth(t_size width) noexcept
     {
         auto wh = drawer::getTextSize(getFont().getTTF_Font(), getControlText());
         auto textWidth = wh.first > width ? width - 8 : wh.first;
@@ -219,7 +219,7 @@ public:
         GraphicInterface::setWidth(width);
     }
 
-    inline virtual inline void setHeight(t_size height) noexcept
+    inline virtual void setHeight(t_size height) noexcept
     {
         auto wh = drawer::getTextSize(getFont().getTTF_Font(), getControlText());
         auto textHeight = wh.second > height ? height : wh.second;
@@ -369,7 +369,7 @@ public:
 
     virtual void setControlText(const std::string& str);
 
-    std::string& getControlText() noexcept;
+    const std::string& getControlText() const noexcept;
     
     inline int getControlTextWidth() const noexcept
     {

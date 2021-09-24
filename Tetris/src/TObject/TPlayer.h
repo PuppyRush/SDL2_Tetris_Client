@@ -9,7 +9,6 @@
 #pragma once
 #endif
 
-#include <boost/serialization/singleton.hpp>
 #include <cassert>
 
 #include "GameInterface/include/Packet.h"
@@ -20,13 +19,15 @@
 
 SDL_TETRIS_BEGIN
 
-class TPlayer final : public game_interface::Player
+class TPlayer : public game_interface::Player
 {
 public:
 
     TPlayer();
 
     virtual ~TPlayer();
+
+    TPlayer(const TPlayer& player);
 
     inline const game_interface::TIPString& getIP() const noexcept
     { return m_ip; }

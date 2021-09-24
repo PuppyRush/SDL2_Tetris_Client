@@ -120,35 +120,35 @@ void TMultiMainDisplay::onInitialize()
         addControl(bld.build());
     }
 
-    //begin_y += 80;
-    //{
-    //    ComboBoxBuilder bld(getSEGWindow(), {WINDOW_WIDTH / 2, begin_y}, "DoitNow");
-    //    bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
-    //            id(game_interface::toUType(resource::MAIN_TEST_TEXT_COMBO))->
-    //            backgroundColor(ColorCode::white)->
-    //            borderBoundaryType(BorderBoundaryType::roundedAngle)->
-    //            width(120)->
-    //            height(30)->
-    //            enabled(true);
+    begin_y += 80;
+    {
+        ComboBoxBuilder bld(getSEGWindow(), {WINDOW_WIDTH / 2, begin_y}, "DoitNow");
+        bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
+                id(game_interface::toUType(resource::MAIN_TEST_TEXT_COMBO))->
+                backgroundColor(ColorCode::white)->
+                borderBoundaryType(BorderBoundaryType::roundedAngle)->
+                width(120)->
+                height(30)->
+                enabled(true);
 
-    //    BoxItemBuilder bibld1(getSEGWindow(), "one");
-    //    bibld1.font({ "../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black })->
-    //        backgroundColor(ColorCode::white);
-    //    bld.addItem(bibld1);
-    //    bld.addItem("two");
-    //    bld.addItem("three" );
-    //    bld.addItem("four4" );
-    //    addControl(bld.build());
+        BoxItemBuilder bibld1(getSEGWindow(), "one");
+        bibld1.font({ "../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black })->
+            backgroundColor(ColorCode::white);
+        bld.addItem(bibld1);
+        bld.addItem("two");
+        bld.addItem("three" );
+        bld.addItem("four4" );
+        addControl(bld.build());
 
-    //    ComboBox* ctl = getControl<ComboBox>(resource::MAIN_TEST_TEXT_COMBO);
-    //    ctl->addItem("five");
-    //    ctl->addItem("six");
-    //    ctl->addItem("seven");
-    //}
+        ComboBox* ctl = getControl<ComboBox>(resource::MAIN_TEST_TEXT_COMBO);
+        ctl->addItem("five");
+        ctl->addItem("six");
+        ctl->addItem("seven");
+    }
 
     begin_y += 80;
     {
-        CheckBoxBuilder bld(getSEGWindow(), {WINDOW_WIDTH / 2, begin_y}, "");
+        CheckBoxBuilder bld{ getSEGWindow(), {WINDOW_WIDTH / 2, begin_y}, "" };
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 id(game_interface::toUType(resource::MAIN_TEST_CHECKBOX))->
                 backgroundColor(ColorCode::white)->
@@ -163,7 +163,7 @@ void TMultiMainDisplay::onInitialize()
 
     begin_y += 30;
     {
-        RadioButtonBuilder bld(getSEGWindow(), {WINDOW_WIDTH / 2, begin_y}, "");
+        RadioButtonBuilder bld{ getSEGWindow(), {WINDOW_WIDTH / 2, begin_y}, "" };
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 id(game_interface::toUType(resource::MAIN_TEST_RADIOBUTTON))->
                 backgroundColor(ColorCode::white)->
@@ -179,7 +179,7 @@ void TMultiMainDisplay::onInitialize()
 
     begin_x += 50;
     {
-        RadioButtonBuilder bld(getSEGWindow(), {begin_x, begin_y}, "");
+        RadioButtonBuilder bld{ getSEGWindow(), {begin_x, begin_y}, "" };
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 id(game_interface::toUType(resource::MAIN_TEST_RADIOBUTTON2))->
                 backgroundColor(ColorCode::white)->
@@ -195,7 +195,7 @@ void TMultiMainDisplay::onInitialize()
 
     begin_x += 50;
     {
-        RadioButtonBuilder bld(getSEGWindow(), {begin_x, begin_y}, "");
+        RadioButtonBuilder bld{ getSEGWindow(), {begin_x, begin_y}, "" };
         bld.font({"../resources/fonts/OpenSans-Bold.ttf", 24, ColorCode::black})->
                 id(game_interface::toUType(resource::MAIN_TEST_RADIOBUTTON3))->
                 backgroundColor(ColorCode::white)->
@@ -225,8 +225,7 @@ void TMultiMainDisplay::onInitialize()
         bld.addItem("aaabbb")->
         addItem("aaabb1111b")->
         addItem("aaabbb22222")->
-        addItem("abaabab333");
-
+        addItem("abaabab333");   
 
         addControl(bld.build());
     }
@@ -249,10 +248,8 @@ void TMultiMainDisplay::onClickedAddList(const void* click)
     static int i = 0;
     auto list = getControl<ListBox>(resource::MAIN_TEST_LISTBOX);
     std::string str;
-    str += "add";
-    char c[10];
-    itoa(i++, c, 10);
-    str.append(c);
+    str.append("add");
+    str.append(std::to_string(i++));
     list->addItem(str);
 }
 

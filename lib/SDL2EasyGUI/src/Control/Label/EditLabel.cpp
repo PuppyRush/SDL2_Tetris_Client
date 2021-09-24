@@ -107,7 +107,9 @@ void EditLabel::onKeyboardEvent(const SDL_KeyboardEvent* key)
 
     if (key->type == SDL_KEYDOWN) {
         if (key->keysym.sym == SDLK_BACKSPACE && !isEmpty()) {
-           getControlText().pop_back();
+            auto ctlText = std::string{ getControlText() };
+            ctlText.pop_back();
+            setControlText(ctlText);
         }
     }
 
@@ -125,8 +127,8 @@ void EditLabel::onTextInputEvent(const SDL_TextInputEvent* text)
         return;
     }
 
-    getControlText() += (text->text);
-
+    auto ctlText = getControlText();
+    setControlText(ctlText + (text->text));
 
     TTF_Font* font = TTF_OpenFont(getFont().fontName.c_str(), getFont().size);
     TTF_SizeText(font, getControlText().c_str(), m_textWidth, m_textHeight);

@@ -27,18 +27,16 @@ enum class ListBoxScrollType : t_type
 
 class ListBoxBuilder;
 
-
-
 class ListBox : public BoxBasic
 {
 public:
 
     using Base = BoxBasic;
+    using item_type = BoxItem;
 
     explicit ListBox(ListBoxBuilder& bld);
 
     virtual ~ListBox() = default;
-
 
 
     inline bool isScrollHorizenActivating() const noexcept
@@ -96,18 +94,17 @@ private:
 class ListBoxBuilder : public BoxBasicBuilder
 {
 public:
-
     friend class ListBox;
 
     virtual ~ListBoxBuilder() = default;
 
     ListBoxBuilder(const GraphicInterface::window_type window, const SEG_Point& point, const std::string& str)
-            : BoxBasicBuilder(window, point, str)
+        : BoxBasicBuilder(window, point, str)
     {
     }
 
     ListBoxBuilder(const GraphicInterface::window_type window, SEG_Point&& point, std::string&& str)
-            : BoxBasicBuilder(window, point, str)
+        : BoxBasicBuilder(window, point, str)
     {
     }
 
@@ -123,10 +120,21 @@ public:
         return this;
     }
 
-    virtual Control::control_ptr build() final
+    bool getScrollHorizen()
+    {
+        return m_scrollHorizen;
+    }
+
+    bool getScrollVertical()
+    {
+        return m_scrollVertical;
+    }
+
+    virtual Control::control_ptr build() override final 
     {
         return new ListBox(*this);
     }
+
 
 private:
     bool m_scrollHorizen = false;

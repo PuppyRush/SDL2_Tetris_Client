@@ -293,7 +293,7 @@ void Control::setControlText(const std::string& str)
     m_textDrawer.setText(str);
 }
 
-std::string& Control::getControlText() noexcept
+const std::string& Control::getControlText() const noexcept
 {
     return m_textDrawer.getText();
 }

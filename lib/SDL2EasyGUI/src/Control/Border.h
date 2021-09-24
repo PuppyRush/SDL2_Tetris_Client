@@ -21,7 +21,7 @@ class Border : public Control
 public:
     virtual ~Border() = default;
 
-    explicit Border(ControlBuilder& basic);
+    explicit Border(const ControlBuilder& basic);
 
     virtual void onDraw() override;
 

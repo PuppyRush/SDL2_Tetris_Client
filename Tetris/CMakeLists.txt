@@ -59,7 +59,7 @@ add_executable(tetris
         src/TObject/TWaitingRoom.h
         src/TObject/TGameRoom.cpp
         src/TObject/TGameRoom.h
-        )
+         "src/Control/Box/TPlayerBox.cpp" "include/TPlayerBox.h")
 
 
 include_directories(

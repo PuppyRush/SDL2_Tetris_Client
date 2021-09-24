@@ -45,6 +45,9 @@ typedef struct TIPString
 
     const char* strFromIpAndPort() const
     {
+        std::string ipAndport{ ip };
+        ipAndport.append(":");
+        ipAndport.append(std::to_string(port));
         return ip.c_str();
     }
 
