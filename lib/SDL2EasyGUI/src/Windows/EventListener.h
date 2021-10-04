@@ -213,6 +213,9 @@ public:
                 onTimerEvent(&event.user);
                 break;
             default:;
+                Logger::getInstance().printLog("EventListener::onEvent, Not Defined", Logger::logger_level::Error);
+                assert(0);
+                break;
 
         }
     }

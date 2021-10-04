@@ -43,8 +43,14 @@ void ButtonBasic::onDrawBackground()
 
 void ButtonBasic::initialize()
 {
-    Border::initialize();
 
+    SEG_Point point = make_segpoint(getPoint().x + (getWidth() - getControlTextWidth()) / 2,
+        getPoint().y + (getHeight() - getControlTextHeight()) / 2);
+
+    setControlTextPositionX(point.x);
+    setControlTextPositionY(point.y);
+
+    Border::initialize();
 }
 
 void ButtonBasic::_drawCarot()

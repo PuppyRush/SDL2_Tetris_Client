@@ -92,7 +92,6 @@ void TEnterServerDisplay::onClickedEnterServer(const void* click)
         m_valid = false;
     }
     else{
-        player->setUserName(idLabel->getControlText());
         m_valid = true;
         TDisplayInterface::onOk();
     }

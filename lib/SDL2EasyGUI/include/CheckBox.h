@@ -32,7 +32,6 @@ public:
     void setSelected(const bool chk)
     {
         Control::setSelected(chk);
-        _drawCheck(chk);
     }
 
 private:

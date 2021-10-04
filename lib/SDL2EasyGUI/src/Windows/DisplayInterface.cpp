@@ -72,6 +72,8 @@ void DisplayInterface::modal()
     m_mode = TDisplayMode::Modal;
     m_thread = std::thread(&DisplayInterface::_run, this);
     m_thread.join();
+    
+    DisplayMap::getInstance().popModal(getWindowID());
 }
 
 void DisplayInterface::modaless()

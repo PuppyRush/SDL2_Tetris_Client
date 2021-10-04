@@ -29,6 +29,7 @@ void CheckBox::onMouseButtonDownEvent(const SDL_MouseButtonEvent* button)
 {
     if (button->button == SDL_BUTTON_LEFT && button->state == SDL_PRESSED && isHit({ static_cast<t_coord>(button->x), static_cast<t_coord>(button->y )})) {
         setSelected(!isSelected());
+        refresh();
     }
 }
 

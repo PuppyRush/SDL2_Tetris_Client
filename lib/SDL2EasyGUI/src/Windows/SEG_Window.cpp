@@ -12,7 +12,8 @@ SEG_Window::SEG_Window(const t_size width, const t_size height)
         : m_windowHeight(height),
           m_windowWidth(width),
           m_window(nullptr),
-          m_renderer(nullptr)
+          m_renderer(nullptr),
+            m_isBorder(false)
 {
 
 }

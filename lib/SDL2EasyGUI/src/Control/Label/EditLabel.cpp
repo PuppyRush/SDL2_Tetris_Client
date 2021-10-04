@@ -34,9 +34,9 @@ void EditLabel::onDraw()
 {
     const auto point = getPoint();
     SDL_Point points[]
-        = { make_sdlpoint(point.x + getControlTextWidth() + 7, point.y + 5),
-            make_sdlpoint(point.x + getControlTextWidth() + 7, point.y + getHeight() - 5),
-            make_sdlpoint(point.x + getControlTextWidth() + 7, point.y + 5) };
+        = { make_sdlpoint(point.x + getControlTextWidth() + 3, point.y + 5),
+            make_sdlpoint(point.x + getControlTextWidth() + 3, point.y + getHeight() - 5),
+            make_sdlpoint(point.x + getControlTextWidth() + 3, point.y + 5) };
 
     SEG_Color lineColor;
     if (m_drawTextCursor) {

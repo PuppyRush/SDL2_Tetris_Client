@@ -17,20 +17,14 @@ void LabelBasic::initialize()
 {
     Border::initialize();
 
+    setControlTextPositionX(getPoint().x + 4);
+    setControlTextPositionY(getPoint().y + (getHeight() - getControlTextHeight()) / 2);
+
     setControlText(m_labelBasic.editstring);
 }
 
 void LabelBasic::onDraw()
 {
-    auto point = getPoint();
-    drawer::TextDrawer textDrawer{ getRenderer(), getFont(), getPoint(), getControlText()};
-
-    point.x += 5;
-    point.y = point.y + (getHeight() - getControlTextHeight()) / 2;
-
-    textDrawer.setPoint(point);
-    textDrawer.drawText();
-
     Border::onDraw();
 }
 

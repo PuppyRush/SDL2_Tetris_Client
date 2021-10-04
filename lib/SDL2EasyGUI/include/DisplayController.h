@@ -229,7 +229,6 @@ public:
     {
         display_ptr display = std::make_shared<_Display>(std::forward<_Args>(__args)...);
         DisplayMap::getInstance().pushModal(display);
-        DisplayController::getInstance().getDisplayEventQueue().pushEvent(display);
         
         return display;
     }
@@ -241,7 +240,6 @@ public:
     {
         display_ptr display = std::make_shared<_Display>(std::forward<_Args>(__args)...);
         DisplayMap::getInstance().addModaless(display);
-        DisplayController::getInstance().getDisplayEventQueue().pushEvent(display);
 
         return display;
     }
@@ -279,11 +277,6 @@ private:
     void _modal();
     void _modaless();
 
-    EventQueue<display_ptr>& getDisplayEventQueue()
-    {
-        return m_newDisplayQ;
-    }
-
     template<class T>
     display_ptr _find(const T& ary, const t_id id);
 
@@ -303,24 +296,6 @@ private:
 
     EventQueue<display_ptr> m_newDisplayQ;
 };
-
-//struct modal_opener
-//{
-//
-//    DisplayController::display_ptr display;
-//
-//    explicit modal_opener(DisplayController::display_ptr display)
-//            : display(display)
-//    {
-//        DisplayController::getInstance().modal_open(display);
-//    }
-//
-//    ~modal_opener()
-//    {
-//        DisplayController::getInstance().modal_close();
-//    }
-//
-//};
 
 }
 

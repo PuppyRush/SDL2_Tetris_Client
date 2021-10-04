@@ -277,9 +277,13 @@ void TMultiMainDisplay::onClickedEnterServer(const void* click)
     auto dp = DisplayController::modal_open<TEnterServerDisplay>();
     dp->modal();
 
-  	auto& player = TPlayer::getInstance();
-
-	if (player->connectServer()) {
+	if (dp->getResult() == BTN_OK) {
+        
+        auto& player = TPlayer::getInstance();
+        const auto& idLabel = dp->getControl<EditLabel>(resource::ENTERSERVER_ID);
+        
+        player->setUserName(idLabel->getControlText());
+        player->connectServer();
 		game_interface::PacketQueue::getInstance().attach(player);
 
         auto waitingRoomDisplay = DisplayController::modal_open<TWaitingRoomDisplay>();

@@ -81,13 +81,6 @@ void Control::_initializeInCtor()
     setControlTextHeight(height);
 
 
-    SEG_Point point = make_segpoint( getPoint().x + (getWidth() - getControlTextWidth()) / 2,
-                                    getPoint().y + (getHeight() - getControlTextHeight()) / 2) ;
-
-    setControlTextPositionX(point.x);
-    setControlTextPositionY(point.y);
-
-
 #ifdef SEG_DEBUG
     m_positionDrawer.setPoint(getPoint());
     m_positionDrawer.setRenderer(getRenderer());
