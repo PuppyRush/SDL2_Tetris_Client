@@ -229,7 +229,8 @@ public:
     {
         display_ptr display = std::make_shared<_Display>(std::forward<_Args>(__args)...);
         DisplayMap::getInstance().pushModal(display);
-        
+        DisplayController::getInstance().getDisplayEventQueue().pushEvent(display);
+
         return display;
     }
 
@@ -276,6 +277,12 @@ private:
 
     void _modal();
     void _modaless();
+
+    EventQueue<display_ptr>& getDisplayEventQueue()
+    {
+        return m_newDisplayQ;
+    }
+
 
     template<class T>
     display_ptr _find(const T& ary, const t_id id);

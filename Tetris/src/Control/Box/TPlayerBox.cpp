@@ -17,12 +17,12 @@ using namespace seg;
 TPlayerBox::TPlayerBox(const BoxItemBuilder& bld, const TPlayer& player)
     :TPlayer(player), BoxItem(bld)
 {
-
+    BoxItem::setControlText(player.getUserName());
 }
 
 TPlayerBox::TPlayerBox(BoxItemBuilder&& bld, TPlayer&& player)
     : TPlayer(player), BoxItem(bld)
 {
-
+    BoxItem::setControlText(player.getUserName());
 }
 

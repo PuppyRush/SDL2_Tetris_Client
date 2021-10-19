@@ -43,13 +43,15 @@ typedef struct TIPString
         return ip.c_str();
     }
 
-    const char* strFromIpAndPort() const
+
+    std::string getIpAndPortString() const
     {
         std::string ipAndport{ ip };
         ipAndport.append(":");
         ipAndport.append(std::to_string(port));
-        return ip.c_str();
+        return ipAndport;
     }
+
 
     std::string ip;
     t_port port;

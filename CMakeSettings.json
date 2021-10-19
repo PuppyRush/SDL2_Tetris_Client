@@ -10,7 +10,7 @@
       "cmakeCommandArgs": "",
       "buildCommandArgs": "",
       "ctestCommandArgs": "",
-      "cmakeToolchain": ${VCPKG_ROOT}"\\scripts\\buildsystems\\vcpkg.cmake",
+      "cmakeToolchain": "${env.VCPKG_ROOT}\\scripts\\buildsystems\\vcpkg.cmake",
       "intelliSenseMode": "windows-msvc-x64"
     },
     {
@@ -23,7 +23,7 @@
       "buildCommandArgs": "",
       "ctestCommandArgs": "",
       "inheritEnvironments": [ "clang_cl_x64" ],
-      "cmakeToolchain": "${VCPKG_ROOT}\\scripts\\buildsystems\\vcpkg.cmake",
+      "cmakeToolchain": "${env.VCPKG_ROOT}\\scripts\\buildsystems\\vcpkg.cmake",
       "variables": [],
       "intelliSenseMode": "windows-clang-x64"
     }

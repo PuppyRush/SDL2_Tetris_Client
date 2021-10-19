@@ -10,7 +10,7 @@ find_package(sdl2-ttf CONFIG REQUIRED)
 find_package(sdl2-gfx CONFIG REQUIRED)
 find_package(jsoncpp REQUIRED)
 find_package(Boost 1.17.0)
-find_path(BOOST_INCLUDE_DIR boost)
+                                                                                                                                                find_path(BOOST_INCLUDE_DIR boost)
 
 set(BOOST_INCLUDE_DIR {VCPKG_ROOT}\\installed\\{PLATFORM}\\include)
 

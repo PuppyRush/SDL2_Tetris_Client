@@ -25,7 +25,7 @@ class PlayerConnector : public ACE_Event_Handler
 {
 
 public:
-    PlayerConnector(const char* ipstr, ACE_Reactor* reactor, PlayerService* stream);
+    PlayerConnector(std::string ipstr, ACE_Reactor* reactor, PlayerService* stream);
 
     virtual ~PlayerConnector(void);
 

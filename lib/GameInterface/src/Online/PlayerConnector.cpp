@@ -8,7 +8,7 @@
 
 using namespace game_interface;
 
-PlayerConnector::PlayerConnector(const char* ipstr, ACE_Reactor* reactor, PlayerService* stream)
+PlayerConnector::PlayerConnector(std::string ipstr, ACE_Reactor* reactor, PlayerService* stream)
         : ACE_Event_Handler(reactor), m_service(stream), m_ipstring(ipstr)
 {
 
@@ -20,7 +20,7 @@ PlayerConnector::~PlayerConnector(void)
 
 void PlayerConnector::connect()
 {
-    ACE_INET_Addr addr("192.168.234.1:12345");
+    ACE_INET_Addr addr(m_ipstring.c_str());
     ACE_Time_Value rt(0, 0);
 
     m_connector.connect(m_service->peer(), addr, &rt);

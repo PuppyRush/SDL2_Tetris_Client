@@ -21,7 +21,7 @@ message("ACE_LIBRARY : " ${ACE_LIBRARY})
 find_package(jsoncpp CONFIG REQUIRED)
 find_package(Boost 1.17.0 REQUIRED)
 find_path(BOOST_INCLUDE_DIR boost)
-
+find_path(SIMPLEINI_INCLUDE_DIRS "ConvertUTF.c")
 
 include_directories(
         ${BOOST_INCLUDE_DIR}
@@ -67,9 +67,9 @@ ADD_LIBRARY(GameInterface STATIC
         include/PacketQueue.h
         )
 
-
 target_link_libraries(
         ${PROJECT_NAME}
+        PRIVATE ${SIMPLEINI_INCLUDE_DIRS}
 		PRIVATE jsoncpp_lib
         ${BOOST_LIBRARIES}
         ${ACE_LIBRARY}

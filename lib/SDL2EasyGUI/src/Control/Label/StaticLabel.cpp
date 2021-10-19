@@ -28,9 +28,4 @@ void StaticLabel::initialize()
 {
     LabelBasic::initialize();
 
-    drawer::TextDrawer textDrawer{ getRenderer(), getFont(), getPoint(), getControlText() };
-
-    getData()->position.x += 5;
-    getData()->height = getControlTextHeight();
-    getData()->width = getControlTextWidth();
 }

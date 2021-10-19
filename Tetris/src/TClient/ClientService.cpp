@@ -19,9 +19,9 @@ void fn(ACE_Reactor* app)
 
 ClientService::ClientService(std::shared_ptr<ACE_Reactor> reactor)
         : PlayerService(reactor.get()),
-          m_ip({192, 168, 234, 1}, 12345),
+          m_ip({127,0,0,1}, 12345),
           m_reactor(reactor),
-          m_connector(make_shared<PlayerConnector>(m_ip.strFromIpAndPort(), reactor.get(), this))
+          m_connector(make_shared<PlayerConnector>(m_ip.getIpAndPortString(), reactor.get(), this))
 {
 }
 

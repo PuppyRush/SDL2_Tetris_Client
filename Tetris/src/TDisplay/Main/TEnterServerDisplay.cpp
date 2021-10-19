@@ -4,8 +4,8 @@
 
 #include "SDL2EasyGUI/include/MessageDialog.h"
 #include "SDL2EasyGUI/include/EditLabel.h"
+#include "SDL2EasyGUI/include/DisplayController.h"
 #include "GameInterface/include/PacketQueue.h"
-
 #include "../../TObject/TPlayer.h"
 #include "TEnterServerDisplay.h"
 #include "TResource.h"
@@ -86,9 +86,10 @@ void TEnterServerDisplay::onClickedEnterServer(const void* click)
 
     if (idLabel->getControlText().size() < 5) {
         assert(idLabel != nullptr);
-        seg::MessageDialog dlg{"Enter Your ID at least 5 characters",
-                               seg::MessageDialogKind::error};
-        dlg.alert();
+
+        auto message = DisplayController::modal_open<MessageDialog>("Enter Your ID at least 5 characters", seg::MessageDialogKind::error);
+        message->modal();
+
         m_valid = false;
     }
     else{

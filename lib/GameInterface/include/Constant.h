@@ -46,6 +46,12 @@ constexpr const std::string_view NAME_CHATINFO = std::string_view("chatinfo");
 
 constexpr const std::string_view NAME_NULL = std::string_view("");
 
+constexpr const std::string_view NAME_OPTION_FILE = std::string_view("option.ini");
+constexpr const std::string_view NAME_SECTION_SERVERINFO = std::string_view("server_info");
+constexpr const std::string_view NAME_SERVERINFO_IP = std::string_view("ip");
+constexpr const std::string_view NAME_SERVERINFO_IP_DEFAULT = std::string_view("127.0.0.1");
+constexpr const std::string_view NAME_SERVERINFO_PORT = std::string_view("port");
+constexpr const std::string_view NAME_SERVERINFO_PORT_DEFAULT = std::string_view("9785");
 }
 }
 

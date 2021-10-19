@@ -7,6 +7,8 @@
 
 #include <ace/Init_ACE.h>
 
+#include <SimpleIni.h>
+
 #include "Constant.h"
 #include "PacketQueue.h"
 #include "Room.h"
@@ -134,9 +136,19 @@ static void cal_time()
     }
 }
 
+static void ReadIni()
+{
+    CSimpleIni ini;
+    ini.LoadFile(NAME_OPTION_FILE.data());
+
+    std::string ip{ ini.GetValue(NAME_SECTION_SERVERINFO.data(), NAME_SERVERINFO_IP.data(), NAME_SERVERINFO_IP_DEFAULT.data()) };
+    std::string port{ ini.GetValue(NAME_SECTION_SERVERINFO.data(), NAME_SERVERINFO_PORT.data(), NAME_SERVERINFO_PORT_DEFAULT.data()) };
+}
+
 static void GameInterface_Init(bool isServer)
 {
     ACE::init();
+    ReadIni();
 
     g_isServer = isServer;
 

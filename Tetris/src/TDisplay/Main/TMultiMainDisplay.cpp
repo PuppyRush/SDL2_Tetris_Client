@@ -290,9 +290,8 @@ void TMultiMainDisplay::onClickedEnterServer(const void* click)
         waitingRoomDisplay->modal();
 	}
 	else {
-		seg::MessageDialog dlg{ "Cannot fail to connect server.",
-								seg::MessageDialogKind::error };
-		dlg.alert();
+        auto message = DisplayController::modal_open<MessageDialog>("Cannot fail to connect server.", seg::MessageDialogKind::error);
+        message->modal();
 	}
 
     TMainDisplay::onButtonClick(click);

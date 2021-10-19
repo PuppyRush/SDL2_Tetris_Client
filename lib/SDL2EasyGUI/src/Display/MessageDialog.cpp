@@ -3,6 +3,7 @@
 //
 
 #include "MessageDialog.h"
+#include "DisplayController.h"
 #include "include/SEG_Drawer.h"
 
 using namespace seg;
@@ -15,6 +16,10 @@ MessageDialog::MessageDialog(const std::string& message, MessageDialogKind kind)
 
 std::underlying_type_t<resource> MessageDialog::alert() 
 {
+    //auto dp = DisplayController::modal_open<MessageDialog>();
+   // dp->modal();
+
+
     return DisplayInterface::alert();
 }
 
@@ -62,12 +67,12 @@ void MessageDialog::onInitialize()
         auto ctl = getControl<StaticLabel>(resource::MESSAGEDIALOG_MSG);
         auto wh = drawer::getTextSize(ctl->getFont().getTTF_Font(), ctl->getControlText());
 
-        if (wh.first > wh.second) {
+       /* if (wh.first > wh.second) {
             ctl->setWidth(wh.first + 20);
         }
         if (wh.first > getWindowWidth()) {
             setWindowWidth(wh.first + 80);
-        }
+        }*/
     }
 
     {
