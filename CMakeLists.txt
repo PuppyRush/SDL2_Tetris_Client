@@ -9,9 +9,6 @@ message("CMAKE_SYSTEM_PROCESSOR: " ${CMAKE_SYSTEM_PROCESSOR} )
 message("CMAKE_SYSTEM_NAME : " ${CMAKE_SYSTEM_NAME})
 message("VCPKG_ROOT " $ENV{VCPKG_ROOT})
 
-find_path(BOOST_INCLUDE_DIR boost)
-include_directories(${BOOST_INCLUDE_DIR})
-
 
 
 #set enviroment var
@@ -25,12 +22,23 @@ elseif(CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "(amd64)|(AMD64)")
 	endif()
 endif()
 
+set(vcpkg "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
 set(CMAKE_BUILD_TYPE "debug")
 set(VCPKG_PLATFORM $ENV{VCPKG_ROOT}\\installed\\${PLATFORM})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_DEBUG")
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(BOOST_LIBRARY_DIRS ${VCPKG_PLATFORM}\\lib)
 set(BOOST_INCLUDE_DIR ${VCPKG_PLATFORM}\\include)
+set(BOOST_INCLUDE_DIRS ${VCPKG_PLATFORM}\\include)
+
+
+find_package(Boost 1.81.0)
+find_path(BOOST_INCLUDE_DIRS boost)
+include_directories(${BOOST_INCLUDE_DIRS})
+
+message("BOOST_INCLUDE_DIR " $ENV{BOOST_INCLUDE_DIR})
+message("BOOST_INCLUDE_DIRS " $ENV{BOOST_INCLUDE_DIRS})
+
 
 #post out cmake var
 message("CMAKE_CXX_FLAGS : " ${CMAKE_CXX_FLAGS})
@@ -77,7 +85,7 @@ add_subdirectory(lib/EasyTimer)
 add_subdirectory(lib/GameInterface) # C is a shared library (depends on B and external XXX)
 add_subdirectory(lib/SDL2EasyGUI)
 add_subdirectory(lib/Tetris)
-#add_subdirectory(lib/magic_enum)
+add_subdirectory(lib/magic_enum)
 
 add_subdirectory(Tetris) # Executable (depends on A and C)
 

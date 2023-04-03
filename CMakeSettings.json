@@ -24,7 +24,6 @@
       "ctestCommandArgs": "",
       "inheritEnvironments": [ "clang_cl_x64" ],
       "cmakeToolchain": "${env.VCPKG_ROOT}\\scripts\\buildsystems\\vcpkg.cmake",
-      "variables": [],
       "intelliSenseMode": "windows-clang-x64"
     }
   ]

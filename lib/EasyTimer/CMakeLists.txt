@@ -14,17 +14,6 @@ message("PROJECT_SOURCE_DIR:" ${PROJECT_SOURCE_DIR})
 
 cmake_policy(SET CMP0079 NEW)
 
-find_package(Boost 1.17 REQUIRED)
-find_path(BOOST_INCLUDE_DIRS boost)
-
-
-include_directories(
-${BOOST_INCLUDE_DIRS}
-		)
-
-message("BOOST_INCLUDE_DIRS" ${BOOST_INCLUDE_DIRS} )
-
-
 ADD_LIBRARY (EasyTimer STATIC
                 EasyTimer.cpp 
                 Countdown.h

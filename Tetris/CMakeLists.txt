@@ -3,20 +3,9 @@ project(tetris)
 
 message("----------------tetris START----------------")
 
-find_package(Boost 1.68.0)
-find_package(jsoncpp REQUIRED)
-find_path(BOOST_INCLUDE_DIR boost)
-
-#find_library(
-#        #SDL2EasyGUI
-#        #GameInterface
-#        #TetrisModule
-#        #NAMES libSDL2EasyGUI.a
-#        #NAMES libGameInterface.a
-#        #HINTS ${PROJECT_SOURCE_DIR}/lib/SDL2EasyGUI/cmake-build-debug
-#        #HINTS ${PROJECT_SOURCE_DIR}/lib/GameInterface/src
-#        #REQUIRED
-#        )
+find_package(Boost 1.81.0)
+find_package(jsoncpp CONFIG REQUIRED)
+find_path(BOOST_INCLUDE_DIRS boost)
 
 add_executable(tetris
         include/TProperty.h
@@ -65,7 +54,7 @@ add_executable(tetris
 include_directories(
         include
         SYSTEM
-        ${BOOST_INCLUDE_DIR}
+        ${BOOST_INCLUDE_DIRS}
         ${PROJECT_SOURCE_DIR}/src
         ${PROJECT_SOURCE_DIR}/src/GameInterface
         ${PROJECT_SOURCE_DIR}/src/SDLEasyGUI
@@ -78,7 +67,7 @@ target_link_libraries(
         SDL2EasyGUI
         TetrisModule 
         GameInterface
-        jsoncpp_lib
+        JsonCpp::JsonCpp
 		${SDL2_gfx_LIBRARY}
 		${BOOST_LIBRARIES}
 

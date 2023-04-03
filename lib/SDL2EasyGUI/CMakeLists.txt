@@ -1,19 +1,18 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.20)
 project(SDL2EasyGUI)
 
 message("----------------SDL2EasyGUI START----------------")
 
+#set(CMAKE_FIND_DEBUG_MODE 1)
+
+#set(SDL2_DIR "D:\\sources\\vcpkg\\installed\\x64-windows\\share\\sdl2")
+#set(sdl2-image_DIR "D:\\sources\\vcpkg\\installed\\x64-windows\\share\\SDL2_image")
 
 find_package(SDL2 CONFIG REQUIRED)
-find_package(sdl2-image CONFIG REQUIRED)
-find_package(sdl2-ttf CONFIG REQUIRED)
+find_package(sdl2_image CONFIG REQUIRED)
+find_package(sdl2_ttf CONFIG REQUIRED)
 find_package(sdl2-gfx CONFIG REQUIRED)
-find_package(jsoncpp REQUIRED)
-find_package(Boost 1.17.0)
-                                                                                                                                                find_path(BOOST_INCLUDE_DIR boost)
-
-set(BOOST_INCLUDE_DIR {VCPKG_ROOT}\\installed\\{PLATFORM}\\include)
-
+find_package(jsoncpp CONFIG REQUIRED)
 
 include_directories(
 		.
@@ -110,10 +109,10 @@ ADD_LIBRARY(SDL2EasyGUI STATIC
 
 target_link_libraries(
         ${PROJECT_NAME} PRIVATE  
-		SDL2::SDL2
-		SDL2::SDL2main
-		SDL2::SDL2_image
-		SDL2::SDL2_ttf
+		$<TARGET_NAME_IF_EXISTS:SDL2::SDL2main>
+        $<IF:$<TARGET_EXISTS:SDL2::SDL2>,SDL2::SDL2,SDL2::SDL2-static>
+		$<IF:$<TARGET_EXISTS:SDL2_image::SDL2_image>,SDL2_image::SDL2_image,SDL2_image::SDL2_image-static>
+		$<IF:$<TARGET_EXISTS:SDL2_ttf::SDL2_ttf>,SDL2_ttf::SDL2_ttf,SDL2_ttf::SDL2_ttf-static>
         SDL2::SDL2_gfx
  )
 
