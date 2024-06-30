@@ -79,14 +79,14 @@ bool GroupControlManager::isGroup(const group_id grpId)
 void GroupControlManager::select(const group_id grpId, const t_id ctlId)
 {
     if (isGroup(grpId)) {
-        get(grpId).toSelected(ctlId);
+        get(grpId).select(ctlId);
     }
 }
 
 void GroupControlManager::unselecte(const group_id grpId, const t_id ctlId)
 {
     if (isGroup(grpId)) {
-        get(grpId).toUnSelected(grpId);
+        get(grpId).unselect(grpId);
     }
 }
 

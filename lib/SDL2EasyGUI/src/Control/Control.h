@@ -238,13 +238,8 @@ public:
             setControlTextWidth(rect.w);
         GraphicInterface::setPosition(rect);
     }
-
-
-    void onHit(const SEG_Point& point, const bool hit);
-
-    void setSelected(bool selected);
-
-    void onVirtualDraw();
+      
+    virtual void setSelected(bool selected);
 
     virtual bool isHit(const SEG_Point& point) const;
 
@@ -359,18 +354,29 @@ public:
         refresh();
     }
 
-    void release();
 
     //control text
 
-    virtual void setControlText(const char* ch);
+    virtual void setControlText(const char* ch)
+    {
+        m_textDrawer.setText(ch);
+    }
 
-    virtual void setControlText(std::string&& str);
+    virtual void setControlText(std::string&& str)
+    {
+        m_textDrawer.setText(str);
+    }
 
-    virtual void setControlText(const std::string& str);
+    virtual void setControlText(const std::string& str)
+    {
+        m_textDrawer.setText(str);
+    }
 
-    const std::string& getControlText() const noexcept;
-    
+    const std::string& getControlText() const noexcept
+    {
+        return m_textDrawer.getText();
+    }
+
     inline int getControlTextWidth() const noexcept
     {
         return m_textDrawer.getTextWidth();
@@ -391,19 +397,42 @@ public:
         m_textDrawer.setTextHeight(height);
     }
 
+    inline void setControlTextPostion(const SDL_Rect rect)
+    {
+        m_textDrawer.setPosition(rect);
+    }
 
-    void setControlTextPostion(const SDL_Rect rect);
+    inline SDL_Rect getControlTextPostion(const SDL_Rect rect) const noexcept
+    {
+        return m_textDrawer.getPosition();
+    }
 
-    inline SDL_Rect getControlTextPostion(const SDL_Rect rect) const noexcept;
+    inline void setControlTextPositionX(const t_coord coord)
+    {
+        m_textDrawer.setPositionX(coord);
+    }
 
-    void setControlTextPositionX(const t_coord coord);
+    inline t_coord getControlTextPositionX() const noexcept
+    {
+        return m_textDrawer.getPositionX();
+    }
 
-    inline t_coord getControlTextPositionX() const noexcept;
+    inline void setControlTextPositionY(const t_coord coord)
+    {
+        m_textDrawer.setPositionY(coord);
+    }
 
-    void setControlTextPositionY(const t_coord coord);
-
-    inline t_coord getControlTextPositionY() const noexcept;
+    inline t_coord getControlTextPositionY() const noexcept
+    {
+        return m_textDrawer.getPositionY();
+    }
         
+    void onHit(const SEG_Point& point, const bool hit);
+
+    void onVirtualDraw();
+
+    void release();
+
 protected:
 
     explicit Control(Control*);

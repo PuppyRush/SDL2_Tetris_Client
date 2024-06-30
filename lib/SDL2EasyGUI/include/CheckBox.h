@@ -29,9 +29,9 @@ public:
 
     virtual void onMouseButtonDownEvent(const SDL_MouseButtonEvent* button) override;
 
-    void setSelected(const bool chk)
+    virtual void setSelected(bool chk)
     {
-        Control::setSelected(chk);
+        ButtonBasic::setSelected(chk);
     }
 
 private:

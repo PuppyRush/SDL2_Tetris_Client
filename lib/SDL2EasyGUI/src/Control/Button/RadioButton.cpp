@@ -18,14 +18,12 @@ RadioButton::RadioButton(RadioButtonBuilder& bld)
 
 void RadioButton::initialize()
 {
-    Control::initialize();
+    ButtonBasic::initialize();
 }
 
 void RadioButton::onMouseButtonDownEvent(const SDL_MouseButtonEvent* button)
 {
-    if (button->button == SDL_BUTTON_LEFT && button->state == SDL_PRESSED && isHit({ static_cast<t_coord>( button->x), static_cast<t_coord>(button->y) })) {
-        setSelected(!isSelected());
-    }
+    ButtonBasic::onMouseButtonDownEvent(button);
 }
 
 
@@ -45,8 +43,9 @@ void RadioButton::onDraw()
     ButtonBasic::onDraw();
 }
 
-void RadioButton::setSelected(const bool chk)
+void RadioButton::setSelected(bool chk)
 {
-    ButtonBasic::setSelected(chk);
     _drawCheck(chk);
+    ButtonBasic::setSelected(chk);
+    refresh();
 }

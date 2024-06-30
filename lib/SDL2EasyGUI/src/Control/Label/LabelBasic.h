@@ -11,15 +11,6 @@
 
 namespace seg {
 
-typedef struct EditLabelBasic
-{
-    bool canWritable = true;
-    bool canReadable = true;
-    bool isOnlyNumber = false;
-    bool isOnlyString = false;
-    t_size maxlen = 20;
-    std::string editstring;
-} EditLabelBasic;
 
 class LabelBasicBuilder;
 
@@ -45,8 +36,6 @@ protected:
 
     virtual void initialize() override;
 
-    EditLabelBasic m_labelBasic;
-
 };
 
 class LabelBasicBuilder : public BorderBuilder
@@ -67,7 +56,6 @@ public:
 
     virtual Control::control_ptr build() = 0;
 
-    EditLabelBasic m_editBasic;
 };
 
 }

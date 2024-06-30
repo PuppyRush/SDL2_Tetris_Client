@@ -8,7 +8,7 @@
 using namespace seg;
 
 LabelBasic::LabelBasic(LabelBasicBuilder& bld)
-        : Border(bld), m_labelBasic(bld.m_editBasic)
+        : Border(bld)
 {
 
 }
@@ -20,7 +20,6 @@ void LabelBasic::initialize()
     setControlTextPositionX(getPoint().x + 4);
     setControlTextPositionY(getPoint().y + (getHeight() - getControlTextHeight()) / 2);
 
-    setControlText(m_labelBasic.editstring);
 }
 
 void LabelBasic::onDraw()

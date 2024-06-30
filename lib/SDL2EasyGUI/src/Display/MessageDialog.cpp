@@ -33,7 +33,7 @@ void MessageDialog::registerEvent()
 void MessageDialog::onInitialize()
 {
     setWindowTitle(m_message);
-    setBackgroundColor(seg::ColorCode::black);
+    setBackgroundColor(seg::ColorCode::white);
     setWindowHeight(150);
     setWindowWidth(200);
 
@@ -51,6 +51,7 @@ void MessageDialog::onInitialize()
     }
 
     t_size begin_y = getWindowHeight() / 2 - 100;
+    t_coord button_y = 0;
     {
         StaticLabelBuilder bld(getSEGWindow(), {20, 20}, m_message);
         bld.id(seg::toUType(resource::MESSAGEDIALOG_MSG))->
@@ -59,7 +60,8 @@ void MessageDialog::onInitialize()
                 height(50)->
                 backgroundColor(ColorCode::white)->
                 borderColor(borderColor)->
-                borderThick(3)->
+                borderBoundaryType(BorderBoundaryType::angle)->
+                borderThick(2)->
                 enabled(true);
 
         addControl(bld.build());
@@ -67,16 +69,19 @@ void MessageDialog::onInitialize()
         auto ctl = getControl<StaticLabel>(resource::MESSAGEDIALOG_MSG);
         auto wh = drawer::getTextSize(ctl->getFont().getTTF_Font(), ctl->getControlText());
 
-       /* if (wh.first > wh.second) {
+        if (wh.first > wh.second) {
             ctl->setWidth(wh.first + 20);
         }
+        
         if (wh.first > getWindowWidth()) {
             setWindowWidth(wh.first + 80);
-        }*/
+        }
+
+        button_y = ctl->getPosition().y + ctl->getPosition().h + 5;
     }
 
     {
-        ButtonBuilder bld(getSEGWindow(), {getWindowWidth() - 120, 70}, "OK");
+        ButtonBuilder bld(getSEGWindow(), {getWindowWidth() - 120, button_y }, "OK");
         bld.id(seg::toUType(resource::BTN_OK))->
                 fontSize(18)->
                 fontColor(ColorCode::black)->

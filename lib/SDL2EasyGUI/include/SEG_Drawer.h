@@ -167,37 +167,37 @@ namespace seg::drawer {
 
         }
 
-        SEG_Color getColor() const noexcept
+        inline SEG_Color getColor() const noexcept
         {
             return m_font.color;
         }
 
-        void setColor(const SEG_Color& color)
+        inline void setColor(const SEG_Color& color)
         {
             m_font.color = color;
         }
 
-        std::string getFontName() const noexcept
+        inline std::string getFontName() const noexcept
         {
             return m_font.fontName;
         }
 
-        void setFontName(const std::string& str)
+        inline void setFontName(const std::string& str)
         {
             m_font.fontName = str;
         }
 
-        void setFont(const SEG_TFont& font)
+        inline void setFont(const SEG_TFont& font)
         {
             m_font = font;
         }
 
-        SEG_TFont getFont() const noexcept
+        inline SEG_TFont getFont() const noexcept
         {
             return m_font;
         }
 
-        void setRenderer(SDL_Renderer* rend)
+        inline void setRenderer(SDL_Renderer* rend)
         {
             m_renderer = rend;
         }
@@ -207,7 +207,7 @@ namespace seg::drawer {
             return  m_dstrect.x;
         }
 
-        void setPositionX(const t_coord coord)
+        inline void setPositionX(const t_coord coord)
         {
             m_dstrect.x = coord;
         }
@@ -217,12 +217,12 @@ namespace seg::drawer {
             return m_dstrect.y;
         }
 
-        void setPositionY(const t_coord coord)
+        inline void setPositionY(const t_coord coord)
         {
             m_dstrect.y = coord;
         }
 
-        void setPosition(const SDL_Rect rect)
+        inline void setPosition(const SDL_Rect rect)
         {
             m_srcrect.w = rect.w;
             m_srcrect.h = rect.h;
@@ -234,7 +234,7 @@ namespace seg::drawer {
             return m_dstrect;
         }
 
-        const std::string& getText() const noexcept
+        inline const std::string& getText() const noexcept
         {
             return m_text;
         }

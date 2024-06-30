@@ -92,7 +92,6 @@ void Control::_initializeInCtor()
 void Control::initialize()
 {
     m_isInitailize = true;
-    setSelected(isSelected());
 
     if (getGroup() != GroupControlManager::NONE) {
         GroupControlManager::getInstance().add( getData()->group, getData()->resourceId);
@@ -177,6 +176,10 @@ void Control::setSelected(bool selected)
     getData()->selected = selected;
     if (selected) {
         GroupControlManager::getInstance().select(getGroup(), getId());
+    }
+    else
+    {
+        GroupControlManager::getInstance().unselecte(getGroup(), getId());
     }
 }
 
@@ -269,54 +272,4 @@ void Control::onDraw()
 void Control::onMouseButtonDownEvent(const SDL_MouseButtonEvent* button)
 {
     onHit( make_segpoint(button->x, button->y), !isSelected());
-}
-
-void Control::setControlText(const char* ch)
-{
-    m_textDrawer.setText(ch);
-}
-
-void Control::setControlText(std::string&& str)
-{
-    m_textDrawer.setText(str);
-}
-
-void Control::setControlText(const std::string& str)
-{
-    m_textDrawer.setText(str);
-}
-
-const std::string& Control::getControlText() const noexcept
-{
-    return m_textDrawer.getText();
-}
-
-void Control::setControlTextPostion(const SDL_Rect rect)
-{
-    m_textDrawer.setPosition(rect);
-}
-
-SDL_Rect Control::getControlTextPostion(const SDL_Rect rect) const noexcept
-{
-    return m_textDrawer.getPosition();
-}
-
-void Control::setControlTextPositionX(const t_coord coord)
-{
-    m_textDrawer.setPositionX(coord);
-}
-
-t_coord Control::getControlTextPositionX() const noexcept
-{
-    return m_textDrawer.getPositionX();
-}
-
-void Control::setControlTextPositionY(const t_coord coord)
-{
-    m_textDrawer.setPositionY(coord);
-}
-
-t_coord Control::getControlTextPositionY() const noexcept
-{
-    return m_textDrawer.getPositionY();
 }

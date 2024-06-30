@@ -85,7 +85,7 @@ void EditLabel::onAttachFocus(const SDL_UserEvent* user)
         m_cursorTimer->start();
     }
 
-    setSelected(true);
+    Base::setSelected(true);
 
     Base::onAttachFocus(user);
 }
@@ -94,7 +94,7 @@ void EditLabel::onDetachFocus(const SDL_UserEvent* user)
 {
     m_cursorTimer->stop();
     m_drawTextCursor = false;
-    setSelected(false);
+    Base::setSelected(false);
 
     Base::onDetachFocus(user);
 }

@@ -283,15 +283,18 @@ void TMultiMainDisplay::onClickedEnterServer(const void* click)
         const auto& idLabel = dp->getControl<EditLabel>(resource::ENTERSERVER_ID);
         
         player->setUserName(idLabel->getControlText());
-        player->connectServer();
+        bool isConnected = player->connectServer();
+        if (!isConnected)
+        {
+            auto message = DisplayController::modal_open<MessageDialog>("Cannot fail to connect server.", seg::MessageDialogKind::error);
+            message->modal();
+            return;
+        }
+
 		game_interface::PacketQueue::getInstance().attach(player);
 
         auto waitingRoomDisplay = DisplayController::modal_open<TWaitingRoomDisplay>();
         waitingRoomDisplay->modal();
-	}
-	else {
-        auto message = DisplayController::modal_open<MessageDialog>("Cannot fail to connect server.", seg::MessageDialogKind::error);
-        message->modal();
 	}
 
     TMainDisplay::onButtonClick(click);

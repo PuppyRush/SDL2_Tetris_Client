@@ -64,7 +64,7 @@ private:
             return false;
         }
 
-        void toSelected(const t_id id)
+        void select(const t_id id)
         {
             if (m_isMultiselection) {
                 m_unselectedIds.erase(id);
@@ -75,7 +75,7 @@ private:
             }
         }
 
-        void toUnSelected(const t_id id)
+        void unselect(const t_id id)
         {
             if (m_isMultiselection) {
                 m_selectedIds.erase(id);

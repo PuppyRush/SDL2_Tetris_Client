@@ -23,8 +23,7 @@ public:
 
     explicit RadioButton(RadioButtonBuilder& bld);
 
-
-    void setSelected(const bool chk);
+    virtual void setSelected(bool chk);
 
     virtual void initialize() override;
 
